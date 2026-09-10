@@ -1,0 +1,15 @@
+{
+  "extraKnownMarketplaces": {
+    "personal-claude-plugin-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "colla69/personal-claude-plugin-marketplace"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "toolkit-dev@personal-claude-plugin-marketplace": true,
+    "clean-code@personal-claude-plugin-marketplace": true,
+    "code-review@personal-claude-plugin-marketplace": true
+  }
+}
