@@ -6,7 +6,11 @@ problem, said in a way that's easy to act on.
 | Component | Name | Role |
 |---|---|---|
 | Skill | `review-changes` | Method and report format |
-| Agent | `code-reviewer` | Runs the review. Read-only, `effort: high` |
+| Agent | `code-reviewer` | Runs the review. **Read-only** |
+
+Part of the review trio with `developer` and `refactoring`. This one finds what is
+wrong; `refactoring-specialist` says what shape fixes it; `developer` is the only one
+that edits.
 
 Priority order is fixed: correctness → security → test adequacy → API and contract
 impact → everything else. Style is last because it's the easiest to spot and the

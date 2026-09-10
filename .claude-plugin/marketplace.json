@@ -22,6 +22,13 @@
       "tags": ["review", "diff", "pr"]
     },
     {
+      "name": "developer",
+      "source": "./plugins/developer",
+      "description": "Implements changes in any language, matching the project's conventions and verifying with its own commands. The only agent in the review trio that edits code.",
+      "category": "quality",
+      "tags": ["development", "implementation", "trio"]
+    },
+    {
       "name": "clean-code",
       "source": "./plugins/clean-code",
       "description": "Your clean-code standard as a shared skill, plus a reviewer agent that audits code against it.",
@@ -41,6 +48,20 @@
       "description": "Behavior-preserving refactors executed in small, verifiable steps with a green test suite as the gate.",
       "category": "quality",
       "tags": ["refactoring", "cleanup", "tech-debt"]
+    },
+    {
+      "name": "java-dev",
+      "source": "./plugins/java-dev",
+      "description": "Java language conventions: version-aware idioms, nullability, immutability, exceptions, and resource handling.",
+      "category": "language",
+      "tags": ["java", "jvm", "language"]
+    },
+    {
+      "name": "typescript-dev",
+      "source": "./plugins/typescript-dev",
+      "description": "TypeScript language conventions: strictness, narrowing over assertions, discriminated unions, and async discipline.",
+      "category": "language",
+      "tags": ["typescript", "language"]
     },
     {
       "name": "vue-dev",

@@ -1,7 +1,6 @@
 ---
 name: {{AGENT_NAME}}
 description: {{What it does, in one sentence}}. Invoke when {{concrete situations}}. {{"Read-only." | "Edits code." | "Edits test files only."}}
-model: sonnet
 effort: {{medium | high}}
 {{disallowedTools: Write, Edit, NotebookEdit   ← include this line only for read-only agents}}
 ---

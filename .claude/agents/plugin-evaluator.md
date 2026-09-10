@@ -1,7 +1,6 @@
 ---
 name: plugin-evaluator
 description: Evaluates one plugin end to end — does it validate, will it fire, what does it cost, is the prose sound, does it change the outcome — and reports the answer in a form a person can read in a minute. Invoke to assess a plugin before or after publishing, to compare it against the rest of the marketplace, or when asked whether a plugin is any good. Read-only.
-model: sonnet
 effort: high
 disallowedTools: Write, Edit, NotebookEdit
 ---

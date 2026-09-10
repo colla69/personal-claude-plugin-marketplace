@@ -1,7 +1,6 @@
 ---
 name: vue-developer
 description: Builds and modifies Vue 3 components, composables, and Pinia stores following the project's conventions. Invoke for any substantial Vue work — new features, component refactors, composable extraction, or state management changes. Edits code.
-model: sonnet
 effort: medium
 ---
 

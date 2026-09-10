@@ -1,0 +1,9 @@
+{
+  "name": "typescript-dev",
+  "displayName": "TypeScript Conventions",
+  "description": "TypeScript language conventions — strictness, narrowing instead of assertions, discriminated unions, generics restraint, and async discipline. A skill the developer agent applies; ships no agent of its own.",
+  "author": { "name": "Andrea Colarieti Tosti" },
+  "license": "Apache-2.0",
+  "keywords": ["typescript", "language"],
+  "dependencies": ["clean-code"]
+}

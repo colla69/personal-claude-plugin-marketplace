@@ -1,7 +1,6 @@
 ---
 name: codebase-cartographer
 description: Explores an unfamiliar codebase and reports a structured map of its components, entry points, conventions, and build commands. Invoke when onboarding to a repo, when the main conversation needs a survey of a large or unfamiliar tree, or as part of project initialization. Read-only — never modifies files.
-model: sonnet
 effort: medium
 disallowedTools: Write, Edit, NotebookEdit
 ---

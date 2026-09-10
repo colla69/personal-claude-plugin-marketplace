@@ -5,7 +5,7 @@ Behavior-preserving change, in small steps, each gated on a green test suite.
 | Component | Name | Role |
 |---|---|---|
 | Skill | `refactor-safely` | Precondition, step size, transformations, when to stop |
-| Agent | `refactoring-specialist` | Executes the refactor. Edits code and runs tests, `effort: high` |
+| Agent | `refactoring-specialist` | Prescribes the refactor as an ordered plan. **Read-only** |
 
 > A refactor without tests is a rewrite with extra confidence.
 
@@ -22,6 +22,8 @@ proceeding carefully; care is not a substitute for verification.
 
 ## Does not
 
+- **Edit code.** It produces a plan; `developer` implements it. Two agents advise, one
+  executes — a refactorer that can edit produces a diff nobody prescribed.
 - **Change behavior.** The moment behavior changes it's a rewrite, and that's a
   different conversation.
 - Fix bugs it finds. They get noted and left — a mixed diff can no longer answer "did I

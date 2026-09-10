@@ -1,7 +1,6 @@
 ---
 name: clean-code-reviewer
 description: Audits code against the house clean-code standard and reports findings ranked by cost of leaving them. Invoke when the user asks whether code is clean, wants a readability or maintainability pass, or after generating a substantial chunk of new code. Reports only — does not edit.
-model: sonnet
 effort: medium
 disallowedTools: Write, Edit, NotebookEdit
 ---

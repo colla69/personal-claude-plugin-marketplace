@@ -18,6 +18,10 @@ The marketplace is named `personal-claude-plugin-marketplace`, so that suffix fo
 every plugin name in install commands and in `enabledPlugins`. In an interactive session
 `/plugin` gives you a picker instead.
 
+**Restart the session after installing.** Claude Code builds its skill registry at
+startup, so a plugin installed mid-session isn't invocable until the next one —
+`/project-init:init-agent-setup` will come back as an unknown skill otherwise.
+
 ## The plugins
 
 | Plugin | Skill | Agent | What it's for |
@@ -25,12 +29,15 @@ every plugin name in install commands and in `enabledPlugins`. In an interactive
 | `project-init` | `init-agent-setup` | `codebase-cartographer` | Bootstrap a cold repo: context files, rules, plugin wiring |
 | `clean-code` | `clean-code` | `clean-code-reviewer` | The house readability standard, and an audit against it |
 | `code-review` | `review-changes` | `code-reviewer` | Correctness, security, tests, and API impact on a diff |
+| `developer` | `development-standards` | `developer` | Implements changes; the only agent in the trio that edits code |
 | `unit-testing` | `write-unit-tests` | `unit-tester` | Behavior-first tests that fail when the code is wrong |
 | `refactoring` | `refactor-safely` | `refactoring-specialist` | Behavior-preserving change in small verified steps |
+| `java-dev` | `java-conventions` | — | Java language conventions, version-aware |
+| `typescript-dev` | `typescript-conventions` | — | TypeScript language conventions |
 | `vue-dev` | `vue-conventions` | `vue-developer` | Vue 3 Composition API components, composables, stores |
 
-Each plugin has its own README with what it does, when it fires, and what it deliberately
-does not do — follow the plugin name to `plugins/<name>/README.md`.
+Each plugin has its own README with what it does, when it fires, and what it
+deliberately does not do — follow the plugin name to `plugins/<name>/README.md`.
 
 ## Invoking them
 
@@ -61,19 +68,21 @@ This is the one that pays for the rest. In a fresh repo:
 It surveys the repo, maps its components, proposes a plan, and — after you approve —
 writes:
 
-- `CLAUDE.md` at the root: stack, commands, cross-cutting rules
-- `<component>/CLAUDE.md` per major component, which load **only** when Claude reads files
-  in that subtree, so per-component detail costs nothing until it's relevant
+- `AGENTS.md` at the root: stack, commands, an entry-point map, cross-cutting rules
+- `<component>/AGENTS.md` per major component
+- A one-line `CLAUDE.md` beside each, containing `@AGENTS.md`
 - `.claude/rules/*.md` with `paths:` frontmatter for file-type conventions
 - `.claude/settings.json` declaring this marketplace and the plugins this project needs
 
-That last file is the point. The plugin recommendation isn't advice in a chat log — it's
-committed configuration that travels with the repo. Anyone who clones it and trusts the
-folder gets the same setup.
+**The content lives in `AGENTS.md`, deliberately.** It is the vendor-neutral file other
+coding agents read too, so the same context can serve GitHub Copilot and anything else
+later. `CLAUDE.md` is a one-line import beside it — needed because Claude Code
+lazy-loads nested `CLAUDE.md` when it opens a file in that subtree but never discovers a
+nested `AGENTS.md`. Content in one place, a thin adapter per tool.
 
-Note that Claude Code reads `CLAUDE.md`, not `AGENTS.md`. If your repo already has an
-`AGENTS.md` for other tools, the initializer creates a `CLAUDE.md` that imports it with
-`@AGENTS.md` rather than duplicating the content.
+`.claude/settings.json` is the other half of the point. The plugin recommendation isn't
+advice in a chat log — it's committed configuration that travels with the repo. Anyone
+who clones it and trusts the folder gets the same setup.
 
 ## Scope
 
@@ -88,8 +97,8 @@ Enabling a plugin in `.claude/settings.json` doesn't fetch it. On a new machine,
 ## Updates
 
 No plugin here declares a `version`. For a relative-path source in a git-hosted
-marketplace, Claude Code falls back to the source's commit SHA, so **every push is picked
-up as an update** — which is what you want for standards you refine continuously.
+marketplace, Claude Code falls back to the source's commit SHA, so **every push is
+picked up as an update** — which is what you want for standards you refine continuously.
 
 ## Layout
 
@@ -105,8 +114,8 @@ plugins/<name>/
 scripts/check-catalog.mjs           # keeps the three plugin lists in sync
 ```
 
-Only `plugin.json` lives inside `.claude-plugin/`. Putting `skills/` or `agents/` in there
-is the most common reason a plugin loads but appears empty.
+Only `plugin.json` lives inside `.claude-plugin/`. Putting `skills/` or `agents/` in
+there is the most common reason a plugin loads but appears empty.
 
 ## Contributing
 

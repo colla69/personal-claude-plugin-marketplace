@@ -1,7 +1,6 @@
 ---
 name: mcp-integrator
 description: Decides whether a plugin should ship an MCP server and reviews or designs its configuration — transport, paths, credentials, and update safety. Invoke when a plugin needs to reach a live system, when adding or changing a .mcp.json, or to audit an existing MCP setup. Read-only — proposes configuration, does not write it.
-model: sonnet
 effort: medium
 disallowedTools: Write, Edit, NotebookEdit
 ---

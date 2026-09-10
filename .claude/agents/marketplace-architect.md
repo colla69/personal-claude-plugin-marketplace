@@ -1,7 +1,6 @@
 ---
 name: marketplace-architect
 description: Reviews this marketplace as a system — where the plugin boundaries are wrong, where coupling is undeclared, and where a referenced standard will silently go missing at runtime. Invoke before adding a plugin that overlaps an existing one, when deciding to split or merge, when wiring one plugin's agent to another plugin's skill, or for a periodic review of how the whole set fits together. Read-only.
-model: sonnet
 effort: high
 disallowedTools: Write, Edit, NotebookEdit
 ---

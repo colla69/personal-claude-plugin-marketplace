@@ -1,6 +1,6 @@
 # personal-claude-plugin-marketplace
 
-A personal Claude Code plugin marketplace: one catalog and six plugins, reused across
+A personal Claude Code plugin marketplace: one catalog and nine plugins, reused across
 every project. **The product is prose.** There is no build, no dependencies, and no
 runtime — the only executable file in the repo is one zero-dependency Node script. Which
 means changes are judged editorially, and the automation exists only to catch the two
@@ -42,11 +42,35 @@ the policy working — see Boundaries.**
   they cannot wrap.
 - Every skill ends by saying when to yield to local convention. A standard with no
   stated boundary gets applied mechanically.
-- Read `.claude/skills/new-plugin/references/authoring-style.md` before
-  writing or editing any skill or agent. It is the canonical voice guide.
+- Read `.claude/skills/new-plugin/references/authoring-style.md` before writing or
+  editing any skill or agent. It is the canonical voice guide.
+
+### The review trio
+
+`developer`, `code-review`, and `refactoring` are one unit and are recommended together
+in any repo with code in it. Two agents advise, one executes:
+
+| Agent | Lane |
+|---|---|
+| `code-reviewer` | read-only — logical errors, code inconsistencies, code quality |
+| `refactoring-specialist` | read-only — prescribes the improvement in readable prose |
+| `developer` | **the only one that edits code** |
+
+All three depend on `clean-code`, declared in `plugin.json` rather than implied by prose
+— an agent told to read a skill that isn't enabled proceeds on generic taste and nothing
+reports it.
 
 ## Boundaries
 
+- **Never put a model reference in agent frontmatter.** No `model: sonnet` or any other
+  vendor's model name. This product is meant to support GitHub Copilot as well as
+  Claude, and naming a model hard-codes one runtime into a file that has to stay
+  portable.
+- **Generated context goes in `AGENTS.md`, not `CLAUDE.md`.** `CLAUDE.md` is a one-line
+  `@AGENTS.md` import beside it. The pairing is required, not stylistic: nested
+  `CLAUDE.md` lazy-loads, nested `AGENTS.md` is never discovered.
+- **Read-only is frontmatter, never prose.** An agent whose description says read-only
+  without `disallowedTools: Write, Edit, NotebookEdit` is not read-only.
 - **Never add `--strict` to CI.** It promotes "no version specified" to an error, and
   every plugin omits `version` on purpose so updates resolve by commit SHA. The warning
   is the policy.

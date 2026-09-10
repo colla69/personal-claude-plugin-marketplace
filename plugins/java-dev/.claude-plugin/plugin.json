@@ -1,0 +1,9 @@
+{
+  "name": "java-dev",
+  "displayName": "Java Conventions",
+  "description": "Java language conventions — version-aware idioms, nullability, immutability, exceptions, and resource handling. A skill the developer agent applies; ships no agent of its own.",
+  "author": { "name": "Andrea Colarieti Tosti" },
+  "license": "Apache-2.0",
+  "keywords": ["java", "jvm", "language"],
+  "dependencies": ["clean-code"]
+}

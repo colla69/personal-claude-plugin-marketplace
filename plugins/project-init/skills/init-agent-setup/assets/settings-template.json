@@ -8,6 +8,9 @@
     }
   },
   "enabledPlugins": {
+    "developer@personal-claude-plugin-marketplace": true,
+    "code-review@personal-claude-plugin-marketplace": true,
+    "refactoring@personal-claude-plugin-marketplace": true,
     "clean-code@personal-claude-plugin-marketplace": true
   }
 }

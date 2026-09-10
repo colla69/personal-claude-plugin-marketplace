@@ -1,7 +1,6 @@
 ---
 name: unit-tester
 description: Writes and runs unit tests for a given file, module, or change, then reports coverage gaps honestly. Invoke when new code needs tests, when a module is untested, or when the user wants an existing suite strengthened. Can edit test files and run the suite.
-model: sonnet
 effort: medium
 ---
 

@@ -1,0 +1,9 @@
+{
+  "name": "developer",
+  "displayName": "Developer",
+  "description": "Implements changes in any language: matches the project's conventions, verifies with the project's own commands, and is the only agent in the review trio that edits code.",
+  "author": { "name": "Andrea Colarieti Tosti" },
+  "license": "Apache-2.0",
+  "keywords": ["development", "implementation"],
+  "dependencies": ["clean-code"]
+}

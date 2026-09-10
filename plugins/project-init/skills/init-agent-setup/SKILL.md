@@ -8,10 +8,10 @@ description: Bootstrap a complete agentic setup for an unfamiliar or unconfigure
 Turn a cold repository into a working agentic setup: context files Claude will actually
 load, path-scoped rules, and the right plugins enabled.
 
-The goal is **not** to write one giant file describing the whole codebase. Claude can read
-code. The goal is to capture what Claude *cannot* derive by reading code — build commands
-that aren't obvious, conventions that differ from framework defaults, boundaries that
-must not be crossed, and the reason things are the way they are.
+The goal is **not** to write one giant file describing the whole codebase. Claude can
+read code. The goal is to capture what Claude *cannot* derive by reading code — build
+commands that aren't obvious, conventions that differ from framework defaults,
+boundaries that must not be crossed, and the reason things are the way they are.
 
 ## Workflow
 
@@ -35,14 +35,14 @@ Get the shape of the repo before reading anything deeply.
 
 ### Phase 2 — Map the components
 
-Identify the **units of the codebase that a developer would think about separately**.
-In a monorepo those are packages or apps. In a layered backend they might be
-`api/`, `domain/`, `infra/`. In a Vue app: `components/`, `composables/`, `stores/`,
-`views/`. A directory is a component worth its own context file when it has a distinct
-purpose, a distinct set of conventions, or a boundary others shouldn't cross.
+Identify the **units of the codebase that a developer would think about separately**. In
+a monorepo those are packages or apps. In a layered backend they might be `api/`,
+`domain/`, `infra/`. In a Vue app: `components/`, `composables/`, `stores/`, `views/`. A
+directory is a component worth its own context file when it has a distinct purpose, a
+distinct set of conventions, or a boundary others shouldn't cross.
 
-Aim for **3–8 components**. Fewer than 3 and a single root file is enough; more than 8 and
-you are describing directories, not components.
+Aim for **3–8 components**. Fewer than 3 and a single root file is enough; more than 8
+and you are describing directories, not components.
 
 If the repo is large, delegate this phase to the `project-init:codebase-cartographer`
 subagent so the exploration doesn't fill the main context window. Give it the component
@@ -58,8 +58,8 @@ For each component, determine:
 
 ### Phase 3 — Propose, don't write
 
-Present a plan to the user before touching the filesystem, because a wrong context file is
-worse than no context file — it gets loaded into every session and quietly misleads.
+Present a plan to the user before touching the filesystem, because a wrong context file
+is worse than no context file — it gets loaded into every session and quietly misleads.
 
 Show:
 
@@ -79,33 +79,56 @@ belongs in each tier, and the size limits that matter.
 Summary of the layout you are producing:
 
 ```
-CLAUDE.md                       # root: stack, commands, cross-cutting rules
+AGENTS.md                       # root context — the content lives here
+CLAUDE.md                       # one line: @AGENTS.md
+src/<component>/AGENTS.md       # per-component detail
+src/<component>/CLAUDE.md       # one line: @AGENTS.md
 .claude/rules/<topic>.md        # path-scoped rules, loaded only for matching files
-src/<component>/CLAUDE.md       # loaded on demand when Claude reads that subtree
 .claude/settings.json           # marketplace + enabled plugins for this project
 ```
+
+**Write the content in `AGENTS.md`, always.** `CLAUDE.md` is a one-line `@AGENTS.md`
+import beside it, and nothing else. This is not a special case for repos that already
+have an `AGENTS.md` — it is the default layout, because the same context has to serve
+other agents too, GitHub Copilot among them. A Claude-only file forecloses that.
+
+The pairing is not optional: Claude Code lazy-loads nested `CLAUDE.md` but never
+discovers a nested `AGENTS.md`, so a component directory with only `AGENTS.md` is
+content that never loads.
 
 Two rules that matter more than the rest:
 
 - **Keep the root under 200 lines.** It is loaded into every single session. Anything
-  that only matters for one part of the tree belongs in a nested `CLAUDE.md` or a
+  that only matters for one part of the tree belongs in a nested `AGENTS.md` or a
   path-scoped rule, both of which load lazily.
-- **Write only what Claude can't derive.** Delete any line that a competent developer
-  would learn in thirty seconds by opening the file. "The `api/` directory contains the
-  API" is noise. "Handlers must not import from `domain/internal/` — use the port
-  interfaces in `domain/ports.ts`" is signal.
+- **Write only what can't be derived, or what costs real time to rediscover.** Delete
+  any line a competent developer learns in thirty seconds by opening the file. "The
+  `api/` directory contains the API" is noise. "Handlers must not import from
+  `domain/internal/` — use the port interfaces in `domain/ports.ts`" is signal.
+- **Include an entry-point map.** Per component: the file to open first, and the two or
+  three behaviours someone will hunt for with the file they live in. A tree listing is
+  noise because `ls` reproduces it; "template resolution happens in
+  `TemplateConfig.java` and collapses nested paths to basenames" is a search saved every
+  session, forever.
 
-If the repo already has an `AGENTS.md` for other tools, do not duplicate it. Create a
-`CLAUDE.md` whose first line is `@AGENTS.md` and put Claude-specific additions below it.
-Claude Code reads `CLAUDE.md`, not `AGENTS.md`, so the import is what makes the shared
-file take effect.
+If the repo already has an `AGENTS.md`, you are **improving it**, not replacing it —
+preserve what is still true and add below. If it has `.cursor/rules/` or
+`.github/copilot-instructions.md`, read them for content worth carrying into
+`AGENTS.md`; do not delete them.
 
 ### Phase 5 — Recommend and wire up plugins
 
 Read `references/plugin-catalog.md` for the available plugins and their trigger
-conditions. Recommend a plugin only when something in the repo actually calls for it —
-an unconfigured recommendation is a cost with no benefit, since every enabled plugin adds
-its skill and agent descriptions to every session.
+conditions. Recommend a stack-specific plugin only when something in the repo actually
+calls for it — an unconfigured recommendation is a cost with no benefit, since every
+enabled plugin adds its skill and agent descriptions to every session.
+
+**The review trio is the exception: `developer`, `code-review`, and `refactoring` go
+together in any repo with code in it.** Do not gate `code-review` on PR-workflow signals
+— the reviewer's value is catching logical errors and inconsistencies before a commit,
+which has nothing to do with whether anyone opens pull requests. Recommend all three or
+none; enabling part of the trio leaves either findings with nobody to implement them, or
+a writer with nobody checking it.
 
 Then make the recommendation actionable rather than advisory. Write
 `.claude/settings.json` (merging, not overwriting, any existing file) using
@@ -119,26 +142,39 @@ Then make the recommendation actionable rather than advisory. Write
     }
   },
   "enabledPlugins": {
-    "clean-code@personal-claude-plugin-marketplace": true,
+    "developer@personal-claude-plugin-marketplace": true,
+    "code-review@personal-claude-plugin-marketplace": true,
+    "refactoring@personal-claude-plugin-marketplace": true,
     "unit-testing@personal-claude-plugin-marketplace": true
   }
 }
 ```
 
-Committing this means the setup travels with the repo. Tell the user to run
-`/plugin install <name>@personal-claude-plugin-marketplace` for anything not
-already installed — enabling a plugin in settings doesn't fetch it if it isn't on
-the machine yet.
+Committing this means the setup travels with the repo. Tell the user to run `/plugin
+install <name>@personal-claude-plugin-marketplace` for anything not already installed —
+enabling a plugin in settings doesn't fetch it if it isn't on the machine yet.
 
 ### Phase 6 — Verify
 
 Do not declare success without checking:
 
-1. Run `claude plugin validate .claude` to confirm the rules and any agent files parse.
-2. Ask the user to run `/context` in a fresh session and confirm the intended files
+1. **Parse what you wrote.** Confirm `.claude/settings.json` is valid JSON, and that the
+   YAML frontmatter of every `.claude/rules/*.md` you created parses and its `paths:`
+   globs match at least one real file. A rule whose globs match nothing is dead weight
+   that never announces itself.
+2. **Check the pairing.** Every `AGENTS.md` you wrote has a `CLAUDE.md` beside it
+   containing the `@AGENTS.md` import. Without it the file never loads, and nothing
+   reports that.
+3. **Check the budget.** Root under 200 lines, components within 30–70.
+4. Ask the user to run `/context` in a fresh session and confirm the intended files
    appear under **Memory files**. This is the only real proof the setup loaded.
-3. Report anything you wrote that you were unsure about, so they can correct it while it's
-   still fresh.
+5. Report anything you wrote that you were unsure about — especially any command you
+   could not execute — so they can correct it while it's still fresh.
+
+Do **not** run `claude plugin validate` on the project's `.claude/` directory. That
+command expects a plugin or marketplace manifest; a project context directory is
+neither, and it fails with "No manifest found" unless the directory happens to contain
+plugin components.
 
 ## Output format for the final report
 
@@ -159,6 +195,8 @@ Run `/context` in a new session to confirm the memory files loaded.
 
 ## Reference files
 
-- `references/context-files.md` — layout, tiers, templates, and size rules. Read before phase 4.
-- `references/plugin-catalog.md` — the toolkit's plugins and when each applies. Read before phase 5.
+- `references/context-files.md` — layout, tiers, templates, and size rules. Read before
+  phase 4.
+- `references/plugin-catalog.md` — the toolkit's plugins and when each applies. Read
+  before phase 5.
 - `assets/settings-template.json` — starting shape for `.claude/settings.json`.

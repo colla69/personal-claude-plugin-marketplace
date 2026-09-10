@@ -1,7 +1,6 @@
 ---
 name: skill-agent-evaluator
 description: Evaluates a SKILL.md and the agent that applies it, as a pair, against the house authoring standard — whether the description will fire, whether the agent duplicates its skill, whether frontmatter enforces what the prose claims, and whether the skill says when to yield. Invoke after writing or editing a skill or an agent, when a skill isn't firing, when reviewing a contributed plugin's prose, or when asked whether a skill or agent is well written. Read-only.
-model: sonnet
 effort: high
 disallowedTools: Write, Edit, NotebookEdit
 ---

@@ -13,7 +13,7 @@ Reference files: `context-files.md` (tiers, templates, size limits), `plugin-cat
 
 ## Fires when
 
-- A repo has no `CLAUDE.md` or `.claude/`
+- A repo has no `AGENTS.md`, `CLAUDE.md`, or `.claude/`
 - "set this up", "onboard me to this repo", "which plugins should I use here"
 - You want plugins and subagents configured, not just a memory file — prefer this over a
   bare `/init`
@@ -23,11 +23,13 @@ Reference files: `context-files.md` (tiers, templates, size limits), `plugin-cat
 - **Write anything before phase 4.** It proposes first; a wrong context file loads into
   every session and quietly misleads, which is worse than no context file.
 - Produce one giant file. Root stays under 200 lines; per-component detail goes in
-  nested `CLAUDE.md` files that cost nothing until Claude opens that subtree.
-- Describe what the code plainly shows. It captures only what Claude can't derive by
-  reading.
-- Replace an existing `CLAUDE.md` — it improves it. An existing `AGENTS.md` gets
-  imported with `@AGENTS.md`, not duplicated.
+  nested `AGENTS.md` files that cost nothing until that subtree is opened.
+- **Write Claude-specific config.** Content goes in `AGENTS.md`, the vendor-neutral file
+  other agents read; `CLAUDE.md` is a one-line `@AGENTS.md` import beside it.
+- Describe what the code plainly shows — but it does map entry points, because "which
+  file do I open first" costs a real search every session.
+- Replace an existing `AGENTS.md`, `.cursor/rules/`, or
+  `.github/copilot-instructions.md` — it reads them and improves on what's there.
 
 ## Install
 
