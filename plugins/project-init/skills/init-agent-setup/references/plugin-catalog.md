@@ -15,7 +15,6 @@ pure cost. When in doubt, leave it out and mention it as optional.
 | `refactoring` | `refactor-safely` skill, `refactoring-specialist` agent | Signs of accumulated debt: files over ~500 lines, duplicated modules, `TODO`/`FIXME` density, or the user says they're cleaning something up. Requires a working test suite to be useful — say so if there isn't one. |
 | `vue-dev` | `vue-conventions` skill, `vue-developer` agent | `vue` in dependencies. Check the major version and note it: the plugin targets Vue 3 Composition API, so flag a mismatch if the project is on Options API or Vue 2. |
 | `project-init` | this skill | Already installed if you're reading this. Leave it enabled for future repos, or note that it can be user-scoped instead of project-scoped. |
-| `toolkit-dev` | `new-plugin` skill | You are working *in* the toolkit repo itself — a root `.claude-plugin/marketplace.json` is present. Noise in every other repo; never recommend it for a normal project. |
 
 ## Scope guidance
 

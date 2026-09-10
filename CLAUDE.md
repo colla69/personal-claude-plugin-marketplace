@@ -1,6 +1,6 @@
 # personal-claude-plugin-marketplace
 
-A personal Claude Code plugin marketplace: one catalog and seven plugins, reused across
+A personal Claude Code plugin marketplace: one catalog and six plugins, reused across
 every project. **The product is prose.** There is no build, no dependencies, and no
 runtime — the only executable file in the repo is one zero-dependency Node script. Which
 means changes are judged editorially, and the automation exists only to catch the two
@@ -27,7 +27,7 @@ the policy working — see Boundaries.**
 |---|---|
 | `.claude-plugin/marketplace.json` | The catalog. Source of truth for the plugin list |
 | `plugins/<name>/` | One plugin: manifest, README, skills, agents |
-| `plugins/toolkit-dev/` | The meta-plugin — how to author plugins for this repo |
+| `.claude/` | Tooling for working on this repo — never published as a plugin |
 | `scripts/check-catalog.mjs` | Guards the three mirrored plugin lists |
 
 ## Conventions
@@ -42,7 +42,7 @@ the policy working — see Boundaries.**
   they cannot wrap.
 - Every skill ends by saying when to yield to local convention. A standard with no
   stated boundary gets applied mechanically.
-- Read `plugins/toolkit-dev/skills/new-plugin/references/authoring-style.md` before
+- Read `.claude/skills/new-plugin/references/authoring-style.md` before
   writing or editing any skill or agent. It is the canonical voice guide.
 
 ## Boundaries
@@ -77,6 +77,10 @@ on, not what it ships.
 | `@skill-agent-evaluator` | One skill + its agent — the prose craft, as a pair | reads |
 | `@mcp-integrator` | Whether a plugin needs a live server, and its config | reads |
 | `@skill-agent-writer` | Renders a decided standard into house form | writes |
+
+`/new-plugin` in `.claude/skills/` is the authoring workflow: scaffold a plugin, write
+it, and perform its three registrations. It lives here rather than in `plugins/` because
+it is how the marketplace gets built, not something the marketplace ships.
 
 Writing a standard is two jobs and only one is delegable. Deciding what the standard
 *is* — the judgement, the ranking, what to yield on — is a conversation about the

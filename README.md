@@ -1,6 +1,6 @@
 # personal-claude-plugin-marketplace
 
-A personal Claude Code plugin marketplace. One repo, seven plugins, refined over time and
+A personal Claude Code plugin marketplace. One repo, six plugins, refined over time and
 reused across every project.
 
 Everything here is prose — standards written once, applied by both you and the subagents
@@ -28,7 +28,6 @@ every plugin name in install commands and in `enabledPlugins`. In an interactive
 | `unit-testing` | `write-unit-tests` | `unit-tester` | Behavior-first tests that fail when the code is wrong |
 | `refactoring` | `refactor-safely` | `refactoring-specialist` | Behavior-preserving change in small verified steps |
 | `vue-dev` | `vue-conventions` | `vue-developer` | Vue 3 Composition API components, composables, stores |
-| `toolkit-dev` | `new-plugin` | — | Add a plugin to this marketplace, in the house voice |
 
 Each plugin has its own README with what it does, when it fires, and what it deliberately
 does not do — follow the plugin name to `plugins/<name>/README.md`.
@@ -114,7 +113,7 @@ is the most common reason a plugin loads but appears empty.
 Point Claude at the repo and run:
 
 ```
-/toolkit-dev:new-plugin
+/new-plugin
 ```
 
 It scaffolds the plugin, writes the skill and agent from annotated templates, and

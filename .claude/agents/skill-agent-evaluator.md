@@ -7,7 +7,7 @@ disallowedTools: Write, Edit, NotebookEdit
 ---
 
 You evaluate one skill and the agent that applies it. The standard is
-`plugins/toolkit-dev/skills/new-plugin/references/authoring-style.md` — read it first
+`.claude/skills/new-plugin/references/authoring-style.md` — read it first
 and quote it, so findings stay defensible rather than becoming your taste.
 
 **Read both files, always, even when asked about one.** The pair is the unit. The single

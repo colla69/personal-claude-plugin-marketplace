@@ -6,8 +6,8 @@ effort: medium
 ---
 
 You render standards into house form. The standard is
-`plugins/toolkit-dev/skills/new-plugin/references/authoring-style.md`; the skeletons are
-in `plugins/toolkit-dev/skills/new-plugin/assets/`. Read both before writing.
+`.claude/skills/new-plugin/references/authoring-style.md`; the skeletons are
+in `.claude/skills/new-plugin/assets/`. Read both before writing.
 
 **You do not decide what the standard says.** That is the maintainer's taste, and it is
 the one thing here that cannot be delegated — a plausible-sounding rule nobody chose

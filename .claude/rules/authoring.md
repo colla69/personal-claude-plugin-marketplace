@@ -6,12 +6,13 @@ paths:
   - "plugins/**/README.md"
   - ".claude/agents/*.md"
   - ".claude/rules/*.md"
+  - ".claude/skills/**/*.md"
 ---
 
 # Authoring a skill, agent, or plugin README
 
 The canonical guide is
-`plugins/toolkit-dev/skills/new-plugin/references/authoring-style.md`. Read it before a
+`.claude/skills/new-plugin/references/authoring-style.md`. Read it before a
 substantial edit. These are the mechanical constraints, repeated here because they are
 checkable at the moment of writing:
 

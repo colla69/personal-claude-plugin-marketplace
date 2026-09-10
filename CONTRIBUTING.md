@@ -26,7 +26,7 @@ before deciding.
 ## The guided path
 
 ```
-/toolkit-dev:new-plugin
+/new-plugin
 ```
 
 Scaffolds the plugin from annotated templates, writes the skill and agent in the house
@@ -49,7 +49,7 @@ Every plugin carries its own `README.md`, headed `# <plugin-name>` — roughly 4
 covering what it is, its skill and agent, when it fires, and what it **does not** do. The
 "does not" section is the point: the marketplace entry already says what a plugin is for,
 so the README earns its place by stating the constraints. Start from
-`plugins/toolkit-dev/skills/new-plugin/assets/README.md.template`.
+`.claude/skills/new-plugin/assets/README.md.template`.
 
 `skills/` and `agents/` sit at the **plugin root**. Putting them inside `.claude-plugin/`
 produces a plugin that validates, installs, and is completely empty. Nothing warns you.
@@ -61,7 +61,7 @@ may collide — `clean-code` is both — and that's right when the plugin *is* t
 
 ## Writing
 
-Read **`plugins/toolkit-dev/skills/new-plugin/references/authoring-style.md`** before
+Read **`.claude/skills/new-plugin/references/authoring-style.md`** before
 writing a skill or an agent. It is the canonical guide to the house voice, and it is not
 duplicated here on purpose.
 

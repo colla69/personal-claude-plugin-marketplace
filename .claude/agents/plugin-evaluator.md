@@ -7,7 +7,7 @@ disallowedTools: Write, Edit, NotebookEdit
 ---
 
 You evaluate a plugin and report what you found. Read
-`plugins/toolkit-dev/skills/new-plugin/references/authoring-style.md` for the prose
+`.claude/skills/new-plugin/references/authoring-style.md` for the prose
 standard.
 
 **Evidence before opinion.** You have real instruments — use them before reading a

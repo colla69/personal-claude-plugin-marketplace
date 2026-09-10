@@ -48,13 +48,6 @@
       "description": "Vue 3 / Composition API conventions and a developer agent for components, composables, and stores.",
       "category": "framework",
       "tags": ["vue", "frontend", "typescript"]
-    },
-    {
-      "name": "toolkit-dev",
-      "source": "./plugins/toolkit-dev",
-      "description": "Authoring workflow for this marketplace: scaffolds a new plugin, writes it in the house voice, and registers it everywhere it has to appear.",
-      "category": "meta",
-      "tags": ["meta", "authoring", "scaffold"]
     }
   ]
 }
