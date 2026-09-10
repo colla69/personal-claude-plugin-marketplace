@@ -87,16 +87,12 @@ src/<component>/CLAUDE.md       # one line: @AGENTS.md
 .claude/settings.json           # marketplace + enabled plugins for this project
 ```
 
-**Write the content in `AGENTS.md`, always.** `CLAUDE.md` is a one-line `@AGENTS.md`
-import beside it, and nothing else. This is not a special case for repos that already
-have an `AGENTS.md` — it is the default layout, because the same context has to serve
-other agents too, GitHub Copilot among them. A Claude-only file forecloses that.
+**Write the content in `AGENTS.md`, always** — this is the default layout, not a special
+case for repos that already have one. `CLAUDE.md` is a one-line `@AGENTS.md` import
+beside it and nothing else, and the pairing is not optional.
+`references/context-files.md` explains why and what breaks without it.
 
-The pairing is not optional: Claude Code lazy-loads nested `CLAUDE.md` but never
-discovers a nested `AGENTS.md`, so a component directory with only `AGENTS.md` is
-content that never loads.
-
-Two rules that matter more than the rest:
+Three rules that matter more than the rest:
 
 - **Keep the root under 200 lines.** It is loaded into every single session. Anything
   that only matters for one part of the tree belongs in a nested `AGENTS.md` or a
@@ -110,6 +106,13 @@ Two rules that matter more than the rest:
   noise because `ls` reproduces it; "template resolution happens in
   `TemplateConfig.java` and collapses nested paths to basenames" is a search saved every
   session, forever.
+
+Beyond context files, `.claude/` may earn a **project skill** — `.claude/skills/<name>/`
+— when the repo has a multi-step procedure genuinely specific to it that costs real time
+to reconstruct: bringing a full local stack up in the right order, a release checklist,
+a smoke test with a fixed sequence. Write one only when you found such a procedure and
+can state its steps concretely. A skill that restates `npm run dev` is noise. Propose it
+in phase 3 like everything else.
 
 If the repo already has an `AGENTS.md`, you are **improving it**, not replacing it —
 preserve what is still true and add below. If it has `.cursor/rules/` or
@@ -130,8 +133,10 @@ which has nothing to do with whether anyone opens pull requests. Recommend all t
 none; enabling part of the trio leaves either findings with nobody to implement them, or
 a writer with nobody checking it.
 
-Then make the recommendation actionable rather than advisory. Write
-`.claude/settings.json` (merging, not overwriting, any existing file) using
+Then make the recommendation actionable rather than advisory — in two parts, and **both
+are required**.
+
+**a. Write `.claude/settings.json`** (merging, not overwriting, any existing file) using
 `assets/settings-template.json` as the shape:
 
 ```json
@@ -150,9 +155,27 @@ Then make the recommendation actionable rather than advisory. Write
 }
 ```
 
-Committing this means the setup travels with the repo. Tell the user to run `/plugin
-install <name>@personal-claude-plugin-marketplace` for anything not already installed —
-enabling a plugin in settings doesn't fetch it if it isn't on the machine yet.
+Committing this means the setup travels with the repo — anyone who clones it gets the
+same configuration.
+
+**b. Put the install commands in the final report.** Enabling a plugin in settings does
+**not** fetch it. A repo whose settings enable four plugins that aren't on the machine
+is configured for a setup the user does not have, and nothing announces the gap — the
+settings file looks correct and the plugins simply never load.
+
+So the report ends with a block the user can paste, listing every plugin you
+recommended:
+
+```bash
+claude plugin marketplace add colla69/personal-claude-plugin-marketplace
+claude plugin install developer@personal-claude-plugin-marketplace
+claude plugin install code-review@personal-claude-plugin-marketplace
+claude plugin install refactoring@personal-claude-plugin-marketplace
+claude plugin install unit-testing@personal-claude-plugin-marketplace
+```
+
+`references/plugin-catalog.md` has the rules for composing that block — read them before
+writing it.
 
 ### Phase 6 — Verify
 
@@ -178,20 +201,39 @@ plugin components.
 
 ## Output format for the final report
 
-```
+````
 ## Setup complete
 
+**Toolkit version:** <the installed commit SHA of project-init, so a reader can tell
+which version of this skill produced the output>
 **Components mapped:** <n>
-**Files written:**
+
+### Written
 - <path> — <one line>
 
-**Plugins enabled:** <name> (<why>), ...
+### Recommended plugins
+| Plugin | Why — the evidence in this repo |
+|---|---|
+| <name> | <what you found that calls for it> |
 
-**Unverified — please confirm:**
-- <anything you guessed at>
-
-Run `/context` in a new session to confirm the memory files loaded.
+### Install these
+```bash
+<one `claude plugin install` line per plugin above, plus the marketplace add line if the
+marketplace isn't configured yet>
 ```
+
+Restart the session after installing — a plugin installed mid-session isn't
+invocable until the next one.
+
+### Unverified — please confirm
+- <anything you guessed at, and any command you could not execute>
+
+Run `/context` in a new session to confirm the context files loaded.
+````
+
+The **Install these** block is not optional and not a footnote. It is the step that
+turns a configured repo into a working one, and it is the one the user is most likely to
+skip if you bury it in prose.
 
 ## Reference files
 

@@ -19,6 +19,35 @@ pure cost. When in doubt, leave it out and mention it as optional.
 | `vue-dev` | `vue-conventions` skill, `vue-developer` agent | `vue` in dependencies. Check the major version and note it: the plugin targets Vue 3 Composition API, so flag a mismatch if the project is on Options API or Vue 2. |
 | `project-init` | this skill | Already installed if you're reading this. Leave it enabled for future repos, or note that it can be user-scoped instead of project-scoped. |
 
+## The install block
+
+Every run ends with a paste-ready block of install commands. Enabling a plugin in
+`.claude/settings.json` does **not** fetch it, so a repo configured for four plugins
+that aren't on the machine is configured for a setup nobody has — and nothing announces
+the gap. The settings file looks right and the plugins simply never load.
+
+```bash
+claude plugin marketplace add colla69/personal-claude-plugin-marketplace
+claude plugin install developer@personal-claude-plugin-marketplace
+claude plugin install code-review@personal-claude-plugin-marketplace
+claude plugin install refactoring@personal-claude-plugin-marketplace
+claude plugin install unit-testing@personal-claude-plugin-marketplace
+```
+
+- **One line per recommended plugin**, matching the `enabledPlugins` keys exactly. If
+  the two disagree, the settings file is wrong.
+- Include the `marketplace add` line only when the marketplace isn't configured already
+  — `claude plugin list` shows what is present.
+- Don't omit a plugin because it's already installed. The block describes what this repo
+  needs, completely; re-running an install is harmless.
+- `developer`, `code-review`, and `refactoring` each pull `clean-code` in as a
+  dependency. Say that, rather than listing `clean-code` as separate work.
+- **Tell the user to restart afterwards.** Claude Code builds its skill registry at
+  startup, so nothing installed mid-session is invocable until the next one.
+- If the toolkit is already installed, remind them that `claude plugin marketplace
+  update` is what picks up newer versions. A stale copy runs happily and silently
+  produces the previous release's output.
+
 ## Layers
 
 Knowledge composes in layers, general to specific. Each layer covers only what the layer
