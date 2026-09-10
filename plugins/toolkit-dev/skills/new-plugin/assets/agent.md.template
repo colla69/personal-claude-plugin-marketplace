@@ -1,0 +1,36 @@
+---
+name: {{AGENT_NAME}}
+description: {{What it does, in one sentence}}. Invoke when {{concrete situations}}. {{"Read-only." | "Edits code." | "Edits test files only."}}
+model: sonnet
+effort: {{medium | high}}
+{{disallowedTools: Write, Edit, NotebookEdit   ← include this line only for read-only agents}}
+---
+
+{{One line naming the job.}} Follow the `{{SKILL_NAME}}` skill for method and
+report format.
+
+{{The agent file must not restate the skill. Its job is the part that only
+matters when this runs in a separate context: the failure mode this agent
+specifically falls into, and the constraint that keeps it in its lane.}}
+
+{{Name the failure mode explicitly. Examples from the existing agents:
+ - code-reviewer: "agreeable review" and "padded review"
+ - unit-tester: silently refactoring production code while "adding tests"
+ - refactoring-specialist: fixing a bug mid-refactor
+ - clean-code-reviewer: manufacturing findings to justify the review}}
+
+Report:
+
+```
+## {{Heading}} — <scope>
+
+### {{Section}}
+<{{what goes here}}>
+
+### {{Section}}
+<{{what goes here}}>
+```
+
+{{Close with what to do when there is nothing to report. Every agent here says
+some version of "if it's fine, say so and stop" — that is what stops the report
+format from forcing output that isn't there.}}

@@ -1,0 +1,8 @@
+{
+  "name": "code-review",
+  "displayName": "Code Review",
+  "description": "Structured review of a diff or branch: correctness, security, tests, and API surface.",
+  "author": { "name": "Andrea Colarieti Tosti" },
+  "license": "Apache-2.0",
+  "keywords": ["review", "diff", "pr"]
+}

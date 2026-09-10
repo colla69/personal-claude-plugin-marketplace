@@ -1,0 +1,8 @@
+{
+  "name": "unit-testing",
+  "displayName": "Unit Testing",
+  "description": "Writes and strengthens unit tests: behavior-first cases, edge coverage, no assertion padding.",
+  "author": { "name": "Andrea Colarieti Tosti" },
+  "license": "Apache-2.0",
+  "keywords": ["testing", "unit-tests"]
+}

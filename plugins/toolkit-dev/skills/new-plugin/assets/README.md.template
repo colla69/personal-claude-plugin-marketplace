@@ -1,0 +1,40 @@
+# {{PLUGIN_NAME}}
+
+{{One or two sentences: the standard this plugin carries. State the position, not the
+existence of the plugin — "tests that earn their keep by failing when the code is wrong",
+not "this plugin helps with testing".}}
+
+| Component | Name | Role |
+|---|---|---|
+| Skill | `{{SKILL_NAME}}` | {{what it covers}} |
+| Agent | `{{AGENT_NAME}}` | {{what it does}}. {{Read-only \| Edits code \| Edits test files only}} |
+
+{{Optional: one line on reference/asset files, or the single most important thing about
+this plugin. Cut it if there isn't one.}}
+
+## Fires when
+
+{{The situations, in the user's words. Same triggers as the skill description, in list
+form — this is what a human scanning the directory needs.}}
+
+- {{trigger}}
+- {{trigger}}
+- {{the non-obvious one, the case the first two miss}}
+
+## Does not
+
+{{The most useful section, and the reason these READMEs aren't just the marketplace
+description again. Each line is a real constraint with its reason attached — the lane the
+agent stays in, the thing it refuses to do, the failure mode it's built to avoid. Lead
+with the hardest constraint in bold.}}
+
+- **{{Hardest constraint.}}** {{Why.}}
+- {{Constraint}} — {{why}}
+
+## Install
+
+```bash
+claude plugin install {{PLUGIN_NAME}}@personal-claude-plugin-marketplace{{ --scope user | --scope project | }}
+```
+
+{{One line on scope and why.}}

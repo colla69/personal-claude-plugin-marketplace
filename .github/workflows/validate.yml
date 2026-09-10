@@ -1,0 +1,45 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  catalog:
+    name: catalog in sync
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      # No dependencies — plain Node, reads the three plugin lists and compares them.
+      - run: node scripts/check-catalog.mjs
+
+  manifests:
+    name: manifests valid
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install -g @anthropic-ai/claude-code
+
+      # Deliberately not --strict: strict promotes "no version specified" to an
+      # error, and every plugin here omits version on purpose so that updates
+      # resolve by commit SHA. See CONTRIBUTING.md → "Versioning: don't".
+      - name: validate marketplace
+        run: claude plugin validate .
+
+      - name: validate each plugin
+        run: |
+          status=0
+          for dir in plugins/*/; do
+            echo "::group::${dir}"
+            claude plugin validate "./${dir%/}" || status=1
+            echo "::endgroup::"
+          done
+          exit $status

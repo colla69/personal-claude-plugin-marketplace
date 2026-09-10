@@ -1,0 +1,8 @@
+{
+  "name": "vue-dev",
+  "displayName": "Vue Developer",
+  "description": "Vue 3 / Composition API conventions and a developer agent for components, composables, and stores.",
+  "author": { "name": "Andrea Colarieti Tosti" },
+  "license": "Apache-2.0",
+  "keywords": ["vue", "frontend"]
+}

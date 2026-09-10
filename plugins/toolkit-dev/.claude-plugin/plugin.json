@@ -1,0 +1,8 @@
+{
+  "name": "toolkit-dev",
+  "displayName": "Toolkit Dev",
+  "description": "Authoring workflow for this marketplace: scaffolds a new plugin, writes it in the house voice, and registers it everywhere it has to appear.",
+  "author": { "name": "Andrea Colarieti Tosti" },
+  "license": "Apache-2.0",
+  "keywords": ["meta", "authoring", "scaffold"]
+}

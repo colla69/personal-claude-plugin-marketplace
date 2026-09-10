@@ -1,0 +1,8 @@
+{
+  "name": "clean-code",
+  "displayName": "Clean Code",
+  "description": "Your clean-code standard as a shared skill, plus a reviewer agent that audits code against it.",
+  "author": { "name": "Andrea Colarieti Tosti" },
+  "license": "Apache-2.0",
+  "keywords": ["clean-code", "standards"]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "{{PLUGIN_NAME}}",
+  "displayName": "{{DISPLAY_NAME}}",
+  "description": "{{ONE_LINE_DESCRIPTION}}",
+  "author": { "name": "Andrea Colarieti Tosti" },
+  "license": "Apache-2.0",
+  "keywords": [{{KEYWORDS}}]
+}

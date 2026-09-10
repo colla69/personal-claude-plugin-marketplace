@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "personal-claude-plugin-marketplace",
+  "description": "Personal, reusable Claude Code plugins: project bootstrapping, review, testing, and framework work.",
+  "owner": {
+    "name": "Andrea Colarieti Tosti",
+    "url": "https://github.com/colla69"
+  },
+  "plugins": [
+    {
+      "name": "project-init",
+      "source": "./plugins/project-init",
+      "description": "Analyzes an unfamiliar codebase, writes layered CLAUDE.md context files, and recommends which toolkit plugins to enable.",
+      "category": "workflow",
+      "tags": ["bootstrap", "onboarding", "context", "analysis"]
+    },
+    {
+      "name": "code-review",
+      "source": "./plugins/code-review",
+      "description": "Structured review of a diff or branch: correctness, security, tests, and API surface.",
+      "category": "quality",
+      "tags": ["review", "diff", "pr"]
+    },
+    {
+      "name": "clean-code",
+      "source": "./plugins/clean-code",
+      "description": "Your clean-code standard as a shared skill, plus a reviewer agent that audits code against it.",
+      "category": "quality",
+      "tags": ["clean-code", "standards", "readability"]
+    },
+    {
+      "name": "unit-testing",
+      "source": "./plugins/unit-testing",
+      "description": "Writes and strengthens unit tests: behavior-first cases, edge coverage, no assertion padding.",
+      "category": "quality",
+      "tags": ["testing", "unit-tests", "tdd"]
+    },
+    {
+      "name": "refactoring",
+      "source": "./plugins/refactoring",
+      "description": "Behavior-preserving refactors executed in small, verifiable steps with a green test suite as the gate.",
+      "category": "quality",
+      "tags": ["refactoring", "cleanup", "tech-debt"]
+    },
+    {
+      "name": "vue-dev",
+      "source": "./plugins/vue-dev",
+      "description": "Vue 3 / Composition API conventions and a developer agent for components, composables, and stores.",
+      "category": "framework",
+      "tags": ["vue", "frontend", "typescript"]
+    },
+    {
+      "name": "toolkit-dev",
+      "source": "./plugins/toolkit-dev",
+      "description": "Authoring workflow for this marketplace: scaffolds a new plugin, writes it in the house voice, and registers it everywhere it has to appear.",
+      "category": "meta",
+      "tags": ["meta", "authoring", "scaffold"]
+    }
+  ]
+}

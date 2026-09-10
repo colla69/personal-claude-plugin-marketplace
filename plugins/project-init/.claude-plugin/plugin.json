@@ -1,0 +1,8 @@
+{
+  "name": "project-init",
+  "displayName": "Project Initializer",
+  "description": "Analyzes an unfamiliar codebase, writes layered CLAUDE.md context files, and recommends which toolkit plugins to enable.",
+  "author": { "name": "Andrea Colarieti Tosti" },
+  "license": "Apache-2.0",
+  "keywords": ["bootstrap", "onboarding", "context"]
+}

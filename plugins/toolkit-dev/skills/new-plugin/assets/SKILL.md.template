@@ -1,0 +1,29 @@
+---
+name: {{SKILL_NAME}}
+description: {{WHAT_IT_IS}}. Use whenever {{TRIGGER_PHRASES}}. Also use {{SECONDARY_TRIGGER}}.
+---
+
+# {{SKILL_TITLE}}
+
+{{One or two sentences stating the position this document takes. Not "this skill
+helps you X" — state the standard itself, the way clean-code opens with "the test
+for every rule below is: does this make the code cheaper to change next month?"}}
+
+## {{First section}}
+
+{{The rules. Each one concrete enough to check against real code. Prefer a rule
+with a reason attached over a rule alone — the reason is what lets someone apply
+it to a case you didn't anticipate.}}
+
+- {{Rule, then the cost of breaking it}}
+- {{Rule, then the cost of breaking it}}
+
+## {{Second section}}
+
+{{Sections should follow the order someone works in, not an arbitrary taxonomy.}}
+
+## Applying the standard
+
+{{How to rank findings, when the rule yields to local convention, and what to do
+at the boundary where this skill stops applying. Every skill here ends by saying
+when to ignore it — that is what keeps it from being applied mechanically.}}

@@ -1,0 +1,8 @@
+{
+  "name": "refactoring",
+  "displayName": "Refactoring",
+  "description": "Behavior-preserving refactors executed in small, verifiable steps with a green test suite as the gate.",
+  "author": { "name": "Andrea Colarieti Tosti" },
+  "license": "Apache-2.0",
+  "keywords": ["refactoring", "tech-debt"]
+}
