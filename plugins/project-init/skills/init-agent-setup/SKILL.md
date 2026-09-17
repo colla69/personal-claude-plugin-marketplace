@@ -128,8 +128,17 @@ Show:
 
 - The component map (a short list, one line each)
 - Which files you intend to create, and roughly what goes in each
-- Which plugins you recommend enabling, each with a one-line reason, drawn from the
-  phase 1 inventory and bounded by the sources the user ticked there
+- The plugins you recommend, drawn from the phase 1 inventory and bounded by the sources
+  the user ticked there — rendered as the **Recommended — from your toolkit** and
+  **Gap-fills — from other marketplaces** tables from the output format at the end of
+  this file: same columns, same rule for dropping the gap-fill table
+
+**The plan's plugin tables are the report's tables, not a bulleted list.** The user
+approves the plan and later reads the report; when both share one shape, checking what
+got enabled against what was agreed is a row-by-row comparison instead of a re-read, and
+a table scans in the few seconds someone spends deciding to say "go". Take the columns
+from the output format rather than copying them here — two copies of one table get
+edited separately and then disagree.
 
 Ask for confirmation or corrections. If the user says "just do it", proceed.
 
