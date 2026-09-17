@@ -1,7 +1,15 @@
 # Toolkit plugin catalog
 
-The plugins in the `personal-claude-plugin-marketplace` marketplace, and the signals
-that justify recommending each one.
+The signals that justify recommending each toolkit plugin. **This file is not the list
+of what exists** — `claude plugin list --available --json` is, and
+`references/plugin-sources.md` covers how to read it. This file answers the other
+question: given that a plugin exists, what in a repo earns it.
+
+The split matters because the two go stale differently. A plugin shipped last week is
+absent here and present in the live list, and the live list is right — recommend it on
+its own `description` and report the missing row. A row here that no longer matches any
+live plugin is a row to ignore and report. Never resolve the disagreement by dropping
+the plugin.
 
 Recommend on evidence from the repo, not on general desirability. Every enabled plugin
 adds its skill and agent descriptions to every session, so a plugin that never fires is
@@ -36,8 +44,12 @@ claude plugin install unit-testing@personal-claude-plugin-marketplace
 
 - **One line per recommended plugin**, matching the `enabledPlugins` keys exactly. If
   the two disagree, the settings file is wrong.
-- Include the `marketplace add` line only when the marketplace isn't configured already
-  — `claude plugin list` shows what is present.
+- **One block, all marketplaces.** Gap-fills go in the same block as the toolkit's own
+  plugins, each with its `@marketplace` suffix. A separate "optional extras" block is
+  the one the user skips.
+- Include a `marketplace add` line only for a marketplace that isn't configured already
+  — `claude plugin marketplace list` shows what is present. `claude-plugins-official`
+  ships configured, so it needs no add line.
 - Don't omit a plugin because it's already installed. The block describes what this repo
   needs, completely; re-running an install is harmless.
 - `developer`, `code-review`, and `refactoring` each pull `clean-code` in as a
@@ -56,9 +68,14 @@ above it does not, and yields to the layer below when both apply.
 | Layer | Plugins | Covers |
 |---|---|---|
 | Universal | `clean-code` | What good code looks like, in any language |
-| Craft | `developer` | How to work in someone else's codebase |
+| Craft | `developer`, `code-review`, `refactoring`, `unit-testing` | How to work in someone else's codebase |
 | Language | `java-dev`, `typescript-dev` | One language's semantics and idioms |
 | Framework | `vue-dev` | One framework's conventions |
+
+These four are the layers the toolkit fills. A gap-fill from another marketplace is
+usually a fifth thing — **tooling**, which runs a process rather than stating a
+standard, and which no amount of prose substitutes for. Label it as such in the report
+instead of forcing it into a layer it does not belong to.
 
 Four rules follow from this, and they are what keep the marketplace from turning into
 overlapping copies of the same advice:
@@ -114,22 +131,13 @@ install <name>@personal-claude-plugin-marketplace --scope user`.
 
 ## Wiring format
 
-```json
-{
-  "extraKnownMarketplaces": {
-    "personal-claude-plugin-marketplace": {
-      "source": { "source": "github", "repo": "colla69/personal-claude-plugin-marketplace" }
-    }
-  },
-  "enabledPlugins": {
-    "vue-dev@personal-claude-plugin-marketplace": true,
-    "unit-testing@personal-claude-plugin-marketplace": true
-  }
-}
-```
+The shape lives in `assets/settings-template.json` and nowhere else — read it from
+there. A copy in this file is a second version that gets edited on its own and then
+disagrees with the one the skill actually writes from.
 
-Merge into an existing `.claude/settings.json` rather than replacing it — that file
-often already holds permissions and hooks.
+Two rules it cannot carry itself: merge into an existing `.claude/settings.json` rather
+than replacing it, since that file often already holds permissions and hooks; and key
+every `enabledPlugins` entry `name@marketplace`, matching the install block exactly.
 
 Enabling a plugin here does not install it. Tell the user to run `/plugin install
 <name>@personal-claude-plugin-marketplace` for any plugin not already on the machine,
