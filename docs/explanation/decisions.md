@@ -1,9 +1,7 @@
 # Decisions
 
 Every decision that shaped this marketplace, with its date and where it lives now, so
-you can tell why something is the way it is before you change it. The working records
-behind them are in `docs/werkstatt/`: the restructure plan, the audit, the package plan
-and the docs plan.
+you can tell why something is the way it is before you change it.
 
 A decision marked **superseded** names the one that replaced it. Its row stays, because
 the reason it was made is often the reason its replacement has the shape it has.
@@ -13,14 +11,14 @@ the reason it was made is often the reason its replacement has the shape it has.
 - [The author's statements, before the plans](#the-authors-statements-before-the-plans)
 - [The restructure: D1 to D26](#the-restructure-d1-to-d26)
 - [The steward: D27 to D37](#the-steward-d27-to-d37)
-- [The documentation: D38 to D43](#the-documentation-d38-to-d43)
+- [The documentation: D38 to D44](#the-documentation-d38-to-d44)
 - [Still open](#still-open)
 
 ## The author's statements, before the plans
 
 The idea was developed between 2026-09-08 and 2026-10-13, across six working sessions
 and a presentation, "Enterprise AI marketplace: Plugins für einen Einstieg in Agentic
-AI", subtitled "Vom Werkzeug zur Werkstatt". These are its statements, by date.
+AI". These are its statements, by date.
 
 | Date | Statement | Now |
 |---|---|---|
@@ -36,8 +34,8 @@ AI", subtitled "Vom Werkzeug zur Werkstatt". These are its statements, by date.
 
 ## The restructure: D1 to D26
 
-All decided on 2026-10-19, in the restructure plan. D1 to D7 answer the concept's
-open questions; question 4 stayed open, so there is no D4 (see O1).
+All decided on 2026-10-19, while the marketplace was restructured into layers. D1 to D7
+answer the author's open questions; question 4 stayed open, so there is no D4 (see O1).
 
 | # | Decision | Why | Now |
 |---|---|---|---|
@@ -56,7 +54,7 @@ open questions; question 4 stayed open, so there is no D4 (see O1).
 | D14 | Claude only: agents go to `.claude/agents/`; files name no model | No model name, because the knowledge must outlive any one vendor's tool. No reason is recorded for Claude only | Holds |
 | D15 | Init keeps `codebase-cartographer` as its own helper | It works for set-up, not for a project | Holds, in the steward |
 | D16 | One project skill per trio, invoked as `/<task>`, runs Plan, stops, runs Do and Check; `AGENTS.md` lists the trios | Which tasks a project has is a project fact | Holds |
-| D17 | What holds for any work splits out of `development-standards` into a Universal skill: read before writing, match what is there, hold scope, verify | Those parts hold for any work, so they are Universal (audit, J2) | Became `universal-work-discipline` (D24) |
+| D17 | What holds for any work splits out of `development-standards` into a Universal skill: read before writing, match what is there, hold scope, verify | Those parts hold for any work, so they are Universal | Became `universal-work-discipline` (D24) |
 | D18 | A role's generic report lives in its role template; a kind of work's report in its Craft skill | Each half of a report has one home | Holds |
 | D19 | Pinia leaves `vue-conventions` for `tools-pinia` | A project can use Vue without Pinia | Holds |
 | D20 | The TypeScript parts leave `vue-conventions` for `tools-vue-typescript` | A project can use Vue without TypeScript | Holds |
@@ -69,7 +67,7 @@ open questions; question 4 stayed open, so there is no D4 (see O1).
 
 ## The steward: D27 to D37
 
-All decided on 2026-10-19, in the package plan.
+All decided on 2026-10-19, while the steward was built.
 
 | # | Decision | Why | Now |
 |---|---|---|---|
@@ -85,18 +83,19 @@ All decided on 2026-10-19, in the package plan.
 | D36 | Two visible skills, the front door and `evaluate-skills`; the rest is reference files read by path | Every visible skill costs a description in every session of every project; a hidden skill can't be preloaded | Holds |
 | D37 | No plugin option: the steward keeps its own clone in `~/.local/share/marketplace-steward/` | An option isn't filled from its default, and Claude Code asks before every write under `~/.claude`, whatever a skill allows | Holds; the location was moved there in step 5 |
 
-## The documentation: D38 to D43
+## The documentation: D38 to D44
 
-All decided on 2026-10-19, in the docs plan.
+All decided on 2026-10-19, while this documentation was planned.
 
 | # | Decision | Why | Now |
 |---|---|---|---|
 | D38 | Plain Markdown on GitHub, with Mermaid, and no build | The repo has no build and no dependencies on purpose | Holds |
 | D39 | `concept.md` is dissolved: its explanations into the docs, its rules into the product and `CLAUDE.md` | "The concept can now live in the new documentation and agentic setup" | In progress |
-| D40 | The full plugin table lives in `reference/plugins.md`, checked by `check-catalog.mjs` | The landing page lists the plugins briefly; the table belongs in reference | Planned, docs step 3 |
-| D41 | `.claude/rules/authoring.md` becomes a pointer | It loads whenever a skill file is touched, and should restate nothing | Planned, docs step 7 |
-| D42 | A docs check, `scripts/check-docs.mjs`, runs in CI | Broken links are the docs' silent failure | Planned, docs step 8 |
-| D43 | The docs plan stops for the maintainer after its step 1 and its step 8 | Step 1 sets the structure; step 8 is the whole result | Holds |
+| D40 | The full plugin table lives in `reference/plugins.md`, checked by `check-catalog.mjs` | The landing page lists the plugins briefly; the table belongs in reference | Planned, with the reference pages |
+| D41 | `.claude/rules/authoring.md` becomes a pointer | It loads whenever a skill file is touched, and should restate nothing | Planned, with the entry points |
+| D42 | A docs check, `scripts/check-docs.mjs`, runs in CI | Broken links are the docs' silent failure | Planned, with the final checks |
+| D43 | Writing the documentation stops for the maintainer twice: once the structure is laid, and once the whole set is done | The structure is what every later page sits in | Holds |
+| D44 | No page refers to the working records the marketplace was built from: the docs carry what they need | The docs stand on their own | Holds |
 
 ## Still open
 

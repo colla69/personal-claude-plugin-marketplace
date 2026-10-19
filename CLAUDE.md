@@ -11,10 +11,10 @@ them are generated into each project by the steward, `marketplace-steward`, toge
 with that project's `AGENTS.md`. The documentation, with the reasons behind every
 decision, is mapped in `docs/README.md`.
 
-**The steward is being built; see `docs/werkstatt/package-plan.md`.** It replaced
+**The steward is written, and not yet tried on real projects.** It replaced
 `marketplace-init` and this repo's own `.claude/` agents: one package that sets
 projects up, adopts and keeps their setups current, and grows the marketplace by pull
-request. Its trials and the merge remain. The rules below describe the shape the repo
+request. The rules below describe the shape the repo
 now has.
 
 ## Commands
@@ -41,7 +41,7 @@ is the policy working; see Boundaries.**
 | `plugins/marketplace-<name>/` | A plugin that works on the marketplace itself (the steward). The only plugins with agents |
 | `.claude/` | This repo's own settings and path-scoped rules. Never published as a plugin |
 | `scripts/check-catalog.mjs` | Guards the three mirrored plugin lists |
-| `docs/werkstatt/` | The concept, the migration plan, and the audit |
+| `docs/` | The documentation, mapped in `docs/README.md` |
 
 ## Conventions
 
@@ -85,9 +85,8 @@ The plan is a hard stop. Check checks against the plan, not against the request.
 `effort` is set per role and task, with the defaults Plan `high`, Do `medium` and Check
 `medium`.
 
-The review trio of `developer`, `code-reviewer` and `refactoring-specialist` was retired
-in step 7. Its knowledge lives in the skills and in the role templates; the mapping is
-in `docs/werkstatt/audit.md`.
+The review trio of `developer`, `code-reviewer` and `refactoring-specialist` was
+retired. Its knowledge lives in the skills and in the role templates.
 
 ## Boundaries
 

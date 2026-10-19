@@ -393,6 +393,7 @@ Decided on 2026-10-19:
 | D41 | `.claude/rules/authoring.md` is cut to a pointer (O10) | It loads whenever a skill file is touched, and a pointer is all that should load there |
 | D42 | A docs check in CI, `scripts/check-docs.mjs`, with no dependencies (O11) | `CLAUDE.md`'s "one executable file" line becomes two |
 | D43 | The plan stops for the maintainer after step 1 and after step 8, with one commit per step between (O12) | Step 1 fixes the structure; step 8 is the whole result |
+| D44 | No page, and no file outside `docs/werkstatt/`, refers to the working records: "no werkstatt references" | What a page needs from the plans, the audit or the concept is written into the page or the product. The map lists no records, and the plans' names don't appear in the pages |
 
 Asked, and answered as recommended:
 

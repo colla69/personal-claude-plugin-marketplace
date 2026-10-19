@@ -141,7 +141,7 @@ plugins/<layer>-<topic>/
   skills/<skill>/assets/*           # templates the skill writes out
 plugins/marketplace-<name>/         # works on the marketplace itself; may ship agents/
 scripts/check-catalog.mjs           # the plugin lists, layers and dependencies agree
-docs/werkstatt/                     # the concept, the migration plan, and the audit
+docs/                               # the documentation, mapped in docs/README.md
 ```
 
 Only `plugin.json` lives inside `.claude-plugin/`. Putting `skills/` in there is the

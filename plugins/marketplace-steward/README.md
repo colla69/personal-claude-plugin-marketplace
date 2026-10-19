@@ -5,8 +5,8 @@ the whole cycle: it sets a project up, adopts the setup a project already has, k
 that setup current, and turns lessons into changes to the marketplace, by pull
 request.
 
-**Not tried for real yet.** All four jobs are written; the trials and the merge are
-the steps left in `docs/werkstatt/package-plan.md`.
+**Not tried for real yet.** All four jobs are written; trying them on real projects
+comes next.
 
 | | |
 |---|---|

@@ -33,6 +33,10 @@ sense, it states the gist in one line and links to its home.
 **The product never depends on the docs.** The plugin cache holds no `docs/`, so no
 skill, reference or agent may tell Claude to read a page, or defer to one.
 
+**The docs stand on their own.** No page refers to the working records the marketplace
+was built from, its plans and its audit. What a page needs from them is written into
+the page, or into the product, and linked from there.
+
 ## Voice
 
 The voice section of `style.md` applies: open with a position, give every rule its
@@ -67,9 +71,9 @@ isn't on the map can't be found, so it doesn't exist.
 
 ## Length
 
-The targets are per page, from `docs/werkstatt/docs-plan.md`: tutorials 150–250
-lines, guides 50–150, reference and explanation as their subject needs and mostly under
-150. Past the target, the page is probably doing two jobs.
+The targets are per page: tutorials 150–250 lines, guides 50–150, reference and
+explanation as their subject needs and mostly under 150. Past the target, the page is
+probably doing two jobs.
 
 ## Review checklist
 
@@ -79,7 +83,8 @@ A reviewer reads a page against its sources, which the map names, and checks:
 2. **Accuracy.** Everything it says about the steward or a skill matches the product
    files today. A page that describes behaviour nobody has tried says so.
 3. **One home.** It restates no rule the product holds: a gist and a link at most.
-4. **Independence.** No product file links to it or defers to it.
+4. **Independence.** No product file links to it or defers to it, and it refers to no
+   working record.
 5. **Opening.** The first lines say what the page lets the reader do.
 6. **Voice.** Every rule has its reason, costs and catches are named, and nothing
    hedges.

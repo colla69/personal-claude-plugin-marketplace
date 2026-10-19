@@ -8,9 +8,9 @@ themselves live in the plugins, mostly in the steward's references, under
 `plugins/marketplace-steward/references/`. A page that disagrees with them is the one
 that is wrong.
 
-**Being written.** The documentation is being rewritten, page by page, as
-[`werkstatt/docs-plan.md`](werkstatt/docs-plan.md) lays out. In the Page column, a page
-in backticks is planned and not written yet, and a linked page is written. The Sources
+**Being written.** The documentation is being rewritten, page by page. In the Page
+column, a page in backticks is planned and not written yet, and a linked page is
+written. The Sources
 column names the product files a page is checked against; the glossary links each.
 
 ## Start here
@@ -47,8 +47,8 @@ One task each.
 | `guides/review-a-skill.md` | Review a skill, a plugin, a change or the whole set | `evaluate-skills` | To write |
 | `guides/write-a-skill-by-hand.md` | Add or change a skill without the steward | `style.md`, `plugin-shape.md`, `place-knowledge.md` | To write |
 | `guides/migrate-from-old-names.md` | Move a project and a machine off the old plugin names | The Renamed table, `keep-current.md` | To write |
-| `guides/work-on-the-steward.md` | Load the working copy, probe a mechanic, test a change | `werkstatt/package-plan.md` | To write |
-| `guides/troubleshoot.md` | Fix what fails silently | The plans' risk tables | To write |
+| `guides/work-on-the-steward.md` | Load the working copy, probe a mechanic, test a change | `plugin-shape.md`, the front door | To write |
+| `guides/troubleshoot.md` | Fix what fails silently | The job files, `plugin-shape.md`, `check-catalog.mjs` | To write |
 
 ## Reference
 
@@ -70,15 +70,15 @@ Why it is the way it is.
 
 | Page | The question | Sources | Status |
 |---|---|---|---|
-| `explanation/the-idea.md` | Why knowledge central and workers local, and why not only for code | The concept, §1, §2, §10 | To write |
-| `explanation/layers.md` | Why four layers, and why dependencies point one way | The concept, §4 | To write |
-| `explanation/skills-and-roles.md` | Why a skill holds knowledge and a role a lane | The concept, §5, §6 | To write |
-| `explanation/trios.md` | Why Plan, Do, Check, and why the stop | The concept, §7 | To write |
-| `explanation/the-steward.md` | Why one package, why it asks only twice, why a checker | The concept, §8, §9 | To write |
+| `explanation/the-idea.md` | Why knowledge central and workers local, and why not only for code | `decisions.md` | To write |
+| `explanation/layers.md` | Why four layers, and why dependencies point one way | `place-knowledge.md` | To write |
+| `explanation/skills-and-roles.md` | Why a skill holds knowledge and a role a lane | `style.md`, `plugin-shape.md` | To write |
+| `explanation/trios.md` | Why Plan, Do, Check, and why the stop | `trios.md`, `roles/` | To write |
+| `explanation/the-steward.md` | Why one package, why it asks only twice, why a checker | The front door, the job files | To write |
 | `explanation/placing-knowledge.md` | Why diagnose first, and why strip | `place-knowledge.md` | To write |
 | `explanation/safety.md` | What keeps you in control | The job files | To write |
-| `explanation/cost.md` | What every enabled skill costs | D36, the measurements | To write |
-| [`explanation/decisions.md`](explanation/decisions.md) | Every decision, with its date, its reason and where it lives now | The plans, the concept | Written |
+| `explanation/cost.md` | What every enabled skill costs | `plugin-shape.md`, `evaluate-skills` | To write |
+| [`explanation/decisions.md`](explanation/decisions.md) | Every decision, with its date, its reason and where it lives now | The product files each decision names | Written |
 
 ## Contributing
 
@@ -89,14 +89,3 @@ Working on the marketplace itself.
 | `contributing/development-loop.md` | The local marketplace, the checks, CI | `CONTRIBUTING.md`, `plugin-shape.md` | To write |
 | [`contributing/writing-docs.md`](contributing/writing-docs.md) | How a page here is written and reviewed | `style.md` | Written |
 | `contributing/releases-and-migrations.md` | Why every merge is a release, and what a rename asks of every project | `plugin-shape.md`, the Renamed table | To write |
-
-## Working records
-
-[`werkstatt/`](werkstatt/) holds the plans and the audit this marketplace was built
-from: [`plan.md`](werkstatt/plan.md) for the restructure,
-[`audit.md`](werkstatt/audit.md) for its first step,
-[`package-plan.md`](werkstatt/package-plan.md) for the steward, and
-[`docs-plan.md`](werkstatt/docs-plan.md) for these pages. They are records, and their
-decisions are gathered in [`explanation/decisions.md`](explanation/decisions.md).
-[`concept.md`](werkstatt/concept.md), the original brief, stays there until every
-section of it has its new home, by the table in the docs plan.
