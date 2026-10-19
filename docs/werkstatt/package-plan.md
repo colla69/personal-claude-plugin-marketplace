@@ -5,8 +5,8 @@ How `marketplace-init` and the planned contributor become one package,
 keeps the setup current, and grows the marketplace. Section numbers (§) refer to
 `concept.md`. D and O numbers continue the ones in `plan.md`.
 
-**Status:** approved 2026-10-19, on branch `marketplace/one-package`. Steps 0 and 1
-are done; step 2, the mechanics, is done and waits for approval. The plan replaces
+**Status:** approved 2026-10-19, on branch `marketplace/one-package`. Steps 0 to 2
+are done; step 3, the knowledge, is done and waits for approval. The plan replaces
 step 11 of `plan.md` and starts its step 9 trials over. Every
 step ends with a report and a stop until it is approved. Nothing on this branch names
 a project, so it merges as a normal PR.
@@ -80,7 +80,7 @@ All decided on 2026-10-19.
 | D33 | No trio for the steward. It does the work itself, and stops for your OK only before it creates a new skill, whether in set-up, in adoption, or from a conversation | Replaces init's plan stop (§8.2, 2026-09-17). The rule from the same day stays: it never touches git in the project, so you review its work as a diff |
 | D34 | No lanes. The steward is the only writer, and the agents it ships are helpers, read-only by frontmatter | Supersedes the §9 rule of 2026-10-13 that the contributor never edits `AGENTS.md` |
 | D35 | Hooks, MCP servers, and commands that run a tool stay in the project. A hook that only injects text is knowledge, and is adopted like any rule | The mechanics row of adoption |
-| D36 | Two skills are visible: the front door, and `evaluate-skills`, which the checker preloads. The jobs and the rest of the knowledge are reference files of the front door, read by path | From M1. Section 4 |
+| D36 | Two skills are visible: the front door, and `evaluate-skills`, which the checker preloads. The jobs and the rest of the knowledge are reference files at the plugin root, read by path | From M1. Section 4 |
 | D37 | No plugin option. The steward keeps its own clone of the marketplace in its data folder, and works in one worktree per contribution there | From M2 and M4. Section 4 |
 
 ## 3. Open
@@ -95,25 +95,25 @@ Nothing right now. O3 to O6 were answered on 2026-10-19 and became D32 to D35.
 plugins/marketplace-steward/
   .claude-plugin/plugin.json
   README.md
+  references/                shared by the front door, evaluate-skills and the checker
+    set-up/                  today's init-agent-setup, with its references and assets,
+                             and adoption
+    keep-current.md          the drift checks and their fixes
+    contribute.md            the change on a branch, the check, the PR
+    place-knowledge.md       the four moves and §4.3: the one home of the cut
+    author-skills/           the house voice, the plugin shape and its registrations,
+                             and the templates
   skills/
-    <front door>/            routes a request to one of the four jobs
-      SKILL.md
-      references/
-        set-up/              today's init-agent-setup, with its references and
-                             assets, and adoption
-        keep-current.md      the drift checks and their fixes
-        contribute.md        the change on a branch, the check, the PR
-        place-knowledge.md   the four moves and §4.3: the one home of the cut
-        author-skills/       the house voice, the templates, the three registrations
-    evaluate-skills/         the checks on one skill, on one plugin, and on the whole
-                             set
+    <front door>/SKILL.md    routes a request to one of the four jobs
+    evaluate-skills/SKILL.md the checks on a skill, a plugin, a change and the whole set
   agents/
     codebase-cartographer.md   surveys a project; read-only
     contribution-checker.md    checks a change before its PR; read-only
 ```
 
-Only the two skills add a description to every session (D36). The front door reads
-its references by path, and its frontmatter allows that:
+Only the two skills add a description to every session (D36). The references sit at
+the plugin root because three readers share them. The front door reads them by path,
+and its frontmatter allows that:
 `allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)`. The rule needs the leading `/`,
 because after substitution it must start with `//` to be an absolute path. The cost is
 one approval to run the front door, which Claude Code asks for once and can remember.
@@ -129,7 +129,7 @@ order, so it may depend on every layer.
 | Today | After |
 |---|---|
 | `plugins/marketplace-init/` | `set-up`, and the cartographer |
-| The cut: §4.2 and §4.3, the "decide where the knowledge goes" part of `new-plugin`, and `.claude/rules/authoring.md` | `place-knowledge`. The concept keeps the principle and points to the skill |
+| The cut: §4.2 and §4.3, the "decide where the knowledge goes" part of `new-plugin`, and `.claude/rules/authoring.md` | `place-knowledge`. The concept keeps the principle and points to the reference |
 | `.claude/skills/new-plugin/`, with `authoring-style.md` and the templates | `author-skills`, and `contribute` for the steps |
 | `.claude/agents/skill-writer.md` | The steward itself, with `author-skills` |
 | `.claude/agents/skill-evaluator.md` and `plugin-evaluator.md` | `evaluate-skills`, used by the checker |
@@ -241,14 +241,44 @@ reached the model's context.
 | M2 | `${user_config.KEY}` is not filled from the option's `default` when no value is saved, and saved values live only in user or managed settings. A saved value wasn't tested, because that writes to your settings. `${CLAUDE_PLUGIN_DATA}` is filled in skill text | D37: no option; the steward's own clone lives in its data folder |
 | M3 | The plugin's agent preloads the plugin's own visible skills, `${CLAUDE_PLUGIN_ROOT}` is filled in its body, and `disallowedTools` removes Write. `effort` is supported by the docs; nothing in a run shows it | None |
 | M4 | Clone, fetch, a worktree on a branch off `origin/main`, commit, push and remove the worktree all work against a stand-in remote, and a checkout on another branch with an uncommitted edit stays as it was. `gh` isn't installed; the compare link works without it | In step 5, the front door's `allowed-tools` should allow the exact git commands, so they run without a prompt each |
-| M5 | `--plugin-dir` replaces the installed plugin of the same name for that session, silently; the debug log says `overrides installed version` | None |
+| M5 | `--plugin-dir` replaces the installed plugin of the same name for that session, silently; the debug log says `overrides installed version`. Found in step 3: a plugin whose dependency isn't installed doesn't load at all, so a session on the steward also needs `--plugin-dir ./plugins/craft-review` | Working on the steward takes one `--plugin-dir` per plugin it depends on |
 
 ### Step 3: The knowledge
 
-Write `place-knowledge` and `author-skills` as references of the front door, and
+Write `place-knowledge` and `author-skills` as references at the plugin root, and
 `evaluate-skills` as a skill, from the material in section 4. Seed `place-knowledge`
 with stripped cases from the first trial and from `audit.md`. The current `.claude/`
 agents review the new files, and are retired only after step 5.
+
+What was done:
+
+- `references/place-knowledge.md`: the four moves, the layers, the cut as checks, when
+  it is taste, and nine stripped cases.
+- `references/author-skills/`: `style.md` is the old `authoring-style.md`, moved with
+  its history. The cut left it for `place-knowledge.md`, and it gained the writer's
+  rules on substance and how a `marketplace-` plugin packages its knowledge.
+  `plugin-shape.md` holds what `new-plugin` knew: the files, dependencies, the README,
+  the three registrations, no version, and verifying. The templates moved with it.
+- `skills/evaluate-skills/`: the checks of the three evaluator agents, without their
+  role text, and the leak check.
+- Every file that named the old paths now names the new ones. `new-plugin` is only
+  the order of the steps, pointing to the knowledge.
+- The steward is registered in all three places, as a draft, so `check-catalog.mjs`
+  passes. The catalog row tells set-up never to install it yet.
+- Two more probes: an agent started from inside the front door may read the
+  references under the front door's `allowed-tools` rule, with no prompt of its own,
+  and `${CLAUDE_PLUGIN_ROOT}` is filled in inside a preloaded skill. That is what
+  lets the checker read the same standard the steward writes by.
+- Until step 5, the three evaluator agents in `.claude/agents/` keep their own copies
+  of the checks. They review this step's files, so they stay as they were.
+- `@skill-evaluator` and `@marketplace-architect` reviewed the step, and their
+  findings are fixed: `evaluate-skills` names Claude Code plugins in its description,
+  so it stays quiet in projects that build other kinds of plugins. It also has the
+  `allowed-tools` read rule, uses `review-work`'s report shape, points to the cut
+  instead of restating it, and reports a leak check without inputs as not run. The
+  dependency rule has one home, with "needed unconditionally" in it. What a
+  `marketplace-` plugin does differently moved from `style.md` to `plugin-shape.md`.
+  The concept says two visible skills and reference files, as D36 does.
 
 ### Step 4: Set up, and keep current
 
@@ -262,7 +292,10 @@ each generated file.
 ### Step 5: Contribute
 
 The `contribute` skill, the checker and the front door, as in section 4. Then retire
-the `.claude/` agents and the `new-plugin` skill they replace.
+the `.claude/` agents and the `new-plugin` skill they replace. Two things the step 3
+review handed on: the steward passes the checker the strip list and the source
+project's identifiers, without which the leak check can't run, and the checker's own
+file holds only its lane and failure modes, not what `evaluate-skills` already says.
 
 ### Step 6: Adopt
 
@@ -274,8 +307,11 @@ both set-up and contribute, so it comes after them.
 
 The steward goes into all three registrations, and `marketplace-init` comes out.
 `check-catalog.mjs` gets the new catalog path, and allows the steward its two skills.
-Update `CLAUDE.md`, `CONTRIBUTING.md` and the root README. This repo's
-`.claude/settings.json` enables the steward.
+Update `CLAUDE.md`, `CONTRIBUTING.md`, `.claude/rules/authoring.md` and the root
+README: they keep this repo's own mechanics, such as CI, the commands and the layout,
+and point to the steward's references for the cut and the style instead of restating
+them. This repo's `.claude/settings.json` enables the steward. Its README gets an
+install line.
 
 ### Step 8: Trials, from scratch
 
@@ -288,7 +324,8 @@ In a fresh config directory:
   every rule got a home, and that nothing was removed before its home was live.
 - Run keep-current on a copy of a project set up by the old init.
 - Make one real contribution end to end, from a lesson found in a trial to a PR.
-- Check that the front door stays quiet during ordinary project work.
+- Check that the front door and `evaluate-skills` stay quiet during ordinary project
+  work, including in a project that builds plugins of another kind.
 
 ### Step 9: Merge and migrate
 

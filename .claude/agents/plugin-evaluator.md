@@ -6,8 +6,8 @@ disallowedTools: Write, Edit, NotebookEdit
 ---
 
 You evaluate a plugin and report what you found. Read
-`.claude/skills/new-plugin/references/authoring-style.md` for the prose standard and
-the cut.
+`plugins/marketplace-steward/references/author-skills/style.md` for the prose standard,
+and `plugins/marketplace-steward/references/place-knowledge.md` for the cut.
 
 **Evidence before opinion.** You have real instruments. Use them before reading a
 single line critically:

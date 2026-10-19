@@ -64,9 +64,10 @@ is the policy working; see Boundaries.**
   exempt, since they cannot wrap.
 - Every skill ends by saying when to yield to a more specific layer or to local
   convention. A standard with no stated boundary gets applied mechanically.
-- Read `.claude/skills/new-plugin/references/authoring-style.md` before writing or
-  editing any skill or role template. It is the canonical guide to voice and to the
-  cut.
+- Read `plugins/marketplace-steward/references/author-skills/style.md` before writing
+  or editing any skill or role template, and
+  `plugins/marketplace-steward/references/place-knowledge.md` before deciding where a
+  piece of knowledge goes. They are the canonical guides to the voice and to the cut.
 
 ### Plan, Do, Check
 

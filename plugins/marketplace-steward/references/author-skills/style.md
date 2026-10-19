@@ -1,12 +1,14 @@
 # Authoring style
 
 The marketplace is prose. There is no code in it: the whole product is how well the
-standards are written and how cleanly they are cut. This guide covers both.
+standards are written and how cleanly they are cut. This guide covers the writing, and
+`place-knowledge.md` the cut.
 
 ## Contents
 
 - [The cut](#the-cut)
 - [Skills and roles](#skills-and-roles)
+- [Substance](#substance)
 - [Naming](#naming)
 - [Writing descriptions](#writing-descriptions)
 - [Voice](#voice)
@@ -16,33 +18,9 @@ standards are written and how cleanly they are cut. This guide covers both.
 
 ## The cut
 
-Decide where the knowledge goes before writing a word. `docs/werkstatt/concept.md` §4
-holds the four layers (Universal, Craft, Language, Framework & Tools), the test
-question for each, and the reasoning behind the rules below. Read it before you create,
-split or merge a skill. These are the rules as checks:
-
-| Rule | The check | What breaking it costs |
-|---|---|---|
-| One thing | Saying what the skill covers needs no "and" | A project that wants one topic has to install both |
-| One layer | The skill answers exactly one of the four test questions | A project that wants the general part has to take the specific part with it |
-| One home | No rule in it is stated in another skill; other skills are named, not restated | Two copies get edited separately and then disagree |
-| Toward the general | The plugin of every skill it names is in `dependencies`, in a more general layer | A named skill that isn't installed is silently replaced by the model's generic taste |
-| Knowledge only | No lane, no failure mode, no "you are the agent that…" | Role text in a skill is loaded by every role, including the ones it doesn't describe |
-| No project facts | No client, system, module layout, or a project's own commands | The skill is wrong for every other project that installs it |
-| Says when to yield | It ends by naming the more specific layer or local convention that overrides it | A standard with no boundary gets applied mechanically |
-
-**Granularity follows reuse.** Cut where a different project would want one part and
-not the other. Two parts that are always installed together and never change apart
-are one skill.
-
-To place a piece of knowledge, stop at the first yes:
-
-1. Is it a fact about one project? It goes in that project's `AGENTS.md`, never in the
-   marketplace.
-2. Is it about what a worker does and must not do? It goes in a role template (below),
-   never in a skill.
-3. Otherwise it is a skill, in its layer. Check that no existing skill already covers
-   it first. Extending a skill beats creating a near-duplicate.
+Decide where the knowledge goes before writing a word. `place-knowledge.md`, in the
+folder above this one, holds the diagnosis, the strip test, the layers, and the
+cutting rules as checks. Everything below assumes the cut is already made.
 
 ## Skills and roles
 
@@ -78,11 +56,26 @@ that runs one trio. It holds the order, the stop for the user's OK, and when Che
 the work back to Do. It holds no lane and no standard, which live in the role templates
 and the skills it runs.
 
-Skill plugins ship no `agents/`. The marketplace ships agents only in its
-`marketplace-` plugins: init's own helper now, and the contributor later. Those work on
-the knowledge system itself and have to exist before any project agent can. Init's
-helper, `codebase-cartographer`, stays as it is. A new one follows the role shape
-above.
+Skill plugins ship no `agents/`. Only `marketplace-` plugins do, and their agents follow
+the role shape above; `plugin-shape.md` says why, and what else such a plugin does
+differently.
+
+## Substance
+
+**Write only the substance you were given.** In a contribution, that is the lesson as
+the user described it, or the rule as the adopted setup states it, after the strip
+test. A plausible rule nobody chose looks finished and is wrong in a way only the user
+can see. So every judgement you had to fill in is listed as assumed, in the report or
+in the pull request, where it can still be corrected cheaply.
+
+**Don't write a second home**, even where restating a rule would read better in place.
+The check is "One home" in `place-knowledge.md`: name the skill that holds the rule,
+and declare its plugin.
+
+**Don't over-produce.** A skill that says less and yields clearly beats one that
+covers everything and commits to nothing. Read the neighbouring skills first, and
+match their register. When the substance for a section is missing, leave the section
+out and say so, rather than filling it because the template has one.
 
 ## Naming
 
@@ -219,7 +212,8 @@ worker either does out-of-scope work or drops what it noticed.
   exempt, since they cannot wrap.
 - Use em dashes for asides, not parentheses.
 - Backtick every filename, command, identifier and config key.
-- **Skill frontmatter:** `name` and `description`.
+- **Skill frontmatter:** `name` and `description`, plus `allowed-tools` for a skill
+  that reads its plugin's references by path, as `plugin-shape.md` describes.
 - **Agent frontmatter** applies to role templates, the agents init generates, and the
   `marketplace-` plugins' own agents. They take `name` and `description`, plus:
   - `effort`, chosen per role and task. The defaults are `high` for Plan and `medium`

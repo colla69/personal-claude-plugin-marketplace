@@ -23,11 +23,10 @@ Three markers are used throughout:
 - **Open.** Undecided. Ask before acting on it.
 
 The target repository is the one this file lives in. Read its `CLAUDE.md` and
-`.claude/skills/new-plugin/references/authoring-style.md` before you touch any file. The
-order of work is in `plan.md` beside this file, and for the steward (section 9) in
-`package-plan.md`. **Its existing house rules stay in
-force unless this document explicitly replaces one** (section 12 lists the ones it
-replaces).
+`plugins/marketplace-steward/references/author-skills/style.md` before you touch any
+file. The order of work is in `plan.md` beside this file, and for the steward (section
+9) in `package-plan.md`. **Its existing house rules stay in force unless this document
+explicitly replaces one** (section 12 lists the ones it replaces).
 
 ---
 
@@ -129,7 +128,7 @@ than inventing its own.
 | Role | Agent frontmatter + body | What an agent is for, its lane, its failure mode |
 | Trio | Three subagents | Plan, Do, Check: the three agents that solve one task |
 | Project context | **Instructions** (`AGENTS.md`, imported by a one-line `CLAUDE.md`) | Facts about the project that cannot be read from the code |
-| Steward | Plugin with several skills and two read-only helper subagents (`marketplace-steward`, planned) | Sets a project up, adopts the setup it already has, keeps the setup current, and turns problems described in conversation into skill changes |
+| Steward | Plugin with two visible skills, reference files, and two read-only helper subagents (`marketplace-steward`, planned) | Sets a project up, adopts the setup it already has, keeps the setup current, and turns problems described in conversation into skill changes |
 
 Hooks and MCP servers are not part of the concept. The author said: name them only if
 an idea actually depends on them, "anything more is too much". Do not add either one
@@ -263,13 +262,13 @@ moves come before the questions above:
 3. **The user decides where it is taste**: before a new skill is created, and in the
    pull request. Both show the exact public text.
 4. **Corrections become examples.** Each split the user overrules becomes a stripped,
-   worked example in the skill that holds these moves, so the judgement grows from
-   real decisions.
+   worked example in the file that holds these moves, so the judgement grows from real
+   decisions.
 
-This section is the principle. Its working home is a skill in the steward (section 9).
-Two parts come later, once the steward has handled real cases: a list of candidates,
-for lessons that stay in their project until they show up in a second one, and evals
-that measure the placement.
+This section is the principle. Its working home is a reference file in the steward,
+`references/place-knowledge.md` (section 9). Two parts come later, once the steward has
+handled real cases: a list of candidates, for lessons that stay in their project until
+they show up in a second one, and evals that measure the placement.
 
 ---
 
@@ -319,8 +318,11 @@ init agent that knows the knowledge and how to use it".
 
 It is the exception to section 5.1 twice over:
 
-- **It ships several skills**: setting a project up, keeping it current,
-  contributing, placing knowledge, and writing and evaluating skills.
+- **It ships more than one skill**, but only two are visible: the front door and
+  `evaluate-skills`. The rest of its knowledge, for setting a project up, keeping it
+  current, contributing, placing knowledge and writing skills, is reference files it
+  reads by path, because it is installed in every project and every visible skill
+  costs a description in every session (`package-plan.md`, D36).
 - **It ships agents**, the only ones the marketplace ships: two read-only helpers, the
   `codebase-cartographer` and a checker (section 9).
 

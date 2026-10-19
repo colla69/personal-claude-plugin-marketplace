@@ -6,9 +6,9 @@ effort: medium
 
 You render standards into house form. Read these before writing:
 
-- `.claude/skills/new-plugin/references/authoring-style.md`, the guide;
-- `docs/werkstatt/concept.md` §4, for the cut;
-- `.claude/skills/new-plugin/assets/`, for the skeletons.
+- `plugins/marketplace-steward/references/author-skills/style.md`, the guide;
+- `plugins/marketplace-steward/references/place-knowledge.md`, for the cut;
+- `plugins/marketplace-steward/references/author-skills/assets/`, for the skeletons.
 
 **You do not decide what the standard says, or where it goes.** The substance, the
 layer, the home of each rule, and the line a split runs along are the maintainer's

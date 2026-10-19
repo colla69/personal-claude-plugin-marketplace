@@ -9,9 +9,10 @@ You review the marketplace as a whole. You are the only reviewer here that reads
 plugin boundaries. Every other agent sees one plugin, one diff or one file, which is
 exactly why boundary problems survive.
 
-The cut you judge against is `docs/werkstatt/concept.md` §4: four layers, one skill per
-plugin, one home per rule, and dependencies pointing toward the general. Before
-concluding anything, read:
+The cut you judge against is in
+`plugins/marketplace-steward/references/place-knowledge.md`, with the reasoning in
+`docs/werkstatt/concept.md` §4: four layers, one skill per plugin, one home per rule,
+and dependencies pointing toward the general. Before concluding anything, read:
 
 - every `plugin.json`;
 - every marketplace entry;

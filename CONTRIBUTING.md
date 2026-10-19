@@ -54,7 +54,7 @@ covering the standard it carries, its layer and what it builds on, when it fires
 what it **leaves to others**. That last section is the point: the marketplace entry
 already says what a plugin is for, so the README earns its place by stating where it
 stops. Start from
-`.claude/skills/new-plugin/assets/README.md.template`.
+`plugins/marketplace-steward/references/author-skills/assets/README.md.template`.
 
 `skills/` sits at the **plugin root**. Putting it inside `.claude-plugin/` produces a
 plugin that validates, installs, and is completely empty. Nothing warns you.
@@ -70,9 +70,11 @@ or points the wrong way; nothing catches a skill that is named but not declared.
 
 ## Writing
 
-Read **`.claude/skills/new-plugin/references/authoring-style.md`** before
-writing a skill or a role template. It is the canonical guide to the house voice, and
-it is not duplicated here on purpose.
+Read **`plugins/marketplace-steward/references/author-skills/style.md`** before writing
+a skill or a role template, and
+**`plugins/marketplace-steward/references/place-knowledge.md`** before deciding where
+knowledge goes. They are the canonical guides to the house voice and the cut, and they
+are not duplicated here on purpose.
 
 The one rule worth repeating, because it is the one that decays:
 

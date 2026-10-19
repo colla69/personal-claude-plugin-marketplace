@@ -30,6 +30,7 @@ pure cost. When in doubt, leave it out and mention it as optional.
 | Framework & Tools | `tools-vue-typescript` | `vue-typescript-conventions` skill | `vue` and `typescript` both in dependencies, or `lang="ts"` in `.vue` files. Pulls in `tools-vue` and `language-typescript`. |
 | Framework & Tools | `tools-pinia` | `pinia-conventions` skill | `pinia` in dependencies. Pulls in `tools-vue`. |
 | — | `marketplace-init` | this skill | Already installed if you're reading this. Leave it enabled for future repos, or note that it can be user-scoped instead of project-scoped. |
+| — | `marketplace-steward` | `evaluate-skills` skill | Never, yet: it is a draft, being built. Don't install it in a project. |
 
 ## The install block
 

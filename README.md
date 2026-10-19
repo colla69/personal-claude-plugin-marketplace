@@ -78,6 +78,7 @@ startup, so a plugin installed mid-session isn't available until the next one.
 | `tools-vue-typescript` | `vue-typescript-conventions` | Typed props, emits and reactive inputs in Vue |
 | `tools-pinia` | `pinia-conventions` | Pinia stores, and server data in a query layer |
 | `marketplace-init` | `init-agent-setup` | Set a project up: `AGENTS.md`, its skills, and its trios |
+| `marketplace-steward` | `evaluate-skills` | Draft, being built: the package that will replace `marketplace-init` |
 
 Each plugin has its own README: what it covers, when it fires, and what it leaves to
 other skills. Follow the plugin name to `plugins/<name>/README.md`.
