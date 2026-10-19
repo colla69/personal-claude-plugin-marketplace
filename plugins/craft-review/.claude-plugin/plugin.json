@@ -1,0 +1,7 @@
+{
+  "name": "craft-review",
+  "displayName": "Review",
+  "author": { "name": "Andrea Colarieti Tosti" },
+  "license": "Apache-2.0",
+  "keywords": ["review", "feedback"]
+}

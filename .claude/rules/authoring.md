@@ -2,65 +2,81 @@
 paths:
   - "plugins/**/SKILL.md"
   - "plugins/**/agents/*.md"
-  - "plugins/**/references/*.md"
+  - "plugins/**/references/**/*.md"
   - "plugins/**/README.md"
   - ".claude/agents/*.md"
   - ".claude/rules/*.md"
   - ".claude/skills/**/*.md"
 ---
 
-# Authoring a skill, agent, or plugin README
+# Authoring a skill, role template, or plugin README
 
-The canonical guide is `.claude/skills/new-plugin/references/authoring-style.md`. Read
-it before a substantial edit. These are the constraints that are checkable at the moment
-of writing:
+The canonical guide is `.claude/skills/new-plugin/references/authoring-style.md`, and
+the reasoning behind the cut is in `docs/werkstatt/concept.md` §4. Read the guide
+before a substantial edit. These are the constraints you can check at the moment of
+writing.
+
+## The cut
+
+- **One skill, one thing, one layer.** The layer is Universal, Craft, Language or
+  Framework & Tools. It is also the plugin's name prefix (`universal-`, `craft-`,
+  `language-`, `tools-`) and its `category`.
+- **One home per rule.** When a rule already lives in another skill, name that skill
+  instead of restating the rule. Two copies get edited separately and then disagree.
+- **Dependencies point toward the general layers**, and the plugin of every skill you
+  name is declared in `plugin.json`. `check-catalog.mjs` checks the declared names
+  and their direction; nothing checks that a named skill is declared.
+- **A skill holds knowledge only.** A lane, a failure mode, or "you are the agent
+  that…" is role text, and belongs in a role template. A fact about one project belongs
+  in that project's `AGENTS.md`.
+- **Say when to yield.** Every skill ends by naming the more specific layer, or the
+  local convention, that overrides it. A standard with no stated boundary gets applied
+  mechanically.
+- **Don't assume code.** Names, categories and descriptions must not take for granted
+  that a skill is about code.
+
+## Roles and lanes
+
+- **Skill plugins ship no `agents/`.** Only `marketplace-` plugins do.
+- Plan and Check are read-only, and Do is the only writer.
+- **Read-only is a frontmatter fact, never a prose request.** A read-only agent
+  carries `disallowedTools: Write, Edit, NotebookEdit`.
+- `effort` is set per role and task. The defaults are Plan `high`, Do `medium` and
+  Check `medium`.
 
 ## Vendor neutrality
 
-This product is intended to support **GitHub Copilot as well as Claude**, so generated
-and authored config must not be Claude-specific where a neutral form exists.
-
-- **Never put a model reference in agent frontmatter.** No `model: sonnet`, no other
-  vendor's model name. It hard-codes one runtime into a file that should be portable.
-- Agent frontmatter is `name` and `description`. `effort` and `disallowedTools` are
-  Claude Code extensions — keep them only where they enforce something real, which today
-  means the read-only lanes below.
-- Context files: `AGENTS.md` holds the content; `CLAUDE.md` is a one-line `@AGENTS.md`
-  import. Claude Code lazy-loads nested `CLAUDE.md` but never nested `AGENTS.md`, so a
-  component directory needs both files.
-
-## Lanes
-
-Read-only is a frontmatter constraint, never a prose request. An agent whose description
-says "read-only" without `disallowedTools: Write, Edit, NotebookEdit` is not read-only.
-
-The review trio is the load-bearing case:
-
-| Agent | Lane |
-|---|---|
-| `code-reviewer` | read-only — logical errors, inconsistencies, code quality |
-| `refactoring-specialist` | read-only — prescribes improvements in human-readable form |
-| `developer` | **the only one that edits code** |
-
-Reviewers and refactorers give opinions. The developer implements them.
+- **Never put a model reference in agent frontmatter.** No `model: sonnet`, and no
+  other vendor's model name. It hard-codes one runtime into a file that has to stay
+  portable.
+- Generated agents are Claude-only for now (`.claude/agents/`). They stay portable
+  anyway: plain markdown, no model.
+- In context files, `AGENTS.md` holds the content and `CLAUDE.md` is a one-line
+  `@AGENTS.md` import. Claude Code lazy-loads a nested `CLAUDE.md` but never a nested
+  `AGENTS.md`, so a component directory needs both files.
 
 ## Mechanics
 
-- Hard-wrap prose at **88 columns**. Frontmatter `description:` lines and markdown table
-  rows are exempt — they cannot wrap.
-- A `description` is a trigger list in the user's words, structured as: what it is →
-  "Use whenever <phrasings people type>" → "Also use <the non-obvious second trigger>".
+- Hard-wrap prose at **88 columns**. Frontmatter `description:` lines and markdown
+  table rows are exempt, since they cannot wrap.
+- A `description` is a trigger list in the user's words, in three parts:
+  1. what it is;
+  2. "Use whenever <phrasings people type>";
+  3. "Also use <the non-obvious second trigger>".
+
   That last clause is what makes a skill fire when it should.
-- An agent must not restate its skill. It names the job, points at the skill, then
-  covers only its own failure mode, its lane, and what to do when there is nothing to
-  report.
-- Plugin README headings must be exactly `# <plugin-name>` — `scripts/check-catalog.mjs`
-  enforces it.
-- Attach a cost to every rule. A rule without a reason can only be applied to the cases
-  its author anticipated.
+- A role template must not restate a skill. It names the job, leaves the skill slot,
+  and covers only its lane, its failure modes, what to do when there is nothing to
+  report, and the report skeleton. A report for one kind of work lives in that kind's
+  Craft skill.
+- `description` lives in the marketplace entry, not in `plugin.json`.
+- Plugin README headings must be exactly `# <plugin-name>`, which
+  `scripts/check-catalog.mjs` enforces.
+- Attach a cost to every rule. A rule without a reason can only be applied to the
+  cases its author anticipated.
 
 ## After any change here
 
-Re-read `CLAUDE.md` and this file and reconcile them with what changed. A stale rule
+Re-read `CLAUDE.md` and this file, and reconcile them with what changed. A stale rule
 keeps prescribing the old standard and loads into every session that touches these
-paths, so it works against the change rather than being merely out of date.
+paths, so it works against the change rather than merely being out of date.

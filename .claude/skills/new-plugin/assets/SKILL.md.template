@@ -9,9 +9,15 @@ description: {{WHAT_IT_IS}}. Use whenever {{TRIGGER_PHRASES}}. Also use {{SECOND
 helps you X" — state the standard itself, the way clean-code opens with "the test
 for every rule below is: does this make the code cheaper to change next month?"}}
 
+{{This file is knowledge only. Plan, Do and Check all read it, so it holds no lane,
+no failure mode, and no "you are the agent that…" — that is role text, and it lives
+in a role template. No project facts either: no client, system, module layout, or a
+project's own commands. Where a rule already lives in another skill, name that skill
+instead of restating it, and declare its plugin in `dependencies`.}}
+
 ## {{First section}}
 
-{{The rules. Each one concrete enough to check against real code. Prefer a rule
+{{The rules. Each one concrete enough to check against real work. Prefer a rule
 with a reason attached over a rule alone — the reason is what lets someone apply
 it to a case you didn't anticipate.}}
 
@@ -20,10 +26,11 @@ it to a case you didn't anticipate.}}
 
 ## {{Second section}}
 
-{{Sections should follow the order someone works in, not an arbitrary taxonomy.}}
+{{Sections follow the order someone works in, not an arbitrary taxonomy.}}
 
-## Applying the standard
+## Where this yields
 
-{{How to rank findings, when the rule yields to local convention, and what to do
-at the boundary where this skill stops applying. Every skill here ends by saying
-when to ignore it — that is what keeps it from being applied mechanically.}}
+{{How to rank findings, which more specific layer overrides this skill and when,
+and where local convention wins. Name layers, not plugins — "a framework's own
+conventions", not "tools-vue". Every skill here ends by saying when to ignore it;
+that is what keeps it from being applied mechanically.}}

@@ -1,8 +1,8 @@
 {
-  "name": "{{PLUGIN_NAME}}",
+  "name": "{{LAYER}}-{{TOPIC}}",
   "displayName": "{{DISPLAY_NAME}}",
-  "description": "{{ONE_LINE_DESCRIPTION}}",
   "author": { "name": "Andrea Colarieti Tosti" },
   "license": "Apache-2.0",
-  "keywords": [{{KEYWORDS}}]
+  "keywords": [{{KEYWORDS}}],
+  "dependencies": [{{MORE_GENERAL_SKILL_PLUGINS}}]
 }

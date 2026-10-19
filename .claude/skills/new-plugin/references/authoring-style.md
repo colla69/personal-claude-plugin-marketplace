@@ -1,61 +1,114 @@
 # Authoring style
 
-The toolkit is prose. There is no code in it — the entire product is how well the
-standards are written. These are the patterns the existing six plugins hold to.
+The marketplace is prose. There is no code in it: the whole product is how well the
+standards are written and how cleanly they are cut. This guide covers both.
 
 ## Contents
 
-- [The skill/agent split](#the-skillagent-split)
+- [The cut](#the-cut)
+- [Skills and roles](#skills-and-roles)
+- [Naming](#naming)
 - [Writing descriptions](#writing-descriptions)
 - [Voice](#voice)
 - [Structure](#structure)
 - [Report formats](#report-formats)
 - [Mechanics](#mechanics)
 
-## The skill/agent split
+## The cut
 
-| | Skill | Agent |
+Decide where the knowledge goes before writing a word. `docs/werkstatt/concept.md` §4
+holds the four layers (Universal, Craft, Language, Framework & Tools), the test
+question for each, and the reasoning behind the rules below. Read it before you create,
+split or merge a skill. These are the rules as checks:
+
+| Rule | The check | What breaking it costs |
 |---|---|---|
-| **Is** | A document loaded into context | A separate context that reads it |
-| **Holds** | Every rule, example, and ranking | Its own failure mode and lane |
+| One thing | Saying what the skill covers needs no "and" | A project that wants one topic has to install both |
+| One layer | The skill answers exactly one of the four test questions | A project that wants the general part has to take the specific part with it |
+| One home | No rule in it is stated in another skill; other skills are named, not restated | Two copies get edited separately and then disagree |
+| Toward the general | The plugin of every skill it names is in `dependencies`, in a more general layer | A named skill that isn't installed is silently replaced by the model's generic taste |
+| Knowledge only | No lane, no failure mode, no "you are the agent that…" | Role text in a skill is loaded by every role, including the ones it doesn't describe |
+| No project facts | No client, system, module layout, or a project's own commands | The skill is wrong for every other project that installs it |
+| Says when to yield | It ends by naming the more specific layer or local convention that overrides it | A standard with no boundary gets applied mechanically |
+
+**Granularity follows reuse.** Cut where a different project would want one part and
+not the other. Two parts that are always installed together and never change apart
+are one skill.
+
+To place a piece of knowledge, stop at the first yes:
+
+1. Is it a fact about one project? It goes in that project's `AGENTS.md`, never in the
+   marketplace.
+2. Is it about what a worker does and must not do? It goes in a role template (below),
+   never in a skill.
+3. Otherwise it is a skill, in its layer. Check that no existing skill already covers
+   it first. Extending a skill beats creating a near-duplicate.
+
+## Skills and roles
+
+| | Skill | Role template |
+|---|---|---|
+| **Is** | Knowledge: a prose standard for one thing | A worker's lane: Plan, Do or Check |
+| **Holds** | Every rule, example and ranking for that thing | Its lane, its failure modes, what to do when there is nothing to report, a report skeleton |
+| **Lives in** | Its own plugin, `plugins/<layer>-<topic>/` | `plugins/marketplace-init/skills/init-agent-setup/references/roles/`, from which init generates agents in each project |
 | **Length** | 60–160 lines | 20–50 lines |
-| **Edited when** | Your taste changes | The agent misbehaves |
+| **Edited when** | Your taste changes | A generated agent misbehaves |
 
-The skill is the single source. When the standard changes you edit one file and both the
-main conversation and the subagent pick it up — that is the entire reason the split
-exists.
+The skill is the single source of knowledge. A role template never restates a skill.
+It names the job, leaves a slot for the skills init assigns, and spends its length on
+three things no skill can cover.
 
-So an agent file must not restate its skill. It opens by naming the job and pointing at
-the skill, then spends its length on the three things the skill cannot cover:
+**The failure mode this role falls into.** It must be specific, because the specific
+ones are the ones that work. For Check, "agreeable review" is finding nothing because
+nothing jumped out, and "padded review" is listing every preference so the review looks
+thorough. For Do, silent scope expansion: you are in the file, you fix something
+unrelated, and now one diff holds two changes.
 
-**The failure mode this agent specifically falls into.** Not generic. The existing ones
-are specific and that is why they work: `code-reviewer` names "agreeable review"
-(finding nothing because nothing jumped out) and "padded review" (listing every
-preference so it looks thorough). `unit-tester` names silently refactoring production
-code while "adding tests". `refactoring-specialist` names fixing a bug mid-refactor, and
-says why — a mixed diff can no longer answer "did I break anything".
+**The lane.** What the role may and may not touch. Plan and Check are read-only; Do is
+the only writer. A read-only lane is `disallowedTools: Write, Edit, NotebookEdit` in the
+frontmatter, not a sentence in the body. Prose is a request; frontmatter is a
+constraint.
 
-**The lane.** What it may and may not touch. `unit-tester` constrains edits to test
-files and stops to ask if the implementation needs changing. Read-only agents declare
-`disallowedTools: Write, Edit, NotebookEdit` in frontmatter, not just in prose — prose
-is a request, frontmatter is a constraint.
-
-**What to do when there is nothing to report.** Every agent here says a version of "if
+**What to do when there is nothing to report.** Every role says some version of "if
 it's fine, say so and stop". Without that line, a report format is a demand for output,
 and the agent will manufacture findings to fill it.
+
+The run-pattern template, `roles/run.md`, is the third kind of file: the project skill
+that runs one trio. It holds the order, the stop for the user's OK, and when Check sends
+the work back to Do. It holds no lane and no standard, which live in the role templates
+and the skills it runs.
+
+Skill plugins ship no `agents/`. The marketplace ships agents only in its
+`marketplace-` plugins: init's own helper now, and the contributor later. Those work on
+the knowledge system itself and have to exist before any project agent can. Init's
+helper, `codebase-cartographer`, stays as it is. A new one follows the role shape
+above.
+
+## Naming
+
+- **Plugin:** `<layer>-<topic>`, for example `universal-clean-code`,
+  `craft-unit-testing`, `language-java` or `tools-vue`. The prefix is the same word as
+  the plugin's `category`: `universal`, `craft`, `language` or `tools`. A plugin that
+  works on the marketplace itself is `marketplace-<name>`, with category `marketplace`.
+- **Skill:** named for the activity, for example `write-unit-tests` or
+  `vue-conventions`. It is invoked as `/<plugin>:<skill>`.
+- **Wording that outlives code.** Every skill here is about code today, and the
+  structure must not assume it stays that way. Language is "what the work is written
+  in", not "the programming language": German and an enterprise report template are
+  Language skills too.
 
 ## Writing descriptions
 
 The `description` in frontmatter is not documentation. It is the only thing Claude sees
-when deciding whether to load this skill, so it is a **trigger list**.
+when deciding whether to load the skill, so it is a **trigger list**.
 
-Three parts, in order:
+It has three parts, in this order:
 
-1. **What it is** — one clause, the standard itself
-2. **Use whenever** — the phrasings a user actually types, quoted where they are
-   distinctive
-3. **Also use** — the non-obvious second trigger, the one that catches the case the
-   first clause misses
+1. **What it is**: one clause, the standard itself.
+2. **Use whenever**: the phrasings a user actually types, quoted where they are
+   distinctive.
+3. **Also use**: the non-obvious second trigger, which catches the case the first
+   clause misses.
 
 ```
 description: Restructure code without changing its behavior, in small verifiable
@@ -65,13 +118,17 @@ down technical debt. Also use before adding a feature to code that's hard to
 change.
 ```
 
-That last sentence is the valuable one. Anyone can catch "refactor this". Catching "this
+The last sentence is the valuable one. Anyone can catch "refactor this". Catching "this
 code is hard to work with, I need to add a feature" is what makes the skill fire when it
 should.
 
-Write the triggers as the user's words, not yours. `write-unit-tests` lists "mentions
-coverage, says code is untested, wants TDD" — those are things people say. "Testing
+Write the triggers in the user's words, not yours. `write-unit-tests` lists "mentions
+coverage, says code is untested, wants TDD", which are things people say. "Testing
 scenarios" is not.
+
+Two skills whose descriptions win the same prompt split the traffic between them by
+luck. Before finishing, write three prompts a person would really type, and check that
+this description wins them against every other skill in the marketplace.
 
 Descriptions are one long line in the YAML. Do not wrap them.
 
@@ -81,8 +138,8 @@ Descriptions are one long line in the YAML. Do not wrap them.
 skill helps you write clean code". `clean-code` opens with "cleanliness is not an end in
 itself" and immediately gives the test that overrides every rule below it.
 
-**Attach a cost to every rule.** A rule without a reason can only be applied to cases
-you anticipated. A rule with a reason can be applied to the ones you didn't.
+**Attach a cost to every rule.** A rule without a reason can only be applied to the
+cases you anticipated. A rule with a reason can be applied to the ones you didn't.
 
 > Never swallow an error to make a signature simpler. An empty `catch` is a bug with
 > a delay fuse.
@@ -90,24 +147,24 @@ you anticipated. A rule with a reason can be applied to the ones you didn't.
 **Be concrete.** `retryableRequests` over `filteredList`. `returns empty list when the
 user has no orders` over `test getOrders 2`. Named examples beat described ones.
 
-**Compress the important claims into something that survives.** The lines that actually
-change behavior are the short ones:
+**Compress the important claims into something that survives.** The lines that
+actually change behavior are the short ones:
 
 > A refactor without tests is a rewrite with extra confidence.
 > A test you wrote but did not execute is a guess.
 > Duplication is cheaper than the wrong abstraction.
 > A `TODO` without a name and a reason is a wish, not a task.
 
-One or two per document. A page of aphorisms is a page nobody can act on.
+Use one or two per document. A page of aphorisms is a page nobody can act on.
 
 **Say when to ignore the standard.** Every skill here ends by yielding somewhere.
 `clean-code` yields to local file consistency for small changes. `vue-conventions`
-yields to the project's existing patterns and says to name the mismatch out loud rather
-than introducing a second style. A standard with no stated boundary gets applied
+yields to the project's existing patterns, and says to name the mismatch out loud
+rather than introduce a second style. A standard with no stated boundary gets applied
 mechanically, which is worse than not being applied.
 
 **Rank by cost, not by category.** When a skill produces findings, tell the reader how
-to sort them — `clean-code` sorts by correctness risk, then change cost, then reading
+to sort them. `clean-code` sorts by correctness risk, then change cost, then reading
 cost, and says only the first two justify touching working code unprompted.
 
 **Do not hedge.** No "you might want to consider", no "it's generally recommended". Say
@@ -119,17 +176,28 @@ Sections follow the order someone works in. `write-unit-tests` goes: before writ
 anything → what to test → test shape → mocking → verify. That is the sequence of the
 task, not a taxonomy of testing.
 
-Target 60–160 lines for a skill. Past that, move detail into `references/` — a reference
-file costs nothing until the skill tells the agent to read it, and the skill should say
+Target 60–160 lines for a skill. Past that, move detail into `references/`. A reference
+file costs nothing until the skill tells the agent to read it, so the skill should say
 exactly when: "Read `references/context-files.md` before writing."
 
-Use `references/` for detail consulted at one specific moment (templates, tables, layout
-rules). Use `assets/` for files the skill writes out or copies.
+Use `references/` for detail consulted at one specific moment, such as templates,
+tables or layout rules. Use `assets/` for files the skill writes out or copies.
 
 ## Report formats
 
-Give a fenced block with `<angle bracket placeholders>` describing what goes in each
-section, not example content:
+A report has two halves, and each has its own home:
+
+- **The skeleton** belongs to the role template, because it is the same for every
+  kind of work. It covers what Plan proposes, what Do changed, and what Check compared
+  against the plan.
+- **The report for one kind of work** belongs to that kind's Craft skill, because it
+  is knowledge about the work. Examples are a refactoring plan, a test report, and
+  clean-code findings grouped by cost.
+
+Writing either half in both places gives it two homes.
+
+Give a fenced block, with `<angle bracket placeholders>` describing what goes in each
+section rather than example content:
 
 ```
 ### Blocking
@@ -137,24 +205,31 @@ section, not example content:
 goes wrong, and the input or sequence that triggers it.>
 ```
 
-Include a section for what the agent checked and found sound. `review-changes` has
-**Verified**, and the reason is stated: it tells the author what the review covered, so
-they know what it didn't.
+Include a section for what was checked and found sound. `review-work` has
+**Verified**, and says why: it tells the author what the review covered, so they know
+what it didn't.
 
-Include a section for what was deliberately left. `unit-tester` has "deliberately not
-covered", `refactoring-specialist` has "left alone" and "found, not fixed". Without
-those sections an agent either does out-of-scope work or drops what it noticed.
+Include a section for what was deliberately left, such as a test report's
+"deliberately not covered" or a refactoring plan's "found, not fixed". Without one, a
+worker either does out-of-scope work or drops what it noticed.
 
 ## Mechanics
 
 - Hard-wrap prose at **88 characters**. Frontmatter descriptions and table rows are
-  exempt — they cannot wrap.
-- Em dashes for asides, not parentheses.
-- Backtick every filename, command, identifier, and config key.
-- Frontmatter: skills take `name` and `description`. Agents take those plus `effort`
-  (`medium`, or `high` for review and refactoring where thoroughness is the value) and
-  `disallowedTools` for read-only agents. **Never a `model` field** — naming a vendor's
-  model hard-codes one runtime into a file that has to stay portable across agents.
-- Namespacing is automatic: `/clean-code:clean-code` for the skill,
-  `@clean-code:clean-code-reviewer` for the agent. Do not put the namespace in the
-  `name` field.
+  exempt, since they cannot wrap.
+- Use em dashes for asides, not parentheses.
+- Backtick every filename, command, identifier and config key.
+- **Skill frontmatter:** `name` and `description`.
+- **Agent frontmatter** applies to role templates, the agents init generates, and the
+  `marketplace-` plugins' own agents. They take `name` and `description`, plus:
+  - `effort`, chosen per role and task. The defaults are `high` for Plan and `medium`
+    for Do and Check; init raises or lowers them per task and says why in its plan.
+  - `disallowedTools`, for every read-only lane.
+  - In a role template, a `skills:` slot that init fills. How each skill is named
+    there is in the init plugin's `references/trios.md`.
+  - **Never a `model` field.** Naming a vendor's model hard-codes one runtime into a
+    file that has to stay portable.
+- `description` lives in the marketplace entry, not in `plugin.json`. When a field is
+  set in both, the manifest silently wins.
+- Namespacing is automatic, as `/universal-clean-code:clean-code`. Do not put the
+  namespace in the `name` field.

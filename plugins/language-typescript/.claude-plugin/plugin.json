@@ -1,0 +1,8 @@
+{
+  "name": "language-typescript",
+  "displayName": "TypeScript Conventions",
+  "author": { "name": "Andrea Colarieti Tosti" },
+  "license": "Apache-2.0",
+  "keywords": ["typescript", "language"],
+  "dependencies": ["universal-clean-code"]
+}

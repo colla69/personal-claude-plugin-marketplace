@@ -1,0 +1,8 @@
+{
+  "name": "craft-refactoring",
+  "displayName": "Refactoring",
+  "author": { "name": "Andrea Colarieti Tosti" },
+  "license": "Apache-2.0",
+  "keywords": ["refactoring", "tech-debt"],
+  "dependencies": ["universal-clean-code", "universal-work-discipline", "craft-development"]
+}
