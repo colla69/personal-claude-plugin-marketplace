@@ -20,7 +20,7 @@ column names the product files a page is checked against; the glossary links eac
 | New, and wondering whether this is for you | [`../README.md`](../README.md), then `tutorials/first-setup.md` |
 | Using the steward in your projects | The guides |
 | Working on the marketplace or the steward | [`../CONTRIBUTING.md`](../CONTRIBUTING.md), then the contributing pages |
-| Weighing the idea itself | `explanation/the-idea.md` |
+| Weighing the idea itself | [`explanation/the-idea.md`](explanation/the-idea.md) |
 | Looking up a word | [`reference/glossary.md`](reference/glossary.md) |
 
 ## Tutorials
@@ -70,14 +70,14 @@ Why it is the way it is.
 
 | Page | The question | Sources | Status |
 |---|---|---|---|
-| `explanation/the-idea.md` | Why knowledge central and workers local, and why not only for code | `decisions.md` | To write |
-| `explanation/layers.md` | Why four layers, and why dependencies point one way | `place-knowledge.md` | To write |
-| `explanation/skills-and-roles.md` | Why a skill holds knowledge and a role a lane | `style.md`, `plugin-shape.md` | To write |
-| `explanation/trios.md` | Why Plan, Do, Check, and why the stop | `trios.md`, `roles/` | To write |
-| `explanation/the-steward.md` | Why one package, why it asks only twice, why a checker | The front door, the job files | To write |
-| `explanation/placing-knowledge.md` | Why diagnose first, and why strip | `place-knowledge.md` | To write |
-| `explanation/safety.md` | What keeps you in control | The job files | To write |
-| `explanation/cost.md` | What every enabled skill costs | `plugin-shape.md`, `evaluate-skills` | To write |
+| [`explanation/the-idea.md`](explanation/the-idea.md) | Why knowledge central and workers local, and why not only for code | `decisions.md` | Written |
+| [`explanation/layers.md`](explanation/layers.md) | Why four layers, and why dependencies point one way | `place-knowledge.md` | Written |
+| [`explanation/skills-and-roles.md`](explanation/skills-and-roles.md) | Why a skill holds knowledge and a role a lane | `style.md`, `plugin-shape.md` | Written |
+| [`explanation/trios.md`](explanation/trios.md) | Why Plan, Do, Check, and why the stop | `trios.md`, `roles/` | Written |
+| [`explanation/the-steward.md`](explanation/the-steward.md) | Why one package, why it asks only twice, why a checker | The front door, the job files | Written |
+| [`explanation/placing-knowledge.md`](explanation/placing-knowledge.md) | Why diagnose first, and why strip | `place-knowledge.md` | Written |
+| [`explanation/safety.md`](explanation/safety.md) | What keeps you in control | The job files | Written |
+| [`explanation/cost.md`](explanation/cost.md) | What every enabled skill costs | `plugin-shape.md`, `evaluate-skills` | Written |
 | [`explanation/decisions.md`](explanation/decisions.md) | Every decision, with its date, its reason and where it lives now | The product files each decision names | Written |
 
 ## Contributing

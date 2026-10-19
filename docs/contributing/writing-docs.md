@@ -55,7 +55,8 @@ reason, prefer a named example to a described one, and don't hedge. On top of th
 
 - Plain Markdown, as GitHub renders it. No build, and nothing a renderer has to add.
 - Diagrams in Mermaid, in a fenced `mermaid` block, which GitHub draws.
-- Hard-wrap prose at 88 columns. Table rows and code blocks are exempt.
+- Hard-wrap prose at 88 columns. Table rows and code blocks are exempt, and so is a line
+  that holds a single link too long to break.
 - Relative links only, to a file that exists. A docs page not yet written is named in
   backticks, not linked. Any other file a page mentions is linked where the reader would
   open it, and otherwise named in backticks.

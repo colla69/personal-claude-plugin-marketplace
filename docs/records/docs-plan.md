@@ -3,10 +3,10 @@
 How the repo's documentation gets rewritten from scratch, as a project of its own. D and
 O numbers continue the ones in `plan.md` and `package-plan.md`.
 
-**Status:** approved 2026-10-19, on branch `marketplace/one-package`. Step 1 is done,
-and the plan stops here for review (D43). It replaces the documentation half of step 7
-of `package-plan.md`. The package plan's trials and merge come after it, because the
-documentation describes the steward, and both reach `main` together.
+**Status:** approved 2026-10-19, on branch `marketplace/one-package`. Steps 1 and 2 are
+done; the plan runs on to step 8, and stops there (D43). It replaces the documentation
+half of step 7 of `package-plan.md`. The package plan's trials and merge come after it,
+because the documentation describes the steward, and both reach `main` together.
 
 ---
 
@@ -349,6 +349,16 @@ What was done:
 
 The nine explanation pages, from the concept and the plans. When every section in the
 table above has its home, `concept.md` goes.
+
+What was done:
+
+- Eight explanation pages, beside the decision log from step 1: the idea, layers,
+  skills and roles, trios, the steward, placing knowledge, safety and cost. Each says
+  why, and links to the product file that holds the rule.
+- Two of the concept's rules had no home outside it, so they moved into the product
+  before it went: "English throughout" into `style.md`, and the warning that an
+  `agents` or `commands` key replaces its folder into `plugin-shape.md`.
+- `concept.md` is deleted (D39). Git history keeps the brief.
 
 ### Step 3: Reference
 

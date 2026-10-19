@@ -24,6 +24,10 @@ the most common reason a new plugin shows nothing.
 Start from the templates in `assets/`, beside this file. `SKILL.md.template` and
 `README.md.template` are annotated with what each section is for.
 
+Leave the component keys out of `plugin.json`. A `skills` key adds to the default
+`skills/` folder, but an `agents` or a `commands` key replaces its folder, so an
+`agents` key added for one file silently hides every other agent.
+
 ## Dependencies
 
 What goes in `dependencies` is the "Toward the general" check in
