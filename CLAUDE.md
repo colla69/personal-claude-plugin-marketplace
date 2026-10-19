@@ -10,9 +10,11 @@ mistakes that fail silently.
 use them are generated into each project by the init plugin, together with that
 project's `AGENTS.md`. The concept is described in `docs/werkstatt/concept.md`.
 
-**A restructuring is in progress; see `docs/werkstatt/plan.md`.** The rules below
-describe the shape the repo now has. What remains is step 10: merging it to `main`,
-and moving every project that uses the marketplace onto the new plugin names.
+**The restructuring in `docs/werkstatt/plan.md` is merged; the steward comes next.**
+The rules below describe the shape the repo now has. `docs/werkstatt/package-plan.md`
+replaces `marketplace-init` and this repo's own `.claude/` tooling with one package,
+`marketplace-steward`, that sets projects up, adopts and keeps their setups current,
+and grows the marketplace by pull request.
 
 ## Commands
 
@@ -35,7 +37,7 @@ is the policy working; see Boundaries.**
 |---|---|
 | `.claude-plugin/marketplace.json` | The catalog. Source of truth for the plugin list, and the one home of each plugin's `description` |
 | `plugins/<layer>-<topic>/` | One skill plugin: manifest, README, one skill |
-| `plugins/marketplace-<name>/` | A plugin that works on the marketplace itself (init, and later the contributor). The only plugins with agents |
+| `plugins/marketplace-<name>/` | A plugin that works on the marketplace itself (`marketplace-init` today, the steward once it is built). The only plugins with agents |
 | `.claude/` | Tooling for working on this repo. Never published as a plugin |
 | `scripts/check-catalog.mjs` | Guards the three mirrored plugin lists |
 | `docs/werkstatt/` | The concept, the migration plan, and the audit |

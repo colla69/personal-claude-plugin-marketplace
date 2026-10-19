@@ -4,7 +4,7 @@ A brief for an agent that restructures a Claude Code plugin marketplace to follo
 concept. The concept is the author's (Andrea Colarieti Tosti). It was developed
 between 2026-09-08 and 2026-10-13 across six working sessions and one presentation
 ("Enterprise AI marketplace: Plugins für einen Einstieg in Agentic AI", subtitle "Vom
-Werkzeug zur Werkstatt").
+Werkzeug zur Werkstatt"), and extended on 2026-10-19 with the steward (section 9).
 
 ---
 
@@ -24,7 +24,8 @@ Three markers are used throughout:
 
 The target repository is the one this file lives in. Read its `CLAUDE.md` and
 `.claude/skills/new-plugin/references/authoring-style.md` before you touch any file. The
-order of work is in `plan.md` beside this file. **Its existing house rules stay in
+order of work is in `plan.md` beside this file, and for the steward (section 9) in
+`package-plan.md`. **Its existing house rules stay in
 force unless this document explicitly replaces one** (section 12 lists the ones it
 replaces).
 
@@ -75,7 +76,7 @@ This one sentence decides almost everything below.
 |---|---|---|---|
 | **Knowledge** (skills) | The marketplace, centrally | Curated once, improved for everyone | Everyone who installs it |
 | **Workers** (agents) | The project repository, locally | Generated for that project and task | The project |
-| **Project facts** (instructions) | The project repository, as `AGENTS.md` | Written by the init agent from the repo | The project |
+| **Project facts** (instructions) | The project repository, as `AGENTS.md` | Written by the steward from the repo | The project |
 
 The consequences:
 
@@ -83,10 +84,10 @@ The consequences:
    collection of ready-made workers.
 2. **One skill per plugin.** A plugin is the unit you install, so one plugin is one
    piece of knowledge you can choose to have or not.
-3. **Agents are made, not shipped.** The init agent creates the agents a project needs,
+3. **Agents are made, not shipped.** The steward creates the agents a project needs,
    in that project's repository, wired to the skills that project installed.
 4. **Knowledge flows back.** What a project learns goes back into the marketplace
-   through the contributor (section 9), so the next project starts with it.
+   through the steward (section 9), so the next project starts with it.
 
 **The product is prose.** A skill is a standard written in prose that an LLM can read.
 Nothing in it is a technical control: a model may follow it, ignore it, or follow it
@@ -109,7 +110,7 @@ that every skill is about code, even if every skill in it today is.
 **Developers stay developers.** "Developing should still be done by developers. With
 the help of agentic engineering they can work while watching the process from a new
 vantage point, while leaving the tedious work to LLMs." The user is in control at
-every gate (sections 7 and 8).
+every gate (sections 7 to 9).
 
 ---
 
@@ -128,8 +129,7 @@ than inventing its own.
 | Role | Agent frontmatter + body | What an agent is for, its lane, its failure mode |
 | Trio | Three subagents | Plan, Do, Check: the three agents that solve one task |
 | Project context | **Instructions** (`AGENTS.md`, imported by a one-line `CLAUDE.md`) | Facts about the project that cannot be read from the code |
-| Init agent | Subagent + skill in the init plugin | Sets a project up: writes instructions, installs skills, creates the trio |
-| Contributor | Subagent + skill (planned) | Turns problems described in conversation into skill changes |
+| Steward | Plugin with several skills and two read-only helper subagents (`marketplace-steward`, planned) | Sets a project up, adopts the setup it already has, keeps the setup current, and turns problems described in conversation into skill changes |
 
 Hooks and MCP servers are not part of the concept. The author said: name them only if
 an idea actually depends on them, "anything more is too much". Do not add either one
@@ -204,7 +204,7 @@ How the layers differ, with one example per boundary:
    - *This repo builds with `make ci`* is a project fact, which belongs in
      `AGENTS.md` (section 8).
    - **Never put project facts in a marketplace skill.** Never name a client, system,
-     parameter set, or module layout there either. Skills stay general; the init agent
+     parameter set, or module layout there either. Skills stay general; the steward
      reads the target repo for the specifics.
 7. **Granularity follows reuse.** Cut a skill along the line where a different project
    would want one part but not the other. If two parts are always installed together
@@ -236,6 +236,41 @@ Is it about one concrete product or tool?
 Then check that no existing skill already covers it. If one does, extend that skill
 instead of creating a near-duplicate. That is rule 2.
 
+**When the piece comes out of a project. Rule, 2026-10-19.** Most of what the steward
+places comes from a project: a problem someone describes, or a rule in a setup it
+adopts (section 8.4). That knowledge arrives mixed with the project's facts, so four
+moves come before the questions above:
+
+1. **Diagnose before writing.** The cause decides where the fix goes, and only some
+   causes mean the knowledge should change:
+
+   | What is really going on | Where the fix goes |
+   |---|---|
+   | The skill has the rule, but it never loaded | The wiring: the skill's trigger, or the project's setup. Not the content |
+   | The knowledge is wrong everywhere | The skill |
+   | Right in general, wrong in this project | The project's `AGENTS.md`, as a local exception, and maybe a sharper yield in the skill. The general rule stays |
+   | Missing, and it would hold anywhere | A skill, in the layer the questions above give |
+   | Missing, but only true here | The project's `AGENTS.md` |
+   | A fact about the machine it was found on | Nowhere |
+
+2. **The strip test.** Replace every name, path and value with its role. What is still
+   true and useful travels, and goes through the questions above; what was stripped
+   stays in the project's `AGENTS.md`. "The report for client A was off because
+   March's export used net values" splits into "before comparing with the previous
+   month, check that both months use the same basis", a Craft skill, and "client A's
+   exports use net values", a project fact. The stripped text is the only text that
+   may reach the public marketplace, which is how rule 6 holds in practice.
+3. **The user decides where it is taste**: before a new skill is created, and in the
+   pull request. Both show the exact public text.
+4. **Corrections become examples.** Each split the user overrules becomes a stripped,
+   worked example in the skill that holds these moves, so the judgement grows from
+   real decisions.
+
+This section is the principle. Its working home is a skill in the steward (section 9).
+Two parts come later, once the steward has handled real cases: a list of candidates,
+for lessons that stay in their project until they show up in a second one, and evals
+that measure the placement.
+
 ---
 
 ## 5. Plugins and the marketplace
@@ -257,12 +292,12 @@ plugins/<name>/
     assets/                    # optional: templates, examples
 ```
 
-It does not contain `agents/`. Section 5.3 covers the exception, and section 6
-explains why.
+It does not contain `agents/`, and it holds one skill. Section 5.3 covers the one
+plugin that is an exception to both, and section 6 explains why.
 
 ### 5.2 What the marketplace records about each plugin
 
-The init agent picks skills from the catalogue, so the catalogue must let it pick
+The steward picks skills from the catalogue, so the catalogue must let it pick
 well. Every plugin's entry should make three things visible:
 
 - **Its layer.** The current `category` field is the natural home. **Inference**: the
@@ -274,19 +309,23 @@ well. Every plugin's entry should make three things visible:
 Keep every field in one place only: either `plugin.json` or the marketplace entry,
 never both. If both have it, the manifest wins silently.
 
-### 5.3 The exception: the plugins that work on the marketplace itself. Inference.
+### 5.3 The exception: the plugin that works on the marketplace. Rule, 2026-10-19.
 
-Two workers are not project workers. They operate on the knowledge system itself, so
-they are the only agents the marketplace ships:
+One plugin is not a skill plugin: **the steward** (section 9), `marketplace-steward`.
+It works on the knowledge system itself rather than on a project's work, and it has to
+exist before any project agent can, so it cannot be generated into a repo. The author
+described the product early on as "plugins, one plugin with some dedicated agents, one
+init agent that knows the knowledge and how to use it".
 
-- **The init agent** (section 8), in the init plugin (today `project-init`).
-- **The contributor** (section 9), in its own plugin, once it is built.
+It is the exception to section 5.1 twice over:
 
-The author never said in so many words that these two are the exceptions to "agents
-stay in the repo". But both have to exist before any project agent can, so they cannot
-be generated into a repo. The author also described the product as "plugins, one
-plugin with some dedicated agents, one init agent that knows the knowledge and how to
-use it". Confirm this with the author (section 13).
+- **It ships several skills**: setting a project up, keeping it current,
+  contributing, placing knowledge, and writing and evaluating skills.
+- **It ships agents**, the only ones the marketplace ships: two read-only helpers, the
+  `codebase-cartographer` and a checker (section 9).
+
+Until it is built, `marketplace-init` plays its set-up part, and ships the
+cartographer.
 
 ---
 
@@ -314,7 +353,7 @@ and PDF plus digital signature. Its output is a digitally signed PDF.
 
 ### 6.2 Where agents live
 
-**In the project repository, generated by the init agent. Rule.** Agents are local:
+**In the project repository, generated by the steward. Rule.** Agents are local:
 they belong to the project and the task they were created for, and they stay in the
 repo. The marketplace does not ship ready-made project agents.
 
@@ -335,7 +374,7 @@ today:
 > in steps." (2026-10-07)
 
 The author felt this was "a whole layer" missing from the first version. It is the
-workflow layer, between single agents and the init agent.
+workflow layer, between single agents and the steward.
 
 ### 7.1 The three roles
 
@@ -392,7 +431,11 @@ recurring task or a new trio per task is open (section 13).
 
 ---
 
-## 8. The init agent: from project to working setup
+## 8. Setting a project up
+
+The steward's first jobs are setting a project up and, where the project already has
+a setup of its own, adopting it. Until the steward is built, `marketplace-init` does
+the first.
 
 ### 8.1 The order. Rule, 2026-10-13.
 
@@ -411,80 +454,184 @@ recurring task or a new trio per task is open (section 13).
 4. **Create the trio** (Plan, Do, Check) in the repository, wired to exactly those
    skills, with role assignments that follow section 7.1.
 
-Only the init agent installs skills ("the init installs skills"). The agents it
-creates do not go shopping.
+Only the steward installs skills ("the init installs skills"). The agents it creates
+do not go shopping.
 
-### 8.2 Behaviour the author settled while building the current init (2026-09-17)
+### 8.2 Behaviour the author settled while building the first init (2026-09-17)
 
-The current `project-init` skill already implements these. Keep them.
+`marketplace-init` implements these, and the steward keeps them, except the first.
 
-- **The init agent proposes a plan and waits for approval before writing anything.**
-  This is the same hard stop as the trio's.
-- **It never touches git.** It makes no branch, commit, stage, or stash. "The
-  developer makes a branch and gives you the possibility to run free without breaking
-  shit, then looks at what you produced and decides how to handle it. You are his
-  faithful expert companion... he still needs to feel in control of what is
-  happening."
+- **Replaced on 2026-10-19: the plan stop.** The init agent proposed a plan and waited
+  for approval before writing anything. The steward stops for an OK only before it
+  creates a new skill (section 9). Everything else goes ahead and is reported, and the
+  next rule is what keeps the developer in control.
+- **It never touches git in the project.** It makes no branch, commit, stage, or
+  stash there. "The developer makes a branch and gives you the possibility to run free
+  without breaking shit, then looks at what you produced and decides how to handle it.
+  You are his faithful expert companion... he still needs to feel in control of what
+  is happening." In the marketplace it does use git: a contribution is a branch of its
+  own (section 9).
 - **The source policy.** It refreshes all marketplaces first, with a bare
   `claude plugin marketplace update` and no name. It asks which plugin sources are
   allowed only if no policy file exists, and then as a single on/off checklist rather
   than an allow/deny question. It writes the policy file itself.
-- **The house marketplace has priority.** The init agent looks for central skills
-  first and fills gaps from other permitted marketplaces only after that.
+- **The house marketplace has priority.** The steward looks for central skills first
+  and fills gaps from other permitted marketplaces only after that.
 - **Everything it could not figure out goes into the final report.** That is the
   place for it, not the middle of the process.
 - **Less text.** "So much text" was the author's complaint. Reports are short and
   scannable, and the plugin table is the format the author liked.
 
-### 8.3 What changes for the init agent
+### 8.3 What set-up does beyond the order
 
-Today the init agent recommends plugins, and some of those plugins ship their own
-agents. Under this concept it does three things instead:
-
-- It **installs skills** rather than recommending plugins that come with workers.
-- It **generates the trio** into the repo. That needs a standard for what a Plan, Do,
-  or Check agent file looks like. **Inference:** that standard is itself knowledge, so
-  it belongs in a skill, probably in the init plugin as a reference: role templates
-  with lane, failure mode, frontmatter, and a skill slot.
+- It **installs skills**, rather than recommending plugins that come with workers.
+- It **generates the trios** into the repo, from role templates that hold each role's
+  lane, failure mode, frontmatter, and a skill slot. The templates are knowledge, so
+  they live in the steward.
 - It **assigns skills to roles** by the rules in section 7.1: tool skills to Do only,
   abstract skills to Plan and Check, shared skills to all three.
+- **Where the project needs knowledge no central skill has, it proposes a new skill.
+  Rule, 2026-10-19.** That proposal is the one place it stops for an OK.
+  **Inference:** a gap-fill from another permitted marketplace still comes first, as
+  the house-priority rule in 8.2 has it, and a new skill is proposed only where none
+  fits.
 
 The plugin catalogue reference (`plugin-catalog.md`) remains its map of the
-marketplace. It now needs to show the layer of every skill.
+marketplace, with the layer of every skill.
+
+### 8.4 Adopting an existing setup. Rule, 2026-10-19.
+
+> "We need it to be able to integrate into existing setups. What if a project already
+> has a set of skills and agents and hooks and all the things? ... We should find what
+> is in the project that should come from skills, and either make new skills in the
+> marketplace or remove it from the setup, so it will use the centralized skills for
+> that knowledge."
+
+A project that already has skills, agents, rules, hooks or a long `CLAUDE.md` is not
+set up from scratch, and the new setup is not laid on top of the old one. The steward
+adopts it:
+
+1. **Take stock** of everything the setup holds: `CLAUDE.md` and `AGENTS.md` at every
+   level, the rules, skills, agents and commands in `.claude/`, hooks, `.mcp.json`,
+   the settings, and other tools' files such as `.cursor/rules/`.
+2. **Split it into rules, not files.** One file usually mixes rules a central skill
+   already has, facts about the project, and rules nobody has written down centrally
+   yet.
+3. **Give each rule a home**, with the four moves of section 4.3:
+
+   | What the rule is | Where it goes |
+   |---|---|
+   | A central skill already says it | Removed here; the central skill is enabled instead |
+   | A central skill says it differently, because this project is different | The project's `AGENTS.md`, as a local exception |
+   | A central skill says it differently, and the local version is better | A contribution that improves the skill, then removed here |
+   | No central skill has it, and it travels | A contribution that extends a skill or creates one, then removed here |
+   | A fact about this project | The project's `AGENTS.md` |
+   | A worker's lane, in an existing agent | The agent becomes a trio, or the Do of one. The knowledge inside it goes through the rows above |
+   | A hook, an MCP server, a command that runs a tool, a permission | Stays in the project |
+   | Dead, or about the machine | Removed |
+
+4. **The report quotes every rule**, grouped by the file it came from, with its new
+   home. The steward stops only before a new skill.
+5. **Nothing is removed before its new home is live.** That is how the marketplace's
+   own agents were retired (`plan.md`, D1). A rule that waits for a contribution stays
+   where it is until the pull request is merged and the central skill is installed
+   and loads; keep-current (8.5) removes the local copy then. A file git doesn't track
+   is copied before it is removed.
+
+**Hooks, MCP servers, and commands that run a tool stay in the project. Rule,
+2026-10-19.** They are mechanics, not knowledge, and the concept leaves hooks and MCP
+servers out (section 3). A hook that only injects text is the exception: its text is
+knowledge, and it is adopted like any rule.
+
+### 8.5 Keeping the setup current. Rule, 2026-10-19.
+
+> "Initialize and also keep working in his project."
+
+A setup drifts, because the project changes and so does the marketplace. Keep-current
+finds the drift and fixes it:
+
+- enabled plugins that no longer exist, such as the keys a rename leaves behind;
+- `skills:` names in the trios that no longer resolve;
+- trios built from older role templates. Set-up records which version of the steward
+  built each file, so the difference can be found;
+- catalogue plugins the project now calls for;
+- `AGENTS.md` lines that are no longer true;
+- local copies an adoption left pending, once their central home is live.
 
 ---
 
-## 9. The contributor: the init agent in reverse
+## 9. The steward: one package for the whole cycle
 
 > "The init is half of the work. We also want a contribution agent/plugin that can help
 > users work with the knowledge base from a conversation. What I want is people
 > actually lamenting problems to the contributor and it correcting the background,
 > putting the right parts in the right lego blocks, or creating new ones." (2026-10-06)
 
-The direction is reversed:
+> "I think we need something more like a contribution plugin, more than an init and a
+> contributor. ... As I find different problems in different projects, I just talk to
+> this contributor thingy, and it changes the marketplace, or it either updates old
+> skills or it makes new skills and keeps everything up to date, so I can reuse it
+> whenever I want it in another project." (2026-10-19)
 
-- The init agent goes from the marketplace to the project.
-- The contributor goes from the project back to the marketplace.
+The init agent and the contributor were planned as two plugins. **They are one: the
+steward, `marketplace-steward`. Rule, 2026-10-19.** It is installed once at user
+scope, so it works in every project, including one that was never set up. You talk to
+it, and it works out which of four jobs you mean:
 
-How it works:
+| Job | What it does | Section |
+|---|---|---|
+| Set up | Reads the project, writes `AGENTS.md`, installs the skills, creates the trios | 8.1 to 8.3 |
+| Adopt | Gives every rule of an existing setup its home | 8.4 |
+| Keep current | Finds where the setup has drifted, and fixes it | 8.5 |
+| Grow the knowledge | Turns a problem described in conversation into a skill change, by pull request | Below |
+
+The rules:
+
+1. **Its scope is the setup and the knowledge. Rule, 2026-10-19.** The project's own
+   work stays with its trios.
+2. **It stops for an OK only before it creates a new skill. Rule, 2026-10-19.** "Only
+   ask for an OK when creating new skills, on init or adoption." A new skill is a
+   decision about the cut, which is taste: its layer, its name, and where it stops.
+   The same stop applies to a new skill that comes out of a conversation. Everything
+   else goes ahead and is reported. In the project it never commits, so the developer
+   reviews its work as a diff (8.2).
+3. **It proposes; a human approves. Rule, 2026-10-13.** A change reaches the
+   marketplace's `main` only through a pull request the author merges, never
+   self-approved.
+4. **No trio, and no lanes. Rule, 2026-10-19.** "No trio for the package, that would
+   make the process too difficult." The steward does its work itself and is the only
+   writer. It ships two helpers, read-only by frontmatter: the cartographer, which
+   surveys a project, and a checker, which reviews a change before its pull request.
+   The checker keeps writer and evaluator apart (section 11) without adding a stop.
+   One writer has no lane to keep, so the 2026-10-13 rule that the contributor never
+   edits `AGENTS.md` is superseded.
+5. **The author is the only contributor for now. Rule, 2026-10-19.** A contribution
+   is a branch in the author's repo, with no fork flow.
+
+Growing the knowledge, end to end:
 
 1. Someone working in a project hits a problem and **describes it in conversation**.
    The presentation's example: "Die Zahlen passen nie zum Vormonat" (the numbers never
    match the previous month).
-2. The contributor works out which knowledge the problem touches, using the cutting
-   rules in section 4. Then it either **updates the existing skill** that should have
-   covered it (in the example, "formatting the monthly report") or **creates a new
-   skill** where nothing fits (in the example, "reconcile with previous month", a new
-   Craft skill).
-3. **It works only on the knowledge side. Rule, 2026-10-13.** It does not edit the
-   project's `AGENTS.md`. The author removed an arrow into `AGENTS.md` from the
-   drawing.
-4. **It proposes; a human approves.** Its output enters the marketplace the same way
-   any change does, through a reviewed merge or pull request, never self-approved.
-   That keeps the writer and the reviewer separate.
+2. The steward places the knowledge with the four moves and the questions of section
+   4.3. It either **updates the existing skill** that should have covered it (in the
+   example, "formatting the monthly report") or, after the OK, **creates a new skill**
+   where nothing fits (in the example, "reconcile with previous month", a new Craft
+   skill). It flags a breaking change, such as a rename, a removal or a split: a
+   project loses a renamed plugin without any notice.
+3. It writes the change on a new branch, in a worktree of the author's marketplace
+   clone so that the author's own checkout is never touched, and registers it in all
+   three places (section 11).
+4. The checker reviews it: the house standard, how it fits the whole set, and a leak
+   check that compares the diff with the identifiers of the project the lesson came
+   from.
+5. The steward opens the pull request. A breaking change carries its migration in the
+   description.
+6. If the lesson had a project part, the steward writes it into the project's
+   `AGENTS.md`.
 
-**Status: concept, not built.** Do not claim it exists. If the restructuring
-scaffolds it, label it as a draft in its README.
+**Status: concept, not built.** The steps are in `package-plan.md`. Do not claim the
+steward exists.
 
 ---
 
@@ -492,16 +639,18 @@ scaffolds it, label it as a draft in its README.
 
 ```
         ┌──────────── Marketplace (knowledge, central) ◄───────────┐
-        │                                                            │
-   installs skills                                         updates / creates skills
-        │                                                            │
-        ▼                                                            │
-   Init agent ──► AGENTS.md ──► skills ──► Plan · Do · Check ──► Contributor
-   (dock on)                                   (work)                (grow)
+        │                                                          │
+  installs skills                         updates or creates skills, by PR
+        │                                                          │
+        ▼                                                          │
+     Steward ──► AGENTS.md ──► skills ──► Plan · Do · Check ──► Steward
+    (dock on)                                  (work)           (grow)
 ```
 
-Dock on, work, grow. **"What one person learns benefits everyone":** what one team
-learns lands in the library, and the next team has it on its first day.
+Dock on, work, grow. The same package sits at both ends: the steward that sets a
+project up and keeps it current is the one you talk to when the project teaches you
+something. **"What one person learns benefits everyone":** what one team learns
+lands in the library, and the next team has it on its first day.
 
 ---
 
@@ -531,12 +680,16 @@ These come from the current house rules and were reconfirmed by the concept.
   institution names.
 - **Nothing is a technical control.** Never describe a skill, the trio, or the gate as
   enforcement.
-- **Writer and evaluator stay separate.** This applies both to the repo's maintainer
-  agents and, conceptually, to Do and Check.
+- **Writer and evaluator stay separate.** This applies to the repo's maintainer
+  agents, to the steward and its checker, and, conceptually, to Do and Check.
 
 ---
 
 ## 12. Applying it to the personal marketplace
+
+Sections 12.1 to 12.3 describe the marketplace as it was before the restructuring that
+`plan.md` carried out, which was merged on 2026-10-19. They stay as the record of why
+each step was taken. What remains is in `package-plan.md`.
 
 ### 12.1 Today
 
@@ -571,7 +724,8 @@ Confirm it, especially `development-standards`, which might be Universal.
 4. **The init agent recommends plugins; it does not generate agents.** Phase 4 to 6 of
    `init-agent-setup` needs the trio-generation step from section 8.1 and the
    role-assignment rules from section 7.1.
-5. **There is no contributor.** It is planned (section 9).
+5. **There is no contributor.** It became part of the steward (section 9), planned in
+   `package-plan.md`.
 6. **There are no non-code skills.** That is acceptable for a personal developer
    marketplace. But structure, README wording, and categories must not assume code
    (section 2).
@@ -597,7 +751,8 @@ presentation was "one at a time, with approval, no big rebuilds".
 6. **Retire or convert the shipped agents**, as decided.
 7. **Update `CLAUDE.md`, the README, and `check-catalog.mjs`** to the new shape. For
    example, the script could fail on an `agents/` directory in a skill plugin.
-8. **Optionally, scaffold the contributor** as a labelled draft.
+8. **Optionally, scaffold the contributor** as a labelled draft. Replaced by the
+   steward (`package-plan.md`).
 
 Use the repo's own tooling: `/new-plugin`, `@skill-writer` to render,
 `@skill-evaluator` and `@plugin-evaluator` to review, and
@@ -625,6 +780,8 @@ section 2.
    **Answered in part:** "It should create agents in the projects leveraging the skills
    from the marketplace." Whether the init plugin keeps `codebase-cartographer` as its
    own helper is still open.
+   **Answered, 2026-10-19:** yes, for the steward only, which replaces both plugins. It
+   ships two read-only helpers, the cartographer and a checker (section 9).
 3. **One trio per task or per project?** Is a trio regenerated for each task, or kept
    for a recurring kind of task?
    **Answered:** "That is the way a task should be solved. The plan is to use different
@@ -667,3 +824,4 @@ The author's own statements, by date (session ids from `~/claude-session-backups
 | 2026-10-13 | Init order AGENTS.md, then skills, then agents; init installs skills; contributor only touches knowledge | b35896e8, 02a0e2ad |
 | 2026-10-19 | Answers to section 13: keep and reorganise the agents' knowledge; agents created in projects; effort per task, read-only to save credits; layer in the plugin name; orchestrators parked; `development-standards` is Craft | c3cd211b |
 | 2026-10-19 | Plan decisions D8 to D14 (`plan.md`, section 1): `<layer>-<topic>` names; `marketplace-init` and `marketplace-contributor`; init creates the trio's run pattern in the project; init installs skills itself; Claude only | c3cd211b |
+| 2026-10-19 | The steward (`package-plan.md`, D27 to D35): one package to set up, adopt, keep current and grow; the author the only contributor; scope the setup and the knowledge; the four moves for placing a lesson; no trio and no lanes; the one OK is before a new skill; hooks, MCP servers and tool commands stay in the project | 29ce1ea3 |

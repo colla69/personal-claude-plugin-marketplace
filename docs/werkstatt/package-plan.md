@@ -5,8 +5,9 @@ How `marketplace-init` and the planned contributor become one package,
 keeps the setup current, and grows the marketplace. Section numbers (§) refer to
 `concept.md`. D and O numbers continue the ones in `plan.md`.
 
-**Status:** draft, 2026-10-19, on branch `marketplace/one-package`, waiting for
-approval. It replaces step 11 of `plan.md` and starts its step 9 trials over. Every
+**Status:** approved 2026-10-19, on branch `marketplace/one-package`. Step 1, the
+concept, is written and waits for approval. The plan replaces step 11 of `plan.md` and
+starts its step 9 trials over. Every
 step ends with a report and a stop until it is approved. Nothing on this branch names
 a project, so it merges as a normal PR.
 
