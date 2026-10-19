@@ -91,7 +91,7 @@ the check script exists.
 | File | What it is | Consequence of missing it |
 |---|---|---|
 | `.claude-plugin/marketplace.json` | The catalog | The plugin does not exist |
-| `README.md` table | What a human reads | Nobody knows it's there |
+| `docs/reference/plugins.md` table | What a human reads | Nobody knows it's there |
 | `…/marketplace-steward/references/set-up/plugin-catalog.md` | What the steward reads | Installs fine, **never recommended to any project, ever** |
 
 The catalog row needs the **signal that justifies recommending it** — what the

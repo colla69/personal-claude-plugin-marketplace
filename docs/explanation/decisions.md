@@ -91,7 +91,7 @@ All decided on 2026-10-19, while this documentation was planned.
 |---|---|---|---|
 | D38 | Plain Markdown on GitHub, with Mermaid, and no build | The repo has no build and no dependencies on purpose | Holds |
 | D39 | `concept.md` is dissolved: its explanations into the docs, its rules into the product and `CLAUDE.md` | "The concept can now live in the new documentation and agentic setup" | Done |
-| D40 | The full plugin table lives in `reference/plugins.md`, checked by `check-catalog.mjs` | The landing page lists the plugins briefly; the table belongs in reference | Planned, with the reference pages |
+| D40 | The full plugin table lives in `reference/plugins.md`, checked by `check-catalog.mjs` | The landing page lists the plugins briefly; the table belongs in reference | Done |
 | D41 | `.claude/rules/authoring.md` becomes a pointer | It loads whenever a skill file is touched, and should restate nothing | Planned, with the entry points |
 | D42 | A docs check, `scripts/check-docs.mjs`, runs in CI | Broken links are the docs' silent failure | Planned, with the final checks |
 | D43 | Writing the documentation stops for the maintainer twice: once the structure is laid, and once the whole set is done | The structure is what every later page sits in | Holds |

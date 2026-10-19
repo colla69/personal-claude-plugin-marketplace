@@ -108,10 +108,11 @@ retired. Its knowledge lives in the skills and in the role templates.
   on it.
 - **Only `.json` goes in `.claude-plugin/`.** `skills/` or `agents/` placed inside it
   produce a plugin that validates, installs, and is completely empty.
-- **Adding a plugin means three registrations**, not one: `marketplace.json`, the root
-  `README.md` table, and the steward's `references/set-up/plugin-catalog.md`. Missing
-  the third is silent: the plugin installs fine and is never chosen for any project.
-  `check-catalog.mjs` is the only thing that catches it.
+- **Adding a plugin means three registrations**, not one: `marketplace.json`, the
+  `docs/reference/plugins.md` table, and the steward's
+  `references/set-up/plugin-catalog.md`. Missing the third is silent: the plugin
+  installs fine and is never chosen for any project. `check-catalog.mjs` is the only
+  thing that catches it.
 - **Only `check-catalog.mjs` checks `dependencies`**: that each name exists, and that it
   points toward a more general layer. `claude plugin validate` checks neither. Nothing
   checks that a skill named in prose is declared at all.

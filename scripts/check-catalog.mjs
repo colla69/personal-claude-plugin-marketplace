@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Fails when the plugin list in marketplace.json disagrees with the two
-// hand-written lists that mirror it: the README table and the catalog that
-// the steward reads to decide what to install. Also fails on the
+// hand-written lists that mirror it: the plugin table in the docs, and the
+// catalog the steward reads to decide what to install. Also fails on the
 // mistakes nothing else reports: a name that doesn't match its layer, a
 // dependency on a plugin that doesn't exist, and a field with two homes.
 //
@@ -13,7 +13,7 @@ import { join, dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-const README = 'README.md'
+const PLUGINS_PAGE = 'docs/reference/plugins.md'
 const CATALOG =
   'plugins/marketplace-steward/references/set-up/plugin-catalog.md'
 // The four layers, general to specific, plus the plugins that work on the
@@ -131,7 +131,7 @@ for (const [name, deps] of dependencies) {
 }
 
 // The two mirrors, both ways: a stale name left in a table passes the presence check.
-for (const [label, path] of [['README.md table', README], ['plugin-catalog.md table', CATALOG]]) {
+for (const [label, path] of [['plugins.md table', PLUGINS_PAGE], ['plugin-catalog.md table', CATALOG]]) {
   const present = namesInPluginColumns(read(path))
   for (const name of declared) {
     if (!present.has(name)) fail(`${name}: missing from the ${label} (${path})`)
@@ -148,4 +148,4 @@ if (problems.length > 0) {
   process.exit(1)
 }
 
-console.log(`✓ catalog in sync — ${declared.size} plugins listed in marketplace.json, README, and plugin-catalog.md`)
+console.log(`✓ catalog in sync — ${declared.size} plugins listed in marketplace.json, plugins.md, and plugin-catalog.md`)

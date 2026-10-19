@@ -56,12 +56,12 @@ Looked up, not read through.
 
 | Page | It lists | Sources | Status |
 |---|---|---|---|
-| `reference/plugins.md` | Every plugin: layer, skill, purpose, the signal that installs it, what it builds on | `marketplace.json`, `plugin-catalog.md` | To write |
-| `reference/the-steward.md` | The four jobs: what starts each, what it reads, writes, asks and never does | The steward's job files | To write |
-| `reference/project-files.md` | Every file the steward writes in a project, and its shape | `context-files.md`, `record.md`, `plugin-sources.md` | To write |
-| `reference/permissions.md` | What the steward pre-allows and why, and the guard on `main` | The front door's frontmatter | To write |
-| `reference/commands.md` | Every command the docs mention | The plugins and the scripts | To write |
-| `reference/checks.md` | What each check catches, and what nothing catches | `check-catalog.mjs`, CI, `plugin-shape.md` | To write |
+| [`reference/plugins.md`](reference/plugins.md) | Every plugin: layer, skill, purpose, the signal that installs it, what it builds on | `marketplace.json`, `plugin-catalog.md` | Written |
+| [`reference/the-steward.md`](reference/the-steward.md) | The four jobs: what starts each, what it reads, writes, asks and never does | The steward's job files | Written |
+| [`reference/project-files.md`](reference/project-files.md) | Every file the steward writes in a project, and its shape | `context-files.md`, `record.md`, `plugin-sources.md` | Written |
+| [`reference/permissions.md`](reference/permissions.md) | What the steward pre-allows and why, and the guard on `main` | The front door's frontmatter | Written |
+| [`reference/commands.md`](reference/commands.md) | Every command the docs mention | The plugins and the scripts | Written |
+| [`reference/checks.md`](reference/checks.md) | What each check catches, and what nothing catches | `check-catalog.mjs`, CI, `plugin-shape.md` | Written |
 | [`reference/glossary.md`](reference/glossary.md) | Every term, in one line, with the file that holds its rules | The product files each term names | Written |
 
 ## Explanation

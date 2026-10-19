@@ -3,7 +3,7 @@
 How the repo's documentation gets rewritten from scratch, as a project of its own. D and
 O numbers continue the ones in `plan.md` and `package-plan.md`.
 
-**Status:** approved 2026-10-19, on branch `marketplace/one-package`. Steps 1 and 2 are
+**Status:** approved 2026-10-19, on branch `marketplace/one-package`. Steps 1 to 3 are
 done; the plan runs on to step 8, and stops there (D43). It replaces the documentation
 half of step 7 of `package-plan.md`. The package plan's trials and merge come after it,
 because the documentation describes the steward, and both reach `main` together.
@@ -364,6 +364,19 @@ What was done:
 
 The seven reference pages, and the plugin table's move, with `check-catalog.mjs`, if O9
 says so.
+
+What was done:
+
+- Six reference pages beside the glossary: plugins, the steward, project files,
+  permissions, commands and checks.
+- The plugin table moved to `reference/plugins.md` (D40): `check-catalog.mjs` now
+  checks it in place of the root README's, and `plugin-shape.md`, `CLAUDE.md` and
+  `CONTRIBUTING.md` name it as the second registration. The root README's own table
+  stays until step 7 rewrites the README.
+- Writing the permissions page showed that several commands set-up and keep-current
+  run aren't pre-allowed: the marketplace refresh, the live inventory, each install,
+  `claude plugin details`, `claude plugin update` and `sha256sum`. They ask each time.
+  The page says so, and whether to pre-allow them is for the trials to show.
 
 ### Step 4: Guides
 
