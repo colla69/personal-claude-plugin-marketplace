@@ -1,20 +1,20 @@
 # The report
 
-The plan in phase 3 and the report in phase 8 share these tables. The user approves one
-and later reads the other, so checking what was done against what was agreed is a
-row-by-row comparison. Keep both short: tables and one-liners.
+The shape of set-up's report. Keep it short: tables and one-liners.
 
 ````
 ## Setup complete
 
-**Toolkit version:** <the installed commit SHA of marketplace-init, so a reader can
-tell which version of this skill produced the output>
+**Steward version:** <the installed version of marketplace-steward, as the record
+holds it, so a reader can tell which version produced the output>
 **Components mapped:** <n>
+**Existing setup:** <none, or what was there and what of it you kept>
 **Sources consulted:** <each marketplace you read, with how many plugins it offered —
 proof the list is live rather than remembered>
 
 ### Written
 - <path> — <one line>
+- `.claude/steward.json` — the record of what the steward created and installed
 
 ### Changed
 - <path that already existed and was edited — omit the section if there were none>
@@ -57,13 +57,17 @@ the project.
 
 ### Unverified — please confirm
 - <anything you guessed at, and any command you could not run — build commands, a
-  check that is not wired up, ambiguous ownership. This is the home for every unknown;
-  the plan deliberately does not carry them>
+  check that is not wired up, ambiguous ownership. This is the home for every
+  unknown>
 - <any source that exists but was not offered in phase 1's single question, named once>
 - <any toolkit plugin in the live list that `plugin-catalog.md` has no row for — the
   catalog is the maintainer's, and drift is theirs to fix>
 
 Run `/context` in a new session to confirm the context files loaded.
+
+### Proposed skills
+<Only when phase 3 found a need nothing covers. For each one, what section 5 of
+`../place-knowledge.md` asks for. End with the question: create it?>
 ````
 
 The **Installed** block is not optional and not a footnote. It is what turns the next

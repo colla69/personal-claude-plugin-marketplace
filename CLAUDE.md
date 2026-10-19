@@ -6,15 +6,15 @@ and no runtime. The only executable file in the repo is one zero-dependency Node
 script. So changes are judged editorially, and the automation exists only to catch the
 mistakes that fail silently.
 
-**Knowledge central, workers local.** The marketplace ships skills. The agents that
-use them are generated into each project by the init plugin, together with that
-project's `AGENTS.md`. The concept is described in `docs/werkstatt/concept.md`.
+**Knowledge central, workers local.** The marketplace ships skills. The agents that use
+them are generated into each project by the steward, `marketplace-steward`, together
+with that project's `AGENTS.md`. The concept is described in
+`docs/werkstatt/concept.md`.
 
-**The restructuring in `docs/werkstatt/plan.md` is merged; the steward comes next.**
-The rules below describe the shape the repo now has. `docs/werkstatt/package-plan.md`
-replaces `marketplace-init` and this repo's own `.claude/` tooling with one package,
-`marketplace-steward`, that sets projects up, adopts and keeps their setups current,
-and grows the marketplace by pull request.
+**The steward is being built; see `docs/werkstatt/package-plan.md`.** It replaced
+`marketplace-init`, and will replace this repo's own `.claude/` tooling too: one
+package that sets projects up, adopts and keeps their setups current, and grows the
+marketplace by pull request. The rules below describe the shape the repo now has.
 
 ## Commands
 
@@ -37,7 +37,7 @@ is the policy working; see Boundaries.**
 |---|---|
 | `.claude-plugin/marketplace.json` | The catalog. Source of truth for the plugin list, and the one home of each plugin's `description` |
 | `plugins/<layer>-<topic>/` | One skill plugin: manifest, README, one skill |
-| `plugins/marketplace-<name>/` | A plugin that works on the marketplace itself (`marketplace-init` today, the steward once it is built). The only plugins with agents |
+| `plugins/marketplace-<name>/` | A plugin that works on the marketplace itself (the steward). The only plugins with agents |
 | `.claude/` | Tooling for working on this repo. Never published as a plugin |
 | `scripts/check-catalog.mjs` | Guards the three mirrored plugin lists |
 | `docs/werkstatt/` | The concept, the migration plan, and the audit |
@@ -46,7 +46,7 @@ is the policy working; see Boundaries.**
 
 - **A skill is knowledge; a role is a worker's lane.** A skill holds every rule and
   example for one thing. A role (Plan, Do or Check) holds only its lane, its failure
-  modes and its report skeleton, as a template in the init plugin. Init turns each
+  modes and its report skeleton, as a template in the steward. Its set-up turns each
   template into agents in the project. Knowledge written into a role has two homes, and
   the two will diverge.
 - **Every skill sits in one of four layers**, from general to specific: Universal,
@@ -71,8 +71,8 @@ is the policy working; see Boundaries.**
 
 ### Plan, Do, Check
 
-A task is solved by three agents in sequence, which init generates into the project for
-each kind of task:
+A task is solved by three agents in sequence, which the steward generates into the
+project for each kind of task:
 
 | Role | Lane | Skills |
 |---|---|---|
@@ -99,7 +99,8 @@ in `docs/werkstatt/audit.md`.
 - **Read-only is frontmatter, never prose.** An agent whose description says read-only
   without `disallowedTools: Write, Edit, NotebookEdit` is not read-only.
 - **Skill plugins ship no `agents/`.** Only `marketplace-` plugins do. A shipped worker
-  competes with the agents init generates, and the knowledge in it has a second home.
+  competes with the agents the steward generates, and the knowledge in it has a second
+  home.
 - **Never add `--strict` to CI.** It promotes "no version specified" to an error, and
   every plugin omits `version` on purpose so that updates resolve by commit SHA. The
   warning is the policy.
@@ -108,8 +109,8 @@ in `docs/werkstatt/audit.md`.
 - **Only `.json` goes in `.claude-plugin/`.** `skills/` or `agents/` placed inside it
   produce a plugin that validates, installs, and is completely empty.
 - **Adding a plugin means three registrations**, not one: `marketplace.json`, the root
-  `README.md` table, and the init plugin's `references/plugin-catalog.md`. Missing the
-  third is silent: the plugin installs fine and is never chosen for any project.
+  `README.md` table, and the steward's `references/set-up/plugin-catalog.md`. Missing
+  the third is silent: the plugin installs fine and is never chosen for any project.
   `check-catalog.mjs` is the only thing that catches it.
 - **Only `check-catalog.mjs` checks `dependencies`**: that each name exists, and that it
   points toward a more general layer. `claude plugin validate` checks neither. Nothing

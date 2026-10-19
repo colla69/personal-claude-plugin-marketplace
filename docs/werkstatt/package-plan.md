@@ -5,11 +5,11 @@ How `marketplace-init` and the planned contributor become one package,
 keeps the setup current, and grows the marketplace. Section numbers (§) refer to
 `concept.md`. D and O numbers continue the ones in `plan.md`.
 
-**Status:** approved 2026-10-19, on branch `marketplace/one-package`. Steps 0 to 2
-are done; step 3, the knowledge, is done and waits for approval. The plan replaces
-step 11 of `plan.md` and starts its step 9 trials over. Every
-step ends with a report and a stop until it is approved. Nothing on this branch names
-a project, so it merges as a normal PR.
+**Status:** approved 2026-10-19, on branch `marketplace/one-package`. Steps 0 to 3 are
+done; step 4, set up and keep current, is done and waits for approval. The plan replaces
+step 11 of `plan.md` and starts its step 9 trials over. Every step ends with a report
+and a stop until it is approved. Nothing on this branch names a project, so it merges as
+a normal PR.
 
 ---
 
@@ -99,12 +99,13 @@ plugins/marketplace-steward/
     set-up/                  today's init-agent-setup, with its references and assets,
                              and adoption
     keep-current.md          the drift checks and their fixes
+    record.md                `.claude/steward.json`: what was generated, and its hash
     contribute.md            the change on a branch, the check, the PR
     place-knowledge.md       the four moves and §4.3: the one home of the cut
     author-skills/           the house voice, the plugin shape and its registrations,
                              and the templates
   skills/
-    <front door>/SKILL.md    routes a request to one of the four jobs
+    steward/SKILL.md         the front door: routes a request to one of the four jobs
     evaluate-skills/SKILL.md the checks on a skill, a plugin, a change and the whole set
   agents/
     codebase-cartographer.md   surveys a project; read-only
@@ -289,6 +290,51 @@ keys that no longer exist are removed instead of kept. Add `keep-current`. To fi
 trios built from older templates, set-up records which version of the steward built
 each generated file.
 
+What was done:
+
+- **The front door was built now, not in step 5,** and `marketplace-init` left now, not
+  in step 7. Set-up became a reference file, which nothing can run without the front
+  door, and copying init's files instead of moving them would have given everything
+  two homes. The front door, `skills/steward/`, routes the two jobs that exist and
+  holds the rules every job shares: the one stop, no git, Claude only, the record, and
+  unknowns in the report. Step 5 adds contributing to it, and step 6 adoption.
+- **Set-up** is init's skill and references, moved with their history to
+  `references/set-up/`. Phase 3 decides instead of proposing, and a new skill is asked
+  once, at the end. Phase 5 removes plugin keys that no longer exist, and phase 6
+  writes the record. The report carries what the plan used to show, and gains Proposed
+  skills.
+- **The record**, `.claude/steward.json`, holds every file the steward created, with
+  its hash, its template's hash and the values it was filled with, plus the plugins it
+  installed and the skills the user declined. A file whose hash no longer matches was
+  changed by the user and is never rebuilt. What the record holds and the project
+  lacks was removed by the user and is not added back. With no record, as in every
+  project set up by the old init, nothing is rebuilt.
+- **Keep-current** removes dead plugin keys, using a new Renamed table in the catalog
+  that maps every old plugin name to its successor. It also repairs `skills:` names,
+  rebuilds untouched trios from newer templates, installs what the project now calls
+  for, and fixes `AGENTS.md` lines it can verify.
+- **The registrations, `check-catalog.mjs` and every path** name the steward. Step 7
+  keeps the rest of its list.
+- **The always-on cost is about 460 tokens**, by `claude plugin details`: the front
+  door about 200, `evaluate-skills` about 170, the cartographer about 90. That compares
+  with about 360 for `marketplace-init` and its cartographer. The cartographer's
+  description now names the steward, so it no longer competes with ordinary
+  exploration in every project.
+- A smoke test loaded the front door with `--plugin-dir`, and it read its references
+  with no prompt of its own. A full run is for the step 8 trials.
+- `@skill-evaluator` reviewed the step, and its findings are fixed:
+  - **The record:** it decides a rebuild by the template's hash, not the marketplace
+    version, which changes on every push. An entry is refreshed only when its file
+    matched before the edit, and set-up never writes over a file that exists.
+  - **One home each:** the dead-key rule now lives in the catalog, and the front door
+    names both questions it may ask, the sources checklist and the OK for a new skill.
+  - **The description** no longer catches a bare "set this up" or "onboard me", and it
+    says it is not for setting up a tool, a service or CI.
+  - **Routing:** asking for one more trio has its own route, and a project with a
+    record goes to keep-current.
+  - **Keep-current** has its own report shape, and when the user names one symptom it
+    checks only that one.
+
 ### Step 5: Contribute
 
 The `contribute` skill, the checker and the front door, as in section 4. Then retire
@@ -305,8 +351,7 @@ both set-up and contribute, so it comes after them.
 
 ### Step 7: Register and guard
 
-The steward goes into all three registrations, and `marketplace-init` comes out.
-`check-catalog.mjs` gets the new catalog path, and allows the steward its two skills.
+The registrations and the catalog path in `check-catalog.mjs` were done in step 4.
 Update `CLAUDE.md`, `CONTRIBUTING.md`, `.claude/rules/authoring.md` and the root
 README: they keep this repo's own mechanics, such as CI, the commands and the layout,
 and point to the steward's references for the cut and the style instead of restating

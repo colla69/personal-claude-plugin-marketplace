@@ -33,5 +33,5 @@ Strictness comes from `tsconfig`, read first: `strict`, `noUncheckedIndexedAcces
 claude plugin install language-typescript@personal-claude-plugin-marketplace --scope project
 ```
 
-Project scope. Init installs it when a project has a `tsconfig.json` or `.ts` and `.tsx`
-sources.
+Project scope. Set-up installs it when a project has a `tsconfig.json` or `.ts` and
+`.tsx` sources.

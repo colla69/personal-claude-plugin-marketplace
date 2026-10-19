@@ -58,7 +58,7 @@ The plugin list is mirrored in three files, and missing one is silent.
 |---|---|---|
 | `.claude-plugin/marketplace.json` | An entry with `name`, `source` (`./plugins/<name>`), `description`, `category` and `tags`. The `description` lives here and nowhere else | The plugin doesn't exist |
 | The root `README.md` | A row in the plugin table | Nobody knows it's there |
-| `plugins/marketplace-init/skills/init-agent-setup/references/plugin-catalog.md`, until set-up moves into the steward | A row with the layer and the **signal that justifies choosing it**: what set-up must find in a project before installing it | It installs fine and is never chosen for any project |
+| `plugins/marketplace-steward/references/set-up/plugin-catalog.md` | A row with the layer and the **signal that justifies choosing it**: what set-up must find in a project before installing it | It installs fine and is never chosen for any project |
 
 The signal has to be checkable. Not "use this for Django work", but "`django` in
 `requirements.txt` or `pyproject.toml`". A signal that can't be checked gets plugins
@@ -95,11 +95,11 @@ claude plugin install <name>@personal-claude-plugin-marketplace
 A plugin that works on the marketplace itself, rather than on a project's work, is
 named `marketplace-<name>` with category `marketplace`. Three things differ.
 
-**It may ship agents.** It works on the knowledge system itself and has to exist
-before any project agent can, so its helpers can't be generated into a project: init's
-`codebase-cartographer` today, and in the steward the cartographer and the contribution
-checker. They follow the role shape in `style.md`, and a read-only one carries
-`disallowedTools: Write, Edit, NotebookEdit`.
+**It may ship agents.** It works on the knowledge system itself and has to exist before
+any project agent can, so its helpers can't be generated into a project. The steward
+ships the `codebase-cartographer`, and the contribution checker later. They follow the
+role shape in `style.md`, and a read-only one carries `disallowedTools: Write, Edit,
+NotebookEdit`.
 
 **It keeps most of its knowledge out of skills.** It is installed in every project, so
 every skill in it costs a description in every session. Knowledge that only its own
@@ -109,6 +109,10 @@ frontmatter: `allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)`. The leading `/` i
 needed, because an absolute path in a permission rule starts with `//`. An agent
 started from inside that skill may read them too. A file an agent must have loaded
 from the start stays a skill, and the agent preloads it.
+
+`${CLAUDE_PLUGIN_ROOT}` is filled in only inside a skill or an agent, not in a file read
+by path. So the skill names each reference by its full path, and a reference names the
+files around it relative to its own folder.
 
 Hiding a skill with `disable-model-invocation: true` doesn't work instead: it can't
 be preloaded, and Claude can't run it.

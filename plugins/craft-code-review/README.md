@@ -37,5 +37,5 @@ decides whether a change is correct.
 claude plugin install craft-code-review@personal-claude-plugin-marketplace --scope project
 ```
 
-Init installs it at project scope in any repo with code, whether or not anyone opens
+Set-up installs it at project scope in any repo with code, whether or not anyone opens
 pull requests.

@@ -1,6 +1,6 @@
 ---
 name: codebase-cartographer
-description: Explores an unfamiliar codebase and reports a structured map of its components, entry points, conventions, and build commands. Invoke when onboarding to a repo, when the main conversation needs a survey of a large or unfamiliar tree, or as part of project initialization. Read-only — never modifies files.
+description: Surveys a project's codebase for the steward's set-up, and reports a structured map of its components, entry points, conventions and build commands. Invoked by the steward, not for ordinary exploration. Read-only — never modifies files.
 effort: medium
 disallowedTools: Write, Edit, NotebookEdit
 ---

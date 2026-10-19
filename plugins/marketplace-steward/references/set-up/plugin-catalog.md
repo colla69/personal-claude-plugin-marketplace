@@ -2,7 +2,7 @@
 
 The signals that justify recommending each toolkit plugin. **This file is not the list
 of what exists** — `claude plugin list --available --json` is, and
-`references/plugin-sources.md` covers how to read it. This file answers the other
+`plugin-sources.md`, beside this file, covers how to read it. This file answers the other
 question: given that a plugin exists, what in a repo earns it.
 
 The split matters because the two go stale differently. A plugin shipped last week is
@@ -29,12 +29,11 @@ pure cost. When in doubt, leave it out and mention it as optional.
 | Framework & Tools | `tools-vue` | `vue-conventions` skill | `vue` in dependencies. Check the major version and note it: the plugin targets Vue 3 Composition API, so flag a mismatch if the project is on Options API or Vue 2. |
 | Framework & Tools | `tools-vue-typescript` | `vue-typescript-conventions` skill | `vue` and `typescript` both in dependencies, or `lang="ts"` in `.vue` files. Pulls in `tools-vue` and `language-typescript`. |
 | Framework & Tools | `tools-pinia` | `pinia-conventions` skill | `pinia` in dependencies. Pulls in `tools-vue`. |
-| — | `marketplace-init` | this skill | Already installed if you're reading this. Leave it enabled for future repos, or note that it can be user-scoped instead of project-scoped. |
-| — | `marketplace-steward` | `evaluate-skills` skill | Never, yet: it is a draft, being built. Don't install it in a project. |
+| — | `marketplace-steward` | `steward` and `evaluate-skills` skills | Already installed at user scope if you're reading this. Never write it into a project's settings: it belongs to the machine, not the project. |
 
 ## The install block
 
-Init installs the plugins on this machine itself, in phase 5. The report still ends
+Set-up installs the plugins on this machine itself, in phase 5. The report still ends
 with a paste-ready block of the same installs, for every other machine. Enabling a
 plugin in `.claude/settings.json` does **not** fetch it, so a clone configured for
 plugins that aren't on that machine is configured for a setup nobody has, and nothing
@@ -78,8 +77,8 @@ its name prefix and its `category`, which is the Layer column in the table above
 | Language | `language-` | What the work is written in: a programming language, a natural language, a template or notation |
 | Framework & Tools | `tools-` | The concrete product or tool the work is done with |
 
-`marketplace-` plugins, such as this one, work on the marketplace itself and sit in no
-layer.
+`marketplace-` plugins, such as the steward, work on the marketplace itself and sit in
+no layer.
 
 Four rules follow from this, and they are what keep the marketplace from turning into
 overlapping copies of the same advice:
@@ -87,7 +86,7 @@ overlapping copies of the same advice:
 1. **One standard, one home.** TypeScript idioms live in `typescript-conventions` and
    nowhere else. A framework skill that needs them points at that skill; it never
    restates them. Two copies get edited separately and then disagree.
-2. **Skill plugins ship skills, not agents.** Init generates the workers in each
+2. **Skill plugins ship skills, not agents.** Set-up generates the workers in each
    project. An agent shipped in a plugin competes with them for the same prompts, and
    which one fires becomes luck.
 3. **Hard `dependencies` only for unconditional needs.** Every quality judgement needs
@@ -118,11 +117,11 @@ their judgements are measured against. Installing any of them pulls it in.
 Two scopes matter here:
 
 - **User scope** (`~/.claude/settings.json`) — plugins you want in every project.
-  `marketplace-init` and `universal-clean-code` usually belong here.
+  `marketplace-steward` and `universal-clean-code` usually belong here.
 - **Project scope** (`.claude/settings.json`, committed) — plugins specific to this
   repo's stack. `tools-vue` belongs here; it's noise in a Go service.
 
-Init installs at project scope. In the report, mention which plugins the user might
+Set-up installs at project scope. In the report, mention which plugins the user might
 prefer at user scope instead, with `claude plugin install
 <name>@personal-claude-plugin-marketplace --scope user`.
 
@@ -137,3 +136,27 @@ The template holds only the marketplace entry, which phase 5 merges in.
 `claude plugin install --scope project` writes the `enabledPlugins` entries in phase 5,
 keyed `name@marketplace`. Don't write them by hand: a hand-written entry enables a
 plugin nobody installed.
+
+## Renamed and removed
+
+**A dead key is a toolkit key under `enabledPlugins` in `.claude/settings.json` that
+names no plugin in the live inventory.** It matches nothing, and nothing reports it.
+Remove it, and name it in the report. When the table below names its successor, weigh
+the successor by its signal like any other plugin; an old name is not evidence on its
+own. A dead key of another marketplace, or one in `.claude/settings.local.json`, is not
+the steward's to remove: report it.
+
+Set-up applies this in phase 5 and keep-current in its step 2. A row stays as long as
+some project might still carry the old name.
+
+| Old name | Now | Note |
+|---|---|---|
+| `clean-code` | `universal-clean-code` | |
+| `developer` | `craft-development` | Part of it became `universal-work-discipline` |
+| `code-review` | `craft-code-review` | Builds on `craft-review` |
+| `unit-testing` | `craft-unit-testing` | |
+| `refactoring` | `craft-refactoring` | |
+| `java-dev` | `language-java` | |
+| `typescript-dev` | `language-typescript` | |
+| `vue-dev` | `tools-vue` | Its Pinia and TypeScript parts are `tools-pinia` and `tools-vue-typescript`, each chosen by its own signal |
+| `project-init`, `marketplace-init` | `marketplace-steward` | User scope only; never a project key |

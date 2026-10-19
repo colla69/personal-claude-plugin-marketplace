@@ -21,10 +21,11 @@ about that project.
 A single-purpose agent, such as the one that produces a monthly report, is the Do of
 its trio, not a fourth kind of agent.
 
-## Which trios to propose
+## Which trios to create
 
-One trio per kind of task the project repeats, named for the task. Propose them from
-what phase 2 found, and ask which tasks recur; the user decides at the plan.
+One trio per kind of task the project repeats, named for the task. Choose them from
+what phase 2 found: the work the project's history, tooling and documents show again
+and again. The report lists them, and the user removes one they don't want.
 
 - In a repo with code, the usual candidates are `change`, for features and fixes, and
   `refactor`. Add `test` where a test runner is configured.
@@ -63,4 +64,4 @@ one fails silently.
 ## Effort
 
 The templates carry the defaults: Plan `high`, Do `medium`, Check `medium`. Change one
-only for a reason you can state in init's plan, and state it there.
+only for a reason you can state, and state it in the report's Trios table.

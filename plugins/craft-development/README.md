@@ -37,5 +37,5 @@ This skill says what they mean for code.
 claude plugin install craft-development@personal-claude-plugin-marketplace --scope project
 ```
 
-Init installs it at project scope in any repo with code, together with
+Set-up installs it at project scope in any repo with code, together with
 `craft-code-review` and `craft-refactoring`.

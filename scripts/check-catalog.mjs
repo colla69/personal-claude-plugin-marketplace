@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Fails when the plugin list in marketplace.json disagrees with the two
 // hand-written lists that mirror it: the README table and the catalog that
-// marketplace-init reads to decide what to recommend. Also fails on the
+// the steward reads to decide what to install. Also fails on the
 // mistakes nothing else reports: a name that doesn't match its layer, a
 // dependency on a plugin that doesn't exist, and a field with two homes.
 //
@@ -15,7 +15,7 @@ import { fileURLToPath } from 'node:url'
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const README = 'README.md'
 const CATALOG =
-  'plugins/marketplace-init/skills/init-agent-setup/references/plugin-catalog.md'
+  'plugins/marketplace-steward/references/set-up/plugin-catalog.md'
 // The four layers, general to specific, plus the plugins that work on the
 // marketplace itself. Each is a category and the name prefix that goes with it.
 // The order is the dependency direction: a plugin may depend on its own

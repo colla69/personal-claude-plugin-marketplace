@@ -33,5 +33,5 @@ code is worse than none, because it is trusted.
 claude plugin install craft-unit-testing@personal-claude-plugin-marketplace --scope project
 ```
 
-Init installs it at project scope where a test runner is configured, most strongly where
-coverage is thin. `craft-code-review` pulls it in.
+Set-up installs it at project scope where a test runner is configured, most strongly
+where coverage is thin. `craft-code-review` pulls it in.

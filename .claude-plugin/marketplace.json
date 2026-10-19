@@ -92,18 +92,11 @@
       "tags": ["pinia", "vue", "state"]
     },
     {
-      "name": "marketplace-init",
-      "source": "./plugins/marketplace-init",
-      "description": "Sets a project up for agentic work: writes its AGENTS.md, installs the marketplace skills it needs, and generates a Plan/Do/Check trio per recurring task.",
-      "category": "marketplace",
-      "tags": ["bootstrap", "onboarding", "context", "analysis"]
-    },
-    {
       "name": "marketplace-steward",
       "source": "./plugins/marketplace-steward",
-      "description": "Draft, being built: one package to set projects up, adopt and keep their setups current, and grow the marketplace by pull request. So far it holds the placement and authoring knowledge and the skill evaluation.",
+      "description": "Sets a project up for agentic work and keeps the setup current: writes its AGENTS.md, installs the skills it needs, and generates a Plan/Do/Check trio per recurring task. Still being built: adopting existing setups and contributing back come next.",
       "category": "marketplace",
-      "tags": ["contribution", "knowledge", "review", "draft"]
+      "tags": ["bootstrap", "onboarding", "context", "contribution", "knowledge"]
     }
   ]
 }

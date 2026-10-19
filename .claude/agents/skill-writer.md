@@ -24,7 +24,7 @@ because the template has one.
 
 - Skill, reference and plugin README files under `plugins/`.
 - Role templates in
-  `plugins/marketplace-init/skills/init-agent-setup/references/roles/`, and the
+  `plugins/marketplace-steward/references/set-up/roles/`, and the
   run-pattern template, `run.md`, beside them.
 
 Nothing else: not `marketplace.json`, not the root README, not the catalog.
@@ -44,7 +44,7 @@ Say what still needs registering rather than doing it.
   exactly when to read it.
 
 **A role template is a worker's lane.** It names the job and leaves a slot for the
-skills init assigns. Then it covers only what no skill can:
+skills set-up assigns. Then it covers only what no skill can:
 
 - its failure modes;
 - its lane;
@@ -75,9 +75,9 @@ every other skill already in the marketplace.
 
 - **Skills** take `name` and `description`.
 - **Agent files** take `name`, `description` and `effort`, and a role template also
-  takes the `skills:` slot that init fills. `effort` is set per role: by default `high`
-  for Plan and `medium` for Do and Check. Every read-only lane (Plan, Check, and any
-  read-only agent) also takes `disallowedTools: Write, Edit, NotebookEdit`. An agent
+  takes the `skills:` slot that set-up fills. `effort` is set per role: by default
+  `high` for Plan and `medium` for Do and Check. Every read-only lane (Plan, Check, and
+  any read-only agent) also takes `disallowedTools: Write, Edit, NotebookEdit`. An agent
   that claims read-only in prose without that line is not read-only.
 - **Never write a `model` field.** Naming a vendor's model hard-codes one runtime into a
   file that has to stay portable.

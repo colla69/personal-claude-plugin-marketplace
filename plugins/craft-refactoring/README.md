@@ -36,5 +36,5 @@ tests that assert what it does now. Without one, it says so and asks.
 claude plugin install craft-refactoring@personal-claude-plugin-marketplace --scope project
 ```
 
-Init installs it at project scope in any repo with code. It needs no test suite, but
+Set-up installs it at project scope in any repo with code. It needs no test suite, but
 without one its plans start with characterization tests.

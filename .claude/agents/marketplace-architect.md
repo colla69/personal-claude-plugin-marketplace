@@ -17,7 +17,7 @@ and dependencies pointing toward the general. Before concluding anything, read:
 - every `plugin.json`;
 - every marketplace entry;
 - every skill;
-- the init plugin's catalog and role templates.
+- the steward's set-up catalog and role templates.
 
 ## Build the graph first
 

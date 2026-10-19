@@ -1,6 +1,6 @@
 ---
 name: evaluate-skills
-description: Judge a Claude Code skill, role template or plugin in this skills marketplace, a change to the skills marketplace, or the whole set of skills, against the house standard and the cut, and report only what changes what Claude does. Use whenever someone asks whether a skill is well written, why a skill isn't triggering or not loading, whether a skills-marketplace plugin is good or ready to merge, or how the skills fit together. Also use before a pull request that changes a skill, a role template, a plugin README or marketplace.json, to catch details of the project a lesson came from before they reach the public repo.
+description: Judge a Claude Code skill, role template or plugin in this skills marketplace, a change to it, or the whole set, by what it makes Claude do. Use whenever someone asks whether a skill is well written, why a skill being written here isn't triggering, or whether a skills-marketplace plugin is ready to merge. Also use before a pull request that changes a skill, a role template, a plugin README or marketplace.json, to catch details of the source project before they go public.
 allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**)
 ---
 

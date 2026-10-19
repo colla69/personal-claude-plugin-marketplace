@@ -28,4 +28,4 @@ belongs in a query layer, however convenient a store makes it look.
 claude plugin install tools-pinia@personal-claude-plugin-marketplace --scope project
 ```
 
-Project scope. Init installs it when `pinia` is in the project's dependencies.
+Project scope. Set-up installs it when `pinia` is in the project's dependencies.

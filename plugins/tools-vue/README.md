@@ -33,5 +33,5 @@ project uses TypeScript before assuming either.
 claude plugin install tools-vue@personal-claude-plugin-marketplace --scope project
 ```
 
-Project scope: it's noise in a Go service. Init installs it when `vue` is in the
+Project scope: it's noise in a Go service. Set-up installs it when `vue` is in the
 project's dependencies, and `tools-pinia` and `tools-vue-typescript` pull it in.

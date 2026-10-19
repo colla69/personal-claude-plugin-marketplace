@@ -45,8 +45,8 @@ plugins/<layer>-<topic>/
   skills/<skill>/assets/*         # optional: templates the skill writes out
 ```
 
-There is no `agents/`. A skill plugin ships knowledge, and `marketplace-init` generates
-the workers in each project from its role templates. Only `marketplace-` plugins ship
+There is no `agents/`. A skill plugin ships knowledge, and the steward generates the
+workers in each project from its role templates. Only `marketplace-` plugins ship
 agents, and `check-catalog.mjs` fails on any other plugin that does.
 
 Every plugin carries its own `README.md`, headed `# <plugin-name>` — roughly 40 lines
@@ -81,9 +81,9 @@ The one rule worth repeating, because it is the one that decays:
 > **A skill is knowledge. A role is a worker's lane.**
 
 The skill holds every rule, example, and ranking for one thing. A role template — Plan,
-Do or Check, in `marketplace-init`'s `references/roles/` — holds only its lane, its
-failure modes, and its report skeleton. Init turns the templates into agents in each
-project. Knowledge written into a role has two homes, and the two copies drift.
+Do or Check, in the steward's `references/set-up/roles/` — holds only its lane, its
+failure modes, and its report skeleton. The steward turns the templates into agents
+in each project. Knowledge written into a role has two homes, and the two copies drift.
 
 ## Register it in three places
 
@@ -94,10 +94,10 @@ the check script exists.
 |---|---|---|
 | `.claude-plugin/marketplace.json` | The catalog | The plugin does not exist |
 | `README.md` table | What a human reads | Nobody knows it's there |
-| `…/init-agent-setup/references/plugin-catalog.md` | What `marketplace-init` reads | Installs fine, **never recommended to any project, ever** |
+| `…/marketplace-steward/references/set-up/plugin-catalog.md` | What the steward reads | Installs fine, **never recommended to any project, ever** |
 
-The catalog row needs the **signal that justifies recommending it** — what
-`marketplace-init` should find in a repo before suggesting the plugin. Not "use this for
+The catalog row needs the **signal that justifies recommending it** — what the
+steward should find in a repo before installing the plugin. Not "use this for
 Django work" but "`django` in `requirements.txt` or `pyproject.toml`". A trigger that
 isn't checkable produces plugins recommended on vibes.
 

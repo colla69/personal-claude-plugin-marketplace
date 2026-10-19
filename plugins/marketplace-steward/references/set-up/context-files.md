@@ -48,7 +48,7 @@ A symlink (`ln -s AGENTS.md CLAUDE.md`) does the same job without a second file,
 needs Administrator rights or Developer Mode on Windows. Prefer the import.
 
 Other agents read their own files — GitHub Copilot reads
-`.github/copilot-instructions.md`. Init writes for Claude only: leave those files as
+`.github/copilot-instructions.md`. Set-up writes for Claude only: leave those files as
 they are. `AGENTS.md` is the vendor-neutral home they can be pointed at later, so the
 content never needs a second copy.
 
@@ -218,7 +218,7 @@ Besides the skill that runs each trio, `.claude/` may earn a **project skill**,
 that costs real time to reconstruct: bringing a full local stack up in the right order,
 a release checklist, a smoke test with a fixed sequence. Write one only when you found
 such a procedure and can state its steps concretely. A skill that restates
-`npm run dev` is noise. Propose it in the plan like everything else.
+`npm run dev` is noise. List it in the report like everything else.
 
 ## What to leave out
 

@@ -28,12 +28,12 @@ cutting rules as checks. Everything below assumes the cut is already made.
 |---|---|---|
 | **Is** | Knowledge: a prose standard for one thing | A worker's lane: Plan, Do or Check |
 | **Holds** | Every rule, example and ranking for that thing | Its lane, its failure modes, what to do when there is nothing to report, a report skeleton |
-| **Lives in** | Its own plugin, `plugins/<layer>-<topic>/` | `plugins/marketplace-init/skills/init-agent-setup/references/roles/`, from which init generates agents in each project |
+| **Lives in** | Its own plugin, `plugins/<layer>-<topic>/` | `plugins/marketplace-steward/references/set-up/roles/`, from which set-up generates agents in each project |
 | **Length** | 60–160 lines | 20–50 lines |
 | **Edited when** | Your taste changes | A generated agent misbehaves |
 
 The skill is the single source of knowledge. A role template never restates a skill.
-It names the job, leaves a slot for the skills init assigns, and spends its length on
+It names the job, leaves a slot for the skills set-up assigns, and spends its length on
 three things no skill can cover.
 
 **The failure mode this role falls into.** It must be specific, because the specific
@@ -214,13 +214,13 @@ worker either does out-of-scope work or drops what it noticed.
 - Backtick every filename, command, identifier and config key.
 - **Skill frontmatter:** `name` and `description`, plus `allowed-tools` for a skill
   that reads its plugin's references by path, as `plugin-shape.md` describes.
-- **Agent frontmatter** applies to role templates, the agents init generates, and the
+- **Agent frontmatter** applies to role templates, the agents set-up generates, and the
   `marketplace-` plugins' own agents. They take `name` and `description`, plus:
   - `effort`, chosen per role and task. The defaults are `high` for Plan and `medium`
-    for Do and Check; init raises or lowers them per task and says why in its plan.
+    for Do and Check; set-up raises or lowers them per task and says why in its report.
   - `disallowedTools`, for every read-only lane.
-  - In a role template, a `skills:` slot that init fills. How each skill is named
-    there is in the init plugin's `references/trios.md`.
+  - In a role template, a `skills:` slot that set-up fills. How each skill is named
+    there is in `set-up/trios.md`, in the steward's references.
   - **Never a `model` field.** Naming a vendor's model hard-codes one runtime into a
     file that has to stay portable.
 - `description` lives in the marketplace entry, not in `plugin.json`. When a field is

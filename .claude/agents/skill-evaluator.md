@@ -60,13 +60,13 @@ the other. That finding is invisible in the file alone.
 - **Does the frontmatter enforce the lane?** Plan and Check need `disallowedTools:
   Write, Edit, NotebookEdit`. A lane claimed in prose without it is a request, not a
   constraint.
-- **Is the `skills:` slot right?** Every name is `plugin:skill`, as the init plugin's
-  `references/trios.md` says. Check carries `craft-review:review-work`, Do carries
-  `universal-work-discipline:work-discipline`, and only Do takes Framework & Tools
-  skills.
+- **Is the `skills:` slot right?** Every name is `plugin:skill`, as the steward's
+  `references/set-up/trios.md` says. Check carries `craft-review:review-work`, Do
+  carries `universal-work-discipline:work-discipline`, and only Do takes Framework &
+  Tools skills.
 - **Is `effort` set to the default?** A template carries Plan `high`, Do `medium` and
-  Check `medium`. Init adjusts them per task and explains why in its plan. There must
-  be no `model` field.
+  Check `medium`. Set-up adjusts them per task and explains why in its report. There
+  must be no `model` field.
 - **Does it say what to do when there is nothing to report?** Without that line, a
   report format is a demand for output.
 - **Is its report generic?** A report specific to one kind of work belongs in that

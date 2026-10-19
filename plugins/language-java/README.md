@@ -35,5 +35,5 @@ The language level comes from the build file of the module being edited, since a
 claude plugin install language-java@personal-claude-plugin-marketplace --scope project
 ```
 
-Project scope: it's noise in a repo with no JVM. Init installs it when a project has a
+Project scope: it's noise in a repo with no JVM. Set-up installs it when a project has a
 `pom.xml`, a `build.gradle` or `.java` sources.

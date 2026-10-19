@@ -28,4 +28,4 @@ as types, with no runtime copy beside them to drift.
 claude plugin install tools-vue-typescript@personal-claude-plugin-marketplace --scope project
 ```
 
-Project scope. Init installs it when a project shows both Vue and TypeScript.
+Project scope. Set-up installs it when a project shows both Vue and TypeScript.

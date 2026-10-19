@@ -2,7 +2,7 @@
 
 A personal library of skills for agentic work, one skill per plugin, reused across every
 project. The skills hold the knowledge. The agents that use them are generated into each
-project by `marketplace-init`, from that project's own facts.
+project by the steward, `marketplace-steward`, from that project's own facts.
 
 Everything here is prose: standards written once, in plain language an LLM can follow.
 There is no code to run. Nothing in the structure assumes the work is code either. A
@@ -13,22 +13,23 @@ codebase, even though every skill here is about code today.
 
 ```
         ┌──────────── Marketplace (knowledge, central) ◄───────────┐
-        │                                                            │
-   installs skills                                         updates / creates skills
-        │                                                            │
-        ▼                                                            │
-   Init agent ──► AGENTS.md ──► skills ──► Plan · Do · Check ──► Contributor
-   (dock on)                                   (work)                (grow)
+        │                                                          │
+  installs skills                         updates or creates skills, by PR
+        │                                                          │
+        ▼                                                          │
+     Steward ──► AGENTS.md ──► skills ──► Plan · Do · Check ──► Steward
+    (dock on)                                  (work)           (grow)
 ```
 
-- **Dock on.** `marketplace-init` reads a project and writes its `AGENTS.md`. It installs
-  the skills that follow from it and generates a trio for each kind of task the project
+- **Dock on.** The steward reads a project and writes its `AGENTS.md`. It installs the
+  skills that follow from it and generates a trio for each kind of task the project
   repeats.
 - **Work.** Plan proposes and waits for your OK. Do, the only writer, carries out the
   plan you accepted. Check compares the result with that plan and sends gaps back to Do.
   Plan and Check are read-only.
 - **Grow.** What one project learns goes back into the skills, so the next project has
-  it on day one. The contributor that will do this is a concept, not built yet.
+  it on day one. The steward will do this by pull request; that part is still being
+  built.
 
 ## The layers
 
@@ -51,12 +52,12 @@ Check judge the work, not the tool.
 
 ```bash
 claude plugin marketplace add colla69/personal-claude-plugin-marketplace
-claude plugin install marketplace-init@personal-claude-plugin-marketplace --scope user
+claude plugin install marketplace-steward@personal-claude-plugin-marketplace --scope user
 ```
 
-That is all a machine needs. In a project, run `/marketplace-init:init-agent-setup`. It
-installs the rest of what that project needs, at project scope, after you accept its
-plan.
+That is all a machine needs. In a project, say "set this up", or run
+`/marketplace-steward:steward`. It installs the rest of what that project needs, at
+project scope, and reports everything it wrote.
 
 **Restart the session after installing.** Claude Code builds its skill registry at
 startup, so a plugin installed mid-session isn't available until the next one.
@@ -77,19 +78,19 @@ startup, so a plugin installed mid-session isn't available until the next one.
 | `tools-vue` | `vue-conventions` | Vue 3 Composition API components, reactivity, composables |
 | `tools-vue-typescript` | `vue-typescript-conventions` | Typed props, emits and reactive inputs in Vue |
 | `tools-pinia` | `pinia-conventions` | Pinia stores, and server data in a query layer |
-| `marketplace-init` | `init-agent-setup` | Set a project up: `AGENTS.md`, its skills, and its trios |
-| `marketplace-steward` | `evaluate-skills` | Draft, being built: the package that will replace `marketplace-init` |
+| `marketplace-steward` | `steward`, `evaluate-skills` | Set a project up and keep it current: `AGENTS.md`, its skills, and its trios. Still being built |
 
 Each plugin has its own README: what it covers, when it fires, and what it leaves to
 other skills. Follow the plugin name to `plugins/<name>/README.md`.
 
-## Using marketplace-init
+## Using the steward
 
 ```
-/marketplace-init:init-agent-setup
+/marketplace-steward:steward
 ```
 
-It reads the project, proposes a plan, and stops. Once you accept the plan, it writes:
+It reads the project and writes the setup without stopping, except to ask before it
+would create a new skill. It writes:
 
 - `AGENTS.md` at the root, and in each component that earns one, with a one-line
   `CLAUDE.md` beside each that contains `@AGENTS.md`;
@@ -100,9 +101,13 @@ It reads the project, proposes a plan, and stops. Once you accept the plan, it w
   project scope;
 - for each trio, `.claude/agents/<task>-plan.md`, `<task>-do.md` and `<task>-check.md`,
   and the skill that runs them, `.claude/skills/<task>/SKILL.md`. You run a trio as
-  `/<task>`.
+  `/<task>`;
+- `.claude/steward.json`, the record of what it generated, so a later run never
+  overwrites a file you changed.
 
 It never touches git. You branch before running it and decide afterwards what to keep.
+Later, "update the setup" brings it up to date: plugins that were renamed, skills that
+don't load, trios from older templates, and what the project now calls for.
 
 **The content lives in `AGENTS.md`, deliberately.** It is the vendor-neutral file other
 coding agents read too. `CLAUDE.md` is a one-line import beside it, because Claude Code

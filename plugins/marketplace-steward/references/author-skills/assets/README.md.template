@@ -38,4 +38,4 @@ boundary people most often expect to be inside.}}
 claude plugin install {{PLUGIN_NAME}}@personal-claude-plugin-marketplace{{ --scope user | --scope project | }}
 ```
 
-{{One line on scope and why. Usually: init installs this when a project needs it.}}
+{{One line on scope and why. Usually: set-up installs this when a project needs it.}}
