@@ -11,9 +11,8 @@ paths:
 
 The canonical guides are `plugins/marketplace-steward/references/author-skills/style.md`
 for the writing and `plugins/marketplace-steward/references/place-knowledge.md` for the
-cut, and the reasoning behind the cut is in `docs/werkstatt/concept.md` §4. Read them
-before a substantial edit. These are the constraints you can check at the moment of
-writing.
+cut. Read them before a substantial edit. These are the constraints you can check at the
+moment of writing.
 
 ## The cut
 

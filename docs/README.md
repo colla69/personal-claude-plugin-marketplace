@@ -1,0 +1,102 @@
+# Documentation
+
+Every page of the documentation, by kind, with where its substance comes from. Find
+your starting point below, or the page you need in the tables.
+
+The pages explain the marketplace and link to the files that hold its rules. The rules
+themselves live in the plugins, mostly in the steward's references, under
+`plugins/marketplace-steward/references/`. A page that disagrees with them is the one
+that is wrong.
+
+**Being written.** The documentation is being rewritten, page by page, as
+[`werkstatt/docs-plan.md`](werkstatt/docs-plan.md) lays out. In the Page column, a page
+in backticks is planned and not written yet, and a linked page is written. The Sources
+column names the product files a page is checked against; the glossary links each.
+
+## Start here
+
+| You are | Start with |
+|---|---|
+| New, and wondering whether this is for you | [`../README.md`](../README.md), then `tutorials/first-setup.md` |
+| Using the steward in your projects | The guides |
+| Working on the marketplace or the steward | [`../CONTRIBUTING.md`](../CONTRIBUTING.md), then the contributing pages |
+| Weighing the idea itself | `explanation/the-idea.md` |
+| Looking up a word | [`reference/glossary.md`](reference/glossary.md) |
+
+## Tutorials
+
+Learn by doing, one path from start to finish.
+
+| Page | You will | Sources | Status |
+|---|---|---|---|
+| `tutorials/first-setup.md` | Install the marketplace, set up a sample project, and run one trio | `set-up/procedure.md`, `set-up/report.md`, `roles/run.md` | To write |
+| `tutorials/first-contribution.md` | Turn a lesson into a pull request, and watch each safeguard work | `contribute.md`, `place-knowledge.md` | To write |
+
+## Guides
+
+One task each.
+
+| Page | The task | Sources | Status |
+|---|---|---|---|
+| `guides/set-up-a-project.md` | Set up a codebase, or a folder with no code | `set-up/procedure.md`, `context-files.md` | To write |
+| `guides/adopt-an-existing-setup.md` | Bring a project's own `CLAUDE.md`, rules, agents or hooks onto the marketplace | `adopt.md`, `record.md` | To write |
+| `guides/add-a-trio.md` | Add a trio for one more recurring task | `trios.md`, `roles/` | To write |
+| `guides/run-a-trio.md` | Use `/<task>`: the plan, the OK, sending work back | `roles/run.md` | To write |
+| `guides/keep-a-setup-current.md` | Update a setup after the marketplace or the project changed | `keep-current.md` | To write |
+| `guides/contribute-a-lesson.md` | Give the steward a lesson, and review its pull request | `contribute.md` | To write |
+| `guides/review-a-skill.md` | Review a skill, a plugin, a change or the whole set | `evaluate-skills` | To write |
+| `guides/write-a-skill-by-hand.md` | Add or change a skill without the steward | `style.md`, `plugin-shape.md`, `place-knowledge.md` | To write |
+| `guides/migrate-from-old-names.md` | Move a project and a machine off the old plugin names | The Renamed table, `keep-current.md` | To write |
+| `guides/work-on-the-steward.md` | Load the working copy, probe a mechanic, test a change | `werkstatt/package-plan.md` | To write |
+| `guides/troubleshoot.md` | Fix what fails silently | The plans' risk tables | To write |
+
+## Reference
+
+Looked up, not read through.
+
+| Page | It lists | Sources | Status |
+|---|---|---|---|
+| `reference/plugins.md` | Every plugin: layer, skill, purpose, the signal that installs it, what it builds on | `marketplace.json`, `plugin-catalog.md` | To write |
+| `reference/the-steward.md` | The four jobs: what starts each, what it reads, writes, asks and never does | The steward's job files | To write |
+| `reference/project-files.md` | Every file the steward writes in a project, and its shape | `context-files.md`, `record.md`, `plugin-sources.md` | To write |
+| `reference/permissions.md` | What the steward pre-allows and why, and the guard on `main` | The front door's frontmatter | To write |
+| `reference/commands.md` | Every command the docs mention | The plugins and the scripts | To write |
+| `reference/checks.md` | What each check catches, and what nothing catches | `check-catalog.mjs`, CI, `plugin-shape.md` | To write |
+| [`reference/glossary.md`](reference/glossary.md) | Every term, in one line, with the file that holds its rules | The product files each term names | Written |
+
+## Explanation
+
+Why it is the way it is.
+
+| Page | The question | Sources | Status |
+|---|---|---|---|
+| `explanation/the-idea.md` | Why knowledge central and workers local, and why not only for code | The concept, §1, §2, §10 | To write |
+| `explanation/layers.md` | Why four layers, and why dependencies point one way | The concept, §4 | To write |
+| `explanation/skills-and-roles.md` | Why a skill holds knowledge and a role a lane | The concept, §5, §6 | To write |
+| `explanation/trios.md` | Why Plan, Do, Check, and why the stop | The concept, §7 | To write |
+| `explanation/the-steward.md` | Why one package, why it asks only twice, why a checker | The concept, §8, §9 | To write |
+| `explanation/placing-knowledge.md` | Why diagnose first, and why strip | `place-knowledge.md` | To write |
+| `explanation/safety.md` | What keeps you in control | The job files | To write |
+| `explanation/cost.md` | What every enabled skill costs | D36, the measurements | To write |
+| [`explanation/decisions.md`](explanation/decisions.md) | Every decision, with its date, its reason and where it lives now | The plans, the concept | Written |
+
+## Contributing
+
+Working on the marketplace itself.
+
+| Page | It covers | Sources | Status |
+|---|---|---|---|
+| `contributing/development-loop.md` | The local marketplace, the checks, CI | `CONTRIBUTING.md`, `plugin-shape.md` | To write |
+| [`contributing/writing-docs.md`](contributing/writing-docs.md) | How a page here is written and reviewed | `style.md` | Written |
+| `contributing/releases-and-migrations.md` | Why every merge is a release, and what a rename asks of every project | `plugin-shape.md`, the Renamed table | To write |
+
+## Working records
+
+[`werkstatt/`](werkstatt/) holds the plans and the audit this marketplace was built
+from: [`plan.md`](werkstatt/plan.md) for the restructure,
+[`audit.md`](werkstatt/audit.md) for its first step,
+[`package-plan.md`](werkstatt/package-plan.md) for the steward, and
+[`docs-plan.md`](werkstatt/docs-plan.md) for these pages. They are records, and their
+decisions are gathered in [`explanation/decisions.md`](explanation/decisions.md).
+[`concept.md`](werkstatt/concept.md), the original brief, stays there until every
+section of it has its new home, by the table in the docs plan.

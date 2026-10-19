@@ -59,7 +59,8 @@ plugin that validates, installs, and is completely empty. Nothing warns you.
 
 Name the plugin `<layer>-<topic>` (`tools-vue`), with the layer prefix matching its
 `category`, and the skill for the activity (`vue-conventions`). The four layers and
-their test questions are in `docs/werkstatt/concept.md`, §4.1.
+their test questions are in section 3 of
+`plugins/marketplace-steward/references/place-knowledge.md`.
 
 Declare the plugin of every skill the new one names in `dependencies`, pointing only
 toward the more general layers. `check-catalog.mjs` fails on a name that doesn't exist

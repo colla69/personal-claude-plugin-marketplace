@@ -3,9 +3,9 @@
 How the repo's documentation gets rewritten from scratch, as a project of its own. D and
 O numbers continue the ones in `plan.md` and `package-plan.md`.
 
-**Status:** O7 to O11 answered on 2026-10-19; O12 open, and the plan waits for approval.
-On branch `marketplace/one-package`. It replaces the documentation half of step 7 of
-`package-plan.md`. The package plan's trials and merge come after it, because the
+**Status:** approved 2026-10-19, on branch `marketplace/one-package`. Step 1 is done,
+and the plan stops here for review (D43). It replaces the documentation half of step 7
+of `package-plan.md`. The package plan's trials and merge come after it, because the
 documentation describes the steward, and both reach `main` together.
 
 ---
@@ -76,6 +76,9 @@ to the steward, as a contribution, not into a doc.
 
 ## 5. Principles
 
+Since step 1, these principles live in `docs/contributing/writing-docs.md`, which every
+page is written and reviewed by. The list below is the record of what the plan set out.
+
 - **Four kinds of page, kept apart.**
   - **Tutorials** teach by doing.
   - **Guides** get one task done.
@@ -103,7 +106,8 @@ to the steward, as a contribution, not into a doc.
   which GitHub renders.
 - **Examples are synthetic.** No real project, client or person, in any example or
   screenshot.
-- **Every page is reachable from the map**, `docs/README.md`, and no page is.
+- **Every page is reachable from the map**, `docs/README.md`, and no page is left off
+  it.
 
 ## 6. The structure
 
@@ -311,6 +315,36 @@ Approved, with O7 to O12 answered. O7 to O11 are D38 to D42.
 - The references to `concept.md` in the product and the entry points changed to point
   at the product's own files, so nothing depends on the concept before it goes.
 
+What was done:
+
+- **[`docs/README.md`](../README.md)**, the map: every planned page by kind, with its
+  sources and its status, a "start here" per reader, and the working records. A page
+  is linked once it exists, so every link resolves at every commit.
+- **[`contributing/writing-docs.md`](../contributing/writing-docs.md)** is now the home
+  of the principles in section 5: the four kinds with a test for each, one home, the
+  product's independence, the voice and format, the map rule, the length targets, and
+  the reviewer's checklist.
+- **[`explanation/decisions.md`](../explanation/decisions.md)** gathers the author's
+  dated statements and D1 to D43. Each has its reason and where it lives now, and
+  superseded ones are marked. D4 never existed: the concept's question 4 stayed open,
+  as O1, and still is.
+- **[`reference/glossary.md`](../reference/glossary.md)**: 53 terms, the concept's
+  vocabulary among them, each in one line and linked to the file that holds its rules.
+- **A product fix the review found:** `place-knowledge.md` said a dependency points to
+  "a more general layer", but D25 and `check-catalog.mjs` allow one in the same layer,
+  as `tools-pinia` on `tools-vue` shows. It now says "its own layer or a more general
+  one".
+- A separate agent reviewed the step against `writing-docs.md`. Its findings are fixed:
+  - two reasons in the log that the record doesn't give;
+  - a missing 2026-10-13 rule: it proposes, a human approves;
+  - four glossary rows that didn't match their files, and the concept's missing terms;
+  - the map's links;
+  - a voice item and a ranking for the checklist;
+  - three files that had lost their final newline to a rewrap script.
+- **Nothing depends on the concept any more.** `place-knowledge.md` no longer yields
+  to it: the product is the authority for its own rules. `CLAUDE.md`, `CONTRIBUTING.md`
+  and the authoring rule point to the steward's references and the map instead.
+
 ### Step 2: Explanation
 
 The nine explanation pages, from the concept and the plans. When every section in the
@@ -358,8 +392,9 @@ Decided on 2026-10-19:
 | D40 | The full plugin table lives in `reference/plugins.md` (O9) | The root README lists the plugins by layer in one line each, and `check-catalog.mjs` checks the reference page instead of the README |
 | D41 | `.claude/rules/authoring.md` is cut to a pointer (O10) | It loads whenever a skill file is touched, and a pointer is all that should load there |
 | D42 | A docs check in CI, `scripts/check-docs.mjs`, with no dependencies (O11) | `CLAUDE.md`'s "one executable file" line becomes two |
+| D43 | The plan stops for the maintainer after step 1 and after step 8, with one commit per step between (O12) | Step 1 fixes the structure; step 8 is the whole result |
 
-Open:
+Asked, and answered as recommended:
 
 | # | Question | Recommendation |
 |---|---|---|

@@ -8,8 +8,8 @@ mistakes that fail silently.
 
 **Knowledge central, workers local.** The marketplace ships skills. The agents that use
 them are generated into each project by the steward, `marketplace-steward`, together
-with that project's `AGENTS.md`. The concept is described in
-`docs/werkstatt/concept.md`.
+with that project's `AGENTS.md`. The documentation, with the reasons behind every
+decision, is mapped in `docs/README.md`.
 
 **The steward is being built; see `docs/werkstatt/package-plan.md`.** It replaced
 `marketplace-init` and this repo's own `.claude/` agents: one package that sets

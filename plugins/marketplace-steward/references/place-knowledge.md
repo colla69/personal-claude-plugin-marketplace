@@ -6,8 +6,8 @@ wrong one way and a project's details reach every project that installs the skil
 it wrong the other way and a lesson that would have saved the next project stays
 buried in this one.
 
-The principle is in `docs/werkstatt/concept.md` §4, in the marketplace repo. This file
-is its working home. Read it before placing anything, whether the knowledge comes from a
+This file is the home of the cut: the layers, how a lesson is placed, and the checks a
+skill is cut by. Read it before placing anything, whether the knowledge comes from a
 problem someone describes or from a rule in a setup being adopted.
 
 ## Contents
@@ -91,7 +91,7 @@ enables it, so a new one has to earn that cost for as long as it exists.
 | One thing | Saying what the skill covers needs no "and" | A project that wants one topic has to install both |
 | One layer | The skill answers exactly one of questions 2 to 5 in section 3 | A project that wants the general part has to take the specific part with it |
 | One home | No rule in it is stated in another skill; other skills are named, not restated | Two copies get edited separately and then disagree |
-| Toward the general | The plugin of every skill it names is in `dependencies`, in a more general layer, and needed unconditionally. A pairing that holds only for some projects, such as a framework with one particular language, is decided where skills are chosen for a project, not declared | A named skill that isn't installed is silently replaced by the model's generic taste; a conditional one declared anyway is installed into every project that doesn't need it |
+| Toward the general | The plugin of every skill it names is in `dependencies`, in its own layer or a more general one, never a more specific one, and needed unconditionally. A pairing that holds only for some projects, such as a framework with one particular language, is decided where skills are chosen for a project, not declared | A named skill that isn't installed is silently replaced by the model's generic taste; a conditional one declared anyway is installed into every project that doesn't need it |
 | Knowledge only | No lane, no failure mode, no "you are the agent that…" | Role text in a skill is loaded by every role, including the ones it doesn't describe |
 | No project facts | No client, system, module layout, or a project's own commands | The skill is wrong for every other project that installs it |
 | Says when to yield | It ends by naming the more specific layer or local convention that overrides it | A standard with no boundary gets applied mechanically |
@@ -144,6 +144,4 @@ Add to them; don't edit them away.
 ## Where this yields
 
 **To the user.** At the OK and in the pull request, their call wins over every rule
-here, and it is recorded in section 6. **To the concept.** `docs/werkstatt/concept.md`
-§4, in the marketplace repo, holds the principle. When the two disagree, this file is
-the one that is out of date, and the next contribution fixes it.
+here, and it is recorded in section 6, so this file learns where its rules run out.
