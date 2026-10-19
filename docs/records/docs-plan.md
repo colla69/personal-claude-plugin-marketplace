@@ -65,8 +65,8 @@ others.
 | `CONTRIBUTING.md` | 163 | The bar, anatomy, registrations, versions, dev loop, checks, commits | Rewritten short: how to contribute, and a pointer to the contributing pages. Its knowledge already lives in `plugin-shape.md` |
 | `CLAUDE.md` | 155 | Agent instructions, restating the cut, the style and the boundaries | Rewritten lean: what an agent can't infer, and where the rules live |
 | `.claude/rules/authoring.md` | 81 | Restates the cut and the style when skill files are edited | Cut to a pointer, or removed (O10) |
-| `docs/werkstatt/concept.md` | 829 | The design brief, for an agent | Dissolved (D39): its explanations move into the docs, its rules into the product, and the file goes once every section has a home (section 8) |
-| `docs/werkstatt/plan.md`, `package-plan.md`, `audit.md` | 1237 | Working plans and the audit | Stay as records. Their decisions are gathered into one log |
+| `docs/records/concept.md` | 829 | The design brief, for an agent | Dissolved (D39): its explanations move into the docs, its rules into the product, and the file goes once every section has a home (section 8) |
+| `docs/records/plan.md`, `package-plan.md`, `audit.md` | 1237 | Working plans and the audit | Stay as records. Their decisions are gathered into one log |
 | `plugins/*/README.md` | 31–68 each | One per plugin, from the old template | Rewritten from a new template |
 | `LICENSE` | 201 | Apache 2.0 | Unchanged |
 
@@ -154,7 +154,7 @@ docs/
     development-loop.md
     writing-docs.md
     releases-and-migrations.md
-  werkstatt/                 the working records: the plans and the audit
+  records/                   the working records: the plans and the audit
 plugins/<name>/README.md     one per plugin
 ```
 
@@ -266,7 +266,7 @@ template lives with the others, in `author-skills/assets/`.
 | The record | `references/record.md` | `reference/project-files.md`, `explanation/safety.md` |
 | The roles and the run pattern | `references/set-up/roles/` | `explanation/trios.md`, `guides/run-a-trio.md` |
 | Which plugins exist | `.claude-plugin/marketplace.json` | `reference/plugins.md` |
-| The decisions | `docs/werkstatt/` plans | `explanation/decisions.md` |
+| The decisions | `docs/records/` plans | `explanation/decisions.md` |
 
 ### The concept's sections and their new homes
 
@@ -393,7 +393,8 @@ Decided on 2026-10-19:
 | D41 | `.claude/rules/authoring.md` is cut to a pointer (O10) | It loads whenever a skill file is touched, and a pointer is all that should load there |
 | D42 | A docs check in CI, `scripts/check-docs.mjs`, with no dependencies (O11) | `CLAUDE.md`'s "one executable file" line becomes two |
 | D43 | The plan stops for the maintainer after step 1 and after step 8, with one commit per step between (O12) | Step 1 fixes the structure; step 8 is the whole result |
-| D44 | No page, and no file outside `docs/werkstatt/`, refers to the working records: "no werkstatt references" | What a page needs from the plans, the audit or the concept is written into the page or the product. The map lists no records, and the plans' names don't appear in the pages |
+| D44 | No page, and no file outside `docs/records/`, refers to the working records: "no werkstatt references" | What a page needs from the plans, the audit or the concept is written into the page or the product. The map lists no records, and the plans' names don't appear in the pages |
+| D45 | The working records' folder is renamed from `docs/werkstatt/` to `docs/records/`: "rename the folder as well" | Its name says what it holds. Paths in the records and in the memory notes follow |
 
 Asked, and answered as recommended:
 

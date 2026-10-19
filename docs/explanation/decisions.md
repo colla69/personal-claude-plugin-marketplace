@@ -11,7 +11,7 @@ the reason it was made is often the reason its replacement has the shape it has.
 - [The author's statements, before the plans](#the-authors-statements-before-the-plans)
 - [The restructure: D1 to D26](#the-restructure-d1-to-d26)
 - [The steward: D27 to D37](#the-steward-d27-to-d37)
-- [The documentation: D38 to D44](#the-documentation-d38-to-d44)
+- [The documentation: D38 to D45](#the-documentation-d38-to-d45)
 - [Still open](#still-open)
 
 ## The author's statements, before the plans
@@ -83,7 +83,7 @@ All decided on 2026-10-19, while the steward was built.
 | D36 | Two visible skills, the front door and `evaluate-skills`; the rest is reference files read by path | Every visible skill costs a description in every session of every project; a hidden skill can't be preloaded | Holds |
 | D37 | No plugin option: the steward keeps its own clone in `~/.local/share/marketplace-steward/` | An option isn't filled from its default, and Claude Code asks before every write under `~/.claude`, whatever a skill allows | Holds; the location was moved there in step 5 |
 
-## The documentation: D38 to D44
+## The documentation: D38 to D45
 
 All decided on 2026-10-19, while this documentation was planned.
 
@@ -96,6 +96,7 @@ All decided on 2026-10-19, while this documentation was planned.
 | D42 | A docs check, `scripts/check-docs.mjs`, runs in CI | Broken links are the docs' silent failure | Planned, with the final checks |
 | D43 | Writing the documentation stops for the maintainer twice: once the structure is laid, and once the whole set is done | The structure is what every later page sits in | Holds |
 | D44 | No page refers to the working records the marketplace was built from: the docs carry what they need | The docs stand on their own | Holds |
+| D45 | The working records live in `docs/records/` | The folder's name says what it holds | Holds |
 
 ## Still open
 

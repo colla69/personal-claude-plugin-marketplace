@@ -117,7 +117,7 @@ joins steps 1 and 7 (§12.3).
 - Fast-forwarded `main` to `origin/main`, which holds the 2026-09-17 init work (PRs #1
   and #2). Every later step builds on that version.
 - Created `marketplace/restructure` from it.
-- Committed `docs/werkstatt/` and the pointer in `CLAUDE.md`.
+- Committed `docs/records/` and the pointer in `CLAUDE.md`.
 
 ### Step 1: Audit, read-only
 
@@ -146,7 +146,7 @@ Some findings are already visible from a first read and need confirming:
   work, so it may be the Universal part that D7 expects.
 - `review-changes` names `git` commands, which belong to a tool, inside a Craft skill.
 
-The output is `docs/werkstatt/audit.md`. **Stop** until you approve its gap list and the
+The output is `docs/records/audit.md`. **Stop** until you approve its gap list and the
 tables in section 3.
 
 ### Step 2: Rework the repo's own agentic setup (done)
