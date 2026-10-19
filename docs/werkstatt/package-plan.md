@@ -5,8 +5,8 @@ How `marketplace-init` and the planned contributor become one package,
 keeps the setup current, and grows the marketplace. Section numbers (§) refer to
 `concept.md`. D and O numbers continue the ones in `plan.md`.
 
-**Status:** approved 2026-10-19, on branch `marketplace/one-package`. Steps 0 to 4 are
-done; step 5, contribute, is done and waits for approval. The plan replaces
+**Status:** approved 2026-10-19, on branch `marketplace/one-package`. Steps 0 to 5 are
+done; step 6, adopt, is done and waits for approval. The plan replaces
 step 11 of `plan.md` and starts its step 9 trials over. Every step ends with a report
 and a stop until it is approved. Nothing on this branch names a project, so it merges as
 a normal PR.
@@ -386,6 +386,40 @@ What was done:
 Adoption, as in section 4: taking stock, the split into rules, the report, the pending
 list, and keep-current removing a local copy once its central home is live. It needs
 both set-up and contribute, so it comes after them.
+
+What was done:
+
+- **`references/adopt.md`** runs set-up with more to read. It takes stock of every
+  Claude file of the project's and splits it into rules. A table gives each rule its
+  home and says what happens to the local copy. Set-up's phases then run with those
+  homes, and each local copy goes only once its home is live.
+- **"Live" is defined once:**
+  - a file the steward wrote, once written;
+  - a toolkit skill, once it loads and is in the `skills:` of the roles that do that
+    work;
+  - a contribution, once merged, with the installed copy saying the same thing.
+
+  Until then a rule stays where it is, and goes in the record's new `pending` once its
+  pull request exists.
+- **Nothing is lost:**
+  - a rule is removed, never a file, until every rule in the file has a live home;
+  - a lane or a "must not" goes only when the role template says the same thing;
+    otherwise it goes to `AGENTS.md`, or to a contribution to the template;
+  - only a toolkit skill can cover a rule;
+  - a covered rule in an `AGENTS.md` that other tools read stays;
+  - every file that differs from git's `HEAD` is backed up first, to
+    `~/.local/share/marketplace-steward/backups/`, never over an earlier backup.
+- **Keep-current's new step 7** clears `pending` after the merge, installing the
+  plugin if the project lacks it. It removes the rule only when the file still holds
+  it exactly as recorded, and reports an edited one as a possible lesson. A closed
+  pull request leaves the rule as a project rule.
+- **Set-up's phase 6** builds a trio whole or not at all when one of its paths is
+  taken. **The front door** decides by what the project has: a Claude setup with no
+  record is adopted first, also when only a trio was asked for.
+- **Adoption was reviewed** by a separate agent applying `evaluate-skills`, because
+  the old reviewer agents are retired. Its findings are fixed: four ways knowledge
+  could be lost, the `pending` lifecycle, a stale record, backups a second run could
+  overwrite, partial trios, and one routing case.
 
 ### Step 7: Register and guard
 

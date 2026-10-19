@@ -78,7 +78,7 @@ startup, so a plugin installed mid-session isn't available until the next one.
 | `tools-vue` | `vue-conventions` | Vue 3 Composition API components, reactivity, composables |
 | `tools-vue-typescript` | `vue-typescript-conventions` | Typed props, emits and reactive inputs in Vue |
 | `tools-pinia` | `pinia-conventions` | Pinia stores, and server data in a query layer |
-| `marketplace-steward` | `steward`, `evaluate-skills` | Set a project up, keep it current, and turn lessons into skill changes by pull request. Still being built |
+| `marketplace-steward` | `steward`, `evaluate-skills` | Set a project up or adopt its setup, keep it current, and turn lessons into skill changes by pull request. Not tried for real yet |
 
 Each plugin has its own README: what it covers, when it fires, and what it leaves to
 other skills. Follow the plugin name to `plugins/<name>/README.md`.

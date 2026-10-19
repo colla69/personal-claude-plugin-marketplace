@@ -8,13 +8,21 @@ The shape of set-up's report. Keep it short: tables and one-liners.
 **Steward version:** <the installed version of marketplace-steward, as the record
 holds it, so a reader can tell which version produced the output>
 **Components mapped:** <n>
-**Existing setup:** <none, or what was there and what of it you kept>
+**Existing setup:** <none, only other tools' files, or adopted: see Adopted below>
 **Sources consulted:** <each marketplace you read, with how many plugins it offered —
 proof the list is live rather than remembered>
 
 ### Written
 - <path> — <one line>
 - `.claude/steward.json` — the record of what the steward created and installed
+
+### Adopted
+| From | Rule | Home | Local copy |
+|---|---|---|---|
+| <file> | <the rule, quoted short> | <plugin:skill, AGENTS.md, a trio, a project skill, stays, or nowhere> | <removed / moved / pending: the pull request / stays> |
+
+<Only for an adoption: every rule, grouped by the file it came from. Then name every
+backup made, and every old agent with the trio that replaces it.>
 
 ### Changed
 - <path that already existed and was edited — omit the section if there were none>

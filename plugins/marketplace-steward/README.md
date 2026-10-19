@@ -1,18 +1,18 @@
 # marketplace-steward
 
 What a project teaches should reach the next project. The steward is one package for
-the whole cycle: it sets a project up, keeps that setup current, and turns lessons
-into changes to the marketplace, by pull request. It will also adopt setups a project
-already has.
+the whole cycle: it sets a project up, adopts the setup a project already has, keeps
+that setup current, and turns lessons into changes to the marketplace, by pull
+request.
 
-**Still being built.** Set-up, keep-current and contributing work. Adoption comes
-next, as `docs/werkstatt/package-plan.md` lays out.
+**Not tried for real yet.** All four jobs are written; the trials and the merge are
+the steps left in `docs/werkstatt/package-plan.md`.
 
 | | |
 |---|---|
 | Skills | `steward`, the front door, and `evaluate-skills` |
 | Agents | `codebase-cartographer`, which surveys a codebase for set-up, and `contribution-checker`, which checks a change before its pull request. Both read-only |
-| References | `set-up/`, `keep-current.md`, `contribute.md`, `record.md`, `place-knowledge.md` and `author-skills/`, read by path |
+| References | `set-up/`, `adopt.md`, `keep-current.md`, `contribute.md`, `record.md`, `place-knowledge.md` and `author-skills/`, read by path |
 | Layer | None: it works on the marketplace itself |
 | Builds on | `craft-review` |
 
@@ -20,6 +20,8 @@ next, as `docs/werkstatt/package-plan.md` lays out.
 
 - "set this project up", "onboard this repo", "set up agents for this repo"
 - A trio wanted for one more task
+- "bring our existing setup onto the marketplace", or set-up asked in a project that
+  already has its own `CLAUDE.md`, rules, skills, agents or hooks
 - "update the setup", or a skill or agent in a project's setup not loading
 - "remember this for other projects", "a skill got this wrong", "make a skill out of
   this"
@@ -38,6 +40,9 @@ next, as `docs/werkstatt/package-plan.md` lays out.
 - For each trio, `.claude/agents/<task>-plan.md`, `-do.md` and `-check.md`, and
   `.claude/skills/<task>/SKILL.md`, which runs them
 - `.claude/steward.json`, the record of what it generated
+- For an adoption: each local rule removed once its new home is live, and never
+  before. An untracked file is first copied to
+  `~/.local/share/marketplace-steward/backups/`
 - For a contribution: a branch and a pull request on the marketplace, from its own
   clone in `~/.local/share/marketplace-steward/`, never from a checkout of yours
 

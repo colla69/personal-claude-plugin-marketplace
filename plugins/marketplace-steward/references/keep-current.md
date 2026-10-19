@@ -6,9 +6,9 @@ role template improves, a new skill appears. None of it announces itself. A plug
 that matches nothing fails silently, and an agent that names a skill which doesn't load
 carries on without its standard.
 
-Files named here sit in `set-up/` beside this file, except `record.md`, which is beside
-it. Read `record.md` first: every step below writes by its rules. The front door's rules
-hold throughout.
+Files named here sit in `set-up/` beside this file, except `record.md` and `adopt.md`,
+which are beside it. Read `record.md` first: every step below writes by its rules. The
+front door's rules hold throughout.
 
 **Run every step, unless the user named one symptom.** Then run step 1 and the step for
 that symptom, and say in the report which checks you didn't run.
@@ -17,9 +17,9 @@ that symptom, and say in the report which checks you didn't run.
 
 Refresh every marketplace and read the live inventory, as `set-up/plugin-sources.md`
 says, and read `.claude/plugin-sources.json` and `.claude/steward.json`. A project with
-no `AGENTS.md` and no policy file was never set up: that is the set-up job, not this
-one. A project with no record was set up before the record existed, and step 4 rebuilds
-nothing in it.
+no `AGENTS.md` and no policy file was never set up: that is the set-up or the adopt job,
+as the front door decides, not this one. A project with no record was set up before the
+record existed, and step 4 rebuilds nothing in it.
 
 ## 2. Plugin keys that no longer exist
 
@@ -67,7 +67,23 @@ a script that was renamed, fix that line, whoever wrote the file. Where it doesn
 leave the line and list it under Unverified. Never delete a line you can't replace: it
 may be the only record of something nobody wrote down elsewhere.
 
-## 7. Report
+## 7. Rules waiting for a merge
+
+For each entry in the record's `pending`:
+
+- **Merged:** install the plugin it went to, if the project doesn't have it, as
+  set-up's phase 5 does and within the source policy, and update it with
+  `claude plugin update <name>@<marketplace>`. Then apply the test for a live home in
+  step 5 of `adopt.md`, against the installed copy.
+- **Live, and the file still holds the rule exactly as recorded:** remove it as that
+  step removes one, backup included, and drop the entry.
+- **Live, but the rule was edited since:** leave it, drop the entry, and report it
+  under Left alone. The edit may be a lesson the merged skill lacks; offer it as one.
+- **Not merged yet:** the entry stays, and the report names its pull request.
+- **Closed without a merge:** the rule stays where it is as a project rule. Drop the
+  entry, and report it.
+
+## 8. Report
 
 ```
 ## Setup kept current
@@ -78,7 +94,7 @@ may be the only record of something nobody wrote down elsewhere.
 - <path> — <what changed, and which check called for it>
 
 ### Removed
-- <key or file> — <why>
+- <key, file or rule> — <why, and the backup if there is one>
 
 ### Left alone
 - <path> — <changed by the user since the steward wrote it; what a newer template

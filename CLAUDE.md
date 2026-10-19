@@ -13,9 +13,9 @@ with that project's `AGENTS.md`. The concept is described in
 
 **The steward is being built; see `docs/werkstatt/package-plan.md`.** It replaced
 `marketplace-init` and this repo's own `.claude/` agents: one package that sets
-projects up, keeps their setups current, and grows the marketplace by pull request.
-Adopting existing setups comes next. The rules below describe the shape the repo now
-has.
+projects up, adopts and keeps their setups current, and grows the marketplace by pull
+request. Its trials and the merge remain. The rules below describe the shape the repo
+now has.
 
 ## Commands
 

@@ -1,6 +1,6 @@
 ---
 name: steward
-description: Set a project up for agentic work, keep that setup current, and keep what a project teaches for every other project — its AGENTS.md, the marketplace skills it needs, a Plan/Do/Check trio per recurring task, and changes to those skills by pull request. Use whenever the user says "set this project up", "onboard this repo", "set up agents for this repo", "there's no AGENTS.md or CLAUDE.md here", "update the setup", that a skill or agent in this project's setup isn't loading, asks for a trio for one more task, or says "a skill got this wrong", "make this a marketplace skill", "add this to my skills for every project". Not for setting up a tool, service, dependency, dev server or CI, and not for remembering a preference or fact for Claude, which is memory. Also use when the project to set up is a folder with no code in it.
+description: Set a project up for agentic work, keep that setup current, and keep what a project teaches for every other project — its AGENTS.md, the marketplace skills it needs, a Plan/Do/Check trio per recurring task, and changes to those skills by pull request. Use whenever the user says "set this project up", "onboard this repo", "set up agents for this repo", "there's no AGENTS.md or CLAUDE.md here", "bring our existing setup onto the marketplace", "update the setup", that a skill or agent in this project's setup isn't loading, asks for a trio for one more task, or says "a skill got this wrong", "make this a marketplace skill", "add this to my skills for every project". Not for setting up a tool, service, dependency, dev server or CI, and not for remembering a preference or fact for Claude, which is memory. Also use when the project to set up is a folder with no code in it.
 allowed-tools:
   - Read(/${CLAUDE_PLUGIN_ROOT}/**)
   - Read(~/.local/share/marketplace-steward/**)
@@ -36,6 +36,7 @@ The project's own work is not its job; the project's trios do that.
 | The user wants | Job | Read first |
 |---|---|---|
 | A project or a folder set up for agentic work | Set up | `${CLAUDE_PLUGIN_ROOT}/references/set-up/procedure.md` |
+| A project with a setup of its own, such as a long `CLAUDE.md`, rules, skills, agents or hooks, brought onto the marketplace | Adopt | `${CLAUDE_PLUGIN_ROOT}/references/adopt.md` |
 | A trio for one more task the project repeats | Set up, phases 1, 3 and 5 to 8, for that trio only | `${CLAUDE_PLUGIN_ROOT}/references/set-up/procedure.md` |
 | A setup brought up to date: plugins that no longer exist, a skill or agent that doesn't load, trios from older templates, a project that has changed | Keep current | `${CLAUDE_PLUGIN_ROOT}/references/keep-current.md` |
 | A lesson kept for other projects: a skill that got something wrong, a rule worth having everywhere, a new skill | Contribute | `${CLAUDE_PLUGIN_ROOT}/references/contribute.md` |
@@ -44,10 +45,11 @@ The project's own work is not its job; the project's trios do that.
 Read the job's file before doing anything else, and follow it. It names the other
 files it needs, which sit beside it.
 
-**A project with `.claude/steward.json` was set up by the steward already**, so a
-request to set it up goes to keep current. A project with a setup of its own and no
-record goes to set up, which improves that setup. Adopting a setup, by giving every
-rule in it a home, is a job still being built. When the user asks for it, say so.
+**For a request to set a project up or to add a trio, what it already has decides the
+job.** With `.claude/steward.json`, the steward set it up already: setting it up means
+keep current, and a trio takes set-up's trio route. With a Claude setup of its own and
+no record, in `CLAUDE.md`, `AGENTS.md` or `.claude/`: adopt first, whatever was asked.
+With nothing, or only other tools' files: set up.
 
 When the request is ordinary work on the project, this skill doesn't apply: the
 project's trios and the conversation handle that.

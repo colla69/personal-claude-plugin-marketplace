@@ -24,7 +24,11 @@ the user's work or never happens at all, and what the user took out comes back.
     "AGENTS.md": { "sha256": "<hash>" }
   },
   "plugins": ["universal-clean-code@personal-claude-plugin-marketplace"],
-  "declined": ["<a proposed skill the user said no to, in one line>"]
+  "declined": ["<a proposed skill the user said no to, in one line>"],
+  "pending": [
+    { "path": ".claude/rules/api.md", "rule": "<the rule, quoted>",
+      "home": "<plugin:skill>", "pr": "<the pull request>" }
+  ]
 }
 ```
 
@@ -42,6 +46,9 @@ the user's work or never happens at all, and what the user took out comes back.
     every placeholder value, the `skills:` list and the `effort`, so a rebuild is exact.
 - **`plugins`** lists every plugin the steward installed, and **`declined`** every new
   skill the user said no to.
+- **`pending`** lists every rule an adoption left where it was because its home is a
+  contribution with an open pull request: the file it is in, the rule exactly as it
+  stands there, the skill or template it is going to, and the pull request.
 
 ## Using it
 

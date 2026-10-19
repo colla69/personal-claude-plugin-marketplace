@@ -25,11 +25,10 @@ the checklist, and the rules for the file.
 ## Phase 2 — Read the project
 
 1. **What exists already.** `AGENTS.md`, `CLAUDE.md`, `.claude/`, `.cursor/rules/`,
-   `.github/copilot-instructions.md`. If any of them is there, the project has a setup
-   of its own. Improve it: keep what is still true, delete nothing except the dead
-   keys phase 5 removes, and say in the report's Existing setup line what you kept.
-   Read `.cursor/rules/` and the Copilot file for content worth carrying into
-   `AGENTS.md`.
+   `.github/copilot-instructions.md`. A Claude setup of the project's own is adopted,
+   not set up over: the front door sends it to `../adopt.md`, which runs these phases
+   with its own additions. Other tools' files are read for content worth carrying into
+   `AGENTS.md`, and left as they are.
 2. **What the project is.** For a codebase, delegate the survey to
    `marketplace-steward:codebase-cartographer`, and give it the components you suspect
    from the manifest and the top-level tree. It holds the method, and its report has
@@ -90,9 +89,9 @@ a path-scoped rule in `.claude/rules/`.
 
 Read `trios.md` and the templates in `roles/`. For each trio you decided on, write
 `.claude/agents/<task>-plan.md`, `<task>-do.md` and `<task>-check.md`, and the skill
-that runs them, `.claude/skills/<task>/SKILL.md`. Write nothing for other tools. A
-file that already exists at one of those paths is the user's: leave it, and report
-the clash.
+that runs them, `.claude/skills/<task>/SKILL.md`. Write nothing for other tools. When
+a file already exists at any of a trio's four paths, it is the user's: leave it, and
+build the trio under a free task name or not at all, never in part. Report the clash.
 
 Then write the record, `.claude/steward.json`, as `../record.md` describes: every file
 phases 4 and 6 created, and every plugin phase 5 installed.
