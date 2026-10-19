@@ -3,10 +3,10 @@
 How the repo's documentation gets rewritten from scratch, as a project of its own. D and
 O numbers continue the ones in `plan.md` and `package-plan.md`.
 
-**Status:** draft, 2026-10-19, on branch `marketplace/one-package`, waiting for
-approval. It replaces the documentation half of step 7 of `package-plan.md`. The
-package plan's trials and merge come after it, because the documentation describes the
-steward, and both reach `main` together.
+**Status:** O7 to O11 answered on 2026-10-19; O12 open, and the plan waits for approval.
+On branch `marketplace/one-package`. It replaces the documentation half of step 7 of
+`package-plan.md`. The package plan's trials and merge come after it, because the
+documentation describes the steward, and both reach `main` together.
 
 ---
 
@@ -65,7 +65,7 @@ others.
 | `CONTRIBUTING.md` | 163 | The bar, anatomy, registrations, versions, dev loop, checks, commits | Rewritten short: how to contribute, and a pointer to the contributing pages. Its knowledge already lives in `plugin-shape.md` |
 | `CLAUDE.md` | 155 | Agent instructions, restating the cut, the style and the boundaries | Rewritten lean: what an agent can't infer, and where the rules live |
 | `.claude/rules/authoring.md` | 81 | Restates the cut and the style when skill files are edited | Cut to a pointer, or removed (O10) |
-| `docs/werkstatt/concept.md` | 829 | The design brief, for an agent | Split into the explanation pages; the original stays as a record (O8) |
+| `docs/werkstatt/concept.md` | 829 | The design brief, for an agent | Dissolved (D39): its explanations move into the docs, its rules into the product, and the file goes once every section has a home (section 8) |
 | `docs/werkstatt/plan.md`, `package-plan.md`, `audit.md` | 1237 | Working plans and the audit | Stay as records. Their decisions are gathered into one log |
 | `plugins/*/README.md` | 31–68 each | One per plugin, from the old template | Rewritten from a new template |
 | `LICENSE` | 201 | Apache 2.0 | Unchanged |
@@ -88,8 +88,9 @@ to the steward, as a contribution, not into a doc.
   fact about how this repo works lives on exactly one page. Where a doc needs a rule to
   make sense, it states the gist in one line and links to the home.
 - **The product never depends on the docs.** The plugin cache holds no `docs/`, so no
-  skill or reference may tell Claude to read a doc. Today `place-knowledge.md` yields
-  to `concept.md`, and that reference moves with the concept (step 1).
+  skill or reference may tell Claude to read a doc, or yield to one. Today
+  `place-knowledge.md` yields to `concept.md`. With the concept dissolved, the product
+  is the authority for its own rules, and the docs explain them.
 - **The house voice applies:**
   - each page opens with what it lets the reader do;
   - every rule carries its reason;
@@ -149,7 +150,7 @@ docs/
     development-loop.md
     writing-docs.md
     releases-and-migrations.md
-  werkstatt/                 the working records: the brief, the plans, the audit
+  werkstatt/                 the working records: the plans and the audit
 plugins/<name>/README.md     one per plugin
 ```
 
@@ -263,6 +264,22 @@ template lives with the others, in `author-skills/assets/`.
 | Which plugins exist | `.claude-plugin/marketplace.json` | `reference/plugins.md` |
 | The decisions | `docs/werkstatt/` plans | `explanation/decisions.md` |
 
+### The concept's sections and their new homes
+
+Nothing in `concept.md` is lost: each section gets a home before the file goes.
+
+| Section | Explanation goes to | Rules live in |
+|---|---|---|
+| §0 How to read this document | Nothing: it instructs the agent that did the restructuring | — |
+| §1 The problem, §2 the core principle, §10 the cycle | `explanation/the-idea.md` | — |
+| §3 Vocabulary | `reference/glossary.md` | — |
+| §4 The cut, the layers, placing knowledge | `explanation/layers.md`, `explanation/placing-knowledge.md` | `place-knowledge.md` |
+| §5 Plugins and the marketplace, §6 agents | `explanation/skills-and-roles.md`, `reference/plugins.md` | `plugin-shape.md`, `style.md` |
+| §7 The trio | `explanation/trios.md` | `set-up/roles/`, `set-up/trios.md` |
+| §8 Setting a project up, §9 the steward | `explanation/the-steward.md`, the guides | The steward's job files |
+| §11 Cross-cutting rules | `explanation/` pages, wherever the reason matters | `style.md`, `plugin-shape.md`, and `CLAUDE.md` for this repo's boundaries |
+| §12 Applying it to this marketplace, §13 open questions, §14 source trail | `explanation/decisions.md` | — |
+
 ## 9. Guards
 
 - **`check-catalog.mjs`** keeps the plugin list in sync. Its README mirror moves to
@@ -282,7 +299,7 @@ Every step is one commit.
 
 ### Step 0: This plan
 
-Approved, with O7 to O12 answered.
+Approved, with O7 to O12 answered. O7 to O11 are D38 to D42.
 
 ### Step 1: Foundations
 
@@ -291,12 +308,13 @@ Approved, with O7 to O12 answered.
 - `explanation/decisions.md`, gathered from the three plans and the concept's §13,
   because the explanation pages cite it.
 - `reference/glossary.md`.
-- The concept's split decided (O8), and the reference to it in `place-knowledge.md`
-  moved to its new home.
+- The references to `concept.md` in the product and the entry points changed to point
+  at the product's own files, so nothing depends on the concept before it goes.
 
 ### Step 2: Explanation
 
-The nine explanation pages, from the concept and the plans.
+The nine explanation pages, from the concept and the plans. When every section in the
+table above has its home, `concept.md` goes.
 
 ### Step 3: Reference
 
@@ -329,15 +347,22 @@ maintainer's own read of the landing page and the first tutorial.
 
 ---
 
-## 11. Open: yours to decide
+## 11. Decided, and open
+
+Decided on 2026-10-19:
+
+| # | Decision | What it changes |
+|---|---|---|
+| D38 | Plain Markdown on GitHub, with Mermaid diagrams and no build (O7) | No site generator; a site can come later, from the same files |
+| D39 | `concept.md` is not kept: "the concept can now live in the new documentation and agentic setup" (O8) | Its explanations go to the docs and its rules to the product and `CLAUDE.md`, by the table in section 8; then the file goes. Git history keeps the brief |
+| D40 | The full plugin table lives in `reference/plugins.md` (O9) | The root README lists the plugins by layer in one line each, and `check-catalog.mjs` checks the reference page instead of the README |
+| D41 | `.claude/rules/authoring.md` is cut to a pointer (O10) | It loads whenever a skill file is touched, and a pointer is all that should load there |
+| D42 | A docs check in CI, `scripts/check-docs.mjs`, with no dependencies (O11) | `CLAUDE.md`'s "one executable file" line becomes two |
+
+Open:
 
 | # | Question | Recommendation |
 |---|---|---|
-| O7 | Plain Markdown on GitHub, or a docs site built with something like MkDocs and GitHub Pages? | **Plain Markdown.** The repo has no build and no dependencies on purpose, and GitHub renders Markdown and Mermaid as they are. A site can come later, from the same files |
-| O8 | What happens to `concept.md`? | **Split it into the explanation pages, and keep the original in `docs/werkstatt/` as the record of the brief.** Its first line then says the explanation pages are current |
-| O9 | Where does the full plugin table live? | **In `reference/plugins.md`**, with more columns than today. The root README lists the plugins by layer in one line each, and `check-catalog.mjs` checks the reference page instead of the README |
-| O10 | What happens to `.claude/rules/authoring.md`? | **Cut it to five lines** that point to the style guide and the cut. It loads whenever a skill file is touched, and a pointer is all that should load there |
-| O11 | A docs check in CI? | **Yes**, a second zero-dependency script, `scripts/check-docs.mjs`. Broken links are the docs' silent failure, as missing registrations are the catalog's. `CLAUDE.md`'s "one executable file" line changes to two |
 | O12 | Where does the plan stop for you? | **After step 1 and after step 8.** Step 1 fixes the structure every later page sits in; step 8 is the whole result. Between them, one commit per step, as in the package plan |
 
 ## 12. Risks
