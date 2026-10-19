@@ -3,9 +3,11 @@
 How this marketplace gets from its current shape to the one in `concept.md`. Section
 numbers (§) refer to that file.
 
-**Status:** approved 2026-10-19, on branch `marketplace/restructure`. Steps 0 to 9
-are done, and the audit is in `audit.md`. Every step ends with a report and a stop
-until it is approved: "one at a time, with approval, no big rebuilds".
+**Status:** approved 2026-10-19 and merged to `main` the same day. Steps 0 to 8, the
+first trial of step 9, and the merge of step 10 are done, and the audit is in
+`audit.md`. The rest continues in `package-plan.md`: it replaces step 11, starts the
+step 9 trials over, and finishes step 10's migration. Every step ends with a report
+and a stop until it is approved: "one at a time, with approval, no big rebuilds".
 
 ---
 
@@ -401,10 +403,10 @@ They don't block step 10.
   have yet. In your own config its trios can't load their skills until the merge is
   pushed and the marketplace updated.
 
-### Step 11: The contributor (optional)
+### Step 11: The contributor (replaced)
 
-Create `marketplace-contributor`, labelled as a draft in its README (§9). It proposes
-skill changes on a branch for you to merge, and never touches a project's `AGENTS.md`.
+Replaced by `package-plan.md` (D27): one package sets projects up, keeps them current,
+and grows the marketplace, instead of an init plugin and a separate contributor.
 
 ---
 
