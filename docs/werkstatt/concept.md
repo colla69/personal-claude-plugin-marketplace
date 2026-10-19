@@ -632,8 +632,8 @@ Growing the knowledge, end to end:
 6. If the lesson had a project part, the steward writes it into the project's
    `AGENTS.md`.
 
-**Status: concept, not built.** The steps are in `package-plan.md`. Do not claim the
-steward exists.
+**Status: being built.** Set-up, keep-current and contributing exist; adoption comes
+next. The steps are in `package-plan.md`. Do not claim adoption exists.
 
 ---
 

@@ -94,7 +94,7 @@
     {
       "name": "marketplace-steward",
       "source": "./plugins/marketplace-steward",
-      "description": "Sets a project up for agentic work and keeps the setup current: writes its AGENTS.md, installs the skills it needs, and generates a Plan/Do/Check trio per recurring task. Still being built: adopting existing setups and contributing back come next.",
+      "description": "Sets a project up for agentic work and keeps the setup current: writes its AGENTS.md, installs the skills it needs, and generates a Plan/Do/Check trio per recurring task. Also turns a lesson into a skill change by pull request. Still being built: adopting existing setups comes next.",
       "category": "marketplace",
       "tags": ["bootstrap", "onboarding", "context", "contribution", "knowledge"]
     }

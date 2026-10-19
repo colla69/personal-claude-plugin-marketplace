@@ -25,14 +25,11 @@ before deciding.
 
 ## The guided path
 
-```
-/new-plugin
-```
-
-Places the knowledge in its layer, scaffolds the plugin from annotated templates, writes
-the skill in the house voice, and performs all three registrations. This is the
-recommended route; the rest of this document is what it does, for when you'd rather do
-it by hand.
+Tell the steward what you learned: "make a skill out of this", "this skill got X
+wrong". It places the knowledge in its layer, writes it in the house voice, performs
+all three registrations, has the change checked, and opens a pull request from its own
+clone. This is the recommended route; the rest of this document is what it does, for
+when you'd rather do it by hand.
 
 ## Anatomy
 

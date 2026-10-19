@@ -12,9 +12,10 @@ with that project's `AGENTS.md`. The concept is described in
 `docs/werkstatt/concept.md`.
 
 **The steward is being built; see `docs/werkstatt/package-plan.md`.** It replaced
-`marketplace-init`, and will replace this repo's own `.claude/` tooling too: one
-package that sets projects up, adopts and keeps their setups current, and grows the
-marketplace by pull request. The rules below describe the shape the repo now has.
+`marketplace-init` and this repo's own `.claude/` agents: one package that sets
+projects up, keeps their setups current, and grows the marketplace by pull request.
+Adopting existing setups comes next. The rules below describe the shape the repo now
+has.
 
 ## Commands
 
@@ -38,7 +39,7 @@ is the policy working; see Boundaries.**
 | `.claude-plugin/marketplace.json` | The catalog. Source of truth for the plugin list, and the one home of each plugin's `description` |
 | `plugins/<layer>-<topic>/` | One skill plugin: manifest, README, one skill |
 | `plugins/marketplace-<name>/` | A plugin that works on the marketplace itself (the steward). The only plugins with agents |
-| `.claude/` | Tooling for working on this repo. Never published as a plugin |
+| `.claude/` | This repo's own settings and path-scoped rules. Never published as a plugin |
 | `scripts/check-catalog.mjs` | Guards the three mirrored plugin lists |
 | `docs/werkstatt/` | The concept, the migration plan, and the audit |
 
@@ -126,31 +127,29 @@ in `docs/werkstatt/audit.md`.
 
 ## Working on this repo
 
-The agents in `.claude/agents/` are tooling for maintaining this marketplace. They are
-**not** plugins and must not be published as such: they are how the repo gets worked
-on, not what it ships.
+This repo is worked on with the steward, like any project that uses the marketplace.
+While the steward is being built, load its working copy for the session, with the
+plugin it depends on:
 
-| Agent | Scope | |
-|---|---|---|
-| `@marketplace-architect` | The whole set: layers, one home per rule, dependency direction, competing triggers | reads |
-| `@plugin-evaluator` | One plugin: validates, fires, costs, ablation | reads |
-| `@skill-evaluator` | One skill or role template: the prose craft and the cut | reads |
-| `@skill-writer` | Renders a decided standard into house form | writes |
+```bash
+claude --plugin-dir ./plugins/marketplace-steward --plugin-dir ./plugins/craft-review
+```
 
-`/new-plugin` in `.claude/skills/` is the authoring workflow: place the knowledge,
-scaffold the plugin, write the skill, and perform its three registrations. It lives
-here rather than in `plugins/` because it is how the marketplace gets built, not
-something the marketplace ships.
+| To | Use |
+|---|---|
+| Add or change a skill | The steward's contribute job: "make a skill out of this", "this skill got X wrong". It works in its own clone and opens a pull request, so pull this checkout after you merge |
+| Review a skill, a plugin, a change, or the whole set | `evaluate-skills` |
+| Write or edit by hand | `references/author-skills/style.md` and `references/place-knowledge.md` in the steward, read first |
 
 Writing a standard is two jobs, and only one of them can be delegated:
 
-- **Deciding what the standard is** stays in the main context: its layer, its home, the
-  judgement, the ranking, and what it yields to. That is a conversation about the
-  maintainer's taste.
-- **Rendering a decided standard into house form** is mechanical, and that is the
-  writer's job. The writer never invents substance, and it reports every judgement it
-  had to assume.
+- **Deciding what the standard is** is the maintainer's taste: its layer, its home, the
+  judgement, the ranking, and what it yields to. The steward asks before a new skill,
+  and every change waits for the maintainer's merge.
+- **Rendering a decided standard into house form** is mechanical. The writer never
+  invents substance, and it reports every judgement it had to assume.
 
-Writer and evaluator stay separate agents on purpose. Their lanes are opposite: one
-edits, and the other is locked to read-only in its frontmatter. Merging them would let
-the same context approve its own output, which is when review finds least.
+Writer and evaluator stay separate on purpose. The steward writes, and the contribution
+checker, read-only in its frontmatter, checks the change before its pull request.
+Merging the two would let the same context approve its own output, which is when review
+finds least.

@@ -78,7 +78,7 @@ startup, so a plugin installed mid-session isn't available until the next one.
 | `tools-vue` | `vue-conventions` | Vue 3 Composition API components, reactivity, composables |
 | `tools-vue-typescript` | `vue-typescript-conventions` | Typed props, emits and reactive inputs in Vue |
 | `tools-pinia` | `pinia-conventions` | Pinia stores, and server data in a query layer |
-| `marketplace-steward` | `steward`, `evaluate-skills` | Set a project up and keep it current: `AGENTS.md`, its skills, and its trios. Still being built |
+| `marketplace-steward` | `steward`, `evaluate-skills` | Set a project up, keep it current, and turn lessons into skill changes by pull request. Still being built |
 
 Each plugin has its own README: what it covers, when it fires, and what it leaves to
 other skills. Follow the plugin name to `plugins/<name>/README.md`.
@@ -149,14 +149,9 @@ most common reason a plugin loads but appears empty.
 
 ## Contributing
 
-Point Claude at the repo and run:
-
-```
-/new-plugin
-```
-
-It places the knowledge in its layer, scaffolds the plugin, writes the skill from an
-annotated template, and registers the plugin in all three places it has to appear. See
+Tell the steward what a project taught you: "make a skill out of this", "this skill
+got X wrong". It places the knowledge in its layer, writes the change, registers it in
+all three places it has to appear, has it checked, and opens a pull request. See
 [CONTRIBUTING.md](CONTRIBUTING.md) for the manual path, the house writing style, and the
 local development loop.
 

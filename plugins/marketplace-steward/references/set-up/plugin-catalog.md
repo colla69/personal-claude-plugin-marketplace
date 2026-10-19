@@ -1,9 +1,9 @@
 # Toolkit plugin catalog
 
 The signals that justify recommending each toolkit plugin. **This file is not the list
-of what exists** — `claude plugin list --available --json` is, and
-`plugin-sources.md`, beside this file, covers how to read it. This file answers the other
-question: given that a plugin exists, what in a repo earns it.
+of what exists** — `claude plugin list --available --json` is, and `plugin-sources.md`,
+beside this file, covers how to read it. This file answers the other question: given
+that a plugin exists, what in a repo earns it.
 
 The split matters because the two go stale differently. A plugin shipped last week is
 absent here and present in the live list, and the live list is right — recommend it on
@@ -146,8 +146,10 @@ the successor by its signal like any other plugin; an old name is not evidence o
 own. A dead key of another marketplace, or one in `.claude/settings.local.json`, is not
 the steward's to remove: report it.
 
-Set-up applies this in phase 5 and keep-current in its step 2. A row stays as long as
-some project might still carry the old name.
+Set-up applies this in phase 5 and keep-current in its step 2. A skill renamed inside
+a plugin gets a row too, as `plugin:old-skill` and `plugin:new-skill`, because a trio
+names it in its `skills:`. A row stays as long as some project might still carry the
+old name.
 
 | Old name | Now | Note |
 |---|---|---|

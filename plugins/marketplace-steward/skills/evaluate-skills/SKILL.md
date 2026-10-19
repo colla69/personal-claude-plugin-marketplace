@@ -108,8 +108,9 @@ growing a section beats a new plugin far more often than it seems.
 
 ## The leak check
 
-Before a change reaches the public marketplace, compare its diff with what identifies
-the project the lesson came from:
+Before a change reaches the public marketplace, compare everything it will publish,
+which is its diff, its commit messages, its branch name, and its pull request's title
+and description, with what identifies the project the lesson came from:
 
 - its folder name, package names and git remote;
 - the names of people, clients, systems and products in its `AGENTS.md`;
@@ -128,8 +129,9 @@ it as clean, because a clean leak check is what lets a change through.
 Use `review-work`'s report, and sort into it by what a finding does at runtime:
 
 - **Blocking: changes behaviour.** It won't fire, it fires where it shouldn't, a rule
-  has two homes, a lane isn't in the frontmatter, a named skill isn't declared, or
-  project details leak.
+  has two homes, a lane isn't in the frontmatter, a named skill isn't declared,
+  project details leak, or a plugin or skill name leaves the catalog without a row in
+  "Renamed and removed", so every project that enables it loses it without notice.
 - **Should fix: degrades behaviour.** No yield, uncosted rules, a skill across two
   layers, a report with no way to say "nothing found".
 - **Consider: reads worse.** Wording, order, length. Real, but last: only the first two

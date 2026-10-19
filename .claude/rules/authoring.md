@@ -4,9 +4,7 @@ paths:
   - "plugins/**/agents/*.md"
   - "plugins/**/references/**/*.md"
   - "plugins/**/README.md"
-  - ".claude/agents/*.md"
   - ".claude/rules/*.md"
-  - ".claude/skills/**/*.md"
 ---
 
 # Authoring a skill, role template, or plugin README

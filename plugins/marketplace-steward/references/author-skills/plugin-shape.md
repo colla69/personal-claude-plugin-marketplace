@@ -97,7 +97,7 @@ named `marketplace-<name>` with category `marketplace`. Three things differ.
 
 **It may ship agents.** It works on the knowledge system itself and has to exist before
 any project agent can, so its helpers can't be generated into a project. The steward
-ships the `codebase-cartographer`, and the contribution checker later. They follow the
+ships the `codebase-cartographer` and the `contribution-checker`. They follow the
 role shape in `style.md`, and a read-only one carries `disallowedTools: Write, Edit,
 NotebookEdit`.
 

@@ -5,8 +5,8 @@ How `marketplace-init` and the planned contributor become one package,
 keeps the setup current, and grows the marketplace. Section numbers (§) refer to
 `concept.md`. D and O numbers continue the ones in `plan.md`.
 
-**Status:** approved 2026-10-19, on branch `marketplace/one-package`. Steps 0 to 3 are
-done; step 4, set up and keep current, is done and waits for approval. The plan replaces
+**Status:** approved 2026-10-19, on branch `marketplace/one-package`. Steps 0 to 4 are
+done; step 5, contribute, is done and waits for approval. The plan replaces
 step 11 of `plan.md` and starts its step 9 trials over. Every step ends with a report
 and a stop until it is approved. Nothing on this branch names a project, so it merges as
 a normal PR.
@@ -81,7 +81,7 @@ All decided on 2026-10-19.
 | D34 | No lanes. The steward is the only writer, and the agents it ships are helpers, read-only by frontmatter | Supersedes the §9 rule of 2026-10-13 that the contributor never edits `AGENTS.md` |
 | D35 | Hooks, MCP servers, and commands that run a tool stay in the project. A hook that only injects text is knowledge, and is adopted like any rule | The mechanics row of adoption |
 | D36 | Two skills are visible: the front door, and `evaluate-skills`, which the checker preloads. The jobs and the rest of the knowledge are reference files at the plugin root, read by path | From M1. Section 4 |
-| D37 | No plugin option. The steward keeps its own clone of the marketplace in its data folder, and works in one worktree per contribution there | From M2 and M4. Section 4 |
+| D37 | No plugin option. The steward keeps its own clone of the marketplace in `~/.local/share/marketplace-steward/`, and works in one worktree per contribution there. Not in its data folder: Claude Code treats every file under `~/.claude` as sensitive and asks before each write, whatever a skill allows (found in step 5) | From M2 and M4, and step 5. Section 4 |
 
 ## 3. Open
 
@@ -148,11 +148,11 @@ order, so it may depend on every layer.
 3. **A new skill waits for your OK.** The steward shows its layer, its name and the
    public text, and waits. A change to an existing skill goes ahead.
 4. The steward works in its own clone of the marketplace, kept in
-   `${CLAUDE_PLUGIN_DATA}/marketplace` and cloned from the marketplace's GitHub source
-   on first use (D37). Each contribution gets a worktree there, on a new branch off
-   `origin/main`, so your own checkout is never touched. It writes, registers in all
-   three places, validates, runs `check-catalog.mjs`, commits, pushes, and removes the
-   worktree.
+   `~/.local/share/marketplace-steward/clone` and cloned from the marketplace's GitHub
+   source on first use (D37). Each contribution gets a worktree there, on a new branch
+   off `origin/main`, so your own checkout is never touched. It writes, registers in
+   all three places, validates, runs `check-catalog.mjs`, and commits. It pushes only
+   after the check, in step 6.
 5. The checker reviews the change: the house standard, the whole set, and the leak
    check, which compares the diff with the identifiers of the project the lesson came
    from, such as its folder and package names, its git remote, and the names in its
@@ -342,6 +342,44 @@ the `.claude/` agents and the `new-plugin` skill they replace. Two things the st
 review handed on: the steward passes the checker the strip list and the source
 project's identifiers, without which the leak check can't run, and the checker's own
 file holds only its lane and failure modes, not what `evaluate-skills` already says.
+
+What was done:
+
+- **`references/contribute.md`** runs a lesson end to end:
+  - place it, and ask only for a new skill;
+  - write it in a worktree of the steward's own clone, with a Renamed row for any
+    breaking change and a §6 case for any overruled placement;
+  - draft every public text, the commit message, the title and the description, before
+    the check;
+  - check it, then push the branch and open the pull request, or give the compare link
+    when `gh` is missing;
+  - remove the worktree and the local branch.
+
+  A leak, or a leak check that didn't run, stops the job before the push. Proposals
+  accepted at the end of set-up arrive already placed, and run once each.
+- **`agents/contribution-checker.md`**, read-only, preloads `evaluate-skills` and
+  `review-work`, and holds only its lane and failure modes. It reads and searches the
+  worktree, never the project, and checks the commit messages, the branch name and the
+  drafted texts as well as the diff.
+- **The front door** routes the contribute job, and a placement the user changed in a
+  pull request. Its description takes the contribution triggers, and leaves out
+  remembering a preference for Claude, which is memory. Its `allowed-tools` names each
+  command the procedure and the checker run, in the exact form they run it.
+- **D37's clone moved** to `~/.local/share/marketplace-steward/`. A probe showed that
+  every write under `~/.claude` is refused as sensitive whatever a skill allows, while
+  home-relative rules outside it work without prompts. A wildcard in the middle of a
+  rule works, and a command it doesn't cover is refused. So the git rules name
+  `fetch`, `worktree`, `add`, `commit -F`, `diff`, `log` and `push -u origin
+  contrib/*` only. A push to `main` written as `contrib/x:main` would still match, so
+  branch protection on `main` is the real guard.
+- **`evaluate-skills`'s leak check** covers everything a change will publish, and a
+  plugin or skill name that leaves the catalog without a Renamed row is Blocking.
+- **Retired:** the four agents in `.claude/agents/` and `/new-plugin`. `CLAUDE.md`, the
+  README and `CONTRIBUTING.md` now point to the steward.
+- `@skill-evaluator` reviewed the step before it was retired, and its findings are
+  fixed.
+- **The always-on cost is about 580 tokens** by `claude plugin details`. The front
+  door's description carries the triggers of four jobs.
 
 ### Step 6: Adopt
 
