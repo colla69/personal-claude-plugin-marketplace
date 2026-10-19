@@ -619,9 +619,9 @@ Growing the knowledge, end to end:
    where nothing fits (in the example, "reconcile with previous month", a new Craft
    skill). It flags a breaking change, such as a rename, a removal or a split: a
    project loses a renamed plugin without any notice.
-3. It writes the change on a new branch, in a worktree of the author's marketplace
-   clone so that the author's own checkout is never touched, and registers it in all
-   three places (section 11).
+3. It writes the change on a new branch, in a worktree of its own clone of the
+   marketplace, so that the author's checkout is never touched, and registers it in
+   all three places (section 11).
 4. The checker reviews it: the house standard, how it fits the whole set, and a leak
    check that compares the diff with the identifiers of the project the lesson came
    from.
