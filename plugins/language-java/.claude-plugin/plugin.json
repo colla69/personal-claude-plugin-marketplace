@@ -1,0 +1,8 @@
+{
+  "name": "language-java",
+  "displayName": "Java Conventions",
+  "author": { "name": "Andrea Colarieti Tosti" },
+  "license": "Apache-2.0",
+  "keywords": ["java", "jvm", "language"],
+  "dependencies": ["universal-clean-code"]
+}

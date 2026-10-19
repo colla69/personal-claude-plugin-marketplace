@@ -1,0 +1,8 @@
+{
+  "name": "tools-vue-typescript",
+  "displayName": "Vue with TypeScript",
+  "author": { "name": "Andrea Colarieti Tosti" },
+  "license": "Apache-2.0",
+  "keywords": ["vue", "typescript"],
+  "dependencies": ["tools-vue", "language-typescript"]
+}

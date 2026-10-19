@@ -1,121 +1,145 @@
 # personal-claude-plugin-marketplace
 
-A personal Claude Code plugin marketplace. One repo, six plugins, refined over time and
-reused across every project.
+A personal library of skills for agentic work, one skill per plugin, reused across every
+project. The skills hold the knowledge. The agents that use them are generated into each
+project by `marketplace-init`, from that project's own facts.
 
-Everything here is prose — standards written once, applied by both you and the subagents
-that read them. There is no code to run.
+Everything here is prose: standards written once, in plain language an LLM can follow.
+There is no code to run. Nothing in the structure assumes the work is code either. A
+skill can be about a report, a template or a natural language as much as about a
+codebase, even though every skill here is about code today.
+
+## How it fits together
+
+```
+        ┌──────────── Marketplace (knowledge, central) ◄───────────┐
+        │                                                            │
+   installs skills                                         updates / creates skills
+        │                                                            │
+        ▼                                                            │
+   Init agent ──► AGENTS.md ──► skills ──► Plan · Do · Check ──► Contributor
+   (dock on)                                   (work)                (grow)
+```
+
+- **Dock on.** `marketplace-init` reads a project and writes its `AGENTS.md`. It installs
+  the skills that follow from it and generates a trio for each kind of task the project
+  repeats.
+- **Work.** Plan proposes and waits for your OK. Do, the only writer, carries out the
+  plan you accepted. Check compares the result with that plan and sends gaps back to Do.
+  Plan and Check are read-only.
+- **Grow.** What one project learns goes back into the skills, so the next project has
+  it on day one. The contributor that will do this is a concept, not built yet.
+
+## The layers
+
+Every skill sits in one of four layers, from general to specific. The layer is the
+plugin's name prefix and its `category`.
+
+| Layer | Prefix | The question it answers | Examples |
+|---|---|---|---|
+| Universal | `universal-` | Does this apply to everything we do? | clean code, company guidelines |
+| Craft | `craft-` | How is this kind of work done? | reviewing, refactoring, a monthly report |
+| Language | `language-` | What is the work written in? | Java, TypeScript, German, an enterprise template |
+| Framework & Tools | `tools-` | Which concrete product is it done with? | Vue, Pinia, Excel, PDF |
+
+The more specific layer wins where two apply, and local convention wins over all of
+them: every skill ends by saying when to yield. Dependencies point only toward the
+general layers. In a trio, Framework & Tools skills go to Do alone, because Plan and
+Check judge the work, not the tool.
 
 ## Install
 
 ```bash
 claude plugin marketplace add colla69/personal-claude-plugin-marketplace
-claude plugin install project-init@personal-claude-plugin-marketplace --scope user
-claude plugin install clean-code@personal-claude-plugin-marketplace --scope user
+claude plugin install marketplace-init@personal-claude-plugin-marketplace --scope user
 ```
 
-The marketplace is named `personal-claude-plugin-marketplace`, so that suffix follows
-every plugin name in install commands and in `enabledPlugins`. In an interactive session
-`/plugin` gives you a picker instead.
+That is all a machine needs. In a project, run `/marketplace-init:init-agent-setup`. It
+installs the rest of what that project needs, at project scope, after you accept its
+plan.
 
 **Restart the session after installing.** Claude Code builds its skill registry at
-startup, so a plugin installed mid-session isn't invocable until the next one —
-`/project-init:init-agent-setup` will come back as an unknown skill otherwise.
+startup, so a plugin installed mid-session isn't available until the next one.
 
 ## The plugins
 
-| Plugin | Skill | Agent | What it's for |
-|---|---|---|---|
-| `project-init` | `init-agent-setup` | `codebase-cartographer` | Bootstrap a cold repo: context files, rules, plugin wiring |
-| `clean-code` | `clean-code` | `clean-code-reviewer` | The house readability standard, and an audit against it |
-| `code-review` | `review-changes` | `code-reviewer` | Correctness, security, tests, and API impact on a diff |
-| `developer` | `development-standards` | `developer` | Implements changes; the only agent in the trio that edits code |
-| `unit-testing` | `write-unit-tests` | `unit-tester` | Behavior-first tests that fail when the code is wrong |
-| `refactoring` | `refactor-safely` | `refactoring-specialist` | Behavior-preserving change in small verified steps |
-| `java-dev` | `java-conventions` | — | Java language conventions, version-aware |
-| `typescript-dev` | `typescript-conventions` | — | TypeScript language conventions |
-| `vue-dev` | `vue-conventions` | `vue-developer` | Vue 3 Composition API components, composables, stores |
+| Plugin | Skill | What it's for |
+|---|---|---|
+| `universal-clean-code` | `clean-code` | The house readability standard, ranked by the cost of leaving a problem |
+| `universal-work-discipline` | `work-discipline` | Read first, match what is there, hold scope, verify before "done" |
+| `craft-development` | `development-standards` | What careful work means for code: the neighbours, the diff, verification |
+| `craft-review` | `review-work` | Reviewing any work: findings with a cost, and what was checked |
+| `craft-code-review` | `review-changes` | Correctness, security, tests, and API impact on a diff |
+| `craft-unit-testing` | `write-unit-tests` | Behavior-first tests that fail when the code is wrong |
+| `craft-refactoring` | `refactor-safely` | Behavior-preserving change in small verified steps |
+| `language-java` | `java-conventions` | Java language conventions, version-aware |
+| `language-typescript` | `typescript-conventions` | TypeScript language conventions |
+| `tools-vue` | `vue-conventions` | Vue 3 Composition API components, reactivity, composables |
+| `tools-vue-typescript` | `vue-typescript-conventions` | Typed props, emits and reactive inputs in Vue |
+| `tools-pinia` | `pinia-conventions` | Pinia stores, and server data in a query layer |
+| `marketplace-init` | `init-agent-setup` | Set a project up: `AGENTS.md`, its skills, and its trios |
 
-Each plugin has its own README with what it does, when it fires, and what it
-deliberately does not do — follow the plugin name to `plugins/<name>/README.md`.
+Each plugin has its own README: what it covers, when it fires, and what it leaves to
+other skills. Follow the plugin name to `plugins/<name>/README.md`.
 
-## Invoking them
-
-Everything is namespaced by plugin:
-
-```
-/clean-code:clean-code                    invoke the skill
-@clean-code:clean-code-reviewer           invoke the agent
-```
-
-You will rarely type either. Claude triggers them on its own when a request matches the
-description — that is what the descriptions are tuned for, and why they read as trigger
-lists rather than summaries.
-
-**The skill / agent split matters.** A skill is a document that loads into the current
-context; an agent is a separate context that reads that document and does work. Pairing
-them means the standard is written once and both you and the subagent judge against the
-same text. Change `clean-code/SKILL.md` and every downstream reviewer changes with it.
-
-## Using project-init
-
-This is the one that pays for the rest. In a fresh repo:
+## Using marketplace-init
 
 ```
-/project-init:init-agent-setup
+/marketplace-init:init-agent-setup
 ```
 
-It surveys the repo, maps its components, proposes a plan, and — after you approve —
-writes:
+It reads the project, proposes a plan, and stops. Once you accept the plan, it writes:
 
-- `AGENTS.md` at the root: stack, commands, an entry-point map, cross-cutting rules
-- `<component>/AGENTS.md` per major component
-- A one-line `CLAUDE.md` beside each, containing `@AGENTS.md`
-- `.claude/rules/*.md` with `paths:` frontmatter for file-type conventions
-- `.claude/settings.json` declaring this marketplace and the plugins this project needs
+- `AGENTS.md` at the root, and in each component that earns one, with a one-line
+  `CLAUDE.md` beside each that contains `@AGENTS.md`;
+- path-scoped rules in `.claude/rules/`, for conventions that follow a file type;
+- `.claude/plugin-sources.json`, the sources this project may draw skills from. It asks
+  you once, as a checklist, and only if no policy exists yet;
+- `.claude/settings.json`, declaring this marketplace, with the skills installed at
+  project scope;
+- for each trio, `.claude/agents/<task>-plan.md`, `<task>-do.md` and `<task>-check.md`,
+  and the skill that runs them, `.claude/skills/<task>/SKILL.md`. You run a trio as
+  `/<task>`.
+
+It never touches git. You branch before running it and decide afterwards what to keep.
 
 **The content lives in `AGENTS.md`, deliberately.** It is the vendor-neutral file other
-coding agents read too, so the same context can serve GitHub Copilot and anything else
-later. `CLAUDE.md` is a one-line import beside it — needed because Claude Code
-lazy-loads nested `CLAUDE.md` when it opens a file in that subtree but never discovers a
-nested `AGENTS.md`. Content in one place, a thin adapter per tool.
+coding agents read too. `CLAUDE.md` is a one-line import beside it, because Claude Code
+lazy-loads a nested `CLAUDE.md` when it opens a file in that subtree but never discovers
+a nested `AGENTS.md`. The generated agents are Claude-only for now, and they name no
+model.
 
-`.claude/settings.json` is the other half of the point. The plugin recommendation isn't
-advice in a chat log — it's committed configuration that travels with the repo. Anyone
-who clones it and trusts the folder gets the same setup.
+## Invoking skills
 
-## Scope
-
-- **User scope** (`--scope user`, the default) — `project-init`, `clean-code`, and
-  anything else you want everywhere
-- **Project scope** (`--scope project`, writes to committed `.claude/settings.json`) —
-  stack-specific plugins like `vue-dev`
-
-Enabling a plugin in `.claude/settings.json` doesn't fetch it. On a new machine, run
-`claude plugin install <name>@personal-claude-plugin-marketplace` once.
+Every skill is namespaced by its plugin, as `/<plugin>:<skill>`, for example
+`/universal-clean-code:clean-code`. You will rarely type one. Claude loads a skill on
+its own when a request matches its description, which is why descriptions read as
+trigger lists rather than summaries. A generated agent preloads its skills through
+`skills:` in its frontmatter.
 
 ## Updates
 
 No plugin here declares a `version`. For a relative-path source in a git-hosted
 marketplace, Claude Code falls back to the source's commit SHA, so **every push is
-picked up as an update** — which is what you want for standards you refine continuously.
+picked up as an update**. That is what you want for standards you refine continuously.
 
 ## Layout
 
 ```
 .claude-plugin/marketplace.json     # the catalog
-plugins/<name>/
+plugins/<layer>-<topic>/
   .claude-plugin/plugin.json        # manifest — only .json goes in here
-  README.md                         # what this plugin is and doesn't do
-  skills/<skill>/SKILL.md           # skills, at the plugin root
+  README.md                         # what this plugin covers and leaves to others
+  skills/<skill>/SKILL.md           # the one skill, at the plugin root
   skills/<skill>/references/*.md    # detail loaded on demand
   skills/<skill>/assets/*           # templates the skill writes out
-  agents/<agent>.md                 # subagents, at the plugin root
-scripts/check-catalog.mjs           # keeps the three plugin lists in sync
+plugins/marketplace-<name>/         # works on the marketplace itself; may ship agents/
+scripts/check-catalog.mjs           # the plugin lists, layers and dependencies agree
+docs/werkstatt/                     # the concept, the migration plan, and the audit
 ```
 
-Only `plugin.json` lives inside `.claude-plugin/`. Putting `skills/` or `agents/` in
-there is the most common reason a plugin loads but appears empty.
+Only `plugin.json` lives inside `.claude-plugin/`. Putting `skills/` in there is the
+most common reason a plugin loads but appears empty.
 
 ## Contributing
 
@@ -125,8 +149,8 @@ Point Claude at the repo and run:
 /new-plugin
 ```
 
-It scaffolds the plugin, writes the skill and agent from annotated templates, and
-registers the plugin in all three places it has to appear. See
+It places the knowledge in its layer, scaffolds the plugin, writes the skill from an
+annotated template, and registers the plugin in all three places it has to appear. See
 [CONTRIBUTING.md](CONTRIBUTING.md) for the manual path, the house writing style, and the
 local development loop.
 

@@ -8,67 +8,95 @@
   },
   "plugins": [
     {
-      "name": "project-init",
-      "source": "./plugins/project-init",
-      "description": "Analyzes an unfamiliar codebase, writes layered CLAUDE.md context files, and recommends which toolkit plugins to enable.",
-      "category": "workflow",
-      "tags": ["bootstrap", "onboarding", "context", "analysis"]
-    },
-    {
-      "name": "code-review",
-      "source": "./plugins/code-review",
-      "description": "Structured review of a diff or branch: correctness, security, tests, and API surface.",
-      "category": "quality",
-      "tags": ["review", "diff", "pr"]
-    },
-    {
-      "name": "developer",
-      "source": "./plugins/developer",
-      "description": "Implements changes in any language, matching the project's conventions and verifying with its own commands. The only agent in the review trio that edits code.",
-      "category": "quality",
-      "tags": ["development", "implementation", "trio"]
-    },
-    {
-      "name": "clean-code",
-      "source": "./plugins/clean-code",
-      "description": "Your clean-code standard as a shared skill, plus a reviewer agent that audits code against it.",
-      "category": "quality",
+      "name": "universal-clean-code",
+      "source": "./plugins/universal-clean-code",
+      "description": "The house standard for readable, maintainable code: naming, function shape, error handling, comments, and dependency direction.",
+      "category": "universal",
       "tags": ["clean-code", "standards", "readability"]
     },
     {
-      "name": "unit-testing",
-      "source": "./plugins/unit-testing",
+      "name": "universal-work-discipline",
+      "source": "./plugins/universal-work-discipline",
+      "description": "How to work in a place someone else maintains: read first, match what is there, hold scope, and never call unverified work done.",
+      "category": "universal",
+      "tags": ["discipline", "scope", "verification"]
+    },
+    {
+      "name": "craft-development",
+      "source": "./plugins/craft-development",
+      "description": "What careful work means for code: the neighbours to read, a diff kept to the change, and verification with typecheck, tests and lint.",
+      "category": "craft",
+      "tags": ["development", "implementation", "verification"]
+    },
+    {
+      "name": "craft-review",
+      "source": "./plugins/craft-review",
+      "description": "How to review any piece of work: know what it is meant to do, read it as written, trace one case, and report only findings with a cost.",
+      "category": "craft",
+      "tags": ["review", "feedback", "findings"]
+    },
+    {
+      "name": "craft-code-review",
+      "source": "./plugins/craft-code-review",
+      "description": "Structured review of a diff or branch: correctness, security, tests, and API surface.",
+      "category": "craft",
+      "tags": ["review", "diff", "pr"]
+    },
+    {
+      "name": "craft-unit-testing",
+      "source": "./plugins/craft-unit-testing",
       "description": "Writes and strengthens unit tests: behavior-first cases, edge coverage, no assertion padding.",
-      "category": "quality",
+      "category": "craft",
       "tags": ["testing", "unit-tests", "tdd"]
     },
     {
-      "name": "refactoring",
-      "source": "./plugins/refactoring",
+      "name": "craft-refactoring",
+      "source": "./plugins/craft-refactoring",
       "description": "Behavior-preserving refactors executed in small, verifiable steps with a green test suite as the gate.",
-      "category": "quality",
+      "category": "craft",
       "tags": ["refactoring", "cleanup", "tech-debt"]
     },
     {
-      "name": "java-dev",
-      "source": "./plugins/java-dev",
+      "name": "language-java",
+      "source": "./plugins/language-java",
       "description": "Java language conventions: version-aware idioms, nullability, immutability, exceptions, and resource handling.",
       "category": "language",
       "tags": ["java", "jvm", "language"]
     },
     {
-      "name": "typescript-dev",
-      "source": "./plugins/typescript-dev",
+      "name": "language-typescript",
+      "source": "./plugins/language-typescript",
       "description": "TypeScript language conventions: strictness, narrowing over assertions, discriminated unions, and async discipline.",
       "category": "language",
       "tags": ["typescript", "language"]
     },
     {
-      "name": "vue-dev",
-      "source": "./plugins/vue-dev",
-      "description": "Vue 3 / Composition API conventions and a developer agent for components, composables, and stores.",
-      "category": "framework",
+      "name": "tools-vue",
+      "source": "./plugins/tools-vue",
+      "description": "Vue 3 Composition API conventions for components, reactivity, composables, and templates.",
+      "category": "tools",
       "tags": ["vue", "frontend", "typescript"]
+    },
+    {
+      "name": "tools-vue-typescript",
+      "source": "./plugins/tools-vue-typescript",
+      "description": "TypeScript in Vue 3: props and emits typed through the generic form, and typed reactive inputs for composables.",
+      "category": "tools",
+      "tags": ["vue", "typescript"]
+    },
+    {
+      "name": "tools-pinia",
+      "source": "./plugins/tools-pinia",
+      "description": "Pinia store conventions: setup-syntax stores, and server data in a query layer rather than a store.",
+      "category": "tools",
+      "tags": ["pinia", "vue", "state"]
+    },
+    {
+      "name": "marketplace-init",
+      "source": "./plugins/marketplace-init",
+      "description": "Sets a project up for agentic work: writes its AGENTS.md, installs the marketplace skills it needs, and generates a Plan/Do/Check trio per recurring task.",
+      "category": "marketplace",
+      "tags": ["bootstrap", "onboarding", "context", "analysis"]
     }
   ]
 }

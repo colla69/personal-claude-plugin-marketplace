@@ -1,0 +1,8 @@
+{
+  "name": "tools-pinia",
+  "displayName": "Pinia",
+  "author": { "name": "Andrea Colarieti Tosti" },
+  "license": "Apache-2.0",
+  "keywords": ["pinia", "vue", "state"],
+  "dependencies": ["tools-vue"]
+}

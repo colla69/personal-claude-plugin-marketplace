@@ -1,0 +1,7 @@
+{
+  "name": "universal-clean-code",
+  "displayName": "Clean Code",
+  "author": { "name": "Andrea Colarieti Tosti" },
+  "license": "Apache-2.0",
+  "keywords": ["clean-code", "standards"]
+}

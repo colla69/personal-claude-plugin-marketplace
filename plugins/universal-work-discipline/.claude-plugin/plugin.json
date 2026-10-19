@@ -1,0 +1,7 @@
+{
+  "name": "universal-work-discipline",
+  "displayName": "Work Discipline",
+  "author": { "name": "Andrea Colarieti Tosti" },
+  "license": "Apache-2.0",
+  "keywords": ["discipline", "scope", "verification"]
+}
