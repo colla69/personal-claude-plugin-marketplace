@@ -45,6 +45,12 @@ A task the project does once is a prompt, not a trio.
    and what makes a finding.
 5. **`universal-work-discipline:work-discipline` goes to Do, always.** It holds the
    standards behind Do's failure modes.
+6. **`language-simple-english:simple-english` goes to all three, always, unless the
+   trio writes in another language.** Each role writes for a person: the plan, the
+   work, the report.
+7. **`craft-unit-testing:write-unit-tests` goes to Do wherever Do changes code's
+   behavior and a test runner is configured,** such as in `change`. It holds the red,
+   green, refactor cycle that `development-standards` makes the way code changes.
 
 The reference case is the monthly report: Plan takes the company vision and the
 enterprise templates; Do takes formatting the monthly report, Excel, PDF and the

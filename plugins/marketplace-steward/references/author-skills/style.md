@@ -171,8 +171,8 @@ guarantees to what really is one: frontmatter, permission rules, and a person's 
 ## Structure
 
 Sections follow the order someone works in. `write-unit-tests` goes: before writing
-anything → what to test → test shape → mocking → verify. That is the sequence of the
-task, not a taxonomy of testing.
+anything → test first → what to test → test shape → mocking → verify. That is the
+sequence of the task, not a taxonomy of testing.
 
 Target 60–160 lines for a skill. Past that, move detail into `references/`. A reference
 file costs nothing until the skill tells the agent to read it, so the skill should say

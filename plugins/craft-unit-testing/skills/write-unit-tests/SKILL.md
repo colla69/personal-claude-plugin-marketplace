@@ -1,6 +1,6 @@
 ---
 name: write-unit-tests
-description: Write or strengthen unit tests — behavior-first cases, meaningful edge coverage, and assertions that actually fail when the code is wrong. Use whenever the user asks for tests, mentions coverage, says code is untested, wants TDD, or has just written a function that needs verifying. Also use when asked to review whether existing tests are any good.
+description: Write or strengthen unit tests — test first for new behavior, in a red, green, refactor cycle, with behavior-first cases, meaningful edge coverage, and assertions that actually fail when the code is wrong. Use whenever the user asks for tests, mentions coverage, says code is untested, wants TDD, "test-driven" or "red-green-refactor", or has just written a function that needs verifying. Also use before implementing a feature or a fix in code that has a test runner, since the test comes first, and when asked to review whether existing tests are any good.
 ---
 
 # Write unit tests
@@ -15,6 +15,36 @@ coverage percentage, arrangement — is secondary to that.
 2. Identify the runner and how to run a single file. You will run the tests, not just
    write them.
 3. Check for existing fixtures, factories, and builders before writing new setup.
+
+## Test first
+
+When the work writes the code as well as its tests, new behavior and a bug fix start
+with a failing test. A test written after the code checks what the code does, not what
+it should do, and nobody has seen it fail. Tests added to code that already exists are
+proved the other way, by breaking the code, as Verify says.
+
+Drive one behavior at a time:
+
+1. **Red.** Write one test for the next behavior, through the public interface. Run it
+   and watch it fail for the reason you expect: the behavior is missing, not a typo or
+   a missing import. A test that passes on its first run tests nothing new.
+2. **Green.** Write the least code that makes it pass. Leave out every case the test
+   does not ask for: the next test will ask for it, or nobody needed it.
+3. **Refactor.** With every test green, tidy what the step left behind, and run the
+   tests after each change. Never restructure while a test is red, because a failure
+   then has two possible causes.
+
+Then take the next behavior. Do not write all the tests first and all the code after.
+Tests written in a batch describe the design you imagined before any of it ran, and
+they pin its shape instead of its behavior.
+
+For a bug, the first red test is the reproduction. It fails the way the report says,
+and it stays as the regression test.
+
+Two kinds of work don't start with a test. A spike, written to learn how something
+behaves, is thrown away, and the tests come with the version that is kept. A new view
+judged by eye keeps its logic in a unit the tests can drive, and the rest is checked by
+looking. Say which applied, rather than writing the tests afterwards.
 
 ## What to test
 
@@ -74,6 +104,8 @@ the tests you were asked to add.
 ## Tests added — <scope>
 
 **Run:** `<command>` — <n passed, n failed>
+**Test first:** <yes, each test seen failing before its code / no, and why / not
+applicable: the code already existed>
 
 ### Covered
 - <behavior> — <test name>

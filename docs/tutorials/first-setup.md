@@ -100,7 +100,7 @@ what happened. Expect something like this:
 | Section | For `tally` |
 |---|---|
 | **Written** | `AGENTS.md` and `CLAUDE.md`, `.claude/settings.json`, `.claude/plugin-sources.json`, the trios, `.claude/steward.json` |
-| **From your toolkit** | `universal-clean-code`, `craft-development`, `craft-code-review`, `craft-refactoring`, `craft-unit-testing` for the test runner, `language-typescript` for `tsconfig.json`, and what they pull in |
+| **From your toolkit** | `universal-clean-code`, `craft-development`, `craft-code-review`, `craft-refactoring`, `craft-unit-testing` for the test runner, `language-typescript` for `tsconfig.json`, `language-simple-english` because every project has text to read, and what they pull in |
 | **Gap-fills** | Probably `typescript-lsp` from Anthropic's marketplace, for go-to-definition and real diagnostics, which no toolkit skill gives. With no gap to fill, the report says so in one line |
 | **Trios** | `change` and `refactor`, and `test`, because a test runner is configured |
 | **Installed** | The same installs as a block to paste on another machine |

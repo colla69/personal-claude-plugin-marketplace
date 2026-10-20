@@ -20,6 +20,9 @@ Names carry most of the readability load, and they're the cheapest thing to get 
   `process`, `handle`. If a name needs one of these, the thing usually needs splitting.
 - Keep one word per concept across the codebase. `fetch`, `get`, `retrieve`, and `load`
   should not all mean the same operation.
+- Prefer a name you can search for. A distinctive name finds every use in one search; a
+  generic one finds hundreds, and whoever changes it next, a person or an agent, misses
+  a caller.
 
 ## Function shape
 
@@ -40,7 +43,9 @@ Names carry most of the readability load, and they're the cheapest thing to get 
 - Never swallow an error to make a signature simpler. An empty `catch` is a bug with a
   delay fuse.
 - Error messages are for whoever is on call at 3am. Include what was attempted, what was
-  received, and the identifier needed to find the record.
+  received, and the identifier needed to find the record. When the remedy is known, say
+  it: "No config at `<path>`. Run `init` to create one." ends the search that "config
+  not found" starts.
 - Be consistent about the mechanism. Exceptions or result types, one per layer, not both
   interleaved.
 

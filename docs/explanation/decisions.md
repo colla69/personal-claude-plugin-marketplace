@@ -14,6 +14,7 @@ the reason it was made is often the reason its replacement has the shape it has.
 - [The documentation: D38 to D45](#the-documentation-d38-to-d45)
 - [Models: D46](#models-d46)
 - [The repo's own setup: D47 and D48](#the-repos-own-setup-d47-and-d48)
+- [Borrowed ideas: D49 to D52](#borrowed-ideas-d49-to-d52)
 - [Still open](#still-open)
 
 ## The author's statements
@@ -116,6 +117,20 @@ Decided on 2026-10-20, when the token cost of the setup came under review.
 |---|---|---|---|
 | D47 | The repo has no path-scoped rules; `CLAUDE.md` alone points to the files that hold the rules | Both rules repeated the table `CLAUDE.md` already loads in every session, so they cost tokens and a second place to keep in sync | Holds |
 | D48 | The repo keeps one agent of its own, `change-reviewer`, read-only, preloading `evaluate-skills` and `review-work` | A change made by hand is reviewed by a separate agent, which otherwise had to be briefed from scratch each time. It costs a description only in sessions in this repo | Holds; starts on `opus` until measuring says otherwise |
+
+## Borrowed ideas: D49 to D52
+
+Decided on 2026-10-20, after comparing the marketplace with a larger skill library that
+installs one person's whole workflow everywhere. Its lifecycle, state files and quality
+gates stayed out: the steward chooses per project, and they assume one way of working
+in every one. Plain English is the exception, because every project has text to read.
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D49 | A Language skill for English, `language-simple-english`, after Simplified Technical English, installed in every project and given to every role | Every project has text a person reads, and every role writes for one. "I want it everywhere" | Holds, in the catalog and rule 6 of `set-up/trios.md` |
+| D50 | Plan looks facts up itself, and asks only what the user alone can answer, each decision with the answer it recommends | A question about a fact Plan could look up costs the user a round trip | Holds, in `roles/plan.md` |
+| D51 | `clean-code` asks for names a search can find, and error messages that name the remedy | Whoever changes the code next, often an agent, finds callers by searching and acts on what an error says | Holds |
+| D52 | Development is test first: `write-unit-tests` holds the red, green, refactor cycle, and `development-standards` makes it the way code changes where a test runner exists | A test written after the code has never been seen to fail. "That is actually a very good way to do things" | Holds; `craft-development` depends on `craft-unit-testing`, unconditionally, because the skill carries the rule and reports a missing runner; rule 7 of `set-up/trios.md` gives it to Do |
 
 ## Still open
 
