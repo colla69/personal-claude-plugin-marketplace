@@ -33,7 +33,7 @@ first trials will show where it behaves otherwise.
 
 | Local copy | Means |
 |---|---|
-| **Moved** | The rule now lives in `AGENTS.md` or a project skill, and was taken out of its old file |
+| **Moved** | The rule now lives in `CLAUDE.md` or a project skill, and was taken out of its old file |
 | **Removed** | Its home already says it: a toolkit skill that is installed and preloaded by the roles that do that work, or a role template now in a trio. Dead keys, hooks that only injected text, and dead or machine-only rules go too |
 | **Pending** | Its home is a pull request. It stays where it is until you merge, and keep-current removes it then |
 | **Stays** | It is project mechanics, such as a hook or a permission, or no live home fits it yet |

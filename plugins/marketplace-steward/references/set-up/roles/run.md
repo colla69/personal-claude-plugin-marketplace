@@ -45,5 +45,5 @@ Leave out a section that would be empty.
 ## Where this yields
 
 - **To the user.** They can stop the run at any step, or change the plan before Do.
-- **To the project.** A rule in `AGENTS.md` about how this task runs wins over this
+- **To the project.** A rule in `CLAUDE.md` about how this task runs wins over this
   file.

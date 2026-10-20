@@ -33,8 +33,8 @@ first trials will show where it behaves otherwise.
 | `.claude/agents/<task>-check.md` | Check, read-only |
 | `.claude/skills/<task>/SKILL.md` | The skill that runs them as `/<task>` |
 
-The trio gets its row in the Trios table of `AGENTS.md`, and the record gains its four
-files.
+The trio gets its row in the Trios table of the root `CLAUDE.md`, and the record gains
+its four files.
 
 ## If a name is taken
 

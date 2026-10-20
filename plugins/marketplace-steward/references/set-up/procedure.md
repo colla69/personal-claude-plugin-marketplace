@@ -1,6 +1,6 @@
 # Set up
 
-Turn a project into a working setup, in a fixed order: read it, write the `AGENTS.md`
+Turn a project into a working setup, in a fixed order: read it, write the `CLAUDE.md`
 that holds what reading cannot tell, install the skills that follow from it, and create
 the trios that use those skills. Each phase builds on the one before it.
 
@@ -24,11 +24,11 @@ the checklist, and the rules for the file.
 
 ## Phase 2 — Read the project
 
-1. **What exists already.** `AGENTS.md`, `CLAUDE.md`, `.claude/`, `.cursor/rules/`,
-   `.github/copilot-instructions.md`. A Claude setup of the project's own is adopted,
-   not set up over: the front door sends it to `../adopt.md`, which runs these phases
-   with its own additions. Other tools' files are read for content worth carrying into
-   `AGENTS.md`, and left as they are.
+1. **What exists already.** `CLAUDE.md`, `AGENTS.md`, `.claude/`, `.cursor/rules/`,
+   `.github/copilot-instructions.md`. A setup of the project's own, in `CLAUDE.md`,
+   `AGENTS.md` or `.claude/`, is adopted, not set up over: the front door sends it to
+   `../adopt.md`, which runs these phases with its own additions. Other tools' files
+   are read for content worth carrying into `CLAUDE.md`, and left as they are.
 2. **What the project is.** For a codebase, delegate the survey to
    `marketplace-steward:codebase-cartographer`, and give it the components you suspect
    from the manifest and the top-level tree. It holds the method, and its report has
@@ -59,13 +59,12 @@ too, it calls for a new skill. Don't stop the setup for it. Finish the other pha
 then propose every such skill together as the last part of the report, as section 5 of
 `../place-knowledge.md` says, and wait for the answer.
 
-## Phase 4 — Write AGENTS.md
+## Phase 4 — Write CLAUDE.md
 
 Read `context-files.md` first: the layout, the templates, what to leave out, and the
-size limits. Write the content in `AGENTS.md`, with a one-line `CLAUDE.md` containing
-`@AGENTS.md` beside it, at the root and in every component that earned one. The root
-lists the trios. A convention that follows a file type rather than a directory goes in
-a path-scoped rule in `.claude/rules/`.
+size limits. Write the content in `CLAUDE.md`, at the root and in every component that
+earned one. Write no `AGENTS.md`. The root lists the trios. A convention that follows a
+file type rather than a directory goes in a path-scoped rule in `.claude/rules/`.
 
 ## Phase 5 — Install the skills
 
@@ -93,7 +92,7 @@ that runs them, `.claude/skills/<task>/SKILL.md`. Write nothing for other tools.
 a file already exists at any of a trio's four paths, it is the user's: leave it, and
 build the trio under a free task name or not at all, never in part. Report the clash.
 A trio added to a project already set up also gets its row in the Trios table of the
-root `AGENTS.md`. That is one line, so it goes in whoever wrote the file.
+root `CLAUDE.md`. That is one line, so it goes in whoever wrote the file.
 
 Then write the record, `.claude/steward.json`, as `../record.md` describes: every file
 phases 4 and 6 created, and every plugin phase 5 installed.
@@ -109,9 +108,11 @@ Do not declare success without checking:
 2. **What you wrote parses.** Every JSON file is valid. The frontmatter of every agent,
    skill and `.claude/rules/*.md` file parses, and every rule's `paths:` globs match at
    least one real file. A rule whose globs match nothing never announces itself.
-3. **The pairing holds.** Every `AGENTS.md` has a `CLAUDE.md` beside it containing the
-   import. Without it the file never loads, and nothing reports that.
-4. **The budget holds.** Every `AGENTS.md` is within the limits in `context-files.md`.
+3. **No context is left in an `AGENTS.md`.** Every one the project had is folded into
+   its `CLAUDE.md`, as `context-files.md` says, or waits in the report for its rules'
+   homes. An `AGENTS.md` that nothing imports never loads, and nothing reports that.
+4. **The budget holds.** Every `CLAUDE.md` you wrote or folded into is within the
+   limits in `context-files.md`.
 5. **The record is complete.** Every file you created is in it, every hash matches
    the file on disk, and no file that existed before you came is listed.
 

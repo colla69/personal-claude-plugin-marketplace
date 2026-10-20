@@ -4,62 +4,54 @@ How project context actually loads, and what to put where.
 
 ## Contents
 
-- [Vendor-neutral layout](#vendor-neutral-layout)
+- [CLAUDE.md holds the context](#claudemd-holds-the-context)
+- [An AGENTS.md found in the project](#an-agentsmd-found-in-the-project)
 - [The tiers](#the-tiers)
 - [Which components earn a file](#which-components-earn-a-file)
-- [Root AGENTS.md template](#root-agentsmd-template)
-- [Component AGENTS.md template](#component-agentsmd-template)
+- [Root CLAUDE.md template](#root-claudemd-template)
+- [Component CLAUDE.md template](#component-claudemd-template)
 - [Path-scoped rules](#path-scoped-rules)
 - [Project skills](#project-skills)
 - [What to leave out](#what-to-leave-out)
 
-## Vendor-neutral layout
+## CLAUDE.md holds the context
 
-**`AGENTS.md` holds the content. `CLAUDE.md` is a one-line import of it.**
+**Write the content in `CLAUDE.md`, at the root and in each component directory that
+earns a file. Write no `AGENTS.md`.** The setup is Claude only, and Claude Code reads
+`CLAUDE.md`. It finds a nested `CLAUDE.md` and loads it when it opens a file in that
+subtree, but it never finds an `AGENTS.md` by itself. A second file only for other
+tools costs an import line in every directory, and one file more to keep true.
 
-Write the substance once, in `AGENTS.md` — at the root and in each component directory.
-Beside each one, write a `CLAUDE.md` containing exactly:
+Other tools read their own files. GitHub Copilot reads
+`.github/copilot-instructions.md`, and Cursor reads `.cursor/rules/`. Leave those files
+as they are.
 
-```markdown
-@AGENTS.md
-```
+## An AGENTS.md found in the project
 
-**Why both.** Claude Code reads `CLAUDE.md`, not `AGENTS.md`. It discovers nested
-`CLAUDE.md` files and loads them when it opens a file in that subtree — but it never
-discovers a nested `AGENTS.md`. A component directory holding only `AGENTS.md` is
-invisible: the content exists and never loads. The one-line `CLAUDE.md` is what makes
-the lazy loading work.
+Claude Code loads an `AGENTS.md` only when a `CLAUDE.md` imports it with a line such as
+`@AGENTS.md`. An import resolves against the file that holds it, so `client/CLAUDE.md`
+holding `@AGENTS.md` imports `client/AGENTS.md`, not the root one.
 
-Relative imports resolve against the file containing them, so `client/CLAUDE.md` holding
-`@AGENTS.md` imports `client/AGENTS.md`, not the root one.
+- **An `AGENTS.md` that a `CLAUDE.md` imports** was already in force, so move it whole.
+  Put its content into that `CLAUDE.md` in place of the import line, keep every other
+  line of the `CLAUDE.md` where it was, and remove the `AGENTS.md`. Nothing is placed
+  again, and nothing is lost.
+- **An `AGENTS.md` that nothing imports** never loaded. Its rules are not yet in force,
+  so they go through adoption, rule by rule, as `../adopt.md` says, and the file goes
+  once every rule in it has a home.
 
-Anything genuinely Claude-specific goes *below* the import in `CLAUDE.md`, never in
-`AGENTS.md`:
-
-```markdown
-@AGENTS.md
-
-## Claude Code
-
-Use plan mode for changes under `src/billing/`.
-```
-
-A symlink (`ln -s AGENTS.md CLAUDE.md`) does the same job without a second file, but
-needs Administrator rights or Developer Mode on Windows. Prefer the import.
-
-Other agents read their own files — GitHub Copilot reads
-`.github/copilot-instructions.md`. Set-up writes for Claude only: leave those files as
-they are. `AGENTS.md` is the vendor-neutral home they can be pointed at later, so the
-content never needs a second copy.
+Before you remove an `AGENTS.md` whose working copy differs from git's `HEAD`, back it
+up by the rule in step 5 of `../adopt.md`. Then update the record, as "Using it" in
+`../record.md` says for a file folded into another.
 
 ## The tiers
 
 | File | When it loads | Use it for |
 |---|---|---|
-| Root `AGENTS.md` + `CLAUDE.md` importing it | Every session, always | Stack, commands, map, cross-cutting rules |
+| Root `CLAUDE.md` | Every session, always | Stack, commands, map, cross-cutting rules |
 | `.claude/rules/*.md` with `paths:` | Only when a matching file is read | Language- or area-specific conventions |
 | `.claude/rules/*.md` without `paths:` | Every session | Same priority as root — use sparingly |
-| `<subdir>/AGENTS.md` + `<subdir>/CLAUDE.md` importing it | When a file in that subtree is read | Per-component detail |
+| `<subdir>/CLAUDE.md` | When a file in that subtree is read | Per-component detail |
 
 The lazy-loading of nested files is the whole reason to split. A component file costs
 nothing until someone actually opens a file in that directory, so you can afford to be
@@ -74,7 +66,7 @@ detail, never reverse a root rule.
 A component is a unit someone would think about separately: a package or an app in a
 monorepo; `api/`, `domain/` and `infra/` in a layered backend; `components/`,
 `composables/`, `stores/` and `views/` in a Vue app; the templates and the data
-sources in a reporting folder. It earns its own `AGENTS.md` when it has a distinct
+sources in a reporting folder. It earns its own `CLAUDE.md` when it has a distinct
 purpose, a distinct set of conventions, or a boundary others shouldn't cross.
 
 **Let that test set the count, not a target.** A directory earns a file when there is
@@ -84,7 +76,7 @@ twelve; a small service has one, and the root covers it. Writing past the point 
 you have something worth saying produces files that restate the directory listing, and
 those load into every session in that subtree forever.
 
-## Root AGENTS.md template
+## Root CLAUDE.md template
 
 Target 80–160 lines. Hard ceiling 200. For a folder without code, Stack and Commands
 become what the work is made with and how it gets checked. Leave out any section that
@@ -150,10 +142,9 @@ violation is expensive.>
 | <task> | `/<task>` | `<task>-plan`, `<task>-do`, `<task>-check` |
 ```
 
-## Component AGENTS.md template
+## Component CLAUDE.md template
 
-Target 30–70 lines. Lives at the component root, e.g. `src/billing/AGENTS.md`, with a
-one-line `src/billing/CLAUDE.md` beside it.
+Target 30–70 lines. Lives at the component root, e.g. `src/billing/CLAUDE.md`.
 
 ```markdown
 # <Component name>
@@ -234,7 +225,7 @@ Leave out:
   context
 - Anything already stated in an enabled plugin's skill
 - **Facts about this machine**, such as where a tool is installed or that credentials
-  aren't set up yet. `AGENTS.md` is committed: on the next machine those lines are
+  aren't set up yet. `CLAUDE.md` is committed: on the next machine those lines are
   wrong, and on this one they go stale the day someone fixes them
 
 Keep:

@@ -17,9 +17,10 @@ that symptom, and say in the report which checks you didn't run.
 
 Refresh every marketplace and read the live inventory, as `set-up/plugin-sources.md`
 says, and read `.claude/plugin-sources.json` and `.claude/steward.json`. A project with
-no `AGENTS.md` and no policy file was never set up: that is the set-up or the adopt job,
-as the front door decides, not this one. A project with no record was set up before the
-record existed, and step 4 rebuilds nothing in it.
+no policy file and no `AGENTS.md`, which setups before the record wrote, was never set
+up: that is the set-up or the adopt job, as the front door decides, not this one. A
+project with no record was set up before the record existed, and step 4 rebuilds
+nothing in it.
 
 ## 2. Plugin keys that no longer exist
 
@@ -58,7 +59,16 @@ Read the manifests and the top-level tree again, against the signals in
 Never add back what the record shows the user removed, and never propose a skill they
 declined.
 
-## 6. AGENTS.md lines that are no longer true
+## 6. AGENTS.md from an older setup
+
+Earlier setups wrote the context into `AGENTS.md`, with a `CLAUDE.md` beside it that
+only imports it. Fold every `AGENTS.md` that a `CLAUDE.md` imports into that
+`CLAUDE.md`, as "An AGENTS.md found in the project" in `set-up/context-files.md` says,
+whoever wrote it: the content moves whole, so a user's edit moves with it. An
+`AGENTS.md` that nothing imports never loaded. Leave it, and report it under
+Unverified, because its rules need adoption before they are in force.
+
+## 7. CLAUDE.md lines that are no longer true
 
 Check what can be checked: every path in a map or a "start here" line exists, and every
 command in the commands table still exists where it says, as a script in the manifest
@@ -67,7 +77,7 @@ a script that was renamed, fix that line, whoever wrote the file. Where it doesn
 leave the line and list it under Unverified. Never delete a line you can't replace: it
 may be the only record of something nobody wrote down elsewhere.
 
-## 7. Rules waiting for a merge
+## 8. Rules waiting for a merge
 
 For each entry in the record's `pending`:
 
@@ -83,7 +93,7 @@ For each entry in the record's `pending`:
 - **Closed without a merge:** the rule stays where it is as a project rule. Drop the
   entry, and report it.
 
-## 8. Report
+## 9. Report
 
 ```
 ## Setup kept current

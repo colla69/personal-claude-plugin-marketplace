@@ -15,14 +15,14 @@ is about code today.
 flowchart LR
     M[("Marketplace<br/>skills, central")]
     S1["Steward<br/>set up, adopt, keep current"]
-    P["Your project<br/>AGENTS.md, skills, trios"]
+    P["Your project<br/>CLAUDE.md, skills, trios"]
     T["Plan · Do · Check<br/>the work"]
     S2["Steward<br/>contribute"]
     M -->|installs skills| S1 --> P --> T
     T -->|a lesson| S2 -->|pull request| M
 ```
 
-- **Dock on.** The steward reads your project, writes its `AGENTS.md`, installs the
+- **Dock on.** The steward reads your project, writes its `CLAUDE.md`, installs the
   skills it shows a need for, and creates a trio for each kind of task it repeats.
 - **Work.** A trio runs a task in three steps: Plan proposes and waits for your OK, Do
   carries out the plan you accepted, and Check compares the result with it.

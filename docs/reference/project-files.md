@@ -11,8 +11,7 @@ set out; the first trials will show where what it writes differs.
 
 | File | What it is for | Rules |
 |---|---|---|
-| `AGENTS.md`, at the root and in each component that earns one | What reading the project cannot tell: non-obvious commands, conventions that differ from the defaults, boundaries, and the reasons behind them. The root lists the trios | [`context-files.md`](../../plugins/marketplace-steward/references/set-up/context-files.md) |
-| `CLAUDE.md`, beside every `AGENTS.md` | One line, `@AGENTS.md`, because Claude Code discovers a nested `CLAUDE.md` and never a nested `AGENTS.md`. Anything Claude-specific goes below the import | `context-files.md` |
+| `CLAUDE.md`, at the root and in each component that earns one | What reading the project cannot tell: non-obvious commands, conventions that differ from the defaults, boundaries, and the reasons behind them. The root lists the trios. The steward writes no `AGENTS.md`, and folds one it finds into the `CLAUDE.md` beside it | [`context-files.md`](../../plugins/marketplace-steward/references/set-up/context-files.md) |
 | `.claude/rules/*.md` | A convention that follows a file type, loaded only when a matching file is read | `context-files.md` |
 | `.claude/settings.json` | Declares the marketplace, and enables the plugins set-up installed. Merged into, never replaced | [`plugin-catalog.md`](../../plugins/marketplace-steward/references/set-up/plugin-catalog.md) |
 | `.claude/plugin-sources.json` | Which marketplaces this project may draw plugins from | [`plugin-sources.md`](../../plugins/marketplace-steward/references/set-up/plugin-sources.md) |
@@ -78,7 +77,7 @@ project that has none.
       "fill": { "TASK": "change", "skills": ["…"], "model": "opus", "effort": "high" },
       "sha256": "<hash of the file as written>"
     },
-    "AGENTS.md": { "sha256": "<hash of the file as written>" }
+    "CLAUDE.md": { "sha256": "<hash of the file as written>" }
   },
   "plugins": ["<every plugin the steward installed>"],
   "declined": ["<every new skill you said no to>"],

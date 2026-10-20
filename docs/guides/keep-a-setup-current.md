@@ -25,7 +25,8 @@ first trials will show where it behaves otherwise.
 | **Skills the trios can't load** | Installs a missing plugin, or corrects a skill name that was renamed. A name it can't resolve is reported, because that agent is running without its standard |
 | **Trios from older templates** | Rebuilds each trio file whose template changed, if you haven't edited it since. A file you edited stays, and the report says a newer template exists |
 | **What the project now calls for** | Installs a toolkit plugin whose signal has appeared, and builds a trio a task now has the tools for. A plugin whose signal has gone stays, and is named as possibly unneeded |
-| **`AGENTS.md` lines that are no longer true** | Fixes a path or a command it can verify by reading. One it can't verify stays, and is listed under Unverified |
+| **`AGENTS.md` from an older setup** | Moves each `AGENTS.md` that a `CLAUDE.md` imports into that `CLAUDE.md`, whole, and removes it. One that nothing imports never loaded, so it stays and is listed under Unverified, for adoption |
+| **`CLAUDE.md` lines that are no longer true** | Fixes a path or a command it can verify by reading. One it can't verify stays, and is listed under Unverified |
 | **Rules waiting for a merge** | After an adoption: removes each pending rule once its pull request is merged and the skill says the same thing, but only if you haven't edited the rule since |
 
 ## The report
@@ -46,7 +47,7 @@ When nothing has drifted, the report says so and lists the checks it ran.
 - Rebuild or rewrite whole a file you changed since the steward wrote it. A check may
   still fix one line in it, such as a skill name that was renamed.
 - Bring back a trio or a plugin you removed, or propose a skill you declined.
-- Delete a line from `AGENTS.md` it can't replace. A line it can verify as wrong, such
+- Delete a line from `CLAUDE.md` it can't replace. A line it can verify as wrong, such
   as a path that moved, it fixes, whoever wrote the file.
 - Run on a project it never set up: there, it hands over to set-up or adoption.
 

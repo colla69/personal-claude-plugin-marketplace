@@ -22,7 +22,7 @@ costs either way:
 Not every complaint about a skill means the skill is wrong, so the cause is found first,
 and it decides where the fix goes. A skill that never loaded is a wiring problem, not a
 knowledge one. A skill wrong everywhere is fixed in the skill; one right in general but
-wrong here becomes a local exception in the project's `AGENTS.md`. Missing knowledge
+wrong here becomes a local exception in the project's `CLAUDE.md`. Missing knowledge
 goes into a skill when it would hold anywhere, and into the project when it wouldn't. A
 fact about the machine goes nowhere. The full table is §1 of
 [`place-knowledge.md`](../../plugins/marketplace-steward/references/place-knowledge.md).

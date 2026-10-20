@@ -48,5 +48,5 @@ the result as it is, or start over.
 ## Stopping and steering
 
 You can stop a run at any step, or change the plan before Do starts. A rule in the
-project's `AGENTS.md` about how a task runs wins over the trio's own skill, so a project
+project's `CLAUDE.md` about how a task runs wins over the trio's own skill, so a project
 that always wants, say, a migration check in its plans can say so there.

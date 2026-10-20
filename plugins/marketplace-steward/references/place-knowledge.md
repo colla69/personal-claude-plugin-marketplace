@@ -29,9 +29,9 @@ wrong, and a fix written into the wrong place leaves the problem where it was.
 |---|---|---|
 | The skill has the rule, but it never loaded | The plugin isn't enabled, a `skills:` name doesn't resolve, or the description doesn't win the prompt the user typed | The wiring: the project's setup, or the skill's description. Not the content |
 | The knowledge is wrong everywhere | The rule would mislead in a project that shares nothing with this one | The skill |
-| Right in general, wrong here | The rule holds elsewhere, and this project has a reason to differ | The project's `AGENTS.md`, as a local exception, and maybe a sharper yield in the skill. The general rule stays |
+| Right in general, wrong here | The rule holds elsewhere, and this project has a reason to differ | The project's `CLAUDE.md`, as a local exception, and maybe a sharper yield in the skill. The general rule stays |
 | Missing, and it would hold anywhere | No skill says it, and something true survives the strip test | A skill, placed by section 3 |
-| Missing, but only true here | No skill says it, and nothing survives the strip test | The project's `AGENTS.md` |
+| Missing, but only true here | No skill says it, and nothing survives the strip test | The project's `CLAUDE.md` |
 | A fact about the machine | True on this computer only: where a tool is installed, whether credentials are set up | Nowhere. Committed files travel, and on the next machine the line is wrong |
 
 Rule out the wiring first. It is the cheapest cause to check and the easiest to mistake
@@ -45,7 +45,7 @@ what is left:
 
 - **Something true, and useful to a project that shares only the kind of work:** that
   part travels.
-- **What you stripped out** stays in the project, as a fact in its `AGENTS.md`.
+- **What you stripped out** stays in the project, as a fact in its `CLAUDE.md`.
 - **Nothing true left:** the whole lesson is a project fact.
 
 "The report for client A was off because March's export used net values" splits into
@@ -118,7 +118,7 @@ rules above:
   merges.
 
 Everything else follows from sections 1 to 4: an edit to an existing skill, a line in a
-project's `AGENTS.md`, a wiring fix. Do it, and report it.
+project's `CLAUDE.md`, a wiring fix. Do it, and report it.
 
 When the user overrules a placement, at the OK or in the pull request, record it. Add
 the case to section 6, stripped, in the same change or the next one. Their corrections
@@ -133,7 +133,7 @@ Add to them; don't edit them away.
 |---|---|---|
 | A generated agent listed a skill by its bare name, and the skill silently didn't load | Never loaded | The wiring: the name became `plugin:skill`. The skill didn't change |
 | A project's context file recorded where a tool was installed, and that credentials weren't set up yet | A fact about the machine | Nowhere. The set-up rules now leave such lines out |
-| A check needed a local server running first, although the script's own comment said it started one | Missing, only true here | The project's `AGENTS.md` |
+| A check needed a local server running first, although the script's own comment said it started one | Missing, only true here | The project's `CLAUDE.md` |
 | Setting up a project that already had a setup kept settings for plugins that no longer existed | The knowledge was wrong everywhere: the set-up rules said to delete nothing | The set-up rules: such keys are removed |
 | A project in a language no Language skill covered got no Language skill at all | Missing, would hold anywhere | A new Language skill, after the user's OK |
 | A review skill told the reviewer to diff against `main` with a `git` command | A tool and a project fact inside a Craft skill | The skill, reworded as "the base the user names". The base branch is a project fact |

@@ -112,7 +112,7 @@ flow. Merge it if you want the rule.
 ## 7. Afterwards
 
 - **The project part.** If the lesson had a part that is only true for `tally`, the
-  steward already wrote it into `tally`'s `AGENTS.md`.
+  steward already wrote it into `tally`'s `CLAUDE.md`.
 - **The other projects.** After a merge, say "update the setup" in each project, and
   the change arrives.
 - **Your correction.** If you moved the lesson somewhere else in review, tell the

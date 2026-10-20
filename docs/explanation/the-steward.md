@@ -36,12 +36,13 @@ otherwise end up with two sets of instructions, which agree today and drift apar
 tomorrow. So the steward splits that setup into rules and gives each one a home, and
 removes a local copy only once its new home is live.
 
-**Setting up runs in a fixed order:** read the project, write `AGENTS.md`, choose the
-skills from what `AGENTS.md` says, then create the agents that use them. "Agents.md are
-created with project infos, then with the infos a quantity of skills get selected,
-then agents are created that use those skills to do the task." Each step needs the one
-before it. And only the steward installs skills: the agents it creates use what they
-were given, and never go shopping for more.
+**Setting up runs in a fixed order:** read the project, write `CLAUDE.md`, choose the
+skills from what `CLAUDE.md` says, then create the agents that use them. In the
+author's words, from when that file was still `AGENTS.md`: "Agents.md are created with
+project infos, then with the infos a quantity of skills get selected, then agents are
+created that use those skills to do the task." Each step needs the one before it. And
+only the steward installs skills: the agents it creates use what they were given, and
+never go shopping for more.
 
 ## Its scope: the setup and the knowledge
 
