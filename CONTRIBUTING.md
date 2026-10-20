@@ -1,164 +1,57 @@
 # Contributing
 
-This repo is prose. There is no build, no runtime, and no dependencies — the entire
-product is how well the standards are written. Which means the review bar is editorial,
-and the automation exists only to catch the two mistakes that are silent.
+This marketplace is prose: there is no build, no runtime and no dependencies, so a
+change is judged by how well it is written and cut. The checks exist only for the
+mistakes that fail silently. For now the maintainer is the only contributor, and every
+change reaches `main` through a pull request the maintainer merges.
 
-## The bar for a new plugin
+## The bar
 
-A plugin is warranted when it carries **a standard you would apply repeatedly across
-projects**. That is the whole test.
+A plugin is worth adding when it carries **a standard you would apply again, on a
+different project, months from now**. It fails that bar when it is one task, which is a
+prompt, or when an existing skill should grow a section instead. Every enabled plugin
+costs its description in every session of every project that has it, so it has to earn
+that for as long as it exists.
 
-It fails the test when:
+## Two ways in
 
-- **It's one task.** "Migrate this service to Postgres" is a prompt. A plugin is worth
-  writing when you'll want the same judgement again in six months on a different repo.
-- **An existing plugin should absorb it.** Vue testing conventions belong in
-  `vue-conventions` or `write-unit-tests`. Splitting a standard across two plugins means
-  neither one is *the* reference, and the two copies get edited separately until they
-  disagree.
-
-Every enabled plugin adds its descriptions to every session in every project that
-enables it. That cost is paid continuously, so the plugin has to earn it
-continuously. `claude plugin details <name>` prints the projected token cost — check it
-before deciding.
-
-## The guided path
-
-Tell the steward what you learned: "make a skill out of this", "this skill got X
-wrong". It places the knowledge in its layer, writes it in the house voice, performs
-all three registrations, has the change checked, and opens a pull request from its own
-clone. This is the recommended route; the rest of this document is what it does, for
-when you'd rather do it by hand.
-
-## Anatomy
-
-```
-plugins/<layer>-<topic>/
-  .claude-plugin/plugin.json      # manifest — ONLY .json goes in here
-  README.md                       # what this is, for a human in the directory
-  skills/<skill>/SKILL.md         # the standard, and the plugin's only skill
-  skills/<skill>/references/*.md  # optional: detail loaded on demand
-  skills/<skill>/assets/*         # optional: templates the skill writes out
-```
-
-There is no `agents/`. A skill plugin ships knowledge, and the steward generates the
-workers in each project from its role templates. Only `marketplace-` plugins ship
-agents, and `check-catalog.mjs` fails on any other plugin that does.
-
-Every plugin carries its own `README.md`, headed `# <plugin-name>` — roughly 40 lines
-covering the standard it carries, its layer and what it builds on, when it fires, and
-what it **leaves to others**. That last section is the point: the marketplace entry
-already says what a plugin is for, so the README earns its place by stating where it
-stops. Start from
-`plugins/marketplace-steward/references/author-skills/assets/README.md.template`.
-
-`skills/` sits at the **plugin root**. Putting it inside `.claude-plugin/` produces a
-plugin that validates, installs, and is completely empty. Nothing warns you.
-`scripts/check-catalog.mjs` does.
-
-Name the plugin `<layer>-<topic>` (`tools-vue`), with the layer prefix matching its
-`category`, and the skill for the activity (`vue-conventions`). The four layers and
-their test questions are in section 3 of
-`plugins/marketplace-steward/references/place-knowledge.md`.
-
-Declare the plugin of every skill the new one names in `dependencies`, pointing only
-toward the more general layers. `check-catalog.mjs` fails on a name that doesn't exist
-or points the wrong way; nothing catches a skill that is named but not declared.
-
-## Writing
-
-Read **`plugins/marketplace-steward/references/author-skills/style.md`** before writing
-a skill or a role template, and
-**`plugins/marketplace-steward/references/place-knowledge.md`** before deciding where
-knowledge goes. They are the canonical guides to the house voice and the cut, and they
-are not duplicated here on purpose.
-
-The one rule worth repeating, because it is the one that decays:
-
-> **A skill is knowledge. A role is a worker's lane.**
-
-The skill holds every rule, example, and ranking for one thing. A role template — Plan,
-Do or Check, in the steward's `references/set-up/roles/` — holds only its lane, its
-failure modes, and its report skeleton. The steward turns the templates into agents
-in each project. Knowledge written into a role has two homes, and the two copies drift.
-
-## Register it in three places
-
-The plugin list is mirrored in three files. Missing one is silent, which is the reason
-the check script exists.
-
-| File | What it is | Consequence of missing it |
+| Way | When | Start with |
 |---|---|---|
-| `.claude-plugin/marketplace.json` | The catalog | The plugin does not exist |
-| `docs/reference/plugins.md` table | What a human reads | Nobody knows it's there |
-| `…/marketplace-steward/references/set-up/plugin-catalog.md` | What the steward reads | Installs fine, **never recommended to any project, ever** |
+| **Through the steward** | You learned something in a project: a skill got it wrong, or a rule is worth having everywhere | [Contribute a lesson](docs/guides/contribute-a-lesson.md) |
+| **By hand** | You know what to write, and want to write it yourself in this checkout | [Write a skill by hand](docs/guides/write-a-skill-by-hand.md) |
 
-The catalog row needs the **signal that justifies recommending it** — what the
-steward should find in a repo before installing the plugin. Not "use this for
-Django work" but "`django` in `requirements.txt` or `pyproject.toml`". A trigger that
-isn't checkable produces plugins recommended on vibes.
-
-## Versioning: don't
-
-No plugin here declares a `version`. For a relative-path source in a git-hosted
-marketplace, Claude Code falls back to the source's commit SHA, so every push is picked
-up as an update — exactly what you want for standards you refine continuously.
-
-`check-catalog.mjs` fails when a `version` appears, deliberately. If a plugin genuinely
-stabilises enough to pin, remove that check and set the version in `plugin.json` **or**
-the marketplace entry, never both — the manifest silently wins.
-
-This is also why CI does **not** run `claude plugin validate --strict`: strict promotes
-the "no version specified" warning to an error, and that warning is the policy working.
-
-## The local development loop
-
-Point the marketplace at the working directory. No push needed between edits:
-
-```bash
-claude plugin marketplace add .
-claude plugin install <name>@personal-claude-plugin-marketplace
-```
-
-After editing, refresh and inspect:
-
-```bash
-claude plugin marketplace update personal-claude-plugin-marketplace
-claude plugin details <name>          # component inventory + projected token cost
-```
-
-Then start a session and confirm the skill actually fires on a prompt you'd really type.
-Validation proves the JSON parses. It does not prove the description triggers, and a
-skill that never fires is the most common way a plugin here fails.
+Either way, the cut comes first: where the knowledge goes, which layer, which skill. Its
+rules are in
+[`place-knowledge.md`](plugins/marketplace-steward/references/place-knowledge.md), and
+the house voice is in
+[`style.md`](plugins/marketplace-steward/references/author-skills/style.md). They are
+not repeated here on purpose.
 
 ## Before you push
 
 ```bash
-claude plugin validate .              # marketplace + every plugin (no --strict)
-node scripts/check-catalog.mjs        # lists, layers, dependencies, no stray agents/
+claude plugin validate .
+node scripts/check-catalog.mjs
 ```
 
-Both run in CI on every push and PR. The expected output of the first is "passed with
-warnings" — one "no version specified" per plugin.
+The first passes with warnings, "no version specified" and "no description provided"
+once per plugin each, which are the policy. The second must say the catalog is in sync.
+CI runs both on every pull request.
 
-## Testing a plugin for real
-
-`claude plugin eval` runs scored cases against a plugin, with a no-plugin baseline arm:
-
-```bash
-claude plugin eval ./plugins/<name> --ablation with-without
-```
-
-Cases live in `plugins/<name>/evals/**/case.yaml` (or `prompt.md` plus `graders/*.md`).
-The ablation is the interesting part for this repo: it answers *did the plugin change
-the outcome at all*, which for a prose-only toolkit is the only question that matters.
-
-No plugin here has evals yet. Adding them to `universal-clean-code` first would be the
-highest-value place to start, since every other quality plugin defers to it.
+Then search your change for your projects' names. The repo is public, and no check can
+list them without publishing them.
 
 ## Commits
 
-One plugin or one standard per commit. When you change a skill, say in the message what
-judgement changed and why — the skill files are the history of your taste, and a diff
-that says "update clean-code" tells you nothing in a year.
+One plugin or one standard per commit, with a message that says what judgement changed
+and why. The skill files are the history of the maintainer's taste.
+
+## More
+
+| Page | Covers |
+|---|---|
+| [The development loop](docs/contributing/development-loop.md) | Loading what you change, its cost, trying it, the checks |
+| [Releases and migrations](docs/contributing/releases-and-migrations.md) | Why every merge is a release, and what a rename asks of every project |
+| [Writing docs](docs/contributing/writing-docs.md) | How a page in `docs/` is written and reviewed |
+| [Review a skill](docs/guides/review-a-skill.md) | Getting a change reviewed against the house standard |
+| [Checks](docs/reference/checks.md) | What each check catches, and what nothing does |

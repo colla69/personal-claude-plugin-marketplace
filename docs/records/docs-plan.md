@@ -3,7 +3,7 @@
 How the repo's documentation gets rewritten from scratch, as a project of its own. D and
 O numbers continue the ones in `plan.md` and `package-plan.md`.
 
-**Status:** approved 2026-10-19, on branch `marketplace/one-package`. Steps 1 to 6 are
+**Status:** approved 2026-10-19, on branch `marketplace/one-package`. Steps 1 to 7 are
 done; the plan runs on to step 8, and stops there (D43). It replaces the documentation
 half of step 7 of `package-plan.md`. The package plan's trials and merge come after it,
 because the documentation describes the steward, and both reach `main` together.
@@ -413,6 +413,27 @@ its own shape and gains a More section.
 `README.md`, `CONTRIBUTING.md`, `CLAUDE.md` and `.claude/rules/authoring.md`, last,
 because they link to everything else. This repo's `.claude/settings.json` enables the
 steward, which closes the rest of the package plan's step 7.
+
+What was done:
+
+- **`README.md`** is a landing page: what it is, the cycle as a diagram, five minutes to
+  a first setup, the plugins by layer, and where to read on. Its plugin table is gone;
+  `reference/plugins.md` holds it.
+- **`CONTRIBUTING.md`** is one screen: the bar, the two ways in, the checks, commits,
+  and links.
+- **`CLAUDE.md`** names where each rule lives, the commands, the gist of what breaks
+  silently, and how to work on the repo. It restates no rule in full.
+- **`.claude/rules/authoring.md`** is a pointer to the three files that govern a skill
+  (D41).
+- **The two contributing pages no step had covered**, the development loop and releases
+  and migrations, are written here, because the entry points link to them.
+- Two rules that lived only in `CLAUDE.md` moved into `plugin-shape.md` first: a skill
+  plugin ships no hooks or MCP servers, and an `agents` or `commands` key replaces its
+  folder.
+- **This repo's `.claude/settings.json` does not enable the steward**, unlike the line
+  above says. The catalog's row for the steward says it is never written into a
+  project's settings, because it belongs to the machine; work on it loads the working
+  copy with `--plugin-dir`, as `CLAUDE.md` says.
 
 ### Step 8: Guards and the final read
 

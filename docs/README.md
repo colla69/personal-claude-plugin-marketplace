@@ -19,7 +19,7 @@ column names the product files a page is checked against; the glossary links eac
 |---|---|
 | New, and wondering whether this is for you | [`../README.md`](../README.md), then [`tutorials/first-setup.md`](tutorials/first-setup.md) |
 | Using the steward in your projects | [`guides/set-up-a-project.md`](guides/set-up-a-project.md), then the other guides |
-| Working on the marketplace or the steward | [`../CONTRIBUTING.md`](../CONTRIBUTING.md), then the contributing pages |
+| Working on the marketplace or the steward | [`../CONTRIBUTING.md`](../CONTRIBUTING.md), then [`contributing/development-loop.md`](contributing/development-loop.md) |
 | Weighing the idea itself | [`explanation/the-idea.md`](explanation/the-idea.md) |
 | Looking up a word | [`reference/glossary.md`](reference/glossary.md) |
 
@@ -86,6 +86,6 @@ Working on the marketplace itself.
 
 | Page | It covers | Sources | Status |
 |---|---|---|---|
-| `contributing/development-loop.md` | The local marketplace, the checks, CI | `CONTRIBUTING.md`, `plugin-shape.md` | To write |
+| [`contributing/development-loop.md`](contributing/development-loop.md) | The local marketplace, the checks, CI | `CONTRIBUTING.md`, `plugin-shape.md` | Written |
 | [`contributing/writing-docs.md`](contributing/writing-docs.md) | How a page here is written and reviewed | `style.md` | Written |
-| `contributing/releases-and-migrations.md` | Why every merge is a release, and what a rename asks of every project | `plugin-shape.md`, the Renamed table | To write |
+| [`contributing/releases-and-migrations.md`](contributing/releases-and-migrations.md) | Why every merge is a release, and what a rename asks of every project | `plugin-shape.md`, the Renamed table | Written |

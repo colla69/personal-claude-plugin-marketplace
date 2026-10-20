@@ -1,155 +1,70 @@
 # personal-claude-plugin-marketplace
 
-A personal Claude Code plugin marketplace: a library of skills, one per plugin, reused
-across every project. **The product is prose.** There is no build, no dependencies,
-and no runtime. The only executable file in the repo is one zero-dependency Node
-script. So changes are judged editorially, and the automation exists only to catch the
-mistakes that fail silently.
+A Claude Code plugin marketplace: a library of skills, one per plugin, reused across
+every project, and the steward, `marketplace-steward`, which sets projects up from it
+and grows it by pull request. **The product is prose.** There is no build and no
+runtime; the only code is the zero-dependency Node scripts in `scripts/`. So a change
+is judged by how it is written and cut, and the checks exist only for the mistakes
+that fail silently.
 
-**Knowledge central, workers local.** The marketplace ships skills. The agents that use
-them are generated into each project by the steward, `marketplace-steward`, together
-with that project's `AGENTS.md`. The documentation, with the reasons behind every
-decision, is mapped in `docs/README.md`.
+The steward is written and not yet tried on real projects. The documentation is mapped
+in `docs/README.md`, and the reason behind every decision is in
+`docs/explanation/decisions.md`.
 
-**The steward is written, and not yet tried on real projects.** It replaced
-`marketplace-init` and this repo's own `.claude/` agents: one package that sets
-projects up, adopts and keeps their setups current, and grows the marketplace by pull
-request. The rules below describe the shape the repo
-now has.
+## Where the rules live
+
+Read the file before you change what it governs. None of its rules are repeated here.
+
+| Before you | Read |
+|---|---|
+| Decide where a piece of knowledge goes, or cut a skill | `plugins/marketplace-steward/references/place-knowledge.md` |
+| Write or edit a skill, a role template or a plugin README | `plugins/marketplace-steward/references/author-skills/style.md` |
+| Add, rename or register a plugin | `plugins/marketplace-steward/references/author-skills/plugin-shape.md` |
+| Write or edit a page in `docs/` | `docs/contributing/writing-docs.md` |
 
 ## Commands
 
-| Task | Command | Source |
-|---|---|---|
-| Validate marketplace | `claude plugin validate .` | CI |
-| Validate one plugin | `claude plugin validate ./plugins/<name>` | CI |
-| Check the plugin lists, layer prefixes and dependencies | `node scripts/check-catalog.mjs` | CI |
-| Inventory + projected token cost | `claude plugin details <name>` | — |
-| Install locally for testing | `claude plugin marketplace add .` | — |
-| Refresh after edits | `claude plugin marketplace update personal-claude-plugin-marketplace` | — |
-| Run evals with a baseline arm | `claude plugin eval ./plugins/<name> --ablation with-without` | — |
-
-`claude plugin validate` warns "no version specified" once per plugin. **That warning
-is the policy working; see Boundaries.**
-
-## Layout
-
-| Path | Responsibility |
+| Task | Command |
 |---|---|
-| `.claude-plugin/marketplace.json` | The catalog. Source of truth for the plugin list, and the one home of each plugin's `description` |
-| `plugins/<layer>-<topic>/` | One skill plugin: manifest, README, one skill |
-| `plugins/marketplace-<name>/` | A plugin that works on the marketplace itself (the steward). The only plugins with agents |
-| `.claude/` | This repo's own settings and path-scoped rules. Never published as a plugin |
-| `scripts/check-catalog.mjs` | Guards the three mirrored plugin lists |
-| `docs/` | The documentation, mapped in `docs/README.md` |
+| Validate the marketplace and every plugin | `claude plugin validate .` |
+| Check the plugin lists, layers and dependencies | `node scripts/check-catalog.mjs` |
+| Load the working copy of the steward | `claude --plugin-dir ./plugins/marketplace-steward --plugin-dir ./plugins/craft-review` |
+| See a plugin's inventory and cost | `claude --plugin-dir ./plugins/<name> plugin details <name>` |
+| Run a plugin's evals with a baseline | `claude plugin eval ./plugins/<name> --ablation with-without` |
 
-## Conventions
+`claude plugin validate` warns "no version specified" and "no description provided" for
+every plugin. Both are the policy, so CI never runs it with `--strict`.
 
-- **A skill is knowledge; a role is a worker's lane.** A skill holds every rule and
-  example for one thing. A role (Plan, Do or Check) holds only its lane, its failure
-  modes and its report skeleton, as a template in the steward. Its set-up turns each
-  template into agents in the project. Knowledge written into a role has two homes, and
-  the two will diverge.
-- **Every skill sits in one of four layers**, from general to specific: Universal,
-  Craft, Language, Framework & Tools. The layer is the plugin's name prefix
-  (`universal-`, `craft-`, `language-`, `tools-`) and its `category`. Dependencies
-  point only toward the more general layers.
-- **A skill does one thing, and every rule has one home.** Other skills name it instead
-  of restating it.
-- **Not only code.** Every skill here is about code today, but names, categories and
-  descriptions must not assume that.
-- A `description` in frontmatter is a **trigger list**, not a summary. It is the only
-  thing Claude sees when deciding whether to load the skill. Phrase triggers in the
-  user's words.
-- Hard-wrap prose at **88 columns**. Frontmatter descriptions and table rows are
-  exempt, since they cannot wrap.
-- Every skill ends by saying when to yield to a more specific layer or to local
-  convention. A standard with no stated boundary gets applied mechanically.
-- Read `plugins/marketplace-steward/references/author-skills/style.md` before writing
-  or editing any skill or role template, and
-  `plugins/marketplace-steward/references/place-knowledge.md` before deciding where a
-  piece of knowledge goes. They are the canonical guides to the voice and to the cut.
+## What breaks silently
 
-### Plan, Do, Check
+The gist of each; the files above hold the rules.
 
-A task is solved by three agents in sequence, which the steward generates into the
-project for each kind of task:
-
-| Role | Lane | Skills |
-|---|---|---|
-| Plan | read-only: proposes a plan, then **waits** for the user's OK | Universal, Craft, Language |
-| Do | **the only writer**: carries out the accepted plan | whatever the work needs, including all Framework & Tools |
-| Check | read-only: compares the result against the accepted plan, and sends it back to Do | Universal, Craft, Language |
-
-The plan is a hard stop. Check checks against the plan, not against the request.
-`effort` is set per role and task, with the defaults Plan `high`, Do `medium` and Check
-`medium`.
-
-The review trio of `developer`, `code-reviewer` and `refactoring-specialist` was
-retired. Its knowledge lives in the skills and in the role templates.
-
-## Boundaries
-
-- **Never put a model reference in agent frontmatter.** No `model: sonnet`, and no
-  other vendor's model name. The knowledge has to outlive any one vendor's tool, and
-  naming a model hard-codes one runtime into a file that has to stay portable.
-- **Generated context goes in `AGENTS.md`, not `CLAUDE.md`.** `CLAUDE.md` is a one-line
-  `@AGENTS.md` import beside it. The pairing is required, not stylistic: a nested
-  `CLAUDE.md` lazy-loads, while a nested `AGENTS.md` is never discovered.
-- **Read-only is frontmatter, never prose.** An agent whose description says read-only
-  without `disallowedTools: Write, Edit, NotebookEdit` is not read-only.
-- **Skill plugins ship no `agents/`.** Only `marketplace-` plugins do. A shipped worker
-  competes with the agents the steward generates, and the knowledge in it has a second
-  home.
-- **Never add `--strict` to CI.** It promotes "no version specified" to an error, and
-  every plugin omits `version` on purpose so that updates resolve by commit SHA. The
-  warning is the policy.
-- **Never add a `version` to a plugin**, for the same reason. `check-catalog.mjs` fails
-  on it.
-- **Only `.json` goes in `.claude-plugin/`.** `skills/` or `agents/` placed inside it
-  produce a plugin that validates, installs, and is completely empty.
-- **Adding a plugin means three registrations**, not one: `marketplace.json`, the
-  `docs/reference/plugins.md` table, and the steward's
-  `references/set-up/plugin-catalog.md`. Missing the third is silent: the plugin
-  installs fine and is never chosen for any project. `check-catalog.mjs` is the only
-  thing that catches it.
-- **Only `check-catalog.mjs` checks `dependencies`**: that each name exists, and that it
-  points toward a more general layer. `claude plugin validate` checks neither. Nothing
-  checks that a skill named in prose is declared at all.
-- A `skills` key in `plugin.json` *adds to* the default `skills/` directory, but
-  `commands` and `agents` keys **replace** theirs. Adding an `agents` key silently hides
-  `agents/`.
-- Setting a field in both `plugin.json` and the marketplace entry is a trap, because
-  the manifest silently wins. Each field gets one home, and `description` lives in the
-  marketplace entry.
-- **Hooks and MCP servers are not part of the concept.** Add one only when an idea
-  cannot work without it.
+- **A plugin needs three registrations**: `marketplace.json`, the table in
+  `docs/reference/plugins.md`, and the steward's `references/set-up/plugin-catalog.md`.
+  Missing the catalog row, it installs fine and is never chosen for any project.
+- **A rename or a removal needs a row in the catalog's Renamed table**, or every project
+  that enables the old name loses the plugin without a word.
+- **No `version`** in a plugin, and **`description` only in the marketplace entry.**
+- **Only `.json` in `.claude-plugin/`**, and no `agents` or `commands` key in
+  `plugin.json`.
+- **Skill plugins ship no `agents/`, hooks or MCP servers.** Only the steward ships
+  agents, and a hook or a server is added only when an idea can't work without it.
+- **No model name in any agent file**, and **read-only is `disallowedTools`** in the
+  frontmatter, never a sentence.
+- **The product never depends on the docs.** No skill, reference or agent may link to a
+  page in `docs/`, because the installed plugin doesn't include it.
+- **No real project name, client or person** in any file or commit message. The repo is
+  public; examples are synthetic.
 
 ## Working on this repo
 
-This repo is worked on with the steward, like any project that uses the marketplace.
-While the steward is being built, load its working copy for the session, with the
-plugin it depends on:
-
-```bash
-claude --plugin-dir ./plugins/marketplace-steward --plugin-dir ./plugins/craft-review
-```
-
 | To | Use |
 |---|---|
-| Add or change a skill | The steward's contribute job: "make a skill out of this", "this skill got X wrong". It works in its own clone and opens a pull request, so pull this checkout after you merge |
-| Review a skill, a plugin, a change, or the whole set | `evaluate-skills` |
-| Write or edit by hand | `references/author-skills/style.md` and `references/place-knowledge.md` in the steward, read first |
+| Add or change a skill from a lesson | The steward's contribute job. It works in its own clone and opens a pull request, so pull this checkout after the merge |
+| Add or change a skill by hand | `docs/guides/write-a-skill-by-hand.md` |
+| Review a skill, a plugin, a change or the whole set | `evaluate-skills`, run by a separate agent from the one that wrote the change |
 
-Writing a standard is two jobs, and only one of them can be delegated:
-
-- **Deciding what the standard is** is the maintainer's taste: its layer, its home, the
-  judgement, the ranking, and what it yields to. The steward asks before a new skill,
-  and every change waits for the maintainer's merge.
-- **Rendering a decided standard into house form** is mechanical. The writer never
-  invents substance, and it reports every judgement it had to assume.
-
-Writer and evaluator stay separate on purpose. The steward writes, and the contribution
-checker, read-only in its frontmatter, checks the change before its pull request.
-Merging the two would let the same context approve its own output, which is when review
-finds least.
+Deciding what a standard says, its layer, its home and what it yields to, is the
+maintainer's taste: the steward asks before a new skill, and every change waits for
+the maintainer's merge. Rendering a decided standard into house form is the part that
+can be delegated, and whoever writes a change never reviews it.
