@@ -37,7 +37,7 @@ That one sentence decides the shape of everything else.
 |---|---|---|---|
 | **Knowledge**: skills | The marketplace | Being curated once and improved for everyone | Everyone who installs it |
 | **Workers**: agents | Each project | Being generated for that project and its tasks | The project |
-| **Project facts**: `AGENTS.md` | Each project | Being written from the project itself | The project |
+| **Project facts**: `CLAUDE.md` | Each project | Being written from the project itself | The project |
 
 Four things follow:
 
@@ -58,7 +58,7 @@ Four things follow:
 flowchart LR
     M[("Marketplace<br/>skills, central")]
     S1["Steward<br/>set up, adopt, keep current"]
-    P["The project<br/>AGENTS.md, skills, trios"]
+    P["The project<br/>CLAUDE.md, skills, trios"]
     T["Plan · Do · Check<br/>the work"]
     S2["Steward<br/>contribute"]
     M -->|installs skills| S1 --> P --> T

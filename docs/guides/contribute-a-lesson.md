@@ -55,7 +55,7 @@ first trials will show where it behaves otherwise.
 ## The project part
 
 When a lesson also holds something only true in your project, such as which client uses
-which export, the steward writes that part into the project's `AGENTS.md` straight away.
+which export, the steward writes that part into the project's `CLAUDE.md` straight away.
 It doesn't wait for the merge, because it is already true there.
 
 ## Where things are

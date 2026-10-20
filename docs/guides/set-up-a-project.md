@@ -1,6 +1,6 @@
 # Set up a project
 
-Set up a codebase, or a folder with no code, for agentic work: an `AGENTS.md`, the
+Set up a codebase, or a folder with no code, for agentic work: a `CLAUDE.md`, the
 skills it needs, and a trio for each kind of task it repeats. For a project that
 already has its own `CLAUDE.md`, rules or agents, see
 [adopt an existing setup](adopt-an-existing-setup.md) instead; the steward picks that
@@ -50,8 +50,8 @@ first trials will show where it behaves otherwise.
 
 | File | What it holds |
 |---|---|
-| `AGENTS.md`, with a one-line `CLAUDE.md` beside it | The commands, the map of components, the conventions and boundaries that reading the code won't tell, and the trios |
-| The same pair in each component that earns one | What is local to that component |
+| `CLAUDE.md` | The commands, the map of components, the conventions and boundaries that reading the code won't tell, and the trios |
+| The same file in each component that earns one | What is local to that component |
 | `.claude/rules/<topic>.md`, where one is needed | A convention that follows a file type rather than a folder, scoped by its `paths:` |
 | `.claude/settings.json` | The marketplace, and the plugins enabled for this project |
 | `.claude/plugin-sources.json` | The sources you ticked |
@@ -63,7 +63,7 @@ first trials will show where it behaves otherwise.
 ## Check it
 
 - **Read the diff**, `git diff` and `git status`, next to the report. Delete what you
-  don't want: a trio you won't use, or a line in `AGENTS.md` that isn't true. The
+  don't want: a trio you won't use, or a line in `CLAUDE.md` that isn't true. The
   record still lists what the steward wrote, so it reads a missing trio as your removal
   and doesn't bring it back.
 - **Look at the Unverified list.** It is where the steward put every command it couldn't

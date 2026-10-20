@@ -1,8 +1,8 @@
 # The steward
 
 Why one package sets projects up, adopts their setups, keeps them current and grows the
-marketplace, why it asks you only two things, and why it works without lanes. Read this
-to understand what you are handing to the steward when you install it.
+marketplace, why it asks you only three things, and why it works without lanes. Read
+this to understand what you are handing to the steward when you install it.
 
 **Not yet tried on real projects.** This page describes the steward as its files set it
 out; the first trials will show where it behaves otherwise. "You" here is the
@@ -36,12 +36,13 @@ otherwise end up with two sets of instructions, which agree today and drift apar
 tomorrow. So the steward splits that setup into rules and gives each one a home, and
 removes a local copy only once its new home is live.
 
-**Setting up runs in a fixed order:** read the project, write `AGENTS.md`, choose the
-skills from what `AGENTS.md` says, then create the agents that use them. "Agents.md are
-created with project infos, then with the infos a quantity of skills get selected,
-then agents are created that use those skills to do the task." Each step needs the one
-before it. And only the steward installs skills: the agents it creates use what they
-were given, and never go shopping for more.
+**Setting up runs in a fixed order:** read the project, write `CLAUDE.md`, choose the
+skills from what `CLAUDE.md` says, then create the agents that use them. In the
+author's words, from when that file was still `AGENTS.md`: "Agents.md are created with
+project infos, then with the infos a quantity of skills get selected, then agents are
+created that use those skills to do the task." Each step needs the one before it. And
+only the steward installs skills: the agents it creates use what they were given, and
+never go shopping for more.
 
 ## Its scope: the setup and the knowledge
 
@@ -50,13 +51,14 @@ answered "add a feature" would compete with every trio for every request, and it
 description says so: it is not for setting up a tool, a service or CI, nor for
 remembering a preference, which is Claude's memory.
 
-## It asks two things
+## It asks three things
 
 > "Only ask for an OK when creating new skills, on init or adoption."
 
 | It asks | Why |
 |---|---|
 | Which marketplaces a project may draw from, once, when no policy file exists | A project under a security or procurement policy looks the same as one without, so only a person can say |
+| Whether to keep the project's `AGENTS.md` files, each behind a `CLAUDE.md` that imports it, or swap them for `CLAUDE.md`, once, when it has any | The setup is Claude only, but the people on a project may not be: only you know whether another tool still reads those files |
 | Your OK before it creates a new skill | A new skill is a decision about the cut: its layer, its name, where it stops. That is taste, and taste is yours |
 
 Everything else it does and reports. That replaces the plan the first init showed

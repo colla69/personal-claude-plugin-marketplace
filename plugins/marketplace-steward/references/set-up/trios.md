@@ -15,8 +15,8 @@ that plan.
 | `.claude/skills/<task>/SKILL.md` | `roles/run.md` | Runs the three, invoked as `/<task>` |
 
 Fill every `{{placeholder}}` and keep the rest of each template as it is, frontmatter
-included. `AGENTS.md` lists the trios, because which tasks a project has is a fact
-about that project.
+included. The root `CLAUDE.md` lists the trios, because which tasks a project has is a
+fact about that project.
 
 A single-purpose agent, such as the one that produces a monthly report, is the Do of
 its trio, not a fourth kind of agent.

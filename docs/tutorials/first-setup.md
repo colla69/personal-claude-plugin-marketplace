@@ -99,7 +99,7 @@ what happened. Expect something like this:
 
 | Section | For `tally` |
 |---|---|
-| **Written** | `AGENTS.md` and `CLAUDE.md`, `.claude/settings.json`, `.claude/plugin-sources.json`, the trios, `.claude/steward.json` |
+| **Written** | `CLAUDE.md`, `.claude/settings.json`, `.claude/plugin-sources.json`, the trios, `.claude/steward.json` |
 | **From your toolkit** | `universal-clean-code`, `craft-development`, `craft-code-review`, `craft-refactoring`, `craft-unit-testing` for the test runner, `language-typescript` for `tsconfig.json`, `language-simple-english` because every project has text to read, and what they pull in |
 | **Gap-fills** | Probably `typescript-lsp` from Anthropic's marketplace, for go-to-definition and real diagnostics, which no toolkit skill gives. With no gap to fill, the report says so in one line |
 | **Trios** | `change` and `refactor`, and `test`, because a test runner is configured |
@@ -113,14 +113,12 @@ are there: `tally` shows no sign of them.
 
 ```bash
 git status
-cat AGENTS.md
 cat CLAUDE.md
 head -12 .claude/agents/change-plan.md
 ```
 
-- **`AGENTS.md`** holds what reading the code wouldn't tell you: the test command, the
+- **`CLAUDE.md`** holds what reading the code wouldn't tell you: the test command, the
   map of the project, and the trios. In a project this small it is short, and should be.
-- **`CLAUDE.md`** is one line, `@AGENTS.md`, so Claude Code loads the content.
 - **`change-plan.md`** starts with its frontmatter: `effort: high`, `model: opus`,
   `disallowedTools: Write, Edit, NotebookEdit`, which makes it read-only, and a
   `skills:` list where every name is written as `plugin:skill`.

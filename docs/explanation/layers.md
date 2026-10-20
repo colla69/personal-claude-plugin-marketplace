@@ -73,6 +73,6 @@ a skill named in prose and never declared is caught only by a reader, as
 
 If saying what a skill covers needs an "and", it is probably two skills. And a skill
 holds knowledge only: what a worker does and must not do belongs to its role, and a
-fact about one project belongs in that project's `AGENTS.md`.
+fact about one project belongs in that project's `CLAUDE.md`.
 [Skills and roles](skills-and-roles.md) explains that split, and
 [placing knowledge](placing-knowledge.md) how a lesson from a project is cut.

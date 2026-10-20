@@ -22,18 +22,21 @@ first trials will show where it behaves otherwise.
    existing setup onto the marketplace". The steward sees your setup and adopts it
    instead of setting up over it.
 2. **Tick the sources**, if it asks, as for a set-up.
-3. **Let it run.** It reads every Claude file of the project's own, splits them into
+3. **Say whether to keep your `AGENTS.md` files or swap them for `CLAUDE.md`**, if the
+   project has any. It asks once, and recommends the swap; keep them if people on the
+   project also use another tool that reads them.
+4. **Let it run.** It reads every Claude file of the project's own, splits them into
    single rules, and gives each rule a home. Then it sets the project up with those
    homes, and contributes the rules that would serve other projects.
-4. **Answer the new-skill question, if there is one**, at the end.
-5. **Read the report's Adopted table.** Every rule is there, grouped by the file it came
+5. **Answer the new-skill question, if there is one**, at the end.
+6. **Read the report's Adopted table.** Every rule is there, grouped by the file it came
    from, quoted short, with its new home and what happened to the local copy.
 
 ## Reading the Adopted table
 
 | Local copy | Means |
 |---|---|
-| **Moved** | The rule now lives in `AGENTS.md` or a project skill, and was taken out of its old file |
+| **Moved** | The rule now lives in `CLAUDE.md` or a project skill, and was taken out of its old file |
 | **Removed** | Its home already says it: a toolkit skill that is installed and preloaded by the roles that do that work, or a role template now in a trio. Dead keys, hooks that only injected text, and dead or machine-only rules go too |
 | **Pending** | Its home is a pull request. It stays where it is until you merge, and keep-current removes it then |
 | **Stays** | It is project mechanics, such as a hook or a permission, or no live home fits it yet |
@@ -60,6 +63,12 @@ Hooks, MCP servers, commands that run a tool, permissions, and environment setti
 as they are; a hook that only injects text is the exception, and goes once its text has
 a home. Other tools' files, such as `.cursor/rules/`, are read and never changed, and so
 are `CLAUDE.local.md` and `.claude/settings.local.json`.
+
+An `AGENTS.md` is the exception among other tools' files: the steward asks once whether
+to keep the project's `AGENTS.md` files or swap them for `CLAUDE.md`. With keep, each
+stays the home of its content, behind a `CLAUDE.md` that imports it. With the swap, one
+that a `CLAUDE.md` imports is folded into it first, and its rules are placed with the
+rest; one that nothing imports goes once each of its rules has a home.
 
 ## Afterwards
 

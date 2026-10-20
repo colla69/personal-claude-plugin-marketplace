@@ -22,9 +22,10 @@ the user's work or never happens at all, and what the user took out comes back.
       },
       "sha256": "<sha256 of the file as written>"
     },
-    "AGENTS.md": { "sha256": "<hash>" }
+    "CLAUDE.md": { "sha256": "<hash>" }
   },
   "plugins": ["universal-clean-code@personal-claude-plugin-marketplace"],
+  "context": "CLAUDE.md",
   "declined": ["<a proposed skill the user said no to, in one line>"],
   "pending": [
     { "path": ".claude/rules/api.md", "rule": "<the rule, quoted>",
@@ -37,7 +38,7 @@ the user's work or never happens at all, and what the user took out comes back.
   `marketplace-steward@` in `claude plugin list --json`. It changes on every push to
   the marketplace, so it is for the report only and decides nothing.
 - **`files`** holds every file the steward *created*, keyed by its path from the
-  project root. A file that existed before the steward came, such as an `AGENTS.md`
+  project root. A file that existed before the steward came, such as a `CLAUDE.md`
   it improved, is never listed: listing it would claim the user's file as the
   steward's.
   - **`sha256`** is the hash of the content exactly as written, from
@@ -48,6 +49,10 @@ the user's work or never happens at all, and what the user took out comes back.
     rebuild is exact.
 - **`plugins`** lists every plugin the steward installed, and **`declined`** every new
   skill the user said no to.
+- **`context`** is the user's answer to the keep-or-swap question in
+  `set-up/context-files.md`: `"AGENTS.md"` when they kept their `AGENTS.md` files,
+  `"CLAUDE.md"` when they swapped them. It is left out when the project had no
+  `AGENTS.md` to ask about.
 - **`pending`** lists every rule an adoption left where it was because its home is a
   contribution with an open pull request: the file it is in, the rule exactly as it
   stands there, the skill or template it is going to, and the pull request.
@@ -61,11 +66,20 @@ the user's work or never happens at all, and what the user took out comes back.
 - **Refresh an entry only when its hash matched before your edit.** Refreshing the
   entry of a file the user changed would make their file look untouched, and the next
   rebuild would overwrite it.
+- **A file folded into another loses its entry**, such as an `AGENTS.md` moved into its
+  `CLAUDE.md`, so that it doesn't look removed by the user. The file it went into keeps
+  its entry, refreshed, only when both files' hashes matched the record before the
+  fold. Otherwise it loses its entry, because it now holds lines the user wrote. Every
+  `pending` entry whose `path` is the folded file now names the file it went into, so
+  the rule is still found after its merge.
 - **What is in the record and gone from the project was removed by the user.** A
   recorded trio whose files are gone, or a recorded plugin whose key is gone, stays
   gone. A declined skill is not proposed again.
 - **No record means nothing is rebuilt.** A project set up before the record existed
   has files nobody can tell apart, so they are all treated as the user's.
 
-Write the record last, after the files it describes. It is committed with the rest of
+Write the record last, after the files it describes. A job that has an answer for
+`context` and finds no record, such as keep-current in a project set up before the
+record existed, writes one that holds only `context`. Its `files` and `plugins` are
+empty, so it claims no file and rebuilds nothing. It is committed with the rest of
 `.claude/`, because it is how the steward on the next machine knows what this one did.

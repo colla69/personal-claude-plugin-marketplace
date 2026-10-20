@@ -119,7 +119,7 @@ When a push or a command fails, keep the worktree, and report its path and the e
 ## 7. The project part
 
 When the lesson had a part that is only true in this project, write it into the
-project's `AGENTS.md` now, by `set-up/context-files.md`. It doesn't wait for the merge,
+project's `CLAUDE.md` now, by `set-up/context-files.md`. It doesn't wait for the merge,
 because it is already true here.
 
 ## 8. Report
@@ -130,7 +130,7 @@ because it is already true here.
 **Placed in:** <plugin:skill, new or extended> — <its layer, and why>
 **Pull request:** <the link, or the compare link to open>
 **Checker:** <its verdict, and what is still open>
-**In this project:** <the AGENTS.md lines written, or "nothing">
+**In this project:** <the CLAUDE.md lines written, or "nothing">
 
 After the merge, "update the setup" in each project picks the change up.
 ```

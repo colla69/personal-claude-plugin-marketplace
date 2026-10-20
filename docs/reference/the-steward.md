@@ -15,7 +15,7 @@ what you ask and from what the project already has:
 | The project has | "Set this project up" means | "Add a trio" means |
 |---|---|---|
 | Nothing, or only other tools' files | Set up | Set up |
-| A Claude setup of its own, and no `.claude/steward.json` | Adopt | Adopt first |
+| A setup of its own, in `CLAUDE.md`, `AGENTS.md` or `.claude/`, and no `.claude/steward.json` | Adopt | Adopt first |
 | `.claude/steward.json` | Keep current | Set up, for that trio |
 
 It stays out of ordinary work: setting up a tool, a service, a dependency, a dev server
@@ -25,7 +25,7 @@ or CI, and remembering a preference, which is Claude's memory.
 
 | Job | Starts on | Procedure |
 |---|---|---|
-| **Set up** | "set this project up", "onboard this repo", "set up agents for this repo", "there's no AGENTS.md or CLAUDE.md here", a folder with no code to set up | [`set-up/procedure.md`](../../plugins/marketplace-steward/references/set-up/procedure.md) |
+| **Set up** | "set this project up", "onboard this repo", "set up agents for this repo", "there's no CLAUDE.md here", a folder with no code to set up | [`set-up/procedure.md`](../../plugins/marketplace-steward/references/set-up/procedure.md) |
 | **Adopt** | "bring our existing setup onto the marketplace", or set-up asked where a Claude setup already exists | [`adopt.md`](../../plugins/marketplace-steward/references/adopt.md) |
 | **Keep current** | "update the setup", a skill or agent in the project's setup not loading, set-up asked where the steward set the project up before | [`keep-current.md`](../../plugins/marketplace-steward/references/keep-current.md) |
 | **Contribute** | "a skill got this wrong", "make this a marketplace skill", "add this to my skills for every project", or a placement you changed in a contribution's pull request | [`contribute.md`](../../plugins/marketplace-steward/references/contribute.md) |
@@ -34,10 +34,10 @@ or CI, and remembering a preference, which is Claude's memory.
 
 | Job | Reads | Writes in the project | Writes elsewhere |
 |---|---|---|---|
-| Set up | The project, through the cartographer for a codebase; the live inventory of every marketplace; the source policy | `AGENTS.md` and its `CLAUDE.md`, path-scoped rules, project skills, `.claude/settings.json`, `.claude/plugin-sources.json`, the trios, `.claude/steward.json` | — |
+| Set up | The project, through the cartographer for a codebase; the live inventory of every marketplace; the source policy | `CLAUDE.md`, path-scoped rules, project skills, `.claude/settings.json`, `.claude/plugin-sources.json`, the trios, `.claude/steward.json` | — |
 | Adopt | Everything set up reads, and every Claude file of the project's own | What set up writes; rules edited out of the project's own files once their home is live | Backups in `~/.local/share/marketplace-steward/backups/`; contributions, as below |
-| Keep current | The record, the settings, the source policy, the trios, `AGENTS.md`, the manifests and the top-level tree, the live inventory | Dead keys removed, plugins installed, skill names fixed and skills added to roles, untouched trios rebuilt, new trios built, verifiable `AGENTS.md` lines fixed, pending rules removed after their merge, the record refreshed | Backups, in `~/.local/share/marketplace-steward/backups/`, before a pending rule is removed |
-| Contribute | The lesson, the project it came from, the steward's clone | The lesson's project part, in `AGENTS.md`; a declined skill, in the record | A worktree, drafts and a branch in `~/.local/share/marketplace-steward/`, and a pull request |
+| Keep current | The record, the settings, the source policy, the trios, `CLAUDE.md` and `AGENTS.md`, the manifests and the top-level tree, the live inventory | Dead keys removed, plugins installed, skill names fixed and skills added to roles, untouched trios rebuilt, new trios built, an imported `AGENTS.md` kept or folded into its `CLAUDE.md`, as the user answers, verifiable `CLAUDE.md` lines fixed, pending rules removed after their merge, the record refreshed | Backups, in `~/.local/share/marketplace-steward/backups/`, before a pending rule is removed |
+| Contribute | The lesson, the project it came from, the steward's clone | The lesson's project part, in `CLAUDE.md`; a declined skill, in the record | A worktree, drafts and a branch in `~/.local/share/marketplace-steward/`, and a pull request |
 
 [Project files](project-files.md) describes every file in the project column.
 

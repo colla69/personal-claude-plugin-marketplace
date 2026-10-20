@@ -15,6 +15,7 @@ the reason it was made is often the reason its replacement has the shape it has.
 - [Models: D46](#models-d46)
 - [The repo's own setup: D47 and D48](#the-repos-own-setup-d47-and-d48)
 - [Borrowed ideas: D49 to D52](#borrowed-ideas-d49-to-d52)
+- [Claude only: D53](#claude-only-d53)
 - [Still open](#still-open)
 
 ## The author's statements
@@ -33,7 +34,7 @@ AI". These are its statements, by date.
 | 2026-10-07 | Four layers, with examples. An agent is a role plus a set of skills. A task is solved by a trio, Plan, Do and Check, with a hard stop. Some skills are shared by all three | Holds |
 | 2026-10-08 | One skill per plugin. Init creates the trio in the project. Agents local, skills central | Holds; the steward is the one exception (D27) |
 | 2026-10-09 | Check checks against the plan. Plan and Check are read-only and hold only abstract knowledge. Tool skills go to Do. The company vision goes to Plan | Holds |
-| 2026-10-13 | Init writes `AGENTS.md`, then installs skills, then creates agents. Init installs the skills itself. The contributor only touches knowledge. It proposes, and a human approves | Holds: every change waits for the maintainer's merge. "Only touches knowledge" is **superseded** by D34 |
+| 2026-10-13 | Init writes `AGENTS.md`, then installs skills, then creates agents. Init installs the skills itself. The contributor only touches knowledge. It proposes, and a human approves | Holds: every change waits for the maintainer's merge. The file is `CLAUDE.md` since D53. "Only touches knowledge" is **superseded** by D34 |
 
 ## The restructure: D1 to D26
 
@@ -56,7 +57,7 @@ answer the author's open questions; question 4 stayed open, so there is no D4 (s
 | D13 | Set-up installs the skills itself, and the report keeps a paste block for other machines | The paste block lets another machine reproduce the same installs | Holds; "once its plan is approved" was superseded by D33 |
 | D14 | Claude only: agents go to `.claude/agents/`; files name no model | No model name, because the knowledge must outlive any one vendor's tool. No reason is recorded for Claude only | Claude only holds; no model name is **superseded** by D46 |
 | D15 | Init keeps `codebase-cartographer` as its own helper | It works for set-up, not for a project | Holds, in the steward |
-| D16 | One project skill per trio, invoked as `/<task>`, runs Plan, stops, runs Do and Check; `AGENTS.md` lists the trios | Which tasks a project has is a project fact | Holds |
+| D16 | One project skill per trio, invoked as `/<task>`, runs Plan, stops, runs Do and Check; `AGENTS.md` lists the trios | Which tasks a project has is a project fact | Holds; the root `CLAUDE.md` lists them since D53 |
 | D17 | What holds for any work splits out of `development-standards` into a Universal skill: read before writing, match what is there, hold scope, verify | Those parts hold for any work, so they are Universal | Became `universal-work-discipline` (D24) |
 | D18 | A role's generic report lives in its role template; a kind of work's report in its Craft skill | Each half of a report has one home | Holds |
 | D19 | Pinia leaves `vue-conventions` for `tools-pinia` | A project can use Vue without Pinia | Holds |
@@ -80,7 +81,7 @@ All decided on 2026-10-19, while the steward was built.
 | D30 | A lesson is placed by four moves: diagnose, strip, let the user decide where it is taste, keep corrections as examples | Most knowledge arrives tangled with its project | Holds, in `place-knowledge.md` |
 | D31 | A project's existing setup is adopted, not set up over | Two sets of instructions agree today and drift apart tomorrow | Holds, in `adopt.md` |
 | D32 | The name is `marketplace-steward` | The proposed name, accepted: it sets up, keeps current and grows | Holds |
-| D33 | No trio for the steward; it asks only before creating a new skill, besides the one-time sources checklist | A trio would make the process too difficult; a new skill is a decision about the cut, which is taste | Holds; supersedes init's plan stop |
+| D33 | No trio for the steward; it asks only before creating a new skill, besides the one-time sources checklist | A trio would make the process too difficult; a new skill is a decision about the cut, which is taste | Holds; supersedes init's plan stop. D53 adds a third question: keep or swap a project's `AGENTS.md` files |
 | D34 | No lanes: the steward is the only writer, and its helpers are read-only | One writer has no lane to keep | Holds; supersedes "the contributor only touches knowledge" |
 | D35 | Hooks, MCP servers, tool commands and permissions stay in the project; a hook that only injects text is knowledge | The marketplace ships knowledge, not mechanics | Holds |
 | D36 | Two visible skills, the front door and `evaluate-skills`; the rest is reference files read by path | Every visible skill costs a description in every session of every project; a hidden skill can't be preloaded | Holds |
@@ -131,6 +132,14 @@ in every one. Plain English is the exception, because every project has text to 
 | D50 | Plan looks facts up itself, and asks only what the user alone can answer, each decision with the answer it recommends | A question about a fact Plan could look up costs the user a round trip | Holds, in `roles/plan.md` |
 | D51 | `clean-code` asks for names a search can find, and error messages that name the remedy | Whoever changes the code next, often an agent, finds callers by searching and acts on what an error says | Holds |
 | D52 | Development is test first: `write-unit-tests` holds the red, green, refactor cycle, and `development-standards` makes it the way code changes where a test runner exists | A test written after the code has never been seen to fail. "That is actually a very good way to do things" | Holds; `craft-development` depends on `craft-unit-testing`, unconditionally, because the skill carries the rule and reports a missing runner; rule 7 of `set-up/trios.md` gives it to Do |
+
+## Claude only: D53
+
+Decided on 2026-10-20, once the setup was Claude only.
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D53 | The steward writes a project's context into `CLAUDE.md` and creates no `AGENTS.md`. When a project has `AGENTS.md` files, it asks once whether to keep them, each behind a `CLAUDE.md` that imports it, or swap them for `CLAUDE.md`, and records the answer. A kept one takes what the steward adds there; new component files are `CLAUDE.md` either way. An `AGENTS.md` that nothing imports goes through adoption either way | "We are Claude only now, let us get rid of the agents.md." Claude Code reads `CLAUDE.md`, so an `AGENTS.md` kept only for other tools costs an import line in every directory and a second file to keep true. But only the user knows whether another tool still reads a project's files: "if you find existing AGENTS.md ask if they are to be kept" | Holds, in `set-up/context-files.md`; keep-current asks in projects that earlier setups wrote. Other tools' own files still stay as they are |
 
 ## Still open
 

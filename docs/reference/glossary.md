@@ -5,9 +5,9 @@ that holds its rules.
 
 | Term | Meaning | Its rules live in |
 |---|---|---|
-| **Adopt** | The steward's job for a project that already has a Claude setup of its own: every rule in it gets one home, and a local copy goes only once its home is live | [`adopt.md`](../../plugins/marketplace-steward/references/adopt.md) |
+| **Adopt** | The steward's job for a project that already has a setup of its own, in `CLAUDE.md`, `AGENTS.md` or `.claude/`: every rule in it gets one home, and a local copy goes only once its home is live | [`adopt.md`](../../plugins/marketplace-steward/references/adopt.md) |
 | **Agent** | A subagent: an LLM with a role and a chosen set of skills, in a project's `.claude/agents/`. Skill plugins ship none; the steward ships two helpers | [`style.md`](../../plugins/marketplace-steward/references/author-skills/style.md) |
-| `AGENTS.md` | A project's instructions: what reading the project cannot tell. Vendor-neutral, so other tools can read it too | [`context-files.md`](../../plugins/marketplace-steward/references/set-up/context-files.md) |
+| `AGENTS.md` | An instructions file that Claude Code loads only through an import in a `CLAUDE.md`. Earlier setups held their context in it. Where a project has one, the steward asks once whether to keep its `AGENTS.md` files, each behind a `CLAUDE.md` that imports it, or swap them for `CLAUDE.md`. It never creates one | [`context-files.md`](../../plugins/marketplace-steward/references/set-up/context-files.md) |
 | **Always-on cost** | The tokens a plugin adds to every session that enables it, which `claude plugin details` estimates | [`SKILL.md`](../../plugins/marketplace-steward/skills/evaluate-skills/SKILL.md) |
 | **Brick** | The original word for a skill, from the German *Baustein*: one piece of a modular knowledge base | — |
 | **Canary** | A unique string placed in a file to prove, from a session's output, whether that file reached the model's context. It is how the steward's mechanics were tested | — |
@@ -16,7 +16,7 @@ that holds its rules.
 | **Category** | A plugin's layer as a field of its marketplace entry, and the prefix of its name; `marketplace` for a plugin that works on the marketplace itself, which sits in no layer | [`plugin-catalog.md`](../../plugins/marketplace-steward/references/set-up/plugin-catalog.md) |
 | **Check** | The trio's last role: compares the result with the accepted plan, and sends gaps back to Do. Read-only | [`check.md`](../../plugins/marketplace-steward/references/set-up/roles/check.md) |
 | **Checker** | `contribution-checker`, the steward's read-only agent that checks a change before its pull request, the leak check first | [`contribution-checker.md`](../../plugins/marketplace-steward/agents/contribution-checker.md) |
-| `CLAUDE.md` import | A one-line `CLAUDE.md` holding `@AGENTS.md`, beside every `AGENTS.md`, because Claude Code discovers nested `CLAUDE.md` files and never a nested `AGENTS.md` | [`context-files.md`](../../plugins/marketplace-steward/references/set-up/context-files.md) |
+| `CLAUDE.md` | A project's instructions: what reading the project cannot tell. Claude Code loads the root one in every session, and a nested one when a file in its folder is read | [`context-files.md`](../../plugins/marketplace-steward/references/set-up/context-files.md) |
 | **Clone** | The steward's own copy of the marketplace, in `~/.local/share/marketplace-steward/clone/`, which every contribution works from | [`contribute.md`](../../plugins/marketplace-steward/references/contribute.md) |
 | **Contribute** | The steward's job that turns a lesson into a change to a skill, or a new skill, by pull request | [`contribute.md`](../../plugins/marketplace-steward/references/contribute.md) |
 | **Craft** | The layer of how a kind of work is done, such as reviewing, refactoring or a monthly report | [`place-knowledge.md`](../../plugins/marketplace-steward/references/place-knowledge.md) |

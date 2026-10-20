@@ -116,7 +116,7 @@ which is its diff, its commit messages, its branch name, and its pull request's 
 and description, with what identifies the project the lesson came from:
 
 - its folder name, package names and git remote;
-- the names of people, clients, systems and products in its `AGENTS.md`;
+- the names of people, clients, systems and products in its `CLAUDE.md`;
 - the list of what the strip test removed.
 
 A match blocks the pull request, whatever else the change gets right. So does a name

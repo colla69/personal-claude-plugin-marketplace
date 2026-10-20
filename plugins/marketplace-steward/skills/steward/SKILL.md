@@ -1,6 +1,6 @@
 ---
 name: steward
-description: Set a project up for agentic work, keep that setup current, and keep what a project teaches for every other project — its AGENTS.md, the marketplace skills it needs, a Plan/Do/Check trio per recurring task, and changes to those skills by pull request. Use whenever the user says "set this project up", "onboard this repo", "set up agents for this repo", "there's no AGENTS.md or CLAUDE.md here", "bring our existing setup onto the marketplace", "update the setup", that a skill or agent in this project's setup isn't loading, asks for a trio for one more task, or says "a skill got this wrong", "make this a marketplace skill", "add this to my skills for every project". Not for setting up a tool, service, dependency, dev server or CI, and not for remembering a preference or fact for Claude, which is memory. Also use when the project to set up is a folder with no code in it.
+description: Set a project up for agentic work, keep that setup current, and keep what a project teaches for every other project — its CLAUDE.md, the marketplace skills it needs, a Plan/Do/Check trio per recurring task, and changes to those skills by pull request. Use whenever the user says "set this project up", "onboard this repo", "set up agents for this repo", "there's no CLAUDE.md here", "bring our existing setup onto the marketplace", "update the setup", that a skill or agent in this project's setup isn't loading, asks for a trio for one more task, or says "a skill got this wrong", "make this a marketplace skill", "add this to my skills for every project". Not for setting up a tool, service, dependency, dev server or CI, and not for remembering a preference or fact for Claude, which is memory. Also use when the project to set up is a folder with no code in it.
 allowed-tools:
   - Read(/${CLAUDE_PLUGIN_ROOT}/**)
   - Read(~/.local/share/marketplace-steward/**)
@@ -48,8 +48,8 @@ files it needs, which sit beside it.
 
 **For a request to set a project up or to add a trio, what it already has decides the
 job.** With `.claude/steward.json`, the steward set it up already: setting it up means
-keep current, and a trio takes set-up's trio route. With a Claude setup of its own and
-no record, in `CLAUDE.md`, `AGENTS.md` or `.claude/`: adopt first, whatever was asked.
+keep current, and a trio takes set-up's trio route. With a setup of its own and no
+record, in `CLAUDE.md`, `AGENTS.md` or `.claude/`: adopt first, whatever was asked.
 With nothing, or only other tools' files: set up.
 
 When the request is ordinary work on the project, this skill doesn't apply: the
@@ -57,9 +57,12 @@ project's trios and the conversation handle that.
 
 ## For every job
 
-- **Ask only two things.** The sources checklist, once, when no policy file exists, as
-  set-up's phase 1 says. And an OK before creating a new skill, showing what section 5
-  of `${CLAUDE_PLUGIN_ROOT}/references/place-knowledge.md` asks for; a yes goes to the
+- **Ask only three things.** The sources checklist, once, when no policy file exists,
+  as set-up's phase 1 says. Whether to keep the project's `AGENTS.md` files or swap them
+  for `CLAUDE.md`, once, when it has one, as
+  `${CLAUDE_PLUGIN_ROOT}/references/set-up/context-files.md` says. And an OK before
+  creating a new skill, showing what section 5 of
+  `${CLAUDE_PLUGIN_ROOT}/references/place-knowledge.md` asks for; a yes goes to the
   contribute job. Everything else goes ahead and is reported.
 - **Say exactly what you created and what you changed.** With no plan to approve, the
   report is what the user reads to decide what to keep, next to `git diff`.
@@ -80,5 +83,5 @@ project's trios and the conversation handle that.
 ## Where this yields
 
 To the user, who can stop a job at any point or name what to leave out, and whose merge
-decides every change to the marketplace. To the project's `AGENTS.md`, where it says
+decides every change to the marketplace. To the project's `CLAUDE.md`, where it says
 how its own setup is looked after.
