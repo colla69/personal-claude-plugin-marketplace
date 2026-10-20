@@ -57,6 +57,11 @@ For each unit, cover:
 - **The boundaries** — empty, zero, one, maximum, exactly-at-the-limit
 - **The failures** — invalid input, the dependency throwing, the timeout
 - **The regressions** — every bug that was ever fixed here gets a test named after it
+- **The agreement** — where two code paths must give the same answer, one test feeds
+  both the same inputs and compares the outputs. Two tests that are each right on their
+  own can pass while the paths drift apart.
+- **The collision** — where two sources of one record combine, assert which one wins.
+  No test of either source alone can see a merge that keeps the wrong copy.
 
 Skip: getters, framework glue, generated code, and anything where the test would restate
 the implementation line for line.
