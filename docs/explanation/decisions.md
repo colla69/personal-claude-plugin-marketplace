@@ -12,6 +12,7 @@ the reason it was made is often the reason its replacement has the shape it has.
 - [The restructure: D1 to D26](#the-restructure-d1-to-d26)
 - [The steward: D27 to D37](#the-steward-d27-to-d37)
 - [The documentation: D38 to D45](#the-documentation-d38-to-d45)
+- [Models: D46](#models-d46)
 - [Still open](#still-open)
 
 ## The author's statements
@@ -51,7 +52,7 @@ answer the author's open questions; question 4 stayed open, so there is no D4 (s
 | D11 | Set-up creates each trio's run pattern in the project; no separate plugin holds it | — | Holds, in the steward |
 | D12 | Default effort: Plan `high`, Do `medium`, Check `medium`, adjusted per task with a reason | Follows D3: effort differs per task | Holds; the reason now goes in the report (D33) |
 | D13 | Set-up installs the skills itself, and the report keeps a paste block for other machines | The paste block lets another machine reproduce the same installs | Holds; "once its plan is approved" was superseded by D33 |
-| D14 | Claude only: agents go to `.claude/agents/`; files name no model | No model name, because the knowledge must outlive any one vendor's tool. No reason is recorded for Claude only | Holds |
+| D14 | Claude only: agents go to `.claude/agents/`; files name no model | No model name, because the knowledge must outlive any one vendor's tool. No reason is recorded for Claude only | Claude only holds; no model name is **superseded** by D46 |
 | D15 | Init keeps `codebase-cartographer` as its own helper | It works for set-up, not for a project | Holds, in the steward |
 | D16 | One project skill per trio, invoked as `/<task>`, runs Plan, stops, runs Do and Check; `AGENTS.md` lists the trios | Which tasks a project has is a project fact | Holds |
 | D17 | What holds for any work splits out of `development-standards` into a Universal skill: read before writing, match what is there, hold scope, verify | Those parts hold for any work, so they are Universal | Became `universal-work-discipline` (D24) |
@@ -97,6 +98,14 @@ All decided on 2026-10-19, while this documentation was planned.
 | D43 | Writing the documentation stops for the maintainer twice: once the structure is laid, and once the whole set is done | The structure is what every later page sits in | Holds |
 | D44 | No page refers to the working records the marketplace was built from: the docs carry what they need | The docs stand on their own | Holds |
 | D45 | The working records' folder has a name that says what it holds | — | Holds |
+
+## Models: D46
+
+Decided on 2026-10-20, when the token cost of the setup came under review.
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D46 | Every agent names its model as an alias beside its `effort`, set per role; every role starts on `opus` | The setup is Claude only, so a model name costs no portability, and the model is where a role's cost is decided | Holds; measuring decides which roles move to a cheaper model |
 
 ## Still open
 

@@ -2,6 +2,7 @@
 name: contribution-checker
 description: Checks a change to the skills marketplace before its pull request, the leak check first. Invoked only by the steward's contribute job. Read-only.
 effort: medium
+model: opus
 disallowedTools: Write, Edit, NotebookEdit
 skills:
   - marketplace-steward:evaluate-skills

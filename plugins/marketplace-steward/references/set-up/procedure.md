@@ -51,7 +51,7 @@ Decide, from what phase 2 found:
 - the trios, and which skill goes to which role, as `trios.md` says.
 
 Nothing is shown before the work. The decisions go into the report, in the tables of
-`report.md`, with a reason wherever an effort differs from its default.
+`report.md`, with a reason wherever a model or an effort differs from its default.
 
 **A need nothing covers calls for a new skill.** When the project shows a need that
 neither the toolkit nor a permitted gap-fill covers, and it would hold in other projects

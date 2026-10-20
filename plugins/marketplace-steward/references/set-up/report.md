@@ -45,9 +45,10 @@ the user already answered.>
 ### Trios
 | Task | Run | Plan | Do | Check |
 |---|---|---|---|---|
-| <task> | `/<task>` | <skills; effort> | <skills; effort> | <skills; effort> |
+| <task> | `/<task>` | <skills; model; effort> | <skills; model; effort> | <skills; model; effort> |
 
-<An effort that differs from the template's default carries its reason in the cell.>
+<A model or effort that differs from the template's default carries its reason in the
+cell.>
 
 ### Installed
 <Every plugin installed, and the dependencies that came with it. On another machine,

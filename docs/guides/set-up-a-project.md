@@ -41,8 +41,8 @@ first trials will show where it behaves otherwise.
    proposing a new skill and asking whether to create it. A yes hands it to the
    contribute job.
 5. **Read the report.** It lists every file created and every file changed, the
-   plugins and why each fits, the trios with each role's skills and effort, and what it
-   couldn't verify.
+   plugins and why each fits, the trios with each role's skills, model and effort, and
+   what it couldn't verify.
 6. **Start a new session**, so the installed skills and the new agents load. Run
    `/context` to confirm the context files did.
 

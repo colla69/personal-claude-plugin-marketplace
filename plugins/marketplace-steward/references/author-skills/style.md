@@ -228,8 +228,9 @@ worker either does out-of-scope work or drops what it noticed.
   - `disallowedTools`, for every read-only lane.
   - In a role template, a `skills:` slot that set-up fills. How each skill is named
     there is in `set-up/trios.md`, in the steward's references.
-  - **Never a `model` field.** Naming a vendor's model hard-codes one runtime into a
-    file that has to stay portable.
+  - `model`, as an alias (`opus`, `sonnet`, `haiku`), never a full model ID, so that it
+    follows new versions. It is chosen per role like `effort`, and the role templates
+    carry the defaults.
 - `description` lives in the marketplace entry, not in `plugin.json`. When a field is
   set in both, the manifest silently wins.
 - Namespacing is automatic, as `/universal-clean-code:clean-code`. Do not put the

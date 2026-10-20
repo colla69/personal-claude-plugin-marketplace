@@ -2,6 +2,7 @@
 name: {{TASK}}-plan
 description: Plans {{WHAT_THE_TASK_DOES}} in this project. Reads, asks, and proposes a plan, then stops for the user's OK. The first step of `/{{TASK}}`. Read-only.
 effort: high
+model: opus
 disallowedTools: Write, Edit, NotebookEdit
 skills:
   - {{plugin:skill, one per line. Universal, Craft and Language skills only}}

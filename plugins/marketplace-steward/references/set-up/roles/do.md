@@ -2,6 +2,7 @@
 name: {{TASK}}-do
 description: Carries out an accepted plan for {{WHAT_THE_TASK_DOES}} in this project. The only agent of `/{{TASK}}` that changes files. Invoked with a plan the user has accepted.
 effort: medium
+model: opus
 skills:
   - universal-work-discipline:work-discipline
   - {{plugin:skill, one per line. Whatever the work needs, including every Framework & Tools skill}}

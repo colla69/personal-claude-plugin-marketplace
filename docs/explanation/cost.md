@@ -50,7 +50,7 @@ it carries the triggers of four jobs.
 ## Credits, not only context
 
 Cost isn't only tokens in context. A trio spends credits on each role's run, which is
-why Plan and Check are read-only and why each role's `effort` is set per task:
-[trios](trios.md) explains the defaults. And the checker leaves out the ablation, which
-runs a plugin's evals with and without it, because nobody asked it to spend those
+why Plan and Check are read-only and why each role's `model` and `effort` are set per
+task: [trios](trios.md) explains the defaults. And the checker leaves out the ablation,
+which runs a plugin's evals with and without it, because nobody asked it to spend those
 credits on every change.

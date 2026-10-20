@@ -71,9 +71,9 @@ steward ships or generates:
 - **Read-only is frontmatter.** A read-only agent carries
   `disallowedTools: Write, Edit, NotebookEdit`. A description that says "read-only"
   without that line is not read-only.
-- **No model.** No agent file names a model, from any vendor. The knowledge has to
-  outlive any one tool, and a model name hard-codes one runtime into a file that has to
-  stay portable.
+- **A model alias.** Every agent names its model, such as `model: opus`, beside its
+  `effort`. The setup is Claude only, and the model is where a role's cost is decided.
+  An alias rather than a full model ID follows new versions without an edit.
 
 The house rules for both shapes are in
 [`style.md`](../../plugins/marketplace-steward/references/author-skills/style.md), and

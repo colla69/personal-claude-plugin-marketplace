@@ -75,7 +75,7 @@ project that has none.
     ".claude/agents/change-plan.md": {
       "from": "roles/plan.md",
       "template": "<hash of the template when the file was built>",
-      "fill": { "TASK": "change", "skills": ["…"], "effort": "high" },
+      "fill": { "TASK": "change", "skills": ["…"], "model": "opus", "effort": "high" },
       "sha256": "<hash of the file as written>"
     },
     "AGENTS.md": { "sha256": "<hash of the file as written>" }
