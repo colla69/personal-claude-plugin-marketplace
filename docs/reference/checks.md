@@ -24,7 +24,8 @@ The marketplace's own check, with no dependencies. It fails on:
 ## `node scripts/check-docs.mjs`
 
 The documentation's own check, with no dependencies. It reads the pages in `docs/`,
-the three entry points, `.claude/rules/` and the plugin READMEs, and fails on:
+the three entry points, the repo's own `.claude/` and the plugin READMEs, and fails
+on:
 
 | Mistake | Why nothing else notices |
 |---|---|
