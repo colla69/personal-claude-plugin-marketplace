@@ -33,8 +33,8 @@ comes next.
 
 - `.claude/plugin-sources.json`, the sources skills may come from, asked once as a
   checklist
-- `CLAUDE.md`, at the root and in each component that earns one. An `AGENTS.md` it
-  finds is folded into the `CLAUDE.md` beside it
+- `CLAUDE.md`, at the root and in each component that earns one. An `AGENTS.md` that a
+  `CLAUDE.md` imports is folded into it; one that nothing imports is adopted
 - The skills, installed at project scope into `.claude/settings.json`, merged. Plugin
   keys that no longer exist are removed
 - For each trio, `.claude/agents/<task>-plan.md`, `-do.md` and `-check.md`, and

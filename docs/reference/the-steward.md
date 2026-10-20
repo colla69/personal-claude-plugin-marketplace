@@ -15,7 +15,7 @@ what you ask and from what the project already has:
 | The project has | "Set this project up" means | "Add a trio" means |
 |---|---|---|
 | Nothing, or only other tools' files | Set up | Set up |
-| A Claude setup of its own, and no `.claude/steward.json` | Adopt | Adopt first |
+| A setup of its own, in `CLAUDE.md`, `AGENTS.md` or `.claude/`, and no `.claude/steward.json` | Adopt | Adopt first |
 | `.claude/steward.json` | Keep current | Set up, for that trio |
 
 It stays out of ordinary work: setting up a tool, a service, a dependency, a dev server

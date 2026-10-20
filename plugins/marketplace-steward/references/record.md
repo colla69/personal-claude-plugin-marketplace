@@ -64,7 +64,9 @@ the user's work or never happens at all, and what the user took out comes back.
 - **A file folded into another loses its entry**, such as an `AGENTS.md` moved into its
   `CLAUDE.md`, so that it doesn't look removed by the user. The file it went into keeps
   its entry, refreshed, only when both files' hashes matched the record before the
-  fold. Otherwise it loses its entry, because it now holds lines the user wrote.
+  fold. Otherwise it loses its entry, because it now holds lines the user wrote. Every
+  `pending` entry whose `path` is the folded file now names the file it went into, so
+  the rule is still found after its merge.
 - **What is in the record and gone from the project was removed by the user.** A
   recorded trio whose files are gone, or a recorded plugin whose key is gone, stays
   gone. A declined skill is not proposed again.

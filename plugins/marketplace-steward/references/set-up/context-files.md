@@ -34,8 +34,9 @@ holding `@AGENTS.md` imports `client/AGENTS.md`, not the root one.
 
 - **An `AGENTS.md` that a `CLAUDE.md` imports** was already in force, so move it whole.
   Put its content into that `CLAUDE.md` in place of the import line, keep every other
-  line of the `CLAUDE.md` where it was, and remove the `AGENTS.md`. Nothing is placed
-  again, and nothing is lost.
+  line of the `CLAUDE.md` where it was, and remove the `AGENTS.md`. The move itself
+  loses nothing and places nothing again; in an adoption, its rules are then placed
+  with the rest of that `CLAUDE.md`.
 - **An `AGENTS.md` that nothing imports** never loaded. Its rules are not yet in force,
   so they go through adoption, rule by rule, as `../adopt.md` says, and the file goes
   once every rule in it has a home.

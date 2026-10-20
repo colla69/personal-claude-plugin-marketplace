@@ -17,10 +17,10 @@ that symptom, and say in the report which checks you didn't run.
 
 Refresh every marketplace and read the live inventory, as `set-up/plugin-sources.md`
 says, and read `.claude/plugin-sources.json` and `.claude/steward.json`. A project with
-no policy file and no `AGENTS.md`, which setups before the record wrote, was never set
-up: that is the set-up or the adopt job, as the front door decides, not this one. A
-project with no record was set up before the record existed, and step 4 rebuilds
-nothing in it.
+no policy file and no `AGENTS.md` was never set up: that is the set-up or the adopt job,
+as the front door decides, not this one. An `AGENTS.md` counts because setups from
+before the record wrote one. A project with no record was set up before the record
+existed, and step 4 rebuilds nothing in it.
 
 ## 2. Plugin keys that no longer exist
 
@@ -66,7 +66,9 @@ only imports it. Fold every `AGENTS.md` that a `CLAUDE.md` imports into that
 `CLAUDE.md`, as "An AGENTS.md found in the project" in `set-up/context-files.md` says,
 whoever wrote it: the content moves whole, so a user's edit moves with it. An
 `AGENTS.md` that nothing imports never loaded. Leave it, and report it under
-Unverified, because its rules need adoption before they are in force.
+Unverified, because its rules need adoption before they are in force. The exception is
+one that the record's `pending` names: an adoption left its rules there for their pull
+requests, and step 8 looks after them.
 
 ## 7. CLAUDE.md lines that are no longer true
 

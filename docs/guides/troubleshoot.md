@@ -24,7 +24,7 @@ projects will add to them.
 | Claude Code asks before every write of a contribution | Something writes under `~/.claude`, which is always asked for | The steward works in `~/.local/share/marketplace-steward/`; a change that moved it back is the cause |
 | Claude Code asks for each plugin install, refresh or hash | Those commands aren't pre-allowed | Allow them, as [permissions](../reference/permissions.md) describes, or answer once per run |
 | A set-up request ran keep-current instead | The project has `.claude/steward.json` | That is intended: the steward set it up before, so setting it up again means bringing it up to date |
-| A set-up request adopted the project | It has a Claude setup of its own and no record | That is intended; see [adopt an existing setup](adopt-an-existing-setup.md) |
+| A set-up request adopted the project | It has a setup of its own, in `CLAUDE.md`, `AGENTS.md` or `.claude/`, and no record | That is intended; see [adopt an existing setup](adopt-an-existing-setup.md) |
 | A trio came out under another name, or not at all | One of its four paths was taken by a file of yours | Keep it under the other name; or delete that trio's four files, rename or remove yours, and ask for the trio again |
 | A rule you expected to go is still in your files | Its home isn't live yet: pending a merge, or no trio role preloads the skill | Merge its pull request and say "update the setup"; or leave it, which is safe |
 | `Skill … cannot be used with Skill tool due to disable-model-invocation` | That skill is hidden from the model | Hidden skills can only be run by you, as `/plugin:skill`; the steward keeps its jobs in references for this reason |

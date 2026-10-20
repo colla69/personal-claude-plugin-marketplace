@@ -61,6 +61,10 @@ as they are; a hook that only injects text is the exception, and goes once its t
 a home. Other tools' files, such as `.cursor/rules/`, are read and never changed, and so
 are `CLAUDE.local.md` and `.claude/settings.local.json`.
 
+An `AGENTS.md` is not kept, because the setup is Claude only. One that a `CLAUDE.md`
+imports is folded into that `CLAUDE.md` first, and its rules are placed with the rest.
+One that nothing imports goes once each of its rules has a home.
+
 ## Afterwards
 
 Once you have merged the pull requests, say "update the setup" in the project.

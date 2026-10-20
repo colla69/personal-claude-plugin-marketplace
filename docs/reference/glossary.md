@@ -5,9 +5,9 @@ that holds its rules.
 
 | Term | Meaning | Its rules live in |
 |---|---|---|
-| **Adopt** | The steward's job for a project that already has a Claude setup of its own: every rule in it gets one home, and a local copy goes only once its home is live | [`adopt.md`](../../plugins/marketplace-steward/references/adopt.md) |
+| **Adopt** | The steward's job for a project that already has a setup of its own, in `CLAUDE.md`, `AGENTS.md` or `.claude/`: every rule in it gets one home, and a local copy goes only once its home is live | [`adopt.md`](../../plugins/marketplace-steward/references/adopt.md) |
 | **Agent** | A subagent: an LLM with a role and a chosen set of skills, in a project's `.claude/agents/`. Skill plugins ship none; the steward ships two helpers | [`style.md`](../../plugins/marketplace-steward/references/author-skills/style.md) |
-| `AGENTS.md` | Another tool's instructions file, which Claude Code loads only through an import. Earlier setups held their context in it; the steward now writes none, and folds one it finds into the `CLAUDE.md` beside it | [`context-files.md`](../../plugins/marketplace-steward/references/set-up/context-files.md) |
+| `AGENTS.md` | An instructions file that Claude Code loads only through an import in a `CLAUDE.md`. Earlier setups held their context in it. The steward now writes none: it folds one that a `CLAUDE.md` imports into that file, and adopts the rules of one that nothing imports. Unlike other tools' files, it doesn't stay | [`context-files.md`](../../plugins/marketplace-steward/references/set-up/context-files.md) |
 | **Always-on cost** | The tokens a plugin adds to every session that enables it, which `claude plugin details` estimates | [`SKILL.md`](../../plugins/marketplace-steward/skills/evaluate-skills/SKILL.md) |
 | **Brick** | The original word for a skill, from the German *Baustein*: one piece of a modular knowledge base | — |
 | **Canary** | A unique string placed in a file to prove, from a session's output, whether that file reached the model's context. It is how the steward's mechanics were tested | — |
