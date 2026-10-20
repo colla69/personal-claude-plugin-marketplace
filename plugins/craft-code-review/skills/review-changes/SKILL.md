@@ -27,11 +27,11 @@ whether a change is correct.
 **Correctness.** Does it do what the commit message claims? For the case you trace,
 take one realistic input through the changed path. Then check the edges the author
 probably didn't: empty collections, null, concurrent access, the second call, the
-failure of the thing being called. Then look for what a diff cannot show: when the change
-adds or alters a rule on one of two paths that must agree — a writer and its reader,
-client and server validation, a batch job and its online twin — check the same rule on
-the other path. A missing rule has no line to comment on, so it ships unless the
-reviewer goes to look for it.
+failure of the thing being called. Then look for what a diff cannot show: when the
+change adds or alters a rule or a format on one of two paths that must agree — client
+and server validation, or the code that writes a record and the code that reads it —
+check the same rule on the other path. A missing rule has no line to comment on, so it
+ships unless the reviewer goes to look for it.
 
 **Security.** Untrusted input reaching a query, a shell, a path, or a template. Authz
 checks that happen after the expensive operation rather than before. Secrets in code or
