@@ -18,7 +18,9 @@ same one the steward's checker runs before every pull request.
 2. **Ask:** "is this skill well written?", "why isn't `vue-conventions` triggering?",
    "is `craft-refactoring` ready to merge?", "review my change to `clean-code`", or
    "how do the skills fit together?". The first time, Claude Code asks whether the skill
-   may read its own files.
+   may read its own files. For a change you wrote yourself, ask for the
+   `change-reviewer` agent instead: it runs the same review without the evals, in a
+   context of its own, so the reviewer isn't the writer.
 3. **Read the report.**
 
 ## What it looks at

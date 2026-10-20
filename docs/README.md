@@ -45,7 +45,7 @@ One task each.
 | [`guides/run-a-trio.md`](guides/run-a-trio.md) | Use `/<task>`: the plan, the OK, sending work back | `roles/run.md` | Written, not yet tried |
 | [`guides/keep-a-setup-current.md`](guides/keep-a-setup-current.md) | Update a setup after the marketplace or the project changed | `keep-current.md` | Written, not yet tried |
 | [`guides/contribute-a-lesson.md`](guides/contribute-a-lesson.md) | Give the steward a lesson, and review its pull request | `contribute.md` | Written, not yet tried |
-| [`guides/review-a-skill.md`](guides/review-a-skill.md) | Review a skill, a plugin, a change or the whole set | `evaluate-skills` | Written |
+| [`guides/review-a-skill.md`](guides/review-a-skill.md) | Review a skill, a plugin, a change or the whole set | `evaluate-skills`, `change-reviewer` | Written |
 | [`guides/write-a-skill-by-hand.md`](guides/write-a-skill-by-hand.md) | Add or change a skill without the steward | `style.md`, `plugin-shape.md`, `place-knowledge.md` | Written |
 | [`guides/migrate-from-old-names.md`](guides/migrate-from-old-names.md) | Move a project and a machine off the old plugin names | The Renamed table, `keep-current.md` | Written; its steward part not yet tried |
 | [`guides/work-on-the-steward.md`](guides/work-on-the-steward.md) | Load the working copy, probe a mechanic, test a change | `plugin-shape.md`, the front door | Written |

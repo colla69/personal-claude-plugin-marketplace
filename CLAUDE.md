@@ -21,7 +21,7 @@ Read the file before you change what it governs. None of its rules are repeated 
 | Write or edit a skill, a role template or a plugin README | [`style.md`](plugins/marketplace-steward/references/author-skills/style.md) |
 | Add, rename or register a plugin, or change a manifest | [`plugin-shape.md`](plugins/marketplace-steward/references/author-skills/plugin-shape.md) |
 | Change the steward's own skills, references or agents | [`plugin-shape.md`](plugins/marketplace-steward/references/author-skills/plugin-shape.md), then [`work-on-the-steward.md`](docs/guides/work-on-the-steward.md) |
-| Write or edit a page in `docs/` | [`writing-docs.md`](docs/contributing/writing-docs.md) |
+| Write or edit a page in `docs/`, or an entry point | [`writing-docs.md`](docs/contributing/writing-docs.md) |
 
 ## Commands
 
@@ -69,7 +69,8 @@ The gist of each; the files above hold the rules.
 |---|---|
 | Add or change a skill from a lesson | The steward's contribute job. It works in its own clone and opens a pull request, so pull this checkout after the merge |
 | Add or change a skill by hand | [`write-a-skill-by-hand.md`](docs/guides/write-a-skill-by-hand.md) |
-| Review a skill, a plugin, a change or the whole set | `evaluate-skills`, in a session with the steward loaded by the command above, run by a separate agent from the one that wrote the change |
+| Review a change you wrote | The `change-reviewer` agent, in a session with the steward loaded by the command above, so the reviewer isn't the writer |
+| Review a skill, a plugin or the whole set | `evaluate-skills`, in a session with the steward loaded by the command above |
 
 Deciding what a standard says, its layer, its home and what it yields to, is the
 maintainer's taste: the steward asks before a new skill, and every change waits for

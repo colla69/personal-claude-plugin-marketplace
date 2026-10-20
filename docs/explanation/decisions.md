@@ -13,6 +13,7 @@ the reason it was made is often the reason its replacement has the shape it has.
 - [The steward: D27 to D37](#the-steward-d27-to-d37)
 - [The documentation: D38 to D45](#the-documentation-d38-to-d45)
 - [Models: D46](#models-d46)
+- [The repo's own setup: D47 and D48](#the-repos-own-setup-d47-and-d48)
 - [Still open](#still-open)
 
 ## The author's statements
@@ -93,7 +94,7 @@ All decided on 2026-10-19, while this documentation was planned.
 | D38 | Plain Markdown on GitHub, with Mermaid, and no build | The repo has no build and no dependencies on purpose | Holds |
 | D39 | The concept page is dissolved: its explanations into the docs, its rules into the product and `CLAUDE.md` | "The concept can now live in the new documentation and agentic setup" | Done |
 | D40 | The full plugin table lives in `reference/plugins.md`, checked by `check-catalog.mjs` | The landing page names the layers; the list belongs in reference, where a check reads it | Done |
-| D41 | `.claude/rules/authoring.md` becomes a pointer | It loads whenever a skill file is touched, and should restate nothing | Done |
+| D41 | `.claude/rules/authoring.md` becomes a pointer | It loads whenever a skill file is touched, and should restate nothing | **Superseded** by D47 |
 | D42 | A docs check, `scripts/check-docs.mjs`, runs in CI | Broken links are the docs' silent failure | Done |
 | D43 | Writing the documentation stops for the maintainer twice: once the structure is laid, and once the whole set is done | The structure is what every later page sits in | Holds |
 | D44 | No page refers to the working records the marketplace was built from: the docs carry what they need | The docs stand on their own | Holds |
@@ -106,6 +107,15 @@ Decided on 2026-10-20, when the token cost of the setup came under review.
 | # | Decision | Why | Now |
 |---|---|---|---|
 | D46 | Every agent names its model as an alias beside its `effort`, set per role; every role starts on `opus` | The setup is Claude only, so a model name costs no portability, and the model is where a role's cost is decided | Holds; measuring decides which roles move to a cheaper model |
+
+## The repo's own setup: D47 and D48
+
+Decided on 2026-10-20, when the token cost of the setup came under review.
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D47 | The repo has no path-scoped rules; `CLAUDE.md` alone points to the files that hold the rules | Both rules repeated the table `CLAUDE.md` already loads in every session, so they cost tokens and a second place to keep in sync | Holds |
+| D48 | The repo keeps one agent of its own, `change-reviewer`, read-only, preloading `evaluate-skills` and `review-work` | A change made by hand is reviewed by a separate agent, which otherwise had to be briefed from scratch each time. It costs a description only in sessions in this repo | Holds; starts on `opus` until measuring says otherwise |
 
 ## Still open
 

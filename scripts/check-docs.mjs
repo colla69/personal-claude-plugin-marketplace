@@ -36,7 +36,11 @@ function markdownUnder(dir) {
 function proseLines(text) {
   const lines = []
   let fence = null
+  // Frontmatter, as in an agent file, is exempt: a description can't wrap.
+  const front = text.startsWith('---\n') ? text.indexOf('\n---', 3) : -1
+  const skip = front === -1 ? 0 : text.slice(0, front).split('\n').length + 1
   text.split('\n').forEach((line, i) => {
+    if (i < skip) return
     const marker = line.trimStart().match(/^(`{3,}|~{3,})/)?.[1]
     if (fence === null && marker) { fence = marker; return }
     if (fence !== null) {
@@ -87,14 +91,14 @@ function anchorsOf(path) {
 
 const pages = markdownUnder('docs').filter((p) => !p.startsWith(RECORDS))
 const entryPoints = ['README.md', 'CONTRIBUTING.md', 'CLAUDE.md']
-const rules = markdownUnder('.claude/rules')
+const local = markdownUnder('.claude')
 const pluginReadmes = readdirSync(join(root, 'plugins'))
   .map((name) => `plugins/${name}/README.md`)
   .filter((p) => existsSync(join(root, p)))
 
 // Links resolve, to the file and to the heading, in every page a reader opens. None
 // leads into the working records.
-for (const file of [...pages, ...entryPoints, ...rules, ...pluginReadmes]) {
+for (const file of [...pages, ...entryPoints, ...local, ...pluginReadmes]) {
   for (const [n, target, anchor] of links(read(file))) {
     if (target.startsWith('/')) { fail(`${file}:${n}: link to "${target}" is absolute; make it relative`); continue }
     const path = target === '' ? join(root, file) : resolve(join(root, dirname(file)), target)
@@ -118,7 +122,7 @@ for (const page of pages) {
 
 // Prose wraps at 88 columns. Tables, code, and a line that is nothing but one link
 // whose text can't break, such as [`style.md`](…), are exempt.
-for (const file of [...pages, ...entryPoints, ...rules]) {
+for (const file of [...pages, ...entryPoints, ...local]) {
   for (const [n, line] of proseLines(read(file))) {
     if (line.length <= WIDTH || line.trimStart().startsWith('|')) continue
     if (/^\s*([-*]|\d+\.)?\s*\[(`[^`]*`|[^\s\]]+)\]\([^\s)]+\)[.,;:]?$/.test(line)) continue
