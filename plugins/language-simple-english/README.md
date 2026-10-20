@@ -42,7 +42,8 @@ it to every role of every trio. By hand:
 claude plugin install language-simple-english@personal-claude-plugin-marketplace --scope project
 ```
 
-By hand, `--scope user` fits too: it holds in every project.
+The steward depends on it, so installing the steward at user scope brings it to every
+project on that machine.
 
 ## More
 

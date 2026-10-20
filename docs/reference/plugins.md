@@ -25,7 +25,7 @@ Each plugin's own README, under `plugins/<name>/`, says where it stops.
 | [`tools-vue`](../../plugins/tools-vue/) | Framework & Tools | `vue-conventions` | Vue 3 Composition API: components, reactivity, composables, templates | `vue` in the dependencies | — |
 | [`tools-vue-typescript`](../../plugins/tools-vue-typescript/) | Framework & Tools | `vue-typescript-conventions` | TypeScript in Vue 3: typed props, emits and reactive inputs | Both `vue` and `typescript`, or `lang="ts"` in `.vue` files | `tools-vue`, `language-typescript` |
 | [`tools-pinia`](../../plugins/tools-pinia/) | Framework & Tools | `pinia-conventions` | Pinia stores, and server data in a query layer instead of a store | `pinia` in the dependencies | `tools-vue` |
-| [`marketplace-steward`](../../plugins/marketplace-steward/) | — | `steward`, `evaluate-skills` | Sets projects up, adopts their setups, keeps them current, and grows the marketplace by pull request | Never in a project: you install it once, for your user | `craft-review` |
+| [`marketplace-steward`](../../plugins/marketplace-steward/) | — | `steward`, `evaluate-skills` | Sets projects up, adopts their setups, keeps them current, and grows the marketplace by pull request | Never in a project: you install it once, for your user | `craft-review`, `language-simple-english` |
 
 ## By layer
 

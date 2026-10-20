@@ -215,6 +215,9 @@ worker either does out-of-scope work or drops what it noticed.
 
 - Write in English, so triggers fire on the phrases people type. A natural-language
   skill, such as German, is content: it is about the language, not written in it.
+- Write that English the way `simple-english`, in `language-simple-english`, says, here
+  as in every project. Text already here moves to it when it is next edited, not in a
+  sweep, so each diff holds only the change it is for.
 - Hard-wrap prose at **88 characters**. Frontmatter descriptions and table rows are
   exempt, since they cannot wrap.
 - Use em dashes for asides, not parentheses.

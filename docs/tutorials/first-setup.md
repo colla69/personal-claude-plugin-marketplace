@@ -17,9 +17,9 @@ claude plugin marketplace add colla69/personal-claude-plugin-marketplace
 claude plugin install marketplace-steward@personal-claude-plugin-marketplace --scope user
 ```
 
-It goes in at user scope, so it works in every project you open. `craft-review` comes
-with it, because the steward builds on it. Everything else the steward installs per
-project, in that project.
+It goes in at user scope, so it works in every project you open. `craft-review` and
+`language-simple-english` come with it, because the steward builds on them. Everything
+else the steward installs per project, in that project.
 
 ## 2. Make a sample project
 

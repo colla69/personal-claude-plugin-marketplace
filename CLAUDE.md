@@ -30,7 +30,7 @@ Read the file before you change what it governs. None of its rules are repeated 
 | Validate the marketplace and every plugin | `claude plugin validate .` |
 | Check the plugin lists, layers and dependencies | `node scripts/check-catalog.mjs` |
 | Check the docs' links, map and wrapping | `node scripts/check-docs.mjs` |
-| Load the working copy of the steward | `claude --plugin-dir ./plugins/marketplace-steward --plugin-dir ./plugins/craft-review` |
+| Load the working copy of the steward | `claude --plugin-dir ./plugins/marketplace-steward --plugin-dir ./plugins/craft-review --plugin-dir ./plugins/language-simple-english` |
 | See a plugin's inventory and cost | `claude --plugin-dir ./plugins/<name> plugin details <name>` |
 | Run a plugin's evals with a baseline | `claude plugin eval ./plugins/<name> --ablation with-without` |
 

@@ -8,7 +8,7 @@ costs, check it the way CI will, and know what each check does and doesn't catch
 | You are changing | Load it with |
 |---|---|
 | A skill plugin | `claude --plugin-dir ./plugins/<name>`, plus one `--plugin-dir` for each plugin it depends on |
-| The steward | `claude --plugin-dir ./plugins/marketplace-steward --plugin-dir ./plugins/craft-review` |
+| The steward | `claude --plugin-dir ./plugins/marketplace-steward --plugin-dir ./plugins/craft-review --plugin-dir ./plugins/language-simple-english` |
 | The whole marketplace, as a user would get it | `claude plugin marketplace add .`, then `claude plugin install <name>@personal-claude-plugin-marketplace`, on a machine without the marketplace from GitHub |
 
 A `--plugin-dir` copy replaces the installed plugin of the same name for that session.
