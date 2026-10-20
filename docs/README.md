@@ -18,7 +18,7 @@ column names the product files a page is checked against; the glossary links eac
 | You are | Start with |
 |---|---|
 | New, and wondering whether this is for you | [`../README.md`](../README.md), then `tutorials/first-setup.md` |
-| Using the steward in your projects | The guides |
+| Using the steward in your projects | [`guides/set-up-a-project.md`](guides/set-up-a-project.md), then the other guides |
 | Working on the marketplace or the steward | [`../CONTRIBUTING.md`](../CONTRIBUTING.md), then the contributing pages |
 | Weighing the idea itself | [`explanation/the-idea.md`](explanation/the-idea.md) |
 | Looking up a word | [`reference/glossary.md`](reference/glossary.md) |
@@ -38,17 +38,17 @@ One task each.
 
 | Page | The task | Sources | Status |
 |---|---|---|---|
-| `guides/set-up-a-project.md` | Set up a codebase, or a folder with no code | `set-up/procedure.md`, `context-files.md` | To write |
-| `guides/adopt-an-existing-setup.md` | Bring a project's own `CLAUDE.md`, rules, agents or hooks onto the marketplace | `adopt.md`, `record.md` | To write |
-| `guides/add-a-trio.md` | Add a trio for one more recurring task | `trios.md`, `roles/` | To write |
-| `guides/run-a-trio.md` | Use `/<task>`: the plan, the OK, sending work back | `roles/run.md` | To write |
-| `guides/keep-a-setup-current.md` | Update a setup after the marketplace or the project changed | `keep-current.md` | To write |
-| `guides/contribute-a-lesson.md` | Give the steward a lesson, and review its pull request | `contribute.md` | To write |
-| `guides/review-a-skill.md` | Review a skill, a plugin, a change or the whole set | `evaluate-skills` | To write |
-| `guides/write-a-skill-by-hand.md` | Add or change a skill without the steward | `style.md`, `plugin-shape.md`, `place-knowledge.md` | To write |
-| `guides/migrate-from-old-names.md` | Move a project and a machine off the old plugin names | The Renamed table, `keep-current.md` | To write |
-| `guides/work-on-the-steward.md` | Load the working copy, probe a mechanic, test a change | `plugin-shape.md`, the front door | To write |
-| `guides/troubleshoot.md` | Fix what fails silently | The job files, `plugin-shape.md`, `check-catalog.mjs` | To write |
+| [`guides/set-up-a-project.md`](guides/set-up-a-project.md) | Set up a codebase, or a folder with no code | `set-up/procedure.md`, `context-files.md` | Written |
+| [`guides/adopt-an-existing-setup.md`](guides/adopt-an-existing-setup.md) | Bring a project's own `CLAUDE.md`, rules, agents or hooks onto the marketplace | `adopt.md`, `record.md` | Written |
+| [`guides/add-a-trio.md`](guides/add-a-trio.md) | Add a trio for one more recurring task | `trios.md`, `roles/` | Written |
+| [`guides/run-a-trio.md`](guides/run-a-trio.md) | Use `/<task>`: the plan, the OK, sending work back | `roles/run.md` | Written |
+| [`guides/keep-a-setup-current.md`](guides/keep-a-setup-current.md) | Update a setup after the marketplace or the project changed | `keep-current.md` | Written |
+| [`guides/contribute-a-lesson.md`](guides/contribute-a-lesson.md) | Give the steward a lesson, and review its pull request | `contribute.md` | Written |
+| [`guides/review-a-skill.md`](guides/review-a-skill.md) | Review a skill, a plugin, a change or the whole set | `evaluate-skills` | Written |
+| [`guides/write-a-skill-by-hand.md`](guides/write-a-skill-by-hand.md) | Add or change a skill without the steward | `style.md`, `plugin-shape.md`, `place-knowledge.md` | Written |
+| [`guides/migrate-from-old-names.md`](guides/migrate-from-old-names.md) | Move a project and a machine off the old plugin names | The Renamed table, `keep-current.md` | Written |
+| [`guides/work-on-the-steward.md`](guides/work-on-the-steward.md) | Load the working copy, probe a mechanic, test a change | `plugin-shape.md`, the front door | Written |
+| [`guides/troubleshoot.md`](guides/troubleshoot.md) | Fix what fails silently | The job files, `plugin-shape.md`, `check-catalog.mjs` | Written |
 
 ## Reference
 

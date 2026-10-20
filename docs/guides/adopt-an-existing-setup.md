@@ -1,0 +1,61 @@
+# Adopt an existing setup
+
+Bring a project that already has its own `CLAUDE.md`, rules, skills, agents or hooks
+onto the marketplace, so every rule in it has one home and nothing is lost on the way.
+Why adoption works rule by rule is in [safety](../explanation/safety.md).
+
+## Before you start
+
+- The steward is installed for your user, as in [set up a project](set-up-a-project.md).
+- **Branch, and commit what you have.** Adoption edits your own files. A committed file
+  can be restored from git; anything uncommitted is backed up by the steward, but a
+  clean tree is simpler to review.
+
+## Steps
+
+1. **Open a session in the project's root** and say "set this project up" or "bring our
+   existing setup onto the marketplace". The steward sees your setup and adopts it
+   instead of setting up over it.
+2. **Tick the sources**, if it asks, as for a set-up.
+3. **Let it run.** It reads every Claude file of the project's own, splits them into
+   single rules, and gives each rule a home. Then it sets the project up with those
+   homes, and contributes the rules that would serve other projects.
+4. **Answer the new-skill question, if there is one**, at the end.
+5. **Read the report's Adopted table.** Every rule is there, grouped by the file it came
+   from, quoted short, with its new home and what happened to the local copy.
+
+## Reading the Adopted table
+
+| Local copy | Means |
+|---|---|
+| **Moved** | The rule now lives in `AGENTS.md`, a trio or a project skill, and was taken out of its old file |
+| **Removed** | A toolkit skill says the same thing, it is installed, and the roles that do that work preload it |
+| **Pending** | Its home is a pull request. It stays where it is until you merge, and keep-current removes it then |
+| **Stays** | It is project mechanics, such as a hook or a permission, or no live home fits it yet |
+
+A rule is removed only once its new home is live, and a file only once every rule in it
+has one. An old agent stays until its trio is written and everything it knew has a home.
+
+## Check it
+
+- **Read the diff file by file** against the Adopted table. If a removed rule matters to
+  you and its new home doesn't say the same thing, put it back and tell the steward:
+  that is a lesson for its placement.
+- **Find your backups.** Any file with untracked or uncommitted content was copied to
+  `~/.local/share/marketplace-steward/backups/<project>/<date>/` before anything was
+  removed from it. The report names each copy.
+- **Review the pull requests.** Each contribution from the adoption is one, and none of
+  its pending rules leaves your project until you merge it.
+
+## What stays untouched
+
+Hooks, MCP servers, commands that run a tool, permissions, and environment settings stay
+as they are; a hook that only injects text is the exception, and goes once its text has
+a home. Other tools' files, such as `.cursor/rules/`, are read and never changed, and so
+are `CLAUDE.local.md` and `.claude/settings.local.json`.
+
+## Afterwards
+
+Once you have merged the pull requests, say "update the setup" in the project.
+[Keep-current](keep-a-setup-current.md) removes each pending rule whose home is now
+live, and leaves one you have edited since, with a note.

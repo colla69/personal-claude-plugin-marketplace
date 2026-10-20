@@ -3,7 +3,7 @@
 How the repo's documentation gets rewritten from scratch, as a project of its own. D and
 O numbers continue the ones in `plan.md` and `package-plan.md`.
 
-**Status:** approved 2026-10-19, on branch `marketplace/one-package`. Steps 1 to 3 are
+**Status:** approved 2026-10-19, on branch `marketplace/one-package`. Steps 1 to 4 are
 done; the plan runs on to step 8, and stops there (D43). It replaces the documentation
 half of step 7 of `package-plan.md`. The package plan's trials and merge come after it,
 because the documentation describes the steward, and both reach `main` together.
@@ -381,6 +381,11 @@ What was done:
 ### Step 4: Guides
 
 The eleven guides.
+
+What was done: the eleven guides, each one task with its steps, what you get, and how
+to check it. Writing them corrected two things in the pages before: a skill that never
+loaded is a change to that skill when its description is the cause, and a request to
+set up a project the steward set up before means bringing it up to date.
 
 ### Step 5: Tutorials
 
