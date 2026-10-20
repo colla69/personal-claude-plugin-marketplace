@@ -20,7 +20,7 @@ projects will add to them.
 
 | Symptom | Cause | Fix |
 |---|---|---|
-| None of the steward's skills appear under `--plugin-dir` | Its dependency, `craft-review`, isn't installed or loaded | Add `--plugin-dir ./plugins/craft-review` |
+| None of the steward's skills appear under `--plugin-dir` | A dependency, `craft-review` or `language-simple-english`, isn't installed or loaded | Add `--plugin-dir ./plugins/craft-review --plugin-dir ./plugins/language-simple-english` |
 | Claude Code asks before every write of a contribution | Something writes under `~/.claude`, which is always asked for | The steward works in `~/.local/share/marketplace-steward/`; a change that moved it back is the cause |
 | Claude Code asks for each plugin install, refresh or hash | Those commands aren't pre-allowed | Allow them, as [permissions](../reference/permissions.md) describes, or answer once per run |
 | A set-up request ran keep-current instead | The project has `.claude/steward.json` | That is intended: the steward set it up before, so setting it up again means bringing it up to date |

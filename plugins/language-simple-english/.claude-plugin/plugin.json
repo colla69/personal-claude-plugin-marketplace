@@ -1,0 +1,7 @@
+{
+  "name": "language-simple-english",
+  "displayName": "Simple English",
+  "author": { "name": "Andrea Colarieti Tosti" },
+  "license": "Apache-2.0",
+  "keywords": ["english", "writing", "documentation", "ste"]
+}

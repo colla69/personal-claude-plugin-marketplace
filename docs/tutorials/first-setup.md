@@ -17,9 +17,9 @@ claude plugin marketplace add colla69/personal-claude-plugin-marketplace
 claude plugin install marketplace-steward@personal-claude-plugin-marketplace --scope user
 ```
 
-It goes in at user scope, so it works in every project you open. `craft-review` comes
-with it, because the steward builds on it. Everything else the steward installs per
-project, in that project.
+It goes in at user scope, so it works in every project you open. `craft-review` and
+`language-simple-english` come with it, because the steward builds on them. Everything
+else the steward installs per project, in that project.
 
 ## 2. Make a sample project
 
@@ -100,7 +100,7 @@ what happened. Expect something like this:
 | Section | For `tally` |
 |---|---|
 | **Written** | `AGENTS.md` and `CLAUDE.md`, `.claude/settings.json`, `.claude/plugin-sources.json`, the trios, `.claude/steward.json` |
-| **From your toolkit** | `universal-clean-code`, `craft-development`, `craft-code-review`, `craft-refactoring`, `craft-unit-testing` for the test runner, `language-typescript` for `tsconfig.json`, and what they pull in |
+| **From your toolkit** | `universal-clean-code`, `craft-development`, `craft-code-review`, `craft-refactoring`, `craft-unit-testing` for the test runner, `language-typescript` for `tsconfig.json`, `language-simple-english` because every project has text to read, and what they pull in |
 | **Gap-fills** | Probably `typescript-lsp` from Anthropic's marketplace, for go-to-definition and real diagnostics, which no toolkit skill gives. With no gap to fill, the report says so in one line |
 | **Trios** | `change` and `refactor`, and `test`, because a test runner is configured |
 | **Installed** | The same installs as a block to paste on another machine |

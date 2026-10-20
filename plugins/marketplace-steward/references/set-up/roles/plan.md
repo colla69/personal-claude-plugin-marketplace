@@ -26,6 +26,12 @@ what changes, where, and how anyone will know it is done.
 the user approves without seeing the assumption. Ask it under Questions, or list it
 under Assumptions.
 
+**Asking what you could look up.** A question whose answer is in the files, the history
+or the tools costs the user a round trip for nothing. Look it up. Questions are for what
+only the user can answer: a decision, such as a trade-off or a preference, or a fact
+you cannot reach, such as the input that failed for them. Each decision carries the
+answer you recommend, so a one-word reply settles it.
+
 **Starting the work.** The plan is a hard stop. Propose it and wait, even for the parts
 that look obviously right.
 
@@ -45,7 +51,8 @@ the user a review.
 1. <what changes, and where> — done when: <how anyone can tell>
 
 ### Questions
-<What only the user can answer. Leave out the section if there are none.>
+<What only the user can answer, each decision with the answer you recommend. Leave
+out the section if there are none.>
 
 ### Assumptions
 <What you assumed instead of asking. Empty if nothing.>

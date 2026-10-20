@@ -14,7 +14,9 @@ code is worse than none, because it is trusted.
 
 ## Fires when
 
-- "add tests", coverage, untested code, TDD
+- "add tests", coverage, untested code, TDD, "test-driven", "red-green-refactor"
+- Before implementing a feature or a fix where a test runner exists: the test comes
+  first
 - A function has just been written and needs verifying
 - Asking whether an existing suite is any good, rather than extending it
 
@@ -30,7 +32,8 @@ code is worse than none, because it is trusted.
 ## Install
 
 Set-up installs it at project scope where a test runner is configured, most strongly
-where coverage is thin, and `craft-code-review` pulls it in. By hand:
+where coverage is thin, and `craft-development` and `craft-code-review` pull it in. By
+hand:
 
 ```bash
 claude plugin install craft-unit-testing@personal-claude-plugin-marketplace --scope project

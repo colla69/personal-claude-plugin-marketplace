@@ -8,18 +8,19 @@ plugin shape it follows are in
 ## Load your working copy
 
 ```bash
-claude --plugin-dir ./plugins/marketplace-steward --plugin-dir ./plugins/craft-review
+claude --plugin-dir ./plugins/marketplace-steward --plugin-dir ./plugins/craft-review --plugin-dir ./plugins/language-simple-english
 ```
 
 - **A `--plugin-dir` copy replaces the installed one** of the same name for that
   session, silently. `claude --debug` logs `overrides installed version`.
 - **Every dependency needs its own `--plugin-dir`.** The steward depends on
-  `craft-review`, and a plugin whose dependency isn't installed doesn't load at all: not
-  one of its skills appears.
+  `craft-review` and `language-simple-english`, and a plugin whose dependency isn't
+  installed doesn't load at all: not one of its skills appears.
 - **Changes need a new session.** A skill is read at the start of a session.
 
 To see what your copy costs: `claude --plugin-dir ./plugins/marketplace-steward
---plugin-dir ./plugins/craft-review plugin details marketplace-steward`.
+--plugin-dir ./plugins/craft-review --plugin-dir ./plugins/language-simple-english
+plugin details marketplace-steward`.
 
 ## Where things live
 

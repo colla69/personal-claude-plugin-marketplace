@@ -24,7 +24,7 @@
     {
       "name": "craft-development",
       "source": "./plugins/craft-development",
-      "description": "What careful work means for code: the neighbours to read, a diff kept to the change, and verification with typecheck, tests and lint.",
+      "description": "What careful work means for code: test first, the neighbours to read, a diff kept to the change, and verification with typecheck, tests and lint.",
       "category": "craft",
       "tags": ["development", "implementation", "verification"]
     },
@@ -45,7 +45,7 @@
     {
       "name": "craft-unit-testing",
       "source": "./plugins/craft-unit-testing",
-      "description": "Writes and strengthens unit tests: behavior-first cases, edge coverage, no assertion padding.",
+      "description": "Writes and strengthens unit tests: test first in a red, green, refactor cycle, behavior-first cases, edge coverage, no assertion padding.",
       "category": "craft",
       "tags": ["testing", "unit-tests", "tdd"]
     },
@@ -69,6 +69,13 @@
       "description": "TypeScript language conventions: strictness, narrowing over assertions, discriminated unions, and async discipline.",
       "category": "language",
       "tags": ["typescript", "language"]
+    },
+    {
+      "name": "language-simple-english",
+      "source": "./plugins/language-simple-english",
+      "description": "English nobody can read two ways, after Simplified Technical English: short sentences, one instruction each, one word per meaning, active voice, no filler.",
+      "category": "language",
+      "tags": ["english", "writing", "documentation"]
     },
     {
       "name": "tools-vue",

@@ -10,11 +10,11 @@ same one the steward's checker runs before every pull request.
    loaded:
 
    ```bash
-   claude --plugin-dir ./plugins/marketplace-steward --plugin-dir ./plugins/craft-review
+   claude --plugin-dir ./plugins/marketplace-steward --plugin-dir ./plugins/craft-review --plugin-dir ./plugins/language-simple-english
    ```
 
-   `craft-review` comes along because the steward depends on it, and a plugin whose
-   dependency is missing doesn't load at all.
+   `craft-review` and `language-simple-english` come along because the steward
+   depends on them, and a plugin whose dependency is missing doesn't load at all.
 2. **Ask:** "is this skill well written?", "why isn't `vue-conventions` triggering?",
    "is `craft-refactoring` ready to merge?", "review my change to `clean-code`", or
    "how do the skills fit together?". The first time, Claude Code asks whether the skill

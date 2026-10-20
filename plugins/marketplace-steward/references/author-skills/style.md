@@ -171,8 +171,8 @@ guarantees to what really is one: frontmatter, permission rules, and a person's 
 ## Structure
 
 Sections follow the order someone works in. `write-unit-tests` goes: before writing
-anything → what to test → test shape → mocking → verify. That is the sequence of the
-task, not a taxonomy of testing.
+anything → test first → what to test → test shape → mocking → verify. That is the
+sequence of the task, not a taxonomy of testing.
 
 Target 60–160 lines for a skill. Past that, move detail into `references/`. A reference
 file costs nothing until the skill tells the agent to read it, so the skill should say
@@ -215,6 +215,9 @@ worker either does out-of-scope work or drops what it noticed.
 
 - Write in English, so triggers fire on the phrases people type. A natural-language
   skill, such as German, is content: it is about the language, not written in it.
+- Write that English the way `simple-english`, in `language-simple-english`, says, here
+  as in every project. Text already here moves to it when it is next edited, not in a
+  sweep, so each diff holds only the change it is for.
 - Hard-wrap prose at **88 characters**. Frontmatter descriptions and table rows are
   exempt, since they cannot wrap.
 - Use em dashes for asides, not parentheses.

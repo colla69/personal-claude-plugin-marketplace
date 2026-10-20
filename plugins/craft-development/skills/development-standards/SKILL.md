@@ -1,6 +1,6 @@
 ---
 name: development-standards
-description: What careful work means for code — reading the neighbouring code first, keeping the diff to the lines the change needs, naming any change to a public interface, and verifying with typecheck, tests and lint in that order. Use whenever writing or modifying application code, or implementing a feature or a fix. Also use before changing a function signature, an exported type or an API response, since those changes break callers outside the diff.
+description: What careful work means for code — reading the neighbouring code first, driving each change to behavior with a failing test, keeping the diff to the lines the change needs, naming any change to a public interface, and verifying with typecheck, tests and lint in that order. Use whenever writing or modifying application code, or implementing a feature or a fix. Also use before changing a function signature, an exported type or an API response, since those changes break callers outside the diff.
 ---
 
 # Development standards
@@ -18,6 +18,13 @@ files, and where its tests live.
 Check the language version and dialect before using a feature. A repo pinned to an older
 standard fails to compile against your assumptions, which is the good case; the silent
 behavioural difference is not.
+
+## Test first
+
+Where the project has a test runner, a change to behavior starts with a failing test,
+in the red, green, refactor cycle that `write-unit-tests` describes. Code written test
+first is designed from its caller's side, because the test is its first caller. Where
+there is no runner, say so in the report, so the missing check is visible.
 
 ## Keep the diff to the change
 

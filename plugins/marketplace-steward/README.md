@@ -14,7 +14,7 @@ comes next.
 | Agents | `codebase-cartographer`, which surveys a codebase for set-up, and `contribution-checker`, which checks a change before its pull request. Both read-only |
 | References | `set-up/`, `adopt.md`, `keep-current.md`, `contribute.md`, `record.md`, `place-knowledge.md` and `author-skills/`, read by path |
 | Layer | None: it works on the marketplace itself |
-| Builds on | `craft-review` |
+| Builds on | `craft-review`, `language-simple-english` |
 
 ## Fires when
 

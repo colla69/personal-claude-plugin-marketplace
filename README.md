@@ -54,7 +54,7 @@ name starts with its layer:
 |---|---|---|
 | **Universal** | What holds for everything | Clean code, and the discipline of working where someone else maintains |
 | **Craft** | How a kind of work is done | Developing, reviewing, unit testing, refactoring |
-| **Language** | What the work is written in | Java, TypeScript |
+| **Language** | What the work is written in | Java, TypeScript, simple English |
 | **Framework & Tools** | One concrete product | Vue, Pinia |
 | **The steward** | Sets projects up and grows the marketplace | `marketplace-steward` |
 

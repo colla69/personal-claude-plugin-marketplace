@@ -20,7 +20,8 @@ The always-on part is the one to watch, and the one
 [`evaluate-skills`](../../plugins/marketplace-steward/skills/evaluate-skills/SKILL.md)
 weighs against how often a plugin fires. It is small per plugin and paid everywhere, for
 as long as the plugin is enabled. That is why set-up installs only what a project shows
-a need for: a Vue skill in a Go service is pure cost.
+a need for: a Vue skill in a Go service is pure cost. The few it installs everywhere,
+such as `simple-english`, are there because every project shows that need.
 
 ## Why descriptions are trigger lists
 

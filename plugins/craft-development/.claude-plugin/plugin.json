@@ -3,6 +3,6 @@
   "displayName": "Development",
   "author": { "name": "Andrea Colarieti Tosti" },
   "license": "Apache-2.0",
-  "keywords": ["development", "implementation"],
-  "dependencies": ["universal-clean-code", "universal-work-discipline"]
+  "keywords": ["development", "implementation", "tdd"],
+  "dependencies": ["universal-clean-code", "universal-work-discipline", "craft-unit-testing"]
 }

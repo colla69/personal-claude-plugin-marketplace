@@ -22,10 +22,11 @@ pure cost. When in doubt, leave it out and mention it as optional.
 | Craft | `craft-development` | `development-standards` skill | Any repo with code in it, together with `craft-code-review` and `craft-refactoring` (see Code, below). |
 | Craft | `craft-review` | `review-work` skill | `craft-code-review` pulls it in. Recommend it on its own where work other than code gets reviewed: documents, reports, plans. |
 | Craft | `craft-code-review` | `review-changes` skill | Any repo with code in it, with the other two. Do **not** gate this on PR-workflow signals: checking catches logical errors and inconsistencies before a commit, whether or not anyone opens pull requests. |
-| Craft | `craft-unit-testing` | `write-unit-tests` skill | A test runner is configured (`vitest`, `jest`, `pytest`, `go test`, …). Recommend *more strongly* when a runner exists but coverage is thin — that's the gap the plugin closes. `craft-code-review` pulls it in, so a repo with code has it either way. |
+| Craft | `craft-unit-testing` | `write-unit-tests` skill | A test runner is configured (`vitest`, `jest`, `pytest`, `go test`, …). Recommend *more strongly* when a runner exists but coverage is thin — that's the gap the plugin closes. `craft-development` and `craft-code-review` pull it in, so a repo with code has it either way. |
 | Craft | `craft-refactoring` | `refactor-safely` skill | Any repo with code in it, with the other two. It needs no test suite to be useful, but say so when there isn't one, because its plans will start with characterization tests. |
 | Language | `language-java` | `java-conventions` skill | A `pom.xml`, `build.gradle`, or `.java` sources. Read the *module's* language level, not the root's — they often differ. |
 | Language | `language-typescript` | `typescript-conventions` skill | A `tsconfig.json` or `.ts`/`.tsx` sources. Note whether `strict` is on, since it changes what correct code looks like. |
+| Language | `language-simple-english` | `simple-english` skill | Every project, with or without code: every project has text a person reads. |
 | Framework & Tools | `tools-vue` | `vue-conventions` skill | `vue` in dependencies. Check the major version and note it: the plugin targets Vue 3 Composition API, so flag a mismatch if the project is on Options API or Vue 2. |
 | Framework & Tools | `tools-vue-typescript` | `vue-typescript-conventions` skill | `vue` and `typescript` both in dependencies, or `lang="ts"` in `.vue` files. Pulls in `tools-vue` and `language-typescript`. |
 | Framework & Tools | `tools-pinia` | `pinia-conventions` skill | `pinia` in dependencies. Pulls in `tools-vue`. |
@@ -112,12 +113,16 @@ three. Leaving one out leaves a role in those trios without its standard.
 All three depend on `universal-clean-code`, whose `clean-code` skill is the standard
 their judgements are measured against. Installing any of them pulls it in.
 
+Development is test first, so `craft-development` also pulls in `craft-unit-testing`,
+whose skill holds the red, green, refactor cycle.
+
 ## Scope guidance
 
 Two scopes matter here:
 
 - **User scope** (`~/.claude/settings.json`) — plugins you want in every project.
-  `marketplace-steward` and `universal-clean-code` usually belong here.
+  `marketplace-steward`, `universal-clean-code` and `language-simple-english` usually
+  belong here.
 - **Project scope** (`.claude/settings.json`, committed) — plugins specific to this
   repo's stack. `tools-vue` belongs here; it's noise in a Go service.
 
