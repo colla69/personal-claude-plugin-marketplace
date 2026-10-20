@@ -33,8 +33,8 @@ leak check's inputs from the project. Run this job once for each accepted skill,
 its own worktree.
 
 **Arriving from an adoption,** step 3 of `adopt.md` placed each rule already: skip the
-placement here, and step 2 for a change to an existing skill or role template, but
-collect the leak check's inputs. Run this job once for each contribution, each in its
+placement here and all of step 2, because a new skill arrives only after the user's
+yes, but collect the leak check's inputs. Run this job once for each contribution, each in its
 own worktree, and go on to the next one when it ends, however it ends. Its step 8
 becomes a row in the adoption report's Contributions table.
 

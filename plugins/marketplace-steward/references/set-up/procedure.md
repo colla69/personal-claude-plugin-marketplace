@@ -123,11 +123,12 @@ expects a plugin or marketplace manifest, and fails with "No manifest found".
 
 ## Phase 8 — Report
 
-Write the report in the shape of `report.md`. If phase 3 found a new skill to propose,
-the proposal and its question end it. On a yes, run the contribute job,
-`../contribute.md`, for each skill accepted, in the same session, and give the user each
-pull request, or where the job stopped. On a no, add the proposal to the record's
-`declined`.
+In an adoption, leave this phase out: steps 5 to 7 of `../adopt.md` contribute, remove
+and report instead. Otherwise, write the report in the shape of `report.md`. If phase 3
+found a new skill to propose, the proposal and its question end it. On a yes, run the
+contribute job, `../contribute.md`, for each skill accepted, in the same session, and
+give the user each pull request, or where the job stopped. On a no, add the proposal to
+the record's `declined`.
 
 ## Files
 

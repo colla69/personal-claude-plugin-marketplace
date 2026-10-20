@@ -64,8 +64,8 @@ project's trios and the conversation handle that.
   creating a new skill, showing what section 5 of
   `${CLAUDE_PLUGIN_ROOT}/references/place-knowledge.md` asks for; a yes goes to the
   contribute job, in the same run. Everything else goes ahead and is reported.
-- **Finish every contribution a job decides on.** Each ends in a pull request, or in
-  the report with where it stopped and why. A change to an existing skill needs no OK,
+- **Finish every contribution a job decides on.** Each ends in a pull request, in the
+  report with where it stopped and why, or in the user's no to a new skill. A change to an existing skill needs no OK,
   and its pull request is no step to pause on: the user's merge is the review. A rule
   meant for the marketplace that quietly stays local is lost to every other project.
 - **Say exactly what you created and what you changed.** With no plan to approve, the

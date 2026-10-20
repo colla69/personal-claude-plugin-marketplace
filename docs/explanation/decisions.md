@@ -149,7 +149,7 @@ not ok."
 
 | # | Decision | Why | Now |
 |---|---|---|---|
-| D54 | Adoption contributes in a step of its own, after set-up's checks and before any removal, and every contribution ends in a pull request, a reported stop, or the user's no to a new skill. The report gives each one a row in a Contributions table, which an adoption never leaves out. The front door says a change to an existing skill opens its pull request without a pause | The step was one sentence at the end of another step, outside the set-up phases the steward follows, and no section of the report would show it missing. A model also tends to pause before a public pull request, and the pause became the end of the run | Holds, in step 5 of `adopt.md`, `set-up/report.md` and the front door |
+| D54 | Adoption contributes in a step of its own, after set-up's checks and before any removal, and every contribution ends in a pull request, a reported stop, or the user's no to a new skill. A pushed branch with only a compare link is a stop, so `pending` holds only real pull requests. The report gives each one a row in a Contributions table, which an adoption never leaves out. The front door says a change to an existing skill opens its pull request without a pause | The step was one sentence at the end of another step, outside the set-up phases the steward follows, and no section of the report would show it missing. A model also tends to pause before a public pull request, and the pause became the end of the run | Holds, in step 5 of `adopt.md`, `set-up/report.md` and the front door |
 
 ## Still open
 

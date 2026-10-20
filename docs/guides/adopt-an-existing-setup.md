@@ -27,15 +27,16 @@ first trials will show where it behaves otherwise.
    project also use another tool that reads them.
 4. **Let it run.** It reads every Claude file of the project's own, splits them into
    single rules, and gives each rule a home. Then it sets the project up with those
-   homes, and opens a pull request for each skill the rules that would serve other
-   projects change, without asking.
+   homes. For the rules that would serve other projects, it opens a pull request for
+   each skill or role template they change, without asking.
 5. **Answer the new-skill question, if there is one**, at the end. Each yes becomes a
    pull request too.
 6. **Read the report's Adopted table.** Every rule is there, grouped by the file it came
    from, quoted short, with its new home and what happened to the local copy.
 7. **Read its Contributions table.** Each contribution has a row with its pull request,
-   or where it stopped and what is left. A rule whose home is a contribution and that
-   has no row there was skipped: ask the steward to run that contribution.
+   or where it stopped and what is left. A rule the Adopted table sends to a
+   contribution, with no row for that contribution here, was skipped: ask the steward
+   to run it.
 
 ## Reading the Adopted table
 
@@ -45,6 +46,8 @@ first trials will show where it behaves otherwise.
 | **Removed** | Its home already says it: a toolkit skill that is installed and preloaded by the roles that do that work, or a role template now in a trio. Dead keys, hooks that only injected text, and dead or machine-only rules go too |
 | **Pending** | Its home is a pull request. It stays where it is until you merge, and keep-current removes it then |
 | **Stays** | It is project mechanics, such as a hook or a permission, or no live home fits it yet |
+| **Stays: stopped** | Its home is a contribution that stopped before a pull request; the Contributions table says where and what is left |
+| **Stays: declined**, or **waiting for your OK** | Its home was a new skill: you said no, or the question ends the report |
 
 The procedure removes a rule only once its new home is live, and a file only once every
 rule in it has one. An old agent stays until its trio is written and everything it knew

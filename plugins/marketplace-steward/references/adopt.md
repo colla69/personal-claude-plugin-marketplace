@@ -84,21 +84,22 @@ one project, and the report still looks complete, so nobody finds out. Run the
 contribute job, `contribute.md`, for each contribution phase 3 decided, now, after phase
 7 and before anything is removed.
 
-- **A change to an existing skill or role template goes ahead without asking.** The
-  request to adopt asked for it, and the user's merge is the review, so opening its pull
-  request is not a step to pause on. Step 3 placed its rules already, so the job skips
-  its placement, as its step 1 says for an adoption.
+- **A change to an existing skill or role template goes ahead without asking**, as the
+  front door says. Step 3 placed its rules already, so the job skips its placement, as
+  its step 1 says for an adoption.
 - **A new skill waits for the OK**, asked at the end of the report together with any
-  others, as the front door says. On a yes, run the job for it then.
+  others, as the front door says. On a yes, run the job for it then, give the user its
+  outcome as the Contributions table would, and add its rules to the record's `pending`
+  or `declined`.
 
 Each contribution ends in one of three ways, and the report's Contributions table gives
 it a row:
 
-- **A pull request**, or the compare link when `gh` couldn't open one. Its rules go in
-  the record's `pending`.
-- **A stop**, such as a leak finding or a house marketplace that isn't on GitHub. Its
-  rules stay as project rules for now, and the row says where it stopped and what is
-  left, such as the worktree's path.
+- **A pull request.** Its rules go in the record's `pending`, with the pull request.
+- **A stop**, such as a leak finding, a house marketplace that isn't on GitHub, or a
+  pushed branch with only the compare link because `gh` couldn't open the pull request.
+  Its rules stay as project rules for now, and the row says where it stopped and what
+  is left, such as the worktree's path or the link to open.
 - **The user's no to a new skill.** Its rules stay as project rules, and the proposal
   goes in the record's `declined`.
 
