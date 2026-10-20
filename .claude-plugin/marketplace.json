@@ -99,6 +99,13 @@
       "tags": ["pinia", "vue", "state"]
     },
     {
+      "name": "tools-aws-static-hosting",
+      "source": "./plugins/tools-aws-static-hosting",
+      "description": "Static hosting on AWS: S3 behind CloudFront, certificate region, deep links, cache tiers, private buckets, safe syncs, and checks after a deploy.",
+      "category": "tools",
+      "tags": ["aws", "cloudfront", "s3", "static-site"]
+    },
+    {
       "name": "marketplace-steward",
       "source": "./plugins/marketplace-steward",
       "description": "Sets a project up for agentic work and keeps the setup current: writes its CLAUDE.md, installs the skills it needs, and generates a Plan/Do/Check trio per recurring task. Adopts a setup a project already has, giving every rule one home, and turns a lesson into a skill change by pull request.",

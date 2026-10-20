@@ -25,6 +25,7 @@ Each plugin's own README, under `plugins/<name>/`, says where it stops.
 | [`tools-vue`](../../plugins/tools-vue/) | Framework & Tools | `vue-conventions` | Vue 3 Composition API: components, reactivity, composables, templates | `vue` in the dependencies | — |
 | [`tools-vue-typescript`](../../plugins/tools-vue-typescript/) | Framework & Tools | `vue-typescript-conventions` | TypeScript in Vue 3: typed props, emits and reactive inputs | Both `vue` and `typescript`, or `lang="ts"` in `.vue` files | `tools-vue`, `language-typescript` |
 | [`tools-pinia`](../../plugins/tools-pinia/) | Framework & Tools | `pinia-conventions` | Pinia stores, and server data in a query layer instead of a store | `pinia` in the dependencies | `tools-vue` |
+| [`tools-aws-static-hosting`](../../plugins/tools-aws-static-hosting/) | Framework & Tools | `aws-static-hosting` | Static sites on AWS: certificate region, deep links, cache tiers, private buckets, safe syncs, deploy checks | A CloudFront distribution in front of an S3 bucket in the infrastructure code or deploy scripts | — |
 | [`marketplace-steward`](../../plugins/marketplace-steward/) | — | `steward`, `evaluate-skills` | Sets projects up, adopts their setups, keeps them current, and grows the marketplace by pull request | Never in a project: you install it once, for your user | `craft-review`, `language-simple-english` |
 
 ## By layer
@@ -34,7 +35,7 @@ Each plugin's own README, under `plugins/<name>/`, says where it stops.
 | Universal | `universal-clean-code`, `universal-work-discipline` |
 | Craft | `craft-development`, `craft-review`, `craft-code-review`, `craft-unit-testing`, `craft-refactoring` |
 | Language | `language-java`, `language-typescript`, `language-simple-english` |
-| Framework & Tools | `tools-vue`, `tools-vue-typescript`, `tools-pinia` |
+| Framework & Tools | `tools-vue`, `tools-vue-typescript`, `tools-pinia`, `tools-aws-static-hosting` |
 | None: works on the marketplace itself | `marketplace-steward` |
 
 [Layers](../explanation/layers.md) explains the four layers and why dependencies point

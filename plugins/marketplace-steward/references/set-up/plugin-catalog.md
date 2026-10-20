@@ -30,6 +30,7 @@ pure cost. When in doubt, leave it out and mention it as optional.
 | Framework & Tools | `tools-vue` | `vue-conventions` skill | `vue` in dependencies. Check the major version and note it: the plugin targets Vue 3 Composition API, so flag a mismatch if the project is on Options API or Vue 2. |
 | Framework & Tools | `tools-vue-typescript` | `vue-typescript-conventions` skill | `vue` and `typescript` both in dependencies, or `lang="ts"` in `.vue` files. Pulls in `tools-vue` and `language-typescript`. |
 | Framework & Tools | `tools-pinia` | `pinia-conventions` skill | `pinia` in dependencies. Pulls in `tools-vue`. |
+| Framework & Tools | `tools-aws-static-hosting` | `aws-static-hosting` skill | A CloudFront distribution in front of an S3 bucket in the infrastructure code or deploy scripts: `cloudfront.Distribution`, `aws_cloudfront_distribution` or `AWS::CloudFront::Distribution`, or `aws s3 sync` followed by a CloudFront invalidation. |
 | — | `marketplace-steward` | `steward` and `evaluate-skills` skills | Already installed at user scope if you're reading this. Never write it into a project's settings: it belongs to the machine, not the project. |
 
 ## The install block
