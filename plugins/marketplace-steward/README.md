@@ -66,3 +66,12 @@ claude plugin install marketplace-steward@personal-claude-plugin-marketplace --s
 User scope: it belongs to the machine and works in every project you open. The first
 time it runs, Claude Code asks once whether it may, because it reads its own reference
 files.
+
+## More
+
+- Every job, with what it reads, writes and asks:
+  [`docs/reference/the-steward.md`](../../docs/reference/the-steward.md)
+- Why it works the way it does:
+  [`docs/explanation/the-steward.md`](../../docs/explanation/the-steward.md)
+- What keeps you in control:
+  [`docs/explanation/safety.md`](../../docs/explanation/safety.md)

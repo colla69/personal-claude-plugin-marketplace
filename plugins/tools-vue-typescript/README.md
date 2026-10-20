@@ -24,8 +24,18 @@ as types, with no runtime copy beside them to drift.
 
 ## Install
 
+Set-up installs it at project scope when the project shows both Vue and TypeScript. By
+hand:
+
 ```bash
 claude plugin install tools-vue-typescript@personal-claude-plugin-marketplace --scope project
 ```
 
-Project scope. Set-up installs it when a project shows both Vue and TypeScript.
+## More
+
+- The standard itself:
+  [`skills/vue-typescript-conventions/SKILL.md`](skills/vue-typescript-conventions/SKILL.md)
+- Every plugin, with its layer and what it builds on:
+  [`docs/reference/plugins.md`](../../docs/reference/plugins.md)
+- Why the layers, and why dependencies point the way they do:
+  [`docs/explanation/layers.md`](../../docs/explanation/layers.md)

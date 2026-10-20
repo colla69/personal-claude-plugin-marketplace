@@ -29,9 +29,18 @@ code is worse than none, because it is trusted.
 
 ## Install
 
+Set-up installs it at project scope where a test runner is configured, most strongly
+where coverage is thin, and `craft-code-review` pulls it in. By hand:
+
 ```bash
 claude plugin install craft-unit-testing@personal-claude-plugin-marketplace --scope project
 ```
 
-Set-up installs it at project scope where a test runner is configured, most strongly
-where coverage is thin. `craft-code-review` pulls it in.
+## More
+
+- The standard itself:
+  [`skills/write-unit-tests/SKILL.md`](skills/write-unit-tests/SKILL.md)
+- Every plugin, with its layer and what it builds on:
+  [`docs/reference/plugins.md`](../../docs/reference/plugins.md)
+- Why the layers, and why dependencies point the way they do:
+  [`docs/explanation/layers.md`](../../docs/explanation/layers.md)

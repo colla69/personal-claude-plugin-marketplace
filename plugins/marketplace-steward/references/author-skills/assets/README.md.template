@@ -34,8 +34,22 @@ boundary people most often expect to be inside.}}
 
 ## Install
 
+Set-up installs it at project scope {{when: the signal in plugin-catalog.md, in a few
+words, and what pulls it in}}. By hand:
+
 ```bash
-claude plugin install {{PLUGIN_NAME}}@personal-claude-plugin-marketplace{{ --scope user | --scope project | }}
+claude plugin install {{PLUGIN_NAME}}@personal-claude-plugin-marketplace --scope project
 ```
 
-{{One line on scope and why. Usually: set-up installs this when a project needs it.}}
+{{Optional: one line on scope, such as "By hand, `--scope user` fits too" for a
+standard that holds everywhere, or "Project scope only" for one that is noise
+elsewhere.}}
+
+## More
+
+- The standard itself:
+  [`skills/{{SKILL_NAME}}/SKILL.md`](skills/{{SKILL_NAME}}/SKILL.md)
+- Every plugin, with its layer and what it builds on:
+  [`docs/reference/plugins.md`](../../docs/reference/plugins.md)
+- Why the layers, and why dependencies point the way they do:
+  [`docs/explanation/layers.md`](../../docs/explanation/layers.md)

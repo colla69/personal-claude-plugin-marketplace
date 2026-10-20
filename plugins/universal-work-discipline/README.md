@@ -30,8 +30,20 @@ and unverified is not done.
 
 ## Install
 
+Set-up installs it at project scope in any project, with code or without, and most Craft
+plugins pull it in. By hand:
+
 ```bash
-claude plugin install universal-work-discipline@personal-claude-plugin-marketplace --scope user
+claude plugin install universal-work-discipline@personal-claude-plugin-marketplace --scope project
 ```
 
-User scope: it holds in every project. The Craft plugins that build on it pull it in.
+By hand, `--scope user` fits too: it holds in every project.
+
+## More
+
+- The standard itself:
+  [`skills/work-discipline/SKILL.md`](skills/work-discipline/SKILL.md)
+- Every plugin, with its layer and what it builds on:
+  [`docs/reference/plugins.md`](../../docs/reference/plugins.md)
+- Why the layers, and why dependencies point the way they do:
+  [`docs/explanation/layers.md`](../../docs/explanation/layers.md)

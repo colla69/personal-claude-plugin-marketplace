@@ -3,7 +3,7 @@
 How the repo's documentation gets rewritten from scratch, as a project of its own. D and
 O numbers continue the ones in `plan.md` and `package-plan.md`.
 
-**Status:** approved 2026-10-19, on branch `marketplace/one-package`. Steps 1 to 5 are
+**Status:** approved 2026-10-19, on branch `marketplace/one-package`. Steps 1 to 6 are
 done; the plan runs on to step 8, and stops there (D43). It replaces the documentation
 half of step 7 of `package-plan.md`. The package plan's trials and merge come after it,
 because the documentation describes the steward, and both reach `main` together.
@@ -400,6 +400,13 @@ real. Both say "not yet tried".
 ### Step 6: Plugin READMEs
 
 The new template, and all thirteen READMEs rewritten from it.
+
+What was done: the template's Install section now opens with when set-up installs the
+plugin, then the command by hand and an optional scope note, and a More section links
+the plugin's skill, the plugin table and the layers page. The twelve skill plugins'
+READMEs follow it; their openings, triggers and "Leaves to others" were already in the
+house shape, and every "Builds on" row matched its manifest. The steward's README keeps
+its own shape and gains a More section.
 
 ### Step 7: Entry points
 

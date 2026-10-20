@@ -24,8 +24,18 @@ belongs in a query layer, however convenient a store makes it look.
 
 ## Install
 
+Set-up installs it at project scope when `pinia` is in the project's dependencies. By
+hand:
+
 ```bash
 claude plugin install tools-pinia@personal-claude-plugin-marketplace --scope project
 ```
 
-Project scope. Set-up installs it when `pinia` is in the project's dependencies.
+## More
+
+- The standard itself:
+  [`skills/pinia-conventions/SKILL.md`](skills/pinia-conventions/SKILL.md)
+- Every plugin, with its layer and what it builds on:
+  [`docs/reference/plugins.md`](../../docs/reference/plugins.md)
+- Why the layers, and why dependencies point the way they do:
+  [`docs/explanation/layers.md`](../../docs/explanation/layers.md)
