@@ -17,7 +17,7 @@ column names the product files a page is checked against; the glossary links eac
 
 | You are | Start with |
 |---|---|
-| New, and wondering whether this is for you | [`../README.md`](../README.md), then `tutorials/first-setup.md` |
+| New, and wondering whether this is for you | [`../README.md`](../README.md), then [`tutorials/first-setup.md`](tutorials/first-setup.md) |
 | Using the steward in your projects | [`guides/set-up-a-project.md`](guides/set-up-a-project.md), then the other guides |
 | Working on the marketplace or the steward | [`../CONTRIBUTING.md`](../CONTRIBUTING.md), then the contributing pages |
 | Weighing the idea itself | [`explanation/the-idea.md`](explanation/the-idea.md) |
@@ -29,8 +29,8 @@ Learn by doing, one path from start to finish.
 
 | Page | You will | Sources | Status |
 |---|---|---|---|
-| `tutorials/first-setup.md` | Install the marketplace, set up a sample project, and run one trio | `set-up/procedure.md`, `set-up/report.md`, `roles/run.md` | To write |
-| `tutorials/first-contribution.md` | Turn a lesson into a pull request, and watch each safeguard work | `contribute.md`, `place-knowledge.md` | To write |
+| [`tutorials/first-setup.md`](tutorials/first-setup.md) | Install the marketplace, set up a sample project, and run one trio | `set-up/procedure.md`, `set-up/report.md`, `roles/run.md` | Written, not yet tried |
+| [`tutorials/first-contribution.md`](tutorials/first-contribution.md) | Turn a lesson into a pull request, and watch each safeguard work | `contribute.md`, `place-knowledge.md` | Written, not yet tried |
 
 ## Guides
 

@@ -3,7 +3,7 @@
 How the repo's documentation gets rewritten from scratch, as a project of its own. D and
 O numbers continue the ones in `plan.md` and `package-plan.md`.
 
-**Status:** approved 2026-10-19, on branch `marketplace/one-package`. Steps 1 to 4 are
+**Status:** approved 2026-10-19, on branch `marketplace/one-package`. Steps 1 to 5 are
 done; the plan runs on to step 8, and stops there (D43). It replaces the documentation
 half of step 7 of `package-plan.md`. The package plan's trials and merge come after it,
 because the documentation describes the steward, and both reach `main` together.
@@ -391,6 +391,11 @@ set up a project the steward set up before means bringing it up to date.
 
 The two tutorials, written from the procedures, marked "not yet tried" until the
 package plan's trials have run them.
+
+What was done: both tutorials, on a synthetic TypeScript tool, `tally`, that each one
+builds itself. The first sets it up and runs one change through a trio; the second
+turns a lesson from it into a pull request, and says up front that the pull request is
+real. Both say "not yet tried".
 
 ### Step 6: Plugin READMEs
 
