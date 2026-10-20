@@ -55,7 +55,8 @@ The gist of each; the files above hold the rules.
 - **Skill plugins ship no `agents/`, hooks or MCP servers.** Only the steward ships
   agents, and a hook or a server is added only when an idea can't work without it.
 - **Every agent names its model** as an alias, such as `model: opus`, never a full
-  model ID, and **read-only is `disallowedTools`** in the frontmatter, never a sentence.
+  model ID, and **the edit tools go in `disallowedTools`** in the frontmatter, never in
+  a sentence.
 - **The product never depends on the docs.** No skill, reference or agent may link to a
   page in `docs/`, because the installed plugin doesn't include it.
 - **A product change can make a page wrong, and no check sees it.** The map's Sources

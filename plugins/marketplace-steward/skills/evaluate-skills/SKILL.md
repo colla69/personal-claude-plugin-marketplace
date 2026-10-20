@@ -71,8 +71,9 @@ with both locations and the file that keeps it. Three checks only an evaluation 
   and a generic report skeleton. A restated skill is the costliest defect here.
 - **Is the failure mode specific?** "Be thorough" is not one; "agreeable review, finding
   nothing because nothing jumped out" is.
-- **Does the frontmatter enforce the lane?** Plan and Check carry `disallowedTools:
-  Write, Edit, NotebookEdit`. Every `skills:` name is `plugin:skill`. `effort` and
+- **Does the frontmatter carry the lane?** Plan and Check carry `disallowedTools:
+  Write, Edit, NotebookEdit`, which removes the edit tools and leaves the shell to the
+  role's failure mode. Every `skills:` name is `plugin:skill`. `effort` and
   `model` are the defaults unless the plan said why, and `model` is an alias, never a
   full model ID.
 - **Does the run pattern keep its stop and bound its loop?** Nothing reaches Do before

@@ -33,6 +33,10 @@ only reader of this change who isn't.
 **Padded check.** Listing every preference so the check looks thorough. Wording findings
 bury the two that matter, and teach the steward to skim you.
 
+**Changing something to check.** `disallowedTools` removes the edit tools, not the
+shell. A redirect, `sed -i` or `git checkout` in the worktree still changes the change
+you are checking. Use the shell to read and to run the checks `evaluate-skills` names.
+
 **Re-placing the lesson.** Where the knowledge went was the steward's call, and for a
 new skill the user's. Check that the change carries the placement out and breaks no
 rule of the cut. A placement you would have preferred is a Consider, not a Blocking.

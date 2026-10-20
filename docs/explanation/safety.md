@@ -20,7 +20,7 @@ set them out; the first trials will show where it behaves otherwise.
 | **Its report lists every file it created and every file it changed** | Not knowing what happened. With no plan shown up front, the report is your handover |
 | **It asks before creating a new skill**, and once each for the sources and for keeping or swapping an `AGENTS.md` | A decision about taste made for you |
 | **A trio stops after Plan** until you say OK | Work carried out on a plan nobody accepted |
-| **Plan and Check are read-only by frontmatter** | A planner that starts working, or a checker that fixes instead of reporting |
+| **Plan and Check lose the edit tools**, by frontmatter | A planner that starts editing, or a checker that fixes instead of reporting. The shell stays open to both, and their text asks them to use it only to read |
 | **The record**, `.claude/steward.json` | A later run overwriting a file you edited, or bringing back a trio or plugin you removed |
 | **It writes for Claude only** | Another tool's files changing under you |
 
@@ -51,7 +51,7 @@ against breaking:
 | **The strip test** replaces every name, path and value with its role | A client, a system or a colleague reaching a public repo |
 | **The leak check** compares everything a change will publish, its diff, commit messages, branch name and pull request text, with what identifies your project | A name the strip test missed |
 | **A leak, or a check that couldn't run, stops the job before the push** | Publishing first and noticing after |
-| **The checker is a separate, read-only agent** | The writer approving its own change |
+| **The checker is a separate agent with no edit tools** | The writer approving its own change |
 | **It works in its own clone**, one worktree per change | Your checkout of the marketplace changing while you work in it |
 | **Its permissions name each command it may run unasked** | A command it was never meant to run going through without a prompt: anything else asks first |
 | **You merge** | Anything reaching every project without your review |
