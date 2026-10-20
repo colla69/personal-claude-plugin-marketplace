@@ -21,7 +21,7 @@ Read the file before you change what it governs. None of its rules are repeated 
 | Write or edit a skill, a role template or a plugin README | [`style.md`](plugins/marketplace-steward/references/author-skills/style.md) |
 | Add, rename or register a plugin, or change a manifest | [`plugin-shape.md`](plugins/marketplace-steward/references/author-skills/plugin-shape.md) |
 | Change the steward's own skills, references or agents | [`plugin-shape.md`](plugins/marketplace-steward/references/author-skills/plugin-shape.md), then [`work-on-the-steward.md`](docs/guides/work-on-the-steward.md) |
-| Write or edit a page in `docs/` | [`writing-docs.md`](docs/contributing/writing-docs.md) |
+| Write or edit a page in `docs/`, or an entry point | [`writing-docs.md`](docs/contributing/writing-docs.md) |
 
 ## Commands
 
