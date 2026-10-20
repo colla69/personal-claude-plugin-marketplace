@@ -72,6 +72,10 @@ and a reason is a wish, not a task.
 - Duplication is cheaper than the wrong abstraction. Wait for the third occurrence, and
   make sure the three cases are the *same* thing, not three things that currently look
   alike.
+- The exception is two code paths that must give the same answer, such as a writer and
+  its reader, or client and server validation. Put the rule in one module both import,
+  at the second caller, not the third. Two copies of a rule that must match drift apart
+  without an error, and the cost arrives later as a disagreement nobody can trace.
 - Keep files cohesive rather than short. A 400-line file where everything belongs together
   beats four 100-line files with circular imports.
 
