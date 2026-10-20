@@ -20,7 +20,7 @@ first trials will show where it behaves otherwise.
 2. **Let it run.** The steward checks the sources, picks the skills each role needs,
    installs the ones the project lacks, and writes the trio. It picks them as a full
    set-up does: Do gets every skill the work needs, and Plan and Check the general
-   ones. The rules and the default efforts are in
+   ones. The rules and the default models and efforts are in
    [`trios.md`](../../plugins/marketplace-steward/references/set-up/trios.md).
 3. **Read the report**, and start a new session so the new agents load.
 

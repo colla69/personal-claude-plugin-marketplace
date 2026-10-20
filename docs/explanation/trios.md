@@ -66,11 +66,12 @@ you both reports, rather than spending credits on a third.
 Some skills go to all three, such as the language the work is written in: "they all
 should speak English".
 
-## Effort per role and task
+## Model and effort per role and task
 
-Each role carries an `effort`. The defaults are Plan `high`, because a good plan is
-where the thinking pays most, and Do and Check `medium`. Set-up changes one only for a
-reason it can state, and states it in its report.
+Each role carries a `model` and an `effort`. The default effort is Plan `high`, because
+a good plan is where the thinking pays most, and Do and Check `medium`. Every role
+starts on `opus`, until measuring shows which can run on a cheaper model. Set-up
+changes either one only for a reason it can state, and states it in its report.
 
 ## The reference case
 

@@ -72,8 +72,9 @@ with both locations and the file that keeps it. Three checks only an evaluation 
 - **Is the failure mode specific?** "Be thorough" is not one; "agreeable review, finding
   nothing because nothing jumped out" is.
 - **Does the frontmatter enforce the lane?** Plan and Check carry `disallowedTools:
-  Write, Edit, NotebookEdit`. Every `skills:` name is `plugin:skill`. `effort` is the
-  default unless the plan said why. There is no `model` field.
+  Write, Edit, NotebookEdit`. Every `skills:` name is `plugin:skill`. `effort` and
+  `model` are the defaults unless the plan said why, and `model` is an alias, never a
+  full model ID.
 - **Does the run pattern keep its stop and bound its loop?** Nothing reaches Do before
   the user accepts the plan, Do gets the plan word for word, and Check sends work back
   a bounded number of times. The stop is a step, never described as enforcement.

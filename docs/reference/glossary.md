@@ -24,7 +24,7 @@ that holds its rules.
 | **Dependency** | A plugin a plugin needs, declared in its `plugin.json`: in its own layer or a more general one, never a more specific one, and needed unconditionally | [`place-knowledge.md`](../../plugins/marketplace-steward/references/place-knowledge.md) |
 | **Description** | The `description` a skill or agent carries: the only text Claude sees when deciding to load it, so it is a trigger list | [`style.md`](../../plugins/marketplace-steward/references/author-skills/style.md) |
 | **Do** | The trio's middle role, and its only writer: carries out the accepted plan | [`do.md`](../../plugins/marketplace-steward/references/set-up/roles/do.md) |
-| **Effort** | How hard a role thinks, set per role and task: Plan `high`, Do and Check `medium` by default | [`trios.md`](../../plugins/marketplace-steward/references/set-up/trios.md) |
+| **Effort** | How hard a role thinks, set per role and task: Plan `high`, Do and Check `medium` by default. Each role also names its model, `opus` by default | [`trios.md`](../../plugins/marketplace-steward/references/set-up/trios.md) |
 | **Failure mode** | The thing a kind of worker typically gets wrong, such as an agreeable review. Part of a role, never of a skill | [`style.md`](../../plugins/marketplace-steward/references/author-skills/style.md) |
 | **Framework & Tools** | The layer of one concrete product or tool, such as Vue, JUnit or Excel | [`place-knowledge.md`](../../plugins/marketplace-steward/references/place-knowledge.md) |
 | **Front door** | `steward`, the skill that routes a request to one of the steward's four jobs | [`SKILL.md`](../../plugins/marketplace-steward/skills/steward/SKILL.md) |

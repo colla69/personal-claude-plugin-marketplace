@@ -2,6 +2,7 @@
 name: codebase-cartographer
 description: Surveys a project's codebase for the steward's set-up, and reports a structured map of its components, entry points, conventions and build commands. Invoked by the steward, not for ordinary exploration. Read-only — never modifies files.
 effort: medium
+model: opus
 disallowedTools: Write, Edit, NotebookEdit
 ---
 

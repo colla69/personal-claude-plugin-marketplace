@@ -17,6 +17,7 @@ the user's work or never happens at all, and what the user took out comes back.
         "TASK": "change",
         "WHAT_THE_TASK_DOES": "<as filled in>",
         "skills": ["universal-clean-code:clean-code"],
+        "model": "opus",
         "effort": "high"
       },
       "sha256": "<sha256 of the file as written>"
@@ -43,7 +44,8 @@ the user's work or never happens at all, and what the user took out comes back.
     `sha256sum <path>`.
   - For a generated agent or run skill, **`from`** names its template in `set-up/`,
     **`template`** is that template's hash when the file was built, and **`fill`** is
-    every placeholder value, the `skills:` list and the `effort`, so a rebuild is exact.
+    every placeholder value, the `skills:` list, the `model` and the `effort`, so a
+    rebuild is exact.
 - **`plugins`** lists every plugin the steward installed, and **`declined`** every new
   skill the user said no to.
 - **`pending`** lists every rule an adoption left where it was because its home is a

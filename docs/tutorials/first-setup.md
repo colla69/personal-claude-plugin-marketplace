@@ -121,7 +121,7 @@ head -12 .claude/agents/change-plan.md
 - **`AGENTS.md`** holds what reading the code wouldn't tell you: the test command, the
   map of the project, and the trios. In a project this small it is short, and should be.
 - **`CLAUDE.md`** is one line, `@AGENTS.md`, so Claude Code loads the content.
-- **`change-plan.md`** starts with its frontmatter: `effort: high`,
+- **`change-plan.md`** starts with its frontmatter: `effort: high`, `model: opus`,
   `disallowedTools: Write, Edit, NotebookEdit`, which makes it read-only, and a
   `skills:` list where every name is written as `plugin:skill`.
 

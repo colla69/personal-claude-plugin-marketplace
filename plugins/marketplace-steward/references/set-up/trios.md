@@ -61,7 +61,8 @@ namespaced forms did.
 Phase 7 checks every name against the plugins the project enables, because a missing
 one fails silently.
 
-## Effort
+## Model and effort
 
-The templates carry the defaults: Plan `high`, Do `medium`, Check `medium`. Change one
-only for a reason you can state, and state it in the report's Trios table.
+The templates carry the defaults: Plan `high`, Do `medium`, Check `medium`, each on
+`opus`. Write `model` as an alias, never a full model ID. Change either one only for a
+reason you can state, and state it in the report's Trios table.

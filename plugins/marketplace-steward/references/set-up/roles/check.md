@@ -2,6 +2,7 @@
 name: {{TASK}}-check
 description: Checks the result of `/{{TASK}}` in this project against the plan the user accepted, item by item, and sends gaps back to Do. The last step of `/{{TASK}}`. Read-only.
 effort: medium
+model: opus
 disallowedTools: Write, Edit, NotebookEdit
 skills:
   - craft-review:review-work
