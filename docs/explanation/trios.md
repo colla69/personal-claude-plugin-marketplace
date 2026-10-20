@@ -56,7 +56,8 @@ you both reports, rather than spending credits on a third.
 
 - **Read-only keeps the lanes apart.** If Plan could write, the stop would mean nothing;
   if Check could write, it would fix instead of report, and nobody would check the fix.
-  The lane is in each agent's frontmatter, not only in its prose.
+  The edit tools are out in each agent's frontmatter, and the role's text keeps the
+  shell to reading.
 - **Abstract knowledge keeps them on the work, not the tool.** Plan and Check judge what
   is done and whether it is right; how Excel or Vue does it is Do's concern. A tool
   skill in Plan or Check only spends context.

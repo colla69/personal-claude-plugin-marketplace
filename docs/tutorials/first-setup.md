@@ -120,7 +120,7 @@ head -12 .claude/agents/change-plan.md
 - **`CLAUDE.md`** holds what reading the code wouldn't tell you: the test command, the
   map of the project, and the trios. In a project this small it is short, and should be.
 - **`change-plan.md`** starts with its frontmatter: `effort: high`, `model: opus`,
-  `disallowedTools: Write, Edit, NotebookEdit`, which makes it read-only, and a
+  `disallowedTools: Write, Edit, NotebookEdit`, which takes away its edit tools, and a
   `skills:` list where every name is written as `plugin:skill`.
 
 Delete anything you don't want. The record still lists what the steward wrote, so it

@@ -42,10 +42,13 @@ nothing jumped out, and "padded review" is listing every preference so the revie
 thorough. For Do, silent scope expansion: you are in the file, you fix something
 unrelated, and now one diff holds two changes.
 
-**The lane.** What the role may and may not touch. Plan and Check are read-only; Do is
-the only writer. A read-only lane is `disallowedTools: Write, Edit, NotebookEdit` in the
-frontmatter, not a sentence in the body. Prose is a request; frontmatter is a
-constraint.
+**The lane.** What the role may and may not touch. Plan and Check are meant to be
+read-only; Do is the only writer. The frontmatter keeps the edit tools out of a
+read-only lane, with `disallowedTools: Write, Edit, NotebookEdit`, not with a sentence
+in the body. Prose is a request; frontmatter is a constraint. That line removes the
+edit tools and nothing else: a role that keeps `Bash` can still write with a redirect
+or `sed -i`. Only a role without `Bash` is read-only by its frontmatter, so a role that
+needs the shell gets a failure mode that says to use it to read.
 
 **What to do when there is nothing to report.** Every role says some version of "if
 it's fine, say so and stop". Without that line, a report format is a demand for output,

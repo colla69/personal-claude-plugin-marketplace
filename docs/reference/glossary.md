@@ -30,7 +30,7 @@ that holds its rules.
 | **Front door** | `steward`, the skill that routes a request to one of the steward's four jobs | [`SKILL.md`](../../plugins/marketplace-steward/skills/steward/SKILL.md) |
 | **Gap-fill** | A plugin from another permitted marketplace, chosen where the toolkit has nothing for a need | [`plugin-sources.md`](../../plugins/marketplace-steward/references/set-up/plugin-sources.md) |
 | **Keep current** | The steward's job that finds where a setup has drifted, and fixes it | [`keep-current.md`](../../plugins/marketplace-steward/references/keep-current.md) |
-| **Lane** | What a role may and may not touch. Plan and Check are read-only, by frontmatter; Do is the only writer | [`style.md`](../../plugins/marketplace-steward/references/author-skills/style.md) |
+| **Lane** | What a role may and may not touch. Plan and Check have no edit tools, by frontmatter; Do is the only writer | [`style.md`](../../plugins/marketplace-steward/references/author-skills/style.md) |
 | **Language** | The layer of what the work is written in: a programming language, a natural language, a template | [`place-knowledge.md`](../../plugins/marketplace-steward/references/place-knowledge.md) |
 | **Layer** | One of four tiers every skill belongs to, from general to specific: Universal, Craft, Language, Framework & Tools | [`place-knowledge.md`](../../plugins/marketplace-steward/references/place-knowledge.md) |
 | **Leak check** | The check that nothing identifying the project a lesson came from reaches the public marketplace | [`SKILL.md`](../../plugins/marketplace-steward/skills/evaluate-skills/SKILL.md) |

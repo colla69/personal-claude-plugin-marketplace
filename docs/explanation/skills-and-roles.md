@@ -68,9 +68,11 @@ keeps most of its knowledge out of skills.
 Prose is a request; frontmatter is a constraint. Two rules follow, for every agent the
 steward ships or generates:
 
-- **Read-only is frontmatter.** A read-only agent carries
+- **The edit tools are frontmatter.** A read-only agent carries
   `disallowedTools: Write, Edit, NotebookEdit`. A description that says "read-only"
-  without that line is not read-only.
+  without that line still has its edit tools. The line leaves the shell open, and what
+  follows is in the lane section of
+  [`style.md`](../../plugins/marketplace-steward/references/author-skills/style.md).
 - **A model alias.** Every agent names its model, such as `model: opus`, beside its
   `effort`. The setup is Claude only, and the model is where a role's cost is decided.
   An alias rather than a full model ID follows new versions without an edit.
