@@ -30,7 +30,7 @@ Adopting moves rules out of your own files, so it has the strictest guards:
 
 - **Nothing is removed before its new home is live**, and a rule goes, never a file,
   until every rule in that file has one. What counts as live, for a skill, a trio or a
-  pull request, is defined in step 5 of
+  pull request, is defined in step 6 of
   [`adopt.md`](../../plugins/marketplace-steward/references/adopt.md).
 - **Only a skill that says the same thing counts.** A similar rule isn't the same rule;
   when in doubt, yours stays.

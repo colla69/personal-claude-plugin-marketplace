@@ -92,7 +92,7 @@ For each entry in the record's `pending`:
 - **Merged:** install the plugin it went to, if the project doesn't have it, as
   set-up's phase 5 does and within the source policy, and update it with
   `claude plugin update <name>@<marketplace>`. Then apply the test for a live home in
-  step 5 of `adopt.md`, against the installed copy.
+  step 6 of `adopt.md`, against the installed copy.
 - **Live, and the file still holds the rule exactly as recorded:** remove it as that
   step removes one, backup included, and drop the entry.
 - **Live, but the rule was edited since:** leave it, drop the entry, and report it

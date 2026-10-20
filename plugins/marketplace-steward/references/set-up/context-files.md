@@ -65,7 +65,7 @@ That is why they go through adoption, rule by rule, as `../adopt.md` says, whate
 answer.
 
 Before you remove an `AGENTS.md` whose working copy differs from git's `HEAD`, back it
-up by the rule in step 5 of `../adopt.md`. Then update the record, as "Using it" in
+up by the rule in step 6 of `../adopt.md`. Then update the record, as "Using it" in
 `../record.md` says for a file folded into another.
 
 ## The tiers

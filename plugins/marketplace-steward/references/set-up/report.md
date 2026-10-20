@@ -19,10 +19,19 @@ proof the list is live rather than remembered>
 ### Adopted
 | From | Rule | Home | Local copy |
 |---|---|---|---|
-| <file> | <the rule, quoted short> | <plugin:skill, CLAUDE.md, a trio, a project skill, stays, or nowhere> | <removed / moved / pending: the pull request / stays> |
+| <file> | <the rule, quoted short> | <plugin:skill, a contribution to plugin:skill or a role template, CLAUDE.md, a trio, a project skill, stays, or nowhere> | <removed / moved / pending: the pull request / stays / stays: stopped / stays: declined / stays: waiting for your OK> |
 
 <Only for an adoption: every rule, grouped by the file it came from. Then name every
 backup made, and every old agent with the trio that replaces it.>
+
+### Contributions
+| To | New or extended | Rules | Outcome |
+|---|---|---|---|
+| <plugin:skill, or a role template> | <new / extended> | <how many, from which files> | <the pull request; or where it stopped and what is left; or waiting for your OK below> |
+
+<Only for an adoption, and never left out there: one row for each contribution phase 3
+decided. A missing row is how a skipped contribution hides. With none, say in one line
+that no rule travels.>
 
 ### Changed
 - <path that already existed and was edited — omit the section if there were none>
