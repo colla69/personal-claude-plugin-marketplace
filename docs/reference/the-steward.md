@@ -4,6 +4,9 @@ Look up what each of the steward's jobs starts on, reads, writes, asks and never
 Why it works this way is in [the steward](../explanation/the-steward.md); each job's
 procedure is the file in the Procedure column.
 
+**Not yet tried on real projects.** This page describes the jobs as their files set
+them out; the first trials will show where the steward behaves otherwise.
+
 ## How a job starts
 
 You talk to it, or run `/marketplace-steward:steward`. The front door picks the job from
@@ -49,11 +52,11 @@ or CI, and remembering a preference, which is Claude's memory.
 
 Everything else goes ahead and is reported.
 
-### What none of them does
+### What each job asks it not to do
 
 - Touch git in your project: no branch, commit, stage or stash.
-- Overwrite a file you changed since the steward wrote it, or bring back a trio or a
-  plugin you removed.
+- Rebuild or rewrite whole a file you changed since the steward wrote it, or bring back
+  a trio or a plugin you removed. A check may still fix one line in such a file.
 - Remove a rule before its new home is live, or change your `CLAUDE.local.md`,
   `.claude/settings.local.json`, or edit a file under `~/.claude` itself; installs and
   refreshes go through Claude Code.

@@ -5,6 +5,9 @@ plugin was renamed, a skill doesn't load, a role template improved, the project 
 test runner. Nothing of this announces itself, so run it from time to time, and after
 you merge a contribution.
 
+**Not yet tried on real projects.** This guide follows the steward's procedures; the
+first trials will show where it behaves otherwise.
+
 ## Steps
 
 1. **In the project, say "update the setup"**, or name the symptom: "the review skill
@@ -38,11 +41,13 @@ you merge a contribution.
 
 When nothing has drifted, the report says so and lists the checks it ran.
 
-## What it never does
+## What it is asked not to do
 
-- Overwrite a file you changed since the steward wrote it.
+- Rebuild or rewrite whole a file you changed since the steward wrote it. A check may
+  still fix one line in it, such as a skill name that was renamed.
 - Bring back a trio or a plugin you removed, or propose a skill you declined.
-- Delete a line from `AGENTS.md` it can't replace.
+- Delete a line from `AGENTS.md` it can't replace. A line it can verify as wrong, such
+  as a path that moved, it fixes, whoever wrote the file.
 - Run on a project it never set up: there, it hands over to set-up or adoption.
 
 A project set up before the steward kept a record has nothing it can tell apart, so

@@ -15,6 +15,9 @@ Fix what goes wrong without saying so. Find the symptom, check the cause, apply 
 
 ## The steward
 
+Its rows come from the steward's procedures and from probes; the first trials on real
+projects will add to them.
+
 | Symptom | Cause | Fix |
 |---|---|---|
 | None of the steward's skills appear under `--plugin-dir` | Its dependency, `craft-review`, isn't installed or loaded | Add `--plugin-dir ./plugins/craft-review` |
@@ -22,7 +25,7 @@ Fix what goes wrong without saying so. Find the symptom, check the cause, apply 
 | Claude Code asks for each plugin install, refresh or hash | Those commands aren't pre-allowed | Allow them, as [permissions](../reference/permissions.md) describes, or answer once per run |
 | A set-up request ran keep-current instead | The project has `.claude/steward.json` | That is intended: the steward set it up before, so setting it up again means bringing it up to date |
 | A set-up request adopted the project | It has a Claude setup of its own and no record | That is intended; see [adopt an existing setup](adopt-an-existing-setup.md) |
-| A trio came out under another name, or not at all | One of its four paths was taken by a file of yours | Rename or remove your file, then ask for the trio again |
+| A trio came out under another name, or not at all | One of its four paths was taken by a file of yours | Keep it under the other name; or delete that trio's four files, rename or remove yours, and ask for the trio again |
 | A rule you expected to go is still in your files | Its home isn't live yet: pending a merge, or no trio role preloads the skill | Merge its pull request and say "update the setup"; or leave it, which is safe |
 | `Skill … cannot be used with Skill tool due to disable-model-invocation` | That skill is hidden from the model | Hidden skills can only be run by you, as `/plugin:skill`; the steward keeps its jobs in references for this reason |
 
@@ -33,7 +36,7 @@ Fix what goes wrong without saying so. Find the symptom, check the cause, apply 
 | No pull request, only a link | `gh` isn't installed or signed in | Open the link, or install `gh` and run `gh auth login` |
 | The job stopped before the push, with a leak | Something from your project is in the change | Read the finding, and say how to strip it; the worktree is still there |
 | The job stopped, the leak check not run | The checker didn't get the source project's identifiers | Run the contribution from inside the project the lesson came from |
-| The job stopped: nowhere to open a pull request | The house marketplace was added from a local folder, not GitHub | Add it from GitHub: `claude plugin marketplace add colla69/personal-claude-plugin-marketplace` |
+| The job stopped: nowhere to open a pull request | The house marketplace was added from a local folder, not GitHub | Add it from GitHub: `claude plugin marketplace add colla69/personal-claude-plugin-marketplace`. The two share a name, so the local one likely has to be removed first, with `claude plugin marketplace remove personal-claude-plugin-marketplace` |
 | A worktree is left over | An earlier job stopped | The next job reports it; remove it with `git -C ~/.local/share/marketplace-steward/clone worktree remove <path>` |
 
 ## Estimates and checks
@@ -42,5 +45,5 @@ Fix what goes wrong without saying so. Find the symptom, check the cause, apply 
 |---|---|---|
 | `claude plugin details` reports a higher cost than you expect | It counts a hidden skill's description, which never loads | Read its per-skill lines; a hidden skill's always-on cost isn't paid |
 | `claude plugin details` says the plugin isn't found | It only looks at installed plugins | Use `claude --plugin-dir ./plugins/<name> plugin details <name>` |
-| `claude plugin validate` warns "no version specified" | The policy: every plugin updates by commit | Nothing to fix |
+| `claude plugin validate` warns "no version specified" and "no description provided" | The policy: every plugin updates by commit, and its `description` lives in the marketplace entry | Nothing to fix |
 | `check-catalog.mjs` fails | A list, a name, a layer or a dependency disagrees | Its message names the plugin and the file; [checks](../reference/checks.md) lists each case |

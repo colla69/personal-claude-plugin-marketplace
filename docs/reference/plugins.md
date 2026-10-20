@@ -3,8 +3,8 @@
 Look up every plugin in the marketplace: its layer, its skill, what it is for, when the
 steward installs it, and what it builds on.
 
-This table is one of the three registrations every plugin needs, and
-`scripts/check-catalog.mjs` fails when it disagrees with
+This page is one of the three registrations every plugin needs, and
+`scripts/check-catalog.mjs` fails when either of its tables disagrees with
 [`marketplace.json`](../../.claude-plugin/marketplace.json). The "Installed when"
 column gives the gist; the full signals that set-up checks are in
 [`plugin-catalog.md`](../../plugins/marketplace-steward/references/set-up/plugin-catalog.md).
@@ -28,7 +28,7 @@ Each plugin's own README, under `plugins/<name>/`, says where it stops.
 
 ## By layer
 
-| Layer | Its plugins |
+| Layer | Plugins |
 |---|---|
 | Universal | `universal-clean-code`, `universal-work-discipline` |
 | Craft | `craft-development`, `craft-review`, `craft-code-review`, `craft-unit-testing`, `craft-refactoring` |
@@ -41,23 +41,12 @@ the way they do.
 
 ## Old names
 
-Plugins renamed when the marketplace was cut into layers, and what each is called now:
-
-| Old name | Now |
-|---|---|
-| `clean-code` | `universal-clean-code` |
-| `developer` | `craft-development`, with part in `universal-work-discipline` |
-| `code-review` | `craft-code-review` |
-| `unit-testing` | `craft-unit-testing` |
-| `refactoring` | `craft-refactoring` |
-| `java-dev` | `language-java` |
-| `typescript-dev` | `language-typescript` |
-| `vue-dev` | `tools-vue`, with parts in `tools-pinia` and `tools-vue-typescript` |
-| `project-init`, `marketplace-init` | `marketplace-steward` |
-
-Set-up and keep-current both read the Renamed table in
-[`plugin-catalog.md`](../../plugins/marketplace-steward/references/set-up/plugin-catalog.md),
-which is where a new rename is recorded. They remove the old key, and weigh each
+The plugins were renamed when the marketplace was cut into layers: `clean-code` is now
+`universal-clean-code`, and `vue-dev` split into `tools-vue`, `tools-pinia` and
+`tools-vue-typescript`. Every old name, and every later rename, has its row in the
+Renamed table of
+[`plugin-catalog.md`](../../plugins/marketplace-steward/references/set-up/plugin-catalog.md).
+Set-up and keep-current both read it. They remove the old key, and weigh each
 successor by its own signal, so a part that split off is installed only where the
 project shows a need for it. [Migrate from old
 names](../guides/migrate-from-old-names.md) walks through it.

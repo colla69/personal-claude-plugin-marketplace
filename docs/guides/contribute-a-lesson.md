@@ -5,6 +5,9 @@ project gets it: a skill that got something wrong, a rule worth having everywher
 new skill. Why the steward diagnoses and strips a lesson first is in
 [placing knowledge](../explanation/placing-knowledge.md).
 
+**Not yet tried on real projects.** This guide follows the steward's procedures; the
+first trials will show where it behaves otherwise.
+
 ## Before you start
 
 - **Push rights to the marketplace's GitHub repository**, and git set up to push over
@@ -29,11 +32,14 @@ new skill. Why the steward diagnoses and strips a lesson first is in
    existing skill goes ahead without asking.
 3. **Let it work.** It writes the change in its own clone, on a `contrib/` branch, with
    every name from your project replaced by its role. The checker reviews it, and its
-   leak check looks for anything from your project in what would go public. A leak
-   stops the job before anything is pushed.
+   leak check looks for anything from your project in what would go public. On a leak,
+   or a leak check that couldn't run, the procedure asks the steward to stop before
+   anything is pushed.
 4. **Review the pull request.** Read it as you would anyone's: the change, the
    placement, the judgements the steward had to assume, and the checker's verdict. A
-   rename or a removal carries its migration.
+   rename or a removal carries its migration. Then the docs: the steward never reads
+   them, so check whether the change makes a page wrong. The map's Sources column names
+   the pages each changed file feeds.
 5. **Merge, or change it.** If you move the lesson somewhere else in review, tell the
    steward, and the case becomes an example of where its rules ran out.
 6. **Update your projects.** After the merge, "update the setup" in each project picks

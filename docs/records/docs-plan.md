@@ -3,8 +3,8 @@
 How the repo's documentation gets rewritten from scratch, as a project of its own. D and
 O numbers continue the ones in `plan.md` and `package-plan.md`.
 
-**Status:** approved 2026-10-19, on branch `marketplace/one-package`. Steps 1 to 7 are
-done; the plan runs on to step 8, and stops there (D43). It replaces the documentation
+**Status:** approved 2026-10-19, on branch `marketplace/one-package`. Steps 1 to 8 are
+done, and the plan stops here for the maintainer's read (D43). It replaces the documentation
 half of step 7 of `package-plan.md`. The package plan's trials and merge come after it,
 because the documentation describes the steward, and both reach `main` together.
 
@@ -439,6 +439,40 @@ What was done:
 
 The docs check and its CI job, a review of the whole set by a separate agent, and the
 maintainer's own read of the landing page and the first tutorial.
+
+What was done:
+
+- **`scripts/check-docs.mjs`** and the CI job `docs in shape` (D42). It checks that
+  links and heading anchors resolve, that every page is on the map, the 88 columns, that
+  no skill, reference or agent links into `docs/`, and that no page links into these
+  records. Each kind of mistake was planted in a scratch copy and caught.
+- **Two reviews by separate agents**: one of the guides, tutorials and plugin READMEs,
+  one of the whole set. Every Blocking and Should-fix finding is fixed. The ones that
+  were product gaps changed the product, in the same commit:
+  - the trio route adds the trio's row to the root `AGENTS.md`, which no phase did;
+  - adoption backs a `CLAUDE.md` up before phase 4 takes rules out of it, not only
+    before step 5;
+  - the contribute job and `evaluate-skills` run `check-docs.mjs` too, pre-allowed in
+    the front door, so a steward pull request doesn't first fail in CI;
+  - `plugin-shape.md`'s README section matches the template, and its verify step uses
+    `--plugin-dir` instead of adding `.` as a second marketplace of the same name;
+  - a dead key does show in `claude plugin list`, as failed to load; the catalog said
+    nothing reported it.
+- **`check-catalog.mjs`** checks each plugin table in `reference/plugins.md` on its own,
+  so the By layer table no longer hides a row missing from the main one. The README
+  names the layers instead of listing the plugins, and the copied rename tables became
+  links to the Renamed table.
+- **Every page about the steward's behaviour** says "not yet tried", and the map marks
+  it so.
+- **The first tutorial's sample** was built and run in a scratch folder: it typechecks,
+  its test passes, and `node_modules` stays out of git.
+- **`CLAUDE.md`** gained the docs-drift rule and the undeclared-skill rule, links in
+  place of backticked paths, and a row for changing the steward. A new
+  `.claude/rules/docs.md` points at `writing-docs.md` for any page.
+
+Left for the maintainer, from the reviews: a page for using a fork, and pages for
+changing the source policy later, removing a setup, pruning backups, the eval-case
+format and turning on branch protection.
 
 ---
 

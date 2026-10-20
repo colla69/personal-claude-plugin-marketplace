@@ -74,8 +74,9 @@ In the worktree, `<worktree>` below:
   same change. That row is the migration keep-current applies in every project.
 - **An overruled placement** gets its case, stripped, in §6 of
   `<worktree>/plugins/marketplace-steward/references/place-knowledge.md`.
-- Verify with `claude plugin validate <worktree>` and
-  `node <worktree>/scripts/check-catalog.mjs`. Both must pass.
+- Verify with `claude plugin validate <worktree>`,
+  `node <worktree>/scripts/check-catalog.mjs` and
+  `node <worktree>/scripts/check-docs.mjs`. All three must pass.
 - Draft every text that will become public, in the stripped wording:
   `drafts/<topic>/commit.txt`, which says what judgement changed and why;
   `drafts/<topic>/title.txt`, the pull request's title in one line; and

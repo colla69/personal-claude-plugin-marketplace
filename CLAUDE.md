@@ -8,8 +8,8 @@ is judged by how it is written and cut, and the checks exist only for the mistak
 that fail silently.
 
 The steward is written and not yet tried on real projects. The documentation is mapped
-in `docs/README.md`, and the reason behind every decision is in
-`docs/explanation/decisions.md`.
+in [`docs/README.md`](docs/README.md), and the reason behind every decision is in
+[`docs/explanation/decisions.md`](docs/explanation/decisions.md).
 
 ## Where the rules live
 
@@ -17,10 +17,11 @@ Read the file before you change what it governs. None of its rules are repeated 
 
 | Before you | Read |
 |---|---|
-| Decide where a piece of knowledge goes, or cut a skill | `plugins/marketplace-steward/references/place-knowledge.md` |
-| Write or edit a skill, a role template or a plugin README | `plugins/marketplace-steward/references/author-skills/style.md` |
-| Add, rename or register a plugin | `plugins/marketplace-steward/references/author-skills/plugin-shape.md` |
-| Write or edit a page in `docs/` | `docs/contributing/writing-docs.md` |
+| Decide where a piece of knowledge goes, or cut a skill | [`place-knowledge.md`](plugins/marketplace-steward/references/place-knowledge.md) |
+| Write or edit a skill, a role template or a plugin README | [`style.md`](plugins/marketplace-steward/references/author-skills/style.md) |
+| Add, rename or register a plugin, or change a manifest | [`plugin-shape.md`](plugins/marketplace-steward/references/author-skills/plugin-shape.md) |
+| Change the steward's own skills, references or agents | [`plugin-shape.md`](plugins/marketplace-steward/references/author-skills/plugin-shape.md), then [`work-on-the-steward.md`](docs/guides/work-on-the-steward.md) |
+| Write or edit a page in `docs/` | [`writing-docs.md`](docs/contributing/writing-docs.md) |
 
 ## Commands
 
@@ -40,11 +41,14 @@ every plugin. Both are the policy, so CI never runs it with `--strict`.
 
 The gist of each; the files above hold the rules.
 
-- **A plugin needs three registrations**: `marketplace.json`, the table in
+- **A plugin needs three registrations**: `marketplace.json`, both tables in
   `docs/reference/plugins.md`, and the steward's `references/set-up/plugin-catalog.md`.
   Missing the catalog row, it installs fine and is never chosen for any project.
-- **A rename or a removal needs a row in the catalog's Renamed table**, or every project
-  that enables the old name loses the plugin without a word.
+- **A rename or a removal needs a row in the catalog's Renamed table.** Without it,
+  keep-current removes the old key but installs no successor, and the project runs
+  without that skill.
+- **A skill named in prose needs its plugin in `dependencies`.** Nothing checks it: an
+  undeclared skill that isn't installed is replaced by the model's generic taste.
 - **No `version`** in a plugin, and **`description` only in the marketplace entry.**
 - **Only `.json` in `.claude-plugin/`**, and no `agents` or `commands` key in
   `plugin.json`.
@@ -54,6 +58,8 @@ The gist of each; the files above hold the rules.
   frontmatter, never a sentence.
 - **The product never depends on the docs.** No skill, reference or agent may link to a
   page in `docs/`, because the installed plugin doesn't include it.
+- **A product change can make a page wrong, and no check sees it.** The map's Sources
+  column names the pages each product file feeds; reread them in the same change.
 - **No real project name, client or person** in any file or commit message. The repo is
   public; examples are synthetic.
 
@@ -62,8 +68,8 @@ The gist of each; the files above hold the rules.
 | To | Use |
 |---|---|
 | Add or change a skill from a lesson | The steward's contribute job. It works in its own clone and opens a pull request, so pull this checkout after the merge |
-| Add or change a skill by hand | `docs/guides/write-a-skill-by-hand.md` |
-| Review a skill, a plugin, a change or the whole set | `evaluate-skills`, run by a separate agent from the one that wrote the change |
+| Add or change a skill by hand | [`write-a-skill-by-hand.md`](docs/guides/write-a-skill-by-hand.md) |
+| Review a skill, a plugin, a change or the whole set | `evaluate-skills`, in a session with the steward loaded by the command above, run by a separate agent from the one that wrote the change |
 
 Deciding what a standard says, its layer, its home and what it yields to, is the
 maintainer's taste: the steward asks before a new skill, and every change waits for

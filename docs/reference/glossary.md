@@ -12,7 +12,7 @@ that holds its rules.
 | **Brick** | The original word for a skill, from the German *Baustein*: one piece of a modular knowledge base | — |
 | **Canary** | A unique string placed in a file to prove, from a session's output, whether that file reached the model's context. It is how the steward's mechanics were tested | — |
 | **Cartographer** | `codebase-cartographer`, the steward's read-only agent that surveys a codebase for set-up | [`codebase-cartographer.md`](../../plugins/marketplace-steward/agents/codebase-cartographer.md) |
-| **Catalog** | `.claude-plugin/marketplace.json`: the list of every plugin, and the one home of each plugin's `description` | [`plugin-shape.md`](../../plugins/marketplace-steward/references/author-skills/plugin-shape.md) |
+| **Catalog** | Short for the plugin catalog, `plugin-catalog.md`. Not `marketplace.json`, which is the marketplace's plugin list and the one home of each plugin's `description` | [`plugin-catalog.md`](../../plugins/marketplace-steward/references/set-up/plugin-catalog.md) |
 | **Category** | A plugin's layer as a field of its marketplace entry, and the prefix of its name; `marketplace` for a plugin that works on the marketplace itself, which sits in no layer | [`plugin-catalog.md`](../../plugins/marketplace-steward/references/set-up/plugin-catalog.md) |
 | **Check** | The trio's last role: compares the result with the accepted plan, and sends gaps back to Do. Read-only | [`check.md`](../../plugins/marketplace-steward/references/set-up/roles/check.md) |
 | **Checker** | `contribution-checker`, the steward's read-only agent that checks a change before its pull request, the leak check first | [`contribution-checker.md`](../../plugins/marketplace-steward/agents/contribution-checker.md) |
@@ -20,7 +20,7 @@ that holds its rules.
 | **Clone** | The steward's own copy of the marketplace, in `~/.local/share/marketplace-steward/clone/`, which every contribution works from | [`contribute.md`](../../plugins/marketplace-steward/references/contribute.md) |
 | **Contribute** | The steward's job that turns a lesson into a change to a skill, or a new skill, by pull request | [`contribute.md`](../../plugins/marketplace-steward/references/contribute.md) |
 | **Craft** | The layer of how a kind of work is done, such as reviewing, refactoring or a monthly report | [`place-knowledge.md`](../../plugins/marketplace-steward/references/place-knowledge.md) |
-| **Dead key** | An `enabledPlugins` entry for a plugin that no longer exists. It matches nothing, and nothing reports it | [`plugin-catalog.md`](../../plugins/marketplace-steward/references/set-up/plugin-catalog.md) |
+| **Dead key** | An `enabledPlugins` entry for a plugin that no longer exists. It matches nothing, and no session reports it; only `claude plugin list` shows it as failed to load | [`plugin-catalog.md`](../../plugins/marketplace-steward/references/set-up/plugin-catalog.md) |
 | **Dependency** | A plugin a plugin needs, declared in its `plugin.json`: in its own layer or a more general one, never a more specific one, and needed unconditionally | [`place-knowledge.md`](../../plugins/marketplace-steward/references/place-knowledge.md) |
 | **Description** | The `description` a skill or agent carries: the only text Claude sees when deciding to load it, so it is a trigger list | [`style.md`](../../plugins/marketplace-steward/references/author-skills/style.md) |
 | **Do** | The trio's middle role, and its only writer: carries out the accepted plan | [`do.md`](../../plugins/marketplace-steward/references/set-up/roles/do.md) |

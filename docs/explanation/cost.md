@@ -43,10 +43,9 @@ which cost nothing until the front door reads one by path. The alternative of hi
 skills doesn't work: a skill with `disable-model-invocation: true` keeps its description
 out of context, but no agent can preload it and Claude can't run it.
 
-The estimate for the steward as it stands, from `claude plugin details`, is about 580
-tokens always on. The front door's description is the largest part, because it carries
-the triggers of four jobs.
-
+The estimate for the steward as it stands, from `claude plugin details`, is about 600
+tokens always on. The front door's description is the largest part, about 300, because
+it carries the triggers of four jobs.
 
 ## Credits, not only context
 

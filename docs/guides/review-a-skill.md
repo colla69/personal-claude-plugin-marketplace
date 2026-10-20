@@ -28,7 +28,7 @@ same one the steward's checker runs before every pull request.
 | A skill | Whether its description wins the prompts it is for and stays quiet on others; the cut; one home per rule; that every skill it names is declared; its opening, the cost of each rule, its yield, its size |
 | A role template | That it restates no skill, names a specific failure mode, enforces its lane in frontmatter, and keeps the stop |
 | A plugin | That it loads in the right shape, fires, what it costs, and whether it changes anything |
-| A change | All of the above for what it touches, plus the leak check |
+| A change | All of the above for what it touches, plus the leak check, which needs the source project's names from you: without them, it hasn't run |
 | The whole set | A map: every skill's layer, every reference and its dependency, every rule stated twice, every pair of descriptions that compete |
 
 It runs the instruments first: `claude plugin validate`, the token estimate,
@@ -50,8 +50,10 @@ says so and what was checked, and stops.
 
 ## Without the steward
 
-Anyone can review by hand against the same two files the review quotes:
+Anyone can review by hand against the same three files the review quotes:
 [`style.md`](../../plugins/marketplace-steward/references/author-skills/style.md) for
-the writing, and
+the writing,
 [`place-knowledge.md`](../../plugins/marketplace-steward/references/place-knowledge.md)
-for the cut.
+for the cut, and
+[`plugin-shape.md`](../../plugins/marketplace-steward/references/author-skills/plugin-shape.md)
+for a plugin's files, dependencies and registrations.

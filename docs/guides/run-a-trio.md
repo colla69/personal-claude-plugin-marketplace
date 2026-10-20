@@ -4,6 +4,9 @@ Use one of your project's trios, such as `/change`, from request to checked resu
 What each role does, and why the run stops after Plan, is in
 [trios](../explanation/trios.md).
 
+**Not yet tried on real projects.** This guide follows the role templates and the run
+skill the steward writes; the first trials will show where a run behaves otherwise.
+
 ## Steps
 
 1. **Ask.** Run `/<task>` with your request, or just ask for the work: each trio's skill
@@ -16,7 +19,8 @@ What each role does, and why the run stops after Plan, is in
 3. **Answer, correct, or accept.**
    - Answer its questions, or correct an item: the plan goes back to Plan for a new
      version.
-   - Say OK when it is right. Only an explicit OK moves on; a question is not one.
+   - Say OK when it is right. The run asks for an explicit OK before Do starts; a
+     question is not one.
 4. **Let Do work.** Do carries out the plan you accepted, word for word. If it disagrees
    with an item, it stops before touching anything and tells you; your answer amends the
    plan, and Do runs again.

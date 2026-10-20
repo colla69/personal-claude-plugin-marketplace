@@ -2,14 +2,19 @@
 
 Bring a project that already has its own `CLAUDE.md`, rules, skills, agents or hooks
 onto the marketplace, so every rule in it has one home and nothing is lost on the way.
-Why adoption works rule by rule is in [safety](../explanation/safety.md).
+Why adoption works rule by rule is in [the steward](../explanation/the-steward.md), and
+what keeps your files safe is in [safety](../explanation/safety.md).
+
+**Not yet tried on real projects.** This guide follows the steward's procedures; the
+first trials will show where it behaves otherwise.
 
 ## Before you start
 
 - The steward is installed for your user, as in [set up a project](set-up-a-project.md).
 - **Branch, and commit what you have.** Adoption edits your own files. A committed file
-  can be restored from git; anything uncommitted is backed up by the steward, but a
-  clean tree is simpler to review.
+  can be restored from git. Before it takes a rule out of a file that differs from
+  git's `HEAD`, the steward is asked to copy that file to its backups; a clean tree is
+  still simpler to review.
 
 ## Steps
 
@@ -28,24 +33,26 @@ Why adoption works rule by rule is in [safety](../explanation/safety.md).
 
 | Local copy | Means |
 |---|---|
-| **Moved** | The rule now lives in `AGENTS.md`, a trio or a project skill, and was taken out of its old file |
-| **Removed** | A toolkit skill says the same thing, it is installed, and the roles that do that work preload it |
+| **Moved** | The rule now lives in `AGENTS.md` or a project skill, and was taken out of its old file |
+| **Removed** | Its home already says it: a toolkit skill that is installed and preloaded by the roles that do that work, or a role template now in a trio. Dead keys, hooks that only injected text, and dead or machine-only rules go too |
 | **Pending** | Its home is a pull request. It stays where it is until you merge, and keep-current removes it then |
 | **Stays** | It is project mechanics, such as a hook or a permission, or no live home fits it yet |
 
-A rule is removed only once its new home is live, and a file only once every rule in it
-has one. An old agent stays until its trio is written and everything it knew has a home.
+The procedure removes a rule only once its new home is live, and a file only once every
+rule in it has one. An old agent stays until its trio is written and everything it knew
+has a home.
 
 ## Check it
 
 - **Read the diff file by file** against the Adopted table. If a removed rule matters to
   you and its new home doesn't say the same thing, put it back and tell the steward:
   that is a lesson for its placement.
-- **Find your backups.** Any file with untracked or uncommitted content was copied to
-  `~/.local/share/marketplace-steward/backups/<project>/<date>/` before anything was
-  removed from it. The report names each copy.
-- **Review the pull requests.** Each contribution from the adoption is one, and none of
-  its pending rules leaves your project until you merge it.
+- **Find your backups.** Each file that differed from `HEAD` is copied to
+  `~/.local/share/marketplace-steward/backups/<project>/<date>/` before the first rule
+  is taken out of it. The report names each copy.
+- **Review the pull requests.** Each contribution from the adoption is one. Its pending
+  rules stay in your project, and keep-current is asked to remove them only after you
+  merge it.
 
 ## What stays untouched
 

@@ -10,7 +10,7 @@ The marketplace's own check, with no dependencies. It fails on:
 | Mistake | Why nothing else notices |
 |---|---|
 | An empty plugin list in `marketplace.json`, or an entry without `name`, `source`, `description`, `category` or `tags` | The marketplace parses, and the plugin is half-registered |
-| A plugin missing from `marketplace.json`, `docs/reference/plugins.md` or `plugin-catalog.md`, or a name left in one of them that no longer exists. Only names in a table column headed Plugin or Plugins count | The plugin installs fine; missing from the catalog, it is never chosen for any project |
+| A plugin missing from `marketplace.json`, from either table of `docs/reference/plugins.md` or from the tables of `plugin-catalog.md` together, or a name left in one of them that no longer exists. Only names in a table column headed Plugin or Plugins count | The plugin installs fine; missing from the catalog, it is never chosen for any project |
 | An entry whose `source` folder doesn't exist, that has no `.claude-plugin/plugin.json`, or whose `plugin.json` gives another name | The entry points at nothing, or at the wrong plugin |
 | A folder under `plugins/` that `marketplace.json` doesn't list | It is simply never loaded |
 | A `category` other than `universal`, `craft`, `language`, `tools` or `marketplace`, or a name whose prefix doesn't match it | The layer is read from the name |
@@ -19,27 +19,31 @@ The marketplace's own check, with no dependencies. It fails on:
 | A `description` in `plugin.json` | Set in both places, the manifest silently wins over the marketplace entry |
 | A plugin with no `README.md`, or one whose heading isn't `# <plugin-name>` | A copied README with the wrong name |
 | `skills/`, `agents/`, `commands/` or `hooks/` inside `.claude-plugin/` | The plugin validates, installs, and is empty |
-| An `agents/` folder in any plugin but a `marketplace-` one | A shipped agent competes with the ones set-up generates |
+| An `agents/` folder in any plugin but a `marketplace-` one | A shipped agent competes with the ones the steward generates |
 
 ## `node scripts/check-docs.mjs`
 
-The documentation's own check, with no dependencies. It leaves the working records
-alone, and fails on:
+The documentation's own check, with no dependencies. It reads the pages in `docs/`,
+the three entry points, `.claude/rules/` and the plugin READMEs, and fails on:
 
 | Mistake | Why nothing else notices |
 |---|---|
-| A relative link, in a page, an entry point or a plugin README, to a file that doesn't exist | GitHub renders it as an ordinary link, and it leads nowhere |
+| A relative link to a file that doesn't exist, or to a heading the file doesn't have | GitHub renders it as an ordinary link, and it leads nowhere, or to the top of the page |
+| An absolute link, such as `/docs/README.md` | It resolves on one host and not another |
+| A link from a page into the working records | It works, and ties the page to history it should stand without |
 | A page in `docs/` that `docs/README.md` doesn't link | It exists, and nobody finds it |
-| A prose line past 88 columns, outside a table or code, and not a single link too long to break | It renders fine, and the source drifts from the house format |
+| A prose line past 88 columns, outside a table or code, and not one link whose text can't break | It renders fine, and the source drifts from the house format |
 | A link into `docs/` from a skill, a reference or an agent | It works in this repo, and fails from the installed plugin, which holds no `docs/` |
+
+A link inside inline code is an example and isn't checked, and neither are
+reference-style links.
 
 ## `claude plugin validate`
 
 Claude Code's own check of a plugin or the whole marketplace: that each manifest
 parses, that every path it names exists inside the plugin, and that its fields have the
 right types. It warns "no version specified" and "no description provided" once per
-plugin each; here both are the policy,
-which is why CI runs it without `--strict`.
+plugin each; here both are the policy, which is why CI runs it without `--strict`.
 
 ## CI
 
@@ -73,3 +77,6 @@ Look for these yourself, or ask `evaluate-skills`:
 | A project's name in an example, outside a contribution | It reads like any example. Search for your projects' names before you commit |
 | A trio's skill installed but not in a role's `skills:` | The role works without that standard |
 | A wrong Skill, Builds on or signal cell in a plugin table | The check compares names only; the other columns are read by people |
+| A page made wrong by a product change | It reads as true. The map's Sources column names the pages each product file feeds; reread them in the same change |
+| A page that names a working record, without linking it | The check sees only links |
+| A copy of the signals in a plugin README's Install section | It drifts from `plugin-catalog.md`, which is the one the steward reads |

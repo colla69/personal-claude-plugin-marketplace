@@ -69,7 +69,8 @@ Run set-up's phases 3 to 7 with the homes from step 3:
   rules touch.
 - **Phase 4** writes into `AGENTS.md` the rules step 3 gave it. Every other rule in a
   `CLAUDE.md` stays there, below the one-line import, until step 5 removes it. The same
-  holds for each nested `CLAUDE.md` and its own `AGENTS.md`.
+  holds for each nested `CLAUDE.md` and its own `AGENTS.md`. This already takes rules
+  out of a `CLAUDE.md`, so back it up first, by the rule in step 5.
 - **Phase 6** builds the trios. An old agent stays until step 5.
 
 After phase 7, run the contribute job for each contribution. A new skill waits for the

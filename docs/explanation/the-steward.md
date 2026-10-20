@@ -69,8 +69,8 @@ a pull request for your merge. [Safety](safety.md) lists every guard.
 > "No trio for the package, that would make the process too difficult."
 
 A project's work runs as a trio, with a stop between Plan and Do. The steward's own work
-doesn't: it would add a stop to every setup. Without a trio there
-are no lanes to keep, so the steward is simply the one writer. It ships two helpers, and
+doesn't: it would add a stop to every setup. Without a trio there are no lanes to keep,
+so the steward is simply the one writer. It ships two helpers, and
 both are read-only by their frontmatter:
 
 - **The cartographer** surveys a codebase for set-up, so the steward reads a summary

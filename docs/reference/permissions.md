@@ -27,7 +27,7 @@ review started directly can read the standard it quotes.
 | `claude plugin list --json`, `claude plugin marketplace list --json` | Find which marketplace is the house one, and where it lives |
 | `git -C …/clone worktree list`, `fetch origin`, `worktree add -b contrib/* …/worktrees/* origin/main`, `worktree remove …/worktrees/*`, `branch -D contrib/*` | Manage one worktree per contribution, on a `contrib/` branch off `main` |
 | `git -C …/worktrees/* add -A`, `commit -F …/drafts/*`, `diff origin/main*`, `log --format=%B origin/main..HEAD`, `push -u origin contrib/*` | Commit a contribution from its drafted message, show it to the checker, and push its branch |
-| `claude plugin validate …/worktrees/*`, `node …/worktrees/*/scripts/check-catalog.mjs`, `claude --plugin-dir …/worktrees/* plugin details *` | Run the marketplace's checks on the worktree |
+| `claude plugin validate …/worktrees/*`, `node …/worktrees/*/scripts/check-catalog.mjs`, `node …/worktrees/*/scripts/check-docs.mjs`, `claude --plugin-dir …/worktrees/* plugin details *` | Run the marketplace's checks on the worktree |
 | `gh pr create *` | Open the pull request |
 
 `…` stands for `~/.local/share/marketplace-steward`. Each git rule names one command in

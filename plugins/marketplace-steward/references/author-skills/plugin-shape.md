@@ -16,8 +16,8 @@ plugins/<layer>-<topic>/
   skills/<skill>/assets/*         # optional: templates the skill writes out
 ```
 
-There is no `agents/`. Skill plugins ship knowledge, and set-up generates the workers
-in each project. `skills/` sits at the **plugin root**, not inside
+There is no `agents/`. Skill plugins ship knowledge, and the steward generates the
+workers in each project. `skills/` sits at the **plugin root**, not inside
 `.claude-plugin/`. Put inside it, the plugin validates, loads, and is empty, and that is
 the most common reason a new plugin shows nothing.
 
@@ -44,15 +44,21 @@ catches a skill that is named but not declared, so check that by reading.
 ## The README
 
 `README.md` at the plugin root is the one file written for a person rather than for
-Claude: GitHub renders it when someone opens the directory. Keep it to about 40 lines:
+Claude: GitHub renders it when someone opens the directory. Keep it to about 50 lines,
+in the template's order:
 
-- what the skill covers;
-- its layer, and what it builds on;
+- the standard the skill carries, as a position;
+- its skill, its layer, and what it builds on;
 - when it fires;
-- **what it leaves to other skills.**
+- **what it leaves to other skills;**
+- how it is installed: when set-up installs it, and the command by hand;
+- where to read more.
 
-The last section earns the README its place. The marketplace entry already says what
+"Leaves to others" earns the README its place. The marketplace entry already says what
 the plugin is for; only the README says where it stops and which layer takes over.
+
+The Install section gives the gist of the plugin's catalog signal. The catalog row is
+the one set-up reads, so a change to the signal changes both, in the same commit.
 
 The heading must be exactly `# <plugin-name>`. `check-catalog.mjs` enforces it, because
 a copied README with the wrong name is the mistake it catches.
@@ -64,7 +70,7 @@ The plugin list is mirrored in three files, and missing one is silent.
 | File | What goes in it | Missing it means |
 |---|---|---|
 | `.claude-plugin/marketplace.json` | An entry with `name`, `source` (`./plugins/<name>`), `description`, `category` and `tags`. The `description` lives here and nowhere else | The plugin doesn't exist |
-| `docs/reference/plugins.md` | A row in the plugin table | Nobody knows it's there |
+| `docs/reference/plugins.md` | A row in the plugin table, and its name in the By layer table | Nobody knows it's there |
 | `plugins/marketplace-steward/references/set-up/plugin-catalog.md` | A row with the layer and the **signal that justifies choosing it**: what set-up must find in a project before installing it | It installs fine and is never chosen for any project |
 
 The signal has to be checkable. Not "use this for Django work", but "`django` in
@@ -86,16 +92,19 @@ on one, and CI runs `claude plugin validate` without `--strict`, which would tur
 ```bash
 claude plugin validate .            # the marketplace and every plugin
 node scripts/check-catalog.mjs      # lists, layers and dependencies agree
+node scripts/check-docs.mjs         # links, the docs map, the wrapping
 ```
 
-Both must pass. "No version specified", once per plugin, is the policy working, not a
-finding. Then load the plugin and confirm it appears: validation proves the JSON
-parses, not that the skill loads.
+All three must pass. "No version specified" and "no description provided", once per
+plugin each, are the policy working, not findings. Then load the plugin and confirm it
+appears: validation proves the JSON parses, not that the skill loads.
 
 ```bash
-claude plugin marketplace add .
-claude plugin install <name>@personal-claude-plugin-marketplace
+claude --plugin-dir ./plugins/<name>   # plus one --plugin-dir per dependency
 ```
+
+`--plugin-dir` loads the working copy for one session and leaves the installed
+marketplace as it is.
 
 ## A `marketplace-` plugin
 

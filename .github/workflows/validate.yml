@@ -42,7 +42,7 @@ jobs:
 
       # Deliberately not --strict: strict promotes "no version specified" to an
       # error, and every plugin here omits version on purpose so that updates
-      # resolve by commit SHA. See CONTRIBUTING.md → "Versioning: don't".
+      # resolve by commit SHA. See docs/contributing/releases-and-migrations.md.
       - name: validate marketplace
         run: claude plugin validate .
 

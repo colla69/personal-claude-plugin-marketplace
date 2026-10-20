@@ -52,6 +52,7 @@ and why. The skill files are the history of the maintainer's taste.
 | Page | Covers |
 |---|---|
 | [The development loop](docs/contributing/development-loop.md) | Loading what you change, its cost, trying it, the checks |
+| [Work on the steward](docs/guides/work-on-the-steward.md) | Loading the steward's working copy, and probing a Claude Code mechanic before building on it |
 | [Releases and migrations](docs/contributing/releases-and-migrations.md) | Why every merge is a release, and what a rename asks of every project |
 | [Writing docs](docs/contributing/writing-docs.md) | How a page in `docs/` is written and reviewed |
 | [Review a skill](docs/guides/review-a-skill.md) | Getting a change reviewed against the house standard |

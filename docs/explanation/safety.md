@@ -35,8 +35,9 @@ Adopting moves rules out of your own files, so it has the strictest guards:
 - **Only a skill that says the same thing counts.** A similar rule isn't the same rule;
   when in doubt, yours stays.
 - **Files that git can't restore are copied first.** Any file with untracked or
-  uncommitted content is backed up to `~/.local/share/marketplace-steward/backups/`
-  before anything is removed from it, and no backup is ever overwritten.
+  uncommitted content is to be backed up to
+  `~/.local/share/marketplace-steward/backups/` before the first rule is taken out of
+  it, and never over an earlier backup.
 - **Your private files stay yours.** `CLAUDE.local.md`, `.claude/settings.local.json`
   and everything under `~/.claude` are read and never changed.
 

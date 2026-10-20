@@ -20,6 +20,7 @@ allowed-tools:
   - Bash(git -C ~/.local/share/marketplace-steward/worktrees/* push -u origin contrib/*)
   - Bash(claude plugin validate ~/.local/share/marketplace-steward/worktrees/*)
   - Bash(node ~/.local/share/marketplace-steward/worktrees/*/scripts/check-catalog.mjs)
+  - Bash(node ~/.local/share/marketplace-steward/worktrees/*/scripts/check-docs.mjs)
   - Bash(claude --plugin-dir ~/.local/share/marketplace-steward/worktrees/* plugin details *)
   - Bash(gh pr create *)
 ---

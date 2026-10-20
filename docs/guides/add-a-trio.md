@@ -4,6 +4,9 @@ Add a trio for one more kind of task your project repeats, such as `test` once a
 runner is in place, or `monthly-report` in a folder of reports. Why tasks run as trios
 is in [trios](../explanation/trios.md).
 
+**Not yet tried on real projects.** This guide follows the steward's procedures; the
+first trials will show where it behaves otherwise.
+
 ## Before you start
 
 - **The task repeats.** A task you do once is a prompt, not a trio.
@@ -15,12 +18,10 @@ is in [trios](../explanation/trios.md).
 1. **Ask for it:** "add a trio for releases", or "set up agents for writing the monthly
    report". Name the task as you would say it.
 2. **Let it run.** The steward checks the sources, picks the skills each role needs,
-   installs the ones the project lacks, and writes the trio. It uses the same rules as a
-   full set-up:
-   - Do gets every skill the work needs, including the tool skills;
-   - Plan and Check get only the general ones, and Check always reviews with
-     `review-work`;
-   - the efforts are Plan `high`, Do and Check `medium`, unless it says why not.
+   installs the ones the project lacks, and writes the trio. It picks them as a full
+   set-up does: Do gets every skill the work needs, and Plan and Check the general
+   ones. The rules and the default efforts are in
+   [`trios.md`](../../plugins/marketplace-steward/references/set-up/trios.md).
 3. **Read the report**, and start a new session so the new agents load.
 
 ## What you get
@@ -32,7 +33,8 @@ is in [trios](../explanation/trios.md).
 | `.claude/agents/<task>-check.md` | Check, read-only |
 | `.claude/skills/<task>/SKILL.md` | The skill that runs them as `/<task>` |
 
-`AGENTS.md` lists the new trio, and the record gains its four files.
+The trio gets its row in the Trios table of `AGENTS.md`, and the record gains its four
+files.
 
 ## If a name is taken
 
@@ -42,7 +44,8 @@ report says which. It never writes a trio in part.
 
 ## Changing a trio by hand
 
-Edit any of the four files as you like. The record notices that a file no longer
-matches what the steward wrote, and keep-current never rebuilds it from a newer
-template; it tells you a newer one exists instead. To remove a trio, delete its four
-files: the record notes the removal, and the steward won't bring it back.
+Edit any of the four files as you like. The record holds the hash of each file as the
+steward wrote it, so keep-current can tell your edit apart: it leaves an edited file,
+and tells you when a newer template exists. To remove a trio, delete its four files.
+The record still lists them, so the steward reads the missing files as your removal,
+and the procedure asks it not to bring the trio back.

@@ -1,8 +1,8 @@
 # personal-claude-plugin-marketplace
 
-A library of skills for agentic work, kept in one place and reused in every project.
-The skills hold the knowledge; the agents that use them are made in each project, from
-that project's own facts, by the steward.
+A library of skills for agentic work with Claude Code, kept in one place and reused in
+every project. The skills hold the knowledge; the agents that use them are made in each
+project, from that project's own facts, by the steward.
 
 Everything here is prose: standards written once, in plain language an LLM can follow.
 There is nothing to build. And nothing in it assumes the work is code: a skill can be
@@ -26,8 +26,8 @@ flowchart LR
   skills it shows a need for, and creates a trio for each kind of task it repeats.
 - **Work.** A trio runs a task in three steps: Plan proposes and waits for your OK, Do
   carries out the plan you accepted, and Check compares the result with it.
-- **Grow.** What a project teaches goes back into the skills, by a pull request you
-  merge, so the next project starts with it.
+- **Grow.** What a project teaches goes back into the skills, by a pull request the
+  maintainer merges, so the next project starts with it.
 
 [The idea](docs/explanation/the-idea.md) explains why it is built this way.
 
@@ -47,15 +47,16 @@ small sample project, follow [your first setup](docs/tutorials/first-setup.md).
 
 ## What's inside
 
-Every skill sits in one of four layers, from general to specific:
+Every skill sits in one of four layers, from general to specific, and each plugin's
+name starts with its layer:
 
-| Layer | Plugins |
-|---|---|
-| **Universal**: holds for everything | `universal-clean-code`, `universal-work-discipline` |
-| **Craft**: how a kind of work is done | `craft-development`, `craft-review`, `craft-code-review`, `craft-unit-testing`, `craft-refactoring` |
-| **Language**: what the work is written in | `language-java`, `language-typescript` |
-| **Framework & Tools**: one concrete product | `tools-vue`, `tools-vue-typescript`, `tools-pinia` |
-| **The steward**: sets projects up and grows the marketplace | `marketplace-steward` |
+| Layer | Holds | Today |
+|---|---|---|
+| **Universal** | What holds for everything | Clean code, and the discipline of working where someone else maintains |
+| **Craft** | How a kind of work is done | Developing, reviewing, unit testing, refactoring |
+| **Language** | What the work is written in | Java, TypeScript |
+| **Framework & Tools** | One concrete product | Vue, Pinia |
+| **The steward** | Sets projects up and grows the marketplace | `marketplace-steward` |
 
 [Plugins](docs/reference/plugins.md) lists each one with its skill, what it is for, when
 it is installed and what it builds on.
@@ -68,6 +69,7 @@ it is installed and what it builds on.
 | Set up, adopt, or update one of your projects | [The guides](docs/README.md#guides) |
 | Give a lesson back to the marketplace | [Contribute a lesson](docs/guides/contribute-a-lesson.md) |
 | Look something up | [The reference](docs/README.md#reference) |
+| Fix something that went wrong without saying so | [Troubleshoot](docs/guides/troubleshoot.md) |
 | Understand why it works this way | [The explanation pages](docs/README.md#explanation) |
 | Work on the marketplace itself | [Contributing](CONTRIBUTING.md) |
 

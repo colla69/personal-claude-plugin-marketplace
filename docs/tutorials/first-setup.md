@@ -17,8 +17,9 @@ claude plugin marketplace add colla69/personal-claude-plugin-marketplace
 claude plugin install marketplace-steward@personal-claude-plugin-marketplace --scope user
 ```
 
-It goes in at user scope, so it works in every project you open. Nothing else is
-installed yet: the steward installs what each project needs, in that project.
+It goes in at user scope, so it works in every project you open. `craft-review` comes
+with it, because the steward builds on it. Everything else the steward installs per
+project, in that project.
 
 ## 2. Make a sample project
 
@@ -29,7 +30,19 @@ mkdir tally && cd tally
 git init -q
 npm init -y > /dev/null
 npm install --save-dev typescript vitest > /dev/null
-npx tsc --init > /dev/null
+printf 'node_modules/\n' > .gitignore
+cat > tsconfig.json <<'EOF'
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "noEmit": true
+  },
+  "include": ["src"]
+}
+EOF
 mkdir src
 cat > src/tally.ts <<'EOF'
 export function tally(amounts: number[]): number {
@@ -44,7 +57,7 @@ test('adds the amounts', () => {
   expect(tally([1, 2, 3])).toBe(6)
 })
 EOF
-npm pkg set scripts.test="vitest run"
+npm pkg set scripts.test="vitest run" scripts.typecheck="tsc"
 git add -A && git commit -qm "A tiny tally tool"
 ```
 
@@ -63,13 +76,17 @@ Start Claude Code in `tally` and say:
 set this project up
 ```
 
-Three things happen before any file is written:
+Four things happen before any file is written:
 
-1. **Claude Code asks whether the steward may run.** Allow it. It needs that once, to
-   read its own reference files.
-2. **The steward asks one question:** which marketplaces this project may draw plugins
-   from, as a checklist with the toolkit ticked. Keep the defaults.
-3. **It reads the project.** For a codebase it sends its cartographer, which reports the
+1. **Claude Code asks whether the steward may run.** Allow it. The steward pre-allows
+   reading its own files and the commands of its own folder, and a skill that does that
+   needs your permission to run. Claude Code can remember the answer.
+2. **It refreshes the marketplaces** and reads what they offer. Claude Code asks before
+   those commands; allow them.
+3. **The steward asks one question:** which marketplaces this project may draw plugins
+   from, as a checklist with the toolkit and the plugins in Anthropic's own repository
+   ticked. Keep the defaults.
+4. **It reads the project.** For a codebase it sends its cartographer, which reports the
    stack, the commands and the components.
 
 Then it writes. Claude Code may ask before some commands, such as each plugin install;
@@ -84,6 +101,7 @@ what happened. Expect something like this:
 |---|---|
 | **Written** | `AGENTS.md` and `CLAUDE.md`, `.claude/settings.json`, `.claude/plugin-sources.json`, the trios, `.claude/steward.json` |
 | **From your toolkit** | `universal-clean-code`, `craft-development`, `craft-code-review`, `craft-refactoring`, `craft-unit-testing` for the test runner, `language-typescript` for `tsconfig.json`, and what they pull in |
+| **Gap-fills** | Probably `typescript-lsp` from Anthropic's marketplace, for go-to-definition and real diagnostics, which no toolkit skill gives. With no gap to fill, the report says so in one line |
 | **Trios** | `change` and `refactor`, and `test`, because a test runner is configured |
 | **Installed** | The same installs as a block to paste on another machine |
 | **Unverified** | Anything it couldn't check, such as a command it didn't run |
@@ -107,7 +125,8 @@ head -12 .claude/agents/change-plan.md
   `disallowedTools: Write, Edit, NotebookEdit`, which makes it read-only, and a
   `skills:` list where every name is written as `plugin:skill`.
 
-Delete anything you don't want. A trio you remove stays removed: the record notes it.
+Delete anything you don't want. The record still lists what the steward wrote, so it
+reads a missing file as your removal and doesn't bring it back.
 
 ## 6. Run a trio
 
@@ -144,6 +163,8 @@ Commit `.claude/` with the rest, so the setup travels with the project.
 
 ## Where to go next
 
+- [Run a trio](../guides/run-a-trio.md), for the run in detail: the report, and what
+  happens when Check sends the work back.
 - [Set up a project](../guides/set-up-a-project.md), for your own projects.
 - [Adopt an existing setup](../guides/adopt-an-existing-setup.md), for one that already
   has its own `CLAUDE.md` or agents.

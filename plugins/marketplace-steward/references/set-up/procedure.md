@@ -92,6 +92,8 @@ Read `trios.md` and the templates in `roles/`. For each trio you decided on, wri
 that runs them, `.claude/skills/<task>/SKILL.md`. Write nothing for other tools. When
 a file already exists at any of a trio's four paths, it is the user's: leave it, and
 build the trio under a free task name or not at all, never in part. Report the clash.
+A trio added to a project already set up also gets its row in the Trios table of the
+root `AGENTS.md`. That is one line, so it goes in whoever wrote the file.
 
 Then write the record, `.claude/steward.json`, as `../record.md` describes: every file
 phases 4 and 6 created, and every plugin phase 5 installed.

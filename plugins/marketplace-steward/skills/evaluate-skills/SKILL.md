@@ -28,10 +28,12 @@ or the steward's worktree, before reading anything critically:
 claude plugin validate ./plugins/<name>                       # does it parse
 claude --plugin-dir ./plugins/<name> plugin details <name>    # inventory, token cost
 node scripts/check-catalog.mjs                                # lists, layers, deps
+node scripts/check-docs.mjs                                   # links, map, wrapping
 claude plugin eval ./plugins/<name> --ablation with-without   # does it change anything
 ```
 
-- `validate` warns "no version specified" on every plugin. That is the policy.
+- `validate` warns "no version specified" and "no description provided" on every
+  plugin. Both are the policy.
 - `details` needs `--plugin-dir` to measure the files under review. Without it, it
   fails on a plugin that isn't installed, and reports the installed copy of one that
   is. It also counts a skill hidden with `disable-model-invocation`, whose description

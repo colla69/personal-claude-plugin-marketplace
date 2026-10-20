@@ -9,12 +9,16 @@ costs, check it the way CI will, and know what each check does and doesn't catch
 |---|---|
 | A skill plugin | `claude --plugin-dir ./plugins/<name>`, plus one `--plugin-dir` for each plugin it depends on |
 | The steward | `claude --plugin-dir ./plugins/marketplace-steward --plugin-dir ./plugins/craft-review` |
-| The whole marketplace, as a user would get it | `claude plugin marketplace add .`, then `claude plugin install <name>@personal-claude-plugin-marketplace` |
+| The whole marketplace, as a user would get it | `claude plugin marketplace add .`, then `claude plugin install <name>@personal-claude-plugin-marketplace`, on a machine without the marketplace from GitHub |
 
 A `--plugin-dir` copy replaces the installed plugin of the same name for that session.
 A plugin whose dependency isn't loaded or installed doesn't load at all, so the
-dependencies need their own `--plugin-dir`. A marketplace added from `.` loads its
-plugins in place, so an edit shows at the next session start, or after
+dependencies need their own `--plugin-dir`. [Work on the
+steward](../guides/work-on-the-steward.md) has what is particular to the steward.
+
+A marketplace added from `.` has the same name as the one from GitHub, and the
+steward's contribute job needs the GitHub one to open a pull request. So on a machine
+that has it, use `--plugin-dir`. After an edit to a marketplace added from `.`, run
 `claude plugin marketplace update personal-claude-plugin-marketplace`.
 
 Start a new session after each change: skills are read when a session starts.

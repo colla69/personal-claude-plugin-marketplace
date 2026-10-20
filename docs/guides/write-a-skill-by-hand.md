@@ -30,8 +30,10 @@ The templates are in
 [`author-skills/assets/`](../../plugins/marketplace-steward/references/author-skills/assets/),
 and
 [`plugin-shape.md`](../../plugins/marketplace-steward/references/author-skills/plugin-shape.md)
-says what goes in each file. Declare the plugin of every skill yours names in
-`dependencies`.
+says what goes in each file. In `dependencies`, declare the plugin of every skill
+yours names that it needs in every project, in its own layer or a more general one. A
+pairing that holds only for some projects goes in the catalog row's signal instead,
+because a declared dependency is installed everywhere.
 
 ## 3. Write the skill
 
@@ -44,35 +46,32 @@ first. The parts that decide whether the skill works at all:
 
 ## 4. Write the README
 
-About 40 lines, headed exactly `# <plugin-name>`: what the skill covers, its layer and
-what it builds on, when it fires, and what it leaves to other skills.
+About 50 lines, headed exactly `# <plugin-name>`, in the template's order. The section
+that earns it its place is what it leaves to other skills; "The README" in
+[`plugin-shape.md`](../../plugins/marketplace-steward/references/author-skills/plugin-shape.md)
+has the rest.
 
 ## 5. Register it in three places
 
 | File | Add |
 |---|---|
 | `.claude-plugin/marketplace.json` | An entry with `name`, `source`, `description`, `category` and `tags` |
-| [`docs/reference/plugins.md`](../reference/plugins.md) | A row in the table |
+| [`docs/reference/plugins.md`](../reference/plugins.md) | A row in the plugin table, and its name in the By layer table |
 | [`plugin-catalog.md`](../../plugins/marketplace-steward/references/set-up/plugin-catalog.md) | A row with the signal set-up must find in a project before installing it |
 
 The catalog row is the one people forget, and the one that matters most: without it the
 plugin installs fine and is never chosen for any project. A rename also needs a row in
-the catalog's Renamed table, or every project that has the old name loses the plugin.
+the catalog's Renamed table; without it, keep-current removes the old key and installs
+no successor.
 
 ## 6. Check it
 
-```bash
-claude plugin validate .
-node scripts/check-catalog.mjs
-claude --plugin-dir ./plugins/<name> plugin details <name>
-```
-
-Then [review it](review-a-skill.md), and try it: start a session with the plugin loaded,
-type three prompts a person would really use, and see whether it fires. Validation
-proves the JSON parses, not that the skill loads.
+Run the checks, see what it costs, and try it, as
+[the development loop](../contributing/development-loop.md) describes. Then
+[review it](review-a-skill.md).
 
 ## 7. Commit and open a pull request
 
-One plugin or one standard per commit, with a message that says what judgement changed
-and why. Search your change for your projects' names before you push: the repo is
-public.
+Commit and push as [the development loop](../contributing/development-loop.md#commit)
+says: one plugin or one standard per commit, and a search for your projects' names
+first, because the repo is public.

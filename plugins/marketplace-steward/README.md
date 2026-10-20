@@ -23,8 +23,8 @@ comes next.
 - "bring our existing setup onto the marketplace", or set-up asked in a project that
   already has its own `CLAUDE.md`, rules, skills, agents or hooks
 - "update the setup", or a skill or agent in a project's setup not loading
-- "remember this for other projects", "a skill got this wrong", "make a skill out of
-  this"
+- "a skill got this wrong", "make this a marketplace skill", "add this to my skills for
+  every project"
 - A folder with no code in it: documents, reports, templates
 - `evaluate-skills`: "is this skill well written?", "why isn't this skill triggering?",
   or a change to this skills marketplace before its pull request
@@ -40,8 +40,8 @@ comes next.
 - For each trio, `.claude/agents/<task>-plan.md`, `-do.md` and `-check.md`, and
   `.claude/skills/<task>/SKILL.md`, which runs them
 - `.claude/steward.json`, the record of what it generated
-- For an adoption: each local rule removed once its new home is live, and never
-  before. An untracked file is first copied to
+- For an adoption: each local rule removed once its new home is live. A file that
+  differs from git's `HEAD`, untracked or with uncommitted edits, is first copied to
   `~/.local/share/marketplace-steward/backups/`
 - For a contribution: a branch and a pull request on the marketplace, from its own
   clone in `~/.local/share/marketplace-steward/`, never from a checkout of yours
@@ -53,7 +53,8 @@ new skill. Everything else it does and reports.
 
 - **Git.** No branch, commit, stage or stash. Branch before running it; the report
   lists every path it created and changed, and `git diff` does the rest.
-- **Your edits.** A file you changed after the steward wrote it is never overwritten.
+- **Your edits.** A file you changed after the steward wrote it is not rebuilt or
+  rewritten whole; a check may fix one line in it, such as a renamed skill.
 - **The merge.** Every change to the marketplace waits for you in a pull request.
 - **What makes a review finding at all.** `craft-review:review-work`.
 
@@ -64,8 +65,8 @@ claude plugin install marketplace-steward@personal-claude-plugin-marketplace --s
 ```
 
 User scope: it belongs to the machine and works in every project you open. The first
-time it runs, Claude Code asks once whether it may, because it reads its own reference
-files.
+time it runs, Claude Code asks whether it may, because it pre-allows reading its own
+files and the commands of its own folder; Claude Code can remember the answer.
 
 ## More
 

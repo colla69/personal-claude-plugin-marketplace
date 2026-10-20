@@ -1,8 +1,9 @@
 # Your first contribution
 
 Give a lesson from a project back to the marketplace, and watch each safeguard on the
-way: the diagnosis, the strip test, the checker, the leak check, and your merge. It
-builds on the `tally` project from [your first setup](first-setup.md).
+way: the diagnosis, the strip test, the checker, the leak check, and your merge. It uses
+`tally`, the sample project from [your first setup](first-setup.md), and step 1 makes it
+if you don't have it.
 
 **Not yet tried.** This tutorial is written from the steward's procedures; the first
 trials will run it end to end.
@@ -18,6 +19,19 @@ want the change.
   open the pull request yourself, and the tutorial still works.
 - **Branch protection on `main`**, requiring a pull request. The steward pushes only
   `contrib/` branches, and this makes your merge the only way into `main`.
+- **The steward and `tally`.** If you did your first setup, both are there. If not:
+
+  ```bash
+  claude plugin marketplace add colla69/personal-claude-plugin-marketplace
+  claude plugin install marketplace-steward@personal-claude-plugin-marketplace --scope user
+  mkdir tally && cd tally && git init -q && npm init -y > /dev/null
+  mkdir src
+  printf 'export const tally = (amounts: number[]) =>\n  amounts.reduce((s, a) => s + a, 0)\n' > src/tally.ts
+  git add -A && git commit -qm "A tiny tally tool"
+  ```
+
+  Then start Claude Code in `tally` and say "set this project up", as in step 3 of
+  your first setup.
 
 ## 2. Have something to learn
 
@@ -41,7 +55,7 @@ came out as 0.6000000000000001
 
 ## 4. Watch it place the lesson
 
-The steward runs the four moves before it writes anything:
+The steward places the lesson before it writes anything:
 
 1. **Diagnose.** Did a skill have the rule and never load, or does no skill say it? Here
    nothing says it, and it would hold in any project that handles money.
@@ -65,20 +79,23 @@ The steward runs the four moves before it writes anything:
    checkout of the marketplace, if you have one, is never touched.
 2. **A worktree.** It makes `worktrees/<topic>/` on a new `contrib/<topic>` branch off
    `main`, and writes the change there, in the house style.
-3. **The drafts.** It writes the commit message, the pull request's title and its
-   description into `drafts/<topic>/`, before anything is checked.
+3. **The drafts.** Once `claude plugin validate` and the two repo checks pass on the
+   worktree, it writes the commit message, the pull request's title and its description
+   into `drafts/<topic>/`, before the checker reads anything.
 4. **The checker.** A separate, read-only agent reads the diff, the commit messages, the
    branch name and the drafts. It runs the house review, and the leak check: does
    `tally`, or anything else from the stripped list, appear anywhere that will be
    public?
 
-If the leak check finds something, the job stops before the push, and the report names
-the finding and the worktree. Nothing is public yet.
+If the leak check finds something, or couldn't run, the procedure asks the steward to
+stop before the push, and to name the finding and the worktree in its report. Nothing is
+public yet.
 
 ## 6. Read the pull request
 
-With the check clean, it pushes the branch and opens the pull request, or gives you the
-link. Read it the way you would anyone's:
+With the leak check clean, it pushes the branch and opens the pull request, or gives
+you the link. Any other finding the checker still had after two rounds is in the
+description, under its verdict. Read it the way you would anyone's:
 
 | Look at | Ask |
 |---|---|
@@ -87,8 +104,10 @@ link. Read it the way you would anyone's:
 | The assumptions | What did the steward have to decide that you didn't tell it? |
 | The checker's verdict | Is anything still open? |
 | The text | Is there anything in it that points back to `tally`? |
+| The docs | Does the change make a page wrong? The map's Sources column names the pages each changed file feeds |
 
-Close it if you only wanted to see the flow. Merge it if you want the rule.
+Close it, and delete its `contrib/` branch on GitHub, if you only wanted to see the
+flow. Merge it if you want the rule.
 
 ## 7. Afterwards
 

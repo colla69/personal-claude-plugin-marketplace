@@ -56,7 +56,8 @@ reason, prefer a named example to a described one, and don't hedge. On top of th
 - Plain Markdown, as GitHub renders it. No build, and nothing a renderer has to add.
 - Diagrams in Mermaid, in a fenced `mermaid` block, which GitHub draws.
 - Hard-wrap prose at 88 columns. Table rows and code blocks are exempt, and so is a line
-  that holds a single link too long to break.
+  that holds nothing but one link whose text can't break, such as a backticked file
+  name with a long path.
 - Relative links only, to a file that exists. A docs page not yet written is named in
   backticks, not linked. Any other file a page mentions is linked where the reader would
   open it, and otherwise named in backticks.
@@ -82,10 +83,11 @@ A reviewer reads a page against its sources, which the map names, and checks:
 
 1. **Kind.** It does its kind's job and nothing else.
 2. **Accuracy.** Everything it says about the steward or a skill matches the product
-   files today. A page that describes behaviour nobody has tried says so.
+   files today. A page that describes behaviour nobody has tried says so, and the map
+   marks it "not yet tried".
 3. **One home.** It restates no rule the product holds: a gist and a link at most.
-4. **Independence.** No product file links to it or defers to it, and it refers to no
-   working record.
+4. **Independence.** No skill, reference or agent links to it or defers to it; a plugin
+   README may, since it is read on GitHub. It refers to no working record.
 5. **Opening.** The first lines say what the page lets the reader do.
 6. **Voice.** Every rule has its reason, costs and catches are named, and nothing
    hedges.
@@ -94,8 +96,11 @@ A reviewer reads a page against its sources, which the map names, and checks:
 8. **Format.** 88 columns, backticks, synthetic examples.
 9. **The map.** It is on the map, with the right kind and status.
 
-`node scripts/check-docs.mjs` checks items 7 and 9, and the 88 columns of item 8, before
-anything else; the rest is for the reviewer. Report findings in the shape of
+`node scripts/check-docs.mjs` checks the mechanical part before anything else: that no
+skill, reference or agent links into `docs/` and no page into the working records, part
+of item 4; that every link and heading anchor resolves, part of item 7; the 88 columns
+of item 8; and that every page is on the map, part of item 9. The rest is for the
+reviewer. Report findings in the shape of
 [`review-work`](../../plugins/craft-review/skills/review-work/SKILL.md). A page that is
 wrong about the product, restates a rule, or breaks a link is Blocking; a page that
 does two jobs or misses its reader should be fixed; wording is to consider. Say what

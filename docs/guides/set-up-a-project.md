@@ -6,6 +6,9 @@ already has its own `CLAUDE.md`, rules or agents, see
 [adopt an existing setup](adopt-an-existing-setup.md) instead; the steward picks that
 job by itself.
 
+**Not yet tried on real projects.** This guide follows the steward's procedures; the
+first trials will show where it behaves otherwise.
+
 ## Before you start
 
 - **Install the steward once, for your user**, if you haven't:
@@ -24,11 +27,12 @@ job by itself.
 
 1. **Open a session in the project's root** and say "set this project up", or run
    `/marketplace-steward:steward`. The first time, Claude Code asks whether the steward
-   may run; allowing it once covers its own files from then on.
+   may run, because it pre-allows its own files and commands; Claude Code can remember
+   the answer.
 2. **Tick the sources.** If the project has no `.claude/plugin-sources.json`, and you
    have none in `~/.claude/`, you get one checklist: which marketplaces this project may
-   draw plugins from. The toolkit is ticked already. It is the only question about the
-   setup, and it is asked once.
+   draw plugins from. The toolkit and the plugins in Anthropic's own repository are
+   ticked already. It is the only question about the setup, and it is asked once.
 3. **Let it run.** It reads the project, using the cartographer for a codebase, decides
    what to write, and writes it. Claude Code may ask for some commands as it goes, such
    as each plugin install; [permissions](../reference/permissions.md) lists them.
@@ -48,6 +52,7 @@ job by itself.
 |---|---|
 | `AGENTS.md`, with a one-line `CLAUDE.md` beside it | The commands, the map of components, the conventions and boundaries that reading the code won't tell, and the trios |
 | The same pair in each component that earns one | What is local to that component |
+| `.claude/rules/<topic>.md`, where one is needed | A convention that follows a file type rather than a folder, scoped by its `paths:` |
 | `.claude/settings.json` | The marketplace, and the plugins enabled for this project |
 | `.claude/plugin-sources.json` | The sources you ticked |
 | `.claude/agents/` and `.claude/skills/<task>/` | Each trio's three agents and the skill that runs it |
@@ -58,8 +63,9 @@ job by itself.
 ## Check it
 
 - **Read the diff**, `git diff` and `git status`, next to the report. Delete what you
-  don't want: a trio you won't use, or a line in `AGENTS.md` that isn't true. A trio you
-  remove stays removed, because the record notes it.
+  don't want: a trio you won't use, or a line in `AGENTS.md` that isn't true. The
+  record still lists what the steward wrote, so it reads a missing trio as your removal
+  and doesn't bring it back.
 - **Look at the Unverified list.** It is where the steward put every command it couldn't
   run and every guess it made.
 - **Commit `.claude/` with the rest**, so the setup travels with the project. On another
@@ -70,3 +76,11 @@ job by itself.
 The same steps work for a folder of documents, reports or templates. The steward reads
 what is produced there, for whom, and how it is checked, and names the trios for the
 work, such as `monthly-report`.
+
+## Next
+
+- [Run a trio](run-a-trio.md), for your first task.
+- [Add a trio](add-a-trio.md), when another kind of task starts to repeat.
+- [Keep a setup current](keep-a-setup-current.md), after the marketplace or the project
+  changes.
+- [Troubleshoot](troubleshoot.md), when something doesn't load and nothing says so.

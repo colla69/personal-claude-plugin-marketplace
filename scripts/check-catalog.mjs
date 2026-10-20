@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Fails when the plugin list in marketplace.json disagrees with the two
-// hand-written lists that mirror it: the plugin table in the docs, and the
+// hand-written lists that mirror it: the plugin tables in the docs, and the
 // catalog the steward reads to decide what to install. Also fails on the
 // mistakes nothing else reports: a name that doesn't match its layer, a
 // dependency on a plugin that doesn't exist, and a field with two homes.
@@ -8,7 +8,7 @@
 // marketplace.json is the source of truth. The prose in the other two files
 // stays hand-written — only the plugin names in their tables are checked here.
 
-import { readFileSync, existsSync } from 'node:fs'
+import { readFileSync, existsSync, readdirSync } from 'node:fs'
 import { join, dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -26,20 +26,24 @@ const problems = []
 const fail = (msg) => problems.push(msg)
 const read = (p) => readFileSync(join(root, p), 'utf8')
 
-// Names appearing as `name` in the Plugin column of any markdown table that has
-// one. Other columns name skills and agents, which are not plugins.
+// Names appearing as `name` in the Plugin column, one set per markdown table that
+// has one. Other columns name skills and agents, which are not plugins.
 function namesInPluginColumns(text) {
-  const found = new Set()
+  const tables = []
   let column = null // index of the Plugin column in the current table; null outside one
   for (const line of text.split('\n')) {
     const row = line.trim()
     if (!row.startsWith('|')) { column = null; continue }
     const cells = row.replace(/^\||\|$/g, '').split('|').map((c) => c.trim())
-    if (column === null) { column = cells.findIndex((c) => /^plugins?$/i.test(c)); continue }
+    if (column === null) {
+      column = cells.findIndex((c) => /^plugins?$/i.test(c))
+      if (column >= 0) tables.push(new Set())
+      continue
+    }
     if (column < 0 || /^:?-+:?$/.test(cells[0])) continue
-    for (const [, name] of (cells[column] ?? '').matchAll(/`([a-z0-9][a-z0-9-]*)`/g)) found.add(name)
+    for (const [, name] of (cells[column] ?? '').matchAll(/`([a-z0-9][a-z0-9-]*)`/g)) tables.at(-1).add(name)
   }
-  return found
+  return tables
 }
 
 const marketplace = JSON.parse(read('.claude-plugin/marketplace.json'))
@@ -98,17 +102,16 @@ for (const entry of entries) {
     }
   }
 
-  // Skill plugins ship knowledge only. A shipped agent competes with the ones init
-  // generates in each project, and the knowledge in it has a second home.
+  // Skill plugins ship knowledge only. A shipped agent competes with the ones the
+  // steward generates in each project, and the knowledge in it has a second home.
   if (category !== 'marketplace' && existsSync(join(dir, 'agents'))) {
-    fail(`${name}: ships agents/. Only marketplace- plugins ship agents; init generates the workers in each project.`)
+    fail(`${name}: ships agents/. Only marketplace- plugins ship agents; the steward generates the workers in each project.`)
   }
 }
 
 // Every directory under plugins/ must be catalogued.
 const pluginsDir = join(root, 'plugins')
 if (existsSync(pluginsDir)) {
-  const { readdirSync } = await import('node:fs')
   for (const dirent of readdirSync(pluginsDir, { withFileTypes: true })) {
     if (!dirent.isDirectory()) continue
     if (!declared.has(dirent.name)) {
@@ -131,8 +134,15 @@ for (const [name, deps] of dependencies) {
 }
 
 // The two mirrors, both ways: a stale name left in a table passes the presence check.
-for (const [label, path] of [['plugins.md table', PLUGINS_PAGE], ['plugin-catalog.md table', CATALOG]]) {
-  const present = namesInPluginColumns(read(path))
+// Every plugin table in the docs lists every plugin. The catalog splits them across
+// one table per layer, so there the tables together list every plugin.
+const docsTables = namesInPluginColumns(read(PLUGINS_PAGE))
+const mirrors = [
+  ...docsTables.map((t, i) => [`plugins.md table ${i + 1}`, PLUGINS_PAGE, t]),
+  ['plugin-catalog.md tables', CATALOG, new Set(namesInPluginColumns(read(CATALOG)).flatMap((t) => [...t]))],
+]
+if (docsTables.length === 0) fail(`${PLUGINS_PAGE} has no table with a Plugin column`)
+for (const [label, path, present] of mirrors) {
   for (const name of declared) {
     if (!present.has(name)) fail(`${name}: missing from the ${label} (${path})`)
   }

@@ -140,10 +140,10 @@ plugin nobody installed.
 ## Renamed and removed
 
 **A dead key is a toolkit key under `enabledPlugins` in `.claude/settings.json` that
-names no plugin in the live inventory.** It matches nothing, and nothing reports it.
-Remove it, and name it in the report. When the table below names its successor, weigh
-the successor by its signal like any other plugin; an old name is not evidence on its
-own. A dead key of another marketplace, or one in `.claude/settings.local.json`, is not
+names no plugin in the live inventory.** It matches nothing, and no session reports
+it; only `claude plugin list` shows it, as failed to load. Remove it, and name it in
+the report. When the table below names its successor, weigh the successor by its signal
+like any other plugin; an old name is not evidence on its own. A dead key of another marketplace, or one in `.claude/settings.local.json`, is not
 the steward's to remove: report it.
 
 Set-up applies this in phase 5 and keep-current in its step 2. A skill renamed inside
