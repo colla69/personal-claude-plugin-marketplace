@@ -27,10 +27,15 @@ first trials will show where it behaves otherwise.
    project also use another tool that reads them.
 4. **Let it run.** It reads every Claude file of the project's own, splits them into
    single rules, and gives each rule a home. Then it sets the project up with those
-   homes, and contributes the rules that would serve other projects.
-5. **Answer the new-skill question, if there is one**, at the end.
+   homes, and opens a pull request for each skill the rules that would serve other
+   projects change, without asking.
+5. **Answer the new-skill question, if there is one**, at the end. Each yes becomes a
+   pull request too.
 6. **Read the report's Adopted table.** Every rule is there, grouped by the file it came
    from, quoted short, with its new home and what happened to the local copy.
+7. **Read its Contributions table.** Each contribution has a row with its pull request,
+   or where it stopped and what is left. A rule whose home is a contribution and that
+   has no row there was skipped: ask the steward to run that contribution.
 
 ## Reading the Adopted table
 

@@ -68,17 +68,43 @@ Run set-up's phases 3 to 7 with the homes from step 3:
 
 - **Phase 3** decides the plugins the covered rules call for, the trios the agents
   become, and the contributions, one for each skill or role template the travelling
-  rules touch.
+  rules touch. Step 5 runs them.
 - **Phase 4** writes into `CLAUDE.md` the rules step 3 gave it. With the swap, it
   first folds each `AGENTS.md` that a `CLAUDE.md` imports into it. Every other rule in a
-  `CLAUDE.md` stays where it is until step 5 removes it. The same holds for each nested
-  `CLAUDE.md`. This rewrites a `CLAUDE.md`, so back it up first, by the rule in step 5.
-- **Phase 6** builds the trios. An old agent stays until step 5.
+  `CLAUDE.md` stays where it is until step 6 removes it. The same holds for each nested
+  `CLAUDE.md`. This rewrites a `CLAUDE.md`, so back it up first, by the rule in step 6.
+- **Phase 6** builds the trios. An old agent stays until step 6.
 
-After phase 7, run the contribute job for each contribution. A new skill waits for the
-OK at the end of the run, with any others.
+Leave out phase 8: the report comes in step 7, after the contributions and the removals.
 
-## 5. Remove what has a live home
+## 5. Contribute
+
+The rules that travel are half of what an adoption is for. Skipped, they stay in this
+one project, and the report still looks complete, so nobody finds out. Run the
+contribute job, `contribute.md`, for each contribution phase 3 decided, now, after phase
+7 and before anything is removed.
+
+- **A change to an existing skill or role template goes ahead without asking.** The
+  request to adopt asked for it, and the user's merge is the review, so opening its pull
+  request is not a step to pause on. Step 3 placed its rules already, so the job skips
+  its placement, as its step 1 says for an adoption.
+- **A new skill waits for the OK**, asked at the end of the report together with any
+  others, as the front door says. On a yes, run the job for it then.
+
+Each contribution ends in one of three ways, and the report's Contributions table gives
+it a row:
+
+- **A pull request**, or the compare link when `gh` couldn't open one. Its rules go in
+  the record's `pending`.
+- **A stop**, such as a leak finding or a house marketplace that isn't on GitHub. Its
+  rules stay as project rules for now, and the row says where it stopped and what is
+  left, such as the worktree's path.
+- **The user's no to a new skill.** Its rules stay as project rules, and the proposal
+  goes in the record's `declined`.
+
+A rule whose home is a contribution never becomes "stays" without one of these.
+
+## 6. Remove what has a live home
 
 **Nothing is removed before its new home is live.** That is how the marketplace's own
 agents were retired: no paragraph went until it had a home. A home is live when:
@@ -107,6 +133,9 @@ the removals, so only the rules whose home it is come into force.
 Then write the record, or refresh it, by `record.md`. That happens after this step, not
 in phase 6, because adoption keeps changing files until here.
 
-## 6. Report
+## 7. Report
 
-Set-up's report, with its Adopted section filled as `set-up/report.md` describes.
+Set-up's report, with its Adopted and Contributions sections filled as
+`set-up/report.md` describes. Before you write it, match the two: every rule the Adopted
+table gives a contribution as its home has a row in Contributions, and every row there
+has its outcome. A contribution with no row was skipped. Run it now, then report.

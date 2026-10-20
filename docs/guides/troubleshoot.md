@@ -33,6 +33,7 @@ projects will add to them.
 
 | Symptom | Cause | Fix |
 |---|---|---|
+| After an adoption, rules the Adopted table sends to a contribution have no pull request | The contribution was skipped. The report's Contributions table gives every contribution a row, so a missing row shows it | Ask the steward to run the contribute job for those rules; their placement is in the Adopted table |
 | No pull request, only a link | `gh` isn't installed or signed in | Open the link, or install `gh` and run `gh auth login` |
 | The job stopped before the push, with a leak | Something from your project is in the change | Read the finding, and say how to strip it; the worktree is still there |
 | The job stopped, the leak check not run | The checker didn't get the source project's identifiers | Run the contribution from inside the project the lesson came from |

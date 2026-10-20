@@ -16,6 +16,7 @@ the reason it was made is often the reason its replacement has the shape it has.
 - [The repo's own setup: D47 and D48](#the-repos-own-setup-d47-and-d48)
 - [Borrowed ideas: D49 to D52](#borrowed-ideas-d49-to-d52)
 - [Claude only: D53](#claude-only-d53)
+- [Contributions that finish: D54](#contributions-that-finish-d54)
 - [Still open](#still-open)
 
 ## The author's statements
@@ -140,6 +141,15 @@ Decided on 2026-10-20, once the setup was Claude only.
 | # | Decision | Why | Now |
 |---|---|---|---|
 | D53 | The steward writes a project's context into `CLAUDE.md` and creates no `AGENTS.md`. When a project has `AGENTS.md` files, it asks once whether to keep them, each behind a `CLAUDE.md` that imports it, or swap them for `CLAUDE.md`, and records the answer. A kept one takes what the steward adds there; new component files are `CLAUDE.md` either way. An `AGENTS.md` that nothing imports goes through adoption either way | "We are Claude only now, let us get rid of the agents.md." Claude Code reads `CLAUDE.md`, so an `AGENTS.md` kept only for other tools costs an import line in every directory and a second file to keep true. But only the user knows whether another tool still reads a project's files: "if you find existing AGENTS.md ask if they are to be kept" | Holds, in `set-up/context-files.md`; keep-current asks in projects that earlier setups wrote. Other tools' own files still stay as they are |
+
+## Contributions that finish: D54
+
+Decided on 2026-10-20, after a test run ended without the contribution part. "That is
+not ok."
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D54 | Adoption contributes in a step of its own, after set-up's checks and before any removal, and every contribution ends in a pull request, a reported stop, or the user's no to a new skill. The report gives each one a row in a Contributions table, which an adoption never leaves out. The front door says a change to an existing skill opens its pull request without a pause | The step was one sentence at the end of another step, outside the set-up phases the steward follows, and no section of the report would show it missing. A model also tends to pause before a public pull request, and the pause became the end of the run | Holds, in step 5 of `adopt.md`, `set-up/report.md` and the front door |
 
 ## Still open
 
