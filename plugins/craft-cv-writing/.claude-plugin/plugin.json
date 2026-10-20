@@ -1,0 +1,8 @@
+{
+  "name": "craft-cv-writing",
+  "displayName": "CV Writing",
+  "author": { "name": "Andrea Colarieti Tosti" },
+  "license": "Apache-2.0",
+  "keywords": ["cv", "resume", "ats", "tailoring"],
+  "dependencies": ["universal-work-discipline"]
+}

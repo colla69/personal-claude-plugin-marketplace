@@ -57,6 +57,13 @@
       "tags": ["refactoring", "cleanup", "tech-debt"]
     },
     {
+      "name": "craft-cv-writing",
+      "source": "./plugins/craft-cv-writing",
+      "description": "Writing and tailoring a CV: terms in context, both forms of an alias, exact verbs, one defensible figure per project, and no invented facts.",
+      "category": "craft",
+      "tags": ["cv", "resume", "ats"]
+    },
+    {
       "name": "language-java",
       "source": "./plugins/language-java",
       "description": "Java language conventions: version-aware idioms, nullability, immutability, exceptions, and resource handling.",
