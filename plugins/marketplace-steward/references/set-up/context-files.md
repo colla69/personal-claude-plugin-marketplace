@@ -37,19 +37,22 @@ holding `@AGENTS.md` imports `client/AGENTS.md`, not the root one.
 when the project has an `AGENTS.md` at any level and the record has no `context` yet,
 before you write any context file. It is one question for the whole project, never one
 per file. Recommend the swap, and say why: the setup is Claude only. Keep fits a project
-where people also work with another tool that reads `AGENTS.md`. Write the answer to the
-record's `context`, as `../record.md` says, and don't ask again. A project with no
-`AGENTS.md` is never asked, and gets `CLAUDE.md` only.
+where people also work with another tool that reads `AGENTS.md`. Hold the answer for
+the rest of the job, write it to the record's `context` when the job writes the record,
+as `../record.md` says, and don't ask again. A project with no `AGENTS.md` is never
+asked, and gets `CLAUDE.md` only.
 
 | Answer | Imported `AGENTS.md` | `AGENTS.md` that nothing imports | A component that earns a new file |
 |---|---|---|---|
 | **Swap** | Fold it, as below | Its rules go through adoption, and the file goes once every rule has a home | `CLAUDE.md` |
-| **Keep** | It stays the home of its content | Its rules go through adoption; the file stays, and gets a `CLAUDE.md` beside it that imports it | `AGENTS.md`, with a `CLAUDE.md` beside it that imports it, so the project has one layout |
+| **Keep** | It stays the home of its content | Its rules go through adoption; the file stays, and gets a `CLAUDE.md` beside it that imports it | `CLAUDE.md` |
 
-**With keep, the `AGENTS.md` takes the place of the `CLAUDE.md`.** Wherever the
-steward's files say the project's `CLAUDE.md`, write to the `AGENTS.md` beside it, and
-keep only the import line and Claude-only lines in the `CLAUDE.md`. The templates and
-the budget below apply to the `AGENTS.md`.
+**With keep, a kept `AGENTS.md` takes the place of the `CLAUDE.md` beside it.** Where
+the steward's files say the project's `CLAUDE.md`, and an `AGENTS.md` sits beside that
+`CLAUDE.md`, write what you add to the `AGENTS.md`, the Trios table included. The
+templates and the budget below then apply to the `AGENTS.md`. Where no `AGENTS.md` sits
+beside it, write to the `CLAUDE.md` as usual. This rule decides only where new lines go:
+it moves no line that is already in either file.
 
 **To fold an imported `AGENTS.md`**, move it whole. Put its content into the
 `CLAUDE.md` that imports it, in place of the import line, keep every other line of the

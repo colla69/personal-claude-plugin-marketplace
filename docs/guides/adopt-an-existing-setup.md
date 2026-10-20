@@ -22,11 +22,14 @@ first trials will show where it behaves otherwise.
    existing setup onto the marketplace". The steward sees your setup and adopts it
    instead of setting up over it.
 2. **Tick the sources**, if it asks, as for a set-up.
-3. **Let it run.** It reads every Claude file of the project's own, splits them into
+3. **Say whether to keep your `AGENTS.md` files or swap them for `CLAUDE.md`**, if the
+   project has any. It asks once, and recommends the swap; keep them if people on the
+   project also use another tool that reads them.
+4. **Let it run.** It reads every Claude file of the project's own, splits them into
    single rules, and gives each rule a home. Then it sets the project up with those
    homes, and contributes the rules that would serve other projects.
-4. **Answer the new-skill question, if there is one**, at the end.
-5. **Read the report's Adopted table.** Every rule is there, grouped by the file it came
+5. **Answer the new-skill question, if there is one**, at the end.
+6. **Read the report's Adopted table.** Every rule is there, grouped by the file it came
    from, quoted short, with its new home and what happened to the local copy.
 
 ## Reading the Adopted table

@@ -78,5 +78,8 @@ the user's work or never happens at all, and what the user took out comes back.
 - **No record means nothing is rebuilt.** A project set up before the record existed
   has files nobody can tell apart, so they are all treated as the user's.
 
-Write the record last, after the files it describes. It is committed with the rest of
+Write the record last, after the files it describes. A job that has an answer for
+`context` and finds no record, such as keep-current in a project set up before the
+record existed, writes one that holds only `context`. Its `files` and `plugins` are
+empty, so it claims no file and rebuilds nothing. It is committed with the rest of
 `.claude/`, because it is how the steward on the next machine knows what this one did.

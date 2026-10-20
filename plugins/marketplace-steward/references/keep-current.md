@@ -62,9 +62,9 @@ declined.
 ## 6. AGENTS.md from an older setup
 
 Earlier setups wrote the context into `AGENTS.md`, with a `CLAUDE.md` beside it that
-only imports it. When the project has an `AGENTS.md` and the record's `context` is
-empty, ask the keep-or-swap question in `set-up/context-files.md`, and apply the answer
-as that section says:
+only imports it. When the project has an `AGENTS.md` and the record has no `context`,
+ask the keep-or-swap question in `set-up/context-files.md`. Then apply the answer,
+recorded or new, as that section says:
 
 - **Swap:** fold every `AGENTS.md` that a `CLAUDE.md` imports into that `CLAUDE.md`,
   whoever wrote it. The content moves whole, so a user's edit moves with it.

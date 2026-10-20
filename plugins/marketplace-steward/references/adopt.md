@@ -101,6 +101,9 @@ is declined or its pull request is closed, the rule stays where it is as a proje
 file to `~/.local/share/marketplace-steward/backups/<project folder>/<date>/<its path>`,
 and never over an existing backup: add a number to the name instead.
 
+With keep, an `AGENTS.md` that nothing imported gets its `CLAUDE.md` import now, after
+the removals, so only the rules whose home it is come into force.
+
 Then write the record, or refresh it, by `record.md`. That happens after this step, not
 in phase 6, because adoption keeps changing files until here.
 

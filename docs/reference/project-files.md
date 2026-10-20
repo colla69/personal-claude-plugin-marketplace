@@ -80,7 +80,7 @@ project that has none.
     "CLAUDE.md": { "sha256": "<hash of the file as written>" }
   },
   "plugins": ["<every plugin the steward installed>"],
-  "context": "<AGENTS.md if you kept your AGENTS.md files, CLAUDE.md if you swapped them>",
+  "context": "<AGENTS.md if you kept your AGENTS.md files, CLAUDE.md if you swapped them; absent if there were none>",
   "declined": ["<every new skill you said no to>"],
   "pending": [
     { "path": "<file>", "rule": "<the rule>", "home": "<plugin:skill>", "pr": "<link>" }
