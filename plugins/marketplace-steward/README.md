@@ -33,8 +33,9 @@ comes next.
 
 - `.claude/plugin-sources.json`, the sources skills may come from, asked once as a
   checklist
-- `CLAUDE.md`, at the root and in each component that earns one. An `AGENTS.md` that a
-  `CLAUDE.md` imports is folded into it; one that nothing imports is adopted
+- `CLAUDE.md`, at the root and in each component that earns one. When the project has
+  `AGENTS.md` files, it asks once whether to keep them, each behind a `CLAUDE.md` that
+  imports it, or swap them for `CLAUDE.md`
 - The skills, installed at project scope into `.claude/settings.json`, merged. Plugin
   keys that no longer exist are removed
 - For each trio, `.claude/agents/<task>-plan.md`, `-do.md` and `-check.md`, and
@@ -46,8 +47,9 @@ comes next.
 - For a contribution: a branch and a pull request on the marketplace, from its own
   clone in `~/.local/share/marketplace-steward/`, never from a checkout of yours
 
-It asks two things only: the sources checklist, once, and an OK before it creates a
-new skill. Everything else it does and reports.
+It asks three things only: the sources checklist, once; whether to keep or swap the
+project's `AGENTS.md` files, once, when it has any; and an OK before it creates a new
+skill. Everything else it does and reports.
 
 ## Leaves to you
 

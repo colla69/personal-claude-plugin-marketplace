@@ -11,7 +11,7 @@ set out; the first trials will show where what it writes differs.
 
 | File | What it is for | Rules |
 |---|---|---|
-| `CLAUDE.md`, at the root and in each component that earns one | What reading the project cannot tell: non-obvious commands, conventions that differ from the defaults, boundaries, and the reasons behind them. The root lists the trios. The steward writes no `AGENTS.md`. It folds one that a `CLAUDE.md` imports into that file, and adopts the rules of one that nothing imports | [`context-files.md`](../../plugins/marketplace-steward/references/set-up/context-files.md) |
+| `CLAUDE.md`, at the root and in each component that earns one | What reading the project cannot tell: non-obvious commands, conventions that differ from the defaults, boundaries, and the reasons behind them. The root lists the trios. Where the project has `AGENTS.md` files and you chose to keep them, they hold this content instead, each behind a `CLAUDE.md` that imports it | [`context-files.md`](../../plugins/marketplace-steward/references/set-up/context-files.md) |
 | `.claude/rules/*.md` | A convention that follows a file type, loaded only when a matching file is read | `context-files.md` |
 | `.claude/settings.json` | Declares the marketplace, and enables the plugins set-up installed. Merged into, never replaced | [`plugin-catalog.md`](../../plugins/marketplace-steward/references/set-up/plugin-catalog.md) |
 | `.claude/plugin-sources.json` | Which marketplaces this project may draw plugins from | [`plugin-sources.md`](../../plugins/marketplace-steward/references/set-up/plugin-sources.md) |
@@ -80,6 +80,7 @@ project that has none.
     "CLAUDE.md": { "sha256": "<hash of the file as written>" }
   },
   "plugins": ["<every plugin the steward installed>"],
+  "context": "<AGENTS.md if you kept your AGENTS.md files, CLAUDE.md if you swapped them>",
   "declined": ["<every new skill you said no to>"],
   "pending": [
     { "path": "<file>", "rule": "<the rule>", "home": "<plugin:skill>", "pr": "<link>" }

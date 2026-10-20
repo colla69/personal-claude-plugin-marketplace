@@ -61,9 +61,11 @@ as they are; a hook that only injects text is the exception, and goes once its t
 a home. Other tools' files, such as `.cursor/rules/`, are read and never changed, and so
 are `CLAUDE.local.md` and `.claude/settings.local.json`.
 
-An `AGENTS.md` is not kept, because the setup is Claude only. One that a `CLAUDE.md`
-imports is folded into that `CLAUDE.md` first, and its rules are placed with the rest.
-One that nothing imports goes once each of its rules has a home.
+An `AGENTS.md` is the exception among other tools' files: the steward asks once whether
+to keep the project's `AGENTS.md` files or swap them for `CLAUDE.md`. With keep, each
+stays the home of its content, behind a `CLAUDE.md` that imports it. With the swap, one
+that a `CLAUDE.md` imports is folded into it first, and its rules are placed with the
+rest; one that nothing imports goes once each of its rules has a home.
 
 ## Afterwards
 

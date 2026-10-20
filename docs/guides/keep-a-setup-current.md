@@ -14,7 +14,8 @@ first trials will show where it behaves otherwise.
    isn't loading in this project". Asking to set up a project the steward set up before
    does the same.
 2. **Let it run.** With a symptom named, it checks only that; otherwise it runs every
-   check below. It asks only before a new skill.
+   check below. It asks only before a new skill, and once whether to keep or swap the
+   project's `AGENTS.md` files if it hasn't asked before.
 3. **Read the report**, and start a new session if anything was installed or rebuilt.
 
 ## What it checks
@@ -25,7 +26,7 @@ first trials will show where it behaves otherwise.
 | **Skills the trios can't load** | Installs a missing plugin, or corrects a skill name that was renamed. A name it can't resolve is reported, because that agent is running without its standard |
 | **Trios from older templates** | Rebuilds each trio file whose template changed, if you haven't edited it since. A file you edited stays, and the report says a newer template exists |
 | **What the project now calls for** | Installs a toolkit plugin whose signal has appeared, and builds a trio a task now has the tools for. A plugin whose signal has gone stays, and is named as possibly unneeded |
-| **`AGENTS.md` from an older setup** | Moves each `AGENTS.md` that a `CLAUDE.md` imports into that `CLAUDE.md`, whole, and removes it. One that nothing imports never loaded, so it stays and is listed under Unverified, for adoption |
+| **`AGENTS.md` from an older setup** | Asks once whether to keep the `AGENTS.md` files or swap them for `CLAUDE.md`. With the swap, it moves each `AGENTS.md` that a `CLAUDE.md` imports into that `CLAUDE.md`, whole, and removes it. With keep, they stay. One that nothing imports never loaded, so it stays and is listed under Unverified, for adoption |
 | **`CLAUDE.md` lines that are no longer true** | Fixes a path or a command it can verify by reading. One it can't verify stays, and is listed under Unverified |
 | **Rules waiting for a merge** | After an adoption: removes each pending rule once its pull request is merged and the skill says the same thing, but only if you haven't edited the rule since |
 

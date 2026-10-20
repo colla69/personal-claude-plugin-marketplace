@@ -62,10 +62,16 @@ declined.
 ## 6. AGENTS.md from an older setup
 
 Earlier setups wrote the context into `AGENTS.md`, with a `CLAUDE.md` beside it that
-only imports it. Fold every `AGENTS.md` that a `CLAUDE.md` imports into that
-`CLAUDE.md`, as "An AGENTS.md found in the project" in `set-up/context-files.md` says,
-whoever wrote it: the content moves whole, so a user's edit moves with it. An
-`AGENTS.md` that nothing imports never loaded. Leave it, and report it under
+only imports it. When the project has an `AGENTS.md` and the record's `context` is
+empty, ask the keep-or-swap question in `set-up/context-files.md`, and apply the answer
+as that section says:
+
+- **Swap:** fold every `AGENTS.md` that a `CLAUDE.md` imports into that `CLAUDE.md`,
+  whoever wrote it. The content moves whole, so a user's edit moves with it.
+- **Keep:** fold nothing. The `AGENTS.md` files stay the home of the context, and
+  step 7 checks them.
+
+An `AGENTS.md` that nothing imports never loaded. Leave it, and report it under
 Unverified, because its rules need adoption before they are in force. The exception is
 one that the record's `pending` names: an adoption left its rules there for their pull
 requests, and step 8 looks after them.

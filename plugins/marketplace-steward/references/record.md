@@ -25,6 +25,7 @@ the user's work or never happens at all, and what the user took out comes back.
     "CLAUDE.md": { "sha256": "<hash>" }
   },
   "plugins": ["universal-clean-code@personal-claude-plugin-marketplace"],
+  "context": "CLAUDE.md",
   "declined": ["<a proposed skill the user said no to, in one line>"],
   "pending": [
     { "path": ".claude/rules/api.md", "rule": "<the rule, quoted>",
@@ -48,6 +49,10 @@ the user's work or never happens at all, and what the user took out comes back.
     rebuild is exact.
 - **`plugins`** lists every plugin the steward installed, and **`declined`** every new
   skill the user said no to.
+- **`context`** is the user's answer to the keep-or-swap question in
+  `set-up/context-files.md`: `"AGENTS.md"` when they kept their `AGENTS.md` files,
+  `"CLAUDE.md"` when they swapped them. It is left out when the project had no
+  `AGENTS.md` to ask about.
 - **`pending`** lists every rule an adoption left where it was because its home is a
   contribution with an open pull request: the file it is in, the rule exactly as it
   stands there, the skill or template it is going to, and the pull request.

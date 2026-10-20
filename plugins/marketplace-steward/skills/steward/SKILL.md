@@ -57,9 +57,12 @@ project's trios and the conversation handle that.
 
 ## For every job
 
-- **Ask only two things.** The sources checklist, once, when no policy file exists, as
-  set-up's phase 1 says. And an OK before creating a new skill, showing what section 5
-  of `${CLAUDE_PLUGIN_ROOT}/references/place-knowledge.md` asks for; a yes goes to the
+- **Ask only three things.** The sources checklist, once, when no policy file exists,
+  as set-up's phase 1 says. Whether to keep the project's `AGENTS.md` files or swap them
+  for `CLAUDE.md`, once, when it has one, as
+  `${CLAUDE_PLUGIN_ROOT}/references/set-up/context-files.md` says. And an OK before
+  creating a new skill, showing what section 5 of
+  `${CLAUDE_PLUGIN_ROOT}/references/place-knowledge.md` asks for; a yes goes to the
   contribute job. Everything else goes ahead and is reported.
 - **Say exactly what you created and what you changed.** With no plan to approve, the
   report is what the user reads to decide what to keep, next to `git diff`.

@@ -21,8 +21,9 @@ This replaces step 1 of set-up's phase 2. Read everything the project's setup ho
 - other tools' files, such as `.cursor/rules/` and `.github/copilot-instructions.md`.
 
 `CLAUDE.local.md`, `.claude/settings.local.json` and everything under `~/.claude` are
-the user's own, not the project's: read them, and leave them as they are. Then run the
-rest of phase 2.
+the user's own, not the project's: read them, and leave them as they are. When you found
+an `AGENTS.md`, ask the keep-or-swap question in `set-up/context-files.md` now, unless
+the record already holds the answer. Then run the rest of phase 2.
 
 ## 2. Split it into rules
 
@@ -57,8 +58,9 @@ another marketplace changes outside the user's hands, so a rule it covers stays.
 
 **Other tools read some of these files.** Rules in other tools' own files go through
 the table, but those files stay as they are, because the steward writes for Claude only.
-An `AGENTS.md` is not one of them: the setup is Claude only, so it goes the way
-"An AGENTS.md found in the project" in `set-up/context-files.md` says.
+An `AGENTS.md` is not one of them: it goes the way the user's answer to the keep-or-swap
+question says, as "An AGENTS.md found in the project" in `set-up/context-files.md`
+describes.
 
 ## 4. Set it up with those homes
 
@@ -67,8 +69,8 @@ Run set-up's phases 3 to 7 with the homes from step 3:
 - **Phase 3** decides the plugins the covered rules call for, the trios the agents
   become, and the contributions, one for each skill or role template the travelling
   rules touch.
-- **Phase 4** writes into `CLAUDE.md` the rules step 3 gave it, and folds each
-  `AGENTS.md` that a `CLAUDE.md` imports into it first. Every other rule in a
+- **Phase 4** writes into `CLAUDE.md` the rules step 3 gave it. With the swap, it
+  first folds each `AGENTS.md` that a `CLAUDE.md` imports into it. Every other rule in a
   `CLAUDE.md` stays where it is until step 5 removes it. The same holds for each nested
   `CLAUDE.md`. This rewrites a `CLAUDE.md`, so back it up first, by the rule in step 5.
 - **Phase 6** builds the trios. An old agent stays until step 5.

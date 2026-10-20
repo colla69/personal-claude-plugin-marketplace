@@ -81,7 +81,7 @@ All decided on 2026-10-19, while the steward was built.
 | D30 | A lesson is placed by four moves: diagnose, strip, let the user decide where it is taste, keep corrections as examples | Most knowledge arrives tangled with its project | Holds, in `place-knowledge.md` |
 | D31 | A project's existing setup is adopted, not set up over | Two sets of instructions agree today and drift apart tomorrow | Holds, in `adopt.md` |
 | D32 | The name is `marketplace-steward` | The proposed name, accepted: it sets up, keeps current and grows | Holds |
-| D33 | No trio for the steward; it asks only before creating a new skill, besides the one-time sources checklist | A trio would make the process too difficult; a new skill is a decision about the cut, which is taste | Holds; supersedes init's plan stop |
+| D33 | No trio for the steward; it asks only before creating a new skill, besides the one-time sources checklist | A trio would make the process too difficult; a new skill is a decision about the cut, which is taste | Holds; supersedes init's plan stop. D53 adds a third question: keep or swap a project's `AGENTS.md` files |
 | D34 | No lanes: the steward is the only writer, and its helpers are read-only | One writer has no lane to keep | Holds; supersedes "the contributor only touches knowledge" |
 | D35 | Hooks, MCP servers, tool commands and permissions stay in the project; a hook that only injects text is knowledge | The marketplace ships knowledge, not mechanics | Holds |
 | D36 | Two visible skills, the front door and `evaluate-skills`; the rest is reference files read by path | Every visible skill costs a description in every session of every project; a hidden skill can't be preloaded | Holds |
@@ -139,7 +139,7 @@ Decided on 2026-10-20, once the setup was Claude only.
 
 | # | Decision | Why | Now |
 |---|---|---|---|
-| D53 | The steward writes a project's context into `CLAUDE.md` and writes no `AGENTS.md`. An `AGENTS.md` that a `CLAUDE.md` imports is folded into it whole; one that nothing imports goes through adoption | "We are Claude only now, let us get rid of the agents.md." Claude Code reads `CLAUDE.md`, so an `AGENTS.md` kept only for other tools cost an import line in every directory and a second file to keep true | Holds, in `set-up/context-files.md`; keep-current folds the files earlier setups wrote. Other tools' own files still stay as they are |
+| D53 | The steward writes a project's context into `CLAUDE.md` and writes no `AGENTS.md`. When a project has `AGENTS.md` files, it asks once whether to keep them, each behind a `CLAUDE.md` that imports it, or swap them for `CLAUDE.md`, and records the answer. An `AGENTS.md` that nothing imports goes through adoption either way | "We are Claude only now, let us get rid of the agents.md." Claude Code reads `CLAUDE.md`, so an `AGENTS.md` kept only for other tools costs an import line in every directory and a second file to keep true. But only the user knows whether another tool still reads a project's files: "if you find existing AGENTS.md ask if they are to be kept" | Holds, in `set-up/context-files.md`; keep-current asks in projects that earlier setups wrote. Other tools' own files still stay as they are |
 
 ## Still open
 

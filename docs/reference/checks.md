@@ -62,7 +62,7 @@ when started by hand:
 
 | Check | Catches |
 |---|---|
-| Set-up's verify phase | A trio naming a skill that isn't enabled or doesn't load; JSON or frontmatter that doesn't parse; a rule whose `paths:` match nothing; an `AGENTS.md` left unfolded; context files over their budget; a record that doesn't match its files |
+| Set-up's verify phase | A trio naming a skill that isn't enabled or doesn't load; JSON or frontmatter that doesn't parse; a rule whose `paths:` match nothing; an `AGENTS.md` that doesn't follow the keep-or-swap answer; context files over their budget; a record that doesn't match its files |
 | Keep-current | A dead plugin key, a skill name in a trio that doesn't resolve, an `AGENTS.md` from an older setup, a path or a command in `CLAUDE.md` that no longer exists |
 | The checker, before each pull request | A change that breaks the house standard or the cut, and anything from the source project in the diff, the commit messages, the branch name or the pull request text |
 

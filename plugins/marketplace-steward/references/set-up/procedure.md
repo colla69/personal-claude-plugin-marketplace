@@ -63,7 +63,8 @@ then propose every such skill together as the last part of the report, as sectio
 
 Read `context-files.md` first: the layout, the templates, what to leave out, and the
 size limits. Write the content in `CLAUDE.md`, at the root and in every component that
-earned one. Write no `AGENTS.md`. The root lists the trios. A convention that follows a
+earned one. Write no `AGENTS.md`, unless the user chose to keep theirs, as
+`context-files.md` says. The root lists the trios. A convention that follows a
 file type rather than a directory goes in a path-scoped rule in `.claude/rules/`.
 
 ## Phase 5 — Install the skills
@@ -108,9 +109,10 @@ Do not declare success without checking:
 2. **What you wrote parses.** Every JSON file is valid. The frontmatter of every agent,
    skill and `.claude/rules/*.md` file parses, and every rule's `paths:` globs match at
    least one real file. A rule whose globs match nothing never announces itself.
-3. **No context is left in an `AGENTS.md`.** Every one the project had is folded into
-   its `CLAUDE.md`, as `context-files.md` says, or waits in the report for its rules'
-   homes. An `AGENTS.md` that nothing imports never loads, and nothing reports that.
+3. **Every `AGENTS.md` follows the answer.** With the swap, every one the project had is
+   folded into its `CLAUDE.md`, or waits in the report for its rules' homes. With keep,
+   every one has a `CLAUDE.md` beside it that imports it. An `AGENTS.md` that nothing
+   imports never loads, and nothing reports that.
 4. **The budget holds.** Every `CLAUDE.md` you wrote or folded into is within the
    limits in `context-files.md`.
 5. **The record is complete.** Every file you created is in it, every hash matches

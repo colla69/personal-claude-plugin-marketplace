@@ -17,10 +17,11 @@ How project context actually loads, and what to put where.
 ## CLAUDE.md holds the context
 
 **Write the content in `CLAUDE.md`, at the root and in each component directory that
-earns a file. Write no `AGENTS.md`.** The setup is Claude only, and Claude Code reads
-`CLAUDE.md`. It finds a nested `CLAUDE.md` and loads it when it opens a file in that
-subtree, but it never finds an `AGENTS.md` by itself. A second file only for other
-tools costs an import line in every directory, and one file more to keep true.
+earns a file. Write no `AGENTS.md`,** unless the project keeps the ones it has, as the
+next section says. The setup is Claude only, and Claude Code reads `CLAUDE.md`. It finds
+a nested `CLAUDE.md` and loads it when it opens a file in that subtree, but it never
+finds an `AGENTS.md` by itself. A second file only for other tools costs an import line
+in every directory, and one file more to keep true.
 
 Other tools read their own files. GitHub Copilot reads
 `.github/copilot-instructions.md`, and Cursor reads `.cursor/rules/`. Leave those files
@@ -32,14 +33,33 @@ Claude Code loads an `AGENTS.md` only when a `CLAUDE.md` imports it with a line 
 `@AGENTS.md`. An import resolves against the file that holds it, so `client/CLAUDE.md`
 holding `@AGENTS.md` imports `client/AGENTS.md`, not the root one.
 
-- **An `AGENTS.md` that a `CLAUDE.md` imports** was already in force, so move it whole.
-  Put its content into that `CLAUDE.md` in place of the import line, keep every other
-  line of the `CLAUDE.md` where it was, and remove the `AGENTS.md`. The move itself
-  loses nothing and places nothing again; in an adoption, its rules are then placed
-  with the rest of that `CLAUDE.md`.
-- **An `AGENTS.md` that nothing imports** never loaded. Its rules are not yet in force,
-  so they go through adoption, rule by rule, as `../adopt.md` says, and the file goes
-  once every rule in it has a home.
+**Ask once whether to keep the `AGENTS.md` files or swap them for `CLAUDE.md`.** Ask
+when the project has an `AGENTS.md` at any level and the record has no `context` yet,
+before you write any context file. It is one question for the whole project, never one
+per file. Recommend the swap, and say why: the setup is Claude only. Keep fits a project
+where people also work with another tool that reads `AGENTS.md`. Write the answer to the
+record's `context`, as `../record.md` says, and don't ask again. A project with no
+`AGENTS.md` is never asked, and gets `CLAUDE.md` only.
+
+| Answer | Imported `AGENTS.md` | `AGENTS.md` that nothing imports | A component that earns a new file |
+|---|---|---|---|
+| **Swap** | Fold it, as below | Its rules go through adoption, and the file goes once every rule has a home | `CLAUDE.md` |
+| **Keep** | It stays the home of its content | Its rules go through adoption; the file stays, and gets a `CLAUDE.md` beside it that imports it | `AGENTS.md`, with a `CLAUDE.md` beside it that imports it, so the project has one layout |
+
+**With keep, the `AGENTS.md` takes the place of the `CLAUDE.md`.** Wherever the
+steward's files say the project's `CLAUDE.md`, write to the `AGENTS.md` beside it, and
+keep only the import line and Claude-only lines in the `CLAUDE.md`. The templates and
+the budget below apply to the `AGENTS.md`.
+
+**To fold an imported `AGENTS.md`**, move it whole. Put its content into the
+`CLAUDE.md` that imports it, in place of the import line, keep every other line of the
+`CLAUDE.md` where it was, and remove the `AGENTS.md`. The move itself loses nothing and
+places nothing again; in an adoption, its rules are then placed with the rest of that
+`CLAUDE.md`.
+
+An `AGENTS.md` that nothing imports never loaded, so its rules are not yet in force.
+That is why they go through adoption, rule by rule, as `../adopt.md` says, whatever the
+answer.
 
 Before you remove an `AGENTS.md` whose working copy differs from git's `HEAD`, back it
 up by the rule in step 5 of `../adopt.md`. Then update the record, as "Using it" in

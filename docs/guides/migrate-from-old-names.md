@@ -30,9 +30,9 @@ first trials will show where it behaves otherwise.
 
 | The project has | The steward | You get |
 |---|---|---|
-| A setup made by the old init: `AGENTS.md` and `.claude/plugin-sources.json`, no record | Keeps it current | Each old key removed, and its successor installed where the project still shows its signal. Its `AGENTS.md` moved into its `CLAUDE.md` |
+| A setup made by the old init: `AGENTS.md` and `.claude/plugin-sources.json`, no record | Keeps it current | Each old key removed, and its successor installed where the project still shows its signal. Its `AGENTS.md` kept or moved into its `CLAUDE.md`, as you answer |
 | Its own Claude setup, made by hand, with no `AGENTS.md` | Adopts it | Every rule given its home, as in [adopt an existing setup](adopt-an-existing-setup.md) |
-| The same, with an `AGENTS.md` | Keeps it current, as a setup from before the record | The old keys replaced, an imported `AGENTS.md` moved into its `CLAUDE.md`, and nothing rebuilt. Say "bring our existing setup onto the marketplace" to adopt it instead |
+| The same, with an `AGENTS.md` | Keeps it current, as a setup from before the record | The old keys replaced, an imported `AGENTS.md` kept or moved into its `CLAUDE.md`, as you answer, and nothing rebuilt. Say "bring our existing setup onto the marketplace" to adopt it instead |
 | `.claude/steward.json` | Keeps it current | Nothing to migrate: it was set up under the new names |
 
 The report lists every key it removed and every plugin it installed in its place. Commit

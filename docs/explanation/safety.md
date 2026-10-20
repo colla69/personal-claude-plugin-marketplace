@@ -18,7 +18,7 @@ set them out; the first trials will show where it behaves otherwise.
 |---|---|
 | **The steward never touches git in your project.** No branch, commit, stage or stash | A change you didn't see becoming history. You branch before, and decide after, with `git diff` |
 | **Its report lists every file it created and every file it changed** | Not knowing what happened. With no plan shown up front, the report is your handover |
-| **It asks before creating a new skill**, and for the sources once | A decision about taste made for you |
+| **It asks before creating a new skill**, and once each for the sources and for keeping or swapping an `AGENTS.md` | A decision about taste made for you |
 | **A trio stops after Plan** until you say OK | Work carried out on a plan nobody accepted |
 | **Plan and Check are read-only by frontmatter** | A planner that starts working, or a checker that fixes instead of reporting |
 | **The record**, `.claude/steward.json` | A later run overwriting a file you edited, or bringing back a trio or plugin you removed |
