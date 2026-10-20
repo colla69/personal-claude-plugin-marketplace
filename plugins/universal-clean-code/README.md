@@ -30,9 +30,20 @@ Language plugins judge against it, so one edit here moves every judgement downst
 
 ## Install
 
+Set-up installs it at project scope in any project with code, and the code Craft and
+Language plugins pull it in. By hand:
+
 ```bash
-claude plugin install universal-clean-code@personal-claude-plugin-marketplace --scope user
+claude plugin install universal-clean-code@personal-claude-plugin-marketplace --scope project
 ```
 
-User scope: the standard should not depend on which repo you're in. The code Craft and
-Language plugins pull it in.
+By hand, `--scope user` fits too: the standard doesn't depend on the project.
+
+## More
+
+- The standard itself:
+  [`skills/clean-code/SKILL.md`](skills/clean-code/SKILL.md)
+- Every plugin, with its layer and what it builds on:
+  [`docs/reference/plugins.md`](../../docs/reference/plugins.md)
+- Why the layers, and why dependencies point the way they do:
+  [`docs/explanation/layers.md`](../../docs/explanation/layers.md)

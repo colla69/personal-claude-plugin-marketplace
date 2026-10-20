@@ -31,9 +31,20 @@ The language level comes from the build file of the module being edited, since a
 
 ## Install
 
+Set-up installs it at project scope when the project has a `pom.xml`, a `build.gradle`
+or `.java` sources. By hand:
+
 ```bash
 claude plugin install language-java@personal-claude-plugin-marketplace --scope project
 ```
 
-Project scope: it's noise in a repo with no JVM. Init installs it when a project has a
-`pom.xml`, a `build.gradle` or `.java` sources.
+Project scope only: it is noise in a project with no JVM.
+
+## More
+
+- The standard itself:
+  [`skills/java-conventions/SKILL.md`](skills/java-conventions/SKILL.md)
+- Every plugin, with its layer and what it builds on:
+  [`docs/reference/plugins.md`](../../docs/reference/plugins.md)
+- Why the layers, and why dependencies point the way they do:
+  [`docs/explanation/layers.md`](../../docs/explanation/layers.md)

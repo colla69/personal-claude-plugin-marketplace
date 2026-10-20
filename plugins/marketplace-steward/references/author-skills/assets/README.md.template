@@ -1,0 +1,55 @@
+# {{PLUGIN_NAME}}
+
+{{One or two sentences: the standard this skill carries. State the position, not the
+existence of the plugin — "tests that earn their keep by failing when the code is
+wrong", not "this plugin helps with testing".}}
+
+| | |
+|---|---|
+| Skill | `{{SKILL_NAME}}` |
+| Layer | {{Universal \| Craft \| Language \| Framework & Tools}} |
+| Builds on | {{the plugins in `dependencies`, or "nothing"}} |
+
+{{Optional: one line on reference/asset files, or the single most important thing about
+this skill. Cut it if there isn't one.}}
+
+## Fires when
+
+{{The situations, in the user's words. Same triggers as the skill description, in list
+form — this is what a person scanning the directory needs.}}
+
+- {{trigger}}
+- {{trigger}}
+- {{the non-obvious one, the case the first two miss}}
+
+## Leaves to others
+
+{{The most useful section, and the reason these READMEs aren't just the marketplace
+description again. Each line names something this skill deliberately does not cover,
+and which skill or layer does — or which local convention overrides it. Lead with the
+boundary people most often expect to be inside.}}
+
+- **{{The boundary people expect to be inside.}}** {{Who covers it instead.}}
+- {{What it leaves}} — {{to whom}}
+
+## Install
+
+Set-up installs it at project scope {{when: the signal in plugin-catalog.md, in a few
+words, and what pulls it in}}. By hand:
+
+```bash
+claude plugin install {{PLUGIN_NAME}}@personal-claude-plugin-marketplace --scope project
+```
+
+{{Optional: one line on scope, such as "By hand, `--scope user` fits too" for a
+standard that holds everywhere, or "Project scope only" for one that is noise
+elsewhere.}}
+
+## More
+
+- The standard itself:
+  [`skills/{{SKILL_NAME}}/SKILL.md`](skills/{{SKILL_NAME}}/SKILL.md)
+- Every plugin, with its layer and what it builds on:
+  [`docs/reference/plugins.md`](../../docs/reference/plugins.md)
+- Why the layers, and why dependencies point the way they do:
+  [`docs/explanation/layers.md`](../../docs/explanation/layers.md)

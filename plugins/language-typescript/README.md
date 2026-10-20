@@ -29,9 +29,18 @@ Strictness comes from `tsconfig`, read first: `strict`, `noUncheckedIndexedAcces
 
 ## Install
 
+Set-up installs it at project scope when the project has a `tsconfig.json` or `.ts`
+sources. By hand:
+
 ```bash
 claude plugin install language-typescript@personal-claude-plugin-marketplace --scope project
 ```
 
-Project scope. Init installs it when a project has a `tsconfig.json` or `.ts` and `.tsx`
-sources.
+## More
+
+- The standard itself:
+  [`skills/typescript-conventions/SKILL.md`](skills/typescript-conventions/SKILL.md)
+- Every plugin, with its layer and what it builds on:
+  [`docs/reference/plugins.md`](../../docs/reference/plugins.md)
+- Why the layers, and why dependencies point the way they do:
+  [`docs/explanation/layers.md`](../../docs/explanation/layers.md)

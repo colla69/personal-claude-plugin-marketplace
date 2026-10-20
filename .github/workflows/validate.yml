@@ -18,6 +18,18 @@ jobs:
       # No dependencies — plain Node, reads the plugin lists and manifests and compares them.
       - run: node scripts/check-catalog.mjs
 
+  docs:
+    name: docs in shape
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      # No dependencies — plain Node: links resolve, every page is on the map, prose
+      # wraps at 88, and no skill links into docs/.
+      - run: node scripts/check-docs.mjs
+
   manifests:
     name: manifests valid
     runs-on: ubuntu-latest
@@ -30,7 +42,7 @@ jobs:
 
       # Deliberately not --strict: strict promotes "no version specified" to an
       # error, and every plugin here omits version on purpose so that updates
-      # resolve by commit SHA. See CONTRIBUTING.md → "Versioning: don't".
+      # resolve by commit SHA. See docs/contributing/releases-and-migrations.md.
       - name: validate marketplace
         run: claude plugin validate .
 

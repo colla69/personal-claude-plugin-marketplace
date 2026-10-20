@@ -30,9 +30,18 @@ one kind of work use it.
 
 ## Install
 
+Set-up installs it at project scope where work other than code gets reviewed, and
+`craft-code-review` pulls it in. By hand:
+
 ```bash
 claude plugin install craft-review@personal-claude-plugin-marketplace --scope project
 ```
 
-`craft-code-review` pulls it in. Install it on its own where work other than code gets
-reviewed.
+## More
+
+- The standard itself:
+  [`skills/review-work/SKILL.md`](skills/review-work/SKILL.md)
+- Every plugin, with its layer and what it builds on:
+  [`docs/reference/plugins.md`](../../docs/reference/plugins.md)
+- Why the layers, and why dependencies point the way they do:
+  [`docs/explanation/layers.md`](../../docs/explanation/layers.md)

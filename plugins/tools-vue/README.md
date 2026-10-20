@@ -29,9 +29,20 @@ project uses TypeScript before assuming either.
 
 ## Install
 
+Set-up installs it at project scope when `vue` is in the project's dependencies, and
+`tools-pinia` and `tools-vue-typescript` pull it in. By hand:
+
 ```bash
 claude plugin install tools-vue@personal-claude-plugin-marketplace --scope project
 ```
 
-Project scope: it's noise in a Go service. Init installs it when `vue` is in the
-project's dependencies, and `tools-pinia` and `tools-vue-typescript` pull it in.
+Project scope only: it is noise in a Go service.
+
+## More
+
+- The standard itself:
+  [`skills/vue-conventions/SKILL.md`](skills/vue-conventions/SKILL.md)
+- Every plugin, with its layer and what it builds on:
+  [`docs/reference/plugins.md`](../../docs/reference/plugins.md)
+- Why the layers, and why dependencies point the way they do:
+  [`docs/explanation/layers.md`](../../docs/explanation/layers.md)

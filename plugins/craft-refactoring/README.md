@@ -32,9 +32,19 @@ tests that assert what it does now. Without one, it says so and asks.
 
 ## Install
 
+Set-up installs it at project scope in any project with code. By hand:
+
 ```bash
 claude plugin install craft-refactoring@personal-claude-plugin-marketplace --scope project
 ```
 
-Init installs it at project scope in any repo with code. It needs no test suite, but
-without one its plans start with characterization tests.
+It needs no test suite; without one, its plans start with characterization tests.
+
+## More
+
+- The standard itself:
+  [`skills/refactor-safely/SKILL.md`](skills/refactor-safely/SKILL.md)
+- Every plugin, with its layer and what it builds on:
+  [`docs/reference/plugins.md`](../../docs/reference/plugins.md)
+- Why the layers, and why dependencies point the way they do:
+  [`docs/explanation/layers.md`](../../docs/explanation/layers.md)

@@ -33,9 +33,18 @@ This skill says what they mean for code.
 
 ## Install
 
+Set-up installs it at project scope in any project with code, together with
+`craft-code-review` and `craft-refactoring`. By hand:
+
 ```bash
 claude plugin install craft-development@personal-claude-plugin-marketplace --scope project
 ```
 
-Init installs it at project scope in any repo with code, together with
-`craft-code-review` and `craft-refactoring`.
+## More
+
+- The standard itself:
+  [`skills/development-standards/SKILL.md`](skills/development-standards/SKILL.md)
+- Every plugin, with its layer and what it builds on:
+  [`docs/reference/plugins.md`](../../docs/reference/plugins.md)
+- Why the layers, and why dependencies point the way they do:
+  [`docs/explanation/layers.md`](../../docs/explanation/layers.md)
