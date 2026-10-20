@@ -28,9 +28,9 @@ new skill. Why the steward diagnoses and strips a lesson first is in
    leaves to others and the exact public text, and waits for your OK. A change to an
    existing skill goes ahead without asking.
 3. **Let it work.** It writes the change in its own clone, on a `contrib/` branch, with
-   every name from your project replaced by its role. The checker reviews it, and the
-   leak check makes sure nothing from your project goes public. A leak stops the job
-   before anything is pushed.
+   every name from your project replaced by its role. The checker reviews it, and its
+   leak check looks for anything from your project in what would go public. A leak
+   stops the job before anything is pushed.
 4. **Review the pull request.** Read it as you would anyone's: the change, the
    placement, the judgements the steward had to assume, and the checker's verdict. A
    rename or a removal carries its migration.

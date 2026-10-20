@@ -9,7 +9,7 @@ that holds its rules.
 | **Agent** | A subagent: an LLM with a role and a chosen set of skills, in a project's `.claude/agents/`. Skill plugins ship none; the steward ships two helpers | [`style.md`](../../plugins/marketplace-steward/references/author-skills/style.md) |
 | `AGENTS.md` | A project's instructions: what reading the project cannot tell. Vendor-neutral, so other tools can read it too | [`context-files.md`](../../plugins/marketplace-steward/references/set-up/context-files.md) |
 | **Always-on cost** | The tokens a plugin adds to every session that enables it, which `claude plugin details` estimates | [`SKILL.md`](../../plugins/marketplace-steward/skills/evaluate-skills/SKILL.md) |
-| **Brick** | The concept's word for a skill, from the German *Baustein*: one piece of a modular knowledge base | — |
+| **Brick** | The original word for a skill, from the German *Baustein*: one piece of a modular knowledge base | — |
 | **Canary** | A unique string placed in a file to prove, from a session's output, whether that file reached the model's context. It is how the steward's mechanics were tested | — |
 | **Cartographer** | `codebase-cartographer`, the steward's read-only agent that surveys a codebase for set-up | [`codebase-cartographer.md`](../../plugins/marketplace-steward/agents/codebase-cartographer.md) |
 | **Catalog** | `.claude-plugin/marketplace.json`: the list of every plugin, and the one home of each plugin's `description` | [`plugin-shape.md`](../../plugins/marketplace-steward/references/author-skills/plugin-shape.md) |

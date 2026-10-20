@@ -16,7 +16,9 @@ needed. `claude plugin details <name>` estimates both parts:
 | **Always-on** | In every session of every project that enables the plugin |
 | **On invoke** | Each time the skill or agent actually runs |
 
-The always-on part is the one to watch. It is small per plugin and paid everywhere, for
+The always-on part is the one to watch, and the one
+[`evaluate-skills`](../../plugins/marketplace-steward/skills/evaluate-skills/SKILL.md)
+weighs against how often a plugin fires. It is small per plugin and paid everywhere, for
 as long as the plugin is enabled. That is why set-up installs only what a project shows
 a need for: a Vue skill in a Go service is pure cost.
 
@@ -32,8 +34,8 @@ competes with the skill that does. The rules for writing one are in
 ## Why the steward shows two skills
 
 The steward is installed for your user, so it is in every session of every project. With
-a visible skill for each job and each piece of knowledge it would add seven descriptions
-everywhere, and seven chances to fire on an ordinary request.
+a visible skill for each job and each piece of knowledge, it would add a description for
+each of them everywhere, and as many chances to fire on an ordinary request.
 
 It shows two: the front door, which routes a request to one of its four jobs, and
 `evaluate-skills`, which its checker preloads. Everything else is in reference files,
@@ -45,8 +47,6 @@ The estimate for the steward as it stands, from `claude plugin details`, is abou
 tokens always on. The front door's description is the largest part, because it carries
 the triggers of four jobs.
 
-`claude plugin details` still counts a hidden skill's description, which never loads,
-so its estimate runs high for a plugin that has one.
 
 ## Credits, not only context
 

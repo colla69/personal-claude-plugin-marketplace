@@ -2,7 +2,8 @@
 
 Why this marketplace keeps its knowledge in one place and its workers in each project,
 and why it isn't only for code. Read this before deciding whether the approach fits
-your team.
+your team. The quotes are the author's own words, from the sessions and the presentation
+the idea was developed in.
 
 ## The problem
 
@@ -11,7 +12,7 @@ collectively, every developer does his own thing." That has three costs:
 
 | Cost | What it looks like |
 |---|---|
-| Fear of falling behind | People chase every new tool, because nobody shares what works |
+| Fear of missing out | People are afraid of falling behind |
 | Discrepancies | Everyone prompts differently and gets different quality |
 | Lost know-how | What one person learned about getting good output stays in their head and their chat history |
 

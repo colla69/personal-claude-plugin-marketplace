@@ -19,17 +19,13 @@ costs either way:
 
 ## Diagnose before writing
 
-Not every complaint about a skill means the skill is wrong. The cause decides where the
-fix goes:
-
-| What is really going on | Where the fix goes |
-|---|---|
-| The skill has the rule, but it never loaded | The wiring: the setup, or the skill's description |
-| The skill is wrong everywhere | The skill |
-| The skill is right in general, wrong here | The project's `AGENTS.md`, as a local exception |
-| Nothing says it, and it would hold anywhere | A skill |
-| Nothing says it, and it is only true here | The project's `AGENTS.md` |
-| It is about this machine | Nowhere |
+Not every complaint about a skill means the skill is wrong, so the cause is found first,
+and it decides where the fix goes. A skill that never loaded is a wiring problem, not a
+knowledge one. A skill wrong everywhere is fixed in the skill; one right in general but
+wrong here becomes a local exception in the project's `AGENTS.md`. Missing knowledge
+goes into a skill when it would hold anywhere, and into the project when it wouldn't. A
+fact about the machine goes nowhere. The full table is §1 of
+[`place-knowledge.md`](../../plugins/marketplace-steward/references/place-knowledge.md).
 
 The wiring comes first because it is the cheapest to rule out and the easiest to mistake
 for missing knowledge: a skill that never loaded looks exactly like a skill with nothing
@@ -45,7 +41,7 @@ values", which stays in that project.
 
 The stripped text is the only text that may reach the marketplace. That is how a public
 repo learns from private projects without leaking them, and the checker's leak check
-makes sure of it before every pull request.
+looks for anything the strip test missed before every pull request.
 
 What travels then gets its [layer](layers.md), and goes into the skill that should
 already have said it. **Extending a skill beats creating one**: two skills on one topic
@@ -53,7 +49,8 @@ means neither is the reference.
 
 ## Where it is taste
 
-Most placements follow from the rules. Two don't, and they are yours:
+Most placements follow from the rules. Two don't, and they are yours, as §5 of
+`place-knowledge.md` sets out:
 
 - **A new skill.** Its layer, its name and where it stops are a decision about the cut,
   so the steward asks before creating one.
@@ -68,3 +65,7 @@ decisions instead of from rules written in advance.
 Two parts wait until the steward has handled real cases: a list of candidates, for
 lessons that stay in their project until they show up in a second one, and evals that
 measure how well lessons are placed.
+
+The candidates list rests on an asymmetry. A rule wrongly kept local costs one project;
+a rule wrongly made general misleads every project that installs the skill. So a lesson
+whose reach is in doubt stays local, and travels once a second project shows it too.

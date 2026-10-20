@@ -1,8 +1,8 @@
 # Layers
 
 Why every skill sits in one of four layers, how to tell them apart, and why a skill may
-build only on the layers above it. Read this before you add a skill, or when you can't
-decide where a piece of knowledge belongs. The rules themselves are in
+build only on its own layer or the ones above it. Read this before you add a skill, or
+when you can't decide where a piece of knowledge belongs. The rules themselves are in
 [`place-knowledge.md`](../../plugins/marketplace-steward/references/place-knowledge.md).
 
 ## Four layers, from general to specific
@@ -65,8 +65,9 @@ layer or points to a more general one, never to a more specific one.
 
 An undeclared dependency fails without a sound. A skill told to follow a skill that
 isn't installed carries on with the model's generic taste, and its output looks like a
-correct run. That is why `check-catalog.mjs` watches every dependency's name and
-direction, as `reference/checks.md` will list.
+correct run. `check-catalog.mjs` checks every declared dependency's name and direction;
+a skill named in prose and never declared is caught only by a reader, as
+[checks](../reference/checks.md) lists.
 
 ## One skill, one thing
 

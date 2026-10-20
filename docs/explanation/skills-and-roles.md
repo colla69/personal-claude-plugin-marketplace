@@ -17,13 +17,14 @@ skill or a role template, or wonder where a sentence belongs.
 | **Lives in** | Its own plugin | A role template in the steward, from which set-up generates the agent in each project |
 
 An agent is a role plus a chosen set of skills: Plan, Do or Check, with the skills its
-step needs. "Skill is the standard, agent is a worker that reads it."
+step needs. "Skill = the standard, agent = a worker that reads it" is the house rule.
 
 ## Why they never mix
 
-**Role text in a skill is read by roles it doesn't describe.** A skill is preloaded by
-Plan, Do and Check alike. A sentence such as "you are the agent that writes" or
-"disagree before you change anything" tells Plan and Check to act like Do.
+**Role text in a skill is read by roles it doesn't describe.** Any of the three roles
+can preload a skill, and a general one is usually preloaded by more than one. A sentence
+such as "you are the agent that writes" or "disagree before you change anything" tells
+Plan and Check to act like Do.
 
 **Knowledge in a role has two homes.** A role template that restates a rule from a
 skill now holds a second copy. The two get edited apart, and the agents that read them

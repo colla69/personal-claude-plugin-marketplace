@@ -81,7 +81,7 @@ All decided on 2026-10-19, while the steward was built.
 | D34 | No lanes: the steward is the only writer, and its helpers are read-only | One writer has no lane to keep | Holds; supersedes "the contributor only touches knowledge" |
 | D35 | Hooks, MCP servers, tool commands and permissions stay in the project; a hook that only injects text is knowledge | The marketplace ships knowledge, not mechanics | Holds |
 | D36 | Two visible skills, the front door and `evaluate-skills`; the rest is reference files read by path | Every visible skill costs a description in every session of every project; a hidden skill can't be preloaded | Holds |
-| D37 | No plugin option: the steward keeps its own clone in `~/.local/share/marketplace-steward/` | An option isn't filled from its default, and Claude Code asks before every write under `~/.claude`, whatever a skill allows | Holds; the location was moved there in step 5 |
+| D37 | No plugin option: the steward keeps its own clone in `~/.local/share/marketplace-steward/` | An option isn't filled from its default, and Claude Code asks before every write under `~/.claude`, whatever a skill allows | Holds; the location moved there while contributing was built |
 
 ## The documentation: D38 to D45
 
@@ -96,7 +96,7 @@ All decided on 2026-10-19, while this documentation was planned.
 | D42 | A docs check, `scripts/check-docs.mjs`, runs in CI | Broken links are the docs' silent failure | Planned, with the final checks |
 | D43 | Writing the documentation stops for the maintainer twice: once the structure is laid, and once the whole set is done | The structure is what every later page sits in | Holds |
 | D44 | No page refers to the working records the marketplace was built from: the docs carry what they need | The docs stand on their own | Holds |
-| D45 | The working records live in `docs/records/` | The folder's name says what it holds | Holds |
+| D45 | The working records' folder has a name that says what it holds | — | Holds |
 
 ## Still open
 

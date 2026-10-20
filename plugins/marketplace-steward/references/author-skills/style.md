@@ -163,6 +163,11 @@ cost, and says only the first two justify touching working code unprompted.
 **Do not hedge.** No "you might want to consider", no "it's generally recommended". Say
 the thing. If it is conditional, say the condition.
 
+**Never describe a skill, a trio or a stop as enforcement.** A model may follow a skill,
+ignore it, or follow it partly. A page that calls one a guarantee teaches its reader to
+stop checking, which is when the gap shows. Say what it asks for, and leave the
+guarantees to what really is one: frontmatter, permission rules, and a person's merge.
+
 ## Structure
 
 Sections follow the order someone works in. `write-unit-tests` goes: before writing

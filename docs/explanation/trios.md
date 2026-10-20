@@ -23,12 +23,21 @@ each run as `/<task>` by a project skill that set-up writes beside the three age
 **Nothing is done before you accept the plan.** "Ohne deine Bestätigung kein Do": no Do
 without your confirmation. A plan is cheap to correct; work carried out on a wrong plan
 is expensive to undo, and Check would then check against that wrong plan. So the run
-stops after Plan, and only an explicit OK moves it on. A question in return is not an
-OK: your answer goes back to Plan for a new version.
+stops after Plan, and only an explicit OK moves it on. A question from you is not an OK.
+When Plan asks something, your answer goes back to it for a new version of the plan.
 
 The stop is a step in the procedure, not a technical control. It holds because the run
 pattern says so and the agents follow it, which is why the rest of the design keeps the
 procedure short and plain.
+
+## What a trio is not
+
+Another way to split the work is one writer with two advisers who only read: a
+developer, a reviewer and a refactoring specialist, all working on the same step. That
+splits the duties of one step. A trio is a sequence of steps with a gate between Plan
+and Do, and the gate is what makes it work: the advisers' split never asks you to accept
+anything before the work starts. The marketplace used the advisers' split once, and
+moved to trios.
 
 ## Why Check checks against the plan
 

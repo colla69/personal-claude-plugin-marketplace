@@ -1,8 +1,8 @@
 # Project files
 
 Look up every file the steward writes, in a project and on your machine: what it is
-for, what it holds, and which file in the steward holds its rules. Commit the project's
-files with the rest of `.claude/`, so the setup travels with the project.
+for, what it holds, and which file in the steward holds its rules. The project's files
+are meant to be committed, so the setup travels with the project.
 
 ## In the project
 
@@ -74,7 +74,8 @@ project that has none.
       "template": "<hash of the template when the file was built>",
       "fill": { "TASK": "change", "skills": ["…"], "effort": "high" },
       "sha256": "<hash of the file as written>"
-    }
+    },
+    "AGENTS.md": { "sha256": "<hash of the file as written>" }
   },
   "plugins": ["<every plugin the steward installed>"],
   "declined": ["<every new skill you said no to>"],
@@ -85,15 +86,16 @@ project that has none.
 ```
 
 Only files the steward created are listed; a file that existed before it came is never
-claimed. A file whose hash no longer matches is yours, and is never rebuilt.
+claimed. A file whose hash no longer matches is yours: it is never rebuilt, though a
+check may still fix one line in it, such as a skill name that no longer resolves.
 
 ## On your machine
 
 | Path | What it holds |
 |---|---|
 | `~/.local/share/marketplace-steward/clone/` | The steward's own clone of the marketplace |
-| `~/.local/share/marketplace-steward/worktrees/<topic>/` | One working copy per contribution, removed after the push |
+| `~/.local/share/marketplace-steward/worktrees/<topic>/` | One working copy per contribution, removed after the push, and kept when a job stops or a command fails |
 | `~/.local/share/marketplace-steward/drafts/<topic>/` | A contribution's commit message, title and description, written before the check |
-| `~/.local/share/marketplace-steward/backups/<project>/<date>/` | Copies of your files taken before an adoption removed anything from them |
+| `~/.local/share/marketplace-steward/backups/<project>/<date>/` | Copies of your files, taken before the steward removed anything from a file whose working copy differs from git's `HEAD`: in an adoption, or when keep-current clears a pending rule |
 
 None of these are under `~/.claude`, where Claude Code asks before every write.

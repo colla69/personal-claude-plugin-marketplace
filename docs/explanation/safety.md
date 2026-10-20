@@ -4,6 +4,9 @@ What keeps you in control while the steward and the trios work, and why each gua
 there. Read this before you run the steward on a project you care about, or before you
 let it open pull requests on your marketplace.
 
+**Not yet tried on real projects.** The guards are described as the steward's files
+set them out; the first trials will show where it behaves otherwise.
+
 > "The developer makes a branch and gives you the possibility to run free without
 > breaking shit, then looks at what you produced and decides how to handle it. You are
 > his faithful expert companion… he still needs to feel in control of what is
@@ -25,10 +28,10 @@ let it open pull requests on your marketplace.
 
 Adopting moves rules out of your own files, so it has the strictest guards:
 
-- **Nothing is removed before its new home is live.** A rule that a skill now holds
-  stays until that skill is installed and the trio roles that do the work preload it. A
-  rule waiting for a pull request stays until the merge.
-- **A rule goes, never a file,** until every rule in that file has a live home.
+- **Nothing is removed before its new home is live**, and a rule goes, never a file,
+  until every rule in that file has one. What counts as live, for a skill, a trio or a
+  pull request, is defined in step 5 of
+  [`adopt.md`](../../plugins/marketplace-steward/references/adopt.md).
 - **Only a skill that says the same thing counts.** A similar rule isn't the same rule;
   when in doubt, yours stays.
 - **Files that git can't restore are copied first.** Any file with untracked or
@@ -49,13 +52,13 @@ against breaking:
 | **A leak, or a check that couldn't run, stops the job before the push** | Publishing first and noticing after |
 | **The checker is a separate, read-only agent** | The writer approving its own change |
 | **It works in its own clone**, one worktree per change | Your checkout of the marketplace changing while you work in it |
-| **Its permissions name each git command exactly** | A command it was never meant to run, such as a push to `main` |
+| **Its permissions name each command it may run unasked** | A command it was never meant to run going through without a prompt: anything else asks first |
 | **You merge** | Anything reaching every project without your review |
 
 One guard is yours to set up: **protect `main` on GitHub.** The steward's push rule
 allows only `contrib/…` branches, but a rule matches text, and a push written as
 `contrib/x:main` would still match it. Branch protection is the guard that holds
-regardless. `reference/permissions.md` lists every rule.
+regardless. [Permissions](../reference/permissions.md) lists every rule.
 
 ## Why prose guards at all
 
@@ -63,3 +66,10 @@ Nothing in a skill is a technical control: a model may follow it or not. That is
 guards that matter most are the ones outside the prose: frontmatter that removes the
 Write tool, permission rules that name commands, a record with hashes, git history, and
 your merge. The prose guards are there to make the right behaviour the easy one.
+
+The rules behind this page are in the front door,
+[`skills/steward/SKILL.md`](../../plugins/marketplace-steward/skills/steward/SKILL.md),
+and in [`record.md`](../../plugins/marketplace-steward/references/record.md),
+[`adopt.md`](../../plugins/marketplace-steward/references/adopt.md) and
+[`contribute.md`](../../plugins/marketplace-steward/references/contribute.md). "You" on
+this page is the maintainer, who is the only contributor for now.

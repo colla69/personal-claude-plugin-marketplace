@@ -9,8 +9,14 @@ and holds only while the steward is running a job.
 
 A skill that pre-allows tools needs permission to run. The first time the steward runs,
 Claude Code asks whether it may, and can remember your answer. After that, everything
-below runs without a prompt. An agent the steward starts, such as the checker, reads
-the steward's files under the same rules.
+below runs without a prompt.
+
+**Not yet tried in full.** Probes showed each kind of rule working, and an agent started
+from inside the skill reading under its rules. Whether every rule reaches such an
+agent, such as the checker running its commands in a worktree, the trials will show.
+
+`evaluate-skills` carries one rule of its own, `Read(/${CLAUDE_PLUGIN_ROOT}/**)`, so a
+review started directly can read the standard it quotes.
 
 ## What it may do without asking
 
@@ -36,22 +42,24 @@ Everything the rules don't name. The ones you will meet:
 | Command | When |
 |---|---|
 | `git clone` into `~/.local/share/marketplace-steward/clone` | The first contribution on a machine |
-| `claude plugin marketplace update`, `claude plugin list --available --json` | Every set-up and keep-current, to read the live inventory |
+| `claude plugin marketplace update`, `claude plugin list --available --json`, `claude plugin marketplace list` | Every set-up and keep-current, to read the live inventory and the configured marketplaces |
 | `claude plugin install <name>@<marketplace> --scope project` | Each plugin set-up or keep-current installs |
-| `claude plugin details <plugin>` | Set-up's check that every skill a trio names loads |
+| `claude plugin details <plugin>` | Set-up's check that every skill a trio names loads, keep-current's check of the trios' skills, and adoption's test for a live home |
 | `claude plugin update <name>@<marketplace>` | Keep-current, after a contribution is merged |
 | `sha256sum <path>` | Writing or reading the record |
+| A command to check that a JSON file parses | Set-up's verify phase |
+| `git status` or `git diff` in your project | Adoption's test for a file whose working copy differs from `HEAD`. Reading only |
 | Edits to your project's files | Whenever your session's permission mode asks for them |
 
-To stop being asked for one, allow it in your own `~/.claude/settings.json`; the steward
-never changes your settings.
+To stop being asked for one, allow it in your own `~/.claude/settings.json`. The steward
+never changes that file; it only merges its entries into the project's
+`.claude/settings.json`.
 
 ## Why the clone isn't under `~/.claude`
 
-Claude Code treats every file under `~/.claude` as sensitive, and asks before each
-write there, whatever a skill allows. A contribution writes several files, so a clone in
-the plugin's data folder would ask again and again. `~/.local/share/` has no such
-treatment, so the rules above work there.
+Every write under `~/.claude` is asked for, whatever a skill allows, so the clone lives
+in `~/.local/share/` instead. [The steward](../explanation/the-steward.md#its-own-clone)
+explains the choice.
 
 ## The guard you set up: protect `main`
 

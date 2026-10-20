@@ -4,6 +4,10 @@ Why one package sets projects up, adopts their setups, keeps them current and gr
 marketplace, why it asks you only two things, and why it works without lanes. Read this
 to understand what you are handing to the steward when you install it.
 
+**Not yet tried on real projects.** This page describes the steward as its files set it
+out; the first trials will show where it behaves otherwise. "You" here is the
+maintainer, who is the only contributor for now.
+
 ## One package for the whole cycle
 
 > "I think we need something more like a contribution plugin, more than an init and a
@@ -24,7 +28,20 @@ at. You install it once, for your user, and talk to it in any project:
 | A setup brought up to date after the project or the marketplace changed | **Keep current** |
 | A lesson from this project kept for every other one | **Contribute** |
 
-What it writes and reads for each is in `reference/the-steward.md`.
+What it writes and reads for each is in [the steward's
+reference](../reference/the-steward.md).
+
+**Adopting is not setting up over.** A project that already has its own setup would
+otherwise end up with two sets of instructions, which agree today and drift apart from
+tomorrow. So the steward splits that setup into rules and gives each one a home, and
+removes a local copy only once its new home is live.
+
+**Setting up runs in a fixed order:** read the project, write `AGENTS.md`, choose the
+skills from what `AGENTS.md` says, then create the agents that use them. "Agents.md are
+created with project infos, then with the infos a quantity of skills get selected,
+then agents are created that use those skills to do the task." Each step needs the one
+before it. And only the steward installs skills: the agents it creates use what they
+were given, and never go shopping for more.
 
 ## Its scope: the setup and the knowledge
 
@@ -35,8 +52,7 @@ remembering a preference, which is Claude's memory.
 
 ## It asks two things
 
-> "No trio for the package, that would make the process too difficult. Only ask for an
-> OK when creating new skills."
+> "Only ask for an OK when creating new skills, on init or adoption."
 
 | It asks | Why |
 |---|---|
@@ -50,17 +66,19 @@ a pull request for your merge. [Safety](safety.md) lists every guard.
 
 ## No trio, and no lanes
 
+> "No trio for the package, that would make the process too difficult."
+
 A project's work runs as a trio, with a stop between Plan and Do. The steward's own work
-doesn't, for the reason above: it would add a stop to every setup. Without a trio there
+doesn't: it would add a stop to every setup. Without a trio there
 are no lanes to keep, so the steward is simply the one writer. It ships two helpers, and
 both are read-only by their frontmatter:
 
 - **The cartographer** surveys a codebase for set-up, so the steward reads a summary
   instead of every file.
 - **The checker** reviews each change before its pull request: the house standard, how
-  it fits the whole set, and the leak check, which makes sure nothing from your project
-  reaches the public repo. A writer judging its own work is when review finds least, so
-  the one who wrote the change isn't the one who checks it.
+  it fits the whole set, and the leak check, which looks for anything from your project
+  in what would reach the public repo. A writer judging its own work is when review
+  finds least, so the one who wrote the change isn't the one who checks it.
 
 ## Its own clone
 
@@ -68,14 +86,15 @@ A contribution never touches a checkout of yours. The steward keeps its own clon
 marketplace in `~/.local/share/marketplace-steward/`, and gives each contribution its
 own worktree on its own branch. Not under `~/.claude`: Claude Code asks before every
 write there, whatever a skill allows, which would turn one contribution into dozens of
-prompts. `reference/permissions.md` lists what it is allowed to run.
+prompts. [Permissions](../reference/permissions.md) lists what it is allowed to run.
 
 ## The record
 
 The steward keeps `.claude/steward.json` in each project it sets up: what it created,
 with a hash of each file and of the template it came from. A later run uses it to tell
 apart a file it wrote and nobody touched, a file you changed, and a file you removed. So
-it never overwrites your edits, and never brings back what you took out.
+it never rebuilds a file you edited, and never brings back what you took out.
+[`record.md`](../../plugins/marketplace-steward/references/record.md) holds its rules.
 
 ## Two skills, and the rest read by path
 

@@ -9,7 +9,9 @@ The marketplace's own check, with no dependencies. It fails on:
 
 | Mistake | Why nothing else notices |
 |---|---|
-| A plugin missing from `marketplace.json`, `docs/reference/plugins.md` or `plugin-catalog.md`, or a name left in one of them that no longer exists | The plugin installs fine; missing from the catalog, it is never chosen for any project |
+| An empty plugin list in `marketplace.json`, or an entry without `name`, `source`, `description`, `category` or `tags` | The marketplace parses, and the plugin is half-registered |
+| A plugin missing from `marketplace.json`, `docs/reference/plugins.md` or `plugin-catalog.md`, or a name left in one of them that no longer exists. Only names in a table column headed Plugin or Plugins count | The plugin installs fine; missing from the catalog, it is never chosen for any project |
+| An entry whose `source` folder doesn't exist, that has no `.claude-plugin/plugin.json`, or whose `plugin.json` gives another name | The entry points at nothing, or at the wrong plugin |
 | A folder under `plugins/` that `marketplace.json` doesn't list | It is simply never loaded |
 | A `category` other than `universal`, `craft`, `language`, `tools` or `marketplace`, or a name whose prefix doesn't match it | The layer is read from the name |
 | A dependency on a plugin that doesn't exist, or on one in a more specific layer | `claude plugin validate` passes both |
@@ -23,12 +25,14 @@ The marketplace's own check, with no dependencies. It fails on:
 
 Claude Code's own check of a plugin or the whole marketplace: that each manifest
 parses, that every path it names exists inside the plugin, and that its fields have the
-right types. It warns "no version specified" once per plugin; here that is the policy,
+right types. It warns "no version specified" and "no description provided" once per
+plugin each; here both are the policy,
 which is why CI runs it without `--strict`.
 
 ## CI
 
-`.github/workflows/validate.yml` runs on every push to `main` and every pull request:
+`.github/workflows/validate.yml` runs on every push to `main`, every pull request, and
+when started by hand:
 
 | Job | Runs |
 |---|---|
@@ -40,6 +44,7 @@ which is why CI runs it without `--strict`.
 | Check | Catches |
 |---|---|
 | Set-up's verify phase | A trio naming a skill that isn't enabled or doesn't load; JSON or frontmatter that doesn't parse; a rule whose `paths:` match nothing; an `AGENTS.md` with no `CLAUDE.md` import; context files over their budget; a record that doesn't match its files |
+| Keep-current | A dead plugin key, a skill name in a trio that doesn't resolve, a path or a command in `AGENTS.md` that no longer exists |
 | The checker, before each pull request | A change that breaks the house standard or the cut, and anything from the source project in the diff, the commit messages, the branch name or the pull request text |
 
 ## What nothing catches
@@ -54,3 +59,4 @@ Look for these yourself, or ask `evaluate-skills`:
 | A rule stated in two skills | The two drift apart, and the agents that read them disagree |
 | A project's name in an example, outside a contribution | It reads like any example. Search for your projects' names before you commit |
 | A trio's skill installed but not in a role's `skills:` | The role works without that standard |
+| A wrong Skill, Builds on or signal cell in a plugin table | The check compares names only; the other columns are read by people |
