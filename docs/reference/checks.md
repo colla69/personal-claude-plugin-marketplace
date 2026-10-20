@@ -24,7 +24,8 @@ The marketplace's own check, with no dependencies. It fails on:
 ## `node scripts/check-docs.mjs`
 
 The documentation's own check, with no dependencies. It reads the pages in `docs/`,
-the three entry points, `.claude/rules/` and the plugin READMEs, and fails on:
+the three entry points, the repo's own `.claude/` and the plugin READMEs, and fails
+on:
 
 | Mistake | Why nothing else notices |
 |---|---|
@@ -32,11 +33,12 @@ the three entry points, `.claude/rules/` and the plugin READMEs, and fails on:
 | An absolute link, such as `/docs/README.md` | It resolves on one host and not another |
 | A link from a page into the working records | It works, and ties the page to history it should stand without |
 | A page in `docs/` that `docs/README.md` doesn't link | It exists, and nobody finds it |
-| A prose line past 88 columns, outside a table or code, and not one link whose text can't break | It renders fine, and the source drifts from the house format |
+| A prose line past 88 columns, outside a table, code or frontmatter, and not one link whose text can't break | It renders fine, and the source drifts from the house format |
 | A link into `docs/` from a skill, a reference or an agent | It works in this repo, and fails from the installed plugin, which holds no `docs/` |
 
 A link inside inline code is an example and isn't checked, and neither are
-reference-style links.
+reference-style links or anything in a file's frontmatter, such as an agent's
+description.
 
 ## `claude plugin validate`
 
