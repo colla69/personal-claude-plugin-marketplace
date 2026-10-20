@@ -41,9 +41,12 @@ skill the steward writes; the first trials will show where a run behaves otherwi
 ## When it loops
 
 When Check sends the work back, Do gets the plan and Check's list, and Check looks
-again. After two rounds that still don't match, the run stops and shows you both
-reports, instead of spending credits on a third. Decide there: amend the plan, accept
-the result as it is, or start over.
+again, but only at the items it sent back and what the fix touched. If the only gaps
+were wording or layout that change no plan item's meaning, Do fixes them, the run ends
+without another check, and the report says which fixes nobody checked. After two
+rounds that still don't match, the run stops and shows you both reports, instead of
+spending credits on a third. Decide there: amend the plan, accept the result as it is,
+or start over.
 
 ## Stopping and steering
 
