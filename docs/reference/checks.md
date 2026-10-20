@@ -21,6 +21,18 @@ The marketplace's own check, with no dependencies. It fails on:
 | `skills/`, `agents/`, `commands/` or `hooks/` inside `.claude-plugin/` | The plugin validates, installs, and is empty |
 | An `agents/` folder in any plugin but a `marketplace-` one | A shipped agent competes with the ones set-up generates |
 
+## `node scripts/check-docs.mjs`
+
+The documentation's own check, with no dependencies. It leaves the working records
+alone, and fails on:
+
+| Mistake | Why nothing else notices |
+|---|---|
+| A relative link, in a page, an entry point or a plugin README, to a file that doesn't exist | GitHub renders it as an ordinary link, and it leads nowhere |
+| A page in `docs/` that `docs/README.md` doesn't link | It exists, and nobody finds it |
+| A prose line past 88 columns, outside a table or code, and not a single link too long to break | It renders fine, and the source drifts from the house format |
+| A link into `docs/` from a skill, a reference or an agent | It works in this repo, and fails from the installed plugin, which holds no `docs/` |
+
 ## `claude plugin validate`
 
 Claude Code's own check of a plugin or the whole marketplace: that each manifest
@@ -37,6 +49,7 @@ when started by hand:
 | Job | Runs |
 |---|---|
 | `catalog in sync` | `node scripts/check-catalog.mjs` |
+| `docs in shape` | `node scripts/check-docs.mjs` |
 | `manifests valid` | `claude plugin validate .`, then `claude plugin validate` on each plugin |
 
 ## Inside the steward

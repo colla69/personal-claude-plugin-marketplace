@@ -94,7 +94,8 @@ A reviewer reads a page against its sources, which the map names, and checks:
 8. **Format.** 88 columns, backticks, synthetic examples.
 9. **The map.** It is on the map, with the right kind and status.
 
-Report findings in the shape of
+`node scripts/check-docs.mjs` checks items 7 and 9, and the 88 columns of item 8, before
+anything else; the rest is for the reviewer. Report findings in the shape of
 [`review-work`](../../plugins/craft-review/skills/review-work/SKILL.md). A page that is
 wrong about the product, restates a rule, or breaks a link is Blocking; a page that
 does two jobs or misses its reader should be fixed; wording is to consider. Say what

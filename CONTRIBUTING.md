@@ -32,11 +32,12 @@ not repeated here on purpose.
 ```bash
 claude plugin validate .
 node scripts/check-catalog.mjs
+node scripts/check-docs.mjs
 ```
 
 The first passes with warnings, "no version specified" and "no description provided"
-once per plugin each, which are the policy. The second must say the catalog is in sync.
-CI runs both on every pull request.
+once per plugin each, which are the policy. The other two must say the catalog is in
+sync and the docs in shape. CI runs all three on every pull request.
 
 Then search your change for your projects' names. The repo is public, and no check can
 list them without publishing them.

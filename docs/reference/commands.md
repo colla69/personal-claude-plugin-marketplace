@@ -29,6 +29,7 @@ until the next one.
 | `claude plugin validate .` | Validates the marketplace and every plugin. "No version specified" and "No description provided", once per plugin each, are the policy, not failures |
 | `claude plugin validate ./plugins/<name>` | Validates one plugin |
 | `node scripts/check-catalog.mjs` | Checks the plugin lists, layers, names and dependencies agree; [checks](checks.md) lists what it catches |
+| `node scripts/check-docs.mjs` | Checks the docs: links resolve, every page is on the map, prose wraps at 88, no skill links into `docs/` |
 | `claude plugin details <name>` | Shows an installed plugin's inventory and its estimated token cost |
 | `claude --plugin-dir ./plugins/<name> plugin details <name>` | The same for the files in your checkout, installed or not |
 | `claude --plugin-dir ./plugins/marketplace-steward --plugin-dir ./plugins/craft-review` | Starts a session with your working copy of the steward. Every plugin it depends on needs its own `--plugin-dir`, or it doesn't load |

@@ -45,16 +45,18 @@ No plugin has eval cases yet; they go in `plugins/<name>/evals/`.
 ```bash
 claude plugin validate .
 node scripts/check-catalog.mjs
+node scripts/check-docs.mjs
 ```
 
 | Check | Expected result |
 |---|---|
 | `claude plugin validate .` | "Passed with warnings": "no version specified" and "no description provided", once per plugin each. Both are the policy |
 | `node scripts/check-catalog.mjs` | "Catalog in sync", with the number of plugins |
+| `node scripts/check-docs.mjs` | "Docs in shape", with the number of pages |
 
-CI runs both on every push to `main` and every pull request, and once more for each
-plugin on its own. [Checks](../reference/checks.md) lists what each catches, and what
-nothing does.
+CI runs all three on every push to `main` and every pull request, and validates each
+plugin on its own as well. [Checks](../reference/checks.md) lists what each catches, and
+what nothing does.
 
 ## Commit
 
