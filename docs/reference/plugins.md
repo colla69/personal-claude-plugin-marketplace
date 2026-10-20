@@ -19,6 +19,7 @@ Each plugin's own README, under `plugins/<name>/`, says where it stops.
 | [`craft-code-review`](../../plugins/craft-code-review/) | Craft | `review-changes` | Reviewing a diff or branch: correctness, security, tests, API surface | Any code, with the other two code Craft plugins | `universal-clean-code`, `craft-review`, `craft-unit-testing` |
 | [`craft-unit-testing`](../../plugins/craft-unit-testing/) | Craft | `write-unit-tests` | Unit tests that fail when the code is wrong: test first, behaviour first, edges, no padding | A configured test runner; `craft-development` and `craft-code-review` pull it in | `universal-work-discipline` |
 | [`craft-refactoring`](../../plugins/craft-refactoring/) | Craft | `refactor-safely` | Behaviour-preserving change in small, verified steps | Any code, with the other two code Craft plugins | `universal-clean-code`, `universal-work-discipline`, `craft-development` |
+| [`craft-cv-writing`](../../plugins/craft-cv-writing/) | Craft | `write-cv` | Writing and tailoring a CV: terms in context, exact verbs, defensible figures, no invented facts | A CV or résumé kept as a document in the repo | `universal-work-discipline` |
 | [`language-java`](../../plugins/language-java/) | Language | `java-conventions` | Java idioms by version: nullability, immutability, exceptions, resources | `pom.xml`, `build.gradle` or `.java` sources | `universal-clean-code` |
 | [`language-typescript`](../../plugins/language-typescript/) | Language | `typescript-conventions` | TypeScript: strictness, narrowing over assertions, discriminated unions, async | `tsconfig.json`, or `.ts` and `.tsx` sources | `universal-clean-code` |
 | [`language-simple-english`](../../plugins/language-simple-english/) | Language | `simple-english` | English nobody can read two ways: short sentences, one instruction each, one word per meaning, no filler | Every project, with or without code | — |
@@ -32,7 +33,7 @@ Each plugin's own README, under `plugins/<name>/`, says where it stops.
 | Layer | Plugins |
 |---|---|
 | Universal | `universal-clean-code`, `universal-work-discipline` |
-| Craft | `craft-development`, `craft-review`, `craft-code-review`, `craft-unit-testing`, `craft-refactoring` |
+| Craft | `craft-development`, `craft-review`, `craft-code-review`, `craft-unit-testing`, `craft-refactoring`, `craft-cv-writing` |
 | Language | `language-java`, `language-typescript`, `language-simple-english` |
 | Framework & Tools | `tools-vue`, `tools-vue-typescript`, `tools-pinia` |
 | None: works on the marketplace itself | `marketplace-steward` |
