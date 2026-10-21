@@ -16,11 +16,13 @@ The module system comes from `package.json`, read first: `"type": "module"` or t
 
 - Writing or reviewing JavaScript, or working in a `.js` or `.mjs` file
 - ES modules, `require`, imports, promises or `async` come up
-- A JavaScript project has no type checker, so nothing else checks a module boundary
-  before the code runs
+- `ERR_MODULE_NOT_FOUND`, "Cannot use import statement outside a module", or a move
+  from CommonJS to ES modules
 
 ## Leaves to others
 
+- **Frameworks.** A Framework & Tools skill outranks this where both apply, such as
+  for a tool config that must have a default export.
 - **TypeScript.** A `.ts` file is `typescript-conventions`' business, in
   `language-typescript`.
 - Naming by intent, function shape, error handling and comments, to `clean-code`.
