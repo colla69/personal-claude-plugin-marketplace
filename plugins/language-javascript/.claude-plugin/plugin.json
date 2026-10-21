@@ -1,0 +1,8 @@
+{
+  "name": "language-javascript",
+  "displayName": "JavaScript Conventions",
+  "author": { "name": "Andrea Colarieti Tosti" },
+  "license": "Apache-2.0",
+  "keywords": ["javascript", "language"],
+  "dependencies": ["universal-clean-code"]
+}

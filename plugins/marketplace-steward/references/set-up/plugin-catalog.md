@@ -27,6 +27,7 @@ pure cost. When in doubt, leave it out and mention it as optional.
 | Craft | `craft-cv-writing` | `write-cv` skill | A CV or résumé kept as a document in the repo, such as `CV.md`, `resume.md`, a `cv/` folder or a `resume.*` file, and written or tailored there. Not a repo that only links to one. Pulls in `universal-work-discipline`. |
 | Language | `language-java` | `java-conventions` skill | A `pom.xml`, `build.gradle`, or `.java` sources. Read the *module's* language level, not the root's — they often differ. |
 | Language | `language-typescript` | `typescript-conventions` skill | A `tsconfig.json` or `.ts`/`.tsx` sources. Note whether `strict` is on, since it changes what correct code looks like. |
+| Language | `language-javascript` | `javascript-conventions` skill | The project's own code in `.js` or `.mjs` files, not only tool configs such as `vite.config.js` beside TypeScript sources. Read `"type"` in `package.json`, since it decides whether `.js` is an ES module. |
 | Language | `language-simple-english` | `simple-english` skill | Every project, with or without code: every project has text a person reads. |
 | Framework & Tools | `tools-vue` | `vue-conventions` skill | `vue` in dependencies. Check the major version and note it: the plugin targets Vue 3 Composition API, so flag a mismatch if the project is on Options API or Vue 2. |
 | Framework & Tools | `tools-vue-typescript` | `vue-typescript-conventions` skill | `vue` and `typescript` both in dependencies, or `lang="ts"` in `.vue` files. Pulls in `tools-vue` and `language-typescript`. |

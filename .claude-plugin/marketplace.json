@@ -78,6 +78,13 @@
       "tags": ["typescript", "language"]
     },
     {
+      "name": "language-javascript",
+      "source": "./plugins/language-javascript",
+      "description": "JavaScript language conventions: ES modules with explicit extensions, named exports, async/await at every layer, and a logger in library code.",
+      "category": "language",
+      "tags": ["javascript", "language"]
+    },
+    {
       "name": "language-simple-english",
       "source": "./plugins/language-simple-english",
       "description": "English nobody can read two ways, after Simplified Technical English: short sentences, one instruction each, one word per meaning, active voice, no filler.",
