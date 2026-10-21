@@ -12,7 +12,8 @@ convention is what makes the wrong thing look wrong before it runs.
 
 `"type": "module"` in `package.json`, or the `.mjs` extension, makes a file an ES
 module. Without either, Node treats `.js` as CommonJS. Write in the system the package
-declares: an `export` in a CommonJS file is a syntax error on load.
+declares: a file that mixes the two fails, either on load or when the other system's
+line runs.
 
 In an ES module:
 
