@@ -22,7 +22,7 @@ first trials will show where it behaves otherwise.
    set-up does: Do gets every skill the work needs, and Plan and Check the general
    ones. The rules and the default models and efforts are in
    [`trios.md`](../../plugins/marketplace-steward/references/set-up/trios.md).
-3. **Read the report**, and start a new session so the new agents load.
+3. **Read the report**, and run `/reload-plugins` so the new agents load.
 
 ## What you get
 

@@ -69,8 +69,8 @@ the same installs in one paste:>
 tables and per plugin a trio names>
 ```
 
-Restart the session before running a trio: skills and agents installed mid-session
-aren't available until the next one. Once you commit `.claude/`, the setup travels with
+Run `/reload-plugins` before running a trio: skills and agents installed mid-session
+aren't available until it has run. Once you commit `.claude/`, the setup travels with
 the project.
 
 ### Unverified — please confirm

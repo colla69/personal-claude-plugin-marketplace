@@ -11,7 +11,7 @@ Fix what goes wrong without saying so. Find the symptom, check the cause, apply 
 | A skill never fires on your request | Its description doesn't match the words you use | Tell the steward the lesson: a description that doesn't win is a change to that skill |
 | `claude plugin list` shows a plugin as failed to load: not found in the marketplace | A dead key: the plugin was renamed or removed | Say "update the setup"; see [migrate from old names](migrate-from-old-names.md) |
 | A plugin enabled in the project's settings isn't there on another machine | It was never installed on that machine | Run the install block from the set-up report |
-| Changes to a skill don't show up | The session started before the change, or the installed copy is old | Start a new session; run `claude plugin marketplace update` and `claude plugin update <name>@<marketplace>` |
+| Changes to a skill don't show up | The session loaded the skill before the change, or the installed copy is old | Run `claude plugin marketplace update` and `claude plugin update <name>@<marketplace>`, then `/reload-plugins`. For a `--plugin-dir` copy, start a new session |
 
 ## The steward
 

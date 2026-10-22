@@ -16,7 +16,7 @@ first trials will show where it behaves otherwise.
 2. **Let it run.** With a symptom named, it checks only that; otherwise it runs every
    check below. It asks only before a new skill, and once whether to keep or swap the
    project's `AGENTS.md` files if it hasn't asked before.
-3. **Read the report**, and start a new session if anything was installed or rebuilt.
+3. **Read the report**, and run `/reload-plugins` if anything was installed or rebuilt.
 
 ## What it checks
 
