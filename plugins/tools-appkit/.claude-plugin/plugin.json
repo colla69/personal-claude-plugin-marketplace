@@ -1,0 +1,7 @@
+{
+  "name": "tools-appkit",
+  "displayName": "AppKit",
+  "author": { "name": "Andrea Colarieti Tosti" },
+  "license": "Apache-2.0",
+  "keywords": ["appkit", "macos", "swift"]
+}

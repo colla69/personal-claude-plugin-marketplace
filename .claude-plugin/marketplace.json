@@ -127,6 +127,13 @@
       "tags": ["aws", "cloudfront", "s3", "static-site"]
     },
     {
+      "name": "tools-appkit",
+      "source": "./plugins/tools-appkit",
+      "description": "AppKit conventions for macOS apps in code: starting a bare executable, main-thread rules, key events, borderless windows, and kiosk and fullscreen options.",
+      "category": "tools",
+      "tags": ["appkit", "macos", "swift"]
+    },
+    {
       "name": "marketplace-steward",
       "source": "./plugins/marketplace-steward",
       "description": "Sets a project up for agentic work and keeps the setup current: writes its CLAUDE.md, installs the skills it needs, and generates a Plan/Do/Check trio per recurring task. Adopts a setup a project already has, giving every rule one home, and turns a lesson into a skill change by pull request.",
