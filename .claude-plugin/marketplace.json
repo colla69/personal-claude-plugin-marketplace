@@ -85,6 +85,13 @@
       "tags": ["javascript", "language"]
     },
     {
+      "name": "language-swift",
+      "source": "./plugins/language-swift",
+      "description": "Swift language conventions: the language mode, optionals handled not forced, value types, thrown errors, narrow access control, and concurrency stated in types.",
+      "category": "language",
+      "tags": ["swift", "language"]
+    },
+    {
       "name": "language-simple-english",
       "source": "./plugins/language-simple-english",
       "description": "English nobody can read two ways, after Simplified Technical English: short sentences, one instruction each, one word per meaning, active voice, no filler.",
