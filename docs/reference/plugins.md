@@ -23,11 +23,13 @@ Each plugin's own README, under `plugins/<name>/`, says where it stops.
 | [`language-java`](../../plugins/language-java/) | Language | `java-conventions` | Java idioms by version: nullability, immutability, exceptions, resources | `pom.xml`, `build.gradle` or `.java` sources | `universal-clean-code` |
 | [`language-typescript`](../../plugins/language-typescript/) | Language | `typescript-conventions` | TypeScript: strictness, narrowing over assertions, discriminated unions, async | `tsconfig.json`, or `.ts` and `.tsx` sources | `universal-clean-code` |
 | [`language-javascript`](../../plugins/language-javascript/) | Language | `javascript-conventions` | JavaScript: ES modules with explicit extensions, named exports, async/await, a logger in library code | The project's own code in `.js` or `.mjs` files | `universal-clean-code` |
+| [`language-swift`](../../plugins/language-swift/) | Language | `swift-conventions` | Swift: the language mode, optionals handled not forced, value types, thrown errors, concurrency stated in types | A `Package.swift`, an `.xcodeproj` or `.swift` sources | `universal-clean-code` |
 | [`language-simple-english`](../../plugins/language-simple-english/) | Language | `simple-english` | English nobody can read two ways: short sentences, one instruction each, one word per meaning, no filler | Every project, with or without code | — |
 | [`tools-vue`](../../plugins/tools-vue/) | Framework & Tools | `vue-conventions` | Vue 3 Composition API: components, reactivity, composables, templates | `vue` in the dependencies | — |
 | [`tools-vue-typescript`](../../plugins/tools-vue-typescript/) | Framework & Tools | `vue-typescript-conventions` | TypeScript in Vue 3: typed props, emits and reactive inputs | Both `vue` and `typescript`, or `lang="ts"` in `.vue` files | `tools-vue`, `language-typescript` |
 | [`tools-pinia`](../../plugins/tools-pinia/) | Framework & Tools | `pinia-conventions` | Pinia stores, and server data in a query layer instead of a store | `pinia` in the dependencies | `tools-vue` |
 | [`tools-aws-static-hosting`](../../plugins/tools-aws-static-hosting/) | Framework & Tools | `aws-static-hosting` | Static sites on AWS: certificate region, deep links, cache tiers, private buckets, safe syncs, deploy checks | A CloudFront distribution in front of an S3 bucket in the infrastructure code or deploy scripts | — |
+| [`tools-appkit`](../../plugins/tools-appkit/) | Framework & Tools | `appkit-conventions` | AppKit apps in code: a bare executable, the main thread, key events, borderless windows, kiosk options | `import AppKit` or `import Cocoa` in `.swift` sources | — |
 | [`marketplace-steward`](../../plugins/marketplace-steward/) | — | `steward`, `evaluate-skills` | Sets projects up, adopts their setups, keeps them current, and grows the marketplace by pull request | Never in a project: you install it once, for your user | `craft-review`, `language-simple-english` |
 
 ## By layer
@@ -36,8 +38,8 @@ Each plugin's own README, under `plugins/<name>/`, says where it stops.
 |---|---|
 | Universal | `universal-clean-code`, `universal-work-discipline` |
 | Craft | `craft-development`, `craft-review`, `craft-code-review`, `craft-unit-testing`, `craft-refactoring`, `craft-cv-writing` |
-| Language | `language-java`, `language-typescript`, `language-javascript`, `language-simple-english` |
-| Framework & Tools | `tools-vue`, `tools-vue-typescript`, `tools-pinia`, `tools-aws-static-hosting` |
+| Language | `language-java`, `language-typescript`, `language-javascript`, `language-swift`, `language-simple-english` |
+| Framework & Tools | `tools-vue`, `tools-vue-typescript`, `tools-pinia`, `tools-aws-static-hosting`, `tools-appkit` |
 | None: works on the marketplace itself | `marketplace-steward` |
 
 [Layers](../explanation/layers.md) explains the four layers and why dependencies point
