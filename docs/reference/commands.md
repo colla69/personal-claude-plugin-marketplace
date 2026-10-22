@@ -18,9 +18,10 @@ marketplace's own commands from the root of a checkout of this repo.
 | `claude plugin list --json` | Lists what is installed, with each plugin's id and version |
 | `claude plugin list --available --json` | Lists the real inventory in two arrays: `installed`, and `available` for what the configured marketplaces offer beyond it. Read both |
 | `/context` | Shows what loaded into a session, such as the context files |
+| `/reload-plugins` | Loads the plugins, skills and agents you installed or updated, without a new session |
 
-Restart the session after installing: a plugin installed mid-session isn't available
-until the next one.
+Run `/reload-plugins` after installing: a plugin installed mid-session isn't available
+until it has run.
 
 ## Working on the marketplace
 

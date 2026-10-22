@@ -17,7 +17,7 @@ claude plugin uninstall <old-name>@personal-claude-plugin-marketplace
 claude plugin install marketplace-steward@personal-claude-plugin-marketplace --scope user
 ```
 
-Then start a new session.
+Then run `/reload-plugins` in a session that is already open, or start a new one.
 
 ## In each project
 

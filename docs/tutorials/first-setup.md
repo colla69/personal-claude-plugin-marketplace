@@ -128,7 +128,7 @@ reads a missing file as your removal and doesn't bring it back.
 
 ## 6. Run a trio
 
-Start a **new session**, so the installed skills and the new agents load, and ask for a
+Run `/reload-plugins`, so the installed skills and the new agents load, and ask for a
 change:
 
 ```

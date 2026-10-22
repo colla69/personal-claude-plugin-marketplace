@@ -18,8 +18,8 @@ first trials will show where it behaves otherwise.
   claude plugin install marketplace-steward@personal-claude-plugin-marketplace --scope user
   ```
 
-  Then start a new session; a plugin installed mid-session isn't available until the
-  next one.
+  Then run `/reload-plugins` in a session that is already open, or start a new one. A
+  plugin installed mid-session isn't available until it has run.
 - **Branch.** The steward never touches git in your project, so make a branch first,
   and decide afterwards what to keep.
 
@@ -43,8 +43,8 @@ first trials will show where it behaves otherwise.
 5. **Read the report.** It lists every file created and every file changed, the
    plugins and why each fits, the trios with each role's skills, model and effort, and
    what it couldn't verify.
-6. **Start a new session**, so the installed skills and the new agents load. Run
-   `/context` to confirm the context files did.
+6. **Run `/reload-plugins`**, so the installed skills and the new agents load. Run
+   `/context` in a new session to confirm the context files did.
 
 ## What you get
 
