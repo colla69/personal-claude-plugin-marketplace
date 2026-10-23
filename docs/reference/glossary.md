@@ -34,7 +34,7 @@ that holds its rules.
 | **Language** | The layer of what the work is written in: a programming language, a natural language, a template | [`place-knowledge.md`](../../plugins/marketplace-steward/references/place-knowledge.md) |
 | **Layer** | One of four tiers every skill belongs to, from general to specific: Universal, Craft, Language, Framework & Tools | [`place-knowledge.md`](../../plugins/marketplace-steward/references/place-knowledge.md) |
 | **Leak check** | The check that nothing identifying the project a lesson came from reaches the public marketplace | [`SKILL.md`](../../plugins/marketplace-steward/skills/evaluate-skills/SKILL.md) |
-| **Live home** | A new home that is in force, so the local copy of a rule may go: written, installed and preloaded, or merged | [`adopt.md`](../../plugins/marketplace-steward/references/adopt.md) |
+| **Live home** | A new home that is in force, so the local copy of a rule may go: written, installed and preloaded by every role that applies it, or merged | [`adopt.md`](../../plugins/marketplace-steward/references/adopt.md) |
 | **Marketplace** | A catalog of plugins that Claude Code installs from. This repo is one | [`plugin-shape.md`](../../plugins/marketplace-steward/references/author-skills/plugin-shape.md) |
 | **Marketplace plugin** | A plugin that works on the marketplace itself, named `marketplace-<name>`. The steward is the only one, and the only plugin that ships agents | [`plugin-shape.md`](../../plugins/marketplace-steward/references/author-skills/plugin-shape.md) |
 | **Pending** | A rule an adoption left where it was, because its home is a pull request not yet merged | [`record.md`](../../plugins/marketplace-steward/references/record.md) |
