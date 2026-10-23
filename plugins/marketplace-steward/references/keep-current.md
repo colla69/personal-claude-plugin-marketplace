@@ -22,10 +22,25 @@ as the front door decides, not this one. An `AGENTS.md` counts because setups fr
 before the record wrote one. A project with no record was set up before the record
 existed, and step 4 rebuilds nothing in it.
 
+Then update the steward itself with `claude plugin update
+marketplace-steward@<marketplace>`, where the marketplace is the name after the `@`
+in the steward's id in `claude plugin list --json`. Refreshing a marketplace fetches
+its new versions and installs none of them, and step 4 compares each file with the
+template in the installed copy. From an older copy, a template reads as changed, and
+step 4 would rebuild a good file from text older than the file's own. When the update
+installs a newer copy, read the rest of this file, and every file it names, from that
+copy's `installPath` in the same listing, because the session loaded the old ones.
+
 ## 2. Plugin keys that no longer exist
 
 Apply the dead-key rule in "Renamed and removed" in `set-up/plugin-catalog.md`. A
 successor you install goes in as set-up's phase 5 installs, within the source policy.
+
+In any run that installs or updates a plugin, including a run for a single symptom,
+run this step once more after the last install or update. The `claude plugin` commands rewrite
+`.claude/settings.json`, and a key that comes out garbled matches no plugin and warns
+of nothing. Remove a garbled toolkit key as a dead key, and report any other. Then
+refresh the file's entry in the record as `record.md` says.
 
 ## 3. Skills the trios can't load
 

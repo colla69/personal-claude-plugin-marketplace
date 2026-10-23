@@ -46,7 +46,7 @@ Everything the rules don't name. The ones you will meet:
 | `claude plugin marketplace update`, `claude plugin list --available --json`, `claude plugin marketplace list` | Every set-up and keep-current, to read the live inventory and the configured marketplaces |
 | `claude plugin install <name>@<marketplace> --scope project` | Each plugin set-up or keep-current installs |
 | `claude plugin details <plugin>` | Set-up's check that every skill a trio names loads, keep-current's check of the trios' skills, and adoption's test for a live home |
-| `claude plugin update <name>@<marketplace>` | Keep-current, after a contribution is merged |
+| `claude plugin update <name>@<marketplace>` | Keep-current, at the start of every run to update the steward itself, and after a contribution is merged. Reads from the newer copy's folder prompt too, because the allow rule for reading covers the copy that was loaded |
 | `sha256sum <path>` | Writing or reading the record |
 | A command to check that a JSON file parses | Set-up's verify phase |
 | `git status` or `git diff` in your project | Adoption's test for a file whose working copy differs from `HEAD`. Reading only |
