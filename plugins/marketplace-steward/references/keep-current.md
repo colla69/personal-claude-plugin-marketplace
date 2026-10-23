@@ -36,10 +36,11 @@ copy's `installPath` in the same listing, because the session loaded the old one
 Apply the dead-key rule in "Renamed and removed" in `set-up/plugin-catalog.md`. A
 successor you install goes in as set-up's phase 5 installs, within the source policy.
 
-Run this step once more after the last step that installs or updates a plugin. The
-`claude plugin` commands rewrite `.claude/settings.json`, and a key that comes out
-garbled matches no plugin and warns of nothing. Remove it as a dead key, and refresh
-the record's hash for the file, which matched before your installs.
+In any run that installs or updates a plugin, including a run for a single symptom,
+run this step once more after the last install. The `claude plugin` commands rewrite
+`.claude/settings.json`, and a key that comes out garbled matches no plugin and warns
+of nothing. Remove a garbled toolkit key as a dead key, and report any other. Then
+refresh the file's entry in the record as `record.md` says.
 
 ## 3. Skills the trios can't load
 
