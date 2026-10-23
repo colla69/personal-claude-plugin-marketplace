@@ -19,6 +19,7 @@ the reason it was made is often the reason its replacement has the shape it has.
 - [Contributions that finish: D54](#contributions-that-finish-d54)
 - [The repo's own plugins: D55](#the-repos-own-plugins-d55)
 - [Measured cost: D56](#measured-cost-d56)
+- [Documentation on Sonnet: D57](#documentation-on-sonnet-d57)
 - [Still open](#still-open)
 
 ## The author's statements
@@ -111,7 +112,7 @@ Decided on 2026-10-20, when the token cost of the setup came under review.
 
 | # | Decision | Why | Now |
 |---|---|---|---|
-| D46 | Every agent names its model as an alias beside its `effort`, set per role; every role starts on `opus` | The setup is Claude only, so a model name costs no portability, and the model is where a role's cost is decided | Holds; measuring decides which roles move to a cheaper model |
+| D46 | Every agent names its model as an alias beside its `effort`, set per role; every role starts on `opus` | The setup is Claude only, so a model name costs no portability, and the model is where a role's cost is decided | Holds; measuring decides which roles move to a cheaper model, except a documentation trio's (D57) |
 
 ## The repo's own setup: D47 and D48
 
@@ -171,6 +172,15 @@ analysis and make the setups of the docked projects more performant and cheaper.
 | # | Decision | Why | Now |
 |---|---|---|---|
 | D56 | The steward measures what a project's setup costs, with a script it ships, `measure-setup.mjs`, adapted from that plugin under its MIT license. Keep-current measures in a step of its own and set-up after it writes. It moves only what it wrote and nobody edited, to where it loads on demand. It reports a plugin, trio or MCP server that no session used, and changes no model on the numbers. Taken: the baseline from a session's first request, usage counted once per message, the transcript folder's name, and the rule that too few sessions are no verdict. Left out: its hooks, subagents, session board, prompt coach and prices. The script carries the upstream copyright and license notice, which the license requires, so it is the one allowed real name in the repo | Every request reads the always-on context again, so the setup is where a cut repays in every session. Transcripts are megabytes, which a model can't add up by reading, so the steward is the one plugin that ships code. What was left out changes how a person works, not the setup, and hooks stay in the project (D35). Prices go stale, and no decision here depends on them | Holds, in `cost.md`, step 9 of `keep-current.md` and phase 7 of `set-up/procedure.md` |
+
+## Documentation on Sonnet: D57
+
+Decided on 2026-10-23: "I think we should always run documentations on Sonnet low
+effort."
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D57 | A trio whose work is documentation runs all three roles on `sonnet` at `low`. A trio that produces a deliverable, such as a monthly report, or writes code and its documentation together keeps the defaults. No documentation skill is added | The maintainer's choice, made ahead of the measuring D46 waits for. No documentation skill or role existed to pin, so the rule goes where set-up chooses each role's model | Holds, in "Model and effort" in `set-up/trios.md`. A trio built before it keeps its recorded model, because keep-current rebuilds from the recorded `fill` |
 
 ## Still open
 

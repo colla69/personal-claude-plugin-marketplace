@@ -74,6 +74,10 @@ a good plan is where the thinking pays most, and Do and Check `medium`. Every ro
 starts on `opus`, until measuring shows which can run on a cheaper model. Set-up
 changes either one only for a reason it can state, and states it in its report.
 
+Documentation is the one exception decided ahead of the measuring: a trio whose work is
+documentation runs all three roles on `sonnet` at `low`, by
+[D57](decisions.md#documentation-on-sonnet-d57).
+
 ## The reference case
 
 The monthly report, as the idea was presented:
