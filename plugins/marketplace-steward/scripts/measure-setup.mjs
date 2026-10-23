@@ -274,7 +274,8 @@ function readSession(file) {
     }
   }
   return {
-    file, mtime: mtimeOf(file), start: start || mtimeOf(file), baseline: reqs[0].context, requests: reqs.length, compactions,
+    file, mtime: mtimeOf(file), start: start || mtimeOf(file), baseline: reqs[0].context,
+    meanContext: Math.round(reqs.reduce((n, r) => n + r.context, 0) / reqs.length), requests: reqs.length, compactions,
     calls, skillListing: skillListing && listingEntries(skillListing), agentListing: agentLines && listingEntries(agentLines),
   }
 }
@@ -369,7 +370,10 @@ function report(root) {
     const baseline = avg((s) => s.baseline)
     const outside = latest ? listed(latest.skillListing, (n) => !projectSkills.has(n) && !(n.includes(':') && pluginNames.has(n.split(':')[0]))) +
       listed(agentListing, (n) => !projectAgents.has(n) && !(n.includes(':') && pluginNames.has(n.split(':')[0]))) : 0
-    L.push(`Context at the first request, on average: ${fmt(baseline)} tokens. This setup is ${setupTotal * 100 < baseline ? 'under 1%' : `about ${Math.round((setupTotal / baseline) * 100)}%`} of it.`)
+    const typical = avg((s) => s.meanContext)
+    const share = (of) => (setupTotal * 100 < of ? 'under 1%' : `about ${Math.round((setupTotal / of) * 100)}%`)
+    L.push(`Context at the first request, on average: ${fmt(baseline)} tokens. This setup is ${share(baseline)} of it.`)
+    L.push(`Context across all requests, on average: ${fmt(typical)} tokens. This setup is ${share(typical)} of a typical request.`)
     L.push(`Skills and agents from outside this setup (user scope, other plugins, built in): ~${fmt(outside)} tokens. The rest is Claude Code's own prompt and tools, and the first message.`)
     L.push(`Requests per session, on average: ${avg((s) => s.requests)}. Compactions in these sessions: ${sessions.reduce((n, s) => n + s.compactions, 0)}.`, '')
   }

@@ -73,10 +73,17 @@ project.
 Give the numbers as the script printed them. Don't round a small number up, and don't
 turn tokens into money: prices change, and no decision here depends on them.
 
+**Say where the cost is.** A session's context grows with what it reads, so the setup
+is a smaller share of an average request than of the first one. When the second share
+is small, say so: a cut to the setup reaches only that share of each request, and the
+larger part is what the sessions themselves read, which the script does not break
+down. Then don't offer the setup as the place to save.
+
 ```
 ### Cost
 **This setup:** ~<tokens> always on, <share> of the context at a session's first
-request, read again with each of about <requests> requests. **Sessions read:** <n>
+request and <share> of an average request, read again with each of about <requests>
+requests. **Sessions read:** <n>
 
 | Part | Always-on tokens | Finding | Done |
 |---|---|---|---|
