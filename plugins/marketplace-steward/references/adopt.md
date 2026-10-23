@@ -112,8 +112,17 @@ agents were retired: no paragraph went until it had a home. A home is live when:
 
 - **it is `CLAUDE.md`, a trio or a project skill**, and it has been written;
 - **it is a toolkit skill**, its plugin passes set-up's phase 7 check 1, and the skill
-  is in the `skills:` of every trio role that does the work the rule governs, so it
-  reaches where the local copy was in force;
+  is in the `skills:` of every trio role whose step applies the rule. Ask it of Plan,
+  Do and Check one by one. A rule about where logic lives is applied by a plan that
+  places it and a check that compares the result with that plan, as well as by the
+  role that writes it. A rule about syntax is applied by the writer alone. A rule from
+  a root `CLAUDE.md` was in force for all three roles, and one from a nested
+  `CLAUDE.md` or a rule with `paths:` was in force for every role that reads there.
+  Removing it on the strength of the writers' skills leaves the others without it,
+  and nothing reports the gap. Where a role that applies the rule lacks the skill,
+  add it when `set-up/trios.md` lets that role take it and the role's file matches
+  the record. When either fails, the rule stays, and the report names the role. Each
+  role that takes the skill pays for it in every run;
 - **it is a contribution**, it has been merged, and the installed copy of the skill or
   template says the same thing as the rule. Until then the rule stays where it is, and
   goes in the record's `pending` once its pull request exists. A rule in another
