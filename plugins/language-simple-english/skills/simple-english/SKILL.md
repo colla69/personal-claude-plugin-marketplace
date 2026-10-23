@@ -8,8 +8,8 @@ description: Write English that a tired reader or a non-native reader cannot mis
 Text is good when nobody can read it two ways. Every rule below removes one way to
 misread. A long sentence hides which clause a condition belongs to. A synonym makes the
 reader ask whether two things differ. Filler takes attention that the facts needed.
-The same test holds for a reply: when an answer has two readings, ask which one the
-reader meant.
+The same test holds for a reply: when an answer has two readings, ask the person who
+answered which one they meant.
 
 These rules adapt Simplified Technical English, ASD-STE100, for everyday technical
 writing. They leave out the standard's controlled dictionary: the words of your field
@@ -125,10 +125,10 @@ Still open: <each question without an answer>
 ```
 
 An answer is unclear when it has soft words, such as "maybe". It is also unclear when
-it is a "no" with no alternative, or when it can cover more than you proposed. If one
-answer is unclear, ask about it before you act on any answer. Give each reading as an
-option, with your recommendation first. No option can be a different decision, or bring
-back what they ruled out. Never settle an unclear answer by the likeliest reading. If
+it rejects one of several options and names no other, or when it can cover more than
+you proposed. Ask about an unclear answer before you act on any answer, and never
+settle it by the likeliest reading. Give each reading as an option, your recommendation
+first. No option is a new decision, and none brings back what the person ruled out. If
 nobody can answer in this run, give the readings and stop.
 
 ## Check before you deliver

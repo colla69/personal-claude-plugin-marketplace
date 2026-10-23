@@ -29,7 +29,8 @@ leaves out the standard's controlled dictionary.
 
 - **What the text says.** It governs how a fact is written, not which facts belong in
   it: what an error message must contain is `clean-code`'s, and what a review reports
-  is `review-work`'s.
+  is `review-work`'s. Questions are the exception: the options a question names, and
+  the reading of its answer, are part of what makes it clear.
 - Code, identifiers, commands and quoted output, which stay exactly as they are.
 - A project's own style guide and terms, and formats with their own rules, such as a
   commit convention, which win.
