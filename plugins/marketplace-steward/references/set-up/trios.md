@@ -72,3 +72,10 @@ one fails silently.
 The templates carry the defaults: Plan `high`, Do `medium`, Check `medium`, each on
 `opus`. Write `model` as an alias, never a full model ID. Change either one only for a
 reason you can state, and state it in the report's Trios table.
+
+A trio whose work is documentation, such as `docs` for a project's guides or
+`release-notes`, runs all three roles on `sonnet` at `low`. The maintainer chose this
+before any measuring, so don't wait for numbers to apply it, and give "documentation
+trio" as the reason in the report. A trio that writes code and its documentation
+together, such as `change`, keeps the defaults: its documentation is a side of the
+work, not the work.
