@@ -37,7 +37,7 @@ Apply the dead-key rule in "Renamed and removed" in `set-up/plugin-catalog.md`. 
 successor you install goes in as set-up's phase 5 installs, within the source policy.
 
 In any run that installs or updates a plugin, including a run for a single symptom,
-run this step once more after the last install. The `claude plugin` commands rewrite
+run this step once more after the last install or update. The `claude plugin` commands rewrite
 `.claude/settings.json`, and a key that comes out garbled matches no plugin and warns
 of nothing. Remove a garbled toolkit key as a dead key, and report any other. Then
 refresh the file's entry in the record as `record.md` says.
