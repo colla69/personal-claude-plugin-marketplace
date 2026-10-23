@@ -8,6 +8,7 @@ The shape of set-up's report. Keep it short: tables and one-liners.
 **Steward version:** <the installed version of marketplace-steward, as the record
 holds it, so a reader can tell which version produced the output>
 **Components mapped:** <n>
+**Always on:** <the tokens this setup adds to every session, measured in phase 7>
 **Existing setup:** <none, only other tools' files, or adopted: see Adopted below>
 **Sources consulted:** <each marketplace you read, with how many plugins it offered —
 proof the list is live rather than remembered>

@@ -1,8 +1,8 @@
 # Authoring style
 
-The marketplace is prose. There is no code in it: the whole product is how well the
-standards are written and how cleanly they are cut. This guide covers the writing, and
-`place-knowledge.md` the cut.
+The marketplace is prose. The product's only code is the script the steward measures
+a setup with: the whole product is how well the standards are written and how cleanly
+they are cut. This guide covers the writing, and `place-knowledge.md` the cut.
 
 ## Contents
 

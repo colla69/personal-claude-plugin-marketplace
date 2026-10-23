@@ -109,7 +109,7 @@ marketplace as it is.
 ## A `marketplace-` plugin
 
 A plugin that works on the marketplace itself, rather than on a project's work, is
-named `marketplace-<name>` with category `marketplace`. Three things differ.
+named `marketplace-<name>` with category `marketplace`. Four things differ.
 
 **It may ship agents.** It works on the knowledge system itself and has to exist before
 any project agent can, so its helpers can't be generated into a project. The steward
@@ -132,6 +132,14 @@ files around it relative to its own folder.
 
 Hiding a skill with `disable-model-invocation: true` doesn't work instead: it can't
 be preloaded, and Claude can't run it.
+
+**It may ship a script**, in `scripts/` at the plugin root, when a job needs a number
+that a model cannot get by reading, such as the token counts in megabytes of session
+transcripts. The script is plain Node with no dependencies, like the repo's own checks.
+It writes nothing and prints only what the job reads. The skill allows the exact
+command in its `allowed-tools`:
+`Bash(node ${CLAUDE_PLUGIN_ROOT}/scripts/<name>.mjs)`. The steward ships
+`measure-setup.mjs`, which `cost.md` runs.
 
 **Loading it for work needs its dependencies too.** A plugin whose dependency isn't
 installed doesn't load at all, so a `--plugin-dir` session on it passes one

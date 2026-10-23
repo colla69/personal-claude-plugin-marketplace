@@ -25,6 +25,7 @@ review started directly can read the standard it quotes.
 | `Read(/${CLAUDE_PLUGIN_ROOT}/**)` | Read its own reference files from the installed plugin. The leading `/` makes the path absolute, as a permission rule needs |
 | `Read`, `Write`, `Edit` on `~/.local/share/marketplace-steward/**` | Work in its own folder: the clone, the worktrees, the drafts and the backups |
 | `claude plugin list --json`, `claude plugin marketplace list --json` | Find which marketplace is the house one, and where it lives |
+| `node ${CLAUDE_PLUGIN_ROOT}/scripts/measure-setup.mjs` | Measure what the project's setup costs. It reads the project's context files and `.claude/`, and the project's transcripts under `~/.claude/projects/`, prints names, numbers and the headings of the root context files, and writes nothing |
 | `git -C …/clone worktree list`, `fetch origin`, `worktree add -b contrib/* …/worktrees/* origin/main`, `worktree remove …/worktrees/*`, `branch -D contrib/*` | Manage one worktree per contribution, on a `contrib/` branch off `main` |
 | `git -C …/worktrees/* add -A`, `commit -F …/drafts/*`, `diff origin/main*`, `log --format=%B origin/main..HEAD`, `push -u origin contrib/*` | Commit a contribution from its drafted message, show it to the checker, and push its branch |
 | `claude plugin validate …/worktrees/*`, `node …/worktrees/*/scripts/check-catalog.mjs`, `node …/worktrees/*/scripts/check-docs.mjs`, `claude --plugin-dir …/worktrees/* plugin details *` | Run the marketplace's checks on the worktree |

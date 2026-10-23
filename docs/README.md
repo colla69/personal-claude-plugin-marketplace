@@ -43,7 +43,7 @@ One task each.
 | [`guides/adopt-an-existing-setup.md`](guides/adopt-an-existing-setup.md) | Bring a project's own `CLAUDE.md`, rules, agents or hooks onto the marketplace | `adopt.md`, `record.md` | Written, not yet tried |
 | [`guides/add-a-trio.md`](guides/add-a-trio.md) | Add a trio for one more recurring task | `trios.md`, `roles/` | Written, not yet tried |
 | [`guides/run-a-trio.md`](guides/run-a-trio.md) | Use `/<task>`: the plan, the OK, sending work back | `roles/run.md` | Written, not yet tried |
-| [`guides/keep-a-setup-current.md`](guides/keep-a-setup-current.md) | Update a setup after the marketplace or the project changed | `keep-current.md` | Written, not yet tried |
+| [`guides/keep-a-setup-current.md`](guides/keep-a-setup-current.md) | Update a setup after the marketplace or the project changed | `keep-current.md`, `cost.md` | Written, not yet tried |
 | [`guides/contribute-a-lesson.md`](guides/contribute-a-lesson.md) | Give the steward a lesson, and review its pull request | `contribute.md` | Written, not yet tried |
 | [`guides/review-a-skill.md`](guides/review-a-skill.md) | Review a skill, a plugin, a change or the whole set | `evaluate-skills`, `change-reviewer` | Written |
 | [`guides/write-a-skill-by-hand.md`](guides/write-a-skill-by-hand.md) | Add or change a skill without the steward | `style.md`, `plugin-shape.md`, `place-knowledge.md` | Written |
@@ -78,7 +78,7 @@ Why it is the way it is.
 | [`explanation/the-steward.md`](explanation/the-steward.md) | Why one package, why it asks only three things, why a checker | The front door, the job files | Written, not yet tried |
 | [`explanation/placing-knowledge.md`](explanation/placing-knowledge.md) | Why diagnose first, and why strip | `place-knowledge.md` | Written |
 | [`explanation/safety.md`](explanation/safety.md) | What keeps you in control | The job files | Written, not yet tried |
-| [`explanation/cost.md`](explanation/cost.md) | What every enabled skill costs | `plugin-shape.md`, `evaluate-skills` | Written |
+| [`explanation/cost.md`](explanation/cost.md) | What every enabled skill costs, and how the steward measures a setup | `plugin-shape.md`, `evaluate-skills`, `cost.md`, `measure-setup.mjs` | Written; the measuring not yet tried |
 | [`explanation/decisions.md`](explanation/decisions.md) | Every decision, with its date, its reason and where it lives now | The product files each decision names | Written |
 
 ## Contributing

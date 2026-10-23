@@ -54,7 +54,7 @@ when started by hand:
 
 | Job | Runs |
 |---|---|
-| `catalog in sync` | `node scripts/check-catalog.mjs` |
+| `catalog in sync` | `node scripts/check-catalog.mjs`, then the steward's measuring script on this repo, which fails only when the script itself breaks |
 | `docs in shape` | `node scripts/check-docs.mjs` |
 | `manifests valid` | `claude plugin validate .`, then `claude plugin validate` on each plugin |
 
@@ -62,8 +62,8 @@ when started by hand:
 
 | Check | Catches |
 |---|---|
-| Set-up's verify phase | A trio naming a skill that isn't enabled or doesn't load; JSON or frontmatter that doesn't parse; a rule whose `paths:` match nothing; an `AGENTS.md` that doesn't follow the keep-or-swap answer; context files over their budget; a record that doesn't match its files |
-| Keep-current | A dead plugin key, a skill name in a trio that doesn't resolve, an `AGENTS.md` from an older setup, a path or a command in `CLAUDE.md` that no longer exists |
+| Set-up's verify phase | A trio naming a skill that isn't enabled or doesn't load; JSON or frontmatter that doesn't parse; a rule whose `paths:` match nothing; an `AGENTS.md` that doesn't follow the keep-or-swap answer; context files over their budget; a record that doesn't match its files. It also measures the setup's always-on tokens for the report |
+| Keep-current | A dead plugin key, a skill name in a trio that doesn't resolve, an `AGENTS.md` from an older setup, a path or a command in `CLAUDE.md` that no longer exists, a part of the setup that didn't load in the latest session, and a part no session used |
 | The checker, before each pull request | A change that breaks the house standard or the cut, and anything from the source project in the diff, the commit messages, the branch name or the pull request text |
 
 ## What nothing catches

@@ -3,9 +3,9 @@
 A Claude Code plugin marketplace: a library of skills, one per plugin, reused across
 every project, and the steward, `marketplace-steward`, which sets projects up from it
 and grows it by pull request. **The product is prose.** There is no build and no
-runtime; the only code is the zero-dependency Node scripts in `scripts/`. So a change
-is judged by how it is written and cut, and the checks exist only for the mistakes
-that fail silently.
+runtime; the only code is the zero-dependency Node scripts in `scripts/`, and the one
+the steward measures a setup with. So a change is judged by how it is written and cut,
+and the checks exist only for the mistakes that fail silently.
 
 The steward is written and not yet tried on real projects. The documentation is mapped
 in [`docs/README.md`](docs/README.md), and the reason behind every decision is in
@@ -32,6 +32,7 @@ Read the file before you change what it governs. None of its rules are repeated 
 | Check the docs' links, map and wrapping | `node scripts/check-docs.mjs` |
 | Load the working copy of the steward | `claude --plugin-dir ./plugins/marketplace-steward --plugin-dir ./plugins/craft-review --plugin-dir ./plugins/language-simple-english` |
 | See a plugin's inventory and cost | `claude --plugin-dir ./plugins/<name> plugin details <name>` |
+| Measure what a project's setup costs | `node plugins/marketplace-steward/scripts/measure-setup.mjs <project>` |
 | Run a plugin's evals with a baseline | `claude plugin eval ./plugins/<name> --ablation with-without` |
 
 `claude plugin validate` warns "no version specified" and "no description provided" for
@@ -62,7 +63,8 @@ The gist of each; the files above hold the rules.
 - **A product change can make a page wrong, and no check sees it.** The map's Sources
   column names the pages each product file feeds; reread them in the same change.
 - **No real project name, client or person** in any file or commit message. The repo is
-  public; examples are synthetic.
+  public; examples are synthetic. The one exception is a credit and license notice that
+  a borrowed file's license requires, such as the header of `measure-setup.mjs`.
 
 ## Working on this repo
 
@@ -92,7 +94,7 @@ made of. These lines keep the two apart; the reasons are D55 in `decisions.md`.
   steward's references on purpose: keep it.
 - **Enabled here: `universal-work-discipline`, `craft-review` and
   `language-simple-english`.** The code Craft plugins and `language-javascript` are left
-  out on purpose: the only code is the two scripts, they change rarely, and each
+  out on purpose: the only code is three small scripts, they change rarely, and each
   description would cost every session here. The steward is never enabled here.
 - **The desktop app runs the copies installed from `main`.** It takes no
   `--plugin-dir`, so a branch is tested with the working-copy command, and

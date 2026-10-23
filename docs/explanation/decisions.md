@@ -18,6 +18,7 @@ the reason it was made is often the reason its replacement has the shape it has.
 - [Claude only: D53](#claude-only-d53)
 - [Contributions that finish: D54](#contributions-that-finish-d54)
 - [The repo's own plugins: D55](#the-repos-own-plugins-d55)
+- [Measured cost: D56](#measured-cost-d56)
 - [Still open](#still-open)
 
 ## The author's statements
@@ -160,6 +161,16 @@ plugins in the desktop app and to have simple English here.
 | # | Decision | Why | Now |
 |---|---|---|---|
 | D55 | The repo enables `universal-work-discipline`, `craft-review` and `language-simple-english` at project scope, and leaves out the steward, the code Craft plugins and `language-javascript`. Its `CLAUDE.md` says that nothing under `plugins/` is a project rule or evidence of the stack, and that no rule in it travels | The steward reads its own source here, and without those lines a later run could take the product for the project's rules, remove the gist of "What breaks silently", or install the code plugins on the signal of two scripts. The steward belongs to the machine, as everywhere | Holds, in the section "This repo's own setup" of `CLAUDE.md` |
+
+## Measured cost: D56
+
+Decided on 2026-10-23, after reading claude-context-optimizer, a plugin that measures
+what Claude Code sessions cost: "I want the steward to be able to do this kind of
+analysis and make the setups of the docked projects more performant and cheaper."
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D56 | The steward measures what a project's setup costs, with a script it ships, `measure-setup.mjs`, adapted from that plugin under its MIT license. Keep-current measures in a step of its own and set-up after it writes. It moves only what it wrote and nobody edited, to where it loads on demand. It reports a plugin, trio or MCP server that no session used, and changes no model on the numbers. Taken: the baseline from a session's first request, usage counted once per message, the transcript folder's name, and the rule that too few sessions are no verdict. Left out: its hooks, subagents, session board, prompt coach and prices. The script carries the upstream copyright and license notice, which the license requires, so it is the one allowed real name in the repo | Every request reads the always-on context again, so the setup is where a cut repays in every session. Transcripts are megabytes, which a model can't add up by reading, so the steward is the one plugin that ships code. What was left out changes how a person works, not the setup, and hooks stay in the project (D35). Prices go stale, and no decision here depends on them | Holds, in `cost.md`, step 9 of `keep-current.md` and phase 7 of `set-up/procedure.md` |
 
 ## Still open
 
