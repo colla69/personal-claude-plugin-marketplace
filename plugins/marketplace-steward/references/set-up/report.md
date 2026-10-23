@@ -20,10 +20,16 @@ proof the list is live rather than remembered>
 ### Adopted
 | From | Rule | Home | Local copy |
 |---|---|---|---|
-| <file> | <the rule, quoted short> | <plugin:skill, a contribution to plugin:skill or a role template, CLAUDE.md, a trio, a project skill, stays, or nowhere> | <removed / moved / pending: the pull request / stays / stays: stopped / stays: declined / stays: waiting for your OK> |
+| <file> | <the rule, quoted short> | <plugin:skill, a contribution to plugin:skill or a role template, CLAUDE.md, a trio, a project skill, stays, or nowhere> | <removed / moved / waiting for your word / pending: the pull request / stays / stays: stopped / stays: declined / stays: waiting for your OK> |
 
 <Only for an adoption: every rule, grouped by the file it came from. Then name every
 backup made, and every old agent with the trio that replaces it.>
+
+### Waiting for your word
+- `<file>` — <the rule, quoted short>; covered by <plugin:skill or role template>: "<its sentence>"
+
+<Only for an adoption, and only when a rule waits: each rule in a context file whose
+home is live. Say that the user answers "remove it" or "keep it".>
 
 ### Contributions
 | To | New or extended | Rules | Outcome |

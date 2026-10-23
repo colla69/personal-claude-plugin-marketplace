@@ -43,8 +43,9 @@ first trials will show where it behaves otherwise.
 | Local copy | Means |
 |---|---|
 | **Moved** | The rule now lives in `CLAUDE.md` or a project skill, and was taken out of its old file |
-| **Removed** | Its home already says it: a toolkit skill that is installed and preloaded by every role whose step applies the rule, or a role template now in a trio. Dead keys, hooks that only injected text, and dead or machine-only rules go too |
-| **Pending** | Its home is a pull request. It stays where it is until you merge, and keep-current removes it then |
+| **Removed** | Its home already says it: a toolkit skill that is installed and preloaded by every role whose step applies the rule, for a rule in an agent file or a project skill, or a role template now in a trio. Dead keys, hooks that only injected text, and dead or machine-only rules go too |
+| **Pending** | Its home is a pull request. It stays where it is until you merge. Then keep-current removes it, or lists it as waiting for your word if it is in a context file |
+| **Waiting for your word** | Its home is live, but the rule is in a context file that the main session reads. It stays until you say it can go, and the report quotes the skill's sentence that covers it |
 | **Stays** | It is project mechanics, such as a hook or a permission, or no live home fits it yet |
 | **Stays: stopped** | Its home is a contribution that stopped before a pull request; the Contributions table says where and what is left |
 | **Stays: declined**, or **waiting for your OK** | Its home was a new skill: you said no, or the question ends the report |
@@ -82,4 +83,5 @@ rest; one that nothing imports goes once each of its rules has a home.
 
 Once you have merged the pull requests, say "update the setup" in the project.
 [Keep-current](keep-a-setup-current.md) removes each pending rule whose home is now
-live, and leaves one you have edited since, with a note.
+live, except a rule in a context file, which it lists with the sentence that covers it
+and removes when you say so. It leaves one you have edited since, with a note.

@@ -43,7 +43,8 @@ comes next.
 - For each trio, `.claude/agents/<task>-plan.md`, `-do.md` and `-check.md`, and
   `.claude/skills/<task>/SKILL.md`, which runs them
 - `.claude/steward.json`, the record of what it generated
-- For an adoption: each local rule removed once its new home is live. A file that
+- For an adoption: each local rule removed once its new home is live, except a rule in a
+  context file, which waits for your word. A file that
   differs from git's `HEAD`, untracked or with uncommitted edits, is first copied to
   `~/.local/share/marketplace-steward/backups/`
 - For a contribution: a branch and a pull request on the marketplace, from its own
@@ -51,7 +52,8 @@ comes next.
 
 It asks three things only: the sources checklist, once; whether to keep or swap the
 project's `AGENTS.md` files, once, when it has any; and an OK before it creates a new
-skill. Everything else it does and reports.
+skill. Everything else it does and reports. A rule in a context file whose home is a
+skill waits for your word, and the report lists it.
 
 ## Leaves to you
 

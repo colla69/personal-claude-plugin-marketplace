@@ -29,7 +29,7 @@ the user's work or never happens at all, and what the user took out comes back.
   "declined": ["<a proposed skill the user said no to, in one line>"],
   "pending": [
     { "path": ".claude/rules/api.md", "rule": "<the rule, quoted>",
-      "home": "<plugin:skill>", "pr": "<the pull request>" }
+      "home": "<plugin:skill>", "pr": "<the pull request; left out for a rule waiting for the user's word>" }
   ]
 }
 ```
@@ -53,9 +53,11 @@ the user's work or never happens at all, and what the user took out comes back.
   `set-up/context-files.md`: `"AGENTS.md"` when they kept their `AGENTS.md` files,
   `"CLAUDE.md"` when they swapped them. It is left out when the project had no
   `AGENTS.md` to ask about.
-- **`pending`** lists every rule an adoption left where it was because its home is a
-  contribution with an open pull request: the file it is in, the rule exactly as it
-  stands there, the skill or template it is going to, and the pull request.
+- **`pending`** lists every rule an adoption left where it was: the file it is in, the
+  rule exactly as it stands there, and the skill or template it is going to. Either its
+  home is a contribution with an open pull request, which the entry names as `pr`, or its
+  home is live and the rule is in a context file, so it waits for the user's word and the
+  entry has no `pr`. An entry stays after its merge for as long as it waits.
 
 ## Using it
 

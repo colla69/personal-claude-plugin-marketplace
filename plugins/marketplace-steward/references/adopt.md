@@ -40,12 +40,12 @@ what happens to the local copy:
 
 | What the rule is | Its home | Its local copy |
 |---|---|---|
-| A toolkit skill already says it | That skill | Removed once the home is live |
+| A toolkit skill already says it | That skill | Removed once the home is live; from a context file, on the user's word (step 6) |
 | Right in general, different here | The project's `CLAUDE.md`, as a local exception | Moved |
 | The local version is better than the skill's, or no skill has it and it travels | A contribution | Stays until the merge |
 | A fact about this project, or a boundary only it has | The project's `CLAUDE.md`, where `set-up/context-files.md` puts it | Moved |
 | A procedure only this project runs | A project skill, as "Project skills" in `set-up/context-files.md` describes | Stays, or moves into one |
-| A lane or a failure mode a role template already states | That role template, in the trio | Removed once the trio is written |
+| A lane or a failure mode a role template already states | That role template, in the trio | Removed once the trio is written; from a context file, on the user's word (step 6) |
 | A failure mode no role template has, and it would hold for any project's role | A contribution to the role template | Stays until the merge |
 | A hook, an MCP server, a command that runs a tool, a permission, an environment setting | Stays: it is project mechanics | Stays |
 | A hook that only injects text | Its text goes through the rows above | The hook goes once its text's home is live |
@@ -127,6 +127,19 @@ agents were retired: no paragraph went until it had a home. A home is live when:
   template says the same thing as the rule. Until then the rule stays where it is, and
   goes in the record's `pending` once its pull request exists. A rule in another
   tool's file never goes there.
+
+**A rule in a context file waits for the user's word when its home is a skill or a role
+template.** A `CLAUDE.md`, a nested `CLAUDE.md` and a rule file are read in the main
+session. That session preloads no skill, reads no role template, and gets a skill only
+when its description wins the prompt, so the role-by-role test above leaves it out. A
+rule that guards against a failure the project has already had has the most to lose from
+that. The rule stays and goes in the record's `pending`, without a pull request. The
+report lists it under "Waiting for your word" with the sentence that covers it, and each
+keep-current run lists it again until the user answers. It goes when the user says so,
+and on "keep it" it becomes a project rule and loses its entry. A rule moved into a
+`CLAUDE.md` has a home the main session reads, so it moves at once. A rule in an agent
+file or a project skill reached its readers by a preload or a description, as the skill
+does, so it goes by the test above.
 
 Remove a rule, not a file: edit the rule out of the file it is in. A file goes only once
 every rule in it has a live home, and an agent file the same way. When a contribution

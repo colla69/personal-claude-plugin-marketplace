@@ -109,7 +109,12 @@ For each entry in the record's `pending`:
   `claude plugin update <name>@<marketplace>`. Then apply the test for a live home in
   step 6 of `adopt.md`, against the installed copy.
 - **Live, and the file still holds the rule exactly as recorded:** remove it as that
-  step removes one, backup included, and drop the entry.
+  step removes one, backup included, and drop the entry. A rule in a context file is
+  not removed on its own: list it under "Waiting for your word", keep its entry, and
+  remove it when the user says so. On "keep it", drop the entry.
+- **Waiting for the user's word (an entry with no `pr`):** list it again, with the
+  sentence that covers it, until the user answers. If the file no longer holds the rule
+  as recorded, drop the entry and report it under Left alone.
 - **Live, but the rule was edited since:** leave it, drop the entry, and report it
   under Left alone. The edit may be a lesson the merged skill lacks; offer it as one.
 - **Not merged yet:** the entry stays, and the report names its pull request.
@@ -141,6 +146,9 @@ setup costs too much, or asked what it costs, this is the step for that symptom.
 
 ### Possibly unneeded
 - <plugin> — <the signal that is gone>
+
+### Waiting for your word
+- <path> — <the rule, quoted short>; covered by <plugin:skill>: "<its sentence>"
 
 ### Cost
 <The section in `cost.md`.>
