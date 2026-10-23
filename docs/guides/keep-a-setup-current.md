@@ -13,16 +13,18 @@ first trials will show where it behaves otherwise.
 1. **In the project, say "update the setup"**, or name the symptom: "the review skill
    isn't loading in this project", or "this setup costs too many tokens". Asking to set
    up a project the steward set up before does the same.
-2. **Let it run.** With a symptom named, it checks only that; otherwise it runs every
-   check below. It asks only before a new skill, and once whether to keep or swap the
-   project's `AGENTS.md` files if it hasn't asked before.
+2. **Let it run.** It first refreshes the marketplaces and updates the steward's own
+   copy, so that your files are compared with the current templates. With a symptom
+   named, it checks only that; otherwise it runs every check below. It asks only
+   before a new skill, and once whether to keep or swap the project's `AGENTS.md`
+   files if it hasn't asked before.
 3. **Read the report**, and run `/reload-plugins` if anything was installed or rebuilt.
 
 ## What it checks
 
 | Check | What it does about it |
 |---|---|
-| **Plugin keys that no longer exist** | Removes each dead toolkit key from `.claude/settings.json`, and installs the plugin's successor when the project still shows its signal. Keys of other marketplaces and of `settings.local.json` are only reported |
+| **Plugin keys that no longer exist** | Removes each dead toolkit key from `.claude/settings.json`, and installs the plugin's successor when the project still shows its signal. Keys of other marketplaces and of `settings.local.json` are only reported. It runs this check again after the last install, because installing rewrites the settings file |
 | **Skills the trios can't load** | Installs a missing plugin, or corrects a skill name that was renamed. A name it can't resolve is reported, because that agent is running without its standard |
 | **Trios from older templates** | Rebuilds each trio file whose template changed, if you haven't edited it since. A file you edited stays, and the report says a newer template exists |
 | **What the project now calls for** | Installs a toolkit plugin whose signal has appeared, and builds a trio a task now has the tools for. A plugin whose signal has gone stays, and is named as possibly unneeded |
