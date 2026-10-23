@@ -69,8 +69,10 @@ the numbers:
   agent's runs read and wrote.
 
 The setup is a smaller share of an average request than of the first one, because a
-session's context grows with what it reads. The report gives both shares, and when the
-second is small it says that the setup is not where the cost is.
+session's context grows with what it reads. A cut to the setup is cheap and costs no
+one a change in how they work, but it can only take that small share. The report gives
+both shares, and when the second is small it says that the setup is not where the
+cost is.
 
 The numbers are tokens, not money. Prices change, and no choice the steward makes
 depends on them. The steward moves only what it wrote and you haven't edited, to where
