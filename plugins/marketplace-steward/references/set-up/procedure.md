@@ -117,6 +117,8 @@ Do not declare success without checking:
    limits in `context-files.md`.
 5. **The record is complete.** Every file you created is in it, every hash matches
    the file on disk, and no file that existed before you came is listed.
+6. **What it costs.** Run the measuring script, as `../cost.md` says. A new setup has
+   no sessions yet, so only the always-on table counts. Its total goes in the report.
 
 Do **not** run `claude plugin validate` on the project's `.claude/` directory. It
 expects a plugin or marketplace manifest, and fails with "No manifest found".
@@ -142,5 +144,6 @@ the record's `declined`.
   phases 3 and 6.
 - `report.md`: the report. Read before phase 8.
 - `../record.md`: the record of what was generated. Read before phase 6.
+- `../cost.md`: measuring what the setup costs. Read before phase 7.
 - `assets/settings-template.json`: the marketplace entry for `.claude/settings.json`.
 - `assets/plugin-sources.json`: the starting shape for `.claude/plugin-sources.json`.

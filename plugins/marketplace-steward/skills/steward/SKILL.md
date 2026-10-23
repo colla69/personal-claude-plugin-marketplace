@@ -1,6 +1,6 @@
 ---
 name: steward
-description: Set a project up for agentic work, keep that setup current, and keep what a project teaches for every other project — its CLAUDE.md, the marketplace skills it needs, a Plan/Do/Check trio per recurring task, and changes to those skills by pull request. Use whenever the user says "set this project up", "onboard this repo", "set up agents for this repo", "there's no CLAUDE.md here", "bring our existing setup onto the marketplace", "update the setup", that a skill or agent in this project's setup isn't loading, asks for a trio for one more task, or says "a skill got this wrong", "make this a marketplace skill", "add this to my skills for every project". Not for setting up a tool, service, dependency, dev server or CI, and not for remembering a preference or fact for Claude, which is memory. Also use when the project to set up is a folder with no code in it.
+description: Set a project up for agentic work, keep that setup current, and keep what a project teaches for every other project — its CLAUDE.md, the marketplace skills it needs, a Plan/Do/Check trio per recurring task, and changes to those skills by pull request. Use whenever the user says "set this project up", "onboard this repo", "set up agents for this repo", "there's no CLAUDE.md here", "bring our existing setup onto the marketplace", "update the setup", that a skill or agent in this project's setup isn't loading, that the setup costs too many tokens or "make the setup cheaper", asks for a trio for one more task, or says "a skill got this wrong", "make this a marketplace skill", "add this to my skills for every project". Not for setting up a tool, service, dependency, dev server or CI, and not for remembering a preference or fact for Claude, which is memory. Also use when the project to set up is a folder with no code in it.
 allowed-tools:
   - Read(/${CLAUDE_PLUGIN_ROOT}/**)
   - Read(~/.local/share/marketplace-steward/**)
@@ -8,6 +8,7 @@ allowed-tools:
   - Edit(~/.local/share/marketplace-steward/**)
   - Bash(claude plugin list --json)
   - Bash(claude plugin marketplace list --json)
+  - Bash(node ${CLAUDE_PLUGIN_ROOT}/scripts/measure-setup.mjs)
   - Bash(git -C ~/.local/share/marketplace-steward/clone worktree list)
   - Bash(git -C ~/.local/share/marketplace-steward/clone fetch origin)
   - Bash(git -C ~/.local/share/marketplace-steward/clone worktree add -b contrib/* ~/.local/share/marketplace-steward/worktrees/* origin/main)
@@ -39,7 +40,7 @@ The project's own work is not its job; the project's trios do that.
 | A project or a folder set up for agentic work | Set up | `${CLAUDE_PLUGIN_ROOT}/references/set-up/procedure.md` |
 | A project with a setup of its own, such as a long `CLAUDE.md`, rules, skills, agents or hooks, brought onto the marketplace | Adopt | `${CLAUDE_PLUGIN_ROOT}/references/adopt.md` |
 | A trio for one more task the project repeats | Set up, phases 1, 3 and 5 to 8, for that trio only | `${CLAUDE_PLUGIN_ROOT}/references/set-up/procedure.md` |
-| A setup brought up to date: plugins that no longer exist, a skill or agent that doesn't load, trios from older templates, a project that has changed | Keep current | `${CLAUDE_PLUGIN_ROOT}/references/keep-current.md` |
+| A setup brought up to date: plugins that no longer exist, a skill or agent that doesn't load, trios from older templates, a project that has changed, a setup that costs too much | Keep current | `${CLAUDE_PLUGIN_ROOT}/references/keep-current.md` |
 | A lesson kept for other projects: a skill that got something wrong, a rule worth having everywhere, a new skill | Contribute | `${CLAUDE_PLUGIN_ROOT}/references/contribute.md` |
 | A placement the user changed in a contribution's pull request | Contribute: add the case to §6 of `place-knowledge.md` | `${CLAUDE_PLUGIN_ROOT}/references/contribute.md` |
 

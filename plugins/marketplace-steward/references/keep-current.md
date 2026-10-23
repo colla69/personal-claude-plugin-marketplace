@@ -6,9 +6,9 @@ role template improves, a new skill appears. None of it announces itself. A plug
 that matches nothing fails silently, and an agent that names a skill which doesn't load
 carries on without its standard.
 
-Files named here sit in `set-up/` beside this file, except `record.md` and `adopt.md`,
-which are beside it. Read `record.md` first: every step below writes by its rules. The
-front door's rules hold throughout.
+Files named here sit in `set-up/` beside this file, except `record.md`, `adopt.md` and
+`cost.md`, which are beside it. Read `record.md` first: every step below writes by its
+rules. The front door's rules hold throughout.
 
 **Run every step, unless the user named one symptom.** Then run step 1 and the step for
 that symptom, and say in the report which checks you didn't run.
@@ -101,7 +101,13 @@ For each entry in the record's `pending`:
 - **Closed without a merge:** the rule stays where it is as a project rule. Drop the
   entry, and report it.
 
-## 9. Report
+## 9. What the setup costs
+
+Measure the setup, and act on what the measure shows, as `cost.md` says. Run this step
+last, so that it measures the setup the steps before it left. When the user said the
+setup costs too much, or asked what it costs, this is the step for that symptom.
+
+## 10. Report
 
 ```
 ## Setup kept current
@@ -120,6 +126,9 @@ For each entry in the record's `pending`:
 
 ### Possibly unneeded
 - <plugin> — <the signal that is gone>
+
+### Cost
+<The section in `cost.md`.>
 
 ### Unverified
 - <what you could not check or resolve>

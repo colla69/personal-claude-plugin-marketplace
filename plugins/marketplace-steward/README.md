@@ -12,7 +12,8 @@ comes next.
 |---|---|
 | Skills | `steward`, the front door, and `evaluate-skills` |
 | Agents | `codebase-cartographer`, which surveys a codebase for set-up, and `contribution-checker`, which checks a change before its pull request. Both read-only |
-| References | `set-up/`, `adopt.md`, `keep-current.md`, `contribute.md`, `record.md`, `place-knowledge.md` and `author-skills/`, read by path |
+| References | `set-up/`, `adopt.md`, `keep-current.md`, `contribute.md`, `record.md`, `cost.md`, `place-knowledge.md` and `author-skills/`, read by path |
+| Script | `scripts/measure-setup.mjs`, which measures what a project's setup costs per session. Plain Node; it writes nothing |
 | Layer | None: it works on the marketplace itself |
 | Builds on | `craft-review`, `language-simple-english` |
 
@@ -23,6 +24,7 @@ comes next.
 - "bring our existing setup onto the marketplace", or set-up asked in a project that
   already has its own `CLAUDE.md`, rules, skills, agents or hooks
 - "update the setup", or a skill or agent in a project's setup not loading
+- "this setup costs too many tokens", "make the setup cheaper"
 - "a skill got this wrong", "make this a marketplace skill", "add this to my skills for
   every project"
 - A folder with no code in it: documents, reports, templates
@@ -69,6 +71,12 @@ claude plugin install marketplace-steward@personal-claude-plugin-marketplace --s
 User scope: it belongs to the machine and works in every project you open. The first
 time it runs, Claude Code asks whether it may, because it pre-allows reading its own
 files and the commands of its own folder; Claude Code can remember the answer.
+
+## Credits
+
+`scripts/measure-setup.mjs` adapts parts of
+[claude-context-optimizer](https://github.com/egorfedorov/claude-context-optimizer) by
+Egor Fedorov, under the MIT License, which the script's header carries.
 
 ## More
 

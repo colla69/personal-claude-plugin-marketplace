@@ -17,6 +17,8 @@ jobs:
           node-version: '22'
       # No dependencies — plain Node, reads the plugin lists and manifests and compares them.
       - run: node scripts/check-catalog.mjs
+      # The steward's one script, run on this repo: it fails only if the script itself breaks.
+      - run: node plugins/marketplace-steward/scripts/measure-setup.mjs .
 
   docs:
     name: docs in shape

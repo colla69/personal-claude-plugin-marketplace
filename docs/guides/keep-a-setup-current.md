@@ -11,8 +11,8 @@ first trials will show where it behaves otherwise.
 ## Steps
 
 1. **In the project, say "update the setup"**, or name the symptom: "the review skill
-   isn't loading in this project". Asking to set up a project the steward set up before
-   does the same.
+   isn't loading in this project", or "this setup costs too many tokens". Asking to set
+   up a project the steward set up before does the same.
 2. **Let it run.** With a symptom named, it checks only that; otherwise it runs every
    check below. It asks only before a new skill, and once whether to keep or swap the
    project's `AGENTS.md` files if it hasn't asked before.
@@ -29,6 +29,7 @@ first trials will show where it behaves otherwise.
 | **`AGENTS.md` from an older setup** | Asks once whether to keep the `AGENTS.md` files or swap them for `CLAUDE.md`. With the swap, it moves each `AGENTS.md` that a `CLAUDE.md` imports into that `CLAUDE.md`, whole, and removes it. With keep, they stay. One that nothing imports never loaded, so it stays and is listed under Unverified, for adoption |
 | **`CLAUDE.md` lines that are no longer true** | Fixes a path or a command it can verify by reading. One it can't verify stays, and is listed under Unverified |
 | **Rules waiting for a merge** | After an adoption: removes each pending rule once its pull request is merged and the skill says the same thing, but only if you haven't edited the rule since |
+| **What the setup costs** | Measures what the setup adds to every session, and how much of it your sessions used. It moves a section of a context file it wrote, and you haven't edited, to where it loads only on demand. A plugin, trio or MCP server your sessions never used is named, with its cost, and stays. It changes no agent's model unless you ask |
 
 ## The report
 
@@ -39,6 +40,7 @@ first trials will show where it behaves otherwise.
 | **Removed** | Each key, file or rule it removed, and the backup if there is one |
 | **Left alone** | Each file you changed since the steward wrote it, and what a newer template would have changed |
 | **Possibly unneeded** | Each plugin whose signal is gone |
+| **Cost** | The tokens the setup adds to every session, its share of a session's start, and each finding with what was done about it |
 | **Unverified** | What it couldn't check or resolve |
 
 When nothing has drifted, the report says so and lists the checks it ran.
