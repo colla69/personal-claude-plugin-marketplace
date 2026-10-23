@@ -40,7 +40,7 @@ first trials will show where it behaves otherwise.
 | **Removed** | Each key, file or rule it removed, and the backup if there is one |
 | **Left alone** | Each file you changed since the steward wrote it, and what a newer template would have changed |
 | **Possibly unneeded** | Each plugin whose signal is gone |
-| **Cost** | The tokens the setup adds to every session, its share of a session's start, and each finding with what was done about it |
+| **Cost** | The tokens the setup adds to every session, its share of a session's start and of an average request, and each finding with what was done about it |
 | **Unverified** | What it couldn't check or resolve |
 
 When nothing has drifted, the report says so and lists the checks it ran.
