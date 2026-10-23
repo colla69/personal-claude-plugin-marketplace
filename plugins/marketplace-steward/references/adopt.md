@@ -121,8 +121,8 @@ agents were retired: no paragraph went until it had a home. A home is live when:
   Removing it on the strength of the writers' skills leaves the others without it,
   and nothing reports the gap. Where a role that applies the rule lacks the skill,
   add it when `set-up/trios.md` lets that role take it and the role's file matches
-  the record. Each role that takes the skill pays for it in every run. Otherwise the
-  rule stays, and the report names the role;
+  the record. When either fails, the rule stays, and the report names the role. Each
+  role that takes the skill pays for it in every run;
 - **it is a contribution**, it has been merged, and the installed copy of the skill or
   template says the same thing as the rule. Until then the rule stays where it is, and
   goes in the record's `pending` once its pull request exists. A rule in another
