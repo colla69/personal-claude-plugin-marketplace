@@ -22,6 +22,8 @@ leaves out the standard's controlled dictionary.
 - "make this text readable", "simplify the wording", "plain English", "de-slop", "STE",
   "for non-native readers"
 - Writing instructions or a prompt for an agent, the reader that cannot ask back
+- Asking the user questions, or reading their few-word answers, such as "yes / no /
+  not yet", before acting on them
 
 ## Leaves to others
 

@@ -94,7 +94,7 @@
     {
       "name": "language-simple-english",
       "source": "./plugins/language-simple-english",
-      "description": "English nobody can read two ways, after Simplified Technical English: short sentences, one instruction each, one word per meaning, active voice, no filler.",
+      "description": "English nobody can read two ways, after Simplified Technical English: short sentences, one instruction each, one word per meaning, active voice, no filler, and questions a one-word answer cannot misread.",
       "category": "language",
       "tags": ["english", "writing", "documentation"]
     },

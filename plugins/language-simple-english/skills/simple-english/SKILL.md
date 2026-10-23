@@ -1,6 +1,6 @@
 ---
 name: simple-english
-description: Write English that a tired reader or a non-native reader cannot misread, following the rules of Simplified Technical English (ASD-STE100) — short sentences, one instruction each, one word per meaning, active voice, and no filler. Use whenever writing or editing text a person will read in English — documentation, a README, a guide, a runbook, a plan, a report, release notes, a commit or PR description, a code comment — or when the user says "make this text readable", "simplify the wording", "plain English", "de-slop", "STE" or "for non-native readers". Also use when writing instructions for an agent or a prompt, since a model that cannot ask back is the reader this standard was made for.
+description: Write English that a tired reader or a non-native reader cannot misread, following the rules of Simplified Technical English (ASD-STE100) — short sentences, one instruction each, one word per meaning, active voice, and no filler. Use whenever writing or editing text a person will read in English — documentation, a README, a guide, a runbook, a plan, a report, release notes, a commit or PR description, a code comment — or when the user says "make this text readable", "simplify the wording", "plain English", "de-slop", "STE" or "for non-native readers". Also use when writing instructions for an agent or a prompt, since a model that cannot ask back is the reader this standard was made for. Also use when asking the user questions, or when the user answers yours in a few words, such as "yes / no / not yet" or "1 yes 2 later", before acting on the answers.
 ---
 
 # Simple English
@@ -8,6 +8,8 @@ description: Write English that a tired reader or a non-native reader cannot mis
 Text is good when nobody can read it two ways. Every rule below removes one way to
 misread. A long sentence hides which clause a condition belongs to. A synonym makes the
 reader ask whether two things differ. Filler takes attention that the facts needed.
+The same test holds for a reply: when an answer has two readings, ask which one the
+reader meant.
 
 These rules adapt Simplified Technical English, ASD-STE100, for everyday technical
 writing. They leave out the standard's controlled dictionary: the words of your field
@@ -16,7 +18,7 @@ are allowed, as long as each one keeps one meaning.
 ## What it covers
 
 Any English prose a person reads: documentation, plans, reports, comments, commit
-messages, release notes, and instructions for agents.
+messages, release notes, instructions for agents, and questions, with their answers.
 
 Never change code, identifiers, commands, file paths, quoted output or error text, or a
 product's name. They are exact, and a "clearer" version is a different one. Each counts
@@ -91,6 +93,44 @@ A report says what happened in the simple past, with times and numbers, and writ
 some users" says nothing a reader can act on. "Between 14:02 and 14:31, 12% of requests
 failed" does.
 
+## Questions and short answers
+
+Readers often answer a question in one word. Ask so that each one-word answer has one
+meaning, and read the answer as exactly what it says.
+
+- **Number the questions, and put them together at the end.** Then "2. no" has one
+  question to answer.
+- **One decision per question.** "Rename the table and drop the index?" gets a "yes"
+  that can mean only the first half.
+- **Name every option, and recommend one.** "API server only?" gets a "no" that can
+  mean "every server" or "no server". Ask "The API server, the workers, or both? I
+  recommend the workers." Then "yes" means the workers.
+
+A "sure" that you read one way and then built on is a decision that nobody made. So
+before you act on short answers:
+
+1. Match each answer to its question: by its number, or else in order. One "yes"
+   answers several questions only when it clearly does.
+2. Keep each meaning. "Not yet" stays not yet, and "sort of" stays partial. A "yes" to
+   a recommendation means that recommendation. "Yes, but on both servers" means your
+   plan, changed to both servers.
+3. Add nothing: no step, test or condition that neither of you said, and no exclusion
+   that neither of you raised.
+4. Write your reading, one instruction per answer, then do the work:
+
+```
+I read your answers as:
+1. <the instruction you will carry out for answer 1>
+Still open: <each question without an answer>
+```
+
+An answer is unclear when it has soft words, such as "maybe". It is also unclear when
+it is a "no" with no alternative, or when it can cover more than you proposed. If one
+answer is unclear, ask about it before you act on any answer. Give each reading as an
+option, with your recommendation first. No option can be a different decision, or bring
+back what they ruled out. Never settle an unclear answer by the likeliest reading. If
+nobody can answer in this run, give the readings and stop.
+
 ## Check before you deliver
 
 Search the draft, outside code and quotes, for each of these:
@@ -101,6 +141,7 @@ Search the draft, outside code and quotes, for each of these:
 - a word from the filler list above
 - a condition after its command, such as "Restart the service if the port is busy"
 - a sentence over the limit for its kind: count the three longest
+- a question that a one-word "yes" or "no" answers in two ways
 
 Then read for the judgment calls: one name per thing across the whole text, and every
 passive with a reason.
