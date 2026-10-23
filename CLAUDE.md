@@ -80,21 +80,20 @@ can be delegated, and whoever writes a change never reviews it.
 
 ## This repo's own setup
 
-The steward set this repo up from its own source, so it reads the files it is made of.
-These lines keep the two apart.
+This repo is set up from the marketplace it holds, so the steward reads the files it is
+made of. These lines keep the two apart; the reasons are D55 in `decisions.md`.
 
-- **The setup is this file and `.claude/`, and nothing under `plugins/`.** The skills,
-  references and agents there are the product. Setting this repo up or keeping it
-  current takes no rule from them and edits none of them; a change to the product goes
-  the way the table above says.
+- **The setup is this file and `.claude/`, and nothing under `plugins/`.** The steward
+  reads the files there as the marketplace, never as this project's rules or as
+  evidence of its stack. A run here edits none of them; a change to the product goes the
+  way the table above says.
 - **No rule in this file travels.** Each one is about this marketplace, so an adoption
   contributes nothing from it. "What breaks silently" repeats the gist of rules in the
   steward's references on purpose: keep it.
-- **The enabled plugins are the copies installed from `main`.** `.claude/settings.json`
-  enables `universal-work-discipline`, `craft-review` and `language-simple-english`,
-  for every session here and in the desktop app. A `--plugin-dir` copy replaces the
-  installed one for that session, so the working-copy command tests a branch. The
-  desktop app takes no `--plugin-dir`, so it runs what is merged, after
-  `claude plugin marketplace update`.
-- **`marketplace-steward` is never enabled here**, as in any project: it belongs to the
-  machine, and work on it loads the working copy.
+- **Enabled here: `universal-work-discipline`, `craft-review` and
+  `language-simple-english`.** The code Craft plugins and `language-javascript` are left
+  out on purpose: the only code is the two scripts, they change rarely, and each
+  description would cost every session here. The steward is never enabled here.
+- **The desktop app runs the copies installed from `main`.** It takes no
+  `--plugin-dir`, so a branch is tested with the working-copy command, and
+  `change-reviewer` runs only there, because it preloads `evaluate-skills`.
