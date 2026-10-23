@@ -88,8 +88,8 @@ recorded or new, as that section says:
 
 An `AGENTS.md` that nothing imports never loaded. Leave it, and report it under
 Unverified, because its rules need adoption before they are in force. The exception is
-one that the record's `pending` names: an adoption left its rules there for their pull
-requests, and step 8 looks after them.
+one that the record's `pending` names: an adoption left its rules there until their pull
+requests merge or the user answers, and step 8 looks after them.
 
 ## 7. CLAUDE.md lines that are no longer true
 

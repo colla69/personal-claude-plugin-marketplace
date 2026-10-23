@@ -83,7 +83,7 @@ project that has none.
   "context": "<AGENTS.md if you kept your AGENTS.md files, CLAUDE.md if you swapped them; absent if there were none>",
   "declined": ["<every new skill you said no to>"],
   "pending": [
-    { "path": "<file>", "rule": "<the rule>", "home": "<plugin:skill>", "pr": "<link>" }
+    { "path": "<file>", "rule": "<the rule>", "home": "<plugin:skill>", "pr": "<link; absent for a rule waiting for your word>" }
   ]
 }
 ```

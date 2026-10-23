@@ -32,8 +32,9 @@ Adopting moves rules out of your own files, so it has the strictest guards:
   until every rule in that file has one. What counts as live, for a skill, a trio or a
   pull request, is defined in step 6 of
   [`adopt.md`](../../plugins/marketplace-steward/references/adopt.md).
-- **A rule in a context file waits for your word** once its home is live, because the
-  main session preloads no skill. The report quotes the sentence that covers it.
+- **A rule in a context file waits for your word** once its home is a toolkit skill, a
+  merged contribution or a role template, because the main session preloads no skill.
+  The report quotes the sentence that covers it.
 - **Only a skill that says the same thing counts.** A similar rule isn't the same rule;
   when in doubt, yours stays.
 - **Files that git can't restore are copied first.** Any file with untracked or

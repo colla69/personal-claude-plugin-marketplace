@@ -53,7 +53,8 @@ comes next.
 It asks three things only: the sources checklist, once; whether to keep or swap the
 project's `AGENTS.md` files, once, when it has any; and an OK before it creates a new
 skill. Everything else it does and reports. A rule in a context file whose home is a
-skill waits for your word, and the report lists it.
+toolkit skill, a merged contribution or a role template waits for your word, and the
+report lists it.
 
 ## Leaves to you
 

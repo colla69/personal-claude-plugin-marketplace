@@ -128,8 +128,8 @@ agents were retired: no paragraph went until it had a home. A home is live when:
   goes in the record's `pending` once its pull request exists. A rule in another
   tool's file never goes there.
 
-**A rule in a context file waits for the user's word when its home is a skill or a role
-template.** A `CLAUDE.md`, a nested `CLAUDE.md` and a rule file are read in the main
+**A rule in a context file waits for the user's word when its home is a toolkit skill, a
+merged contribution or a role template.** A `CLAUDE.md`, a nested `CLAUDE.md` and a rule file are read in the main
 session. That session preloads no skill, reads no role template, and gets a skill only
 when its description wins the prompt, so the role-by-role test above leaves it out. A
 rule that guards against a failure the project has already had has the most to lose from
@@ -137,7 +137,8 @@ that. The rule stays and goes in the record's `pending`, without a pull request.
 report lists it under "Waiting for your word" with the sentence that covers it, and each
 keep-current run lists it again until the user answers. It goes when the user says so,
 and on "keep it" it becomes a project rule and loses its entry. A rule moved into a
-`CLAUDE.md` has a home the main session reads, so it moves at once. A rule in an agent
+`CLAUDE.md` or a project skill keeps its own words in a file the project owns, where the
+toolkit's wording would replace them, so it moves at once. A rule in an agent
 file or a project skill reached its readers by a preload or a description, as the skill
 does, so it goes by the test above.
 
