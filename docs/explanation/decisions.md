@@ -180,7 +180,7 @@ effort."
 
 | # | Decision | Why | Now |
 |---|---|---|---|
-| D57 | A trio whose work is documentation runs all three roles on `sonnet` at `low`. A trio that writes code and its documentation together keeps the defaults. No documentation skill is added | The maintainer's choice, made ahead of the measuring D46 waits for. No documentation skill or role existed to pin, so the rule goes where set-up chooses each role's model | Holds, in "Model and effort" in `set-up/trios.md`. A trio built before it keeps its recorded model, because keep-current rebuilds from the recorded `fill` |
+| D57 | A trio whose work is documentation runs all three roles on `sonnet` at `low`. A trio that produces a deliverable, such as a monthly report, or writes code and its documentation together keeps the defaults. No documentation skill is added | The maintainer's choice, made ahead of the measuring D46 waits for. No documentation skill or role existed to pin, so the rule goes where set-up chooses each role's model | Holds, in "Model and effort" in `set-up/trios.md`. A trio built before it keeps its recorded model, because keep-current rebuilds from the recorded `fill` |
 
 ## Still open
 
