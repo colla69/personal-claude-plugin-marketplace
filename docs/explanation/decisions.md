@@ -17,6 +17,7 @@ the reason it was made is often the reason its replacement has the shape it has.
 - [Borrowed ideas: D49 to D52](#borrowed-ideas-d49-to-d52)
 - [Claude only: D53](#claude-only-d53)
 - [Contributions that finish: D54](#contributions-that-finish-d54)
+- [The repo's own plugins: D55](#the-repos-own-plugins-d55)
 - [Still open](#still-open)
 
 ## The author's statements
@@ -150,6 +151,15 @@ not ok."
 | # | Decision | Why | Now |
 |---|---|---|---|
 | D54 | Adoption contributes in a step of its own, after set-up's checks and before any removal, and every contribution ends in a pull request, a reported stop, or the user's no to a new skill. A pushed branch with only a compare link is a stop, so `pending` holds only real pull requests. The report gives each one a row in a Contributions table, which an adoption never leaves out. The front door says a change to an existing skill opens its pull request without a pause | The step was one sentence at the end of another step, outside the set-up phases the steward follows, and no section of the report would show it missing. A model also tends to pause before a public pull request, and the pause became the end of the run | Holds, in step 5 of `adopt.md`, `set-up/report.md` and the front door |
+
+## The repo's own plugins: D55
+
+Decided on 2026-10-23, when the repo was set up from its own marketplace, to try the
+plugins in the desktop app and to have simple English here.
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D55 | The repo enables `universal-work-discipline`, `craft-review` and `language-simple-english` at project scope, and leaves out the steward, the code Craft plugins and `language-javascript`. Its `CLAUDE.md` says that nothing under `plugins/` is a project rule or evidence of the stack, and that no rule in it travels | The steward reads its own source here, and without those lines a later run could take the product for the project's rules, remove the gist of "What breaks silently", or install the code plugins on the signal of two scripts. The steward belongs to the machine, as everywhere | Holds, in the section "This repo's own setup" of `CLAUDE.md` |
 
 ## Still open
 

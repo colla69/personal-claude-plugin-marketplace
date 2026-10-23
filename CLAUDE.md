@@ -77,3 +77,23 @@ Deciding what a standard says, its layer, its home and what it yields to, is the
 maintainer's taste: the steward asks before a new skill, and every change waits for
 the maintainer's merge. Rendering a decided standard into house form is the part that
 can be delegated, and whoever writes a change never reviews it.
+
+## This repo's own setup
+
+This repo is set up from the marketplace it holds, so the steward reads the files it is
+made of. These lines keep the two apart; the reasons are D55 in `decisions.md`.
+
+- **The setup is this file and `.claude/`, and nothing under `plugins/`.** The steward
+  reads the files there as the marketplace, never as this project's rules or as
+  evidence of its stack. A run here edits none of them; a change to the product goes the
+  way the table above says.
+- **No rule in this file travels.** Each one is about this marketplace, so an adoption
+  contributes nothing from it. "What breaks silently" repeats the gist of rules in the
+  steward's references on purpose: keep it.
+- **Enabled here: `universal-work-discipline`, `craft-review` and
+  `language-simple-english`.** The code Craft plugins and `language-javascript` are left
+  out on purpose: the only code is the two scripts, they change rarely, and each
+  description would cost every session here. The steward is never enabled here.
+- **The desktop app runs the copies installed from `main`.** It takes no
+  `--plugin-dir`, so a branch is tested with the working-copy command, and
+  `change-reviewer` runs only there, because it preloads `evaluate-skills`.
