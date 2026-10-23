@@ -6,8 +6,8 @@
 //
 //   node measure-setup.mjs [project-dir]      the current directory by default
 //
-// It prints names and numbers only, never the text of a file or a conversation, and it
-// writes nothing. Token counts from files are estimates; counts from transcripts are
+// It prints names, numbers and the headings of the root context files, never the text
+// of a file or a conversation, and it writes nothing. Token counts from files are estimates; counts from transcripts are
 // the API's own.
 //
 // Adapted from claude-context-optimizer, https://github.com/egorfedorov/claude-context-optimizer:
@@ -63,16 +63,20 @@ function fmField(text, key) {
   return m ? m[1].trim().replace(/^["']|["']$/g, '') : ''
 }
 
-// Lines that start with `@path` import that file into the one that holds them, and
-// the import resolves against that file's folder.
+// An `@path` outside code imports that file into the one that holds it, resolved
+// against that file's folder. Only a path that exists counts, so an email address or a
+// handle in the text is not taken for an import.
 function withImports(file, seen = new Set()) {
   const text = readText(file)
   if (text === null || seen.has(file)) return { text: '', files: [] }
   seen.add(file)
   let all = text
   const files = [file]
-  for (const m of text.matchAll(/^@(\S+)\s*$/gm)) {
-    const target = m[1].startsWith('~/') ? join(homedir(), m[1].slice(2)) : resolve(dirname(file), m[1])
+  const prose = text.replace(/^(```|~~~)[\s\S]*?^\1/gm, '').replace(/`[^`\n]*`/g, '')
+  for (const m of prose.matchAll(/(?:^|\s)@([^\s`]+)/g)) {
+    const path = m[1].replace(/[.,;:)]+$/, '')
+    const target = path.startsWith('~/') ? join(homedir(), path.slice(2)) : resolve(dirname(file), path)
+    if (!existsSync(target) || statSync(target).isDirectory()) continue
     const sub = withImports(target, seen)
     all += sub.text
     files.push(...sub.files)
@@ -180,7 +184,8 @@ function transcriptDir(root) {
   let dirs = []
   try { dirs = readdirSync(projects, { withFileTypes: true }).filter((e) => e.isDirectory()) } catch { return null }
   for (const d of dirs) {
-    const first = readdirSync(join(projects, d.name)).find((f) => f.endsWith('.jsonl'))
+    let first
+    try { first = readdirSync(join(projects, d.name)).find((f) => f.endsWith('.jsonl')) } catch { continue }
     if (first && headCwd(join(projects, d.name, first)) === root) return join(projects, d.name)
   }
   return null
@@ -242,8 +247,10 @@ function readSession(file) {
   let skillListing = null
   let agentLines = null
   let compactions = 0
+  let start = 0
   const seen = new Set()
   for (const e of entries) {
+    if (!start && e.timestamp) start = Date.parse(e.timestamp) || 0
     if (e.subtype === 'compact_boundary' || e.isCompactSummary) compactions++
     const a = e.attachment
     if (e.type === 'attachment' && a) {
@@ -267,7 +274,7 @@ function readSession(file) {
     }
   }
   return {
-    file, mtime: mtimeOf(file), baseline: reqs[0].context, requests: reqs.length, compactions,
+    file, mtime: mtimeOf(file), start: start || mtimeOf(file), baseline: reqs[0].context, requests: reqs.length, compactions,
     calls, skillListing: skillListing && listingEntries(skillListing), agentListing: agentLines && listingEntries(agentLines),
   }
 }
@@ -319,25 +326,36 @@ function report(root) {
   const projectSkills = new Set(setup.skills.map((s) => s.name))
   const projectAgents = new Set(setup.agents.map((a) => a.name))
   const listed = (entries, test) => (entries || []).filter((e) => test(e.name)).reduce((n, e) => n + tokens(e.text), 0)
+  // A part changed after the latest session started, such as one this run installed,
+  // can't be in that session's listing. It is "not yet" loaded, not missing.
+  const startedAt = latest ? latest.start : 0
+  const skillNames = latest ? new Set(latest.skillListing.map((e) => e.name)) : null
+  const agentNames = agentListing ? new Set(agentListing.map((e) => e.name)) : null
+  const loadedState = (names, test, changed) => (names === null ? '?' : [...names].some(test) ? 'yes' : changed > startedAt ? 'not yet' : '**no**')
+  // The listing's exact text where the part is in it, else the estimate from its file.
+  const partTokens = (entries, name, fallback) => listed(entries, (n) => n === name) || fallback
   const always = []
   for (const c of setup.context) always.push([`\`${c.path}\`${c.imports.length ? `, importing ${c.imports.map((p) => `\`${p}\``).join(', ')}` : ''}`, c.tokens, 'file'])
   const unscoped = setup.rules.filter((r) => !r.scoped)
   if (unscoped.length) always.push([`Rules without \`paths:\` (${unscoped.length})`, unscoped.reduce((n, r) => n + r.tokens, 0), 'file'])
-  if (setup.agents.length) {
-    const fromListing = listed(agentListing, (n) => projectAgents.has(n))
-    always.push([`Project agents (${setup.agents.length})`, fromListing || setup.agents.reduce((n, a) => n + a.tokens, 0), fromListing ? 'session' : 'file'])
-  }
-  if (setup.skills.length) {
-    const fromListing = latest ? listed(latest.skillListing, (n) => projectSkills.has(n)) : 0
-    always.push([`Project skills (${setup.skills.length})`, fromListing || setup.skills.reduce((n, s) => n + s.tokens, 0), fromListing ? 'session' : 'file'])
-  }
+  for (const a of setup.agents) a.tokens = partTokens(agentListing, a.name, a.tokens)
+  for (const s of setup.skills) s.tokens = partTokens(latest && latest.skillListing, s.name, s.tokens)
+  const fromWhere = (items, names) => (names && items.every((i) => names.has(i.name)) ? 'session' : names && items.some((i) => names.has(i.name)) ? 'session, and files for the rest' : 'file')
+  if (setup.agents.length) always.push([`Project agents (${setup.agents.length})`, setup.agents.reduce((n, a) => n + a.tokens, 0), fromWhere(setup.agents, agentNames)])
+  if (setup.skills.length) always.push([`Project skills (${setup.skills.length})`, setup.skills.reduce((n, s) => n + s.tokens, 0), fromWhere(setup.skills, skillNames)])
+  // A plugin's skills and agents are listed as `plugin:name`. One missing from the
+  // listing has no measure here; `claude plugin details <plugin>` estimates it.
+  const ofPlugin = (p) => (n) => n.includes(':') && n.split(':')[0] === p
   const pluginTokens = new Map()
   for (const p of pluginNames) {
-    const of = (n) => n.split(':')[0] === p && n.includes(':')
-    pluginTokens.set(p, latest ? listed(latest.skillListing, of) + listed(agentListing, of) : null)
+    const t = latest ? listed(latest.skillListing, ofPlugin(p)) + listed(agentListing, ofPlugin(p)) : 0
+    pluginTokens.set(p, t || null)
   }
-  const knownPlugins = [...pluginTokens.values()].filter((n) => n !== null)
-  if (pluginNames.size) always.push([`Plugins enabled here (${pluginNames.size})`, knownPlugins.reduce((n, t) => n + t, 0), latest ? 'session' : 'unknown: no session yet'])
+  const unmeasured = [...pluginTokens.values()].filter((t) => t === null).length
+  if (pluginNames.size) {
+    always.push([`Plugins enabled here (${pluginNames.size})`, [...pluginTokens.values()].reduce((n, t) => n + (t || 0), 0),
+      unmeasured ? `session; ${unmeasured} not in its listing and not counted, see Use` : 'session'])
+  }
   const setupTotal = always.reduce((n, [, t]) => n + t, 0)
 
   L.push('## Always on: paid in every session, then read again with every request', '')
@@ -349,8 +367,8 @@ function report(root) {
   if (sessions.length) {
     const avg = (f) => Math.round(sessions.reduce((n, s) => n + f(s), 0) / sessions.length)
     const baseline = avg((s) => s.baseline)
-    const outside = latest ? listed(latest.skillListing, (n) => !projectSkills.has(n) && !pluginNames.has(n.split(':')[0])) +
-      listed(agentListing, (n) => !projectAgents.has(n) && !pluginNames.has(n.split(':')[0])) : 0
+    const outside = latest ? listed(latest.skillListing, (n) => !projectSkills.has(n) && !(n.includes(':') && pluginNames.has(n.split(':')[0]))) +
+      listed(agentListing, (n) => !projectAgents.has(n) && !(n.includes(':') && pluginNames.has(n.split(':')[0]))) : 0
     L.push(`Context at the first request, on average: ${fmt(baseline)} tokens. This setup is ${setupTotal * 100 < baseline ? 'under 1%' : `about ${Math.round((setupTotal / baseline) * 100)}%`} of it.`)
     L.push(`Skills and agents from outside this setup (user scope, other plugins, built in): ~${fmt(outside)} tokens. The rest is Claude Code's own prompt and tools, and the first message.`)
     L.push(`Requests per session, on average: ${avg((s) => s.requests)}. Compactions in these sessions: ${sessions.reduce((n, s) => n + s.compactions, 0)}.`, '')
@@ -381,27 +399,21 @@ function report(root) {
   }
 
   // Use
-  // A part missing from the latest listing did not load in that session.
-  const skillNames = latest ? new Set(latest.skillListing.map((e) => e.name)) : null
-  const agentNames = agentListing ? new Set(agentListing.map((e) => e.name)) : null
-  const yesNo = (set, test) => (set === null ? '?' : [...set].some(test) ? 'yes' : '**no**')
-
   L.push('## Use in the sessions read', '')
-  L.push('Sessions counts only the sessions since the file that added the part last changed, so a part added recently has fewer. Loaded says whether the latest session listed it.', '')
+  L.push('Sessions counts only the sessions since the file that added the part last changed, so a part added recently has fewer. Loaded says whether the latest session listed it: "not yet" when the part changed after that session started.', '')
   head('Part', 'Kind', 'Always-on tokens', 'Loaded', 'Calls', 'Sessions')
   for (const p of pluginNames) {
-    const ofPlugin = (n) => n.includes(':') && n.split(':')[0] === p
-    const calls = (s) => [...s.calls.skill.entries(), ...s.calls.agent.entries()].filter(([n]) => ofPlugin(n)).reduce((n, [, c]) => n + c, 0)
+    const calls = (s) => [...s.calls.skill.entries(), ...s.calls.agent.entries()].filter(([n]) => ofPlugin(p)(n)).reduce((n, [, c]) => n + c, 0)
     const since = sessions.filter((s) => s.mtime >= setup.pluginsSince)
     const t = pluginTokens.get(p)
     const named = setup.agents.filter((a) => a.skills.some((s) => s.split(':')[0] === p)).map((a) => a.name)
-    const loaded = skillNames === null ? '?' : yesNo(new Set([...skillNames, ...(agentNames || [])]), ofPlugin)
+    const loaded = loadedState(skillNames && new Set([...skillNames, ...(agentNames || [])]), ofPlugin(p), setup.pluginsSince)
     row(p, `plugin${named.length ? `, preloaded by ${named.join(', ')}` : ''}`, t === null ? '?' : `~${fmt(t)}`, loaded, since.reduce((n, s) => n + calls(s), 0), since.length)
   }
-  for (const s of setup.skills) row(s.name, 'project skill', `~${fmt(s.tokens)}`, yesNo(skillNames, (n) => n === s.name), callsOf('skill', s.name, s.mtime), sessionsSince(s.mtime))
+  for (const s of setup.skills) row(s.name, 'project skill', `~${fmt(s.tokens)}`, loadedState(skillNames, (n) => n === s.name, s.mtime), callsOf('skill', s.name, s.mtime), sessionsSince(s.mtime))
   for (const a of setup.agents) {
     const since = mtimeOf(join(root, a.path))
-    row(a.name, 'project agent', `~${fmt(a.tokens)}`, yesNo(agentNames, (n) => n === a.name), callsOf('agent', a.name, since), sessionsSince(since))
+    row(a.name, 'project agent', `~${fmt(a.tokens)}`, loadedState(agentNames, (n) => n === a.name, since), callsOf('agent', a.name, since), sessionsSince(since))
   }
   const mcpSince = mtimeOf(join(root, '.mcp.json'))
   for (const m of setup.mcp) row(m, 'MCP server in `.mcp.json`', '?', '?', callsOf('mcp', m, mcpSince), sessionsSince(mcpSince))

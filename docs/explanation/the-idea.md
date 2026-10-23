@@ -85,8 +85,9 @@ base, kept from becoming uniform in three ways:
 
 ## The product is prose
 
-A skill is a standard written in plain language that an LLM can read. There is no code
-to run and no build. Nothing in it is a technical control: a model may follow a skill,
+A skill is a standard written in plain language that an LLM can read. There is no
+build, and the product's only code is one script the steward measures a setup's token
+cost with. Nothing in it is a technical control: a model may follow a skill,
 ignore it, or follow it partly. So the marketplace is judged by how well its standards
 are written and cut, and its checks exist only for the mistakes that fail silently.
 

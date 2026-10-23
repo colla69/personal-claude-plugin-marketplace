@@ -39,7 +39,9 @@ Adopting moves rules out of your own files, so it has the strictest guards:
   `~/.local/share/marketplace-steward/backups/` before the first rule is taken out of
   it, and never over an earlier backup.
 - **Your private files stay yours.** `CLAUDE.local.md`, `.claude/settings.local.json`
-  and everything under `~/.claude` are read and never changed.
+  and everything under `~/.claude` are read and never changed. That includes the
+  project's session transcripts under `~/.claude/projects/`, which the measuring script
+  reads to count tokens and calls. It prints names and numbers, never what was said.
 
 ## When it contributes to the marketplace
 

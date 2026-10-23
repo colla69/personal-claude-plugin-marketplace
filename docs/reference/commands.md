@@ -32,7 +32,7 @@ until it has run.
 | `node scripts/check-catalog.mjs` | Checks the plugin lists, layers, names and dependencies agree; [checks](checks.md) lists what it catches |
 | `node scripts/check-docs.mjs` | Checks the docs: links and anchors resolve, every page is on the map, prose wraps at 88, no skill links into `docs/` |
 | `claude plugin details <name>` | Shows an installed plugin's inventory and its estimated token cost |
-| `node plugins/marketplace-steward/scripts/measure-setup.mjs <project>` | Prints what a project's setup costs per session, and how its sessions used it, from the transcripts Claude Code keeps under `~/.claude/projects/`. It prints names and numbers only. Keep-current runs it in the project |
+| `node plugins/marketplace-steward/scripts/measure-setup.mjs <project>` | Prints what a project's setup costs per session, and how its sessions used it, from the transcripts Claude Code keeps under `~/.claude/projects/`. It prints names, numbers and the headings of the root context files, and writes nothing. Set-up and keep-current run it in the project |
 | `claude --plugin-dir ./plugins/<name> plugin details <name>` | The same for the files in your checkout, installed or not |
 | `claude --plugin-dir ./plugins/marketplace-steward --plugin-dir ./plugins/craft-review --plugin-dir ./plugins/language-simple-english` | Starts a session with your working copy of the steward. Every plugin it depends on needs its own `--plugin-dir`, or it doesn't load |
 | `claude plugin eval ./plugins/<name> --ablation with-without` | Runs a plugin's eval cases with and without it, to show whether it changes the outcome. No plugin here has eval cases yet |

@@ -2,9 +2,8 @@
 
 A setup is paid for before any work starts. Every session loads the root `CLAUDE.md`,
 every rule without `paths:`, and the description of every skill and agent, and every
-request reads all of it again. So a hundred tokens of always-on context cost more over
-a week than most single runs of a trio. Measure first, then cut only what you may cut,
-and report the rest with its price.
+request reads all of it again. So a cut there repays in every request of every session.
+Measure first, then cut only what you may cut, and report the rest with its price.
 
 The record's rules hold throughout: read `record.md`, beside this file, first.
 
@@ -18,9 +17,9 @@ node <plugin root>/scripts/measure-setup.mjs
 
 The plugin root is the folder above this one. The script reads the project's context
 files and `.claude/`, and the transcripts Claude Code keeps for the project under
-`~/.claude/projects/`. It prints names and numbers only, and writes nothing. When it
-cannot run, such as on a machine without Node, say so under Unverified and skip the
-rest of this file.
+`~/.claude/projects/`. It prints names, numbers and the headings of the root context
+files, and writes nothing. When it cannot run, such as on a machine without Node, say
+so under Unverified and skip the rest of this file.
 
 Its tables, in order:
 
@@ -33,6 +32,10 @@ Its tables, in order:
 - **Each root file by section**, largest first.
 - **Use:** for each plugin, project skill, project agent and MCP server, whether the
   latest session loaded it, its calls, and the sessions since its file last changed.
+  "Not yet" marks a part that changed after the latest session started, such as one
+  this run installed: no session could load it yet. A plugin that is not loaded has no
+  tokens in the total. For one that is "not yet", take its always-on tokens from
+  `claude plugin details <plugin>` and add them to the total you report.
 - **Agent runs:** each agent's runs, its model, and what a run read and wrote.
 
 Skills and agents from outside the setup, such as user-scope plugins, the steward
@@ -50,10 +53,10 @@ agent of the setup counts as used.
 
 | The script shows | Do |
 |---|---|
-| A part that did not load | Check it as step 3 of `keep-current.md` does. It costs nothing, and it does nothing |
-| A root file over the budget in `set-up/context-files.md`, or a section about one component or one file type | Move the section to that component's `CLAUDE.md`, or to a rule with `paths:`. Do it only in a file the record lists with a matching hash. In any other file, report the section, its tokens and the home it would move to |
+| A part that did not load, marked **no** | Check it as step 3 of `keep-current.md` does. It costs nothing, and it does nothing |
+| A root file over the budget in `set-up/context-files.md`, or a section about one component or one file type | Move the section to that component's `CLAUDE.md`, or to a rule with `paths:`. Do it only when the file it leaves is one the record lists with a matching hash, and the file it goes to is new or listed with a matching hash too. Otherwise, report the section, its tokens and the home it would move to |
 | A rule without `paths:` that is about one file type | Give it `paths:` under the same condition. Otherwise report it |
-| A plugin with no calls, preloaded by no agent, after enough sessions | Report it as possibly unneeded, with its tokens. It stays: removing it costs a standard the user may still want |
+| A plugin with no calls, preloaded by no agent, after enough sessions | Report it as possibly unneeded, with its tokens. It stays: removing it costs a standard the user may still want. A plugin that keep-current already names as possibly unneeded, because its signal is gone, gets its tokens there, not a second row |
 | A trio whose skill has no calls and whose agents have no runs, after enough sessions | Report it as possibly unneeded, with the tokens of its four descriptions. It stays |
 | An MCP server in `.mcp.json` with no calls, after enough sessions | Report it as possibly unneeded. Never edit `.mcp.json`: the project's mechanics are its own |
 | Agent runs | Report the roles, the costliest first, with their models. Change no model on the numbers alone: they show what a role costs, not what its work is worth |
