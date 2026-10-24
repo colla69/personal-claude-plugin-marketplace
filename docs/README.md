@@ -75,7 +75,7 @@ Why it is the way it is.
 | [`explanation/layers.md`](explanation/layers.md) | Why four layers, and why dependencies point one way | `place-knowledge.md` | Written |
 | [`explanation/skills-and-roles.md`](explanation/skills-and-roles.md) | Why a skill holds knowledge and a role a lane | `style.md`, `plugin-shape.md` | Written |
 | [`explanation/trios.md`](explanation/trios.md) | Why Plan, Do, Check, and why the stop | `trios.md`, `roles/` | Written |
-| [`explanation/the-steward.md`](explanation/the-steward.md) | Why one package, why it asks only three things, why a checker | The front door, the job files | Written, not yet tried |
+| [`explanation/the-steward.md`](explanation/the-steward.md) | Why one package, why it asks only four things, why a checker | The front door, the job files | Written, not yet tried |
 | [`explanation/placing-knowledge.md`](explanation/placing-knowledge.md) | Why diagnose first, and why strip | `place-knowledge.md` | Written |
 | [`explanation/safety.md`](explanation/safety.md) | What keeps you in control | The job files | Written, not yet tried |
 | [`explanation/cost.md`](explanation/cost.md) | What every enabled skill costs, and how the steward measures a setup | `plugin-shape.md`, `evaluate-skills`, `cost.md`, `measure-setup.mjs` | Written; the measuring not yet tried |

@@ -81,7 +81,7 @@ project that has none.
   },
   "plugins": ["<every plugin the steward installed>"],
   "context": "<AGENTS.md if you kept your AGENTS.md files, CLAUDE.md if you swapped them; absent if there were none>",
-  "declined": ["<every new skill you said no to>"],
+  "declined": ["<every new skill you said no to, and every plugin you said no to when asked>"],
   "pending": [
     { "path": "<file>", "rule": "<the rule>", "home": "<plugin:skill>", "pr": "<link>" }
   ]

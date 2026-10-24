@@ -45,9 +45,9 @@ or CI, and remembering a preference, which is Claude's memory.
 
 | Job | Asks |
 |---|---|
-| Set up | The sources checklist, once, when no policy file exists. An OK for each new skill, together, at the end |
+| Set up | The sources checklist, once, when no policy file exists. In a repo with code, whether it writes Conventional Commits, once, unless it already shows the format. An OK for each new skill, together, at the end |
 | Adopt | The same as set up |
-| Keep current | An OK for a new skill, if the project now needs one |
+| Keep current | Whether a project with code writes Conventional Commits, if no run asked before. An OK for a new skill, if the project now needs one |
 | Contribute | An OK before a new skill; nothing before a change to an existing one |
 
 Everything else goes ahead and is reported.

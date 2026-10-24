@@ -51,6 +51,9 @@ A task the project does once is a prompt, not a trio.
 7. **`craft-unit-testing:write-unit-tests` goes to Do wherever Do changes code's
    behavior and a test runner is configured,** such as in `change`. It holds the red,
    green, refactor cycle that `development-standards` makes the way code changes.
+8. **`language-conventional-commits:conventional-commits` goes to Do wherever the
+   project enables it.** Do is the developer of the trio: its work is what becomes a
+   commit.
 
 The reference case is the monthly report: Plan takes the company vision and the
 enterprise templates; Do takes formatting the monthly report, Excel, PDF and the

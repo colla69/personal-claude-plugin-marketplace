@@ -16,8 +16,9 @@ first trials will show where it behaves otherwise.
 2. **Let it run.** It first refreshes the marketplaces and updates the steward's own
    copy, so that your files are compared with the current templates. With a symptom
    named, it checks only that; otherwise it runs every check below. It asks only
-   before a new skill, and once whether to keep or swap the project's `AGENTS.md`
-   files if it hasn't asked before.
+   before a new skill, once whether to keep or swap the project's `AGENTS.md` files if
+   it hasn't asked before, and once whether a project with code writes Conventional
+   Commits.
 3. **Read the report**, and run `/reload-plugins` if anything was installed or rebuilt.
 
 ## What it checks

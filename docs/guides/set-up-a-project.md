@@ -32,9 +32,11 @@ first trials will show where it behaves otherwise.
 2. **Tick the sources.** If the project has no `.claude/plugin-sources.json`, and you
    have none in `~/.claude/`, you get one checklist: which marketplaces this project may
    draw plugins from. The toolkit and the plugins in Anthropic's own repository are
-   ticked already. It is the only question about the setup, and it is asked once.
+   ticked already. It is asked once.
 3. **Let it run.** It reads the project, using the cartographer for a codebase, decides
-   what to write, and writes it. Claude Code may ask for some commands as it goes, such
+   what to write, and writes it. In a codebase, it asks once whether the project writes
+   its commit messages in Conventional Commits, unless the project already shows the
+   format. Claude Code may ask for some commands as it goes, such
    as each plugin install; [permissions](../reference/permissions.md) lists them.
 4. **Answer the new-skill question, if there is one.** When the project needs knowledge
    that neither the toolkit nor a marketplace you allowed has, the report ends by

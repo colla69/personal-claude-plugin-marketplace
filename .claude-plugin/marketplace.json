@@ -99,6 +99,13 @@
       "tags": ["english", "writing", "documentation"]
     },
     {
+      "name": "language-conventional-commits",
+      "source": "./plugins/language-conventional-commits",
+      "description": "Commit messages in the Conventional Commits format: the type by what a user sees, a marked breaking change, a scope the project uses, an imperative description, and a body that says why.",
+      "category": "language",
+      "tags": ["conventional-commits", "commits", "git", "changelog"]
+    },
+    {
       "name": "tools-vue",
       "source": "./plugins/tools-vue",
       "description": "Vue 3 Composition API conventions for components, reactivity, composables, and templates.",

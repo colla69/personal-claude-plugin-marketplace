@@ -48,7 +48,8 @@ the user's work or never happens at all, and what the user took out comes back.
     every placeholder value, the `skills:` list, the `model` and the `effort`, so a
     rebuild is exact.
 - **`plugins`** lists every plugin the steward installed, and **`declined`** every new
-  skill the user said no to.
+  skill the user said no to, and every plugin they said no to when the steward asked,
+  by its name.
 - **`context`** is the user's answer to the keep-or-swap question in
   `set-up/context-files.md`: `"AGENTS.md"` when they kept their `AGENTS.md` files,
   `"CLAUDE.md"` when they swapped them. It is left out when the project had no
@@ -74,7 +75,8 @@ the user's work or never happens at all, and what the user took out comes back.
   the rule is still found after its merge.
 - **What is in the record and gone from the project was removed by the user.** A
   recorded trio whose files are gone, or a recorded plugin whose key is gone, stays
-  gone. A declined skill is not proposed again.
+  gone. A declined skill is not proposed again, and a declined plugin is not asked
+  about again.
 - **No record means nothing is rebuilt.** A project set up before the record existed
   has files nobody can tell apart, so they are all treated as the user's.
 

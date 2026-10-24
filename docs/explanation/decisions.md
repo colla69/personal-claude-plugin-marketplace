@@ -20,6 +20,7 @@ the reason it was made is often the reason its replacement has the shape it has.
 - [The repo's own plugins: D55](#the-repos-own-plugins-d55)
 - [Measured cost: D56](#measured-cost-d56)
 - [Documentation on Sonnet: D57](#documentation-on-sonnet-d57)
+- [Conventional Commits: D58](#conventional-commits-d58)
 - [Still open](#still-open)
 
 ## The author's statements
@@ -85,7 +86,7 @@ All decided on 2026-10-19, while the steward was built.
 | D30 | A lesson is placed by four moves: diagnose, strip, let the user decide where it is taste, keep corrections as examples | Most knowledge arrives tangled with its project | Holds, in `place-knowledge.md` |
 | D31 | A project's existing setup is adopted, not set up over | Two sets of instructions agree today and drift apart tomorrow | Holds, in `adopt.md` |
 | D32 | The name is `marketplace-steward` | The proposed name, accepted: it sets up, keeps current and grows | Holds |
-| D33 | No trio for the steward; it asks only before creating a new skill, besides the one-time sources checklist | A trio would make the process too difficult; a new skill is a decision about the cut, which is taste | Holds; supersedes init's plan stop. D53 adds a third question: keep or swap a project's `AGENTS.md` files |
+| D33 | No trio for the steward; it asks only before creating a new skill, besides the one-time sources checklist | A trio would make the process too difficult; a new skill is a decision about the cut, which is taste | Holds; supersedes init's plan stop. D53 adds a third question: keep or swap a project's `AGENTS.md` files. D58 adds a fourth: whether a project with code writes Conventional Commits |
 | D34 | No lanes: the steward is the only writer, and its helpers are read-only | One writer has no lane to keep | Holds; supersedes "the contributor only touches knowledge" |
 | D35 | Hooks, MCP servers, tool commands and permissions stay in the project; a hook that only injects text is knowledge | The marketplace ships knowledge, not mechanics | Holds |
 | D36 | Two visible skills, the front door and `evaluate-skills`; the rest is reference files read by path | Every visible skill costs a description in every session of every project; a hidden skill can't be preloaded | Holds |
@@ -181,6 +182,15 @@ effort."
 | # | Decision | Why | Now |
 |---|---|---|---|
 | D57 | A trio whose work is documentation runs all three roles on `sonnet` at `low`. A trio that produces a deliverable, such as a monthly report, or writes code and its documentation together keeps the defaults. No documentation skill is added | The maintainer's choice, made ahead of the measuring D46 waits for. No documentation skill or role existed to pin, so the rule goes where set-up chooses each role's model | Holds, in "Model and effort" in `set-up/trios.md`. A trio built before it keeps its recorded model, because keep-current rebuilds from the recorded `fill` |
+
+## Conventional Commits: D58
+
+Decided on 2026-10-24: "add a skill for conventional commits", "a developer should use
+it", and, for which projects, "every repo with code, but you should ask".
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D58 | A Language skill for commit messages, `language-conventional-commits`, after the Conventional Commits 1.0.0 specification. In a repo with code, the steward asks once whether the project writes the format, and does not ask when the project already shows it. A no goes in the record's `declined`. Wherever the project enables it, it goes to Do | The format is a notation the work is written in, as English is, so it is Language and not an addition to a Craft skill. It changes every commit message, and a release tool may read it, so the project chooses it: the steward asks. Do is the developer of a trio, and its work is what becomes a commit | Holds, in the skill, "Commit messages" in `set-up/plugin-catalog.md`, rule 8 of `set-up/trios.md`, step 5 of `keep-current.md` and the front door's questions |
 
 ## Still open
 
