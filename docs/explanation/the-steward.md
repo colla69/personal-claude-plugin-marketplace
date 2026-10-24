@@ -1,7 +1,7 @@
 # The steward
 
 Why one package sets projects up, adopts their setups, keeps them current and grows the
-marketplace, why it asks you only three things, and why it works without lanes. Read
+marketplace, why it asks you only four things, and why it works without lanes. Read
 this to understand what you are handing to the steward when you install it.
 
 **Not yet tried on real projects.** This page describes the steward as its files set it
@@ -51,7 +51,7 @@ answered "add a feature" would compete with every trio for every request, and it
 description says so: it is not for setting up a tool, a service or CI, nor for
 remembering a preference, which is Claude's memory.
 
-## It asks three things
+## It asks four things
 
 > "Only ask for an OK when creating new skills, on init or adoption."
 
@@ -59,6 +59,7 @@ remembering a preference, which is Claude's memory.
 |---|---|
 | Which marketplaces a project may draw from, once, when no policy file exists | A project under a security or procurement policy looks the same as one without, so only a person can say |
 | Whether to keep the project's `AGENTS.md` files, each behind a `CLAUDE.md` that imports it, or swap them for `CLAUDE.md`, once, when it has any | The setup is Claude only, but the people on a project may not be: only you know whether another tool still reads those files |
+| Whether a project with code writes its commit messages in Conventional Commits, once, unless the project already shows the format | The format changes every commit message, and a release tool may read it. That is the project's choice, not the steward's |
 | Your OK before it creates a new skill | A new skill is a decision about the cut: its layer, its name, where it stops. That is taste, and taste is yours |
 
 Everything else it does and reports. That replaces the plan the first init showed

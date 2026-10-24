@@ -25,15 +25,17 @@ first trials will show where it behaves otherwise.
 3. **Say whether to keep your `AGENTS.md` files or swap them for `CLAUDE.md`**, if the
    project has any. It asks once, and recommends the swap; keep them if people on the
    project also use another tool that reads them.
-4. **Let it run.** It reads every Claude file of the project's own, splits them into
+4. **Say whether the project writes Conventional Commits**, if it has code and its
+   files do not show the format already. It asks once.
+5. **Let it run.** It reads every Claude file of the project's own, splits them into
    single rules, and gives each rule a home. Then it sets the project up with those
    homes. For the rules that would serve other projects, it opens a pull request for
    each skill or role template they change, without asking.
-5. **Answer the new-skill question, if there is one**, at the end. Each yes becomes a
+6. **Answer the new-skill question, if there is one**, at the end. Each yes becomes a
    pull request too.
-6. **Read the report's Adopted table.** Every rule is there, grouped by the file it came
+7. **Read the report's Adopted table.** Every rule is there, grouped by the file it came
    from, quoted short, with its new home and what happened to the local copy.
-7. **Read its Contributions table.** Each contribution has a row with its pull request,
+8. **Read its Contributions table.** Each contribution has a row with its pull request,
    or where it stopped and what is left. A rule the Adopted table sends to a
    contribution, with no row for that contribution here, was skipped: ask the steward
    to run it.

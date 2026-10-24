@@ -49,9 +49,10 @@ comes next.
 - For a contribution: a branch and a pull request on the marketplace, from its own
   clone in `~/.local/share/marketplace-steward/`, never from a checkout of yours
 
-It asks three things only: the sources checklist, once; whether to keep or swap the
-project's `AGENTS.md` files, once, when it has any; and an OK before it creates a new
-skill. Everything else it does and reports.
+It asks four things only: the sources checklist, once; whether to keep or swap the
+project's `AGENTS.md` files, once, when it has any; whether a project with code writes
+Conventional Commits, once; and an OK before it creates a new skill. Everything else
+it does and reports.
 
 ## Leaves to you
 

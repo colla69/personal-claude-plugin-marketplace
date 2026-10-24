@@ -30,6 +30,7 @@ pure cost. When in doubt, leave it out and mention it as optional.
 | Language | `language-javascript` | `javascript-conventions` skill | The project's own code in `.js` or `.mjs` files, not only tool configs such as `vite.config.js` beside TypeScript sources. Read `"type"` in `package.json`, since it decides whether `.js` is an ES module. |
 | Language | `language-swift` | `swift-conventions` skill | A `Package.swift`, an `.xcodeproj`, or `.swift` sources. Read the language mode: `swift-tools-version` and any per-target override in `Package.swift`, or the Swift Language Version build setting in an Xcode project. In Swift 6 mode a data race is a compile error and in Swift 5 mode it is not, so the mode changes what correct code looks like. |
 | Language | `language-simple-english` | `simple-english` skill | Every project, with or without code: every project has text a person reads. |
+| Language | `language-conventional-commits` | `conventional-commits` skill | Any repo with code in it, after the one question in "Commit messages", below. |
 | Framework & Tools | `tools-vue` | `vue-conventions` skill | `vue` in dependencies. Check the major version and note it: the plugin targets Vue 3 Composition API, so flag a mismatch if the project is on Options API or Vue 2. |
 | Framework & Tools | `tools-vue-typescript` | `vue-typescript-conventions` skill | `vue` and `typescript` both in dependencies, or `lang="ts"` in `.vue` files. Pulls in `tools-vue` and `language-typescript`. |
 | Framework & Tools | `tools-pinia` | `pinia-conventions` skill | `pinia` in dependencies. Pulls in `tools-vue`. |
@@ -120,6 +121,23 @@ their judgements are measured against. Installing any of them pulls it in.
 
 Development is test first, so `craft-development` also pulls in `craft-unit-testing`,
 whose skill holds the red, green, refactor cycle.
+
+## Commit messages
+
+In a repo with code, ask once whether the project writes its commit messages in
+Conventional Commits, and install `language-conventional-commits` on a yes. The format
+changes every commit message from then on, and a release tool may read it, so only the
+people on the project can choose it.
+
+- **Do not ask when the project already shows the format** in its files: a
+  commitlint configuration, or a release tool that reads commit types, such as
+  semantic-release or release-please, in its manifests or CI. That is a yes, and the
+  report names the evidence.
+- **Ask before phase 5 installs anything, and wait for the answer.** It is one
+  question for the whole project. Recommend yes. A yes installs the plugin in phase 5,
+  so phase 6 gives it to every Do.
+- **A no goes in the record's `declined`**, when the job writes the record, and no
+  later run asks again.
 
 ## Scope guidance
 

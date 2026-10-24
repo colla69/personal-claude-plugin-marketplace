@@ -1,0 +1,7 @@
+{
+  "name": "language-conventional-commits",
+  "displayName": "Conventional Commits",
+  "author": { "name": "Andrea Colarieti Tosti" },
+  "license": "Apache-2.0",
+  "keywords": ["conventional-commits", "commits", "git", "changelog", "semver"]
+}

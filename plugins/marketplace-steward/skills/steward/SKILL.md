@@ -58,10 +58,12 @@ project's trios and the conversation handle that.
 
 ## For every job
 
-- **Ask only three things.** The sources checklist, once, when no policy file exists,
+- **Ask only four things.** The sources checklist, once, when no policy file exists,
   as set-up's phase 1 says. Whether to keep the project's `AGENTS.md` files or swap them
   for `CLAUDE.md`, once, when it has one, as
-  `${CLAUDE_PLUGIN_ROOT}/references/set-up/context-files.md` says. And an OK before
+  `${CLAUDE_PLUGIN_ROOT}/references/set-up/context-files.md` says. Whether a project
+  with code writes Conventional Commits, once, as "Commit messages" in
+  `${CLAUDE_PLUGIN_ROOT}/references/set-up/plugin-catalog.md` says. And an OK before
   creating a new skill, showing what section 5 of
   `${CLAUDE_PLUGIN_ROOT}/references/place-knowledge.md` asks for; a yes goes to the
   contribute job, in the same run. Everything else goes ahead and is reported.

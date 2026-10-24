@@ -25,6 +25,7 @@ Each plugin's own README, under `plugins/<name>/`, says where it stops.
 | [`language-javascript`](../../plugins/language-javascript/) | Language | `javascript-conventions` | JavaScript: ES modules with explicit extensions, named exports, async/await, a logger in library code | The project's own code in `.js` or `.mjs` files | `universal-clean-code` |
 | [`language-swift`](../../plugins/language-swift/) | Language | `swift-conventions` | Swift: the language mode, optionals handled not forced, value types, thrown errors, concurrency stated in types | A `Package.swift`, an `.xcodeproj` or `.swift` sources | `universal-clean-code` |
 | [`language-simple-english`](../../plugins/language-simple-english/) | Language | `simple-english` | English nobody can read two ways: short sentences, one instruction each, one word per meaning, no filler | Every project, with or without code | — |
+| [`language-conventional-commits`](../../plugins/language-conventional-commits/) | Language | `conventional-commits` | Commit messages a release tool can read: the type by what a user sees, a marked breaking change, a body that says why | Any code, after the steward asks once whether the project writes Conventional Commits, unless its files already show the format | — |
 | [`tools-vue`](../../plugins/tools-vue/) | Framework & Tools | `vue-conventions` | Vue 3 Composition API: components, reactivity, composables, templates | `vue` in the dependencies | — |
 | [`tools-vue-typescript`](../../plugins/tools-vue-typescript/) | Framework & Tools | `vue-typescript-conventions` | TypeScript in Vue 3: typed props, emits and reactive inputs | Both `vue` and `typescript`, or `lang="ts"` in `.vue` files | `tools-vue`, `language-typescript` |
 | [`tools-pinia`](../../plugins/tools-pinia/) | Framework & Tools | `pinia-conventions` | Pinia stores, and server data in a query layer instead of a store | `pinia` in the dependencies | `tools-vue` |
@@ -38,7 +39,7 @@ Each plugin's own README, under `plugins/<name>/`, says where it stops.
 |---|---|
 | Universal | `universal-clean-code`, `universal-work-discipline` |
 | Craft | `craft-development`, `craft-review`, `craft-code-review`, `craft-unit-testing`, `craft-refactoring`, `craft-cv-writing` |
-| Language | `language-java`, `language-typescript`, `language-javascript`, `language-swift`, `language-simple-english` |
+| Language | `language-java`, `language-typescript`, `language-javascript`, `language-swift`, `language-simple-english`, `language-conventional-commits` |
 | Framework & Tools | `tools-vue`, `tools-vue-typescript`, `tools-pinia`, `tools-aws-static-hosting`, `tools-appkit` |
 | None: works on the marketplace itself | `marketplace-steward` |
 

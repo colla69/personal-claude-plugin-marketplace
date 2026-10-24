@@ -47,10 +47,12 @@ Decide, from what phase 2 found:
 
 - the files to write, and roughly what goes in each;
 - the skills to install: `plugin-catalog.md` says when a toolkit skill applies, and
-  `plugin-sources.md` how to fill a gap;
+  `plugin-sources.md` how to fill a gap. In a repo with code, this is where you ask the
+  question in "Commit messages" in `plugin-catalog.md`;
 - the trios, and which skill goes to which role, as `trios.md` says.
 
-Nothing is shown before the work. The decisions go into the report, in the tables of
+Nothing is shown before the work, except the commit question above, which is answered
+before phase 5. The decisions go into the report, in the tables of
 `report.md`, with a reason wherever a model or an effort differs from its default.
 
 **A need nothing covers calls for a new skill.** When the project shows a need that
