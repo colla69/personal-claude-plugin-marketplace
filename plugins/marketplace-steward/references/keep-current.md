@@ -69,7 +69,8 @@ Read the manifests and the top-level tree again, against the signals in
   `test` trio, gets its trio, built as set-up's phase 6 does.
 - **The question in "Commit messages"** in `set-up/plugin-catalog.md` is asked once,
   in a project with code where `language-conventional-commits` is not enabled and is
-  neither in the record's `plugins` nor in its `declined`.
+  neither in the record's `plugins` nor in its `declined`. A yes installs it as the
+  first bullet does, and gives it to Do in every trio, by rule 8 of `set-up/trios.md`.
 - **A plugin whose signal is gone** stays. Removing it costs a standard the user may
   still want, so the report names it as possibly unneeded.
 - **A need nothing covers** is proposed as a new skill, as in set-up's phase 3.

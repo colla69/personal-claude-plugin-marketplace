@@ -76,7 +76,7 @@ Start Claude Code in `tally` and say:
 set this project up
 ```
 
-Four things happen before any file is written:
+Five things happen before any file is written:
 
 1. **Claude Code asks whether the steward may run.** Allow it. The steward pre-allows
    reading its own files and the commands of its own folder, and a skill that does that
@@ -88,6 +88,9 @@ Four things happen before any file is written:
    ticked. Keep the defaults.
 4. **It reads the project.** For a codebase it sends its cartographer, which reports the
    stack, the commands and the components.
+5. **The steward asks whether the project writes Conventional Commits**, because
+   `tally` has code. Answer yes or no. A yes gives every trio's Do the
+   `conventional-commits` skill.
 
 Then it writes. Claude Code may ask before some commands, such as each plugin install;
 allow them. [Permissions](../reference/permissions.md) lists them all.
@@ -100,7 +103,7 @@ what happened. Expect something like this:
 | Section | For `tally` |
 |---|---|
 | **Written** | `CLAUDE.md`, `.claude/settings.json`, `.claude/plugin-sources.json`, the trios, `.claude/steward.json` |
-| **From your toolkit** | `universal-clean-code`, `craft-development`, `craft-code-review`, `craft-refactoring`, `craft-unit-testing` for the test runner, `language-typescript` for `tsconfig.json`, `language-simple-english` because every project has text to read, and what they pull in |
+| **From your toolkit** | `universal-clean-code`, `craft-development`, `craft-code-review`, `craft-refactoring`, `craft-unit-testing` for the test runner, `language-typescript` for `tsconfig.json`, `language-simple-english` because every project has text to read, `language-conventional-commits` if you said yes, and what they pull in |
 | **Gap-fills** | Probably `typescript-lsp` from Anthropic's marketplace, for go-to-definition and real diagnostics, which no toolkit skill gives. With no gap to fill, the report says so in one line |
 | **Trios** | `change` and `refactor`, and `test`, because a test runner is configured |
 | **Installed** | The same installs as a block to paste on another machine |

@@ -129,13 +129,15 @@ Conventional Commits, and install `language-conventional-commits` on a yes. The 
 changes every commit message from then on, and a release tool may read it, so only the
 people on the project can choose it.
 
-- **Do not ask when the project already shows the format**: a commitlint
-  configuration, a release tool that reads commit types, such as semantic-release or
-  release-please, or a history whose recent subjects are mostly in the format. That is
-  a yes, and the report names the evidence.
-- **Ask in phase 3**, with the other decisions, and recommend yes. Name what the
-  history uses now, so the answer is made against it.
-- **A no goes in the record's `declined`**, and no later run asks again.
+- **Do not ask when the project already shows the format** in its files: a
+  commitlint configuration, or a release tool that reads commit types, such as
+  semantic-release or release-please, in its manifests or CI. That is a yes, and the
+  report names the evidence.
+- **Ask before phase 5 installs anything, and wait for the answer.** It is one
+  question for the whole project. Recommend yes. A yes installs the plugin in phase 5,
+  so phase 6 gives it to every Do.
+- **A no goes in the record's `declined`**, when the job writes the record, and no
+  later run asks again.
 
 ## Scope guidance
 

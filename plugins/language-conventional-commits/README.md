@@ -10,8 +10,8 @@ what the change does for a user, and a breaking change is always marked.
 | Layer | Language |
 | Builds on | nothing |
 
-> A breaking change that is not marked releases a minor version, and every user who
-> trusts the version number upgrades into the break.
+> A breaking change that is not marked releases a minor or a patch version, and every
+> user who trusts the version number upgrades into the break.
 
 It follows the Conventional Commits 1.0.0 specification, with the type list most
 projects take from the Angular convention.

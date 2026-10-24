@@ -47,7 +47,7 @@ it touches. A fix to a broken test is `test`, not `fix`: no user sees a differen
 | `ci` | The CI configuration | None |
 | `style` | Formatting only: whitespace, semicolons, quotes | None |
 | `chore` | Other work that changes no source or test file | None |
-| `revert` | The undo of an earlier commit | Depends on the reverted commit |
+| `revert` | The undo of an earlier commit | Patch |
 
 If no single type fits, the commit holds two changes. Split it into two commits. A
 `feat` that also fixes a bug hides the fix from the changelog.
@@ -68,8 +68,8 @@ on the other side: a caller, a configuration file, a stored value, a command lin
   case-sensitive, and a tool that does not find it releases a minor version.
 
 A breaking change that is not marked is the most expensive mistake in this format. It
-releases a minor version, and every user who trusts the version number upgrades into
-the break.
+releases a minor or a patch version, and every user who trusts the version number
+upgrades into the break.
 
 ## Write the scope
 

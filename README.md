@@ -39,8 +39,9 @@ claude plugin install marketplace-steward@personal-claude-plugin-marketplace --s
 ```
 
 That is all a machine needs. Start a new session in a project and say "set this project
-up". The steward asks once which marketplaces the project may draw from, does the rest,
-and reports every file it wrote. It never touches git in your project, so branch first.
+up". The steward asks once which marketplaces the project may draw from, and in a
+project with code whether it writes Conventional Commits. It does the rest, and reports
+every file it wrote. It never touches git in your project, so branch first.
 
 The steward is written and not yet tried on real projects. For a guided first run on a
 small sample project, follow [your first setup](docs/tutorials/first-setup.md).
