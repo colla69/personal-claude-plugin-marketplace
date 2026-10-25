@@ -139,8 +139,8 @@ change:
 ```
 
 1. **Plan answers first, and changes nothing.** It returns items, each with what
-   changes, where, and how you can tell it is done, plus its questions and assumptions.
-   It ends by waiting for your OK.
+   changes, in which files, and how you can tell it is done, plus its questions and
+   assumptions. It ends by waiting for your OK.
 2. **Correct it once.** Say "also reject non-numbers with a clear error". The plan goes
    back to Plan, and a new version comes back. Your answer wasn't an OK, so nothing has
    happened yet.

@@ -57,7 +57,8 @@ and the agent will manufacture findings to fill it.
 The run-pattern template, `roles/run.md`, is the third kind of file: the project skill
 that runs one trio. It holds the order, the stop for the user's OK, and when Check sends
 the work back to Do. It holds no lane and no standard, which live in the role templates
-and the skills it runs.
+and the skills it runs. Only the user starts it, so its description is a summary for
+the command list, not a trigger list.
 
 Skill plugins ship no `agents/`. Only `marketplace-` plugins do, and their agents follow
 the role shape above; `plugin-shape.md` says why, and what else such a plugin does

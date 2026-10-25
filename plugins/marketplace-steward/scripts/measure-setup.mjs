@@ -144,7 +144,7 @@ function readSetup(root) {
   const nested = nestedContextFiles(root).map((f) => ({ path: relative(root, f), tokens: tokens(withImports(f).text) }))
 
   // What an agent or a skill puts in every session is its name and description; the
-  // body loads when it runs.
+  // body loads when it runs. A skill only the user can start puts in nothing.
   const agents = markdownIn(join(root, '.claude', 'agents')).map((f) => {
     const text = readText(f) || ''
     const name = fmField(text, 'name') || basename(f, '.md')
@@ -158,7 +158,8 @@ function readSetup(root) {
       const text = e.isDirectory() ? readText(f) : null
       if (text === null) continue
       const name = fmField(text, 'name') || e.name
-      skills.push({ name, path: relative(root, f), tokens: tokens(`- ${name}: ${fmField(text, 'description')}`), mtime: mtimeOf(f) })
+      const userOnly = fmField(text, 'disable-model-invocation') === 'true'
+      skills.push({ name, path: relative(root, f), tokens: userOnly ? 0 : tokens(`- ${name}: ${fmField(text, 'description')}`), mtime: mtimeOf(f), userOnly })
     }
   } catch { /* no project skills */ }
 
@@ -343,7 +344,7 @@ function report(root) {
   for (const s of setup.skills) s.tokens = partTokens(latest && latest.skillListing, s.name, s.tokens)
   const fromWhere = (items, names) => (names && items.every((i) => names.has(i.name)) ? 'session' : names && items.some((i) => names.has(i.name)) ? 'session, and files for the rest' : 'file')
   if (setup.agents.length) always.push([`Project agents (${setup.agents.length})`, setup.agents.reduce((n, a) => n + a.tokens, 0), fromWhere(setup.agents, agentNames)])
-  if (setup.skills.length) always.push([`Project skills (${setup.skills.length})`, setup.skills.reduce((n, s) => n + s.tokens, 0), fromWhere(setup.skills, skillNames)])
+  if (setup.skills.length) always.push([`Project skills (${setup.skills.length})`, setup.skills.reduce((n, s) => n + s.tokens, 0), setup.skills.every((s) => s.userOnly) ? 'none: only the user starts them' : fromWhere(setup.skills.filter((s) => !s.userOnly), skillNames)])
   // A plugin's skills and agents are listed as `plugin:name`. One missing from the
   // listing has no measure here; `claude plugin details <plugin>` estimates it.
   const ofPlugin = (p) => (n) => n.includes(':') && n.split(':')[0] === p
@@ -404,7 +405,7 @@ function report(root) {
 
   // Use
   L.push('## Use in the sessions read', '')
-  L.push('Sessions counts only the sessions since the file that added the part last changed, so a part added recently has fewer. Loaded says whether the latest session listed it: "not yet" when the part changed after that session started.', '')
+  L.push('Sessions counts only the sessions since the file that added the part last changed, so a part added recently has fewer. Loaded says whether the latest session listed it: "not yet" when the part changed after that session started, "user only" for a skill only the user starts, which is never listed.', '')
   head('Part', 'Kind', 'Always-on tokens', 'Loaded', 'Calls', 'Sessions')
   for (const p of pluginNames) {
     const calls = (s) => [...s.calls.skill.entries(), ...s.calls.agent.entries()].filter(([n]) => ofPlugin(p)(n)).reduce((n, [, c]) => n + c, 0)
@@ -414,7 +415,8 @@ function report(root) {
     const loaded = loadedState(skillNames && new Set([...skillNames, ...(agentNames || [])]), ofPlugin(p), setup.pluginsSince)
     row(p, `plugin${named.length ? `, preloaded by ${named.join(', ')}` : ''}`, t === null ? '?' : `~${fmt(t)}`, loaded, since.reduce((n, s) => n + calls(s), 0), since.length)
   }
-  for (const s of setup.skills) row(s.name, 'project skill', `~${fmt(s.tokens)}`, loadedState(skillNames, (n) => n === s.name, s.mtime), callsOf('skill', s.name, s.mtime), sessionsSince(s.mtime))
+  // A skill only the user can start is never in the listing, so it can't be missing from it.
+  for (const s of setup.skills) row(s.name, 'project skill', `~${fmt(s.tokens)}`, s.userOnly ? 'user only' : loadedState(skillNames, (n) => n === s.name, s.mtime), callsOf('skill', s.name, s.mtime), sessionsSince(s.mtime))
   for (const a of setup.agents) {
     const since = mtimeOf(join(root, a.path))
     row(a.name, 'project agent', `~${fmt(a.tokens)}`, loadedState(agentNames, (n) => n === a.name, since), callsOf('agent', a.name, since), sessionsSince(since))

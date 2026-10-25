@@ -18,6 +18,12 @@ Fill every `{{placeholder}}` and keep the rest of each template as it is, frontm
 included. The root `CLAUDE.md` lists the trios, because which tasks a project has is a
 fact about that project.
 
+**Only the user starts a trio**, by typing `/<task>`. The run skill carries
+`disable-model-invocation: true`, so Claude can't start it while the user is still
+thinking a task through, and a small edit the user just asks for stays a small edit.
+The line also keeps the run skill's description out of every session, which is why
+that description is a summary for the user's command list, not a list of triggers.
+
 A single-purpose agent, such as the one that produces a monthly report, is the Do of
 its trio, not a fourth kind of agent.
 
@@ -72,8 +78,10 @@ one fails silently.
 
 ## Model and effort
 
-The templates carry the defaults: Plan `high`, Do `medium`, Check `medium`, each on
-`opus`. Write `model` as an alias, never a full model ID. Change either one only for a
+The templates carry the defaults: Plan on `opus` at `high`, Do on `sonnet` at `medium`,
+and Check on `opus` at `medium`. Do runs on the cheaper model because the plan names
+what changes and in which files, and Check, on the stronger one, compares the result
+with it. Write `model` as an alias, never a full model ID. Change either one only for a
 reason you can state, and state it in the report's Trios table.
 
 A trio whose work is documentation, such as `docs` for a project's guides or

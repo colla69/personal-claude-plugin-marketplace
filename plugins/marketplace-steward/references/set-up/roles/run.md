@@ -1,6 +1,7 @@
 ---
 name: {{TASK}}
-description: Runs {{WHAT_THE_TASK_DOES}} in this project in steps — a plan, the user's OK, the work, and a check against the plan. Use whenever the user asks to {{THE_PHRASES_PEOPLE_USE_FOR_THIS_TASK}}. Also use {{THE_NON_OBVIOUS_SECOND_TRIGGER}}.
+description: Runs {{WHAT_THE_TASK_DOES}} in this project in steps — a plan, your OK, the work, and a check against the plan. Start it with `/{{TASK}}` when the task deserves a plan and a check.
+disable-model-invocation: true
 ---
 
 # {{TASK}}
@@ -18,15 +19,19 @@ nobody agreed to, and Check checks against it.
    explicit OK moves on; a question is not one.
 3. **Do.** Hand `{{TASK}}-do` the accepted plan word for word, with any change the
    user made. If Do returns a disagreement instead of the work, take it to the user:
-   their answer amends the accepted plan, and Do runs again.
+   their answer amends the accepted plan, and goes back to Do.
 4. **Check.** Hand `{{TASK}}-check` the accepted plan and Do's report.
-5. **Back to Do, if needed.** When Check says "back to Do", hand Do the plan and
-   Check's list. Then hand Check its own list and Do's new report, and tell it to cover
-   only the items sent back and what the fix touched: checking the rest again repeats
-   the first round at full cost. If the only gaps are wording or layout that change no
-   plan item's meaning, Do fixes them and the run ends without another check; the
-   report says which fixes nobody checked. After two rounds that still don't match,
-   stop and show the user both reports rather than starting a third.
+5. **Back to Do, if needed.** When Check says "back to Do", hand Do Check's list. Then
+   hand Check Do's new report, and tell it to cover only the items sent back and what
+   the fix touched: checking the rest again repeats the first round at full cost. If the
+   only gaps are wording or layout that change no plan item's meaning, Do fixes them and
+   the run ends without another check; the report says which fixes nobody checked. After
+   two rounds that still don't match, stop and show the user both reports rather than
+   starting a third.
+
+**Send everything that goes back to an agent with SendMessage, to the agent that ran
+before.** It still holds what it read, so it doesn't read the project again. Start a new
+run, with the plan and what came back, only when the agent can't be continued.
 
 ## Report
 

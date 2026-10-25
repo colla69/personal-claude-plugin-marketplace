@@ -21,6 +21,7 @@ the reason it was made is often the reason its replacement has the shape it has.
 - [Measured cost: D56](#measured-cost-d56)
 - [Documentation on Sonnet: D57](#documentation-on-sonnet-d57)
 - [Conventional Commits: D58](#conventional-commits-d58)
+- [Only you start a trio: D59](#only-you-start-a-trio-d59)
 - [Still open](#still-open)
 
 ## The author's statements
@@ -113,7 +114,7 @@ Decided on 2026-10-20, when the token cost of the setup came under review.
 
 | # | Decision | Why | Now |
 |---|---|---|---|
-| D46 | Every agent names its model as an alias beside its `effort`, set per role; every role starts on `opus` | The setup is Claude only, so a model name costs no portability, and the model is where a role's cost is decided | Holds; measuring decides which roles move to a cheaper model, except a documentation trio's (D57) |
+| D46 | Every agent names its model as an alias beside its `effort`, set per role; every role starts on `opus` | The setup is Claude only, so a model name costs no portability, and the model is where a role's cost is decided | Holds; measuring decides which roles move to a cheaper model, except a documentation trio's (D57) and Do, which runs on `sonnet` (D59) |
 
 ## The repo's own setup: D47 and D48
 
@@ -192,8 +193,24 @@ it", and, for which projects, "every repo with code, but you should ask".
 |---|---|---|---|
 | D58 | A Language skill for commit messages, `language-conventional-commits`, after the Conventional Commits 1.0.0 specification. In a repo with code, the steward asks once whether the project writes the format, and does not ask when the project already shows it. A no goes in the record's `declined`. Wherever the project enables it, it goes to Do | The format is a notation the work is written in, as English is, so it is Language and not an addition to a Craft skill. It changes every commit message, and a release tool may read it, so the project chooses it: the steward asks. Do is the developer of a trio, and its work is what becomes a commit | Holds, in the skill, "Commit messages" in `set-up/plugin-catalog.md`, rule 8 of `set-up/trios.md`, step 5 of `keep-current.md` and the front door's questions |
 
+## Only you start a trio: D59
+
+Decided on 2026-10-25, after the maintainer had used the setup for some time: "the
+skills are doing their job, but the trio is incredibly expensive." What should change:
+"I would like the project setup to be supportive to my thought and work, give me the
+impression of being in control, while being cheap. Not just take control and do things
+they think are right, spending my money in the process." And: "not all projects need a
+trio. The trio is good for very focused feature work, or fixes. It does not combine
+well with research and progressive growth loops." On research: "I decide how we get
+from research to plan."
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D59 | A trio's run skill carries `disable-model-invocation: true`, so only the user starts a trio, by typing `/<task>`; its description is a summary for the command list. Each role's description says never to start it outside that run. The trio is tuned: Plan names each item's files, an agent that gets an answer or Check's list back is continued with SendMessage, Check starts from what Do changed, and Do runs on `sonnet`. Keep-current rebuilds a Do recorded on `opus` on `sonnet` | A trio started while the user was still thinking, and ran at full depth for a one-line note. Its cost was each agent reading the task's files again from an empty context: in one measured project, Plan run three times from the start and Do twice were about 1.5M of the trio's 1.8M tokens read. The skills themselves are 500 to 1,700 tokens each. A probe on 2026-10-25 showed that a finished agent continued with SendMessage keeps its context. Do carries out a plan that names what changes and where, and Check on `opus` compares the result with it | Holds, in `roles/`, "What a trio is made of" in `set-up/trios.md` and step 4 of `keep-current.md`. Not yet tried on a real project. Do on `sonnet` goes ahead of the measuring D46 waits for, as D57 did |
+
 ## Still open
 
 | # | Question | Working answer |
 |---|---|---|
 | O1 | Is a single-purpose agent, such as the one that produces a monthly report, the same thing as Do? | Yes: `set-up/trios.md` treats it as the Do of its trio until the author decides |
+| O2 | Should each project choose a shape for its trios: full, with Plan, Do and Check as agents and a check every run, or light, with the session planning in plan mode, doing the work, and checking only when asked? The steward would ask once per project and recommend from the project's own checks | Not now, by the maintainer, 2026-10-25, to come back to: with D59, asking in the session is already the light way, and `/<task>` the full one |

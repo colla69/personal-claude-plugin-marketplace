@@ -32,6 +32,10 @@ the wrong requests costs worse: it loads its whole skill where it doesn't belong
 competes with the skill that does. The rules for writing one are in
 [`style.md`](../../plugins/marketplace-steward/references/author-skills/style.md).
 
+A trio's run skill is the exception. Only you start it, by typing its command, so its
+description never reaches Claude and costs nothing always on. It is a summary for your
+command list.
+
 ## Why the steward shows two skills
 
 The steward is installed for your user, so it is in every session of every project. With
@@ -93,6 +97,8 @@ was taken and why.
 
 Cost isn't only tokens in context. A trio spends credits on each role's run, which is
 why Plan and Check are read-only and why each role's `model` and `effort` are set per
-task: [trios](trios.md) explains the defaults. And the checker leaves out the ablation,
+task: [trios](trios.md) explains the defaults. Each agent also reads the task's files
+from an empty context, which is most of what a trio costs, and why a trio starts only
+when you type its command. And the checker leaves out the ablation,
 which runs a plugin's evals with and without it, because nobody asked it to spend those
 credits on every change.

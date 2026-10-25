@@ -24,7 +24,7 @@ that holds its rules.
 | **Dependency** | A plugin a plugin needs, declared in its `plugin.json`: in its own layer or a more general one, never a more specific one, and needed unconditionally | [`place-knowledge.md`](../../plugins/marketplace-steward/references/place-knowledge.md) |
 | **Description** | The `description` a skill or agent carries: the only text Claude sees when deciding to load it, so it is a trigger list | [`style.md`](../../plugins/marketplace-steward/references/author-skills/style.md) |
 | **Do** | The trio's middle role, and its only writer: carries out the accepted plan | [`do.md`](../../plugins/marketplace-steward/references/set-up/roles/do.md) |
-| **Effort** | How hard a role thinks, set per role and task: Plan `high`, Do and Check `medium` by default. Each role also names its model, `opus` by default. A documentation trio runs on `sonnet` at `low` | [`trios.md`](../../plugins/marketplace-steward/references/set-up/trios.md) |
+| **Effort** | How hard a role thinks, set per role and task: Plan `high`, Do and Check `medium` by default. Each role also names its model: `opus` for Plan and Check, `sonnet` for Do. A documentation trio runs on `sonnet` at `low` | [`trios.md`](../../plugins/marketplace-steward/references/set-up/trios.md) |
 | **Failure mode** | The thing a kind of worker typically gets wrong, such as an agreeable review. Part of a role, never of a skill | [`style.md`](../../plugins/marketplace-steward/references/author-skills/style.md) |
 | **Framework & Tools** | The layer of one concrete product or tool, such as Vue, JUnit or Excel | [`place-knowledge.md`](../../plugins/marketplace-steward/references/place-knowledge.md) |
 | **Front door** | `steward`, the skill that routes a request to one of the steward's four jobs | [`SKILL.md`](../../plugins/marketplace-steward/skills/steward/SKILL.md) |
@@ -47,7 +47,7 @@ that holds its rules.
 | **Renamed table** | The list in the plugin catalog of old plugin and skill names and their successors, which keep-current applies | [`plugin-catalog.md`](../../plugins/marketplace-steward/references/set-up/plugin-catalog.md) |
 | **Role** | What a worker does and must not do: its lane, its failure modes, its report | [`style.md`](../../plugins/marketplace-steward/references/author-skills/style.md) |
 | **Role template** | A role written once, with a slot for its skills, from which set-up generates an agent in each project | [`plan.md`](../../plugins/marketplace-steward/references/set-up/roles/plan.md) |
-| **Run pattern** | The project skill that runs one trio as `/<task>`: Plan, the user's OK, Do, Check | [`run.md`](../../plugins/marketplace-steward/references/set-up/roles/run.md) |
+| **Run pattern** | The project skill that runs one trio as `/<task>`: Plan, the user's OK, Do, Check. Only the user starts it | [`run.md`](../../plugins/marketplace-steward/references/set-up/roles/run.md) |
 | **Set up** | The steward's job for a project with no setup of its own | [`procedure.md`](../../plugins/marketplace-steward/references/set-up/procedure.md) |
 | **Signal** | What set-up must find in a project before it installs a plugin, such as `vue` in the dependencies | [`plugin-catalog.md`](../../plugins/marketplace-steward/references/set-up/plugin-catalog.md) |
 | **Skill** | Knowledge: a prose standard for one thing, which every role that needs it reads | [`style.md`](../../plugins/marketplace-steward/references/author-skills/style.md) |

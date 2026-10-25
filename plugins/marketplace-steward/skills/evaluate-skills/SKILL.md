@@ -78,7 +78,8 @@ with both locations and the file that keeps it. Three checks only an evaluation 
   full model ID.
 - **Does the run pattern keep its stop and bound its loop?** Nothing reaches Do before
   the user accepts the plan, Do gets the plan word for word, and Check sends work back
-  a bounded number of times. The stop is a step, never described as enforcement.
+  a bounded number of times. The stop is a step, never described as enforcement. The
+  run pattern keeps `disable-model-invocation: true`, so only the user starts it.
 
 ## A plugin
 
