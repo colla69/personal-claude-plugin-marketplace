@@ -79,9 +79,9 @@ file type rather than a directory goes in a path-scoped rule in `.claude/rules/`
 3. Check every plugin you decided on against `.claude/plugin-sources.json`. If you have
    talked yourself into a plugin from a source the user unticked, drop the plugin; do
    not widen the file.
-4. Install each one at project scope, and give every plugin a trio names its own line,
-   even one that another plugin pulls in as a dependency. That writes the
-   `enabledPlugins` entry phase 7 checks:
+4. Install each one at project scope, as "Scope" in `plugin-catalog.md` says, and give
+   every plugin a trio names its own line, even one that another plugin pulls in as a
+   dependency. That writes the `enabledPlugins` entry phase 7 checks:
 
    ```bash
    claude plugin install <name>@<marketplace> --scope project

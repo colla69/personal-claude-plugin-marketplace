@@ -12,8 +12,8 @@ marketplace's own commands from the root of a checkout of this repo.
 | `/marketplace-steward:steward` | Starts the steward; saying what you want works as well |
 | `/<task>` | Runs one of a project's trios, such as `/change` |
 | `claude plugin marketplace update` | Refreshes every marketplace, so the next install or update sees the latest versions |
-| `claude plugin update <name>@<marketplace>` | Updates one installed plugin to the marketplace's latest |
-| `claude plugin install <name>@<marketplace> --scope project` | Installs a plugin for one project, recorded in its `.claude/settings.json` |
+| `claude plugin update <name>@<marketplace> --scope project` | Updates one of a project's plugins to the marketplace's latest. Without `--scope`, it picks a scope by itself |
+| `claude plugin install <name>@<marketplace> --scope project` | Installs a plugin for one project, recorded in its `.claude/settings.json`. Without `--scope`, it installs at user scope, for every project on the machine |
 | `claude plugin uninstall <name>@<marketplace>` | Removes a plugin, such as one under an old name. It works at user scope unless you add `--scope project` |
 | `claude plugin list --json` | Lists what is installed, with each plugin's id and version |
 | `claude plugin list --available --json` | Lists the real inventory in two arrays: `installed`, and `available` for what the configured marketplaces offer beyond it. Read both |

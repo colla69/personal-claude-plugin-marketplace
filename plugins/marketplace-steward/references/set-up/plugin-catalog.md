@@ -139,19 +139,27 @@ people on the project can choose it.
 - **A no goes in the record's `declined`**, when the job writes the record, and no
   later run asks again.
 
-## Scope guidance
+## Scope
 
-Two scopes matter here:
+Every plugin the steward installs goes in at project scope, in every job, and nowhere
+else: never user scope, and never local scope. Each `claude plugin install` it runs, and
+each `claude plugin update` of a project's plugin, carries `--scope project`. The report
+suggests no other scope.
 
-- **User scope** (`~/.claude/settings.json`) — plugins you want in every project.
-  `marketplace-steward`, `universal-clean-code` and `language-simple-english` usually
-  belong here.
-- **Project scope** (`.claude/settings.json`, committed) — plugins specific to this
-  repo's stack. `tools-vue` belongs here; it's noise in a Go service.
+- **`install` defaults to user scope.** A line without `--scope project` installs the
+  plugin for every project on the machine and writes nothing to `.claude/settings.json`.
+  The project looks set up here, and the clone on the next machine runs without it.
+- **A plugin at user scope costs every project.** Its descriptions load in every
+  session on the machine, and `tools-vue` is noise in a Go service. Even a standard
+  that holds everywhere, such as `universal-clean-code`, is the project's choice, so it
+  is recorded in the project's settings.
+- **`update` picks a scope by itself** when none is named. Name the project's, so the
+  copy that changes is the one the project enables.
+- **Local scope** writes `.claude/settings.local.json`, which nobody commits, so it has
+  the same gap as user scope.
 
-Set-up installs at project scope. In the report, mention which plugins the user might
-prefer at user scope instead, with `claude plugin install
-<name>@personal-claude-plugin-marketplace --scope user`.
+The one plugin at user scope is the steward itself. The user installs it by hand, and
+it never goes into a project's settings, as its row in the table above says.
 
 ## Wiring format
 
