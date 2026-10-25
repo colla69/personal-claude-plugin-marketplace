@@ -38,8 +38,8 @@ no override.
   table keyed on characters breaks on the next layout.
 - A modifier key sends `flagsChanged`, not `keyDown`. Read `modifierFlags` from that
   event. Mask it with `.deviceIndependentFlagsMask` before you compare it. The mask
-  still holds caps lock, `fn` and the numeric-pad flag, so an exact comparison has to
-  name them or remove them.
+  still holds caps lock, the help flag, `fn` and the numeric-pad flag, so an exact
+  comparison has to name them or remove them.
 - `isARepeat` is `true` for the `keyDown`s of auto-repeat. Decide on purpose whether a
   held key counts once or many times.
 - `NSEvent.addLocalMonitorForEvents(matching:handler:)` runs before the app dispatches
@@ -49,6 +49,19 @@ no override.
 - To see or block keys meant for other apps you need more than a local monitor. A global
   monitor only observes. Swallowing keys system-wide takes an event tap and the user's
   Accessibility permission.
+
+## Decide outside the handler
+
+A monitor, a tap callback or a delegate method runs only inside a live app. It needs a
+run loop, often a window, and for a tap the user's Accessibility permission. Logic
+written there is checked only when someone runs the app, and nobody can run it for
+every flag, key code and event order.
+
+Give the handler two jobs: copy the event into a plain `Sendable` value, and apply the
+answer. Put the decision between them, in a function from that value to a result such
+as `pass`, `swallow` or `exit`. Keep that function in a library target that does not
+import AppKit. A test then feeds it any value, including the ones no hand makes on
+demand, such as a flags value with the help bit set.
 
 ## Fullscreen and kiosk
 
