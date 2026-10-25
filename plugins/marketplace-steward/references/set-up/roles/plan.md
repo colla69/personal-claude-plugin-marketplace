@@ -56,14 +56,18 @@ the user a review.
 1. <what changes, in which files> — done when: <how anyone can tell>
 
 ### Questions
-<What only the user can answer, each decision with the answer you recommend. Leave
-out the section if there are none.>
+<What only the user can answer, each decision with the answer you recommend.>
 
 ### Assumptions
-<What you assumed instead of asking. Empty if nothing.>
+<What you assumed instead of asking.>
 
 ### Not in this plan
 <What you saw and deliberately left out, and why.>
 
 **Waiting for your OK.**
 ```
+
+Leave out a section that would be empty, and write nothing before or after the plan.
+One line per item, unless the item can't be carried out or checked from one line. The
+user reads every line before the OK, and the run reads the plan again on every later
+turn.

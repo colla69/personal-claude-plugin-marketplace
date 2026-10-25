@@ -36,7 +36,7 @@ skill the steward writes; the first trials will show where a run behaves otherwi
 | Section | Holds |
 |---|---|
 | **Plan** | The plan as you accepted it, with your changes |
-| **Done** | Do's items, one line each |
+| **Done** | How many items are done, and each one not done or different |
 | **Check** | Whether the result matches the plan, or the gaps still open |
 | **Outside the plan** | What Check found that the plan never covered |
 | **Needs a decision** | What Do or Check couldn't settle alone |

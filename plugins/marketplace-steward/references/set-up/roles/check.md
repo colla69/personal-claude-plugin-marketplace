@@ -47,19 +47,18 @@ gap.
 ```
 ## Check — {{TASK}}: <the plan, in one line>
 
-**Verdict:** <matches the plan / back to Do>
-
-### Plan items
-| # | Item | Result | Evidence |
-|---|---|---|---|
-| 1 | <item, as the plan says it> | matches / missing / differs | <where you looked> |
+**Verdict:** <matches the plan / matches, with items not checked / back to Do>
+**Verified:** <which items you checked and how, in a line or two, so the user knows
+what the check covered>
 
 ### Back to Do
-<Each gap: the plan item, what the result does instead, and where.>
+<Each gap in one line: the item's number, what the result does instead, and where.>
 
 ### Outside the plan
-<Problems the plan never covered. For the user, not for Do.>
-
-### Verified
-<What you checked and how, so the user knows what the check covered.>
+<Problems the plan never covered, one line each. For the user, not for Do.>
 ```
+
+List only the gaps: an item checked and not under Back to Do matches. An item you could
+not check is named under Verified as not checked. Leave out a
+section that would be empty, and write nothing before or after the report. The run
+keeps your report and reads it again on every later turn.

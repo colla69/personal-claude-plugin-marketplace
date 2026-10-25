@@ -39,7 +39,7 @@ run, with the plan and what came back, only when the agent can't be continued.
 ## {{TASK}} — <the request, in one line>
 
 **Plan:** <accepted, with the user's changes if any>
-**Done:** <Do's plan items, one line each>
+**Done:** <how many items are done; each not done or different, in one line>
 **Check:** <matches the plan / matches, with cosmetic fixes not re-checked / the gaps
 still open after two rounds>
 
@@ -50,7 +50,8 @@ still open after two rounds>
 <What Do or Check could not resolve alone.>
 ```
 
-Leave out a section that would be empty.
+Leave out a section that would be empty, and don't repeat the plan: the user has seen
+it.
 
 ## Where this yields
 

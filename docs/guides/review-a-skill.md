@@ -43,7 +43,7 @@ It uses `review-work`'s shape, sorted by what a finding does at runtime:
 | Section | Holds |
 |---|---|
 | **Blocking** | What changes behaviour: a skill that won't fire or fires where it shouldn't, a rule with two homes, a lane missing from frontmatter, an undeclared skill, a leak, a renamed plugin with no migration |
-| **Should fix** | What degrades it: no yield, rules without a reason, a skill across two layers |
+| **Should fix** | What degrades it: no yield, rules without a reason, a skill across two layers, a report that asks for more than its reader acts on |
 | **Consider** | Wording, order and length, and the house style where a file departs from it the way the rest of the repo does |
 | **Verified** | What it checked and found right |
 

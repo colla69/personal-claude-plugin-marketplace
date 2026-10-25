@@ -211,6 +211,13 @@ Include a section for what was checked and found sound. `review-work` has
 **Verified**, and says why: it tells the author what the review covered, so they know
 what it didn't.
 
+**Keep a report as short as what its reader acts on.** An agent's report stays in the
+session that asked for it, so every later turn reads it again: a 10k-token report in a
+50-turn session is read as 500k. So a skeleton asks for one line per item, numbers
+items rather than repeating them, lists what needs action rather than everything that
+passed, and lets a section that would be empty be left out. Short is not clipped: a line
+read two ways costs a rework, which is far more than the words it saved.
+
 Include a section for what was deliberately left, such as a test report's
 "deliberately not covered" or a refactoring plan's "found, not fixed". Without one, a
 worker either does out-of-scope work or drops what it noticed.

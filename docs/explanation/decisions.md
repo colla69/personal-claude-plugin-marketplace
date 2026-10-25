@@ -22,6 +22,7 @@ the reason it was made is often the reason its replacement has the shape it has.
 - [Documentation on Sonnet: D57](#documentation-on-sonnet-d57)
 - [Conventional Commits: D58](#conventional-commits-d58)
 - [Only you start a trio: D59](#only-you-start-a-trio-d59)
+- [Short reports: D60](#short-reports-d60)
 - [Still open](#still-open)
 
 ## The author's statements
@@ -207,6 +208,16 @@ from research to plan."
 | # | Decision | Why | Now |
 |---|---|---|---|
 | D59 | A trio's run skill carries `disable-model-invocation: true`, so only the user starts a trio, by typing `/<task>`; its description is a summary for the command list. Each role's description says never to start it outside that run. The trio is tuned: Plan names each item's files, an agent that gets an answer or Check's list back is continued with SendMessage, Check starts from what Do changed, and Do runs on `sonnet`. Keep-current rebuilds a Do recorded on `opus` on `sonnet` | A trio started while the user was still thinking, and ran at full depth for a one-line note. Its cost was each agent reading the task's files again from an empty context: in one measured project, Plan run three times from the start and Do twice were about 1.5M of the trio's 1.8M tokens read. The skills themselves are 500 to 1,700 tokens each. A probe on 2026-10-25 showed that a finished agent continued with SendMessage keeps its context. Do carries out a plan that names what changes and where, and Check on `opus` compares the result with it | Holds, in `roles/`, "What a trio is made of" in `set-up/trios.md` and step 4 of `keep-current.md`. Not yet tried on a real project. Do on `sonnet` goes ahead of the measuring D46 waits for, as D57 did |
+
+## Short reports: D60
+
+Decided on 2026-10-25, the same day as D59. The maintainer asked whether agents should
+talk in a clipped, telegraphic style to save tokens, and then: "we want everything to
+be as concise as possible. I meant all agents."
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D60 | Every report an agent returns is as short as what its reader acts on: one line per item, items numbered rather than repeated, what needs action rather than everything that passed, and an empty section left out. Check lists only the gaps. The reports stay in full sentences; no clipped style | A report stays in the session that asked for it and is read again on every later turn, so a 10k-token report in a 50-turn session is read as 500k. A clipped style shortens only what an agent writes, which is a small share of what it costs, and it breaks `simple-english`: a line read two ways costs a rework, which is far more than the words it saved | Holds, in "Report formats" in `style.md`, the report of each role in `roles/`, the cartographer, `review-work` and `evaluate-skills`. Not yet measured |
 
 ## Still open
 

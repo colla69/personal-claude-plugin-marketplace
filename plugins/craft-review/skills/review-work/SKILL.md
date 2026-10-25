@@ -66,6 +66,11 @@ change again.>
 review covered, so they know what it didn't.>
 ```
 
+Leave out a section that would be empty. Give each finding in as few lines as hold its
+location, its cost and its case, and the Verified section in a few lines. A review is
+read before anyone acts on it, and an agent's review is read again on every later turn
+of the session that asked for it.
+
 ## Where this yields
 
 - **To the Craft skill for the kind of work under review.** It says what to look for
