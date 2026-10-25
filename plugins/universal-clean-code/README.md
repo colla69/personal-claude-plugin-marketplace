@@ -37,8 +37,6 @@ Language plugins pull it in. By hand:
 claude plugin install universal-clean-code@personal-claude-plugin-marketplace --scope project
 ```
 
-By hand, `--scope user` fits too: the standard doesn't depend on the project.
-
 ## More
 
 - The standard itself:

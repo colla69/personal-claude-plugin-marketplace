@@ -37,8 +37,6 @@ plugins pull it in. By hand:
 claude plugin install universal-work-discipline@personal-claude-plugin-marketplace --scope project
 ```
 
-By hand, `--scope user` fits too: it holds in every project.
-
 ## More
 
 - The standard itself:

@@ -41,10 +41,6 @@ words, and what pulls it in}}. By hand:
 claude plugin install {{PLUGIN_NAME}}@personal-claude-plugin-marketplace --scope project
 ```
 
-{{Optional: one line on scope, such as "By hand, `--scope user` fits too" for a
-standard that holds everywhere, or "Project scope only" for one that is noise
-elsewhere.}}
-
 ## More
 
 - The standard itself:

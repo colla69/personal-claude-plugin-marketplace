@@ -23,6 +23,7 @@ the reason it was made is often the reason its replacement has the shape it has.
 - [Conventional Commits: D58](#conventional-commits-d58)
 - [Only you start a trio: D59](#only-you-start-a-trio-d59)
 - [Short reports: D60](#short-reports-d60)
+- [Project scope only: D61](#project-scope-only-d61)
 - [Still open](#still-open)
 
 ## The author's statements
@@ -218,6 +219,16 @@ be as concise as possible. I meant all agents."
 | # | Decision | Why | Now |
 |---|---|---|---|
 | D60 | Every report an agent returns is as short as what its reader acts on: one line per item, items numbered rather than repeated, what needs action rather than everything that passed, and an empty section left out. Check lists only the gaps. The reports stay in full sentences; no clipped style | A report stays in the session that asked for it and is read again on every later turn, so a 10k-token report in a 50-turn session is read as 500k. A clipped style shortens only what an agent writes, which is a small share of what it costs, and it breaks `simple-english`: a line read two ways costs a rework, which is far more than the words it saved | Holds, in "Report formats" in `style.md`, the report of each role in `roles/`, the cartographer, `review-work` and `evaluate-skills`. Not yet measured |
+
+## Project scope only: D61
+
+Decided on 2026-10-25, the same day as D59: "The steward should install plugins always
+with project scope", then "The Steward should be the only plugin with user scope", and,
+for the two plugins the steward depends on, "ok those too".
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D61 | Every plugin the steward installs or updates for a project goes in at project scope, with `--scope project` on each command. The report no longer suggests user scope for any plugin, and no plugin README offers it. Only the steward and its two dependencies, `craft-review` and `language-simple-english`, sit at user scope. Set-up and keep-current report any other plugin at user scope, with the line that uninstalls it, and never run it themselves | `install` defaults to user scope, which writes nothing to the project's settings, so the next clone runs without the plugin. A plugin at user scope also loads in every project on the machine, where it costs descriptions and can be noise. `update` without a scope picks one by itself. A probe on 2026-10-25 showed that dependencies follow the scope of the plugin that pulls them in, so the steward's two come with it at user scope, and that a project-scope install still writes the project's key when the plugin is at user scope too | Holds, in "Scope" in `set-up/plugin-catalog.md`, phase 5 of `set-up/procedure.md`, the Installed section of `set-up/report.md`, and steps 2 and 8 of `keep-current.md` |
 
 ## Still open
 
