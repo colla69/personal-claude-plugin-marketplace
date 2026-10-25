@@ -53,15 +53,16 @@ no override.
 ## Decide outside the handler
 
 A monitor, a tap callback or a delegate method runs only inside a live app. It needs a
-run loop, often a window, and for a tap the user's Accessibility permission. Logic
-written there is checked only when someone runs the app, and nobody can run it for
-every flag, key code and event order.
+run loop, often a window, and for a tap a privacy permission. Logic written there is
+checked only when someone runs the app, and nobody can run it for every flag, key code
+and event order.
 
-Give the handler two jobs: copy the event into a plain `Sendable` value, and apply the
-answer. Put the decision between them, in a function from that value to a result such
-as `pass`, `swallow` or `exit`. Keep that function in a library target that does not
-import AppKit. A test then feeds it any value, including the ones no hand makes on
-demand, such as a flags value with the help bit set.
+Give the handler two jobs: copy the event into a plain value, and apply the answer.
+Put the decision between them, in a function from that value to a result such as
+`pass`, `swallow` or `exit`. No AppKit type appears in its input or its result. Keep it
+in a library target that does not import AppKit, and the compiler rejects an `NSEvent`
+that slips in. A test then feeds it any value, including values that are hard to make
+by pressing keys, such as a flags value with the help bit set.
 
 ## Fullscreen and kiosk
 
