@@ -18,6 +18,25 @@ trio will and won't do when you run one.
 A project gets one trio per kind of task it repeats, such as `change` or `refactor`,
 each run as `/<task>` by a project skill that set-up writes beside the three agents.
 
+## Only you start a trio
+
+> "I would like the project setup to be supportive to my thought and work, give me the
+> impression of being in control, while being cheap."
+
+A trio is the most expensive way to do a task: three agents, each reading what the task
+touches. It pays for a focused feature or a fix, where a plan and a check are worth
+their price. It doesn't pay for a note in a page, and it doesn't fit research, where the
+next step depends on the last result. So a trio starts only when you type `/<task>`.
+While you think a task through, or ask for a small edit, the session answers and does
+the work itself. How you get from research to a plan stays your call.
+
+A trio that runs costs less than it did, too. Plan names the files of each item, so Do
+and Check start there instead of searching the project. An agent that gets your answer
+or Check's list back is continued with what it read, not started again: in one
+measured project, Plan run three times from the start and Do twice were about 1.5M of
+the trio's 1.8M tokens read. And Check starts from what Do changed.
+[D59](decisions.md#only-you-start-a-trio-d59) records the command and the tuning.
+
 ## The stop
 
 **Nothing is done before you accept the plan.** "Ohne deine Bestätigung kein Do": no Do
@@ -70,12 +89,13 @@ should speak English".
 ## Model and effort per role and task
 
 Each role carries a `model` and an `effort`. The default effort is Plan `high`, because
-a good plan is where the thinking pays most, and Do and Check `medium`. Every role
-starts on `opus`, until measuring shows which can run on a cheaper model. Set-up
-changes either one only for a reason it can state, and states it in its report.
+a good plan is where the thinking pays most, and Do and Check `medium`. Plan and Check
+run on `opus`. Do runs on `sonnet`, because it carries out a plan that says what changes
+and in which files, and Check, on `opus`, compares the result with it. Set-up changes
+either one only for a reason it can state, and states it in its report.
 
-Documentation is the one exception decided ahead of the measuring: a trio whose work is
-documentation runs all three roles on `sonnet` at `low`, by
+Documentation was the first exception decided ahead of any measuring: a trio whose work
+is documentation runs all three roles on `sonnet` at `low`, by
 [D57](decisions.md#documentation-on-sonnet-d57).
 
 ## The reference case

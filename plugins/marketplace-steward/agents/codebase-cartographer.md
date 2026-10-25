@@ -56,7 +56,7 @@ gets baked into a context file and wastes someone's afternoon.
 
 ## Report format
 
-Return exactly this structure. No preamble, no closing summary.
+Return this structure. No preamble, no closing summary.
 
 ```
 ## Stack
@@ -88,6 +88,10 @@ Return exactly this structure. No preamble, no closing summary.
 ## Unverified
 <everything you inferred rather than confirmed, and what would confirm it>
 ```
+
+Give each fact once, in one line where one line holds it, and leave out a section with
+nothing in it. "Nothing internal" and "none" are findings, so they stay. The steward keeps your map for the rest of
+its run, so every line it doesn't use is read again on each turn.
 
 If the repo is too large to survey fully, say so explicitly, report on what you covered,
 and name the directories you skipped. A partial map labeled as partial is useful; a

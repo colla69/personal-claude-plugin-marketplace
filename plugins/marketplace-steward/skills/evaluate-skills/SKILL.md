@@ -78,7 +78,8 @@ with both locations and the file that keeps it. Three checks only an evaluation 
   full model ID.
 - **Does the run pattern keep its stop and bound its loop?** Nothing reaches Do before
   the user accepts the plan, Do gets the plan word for word, and Check sends work back
-  a bounded number of times. The stop is a step, never described as enforcement.
+  a bounded number of times. The stop is a step, never described as enforcement. The
+  run pattern keeps `disable-model-invocation: true`, so only the user starts it.
 
 ## A plugin
 
@@ -137,7 +138,8 @@ Use `review-work`'s report, and sort into it by what a finding does at runtime:
   project details leak, or a plugin or skill name leaves the catalog without a row in
   "Renamed and removed", so every project that enables it loses it without notice.
 - **Should fix: degrades behaviour.** No yield, uncosted rules, a skill across two
-  layers, a report with no way to say "nothing found".
+  layers, a report with no way to say "nothing found", a report that asks for more than
+  its reader acts on.
 - **Consider: reads worse.** Wording, order, length. Real, but last: only the first two
   justify editing prose that works.
 - **Verified:** what you checked and found right, so the reader knows the review's

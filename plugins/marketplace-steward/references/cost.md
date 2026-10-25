@@ -54,10 +54,11 @@ agent of the setup counts as used.
 | The script shows | Do |
 |---|---|
 | A part that did not load, marked **no** | Check it as step 3 of `keep-current.md` does. It costs nothing, and it does nothing |
+| A project skill marked **user only**, such as a trio's run skill | Nothing: only the user starts it, so it is never in the session's listing, and it costs nothing always on |
 | A root file over the budget in `set-up/context-files.md`, or a section about one component or one file type | Move the section to that component's `CLAUDE.md`, or to a rule with `paths:`. Do it only when the file it leaves is one the record lists with a matching hash, and the file it goes to is new or listed with a matching hash too. Otherwise, report the section, its tokens and the home it would move to |
 | A rule without `paths:` that is about one file type | Give it `paths:` under the same condition. Otherwise report it |
 | A plugin with no calls, preloaded by no agent, after enough sessions | Report it as possibly unneeded, with its tokens. It stays: removing it costs a standard the user may still want. A plugin that keep-current already names as possibly unneeded, because its signal is gone, gets its tokens there, not a second row |
-| A trio whose skill has no calls and whose agents have no runs, after enough sessions | Report it as possibly unneeded, with the tokens of its four descriptions. It stays |
+| A trio whose skill has no calls and whose agents have no runs, after enough sessions | Report it as possibly unneeded, with the tokens of its agents' descriptions. It stays |
 | An MCP server in `.mcp.json` with no calls, after enough sessions | Report it as possibly unneeded. Never edit `.mcp.json`: the project's mechanics are its own |
 | Agent runs | Report the roles, the costliest first, with their models. Change no model on the numbers alone: they show what a role costs, not what its work is worth |
 

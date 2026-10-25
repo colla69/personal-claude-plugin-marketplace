@@ -56,6 +56,10 @@ For each recorded file with a `from`, compare its `template` hash with the hash 
 template now. When the template changed and the file's hash still matches the record,
 rebuild the file from the new template with its recorded `fill`, and refresh its entry.
 When the file's hash doesn't match, leave it, and report that a newer template exists.
+One exception to the recorded `fill`: Do's default moved from `opus` to `sonnet`, so a
+`<task>-do.md` recorded on `opus` is rebuilt on `sonnet`, and the report says so. When
+the user wants that Do back on `opus`, change its `model:` line and the recorded `fill`
+together, as `cost.md` does for a role the user names, so that later rebuilds keep it.
 
 ## 5. What the project now calls for
 

@@ -57,7 +57,8 @@ and the agent will manufacture findings to fill it.
 The run-pattern template, `roles/run.md`, is the third kind of file: the project skill
 that runs one trio. It holds the order, the stop for the user's OK, and when Check sends
 the work back to Do. It holds no lane and no standard, which live in the role templates
-and the skills it runs.
+and the skills it runs. Only the user starts it, so its description is a summary for
+the command list, not a trigger list.
 
 Skill plugins ship no `agents/`. Only `marketplace-` plugins do, and their agents follow
 the role shape above; `plugin-shape.md` says why, and what else such a plugin does
@@ -209,6 +210,13 @@ goes wrong, and the input or sequence that triggers it.>
 Include a section for what was checked and found sound. `review-work` has
 **Verified**, and says why: it tells the author what the review covered, so they know
 what it didn't.
+
+**Keep a report as short as what its reader acts on.** An agent's report stays in the
+session that asked for it, so every later turn reads it again: a 10k-token report in a
+50-turn session is read as 500k. So a skeleton asks for one line per item, numbers
+items rather than repeating them, lists what needs action rather than everything that
+passed, and lets a section that would be empty be left out. Short is not clipped: a line
+read two ways costs a rework, which is far more than the words it saved.
 
 Include a section for what was deliberately left, such as a test report's
 "deliberately not covered" or a refactoring plan's "found, not fixed". Without one, a
