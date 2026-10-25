@@ -223,11 +223,12 @@ be as concise as possible. I meant all agents."
 ## Project scope only: D61
 
 Decided on 2026-10-25, the same day as D59: "The steward should install plugins always
-with project scope".
+with project scope", then "The Steward should be the only plugin with user scope", and,
+for the two plugins the steward depends on, "ok those too".
 
 | # | Decision | Why | Now |
 |---|---|---|---|
-| D61 | Every plugin the steward installs or updates for a project goes in at project scope, with `--scope project` on each command. The report no longer suggests user scope for any plugin, and no plugin README offers it. The steward itself stays at user scope, installed by hand | `install` defaults to user scope, which writes nothing to the project's settings, so the next clone runs without the plugin. A plugin at user scope also loads in every project on the machine, where it costs descriptions and can be noise. `update` without a scope picks one by itself | Holds, in "Scope" in `set-up/plugin-catalog.md`, phase 5 of `set-up/procedure.md` and step 8 of `keep-current.md` |
+| D61 | Every plugin the steward installs or updates for a project goes in at project scope, with `--scope project` on each command. The report no longer suggests user scope for any plugin, and no plugin README offers it. Only the steward and its two dependencies, `craft-review` and `language-simple-english`, sit at user scope. Set-up and keep-current report any other plugin at user scope, with the line that uninstalls it, and never run it themselves | `install` defaults to user scope, which writes nothing to the project's settings, so the next clone runs without the plugin. A plugin at user scope also loads in every project on the machine, where it costs descriptions and can be noise. `update` without a scope picks one by itself. A probe on 2026-10-25 showed that dependencies follow the scope of the plugin that pulls them in, so the steward's two come with it at user scope, and that a project-scope install still writes the project's key when the plugin is at user scope too | Holds, in "Scope" in `set-up/plugin-catalog.md`, phase 5 of `set-up/procedure.md`, the Installed section of `set-up/report.md`, and steps 2 and 8 of `keep-current.md` |
 
 ## Still open
 

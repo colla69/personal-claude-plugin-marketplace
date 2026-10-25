@@ -70,6 +70,11 @@ the same installs in one paste:>
 tables and per plugin a trio names>
 ```
 
+<Each plugin at user scope that "Scope" in `plugin-catalog.md` doesn't allow, with
+the `claude plugin uninstall <name>@<marketplace> --scope user` line for you to run,
+and a note that every other project relying on it loses it. Left out when there is
+none.>
+
 Run `/reload-plugins` before running a trio: skills and agents installed mid-session
 aren't available until it has run. Once you commit `.claude/`, the setup travels with
 the project.

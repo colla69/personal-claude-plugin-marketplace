@@ -35,6 +35,7 @@ copy's `installPath` in the same listing, because the session loaded the old one
 
 Apply the dead-key rule in "Renamed and removed" in `set-up/plugin-catalog.md`. A
 successor you install goes in as set-up's phase 5 installs, within the source policy.
+Report every plugin at user scope that "Scope" in the same file doesn't allow.
 
 In any run that installs or updates a plugin, including a run for a single symptom,
 run this step once more after the last install or update. The `claude plugin` commands rewrite

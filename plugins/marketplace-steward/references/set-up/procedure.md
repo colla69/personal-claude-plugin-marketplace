@@ -75,7 +75,8 @@ file type rather than a directory goes in a path-scoped rule in `.claude/rules/`
    `.claude/settings.json`. Never replace the file; it often holds permissions and
    hooks already.
 2. **Remove the dead keys**, by the rule in "Renamed and removed" in
-   `plugin-catalog.md`.
+   `plugin-catalog.md`, and report every plugin at user scope that "Scope" there
+   doesn't allow.
 3. Check every plugin you decided on against `.claude/plugin-sources.json`. If you have
    talked yourself into a plugin from a source the user unticked, drop the plugin; do
    not widen the file.

@@ -158,8 +158,21 @@ suggests no other scope.
 - **Local scope** writes `.claude/settings.local.json`, which nobody commits, so it has
   the same gap as user scope.
 
-The one plugin at user scope is the steward itself. The user installs it by hand, and
-it never goes into a project's settings, as its row in the table above says.
+Only three plugins sit at user scope: the steward, and `craft-review` and
+`language-simple-english`, which come with it because it depends on them. The user
+installs the steward by hand, and it never goes into a project's settings, as its row
+in the table above says. Its two dependencies still get a project-scope line wherever
+the project needs them: that install writes the project's `enabledPlugins` entry even
+when the plugin is at user scope too, and the next machine may not have the steward.
+
+**Any other plugin at user scope is reported.** `claude plugin list --json` gives each
+installed plugin a `scope`. For each one at `user` beyond those three, the report names
+it under Installed, with the line that removes it:
+`claude plugin uninstall <name>@<marketplace> --scope user`. The steward doesn't run
+that line, because it never changes `~/.claude`, and the report says that every other
+project that relied on the user-scope copy loses it. Where this project needs the
+plugin, it is installed at project scope like any other. Set-up applies this in phase 5
+and keep-current in its step 2.
 
 ## Wiring format
 
