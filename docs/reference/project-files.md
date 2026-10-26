@@ -48,6 +48,7 @@ install … --scope project` adds each plugin under `enabledPlugins`:
 | `extraKnownMarketplaces` | Declares the marketplace, so the project's plugins resolve on any machine. Claude Code updates it by itself, so each merged change reaches the project; only your user settings or managed settings can turn that off, never the project's |
 | `model` | `opusplan` plans on Opus in plan mode and works on Sonnet. A `model` the project already had is kept. `/model` changes it for a session |
 | `env.STEWARD_CHECK` | The command the base plugin's guard runs. Left out when docking couldn't verify one |
+| `env.STEWARD_CHECK_PATHS` | The globs, relative to the root and separated by commas, that the command covers. Written only when it covers part of the project |
 
 The steward itself is never in this file: it is installed once, for your user.
 

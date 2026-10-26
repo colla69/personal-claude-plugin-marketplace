@@ -27,6 +27,7 @@ the reason it was made is often the reason its replacement has the shape it has.
 - [The rebuild: D62 to D76](#the-rebuild-d62-to-d76)
 - [Collecting as the session goes: D77](#collecting-as-the-session-goes-d77)
 - [Docking that shows its work: D78](#docking-that-shows-its-work-d78)
+- [A guard that sees every change: D79](#a-guard-that-sees-every-change-d79)
 - [Still open](#still-open)
 
 ## The author's statements
@@ -272,6 +273,14 @@ Decided on 2026-10-26, after two docking runs on one project gave different resu
 | # | Decision | Why | Now |
 |---|---|---|---|
 | D78 | The report proves the steps were done. The Standards table gives a verdict for every row of the catalog, and the Tidied table has a row for every file read, with the rules it holds. The project's own agents get a model by the kind of work (D66): docking proposes one for each agent that names none, asks once, and writes only what is ticked | Two runs on one project differed: one installed `language-typescript` for the infrastructure code and one didn't. Both runs left the project's agents and rules unread and said so in one line of the report, where nothing forced the step. A nightly search agent ran at `inherit` and high effort, because D66 set the model only for the agents the marketplace ships. A report that must show a row for each file and each catalog row can't skip the step without the gap showing | Holds, in `dock.md`, `tidy.md` and `agent-models.md` |
+
+## A guard that sees every change: D79
+
+Decided on 2026-10-26, after the first trial of the guard on a real project.
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D79 | The guard finds a change by comparing the files git lists with how they stood at the session's start, and also by the tools' own marks. A project may limit it to paths with `STEWARD_CHECK_PATHS`, and docking writes them when the command covers only part of the project | In the trial, every edit went through the shell, and the guard, which saw only the edit tools, ran nothing. On the same project, a docking run chose no check command, because a full build after every edit would also run for edits to documents and data | Holds, in `guard.mjs`, `dock.md` and the base plugin's README; refines D67 |
 
 ## Still open
 

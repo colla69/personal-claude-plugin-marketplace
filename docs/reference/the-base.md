@@ -12,8 +12,9 @@ out; the first trials will show where it behaves otherwise.
 | Hook | When | What it does | Script |
 |---|---|---|---|
 | The index | Session start | Prints one line for each standard in the marketplace, with the ones enabled here marked, and asks the session to offer a standard that fits and isn't enabled. About 800 tokens | [`index.mjs`](../../plugins/marketplace-base/scripts/index.mjs) |
-| The guard, marking | After `Write`, `Edit`, `MultiEdit` or `NotebookEdit` | Notes that this session changed a file. A change made through the shell, such as `sed -i`, isn't noted | [`guard.mjs`](../../plugins/marketplace-base/scripts/guard.mjs) |
-| The guard, checking | When Claude is about to stop | If this session changed a file, runs the check command. A failure keeps Claude working, with the output's last 60 lines. After three failures in a row, it lets Claude stop and says so | `guard.mjs` |
+| The guard, starting | Session start | In a git repository, notes which files are already changed, with a hash of each, so uncommitted work from before the session isn't blamed on it | [`guard.mjs`](../../plugins/marketplace-base/scripts/guard.mjs) |
+| The guard, marking | After `Write`, `Edit`, `MultiEdit` or `NotebookEdit` | Notes the file the tool changed. This is the only way a change is seen in a folder that isn't a git repository | `guard.mjs` |
+| The guard, checking | When Claude is about to stop | Finds the files that differ from the start, or were marked, including changes made through the shell. If any matches `STEWARD_CHECK_PATHS`, or the project sets none, it runs the check command. A failure keeps Claude working, with the output's last 60 lines. After three failures in a row, it lets Claude stop and says so. What is changed then counts as the new start | `guard.mjs` |
 | The note | When Claude is about to stop, without waiting | At most once in ten minutes, starts a background run that adds the session's new possible corrections to its list, and returns at once | [`collect.mjs`](../../plugins/marketplace-base/scripts/collect.mjs) |
 | The filing | Session start, without waiting | Reads the unread end of this project's earlier sessions, then files their lists as one issue | `collect.mjs` |
 
@@ -28,6 +29,12 @@ project's CI runs, and leaves it out when it couldn't verify one. Without it, th
 does nothing. It runs in the project's root, whatever folder the session's shell is in,
 through the shell, for up to nine minutes. Each session is checked for its own changes
 only.
+
+`STEWARD_CHECK_PATHS` narrows when it runs: globs relative to the project's root,
+separated by commas, such as `frontend/**,infra/**`. `**` matches any depth, `*` stays
+inside one folder. Docking writes it when the command covers only part of the project,
+so an edit to the rest costs no check. Past 2,000 changed files the comparison is
+skipped, and only the files the tools changed count.
 
 ## The collector
 

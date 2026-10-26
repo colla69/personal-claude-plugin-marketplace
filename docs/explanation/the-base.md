@@ -26,6 +26,13 @@ after changing a file, and a failure sends Claude back to fix it. It runs only a
 change, only where docking found a command it could verify, and gives up after three
 failures in a row, so a check that cannot pass never traps a session.
 
+It finds a change by comparing the files git lists with how they stood at the session's
+start, not only by the tools that wrote them. Claude edits through the shell as often as
+through its edit tools, and a guard that saw only the tools would pass over half the
+changes. The comparison also leaves out work that was uncommitted before the session,
+which isn't the session's to fix. And where a command covers only part of a project,
+the paths keep an edit to documents or data from costing a full build.
+
 Nothing else is checked automatically. A review runs when someone asks for one, on Opus,
 by the `reviewer` agent. For other kinds of work, "a human will do that anyway, so those
 would be wasted tokens."

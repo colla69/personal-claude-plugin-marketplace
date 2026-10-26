@@ -20,10 +20,12 @@ make back to the curators. The steward installs it first, in every project it do
   the ones enabled in this project marked, about 800 tokens. A session can then say
   "there is a standard for that" when someone asks for work it covers, and offer to
   add it.
-- **When Claude is about to stop, the guard.** If Claude changed a file in this session,
-  it runs the project's check command from the project's root, and a failure keeps
-  Claude working, with the last lines of the output. After three failures in a row it
-  lets Claude stop and says so. A project without a check command is never checked.
+- **When Claude is about to stop, the guard.** If a file changed in this session, by a
+  tool or through the shell, it runs the project's check command from the project's
+  root, and a failure keeps Claude working, with the last lines of the output. After
+  three failures in a row it lets Claude stop and says so. A project without a check
+  command is never checked. Work that was uncommitted before the session started is
+  not blamed on it.
 - **While you work, the collector.** After an answer, a background run on Haiku reads
   what the session added since its last look, at most once in ten minutes. It reads
   what the person wrote and what Claude answered, never a tool's output. It adds the
@@ -43,6 +45,15 @@ from the command the project's CI runs:
 ```
 
 Remove it, and the guard does nothing in that project.
+
+A project where the command covers only part of the work, such as a built site beside
+documents and data, says which part in `STEWARD_CHECK_PATHS`, globs relative to the
+project's root and separated by commas. The guard then runs only when a file in those
+paths changed:
+
+```json
+{ "env": { "STEWARD_CHECK": "npm run build", "STEWARD_CHECK_PATHS": "web/**,infra/**" } }
+```
 
 ## The collector
 

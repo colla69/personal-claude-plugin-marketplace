@@ -59,9 +59,12 @@ Decide, from what step 2 found:
   model or say `inherit`, read `agent-models.md` and ask its one question now, together
   with the commit question.
 - **The check command.** In a project with code, the one command that proves the build
-  and the tests pass, such as `npm run build && npm test`. Take it from CI. Choose none
-  when you couldn't verify one, and say so in the report: a wrong command blocks every
-  turn that edits a file.
+  and the tests pass, such as `npm run build && npm test`. Take it from CI; with no CI,
+  from the command the project's own documents name for checking its work. Step 7 runs
+  it once. Choose none when it can't run here, and say so in the report: a wrong command
+  blocks every turn that edits a file. Decide too which paths it covers, as step 5 says.
+  A project where the command covers only part of the work, such as a built site beside
+  data and documents, gets the paths, so edits outside them cost no check.
 - **The files to write**, and roughly what goes in each.
 
 Nothing else is shown before the work. The decisions go into the report.
@@ -95,7 +98,12 @@ reports only what failed, so the output stays out of the session.
    otherwise. When the file already names a `model`, keep the project's, and say so in
    the report.
 2. **Write the check command**, when step 3 chose one, as `"STEWARD_CHECK"` under `env`
-   in the same file. The base plugin's guard reads it.
+   in the same file. The base plugin's guard reads it. When part of the project is not
+   covered by the command, such as `jobs/` or `CV/` beside a built `frontend/`, also
+   write `"STEWARD_CHECK_PATHS"`: the globs of what the command covers, relative to the
+   project's root and separated by commas, such as `frontend/**,infra/**`. The guard
+   then runs only when a file in those paths changed. Leave it out when the command
+   covers the whole project.
 3. **Remove the dead keys**, by the rule in "Renamed and removed" in `catalog.md`, and
    report every plugin at user scope that "Scope" there doesn't allow.
 4. **Check every plugin you decided on against `.claude/plugin-sources.json`.** If you
