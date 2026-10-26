@@ -47,10 +47,17 @@ the checklist, and the rules for the file.
 
 Decide, from what step 2 found:
 
-- **The standards to install.** `catalog.md` says when each applies, and
-  `plugin-sources.md` how to fill a gap. Every docked project gets `marketplace-base`.
+- **The standards to install.** Walk every row of the table in `catalog.md`, top to
+  bottom, and settle each one: install it on the signal you found, or leave it out on
+  the signal you looked for and didn't find, or on a mismatch the row names. A row you
+  pass without a verdict is how two runs on one project install different sets.
+  `plugin-sources.md` says how to fill a gap. Every docked project gets
+  `marketplace-base`.
 - **The commit question.** In a project with code, ask the one question in "Commit
   messages" in `catalog.md` now, and wait for the answer.
+- **The agents' models.** When the project has agents in `.claude/agents/` that name no
+  model or say `inherit`, read `agent-models.md` and ask its one question now, together
+  with the commit question.
 - **The check command.** In a project with code, the one command that proves the build
   and the tests pass, such as `npm run build && npm test`. Take it from CI. Choose none
   when you couldn't verify one, and say so in the report: a wrong command blocks every
@@ -74,6 +81,10 @@ goes in a path-scoped rule in `.claude/rules/`.
 
 A file the project already has is edited, not replaced: add what is missing, and leave
 every line the project wrote. Step 6 decides what of it goes.
+
+When step 3 chose a check command, add one line under the Commands table: a long check
+runs through the `marketplace-base:test-runner` agent, which runs it on Haiku and
+reports only what failed, so the output stays out of the session.
 
 ## 5. Install
 
@@ -102,7 +113,11 @@ every line the project wrote. Step 6 decides what of it goes.
 When step 2 found a setup of the project's own, or files an earlier steward generated,
 read `tidy.md` and run it. It removes only what an installed standard says word for
 word, keeps every other rule as the project's own, and files the rules that would serve
-other projects as issues for the curators.
+other projects as issues for the curators. Run it on every file step 2 noted, not only
+the ones you expect to change: its table has one row for each file read, and a file
+without a row was not read.
+
+Then write the models the user accepted in step 3, as `agent-models.md` says.
 
 ## 7. Verify
 
@@ -127,6 +142,10 @@ Do not declare success without checking:
    before you installed anything, so it shows the new parts as "not yet". Take their
    always-on tokens from `claude plugin details`, and put the total in the report.
 
+8. **The report is complete.** Every file step 2 noted has a row in the Tidied table,
+   and every row of the catalog has a verdict in the Standards table or is counted in
+   its closing line. A gap here is a step you skipped: go back and do it.
+
 Do **not** run `claude plugin validate` on the project's `.claude/` directory. It
 expects a plugin or marketplace manifest, and fails with "No manifest found".
 
@@ -146,12 +165,15 @@ expects a plugin or marketplace manifest, and fails with "No manifest found".
 - <path that already existed> — <what changed>
 
 ### Standards
-| Plugin | Why: the evidence in this project |
-|---|---|
-| <name> | <what you found that calls for it> |
+| Plugin | Verdict | Evidence in this project |
+|---|---|---|
+| <name> | <install, kept, or left out> | <the signal you found, or the one you looked for and didn't find> |
+
+<A closing line counts the rows whose signal is plainly absent, such as a language the
+project doesn't use, instead of listing each.>
 
 ### Tidied
-<Only when step 6 ran: its table, from `tidy.md`.>
+<Only when step 6 ran: its tables, from `tidy.md`.>
 
 ### For the curators
 <Each issue filed, with its link, or the rules waiting on disk and why. Left out when

@@ -16,6 +16,7 @@ set out; the first trials will show where what it writes differs.
 | `.claude/settings.json` | Declares the marketplace, sets the model and the check command, and enables the plugins docking installed. Merged into, never replaced | [`dock.md`](../../plugins/marketplace-steward/references/dock.md), [`catalog.md`](../../plugins/marketplace-steward/references/catalog.md) |
 | `.claude/plugin-sources.json` | Which marketplaces this project may draw plugins from | [`plugin-sources.md`](../../plugins/marketplace-steward/references/plugin-sources.md) |
 | `.claude/skills/<name>/SKILL.md` | A project skill, for a multi-step procedure only this project runs | `context-files.md` |
+| `.claude/agents/<name>.md` | The project's own agent. Docking changes one line only, its `model`, and only when you ticked it | [`agent-models.md`](../../plugins/marketplace-steward/references/agent-models.md) |
 
 Docking writes no agents, no run skills and no record. A project an earlier steward set
 up loses its generated agents, its run skills and its `.claude/steward.json` in the

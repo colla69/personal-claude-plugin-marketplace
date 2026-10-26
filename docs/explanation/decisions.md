@@ -26,6 +26,7 @@ the reason it was made is often the reason its replacement has the shape it has.
 - [Project scope only: D61](#project-scope-only-d61)
 - [The rebuild: D62 to D76](#the-rebuild-d62-to-d76)
 - [Collecting as the session goes: D77](#collecting-as-the-session-goes-d77)
+- [Docking that shows its work: D78](#docking-that-shows-its-work-d78)
 - [Still open](#still-open)
 
 ## The author's statements
@@ -263,6 +264,14 @@ Decided on 2026-10-26, after the first trial of the base plugin on a real projec
 | # | Decision | Why | Now |
 |---|---|---|---|
 | D77 | The collector keeps a list of possible corrections while a session runs, and the next session start in the project files the lists as one issue. No hook waits for a session to end. After an answer, a background run on Haiku reads what is new, at most once in ten minutes; at session start, the unread end of earlier sessions is read first, and the lists are filed with no model call | "People are lazy and never end session correctly, if at all." A killed terminal skips the session-end hook, and a catch-up that waited for a quiet session filed late, in bursts, and no more than five at a time. A list on disk survives any way a session can end, and a pass reads only what is new, so a long session costs little | Holds, in `collect.mjs` and `hooks.json`; supersedes the trigger in D68 |
+
+## Docking that shows its work: D78
+
+Decided on 2026-10-26, after two docking runs on one project gave different results.
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D78 | The report proves the steps were done. The Standards table gives a verdict for every row of the catalog, and the Tidied table has a row for every file read, with the rules it holds. The project's own agents get a model by the kind of work (D66): docking proposes one for each agent that names none, asks once, and writes only what is ticked | Two runs on one project differed: one installed `language-typescript` for the infrastructure code and one didn't. Both runs left the project's agents and rules unread and said so in one line of the report, where nothing forced the step. A nightly search agent ran at `inherit` and high effort, because D66 set the model only for the agents the marketplace ships. A report that must show a row for each file and each catalog row can't skip the step without the gap showing | Holds, in `dock.md`, `tidy.md` and `agent-models.md` |
 
 ## Still open
 

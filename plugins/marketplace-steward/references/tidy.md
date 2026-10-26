@@ -22,8 +22,10 @@ and never over an existing backup: add a number to the name instead. A file that
 A rule is one instruction someone could follow or break: a bullet, a line, a short
 paragraph. Read `CLAUDE.md` and `AGENTS.md` at every level, `.claude/rules/`,
 `.claude/skills/`, `.claude/agents/`, `.claude/commands/`, and every hook that only
-prints text. Remove a rule, not a file: edit the rule out of the file it is in, and
-remove a file only once nothing is left in it.
+prints text. Read each file in full, one at a time. An agent you start to read them is
+fine, but each file still gets its own row in the report. Remove a rule, not a file:
+edit the rule out of the file it is in, and remove a file only once nothing is left in
+it.
 
 | What it is | What happens |
 |---|---|
@@ -83,12 +85,20 @@ nobody has decided yet whether it becomes a standard.
 
 ```
 ### Tidied
+Read <n> files.
+
+| File | Rules | Removed | Filed | Kept |
+|---|---|---|---|---|
+| <path> | <how many rules it holds> | <count> | <count> | <count> |
+
 | From | Rule | Outcome |
 |---|---|---|
-| <file> | <the rule, quoted short> | <removed: duplicate of plugin:skill / removed: generated / kept / kept and filed: the issue> |
+| <file> | <the rule, quoted short> | <removed: duplicate of plugin:skill / removed: generated / kept and filed: the issue> |
 
 Backups: <each backup path, or "none needed">
 ```
 
-One row per rule removed or filed. Rules kept without filing are counted in one line,
-not listed: the report is for what changed.
+**Every file you read has a row in the first table**, even one with nothing to change.
+A file without a row was not read, and the report must not say that nothing was found
+in it. The second table has one row for each rule removed or filed. Rules kept without
+filing are counted in the first table, not listed.

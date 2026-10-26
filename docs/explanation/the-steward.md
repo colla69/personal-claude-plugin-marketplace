@@ -63,6 +63,10 @@ people know why a rule is the way it is. So the tidy removes only a rule a stand
 states word for word, keeps every quirk, and files a rule that would serve other
 projects as an issue, without removing it. When in doubt, a rule differs.
 
+The report shows a row for every file the tidy read. A tidy that skipped the agents and
+rules said so in one line of its report, and nothing else showed it. A missing row now
+shows it.
+
 ## The curator, apart
 
 > "Separated curator."

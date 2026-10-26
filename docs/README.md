@@ -42,7 +42,7 @@ One task each.
 
 | Page | The task | Sources | Status |
 |---|---|---|---|
-| [`guides/dock-a-project.md`](guides/dock-a-project.md) | Dock a codebase or a folder with no code, including one with a setup of its own | `dock.md`, `tidy.md`, `context-files.md` | Written, not yet tried |
+| [`guides/dock-a-project.md`](guides/dock-a-project.md) | Dock a codebase or a folder with no code, including one with a setup of its own | `dock.md`, `tidy.md`, `agent-models.md`, `context-files.md` | Written, not yet tried |
 | [`guides/work-in-a-docked-project.md`](guides/work-in-a-docked-project.md) | Work day to day: the index, the guard, a review, a correction | The base plugin, the steward's front door | Written, not yet tried |
 | [`guides/contribute-a-lesson.md`](guides/contribute-a-lesson.md) | Work a lesson or a correction into the marketplace, as a curator | `contribute.md`, the curator's front door | Written, not yet tried |
 | [`guides/review-a-skill.md`](guides/review-a-skill.md) | Review a skill, a plugin, a change or the whole set | `evaluate-skills`, `change-reviewer` | Written |

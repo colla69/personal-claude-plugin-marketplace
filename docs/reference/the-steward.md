@@ -24,7 +24,7 @@ dev server or CI, and the project's own tasks.
 
 | Job | Reads | Writes in the project | Writes elsewhere |
 |---|---|---|---|
-| Dock | The project, through the built-in Explore agent for a codebase; the live inventory of every marketplace; the source policy; the project's session transcripts, through the measuring script | `CLAUDE.md`, path-scoped rules, `.claude/settings.json`, `.claude/plugin-sources.json`; rules a standard states word for word removed, and files an earlier steward generated | Backups in `~/.local/share/marketplace-steward/backups/`; an issue on the marketplace for rules that would travel |
+| Dock | The project, through the built-in Explore agent for a codebase; the live inventory of every marketplace; the source policy; the project's session transcripts, through the measuring script | `CLAUDE.md`, path-scoped rules, `.claude/settings.json`, `.claude/plugin-sources.json`; the `model` line of an agent you ticked; rules a standard states word for word removed, and files an earlier steward generated | Backups in `~/.local/share/marketplace-steward/backups/`; an issue on the marketplace for rules that would travel |
 | One more standard | The live inventory, the source policy, the settings | `.claude/settings.json` | — |
 | Ask the guide | The live inventory, the catalog, the installed standards, the project's settings and `CLAUDE.md` files, its transcripts through the measuring script | Nothing. A change it proposes is made after your yes, as docking writes it | — |
 
@@ -35,6 +35,9 @@ dev server or CI, and the project's own tasks.
 - Which sources the project may draw from, once, when no policy file exists.
 - In a repo with code, whether it writes Conventional Commits, once, unless it already
   shows the format.
+- When the project's own agents name no model, which of them to move to the model
+  [`agent-models.md`](../../plugins/marketplace-steward/references/agent-models.md)
+  proposes for their work, once. Nothing changes without a tick.
 - When the project has `AGENTS.md` files, whether to keep them or swap them for
   `CLAUDE.md`.
 
@@ -56,7 +59,8 @@ Everything else goes ahead and is reported.
 | [`steward`](../../plugins/marketplace-steward/skills/steward/SKILL.md) | Skill, visible | The front door: picks the job and holds the rules every job shares |
 | [`guide`](../../plugins/marketplace-steward/agents/guide.md) | Agent, read-only, Sonnet | Answers questions about the standards and the setup, and proposes changes |
 | [`dock.md`](../../plugins/marketplace-steward/references/dock.md) | Reference | Docking, step by step, and its report |
-| [`tidy.md`](../../plugins/marketplace-steward/references/tidy.md) | Reference | What a setup of the project's own keeps, loses and files |
+| [`tidy.md`](../../plugins/marketplace-steward/references/tidy.md) | Reference | What a setup of the project's own keeps, loses and files, and the table that shows every file was read |
+| [`agent-models.md`](../../plugins/marketplace-steward/references/agent-models.md) | Reference | Which model each of the project's own agents should run on, and how docking asks |
 | [`catalog.md`](../../plugins/marketplace-steward/references/catalog.md) | Reference | The signal that earns each plugin, the layers, scope, and the Renamed table |
 | [`context-files.md`](../../plugins/marketplace-steward/references/context-files.md) | Reference | How `CLAUDE.md` is laid out, and what stays out of it |
 | [`plugin-sources.md`](../../plugins/marketplace-steward/references/plugin-sources.md) | Reference | The sources checklist and the live inventory |

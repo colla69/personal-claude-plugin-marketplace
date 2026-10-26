@@ -35,9 +35,12 @@ first trials will show where it behaves otherwise.
    repository are ticked already. It is asked once.
 3. **Answer what only you can.** In a codebase, it asks once whether the project writes
    its commit messages in Conventional Commits, unless the project already shows the
-   format. When the project has `AGENTS.md` files, it asks whether to keep them or swap
-   them for `CLAUDE.md`. Claude Code may ask for some commands as it goes, such as each
-   plugin install; [permissions](../reference/permissions.md) lists them.
+   format. When the project has agents in `.claude/agents/` that name no model, it asks
+   once which of them to move to a model that fits their work, such as Haiku for an
+   agent that only searches and runs commands. When the project has `AGENTS.md` files,
+   it asks whether to keep them or swap them for `CLAUDE.md`. Claude Code may ask for
+   some commands as it goes, such as each plugin install;
+   [permissions](../reference/permissions.md) lists them.
 4. **Read the report.** It lists every file written and changed, each standard and the
    evidence for it, the check command the guard will run, what the tidy removed and
    filed, the tokens the setup adds to every session, and what it couldn't verify.
@@ -70,7 +73,9 @@ base](../reference/the-base.md) what the base plugin does in every session.
 
 ## A project with a setup of its own
 
-The steward edits an existing `CLAUDE.md`; it never replaces one. Then it tidies:
+The steward edits an existing `CLAUDE.md`; it never replaces one. Then it tidies, file
+by file. The report lists every file it read, with how many rules each holds and what
+happened to them, so a file that was not read shows as a missing row.
 
 - A rule an installed standard states word for word is removed.
 - Every other rule stays: it is the project's own.

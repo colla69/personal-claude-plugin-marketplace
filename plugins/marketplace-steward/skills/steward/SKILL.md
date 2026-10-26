@@ -42,7 +42,8 @@ step 5, and a change to the project's files goes in as `dock.md` writes them.
 
 - **Ask only what a person must decide.** The sources the project may draw from, once,
   when no policy file exists; whether the project writes Conventional Commits, once, in
-  a project with code; and what `dock.md` names. Everything else goes ahead and is
+  a project with code; which model each of the project's own agents runs on, once; and
+  what `dock.md` names. Everything else goes ahead and is
   reported.
 - **Say exactly what you created and what you changed.** The report is what the user
   reads to decide what to keep, next to `git diff`.
