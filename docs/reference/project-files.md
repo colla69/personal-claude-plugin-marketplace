@@ -80,6 +80,6 @@ project that has none.
 | Path | What it holds |
 |---|---|
 | `~/.local/share/marketplace-steward/backups/<project>/<date>/` | Copies of your files, taken by the tidy before the first rule is taken out of a file whose working copy differs from git's `HEAD` |
-| The base plugin's data folder, `~/.claude/plugins/data/marketplace-base…/` | The guard's state, and the collector's: what it collected, its locks, and issues waiting for `gh` |
+| The base plugin's data folder, `~/.claude/plugins/data/marketplace-base…/` | The guard's state, and the collector's: for each session how far it has read and its list of possible corrections, and its locks |
 
 The backups are not under `~/.claude`, where Claude Code asks before every write.

@@ -16,7 +16,7 @@ that holds its rules.
 | **Check command** | `STEWARD_CHECK` in a project's settings: the one command that proves the build and the tests pass, which the guard runs | [`the base`](the-base.md) |
 | **Checker** | `contribution-checker`, the curator's read-only agent that checks a change before its pull request, the leak check first | [`contribution-checker.md`](../../plugins/marketplace-curator/agents/contribution-checker.md) |
 | `CLAUDE.md` | A project's instructions: what reading the project cannot tell. Claude Code loads the root one in every session, and a nested one when a file in its folder is read | [`context-files.md`](../../plugins/marketplace-steward/references/context-files.md) |
-| **Collector** | The base plugin's hook that, at the end of a session, files the corrections the person made as an issue for the curators. It reads only the conversation | [`the base`](the-base.md) |
+| **Collector** | The base plugin's hooks that keep a list of the corrections the person makes while a session runs, and file the lists as an issue for the curators at the next session start. It reads only the conversation | [`the base`](the-base.md) |
 | **Contribute** | The curator's job that turns a lesson or an issue into a change to a skill, or a new skill, by pull request | [`contribute.md`](../../plugins/marketplace-curator/references/contribute.md) |
 | **Correction** | A moment a person told Claude it did something the wrong way, and how it should be done, where the right way looks like a standard | [`the base`](the-base.md) |
 | **Craft** | The layer of how a kind of work is done, such as reviewing, refactoring or a monthly report | [`place-knowledge.md`](../../plugins/marketplace-curator/references/place-knowledge.md) |
