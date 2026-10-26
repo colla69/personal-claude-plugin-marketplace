@@ -35,15 +35,14 @@ leaves out the standard's controlled dictionary.
 
 ## Install
 
-Set-up installs it at project scope in every project, with code or without, and gives
-it to every role of every trio. By hand:
+Docking installs it at project scope in every project, with code or without. By hand:
 
 ```bash
 claude plugin install language-simple-english@personal-claude-plugin-marketplace --scope project
 ```
 
 The steward depends on it, so installing the steward at user scope brings it to every
-project on that machine.
+project on that machine, and the base plugin's `reviewer` writes its report by it.
 
 ## More
 

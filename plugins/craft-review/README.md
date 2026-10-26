@@ -30,7 +30,7 @@ one kind of work use it.
 
 ## Install
 
-Set-up installs it at project scope where work other than code gets reviewed, and
+Docking installs it at project scope where work other than code gets reviewed, and
 `craft-code-review` pulls it in. By hand:
 
 ```bash

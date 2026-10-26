@@ -1,7 +1,8 @@
 # The idea
 
-Why this marketplace keeps its knowledge in one place and its workers in each project,
-and why it isn't only for code. Read this before deciding whether the approach fits
+Why this marketplace keeps a company's knowledge in one place, spreads it to every
+project that asks, and learns from the corrections people make, and why it isn't only
+for code. Read this before deciding whether the approach fits
 your team. The quotes are the author's own words, from the sessions and the presentation
 the idea was developed in.
 
@@ -26,50 +27,62 @@ of view. It is not a tool, it is a tooling fabric." What is missing is knowledge
 know-how, kept in one place, that the LLM can use. A tool gets replaced; the knowledge
 stays.
 
-## Knowledge central, workers local
+## Knowledge central, quirks local
 
-> "The agents stay in repo, only the skills are in the marketplace and get worked on.
-> That is the part where the knowledge is stored anyway."
+> "I am looking for a way to normalize and unify knowledge and centralize ways of
+> working between teams."
 
-That one sentence decides the shape of everything else.
+A company's ways of working are standards: how code is annotated, a template, a quality
+bar for prose, emails or presentations. Each is written once, as a skill, and every
+project that needs it installs it.
 
 | | Lives in | Changes by | Belongs to |
 |---|---|---|---|
-| **Knowledge**: skills | The marketplace | Being curated once and improved for everyone | Everyone who installs it |
-| **Workers**: agents | Each project | Being generated for that project and its tasks | The project |
-| **Project facts**: `CLAUDE.md` | Each project | Being written from the project itself | The project |
+| **Standards**: skills | The marketplace | Being curated once and improved for everyone | Everyone who installs them |
+| **Quirks and project facts**: `CLAUDE.md` | Each project | Being written from the project itself | The project |
+| **A team's quirks**, shared by its projects | A `team-<name>` plugin, as a last resort | Being curated like a standard | The team |
+| **Mechanics**: the index, the guard, the collector, a few helper agents | One base plugin | Being curated once | Every docked project |
 
 Four things follow:
 
-1. **The marketplace holds knowledge only.** It is a library of skills, not a collection
-   of ready-made workers. A worker shipped centrally would compete with the ones a
-   project needs, and carry a second copy of the knowledge.
-2. **One skill per plugin.** A plugin is what you install, so one plugin is one piece of
+1. **One skill per plugin.** A plugin is what you install, so one plugin is one piece of
    knowledge you choose to have or not.
-3. **Agents are made, not shipped.** The steward creates the agents a project needs, in
-   that project, wired to the skills it installed. See
-   [the steward](the-steward.md) and [skills and roles](skills-and-roles.md).
-4. **Knowledge flows back.** What a project teaches goes back into the marketplace, so
-   the next project starts with it.
+2. **Few workers, shipped once.** A project needs no agents of its own to apply a
+   standard: the session reads the skill. The few helpers that pay for themselves, a
+   test runner and a reviewer, ship in the base plugin. See [the base](the-base.md).
+3. **Nobody has to ask.** People "just blurt into the editor", so every docked session
+   starts with an index of every standard, and offers one when the work calls for it.
+4. **Knowledge flows back by itself.** When a person corrects Claude, the correction
+   goes to the curators as an issue, without anyone filing it.
+
+## Three groups
+
+| | Who | What they do |
+|---|---|---|
+| **Users** | Everyone who works in a docked project, beginners and experts | Their work. Anyone can talk to the steward; nobody has to |
+| **Contributors** | Everyone, mostly without noticing | Correct Claude when it gets a way of working wrong. The correction reaches the curators |
+| **Curators** | A few people who own the standards | Decide what a standard says, and merge the change |
 
 ## The cycle
 
 ```mermaid
 flowchart LR
-    M[("Marketplace<br/>skills, central")]
-    S1["Steward<br/>set up, adopt, keep current"]
-    P["The project<br/>CLAUDE.md, skills, trios"]
-    T["Plan · Do · Check<br/>the work"]
-    S2["Steward<br/>contribute"]
-    M -->|installs skills| S1 --> P --> T
-    T -->|a lesson| S2 -->|pull request| M
+    M[("Marketplace<br/>standards, central")]
+    S["Steward<br/>docks on request"]
+    P["The project<br/>CLAUDE.md, standards, base"]
+    W["Sessions<br/>the work"]
+    I["Issues<br/>corrections"]
+    C["Curators<br/>pull request"]
+    M -->|installs standards| S --> P --> W
+    W -->|corrections, by themselves| I --> C -->|merge| M
+    M -.->|auto-update| P
 ```
 
-**Dock on, work, grow.** The steward sets a project up from the marketplace. The
-project's trios do the work. What the work teaches goes back through the steward, as a
-pull request the maintainer merges, and from then on every project has it. "What one
-person learns benefits everyone": what one team learns lands in the library, and the
-next team has it on its first day.
+**Dock, work, grow.** The steward docks a project onto the marketplace when someone
+asks. The project's sessions do the work, with the standards and the base plugin. The
+corrections people make reach the curators as issues, and a change they merge reaches
+every docked project by itself. "What one person learns benefits everyone": what one
+team learns lands in the library, and the next team has it on its first day.
 
 ## Modular, not uniform
 
@@ -85,11 +98,13 @@ base, kept from becoming uniform in three ways:
 
 ## The product is prose
 
-A skill is a standard written in plain language that an LLM can read. There is no
-build, and the product's only code is one script the steward measures a setup's token
-cost with. Nothing in it is a technical control: a model may follow a skill,
-ignore it, or follow it partly. So the marketplace is judged by how well its standards
-are written and cut, and its checks exist only for the mistakes that fail silently.
+A skill is a standard written in plain language that an LLM can read. There is no build,
+and the product's only code is the script the steward measures a setup's token cost with
+and the base plugin's hooks. A skill is not a technical control: a model may follow it,
+ignore it, or follow it partly. The one thing the marketplace enforces is the one a hook
+can check: in development, the build and the tests stay green. So the marketplace is
+judged by how well its standards are written and cut, and its checks exist only for the
+mistakes that fail silently.
 
 ## Not only for code
 
@@ -112,9 +127,10 @@ about a codebase.
 
 "Developing should still be done by developers. With the help of agentic engineering
 they can work while watching the process from a new vantage point, while leaving the
-tedious work to LLMs." The person stays in control at every point that matters: a trio
-stops for their OK before any work, and every change to the marketplace waits for their
-merge. [Safety](safety.md) lists each of those points.
+tedious work to LLMs." The person stays in control at every point that matters: a
+project is docked only when they ask, the steward never commits, a review runs when they
+ask for one, and every change to the marketplace waits for a curator's merge.
+[Safety](safety.md) lists each of those points.
 
 ## Not in scope
 

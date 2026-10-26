@@ -10,16 +10,16 @@ The marketplace's own check, with no dependencies. It fails on:
 | Mistake | Why nothing else notices |
 |---|---|
 | An empty plugin list in `marketplace.json`, or an entry without `name`, `source`, `description`, `category` or `tags` | The marketplace parses, and the plugin is half-registered |
-| A plugin missing from `marketplace.json`, from either table of `docs/reference/plugins.md` or from the tables of `plugin-catalog.md` together, or a name left in one of them that no longer exists. Only names in a table column headed Plugin or Plugins count | The plugin installs fine; missing from the catalog, it is never chosen for any project |
+| A plugin missing from `marketplace.json`, from either table of `docs/reference/plugins.md` or from the tables of `catalog.md` together, or a name left in one of them that no longer exists. Only names in a table column headed Plugin or Plugins count | The plugin installs fine; missing from the catalog, it is never chosen for any project |
 | An entry whose `source` folder doesn't exist, that has no `.claude-plugin/plugin.json`, or whose `plugin.json` gives another name | The entry points at nothing, or at the wrong plugin |
 | A folder under `plugins/` that `marketplace.json` doesn't list | It is simply never loaded |
-| A `category` other than `universal`, `craft`, `language`, `tools` or `marketplace`, or a name whose prefix doesn't match it | The layer is read from the name |
+| A `category` other than `universal`, `craft`, `language`, `tools`, `team` or `marketplace`, or a name whose prefix doesn't match it | The layer is read from the name |
 | A dependency on a plugin that doesn't exist, or on one in a more specific layer | `claude plugin validate` passes both |
 | A `version` in `plugin.json` | Every user would stay on the cached copy until someone bumped it |
 | A `description` in `plugin.json` | Set in both places, the manifest silently wins over the marketplace entry |
 | A plugin with no `README.md`, or one whose heading isn't `# <plugin-name>` | A copied README with the wrong name |
 | `skills/`, `agents/`, `commands/` or `hooks/` inside `.claude-plugin/` | The plugin validates, installs, and is empty |
-| An `agents/` folder in any plugin but a `marketplace-` one | A shipped agent competes with the ones the steward generates |
+| An `agents/` or a `hooks/` folder in any plugin but a `marketplace-` one | A skill plugin's agent would give its knowledge a second home, and its hook would run in every project that installs it |
 
 ## `node scripts/check-docs.mjs`
 
@@ -58,13 +58,13 @@ when started by hand:
 | `docs in shape` | `node scripts/check-docs.mjs` |
 | `manifests valid` | `claude plugin validate .`, then `claude plugin validate` on each plugin |
 
-## Inside the steward
+## Inside the plugins
 
 | Check | Catches |
 |---|---|
-| Set-up's verify phase | A trio naming a skill that isn't enabled or doesn't load; JSON or frontmatter that doesn't parse; a rule whose `paths:` match nothing; an `AGENTS.md` that doesn't follow the keep-or-swap answer; context files over their budget; a record that doesn't match its files. It also measures the setup's always-on tokens for the report |
-| Keep-current | A dead plugin key, a skill name in a trio that doesn't resolve, an `AGENTS.md` from an older setup, a path or a command in `CLAUDE.md` that no longer exists, a part of the setup that didn't load in the latest session, and a part no session used |
-| The checker, before each pull request | A change that breaks the house standard or the cut, and anything from the source project in the diff, the commit messages, the branch name or the pull request text |
+| Docking's verify step | A plugin that isn't enabled or doesn't load; JSON or frontmatter that doesn't parse; a rule whose `paths:` match nothing; an `AGENTS.md` that doesn't follow the keep-or-swap answer; context files over their budget; a check command that fails before any change. It also measures the setup's always-on tokens for the report |
+| The base plugin's guard, in a docked project | A change after which the project's check command fails |
+| The curator's checker, before each pull request | A change that breaks the house standard or the cut, and anything from the source project in the diff, the commit messages, the branch name or the pull request text |
 
 ## What nothing catches
 
@@ -77,8 +77,9 @@ Look for these yourself, or ask `evaluate-skills`:
 | A description that wins prompts it isn't for | The skill loads where it doesn't belong |
 | A rule stated in two skills | The two drift apart, and the agents that read them disagree |
 | A project's name in an example, outside a contribution | It reads like any example. Search for your projects' names before you commit |
-| A trio's skill installed but not in a role's `skills:` | The role works without that standard |
+| An agent's `skills:` name without its plugin, such as `review-work` | The agent works without that standard |
 | A wrong Skill, Builds on or signal cell in a plugin table | The check compares names only; the other columns are read by people |
 | A page made wrong by a product change | It reads as true. The map's Sources column names the pages each product file feeds; reread them in the same change |
 | A page that names a working record, without linking it | The check sees only links |
-| A copy of the signals in a plugin README's Install section | It drifts from `plugin-catalog.md`, which is the one the steward reads |
+| A copy of the signals in a plugin README's Install section | It drifts from `catalog.md`, which is the one the steward reads |
+| A hook script that throws | Claude Code shows an error line, and the session goes on without the index, the guard or the collector |

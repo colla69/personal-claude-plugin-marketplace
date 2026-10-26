@@ -6,8 +6,8 @@ steward installs it, and what it builds on.
 This page is one of the three registrations every plugin needs, and
 `scripts/check-catalog.mjs` fails when either of its tables disagrees with
 [`marketplace.json`](../../.claude-plugin/marketplace.json). The "Installed when"
-column gives the gist; the full signals that set-up checks are in
-[`plugin-catalog.md`](../../plugins/marketplace-steward/references/set-up/plugin-catalog.md).
+column gives the gist; the full signals that docking checks are in
+[`catalog.md`](../../plugins/marketplace-steward/references/catalog.md).
 Each plugin's own README, under `plugins/<name>/`, says where it stops.
 
 | Plugin | Layer | Skill | What it's for | Installed when the project shows | Builds on |
@@ -31,7 +31,9 @@ Each plugin's own README, under `plugins/<name>/`, says where it stops.
 | [`tools-pinia`](../../plugins/tools-pinia/) | Framework & Tools | `pinia-conventions` | Pinia stores, and server data in a query layer instead of a store | `pinia` in the dependencies | `tools-vue` |
 | [`tools-aws-static-hosting`](../../plugins/tools-aws-static-hosting/) | Framework & Tools | `aws-static-hosting` | Static sites on AWS: certificate region, deep links, cache tiers, private buckets, safe syncs, deploy checks | A CloudFront distribution in front of an S3 bucket in the infrastructure code or deploy scripts | — |
 | [`tools-appkit`](../../plugins/tools-appkit/) | Framework & Tools | `appkit-conventions` | AppKit apps in code: a bare executable, the main thread, key events, borderless windows, kiosk options | `import AppKit` or `import Cocoa` in `.swift` sources | — |
-| [`marketplace-steward`](../../plugins/marketplace-steward/) | — | `steward`, `evaluate-skills` | Sets projects up, adopts their setups, keeps them current, and grows the marketplace by pull request | Never in a project: you install it once, for your user | `craft-review`, `language-simple-english` |
+| [`marketplace-steward`](../../plugins/marketplace-steward/) | — | `steward` | Docks a project when asked, and answers questions about the standards through its `guide` agent | Never in a project: you install it once, for your user | `language-simple-english` |
+| [`marketplace-base`](../../plugins/marketplace-base/) | — | — | The standards index, the build-and-test guard and the corrections collector, as hooks, and the `test-runner` and `reviewer` agents | Every docked project, installed first | `craft-review`, `language-simple-english` |
+| [`marketplace-curator`](../../plugins/marketplace-curator/) | — | `curate`, `evaluate-skills` | Turns lessons and collected corrections into changes to the standards, by pull request | Never in a docked project: only in the marketplace's own repository | `craft-review`, `language-simple-english` |
 
 ## By layer
 
@@ -41,10 +43,11 @@ Each plugin's own README, under `plugins/<name>/`, says where it stops.
 | Craft | `craft-development`, `craft-review`, `craft-code-review`, `craft-unit-testing`, `craft-refactoring`, `craft-cv-writing` |
 | Language | `language-java`, `language-typescript`, `language-javascript`, `language-swift`, `language-simple-english`, `language-conventional-commits` |
 | Framework & Tools | `tools-vue`, `tools-vue-typescript`, `tools-pinia`, `tools-aws-static-hosting`, `tools-appkit` |
-| None: works on the marketplace itself | `marketplace-steward` |
+| Team | None yet |
+| None: works on the marketplace itself | `marketplace-steward`, `marketplace-base`, `marketplace-curator` |
 
-[Layers](../explanation/layers.md) explains the four layers and why dependencies point
-the way they do.
+[Layers](../explanation/layers.md) explains the layers and why dependencies point the
+way they do.
 
 ## Old names
 
@@ -52,8 +55,7 @@ The plugins were renamed when the marketplace was cut into layers: `clean-code` 
 `universal-clean-code`, and `vue-dev` split into `tools-vue`, `tools-pinia` and
 `tools-vue-typescript`. Every old name, and every later rename, has its row in the
 Renamed table of
-[`plugin-catalog.md`](../../plugins/marketplace-steward/references/set-up/plugin-catalog.md).
-Set-up and keep-current both read it. They remove the old key, and weigh each
-successor by its own signal, so a part that split off is installed only where the
-project shows a need for it. [Migrate from old
+[`catalog.md`](../../plugins/marketplace-steward/references/catalog.md). Docking reads
+it. It removes the old key, and weighs each successor by its own signal, so a part that
+split off is installed only where the project shows a need for it. [Migrate from old
 names](../guides/migrate-from-old-names.md) walks through it.

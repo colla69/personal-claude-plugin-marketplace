@@ -1,0 +1,11 @@
+{
+  "extraKnownMarketplaces": {
+    "personal-claude-plugin-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "colla69/personal-claude-plugin-marketplace"
+      }
+    }
+  },
+  "model": "opusplan"
+}

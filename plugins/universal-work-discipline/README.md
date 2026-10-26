@@ -30,7 +30,7 @@ and unverified is not done.
 
 ## Install
 
-Set-up installs it at project scope in any project, with code or without, and most Craft
+Docking installs it at project scope in any project, with code or without, and most Craft
 plugins pull it in. By hand:
 
 ```bash

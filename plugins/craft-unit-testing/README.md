@@ -31,7 +31,7 @@ code is worse than none, because it is trusted.
 
 ## Install
 
-Set-up installs it at project scope where a test runner is configured, most strongly
+Docking installs it at project scope where a test runner is configured, most strongly
 where coverage is thin, and `craft-development` and `craft-code-review` pull it in. By
 hand:
 

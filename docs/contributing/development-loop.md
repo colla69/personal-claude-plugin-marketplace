@@ -8,16 +8,18 @@ costs, check it the way CI will, and know what each check does and doesn't catch
 | You are changing | Load it with |
 |---|---|
 | A skill plugin | `claude --plugin-dir ./plugins/<name>`, plus one `--plugin-dir` for each plugin it depends on |
-| The steward | `claude --plugin-dir ./plugins/marketplace-steward --plugin-dir ./plugins/craft-review --plugin-dir ./plugins/language-simple-english` |
+| The steward and the base | `claude --plugin-dir ./plugins/marketplace-steward --plugin-dir ./plugins/marketplace-base --plugin-dir ./plugins/craft-review --plugin-dir ./plugins/language-simple-english` |
+| The curator | `claude --plugin-dir ./plugins/marketplace-curator --plugin-dir ./plugins/craft-review --plugin-dir ./plugins/language-simple-english` |
 | The whole marketplace, as a user would get it | `claude plugin marketplace add .`, then `claude plugin install <name>@personal-claude-plugin-marketplace`, on a machine without the marketplace from GitHub |
 
-A `--plugin-dir` copy replaces the installed plugin of the same name for that session.
-A plugin whose dependency isn't loaded or installed doesn't load at all, so the
+A `--plugin-dir` copy replaces the installed plugin of the same name for that session. A
+plugin whose dependency isn't loaded or installed doesn't load at all, so the
 dependencies need their own `--plugin-dir`. [Work on the
-steward](../guides/work-on-the-steward.md) has what is particular to the steward.
+steward](../guides/work-on-the-steward.md) has what is particular to the marketplace's
+own plugins.
 
-A marketplace added from `.` has the same name as the one from GitHub, and the
-steward's contribute job needs the GitHub one to open a pull request. So on a machine
+A marketplace added from `.` has the same name as the one from GitHub, and the base
+plugin needs the GitHub one to know where to file issues. So on a machine
 that has it, use `--plugin-dir`. After an edit to a marketplace added from `.`, run
 `claude plugin marketplace update personal-claude-plugin-marketplace`.
 

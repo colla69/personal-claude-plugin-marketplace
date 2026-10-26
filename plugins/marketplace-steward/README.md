@@ -1,67 +1,54 @@
 # marketplace-steward
 
-What a project teaches should reach the next project. The steward is one package for
-the whole cycle: it sets a project up, adopts the setup a project already has, keeps
-that setup current, and turns lessons into changes to the marketplace, by pull
-request.
+A project should start from what the company already knows. The steward docks a project
+onto the marketplace's standards when someone asks, and answers questions about them,
+for beginners and experts alike. It is the one plugin each person installs by hand.
 
-**Not tried for real yet.** All four jobs are written; trying them on real projects
-comes next.
+**Not tried for real yet.** It is written; trying it on real projects comes next.
 
 | | |
 |---|---|
-| Skills | `steward`, the front door, and `evaluate-skills` |
-| Agents | `codebase-cartographer`, which surveys a codebase for set-up, and `contribution-checker`, which checks a change before its pull request. Both read-only |
-| References | `set-up/`, `adopt.md`, `keep-current.md`, `contribute.md`, `record.md`, `cost.md`, `place-knowledge.md` and `author-skills/`, read by path |
+| Skill | `steward`, the front door |
+| Agent | `guide`, on Sonnet, which answers questions about the standards and the setup. Read-only |
+| References | `dock.md`, `tidy.md`, `catalog.md`, `context-files.md`, `plugin-sources.md` and `cost.md`, read by path |
 | Script | `scripts/measure-setup.mjs`, which measures what a project's setup costs per session. Plain Node; it writes nothing |
-| Layer | None: it works on the marketplace itself |
-| Builds on | `craft-review`, `language-simple-english` |
+| Layer | None: it is part of the marketplace itself |
+| Builds on | `language-simple-english` |
 
 ## Fires when
 
-- "set this project up", "onboard this repo", "set up agents for this repo"
-- A trio wanted for one more task
-- "bring our existing setup onto the marketplace", or set-up asked in a project that
-  already has its own `CLAUDE.md`, rules, skills, agents or hooks
-- "update the setup", or a skill or agent in a project's setup not loading
-- "this setup costs too many tokens", "make the setup cheaper"
-- "a skill got this wrong", "make this a marketplace skill", "add this to my skills for
-  every project"
+- "dock this project", "set this project up", "onboard this repo"
+- "bring our setup onto the marketplace", in a project with its own `CLAUDE.md`,
+  rules, agents or hooks
+- "is there a standard for this?", "which standards do we have?", "add the standard for
+  X"
+- "why is my setup slow?", "this setup costs too many tokens", or a skill not loading
 - A folder with no code in it: documents, reports, templates
-- `evaluate-skills`: "is this skill well written?", "why isn't this skill triggering?",
-  or a change to this skills marketplace before its pull request
 
 ## Writes
 
-- `.claude/plugin-sources.json`, the sources skills may come from, asked once as a
+- `.claude/plugin-sources.json`, the sources standards may come from, asked once as a
   checklist
-- `CLAUDE.md`, at the root and in each component that earns one. When the project has
-  `AGENTS.md` files, it asks once whether to keep them, each behind a `CLAUDE.md` that
-  imports it, or swap them for `CLAUDE.md`
-- The skills, installed at project scope into `.claude/settings.json`, merged. Plugin
-  keys that no longer exist are removed
-- For each trio, `.claude/agents/<task>-plan.md`, `-do.md` and `-check.md`, and
-  `.claude/skills/<task>/SKILL.md`, which runs them
-- `.claude/steward.json`, the record of what it generated
-- For an adoption: each local rule removed once its new home is live. A file that
-  differs from git's `HEAD`, untracked or with uncommitted edits, is first copied to
-  `~/.local/share/marketplace-steward/backups/`
-- For a contribution: a branch and a pull request on the marketplace, from its own
-  clone in `~/.local/share/marketplace-steward/`, never from a checkout of yours
+- `CLAUDE.md`, at the root and in each component that earns one
+- `.claude/settings.json`, merged: the marketplace, the session's model, and the
+  build-and-test command for the base plugin's guard
+- The standards and `marketplace-base`, installed at project scope
+- For a project with a setup of its own: rules that a standard states word for word
+  removed, files an earlier steward generated removed, and rules that would serve other
+  projects filed as issues for the curators. A file with uncommitted edits is first
+  copied to `~/.local/share/marketplace-steward/backups/`
 
-It asks four things only: the sources checklist, once; whether to keep or swap the
-project's `AGENTS.md` files, once, when it has any; whether a project with code writes
-Conventional Commits, once; and an OK before it creates a new skill. Everything else
-it does and reports.
+It asks only what a person must decide: the sources checklist, once; whether to keep or
+swap the project's `AGENTS.md` files, when it has any; and whether a project with code
+writes Conventional Commits. Everything else it does and reports.
 
 ## Leaves to you
 
 - **Git.** No branch, commit, stage or stash. Branch before running it; the report
   lists every path it created and changed, and `git diff` does the rest.
-- **Your edits.** A file you changed after the steward wrote it is not rebuilt or
-  rewritten whole; a check may fix one line in it, such as a renamed skill.
-- **The merge.** Every change to the marketplace waits for you in a pull request.
-- **What makes a review finding at all.** `craft-review:review-work`.
+- **The standards.** What they say is the curators' call, in `marketplace-curator`.
+- **The project's work**, its checks and its reviews: `marketplace-base` and the
+  standards do that.
 
 ## Install
 
@@ -69,9 +56,8 @@ it does and reports.
 claude plugin install marketplace-steward@personal-claude-plugin-marketplace --scope user
 ```
 
-User scope: it belongs to the machine and works in every project you open. The first
-time it runs, Claude Code asks whether it may, because it pre-allows reading its own
-files and the commands of its own folder; Claude Code can remember the answer.
+User scope: it belongs to the machine, and in a project nobody docked it costs one
+skill and one agent description, and does nothing else.
 
 ## Credits
 
@@ -81,9 +67,7 @@ Egor Fedorov, under the MIT License, which the script's header carries.
 
 ## More
 
-- Every job, with what it reads, writes and asks:
+- What it reads, writes and asks:
   [`docs/reference/the-steward.md`](../../docs/reference/the-steward.md)
 - Why it works the way it does:
   [`docs/explanation/the-steward.md`](../../docs/explanation/the-steward.md)
-- What keeps you in control:
-  [`docs/explanation/safety.md`](../../docs/explanation/safety.md)

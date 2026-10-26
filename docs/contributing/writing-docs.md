@@ -2,7 +2,7 @@
 
 Write a page for `docs/`, or review one, so that it does one job and never drifts from
 the product. The house voice for skills is in
-[`style.md`](../../plugins/marketplace-steward/references/author-skills/style.md); this
+[`style.md`](../../plugins/marketplace-curator/references/author-skills/style.md); this
 page adds what is particular to documentation.
 
 ## One job per page
@@ -24,7 +24,7 @@ marketplace itself.
 ## One home
 
 **A rule lives in the product, and a page explains it and links to it.** The skills
-and the steward's references are what Claude reads; a page that restates one of their
+and the plugins' references are what Claude reads; a page that restates one of their
 rules becomes a second copy, and the two drift apart. Where a page needs a rule to make
 sense, it states the gist in one line and links to its home.
 

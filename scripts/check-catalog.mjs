@@ -14,13 +14,12 @@ import { fileURLToPath } from 'node:url'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const PLUGINS_PAGE = 'docs/reference/plugins.md'
-const CATALOG =
-  'plugins/marketplace-steward/references/set-up/plugin-catalog.md'
-// The four layers, general to specific, plus the plugins that work on the
-// marketplace itself. Each is a category and the name prefix that goes with it.
+const CATALOG = 'plugins/marketplace-steward/references/catalog.md'
+// The four layers, general to specific, then one team's own plugins, then the
+// plugins that work on the marketplace itself. Each is a category and the name prefix that goes with it.
 // The order is the dependency direction: a plugin may depend on its own
 // category or an earlier one, never a later one.
-const CATEGORIES = ['universal', 'craft', 'language', 'tools', 'marketplace']
+const CATEGORIES = ['universal', 'craft', 'language', 'tools', 'team', 'marketplace']
 
 const problems = []
 const fail = (msg) => problems.push(msg)
@@ -102,10 +101,18 @@ for (const entry of entries) {
     }
   }
 
-  // Skill plugins ship knowledge only. A shipped agent competes with the ones the
-  // steward generates in each project, and the knowledge in it has a second home.
-  if (category !== 'marketplace' && existsSync(join(dir, 'agents'))) {
-    fail(`${name}: ships agents/. Only marketplace- plugins ship agents; the steward generates the workers in each project.`)
+  // Skill plugins ship knowledge only. The agents and the hooks every project shares
+  // live in the marketplace- plugins, so knowledge in a skill plugin's agent or hook
+  // would have a second home, and a hook would run in every project that installs it.
+  for (const shipped of ['agents', 'hooks', '.mcp.json']) {
+    if (category !== 'marketplace' && existsSync(join(dir, shipped))) {
+      fail(`${name}: ships ${shipped}. Only marketplace- plugins ship agents and hooks; a skill plugin ships its skill.`)
+    }
+  }
+  for (const key of ['hooks', 'mcpServers', 'agents', 'commands']) {
+    if (category !== 'marketplace' && plugin[key] !== undefined) {
+      fail(`${name}: plugin.json declares "${key}". A skill plugin ships its skill only.`)
+    }
   }
 }
 
@@ -139,7 +146,7 @@ for (const [name, deps] of dependencies) {
 const docsTables = namesInPluginColumns(read(PLUGINS_PAGE))
 const mirrors = [
   ...docsTables.map((t, i) => [`plugins.md table ${i + 1}`, PLUGINS_PAGE, t]),
-  ['plugin-catalog.md tables', CATALOG, new Set(namesInPluginColumns(read(CATALOG)).flatMap((t) => [...t]))],
+  ['catalog.md tables', CATALOG, new Set(namesInPluginColumns(read(CATALOG)).flatMap((t) => [...t]))],
 ]
 if (docsTables.length === 0) fail(`${PLUGINS_PAGE} has no table with a Plugin column`)
 for (const [label, path, present] of mirrors) {
@@ -158,4 +165,4 @@ if (problems.length > 0) {
   process.exit(1)
 }
 
-console.log(`✓ catalog in sync — ${declared.size} plugins listed in marketplace.json, plugins.md, and plugin-catalog.md`)
+console.log(`✓ catalog in sync — ${declared.size} plugins listed in marketplace.json, plugins.md, and catalog.md`)

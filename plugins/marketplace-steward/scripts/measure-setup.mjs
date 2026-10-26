@@ -268,7 +268,7 @@ function readSession(file) {
         else if (c.name.startsWith('mcp__')) bump(calls.mcp, c.name.split('__')[1])
       }
     }
-    // A skill the user runs by name, such as a trio's `/<task>`, arrives as a command.
+    // A skill the user runs by name, such as `/<command>`, arrives as a command.
     if (e.type === 'user' && typeof content === 'string') {
       const m = /<command-name>\/?([^<\s]+)<\/command-name>/.exec(content)
       if (m) bump(calls.skill, m[1])

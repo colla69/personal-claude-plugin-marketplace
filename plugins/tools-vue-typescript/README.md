@@ -24,7 +24,7 @@ as types, with no runtime copy beside them to drift.
 
 ## Install
 
-Set-up installs it at project scope when the project shows both Vue and TypeScript. By
+Docking installs it at project scope when the project shows both Vue and TypeScript. By
 hand:
 
 ```bash

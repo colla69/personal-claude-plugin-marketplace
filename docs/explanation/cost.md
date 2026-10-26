@@ -1,8 +1,8 @@
 # Cost
 
 What a plugin costs in every session, why that shapes how skills are cut and described,
-why the steward shows only two skills, and how it measures a project's setup. Read this
-before you add a skill, or when you wonder whether a plugin is worth enabling.
+what the index and the models cost, and how the steward measures a project's setup. Read
+this before you add a skill, or when you wonder whether a plugin is worth enabling.
 
 ## Always on
 
@@ -17,9 +17,9 @@ needed. `claude plugin details <name>` estimates both parts:
 | **On invoke** | Each time the skill or agent actually runs |
 
 The always-on part is the one to watch, and the one
-[`evaluate-skills`](../../plugins/marketplace-steward/skills/evaluate-skills/SKILL.md)
+[`evaluate-skills`](../../plugins/marketplace-curator/skills/evaluate-skills/SKILL.md)
 weighs against how often a plugin fires. It is small per plugin and paid everywhere, for
-as long as the plugin is enabled. That is why set-up installs only what a project shows
+as long as the plugin is enabled. That is why docking installs only what a project shows
 a need for: a Vue skill in a Go service is pure cost. The few it installs everywhere,
 such as `simple-english`, are there because every project shows that need.
 
@@ -30,27 +30,30 @@ phrases people actually type, not as a summary. A description that reads like
 documentation costs its tokens in every session and still never fires. One that fires on
 the wrong requests costs worse: it loads its whole skill where it doesn't belong, and
 competes with the skill that does. The rules for writing one are in
-[`style.md`](../../plugins/marketplace-steward/references/author-skills/style.md).
+[`style.md`](../../plugins/marketplace-curator/references/author-skills/style.md).
 
-A trio's run skill is the exception. Only you start it, by typing its command, so its
-description never reaches Claude and costs nothing always on. It is a summary for your
-command list.
+## Why the steward shows one skill
 
-## Why the steward shows two skills
+The steward is installed for your user, so it is in every session of every project.
+With a visible skill for each job and each piece of knowledge, it would add a
+description for each of them everywhere, and as many chances to fire on an ordinary
+request.
 
-The steward is installed for your user, so it is in every session of every project. With
-a visible skill for each job and each piece of knowledge, it would add a description for
-each of them everywhere, and as many chances to fire on an ordinary request.
+It shows one skill, the front door, and one agent, the `guide`. Everything else is in
+reference files, which cost nothing until the front door reads one by path. The
+curator's knowledge, how a lesson is placed and how a skill is written, is in a plugin
+of its own, enabled only in the marketplace's repository, so a docked project never pays
+for it. Hiding skills instead doesn't work: a skill with `disable-model-invocation:
+true` keeps its description out of context, but no agent can preload it and Claude
+can't run it.
 
-It shows two: the front door, which routes a request to one of its four jobs, and
-`evaluate-skills`, which its checker preloads. Everything else is in reference files,
-which cost nothing until the front door reads one by path. The alternative of hiding
-skills doesn't work: a skill with `disable-model-invocation: true` keeps its description
-out of context, but no agent can preload it and Claude can't run it.
+## The index, paid on purpose
 
-The estimate for the steward as it stands, from `claude plugin details`, is about 600
-tokens always on. The front door's description is the largest part, about 300, because
-it carries the triggers of four jobs.
+The base plugin's index lists every standard in the marketplace at the start of every
+docked session, about 800 tokens with the marketplace as it is. That is the one
+always-on cost the marketplace adds on purpose: it is what lets a session offer a
+standard to someone who never asks. It grows by one line per standard, so a standard
+that no project needs costs every docked project a line.
 
 ## Measuring a project's setup
 
@@ -59,7 +62,8 @@ context again, mostly from the prompt cache, so a session of 30 requests reads e
 always-on token 30 times. That makes the setup the cheapest thing to cut: a trim repays
 in every session, and costs no one a change in how they work.
 
-So keep-current measures it, and set-up measures what it wrote.
+So docking measures what it wrote, and the steward's `guide` measures a setup when you
+ask.
 [`cost.md`](../../plugins/marketplace-steward/references/cost.md) holds the rules, and
 the steward's script,
 [`measure-setup.mjs`](../../plugins/marketplace-steward/scripts/measure-setup.mjs), gets
@@ -79,11 +83,10 @@ both shares, and when the second is small it says that the setup is not where th
 cost is.
 
 The numbers are tokens, not money. Prices change, and no choice the steward makes
-depends on them. The steward moves only what it wrote and you haven't edited, to where
-it loads on demand. A plugin, a trio or an MCP server your sessions never used stays,
-named with its cost, because removing it costs a standard you may still want. And it
-changes no agent's model on the numbers: they show what a role costs, not what its work
-is worth. That stays your call, as D46 in [decisions](decisions.md) says.
+depends on them. The steward changes nothing on the numbers: it proposes, such as a
+section of `CLAUDE.md` moved to where it loads on demand, and makes the change after
+your yes. A plugin or an MCP server your sessions never used is named with its cost,
+because removing it costs a standard you may still want.
 
 The method comes from
 [claude-context-optimizer](https://github.com/egorfedorov/claude-context-optimizer),
@@ -95,10 +98,13 @@ was taken and why.
 
 ## Credits, not only context
 
-Cost isn't only tokens in context. A trio spends credits on each role's run, which is
-why Plan and Check are read-only and why each role's `model` and `effort` are set per
-task: [trios](trios.md) explains the defaults. Each agent also reads the task's files
-from an empty context, which is most of what a trio costs, and why a trio starts only
-when you type its command. And the checker leaves out the ablation,
-which runs a plugin's evals with and without it, because nobody asked it to spend those
-credits on every change.
+Cost isn't only tokens in context. The model is the larger lever, so it follows the
+kind of work: Opus plans, in plan mode, and judges in a review; Sonnet does the work and
+answers; Haiku runs the tests and collects the corrections. [The base](the-base.md)
+explains the split.
+
+An agent also reads its task's files again from an empty context, which was most of
+what the earlier steward's trios cost. So the marketplace ships few agents, each for a
+job whose input is short or whose output would flood the session. And the checker
+leaves out the ablation, which runs a plugin's evals with and without it, because
+nobody asked it to spend those credits on every change.

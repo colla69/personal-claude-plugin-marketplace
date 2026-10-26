@@ -28,7 +28,7 @@ the owner can defend.
 
 ## Install
 
-Set-up installs it at project scope when the project keeps a CV or résumé as a document
+Docking installs it at project scope when the project keeps a CV or résumé as a document
 that gets written or tailored there. By hand:
 
 ```bash
