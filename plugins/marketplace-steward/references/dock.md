@@ -142,9 +142,10 @@ Do not declare success without checking:
    before you installed anything, so it shows the new parts as "not yet". Take their
    always-on tokens from `claude plugin details`, and put the total in the report.
 
-8. **The report is complete.** Every file step 2 noted has a row in the Tidied table,
-   and every row of the catalog has a verdict in the Standards table or is counted in
-   its closing line. A gap here is a step you skipped: go back and do it.
+8. **The report is complete.** Count the rows. Every file step 2 noted has a row of its
+   own in the Tidied table, never one row for a group, and the count in "Read <n> files"
+   equals the rows. Every row of the catalog has a verdict in the Standards table or is
+   counted in its closing line. A gap here is a step you skipped: go back and do it.
 
 Do **not** run `claude plugin validate` on the project's `.claude/` directory. It
 expects a plugin or marketplace manifest, and fails with "No manifest found".
