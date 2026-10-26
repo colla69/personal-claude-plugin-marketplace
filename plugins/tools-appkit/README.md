@@ -32,7 +32,7 @@ start-up section.
 
 ## Install
 
-Set-up installs it at project scope when the project's `.swift` sources import
+Docking installs it at project scope when the project's `.swift` sources import
 `AppKit` or `Cocoa`. By hand:
 
 ```bash

@@ -1,81 +1,83 @@
 # The steward
 
-Look up what each of the steward's jobs starts on, reads, writes, asks and never does.
-Why it works this way is in [the steward](../explanation/the-steward.md); each job's
-procedure is the file in the Procedure column.
+Look up what the steward starts on, reads, writes, asks and never does, and what the
+curator does in the marketplace's own repository. Why they work this way is in [the
+steward](../explanation/the-steward.md). The base plugin, which runs in every docked
+project, has [its own page](the-base.md).
 
 **Not yet tried on real projects.** This page describes the jobs as their files set
 them out; the first trials will show where the steward behaves otherwise.
 
 ## How a job starts
 
-You talk to it, or run `/marketplace-steward:steward`. The front door picks the job from
-what you ask and from what the project already has:
-
-| The project has | "Set this project up" means | "Add a trio" means |
-|---|---|---|
-| Nothing, or only other tools' files | Set up | Set up |
-| A setup of its own, in `CLAUDE.md`, `AGENTS.md` or `.claude/`, and no `.claude/steward.json` | Adopt | Adopt first |
-| `.claude/steward.json` | Keep current | Set up, for that trio |
-
-It stays out of ordinary work: setting up a tool, a service, a dependency, a dev server
-or CI, and remembering a preference, which is Claude's memory.
-
-## The jobs
+You talk to it, or run `/marketplace-steward:steward`. It docks a project only when you
+ask, and it stays out of ordinary work: setting up a tool, a service, a dependency, a
+dev server or CI, and the project's own tasks.
 
 | Job | Starts on | Procedure |
 |---|---|---|
-| **Set up** | "set this project up", "onboard this repo", "set up agents for this repo", "there's no CLAUDE.md here", a folder with no code to set up | [`set-up/procedure.md`](../../plugins/marketplace-steward/references/set-up/procedure.md) |
-| **Adopt** | "bring our existing setup onto the marketplace", or set-up asked where a Claude setup already exists | [`adopt.md`](../../plugins/marketplace-steward/references/adopt.md) |
-| **Keep current** | "update the setup", a skill or agent in the project's setup not loading, a setup that costs too many tokens, set-up asked where the steward set the project up before | [`keep-current.md`](../../plugins/marketplace-steward/references/keep-current.md) |
-| **Contribute** | "a skill got this wrong", "make this a marketplace skill", "add this to my skills for every project", or a placement you changed in a contribution's pull request | [`contribute.md`](../../plugins/marketplace-steward/references/contribute.md) |
+| **Dock** | "dock this project", "set this project up", "onboard this repo", "there's no CLAUDE.md here", "bring our setup onto the marketplace", a folder with no code | [`dock.md`](../../plugins/marketplace-steward/references/dock.md), with [`tidy.md`](../../plugins/marketplace-steward/references/tidy.md) for a setup of the project's own |
+| **One more standard** | "add the standard for X" in a docked project | Steps 1 and 5 to 7 of `dock.md` |
+| **Ask the guide** | "which standards do we have for this?", "is there a standard for X?", "why isn't this skill loading?", "what does this setup cost?" | The [`guide`](../../plugins/marketplace-steward/agents/guide.md) agent, on Sonnet, read-only |
 
-### What each reads and writes
+## What each reads and writes
 
 | Job | Reads | Writes in the project | Writes elsewhere |
 |---|---|---|---|
-| Set up | The project, through the cartographer for a codebase; the live inventory of every marketplace; the source policy; the project's session transcripts, through the measuring script | `CLAUDE.md`, path-scoped rules, project skills, `.claude/settings.json`, `.claude/plugin-sources.json`, the trios, `.claude/steward.json` | — |
-| Adopt | Everything set up reads, and every Claude file of the project's own | What set up writes; rules edited out of the project's own files once their home is live | Backups in `~/.local/share/marketplace-steward/backups/`; contributions, as below |
-| Keep current | The record, the settings, the source policy, the trios, `CLAUDE.md` and `AGENTS.md`, the manifests and the top-level tree, the live inventory, the project's session transcripts, through the measuring script | Dead keys removed, plugins installed, skill names fixed and skills added to roles, untouched trios rebuilt, new trios built, an imported `AGENTS.md` kept or folded into its `CLAUDE.md`, as the user answers, verifiable `CLAUDE.md` lines fixed, pending rules removed after their merge, sections of untouched context files moved to where they load on demand, the record refreshed | Backups, in `~/.local/share/marketplace-steward/backups/`, before a pending rule is removed |
-| Contribute | The lesson, the project it came from, the steward's clone | The lesson's project part, in `CLAUDE.md`; a declined skill, in the record | A worktree, drafts and a branch in `~/.local/share/marketplace-steward/`, and a pull request |
+| Dock | The project, through the built-in Explore agent for a codebase; the live inventory of every marketplace; the source policy; the project's session transcripts, through the measuring script | `CLAUDE.md`, path-scoped rules, `.claude/settings.json`, `.claude/plugin-sources.json`; rules a standard states word for word removed, and files an earlier steward generated | Backups in `~/.local/share/marketplace-steward/backups/`; an issue on the marketplace for rules that would travel |
+| One more standard | The live inventory, the source policy, the settings | `.claude/settings.json` | — |
+| Ask the guide | The live inventory, the catalog, the installed standards, the project's settings and `CLAUDE.md` files, its transcripts through the measuring script | Nothing. A change it proposes is made after your yes, as docking writes it | — |
 
 [Project files](project-files.md) describes every file in the project column.
 
-### What each asks
+## What it asks
 
-| Job | Asks |
-|---|---|
-| Set up | The sources checklist, once, when no policy file exists. In a repo with code, whether it writes Conventional Commits, once, unless it already shows the format. An OK for each new skill, together, at the end |
-| Adopt | The same as set up |
-| Keep current | Whether a project with code writes Conventional Commits, if no run asked before. An OK for a new skill, if the project now needs one |
-| Contribute | An OK before a new skill; nothing before a change to an existing one |
+- Which sources the project may draw from, once, when no policy file exists.
+- In a repo with code, whether it writes Conventional Commits, once, unless it already
+  shows the format.
+- When the project has `AGENTS.md` files, whether to keep them or swap them for
+  `CLAUDE.md`.
 
 Everything else goes ahead and is reported.
 
-### What each job asks it not to do
+## What it never does
 
 - Touch git in your project: no branch, commit, stage or stash.
-- Rebuild or rewrite whole a file you changed since the steward wrote it, or bring back
-  a trio or a plugin you removed. A check may still fix one line in such a file.
-- Remove a rule before its new home is live, or change your `CLAUDE.local.md`,
-  `.claude/settings.local.json`, or edit a file under `~/.claude` itself; installs and
-  refreshes go through Claude Code.
+- Remove a rule that adds anything to what a standard says.
+- Change your `CLAUDE.local.md` or `.claude/settings.local.json`, or edit a file under
+  `~/.claude` itself; installs go through Claude Code.
 - Write files for any tool but Claude.
-- Change a checkout of the marketplace you work in, or push to `main`.
+- Install a plugin at user scope, or write the steward into a project's settings.
 
-## The rest of the package
+## The parts
 
 | Part | Kind | What it does |
 |---|---|---|
 | [`steward`](../../plugins/marketplace-steward/skills/steward/SKILL.md) | Skill, visible | The front door: picks the job and holds the rules every job shares |
-| [`evaluate-skills`](../../plugins/marketplace-steward/skills/evaluate-skills/SKILL.md) | Skill, visible | Reviews a skill, a role template, a plugin, a change or the whole set; the checker preloads it |
-| [`codebase-cartographer`](../../plugins/marketplace-steward/agents/codebase-cartographer.md) | Agent, read-only | Surveys a codebase for set-up |
-| [`contribution-checker`](../../plugins/marketplace-steward/agents/contribution-checker.md) | Agent, read-only | Checks a change before its pull request, the leak check first |
-| [`place-knowledge.md`](../../plugins/marketplace-steward/references/place-knowledge.md) | Reference | Where a lesson belongs: the diagnosis, the strip test, the layers, the cut |
-| [`author-skills/`](../../plugins/marketplace-steward/references/author-skills/) | Reference | The house style, the shape of a plugin, the templates |
-| [`record.md`](../../plugins/marketplace-steward/references/record.md) | Reference | The record's shape and rules |
-| [`cost.md`](../../plugins/marketplace-steward/references/cost.md) | Reference | Measuring what a setup costs, and what to cut |
-| [`measure-setup.mjs`](../../plugins/marketplace-steward/scripts/measure-setup.mjs) | Script | Prints what a setup costs per session and how its sessions used it, for `cost.md` |
-| [`set-up/`](../../plugins/marketplace-steward/references/set-up/) | Reference | Set-up's procedure, the role templates, the plugin catalog, the source rules, the context-file rules, the trio rules, the report, and the assets |
+| [`guide`](../../plugins/marketplace-steward/agents/guide.md) | Agent, read-only, Sonnet | Answers questions about the standards and the setup, and proposes changes |
+| [`dock.md`](../../plugins/marketplace-steward/references/dock.md) | Reference | Docking, step by step, and its report |
+| [`tidy.md`](../../plugins/marketplace-steward/references/tidy.md) | Reference | What a setup of the project's own keeps, loses and files |
+| [`catalog.md`](../../plugins/marketplace-steward/references/catalog.md) | Reference | The signal that earns each plugin, the layers, scope, and the Renamed table |
+| [`context-files.md`](../../plugins/marketplace-steward/references/context-files.md) | Reference | How `CLAUDE.md` is laid out, and what stays out of it |
+| [`plugin-sources.md`](../../plugins/marketplace-steward/references/plugin-sources.md) | Reference | The sources checklist and the live inventory |
+| [`cost.md`](../../plugins/marketplace-steward/references/cost.md) | Reference | Measuring what a setup costs, and what to propose |
+| [`measure-setup.mjs`](../../plugins/marketplace-steward/scripts/measure-setup.mjs) | Script | Prints what a setup costs per session and how its sessions used it |
 
-The steward builds on `craft-review`, whose `review-work` its checker preloads.
+The steward builds on `language-simple-english`.
+
+## The curator
+
+The curator works in the marketplace's own repository, where it is enabled in
+`.claude/settings.json`. It is never installed in a docked project.
+
+| Part | Kind | What it does |
+|---|---|---|
+| [`curate`](../../plugins/marketplace-curator/skills/curate/SKILL.md) | Skill, visible | The front door: works a lesson or an issue, lists what is waiting, answers where a rule goes |
+| [`evaluate-skills`](../../plugins/marketplace-curator/skills/evaluate-skills/SKILL.md) | Skill, visible | Reviews a skill, an agent, a plugin, a change or the whole set |
+| [`contribution-checker`](../../plugins/marketplace-curator/agents/contribution-checker.md) | Agent, read-only, Opus | Checks a change before its pull request, the leak check first |
+| [`contribute.md`](../../plugins/marketplace-curator/references/contribute.md) | Reference | From a lesson or an issue to a pull request |
+| [`place-knowledge.md`](../../plugins/marketplace-curator/references/place-knowledge.md) | Reference | Where a lesson belongs: the diagnosis, the strip test, the layers, the cut |
+| [`author-skills/`](../../plugins/marketplace-curator/references/author-skills/) | Reference | The house style, the shape of a plugin, the templates |
+
+It asks before a new skill, a new team plugin, or closing an issue, and writes only on a
+`contrib/` branch. It builds on `craft-review` and `language-simple-english`.

@@ -1,111 +1,85 @@
 # The steward
 
-Why one package sets projects up, adopts their setups, keeps them current and grows the
-marketplace, why it asks you only four things, and why it works without lanes. Read
-this to understand what you are handing to the steward when you install it.
+Why the steward is small, why it docks only when asked, why it tidies lightly, and why
+the curator is a plugin of its own. Read this to understand what you are handing to the
+steward when you install it.
 
 **Not yet tried on real projects.** This page describes the steward as its files set it
-out; the first trials will show where it behaves otherwise. "You" here is the
-maintainer, who is the only contributor for now.
+out; the first trials will show where it behaves otherwise.
 
-## One package for the whole cycle
+## Three plugins, three groups
 
-> "I think we need something more like a contribution plugin, more than an init and a
-> contributor. … As I find different problems in different projects, I just talk to
-> this contributor thingy, and it changes the marketplace, or it either updates old
-> skills or it makes new skills and keeps everything up to date, so I can reuse it
-> whenever I want it in another project."
+The marketplace serves three groups, and each gets its own plugin, so nobody pays for
+what another group does.
 
-Setting a project up and learning from it were first planned as two plugins, an init
-and a contributor. They are one, `marketplace-steward`, because they are two ends of
-the same cycle, and the person using them shouldn't have to know which end they are
-at. You install it once, for your user, and talk to it in any project:
+| Plugin | For | Where |
+|---|---|---|
+| `marketplace-steward` | Anyone who wants a project docked, or a question answered | Once per machine, at user scope |
+| `marketplace-base` | Everyone who works in a docked project | Every docked project, at project scope |
+| `marketplace-curator` | The curators | Only the marketplace's own repository |
 
-| You want | Its job |
-|---|---|
-| A project set up for agentic work | **Set up** |
-| A project that already has its own `CLAUDE.md`, rules, agents or hooks, brought onto the marketplace | **Adopt** |
-| A setup brought up to date after the project or the marketplace changed | **Keep current** |
-| A lesson from this project kept for every other one | **Contribute** |
+An earlier steward did all of it in one package: set-up, adoption, keeping current and
+contributing, with a Plan, Do and Check trio generated into each project. It was
+expensive, and the trios fitted only focused feature work. So the rebuild kept what
+every project needs, the standards, and moved the rest to where it is used.
 
-What it writes and reads for each is in [the steward's
-reference](../reference/the-steward.md).
+## A companion, not a ceremony
 
-**Adopting is not setting up over.** A project that already has its own setup would
-otherwise end up with two sets of instructions, which agree today and drift apart from
-tomorrow. So the steward splits that setup into rules and gives each one a home, and
-removes a local copy only once its new home is live.
+> "I envisioned the Steward to be a voice near the orchestrator the user can talk to,
+> to navigate and use the knowledge in the marketplace optimally."
 
-**Setting up runs in a fixed order:** read the project, write `CLAUDE.md`, choose the
-skills from what `CLAUDE.md` says, then create the agents that use them. In the
-author's words, from when that file was still `AGENTS.md`: "Agents.md are created with
-project infos, then with the infos a quantity of skills get selected, then agents are
-created that use those skills to do the task." Each step needs the one before it. And
-only the steward installs skills: the agents it creates use what they were given, and
-never go shopping for more.
+The steward is one skill and one agent. The skill docks a project, and the `guide`
+answers questions: which standard covers a task, what one says, what exists that isn't
+installed here, why a skill doesn't load, and what the setup costs. The guide runs on
+Sonnet, in its own context, so the session that asked keeps only the answer.
 
-## Its scope: the setup and the knowledge
+But people don't ask. "People are lazy. They just blurt into the editor." So the
+knowledge comes to them: the base plugin gives every session an index of the standards
+at its start, and the session offers the one that fits. The steward is there for
+whoever wants more.
 
-The steward doesn't do the project's work; the project's trios do. A steward that also
-answered "add a feature" would compete with every trio for every request, and its
-description says so: it is not for setting up a tool, a service or CI, nor for
-remembering a preference, which is Claude's memory.
+## Docking only when asked
 
-## It asks four things
+> "We need to give the user the chance to only dock the projects they desire."
 
-> "Only ask for an OK when creating new skills, on init or adoption."
+The steward never docks a project on its own. Docking writes the project's settings and
+`CLAUDE.md`, and the person who owns the project decides when that happens. It still
+asks only what a person must decide: the sources, once; whether the project writes
+Conventional Commits; and what to do with `AGENTS.md` files. Everything else it does
+and reports, and it never touches git, so you review its work as a diff.
 
-| It asks | Why |
-|---|---|
-| Which marketplaces a project may draw from, once, when no policy file exists | A project under a security or procurement policy looks the same as one without, so only a person can say |
-| Whether to keep the project's `AGENTS.md` files, each behind a `CLAUDE.md` that imports it, or swap them for `CLAUDE.md`, once, when it has any | The setup is Claude only, but the people on a project may not be: only you know whether another tool still reads those files |
-| Whether a project with code writes its commit messages in Conventional Commits, once, unless the project already shows the format | The format changes every commit message, and a release tool may read it. That is the project's choice, not the steward's |
-| Your OK before it creates a new skill | A new skill is a decision about the cut: its layer, its name, where it stops. That is taste, and taste is yours |
+## Staying current by itself
 
-Everything else it does and reports. That replaces the plan the first init showed
-before writing anything. You stay in control in other ways: it never commits in your
-project, so you review its work as a diff, and every change to the marketplace waits in
-a pull request for your merge. [Safety](safety.md) lists every guard.
+There is no keep-current job. Claude Code updates a marketplace by itself, unless a
+person's own settings turn it off, so a change a curator merges reaches every docked
+project at a session after it. The merge is
+the gate: nothing reaches a project that a curator hasn't read.
 
-## No trio, and no lanes
+## A light tidy
 
-> "No trio for the package, that would make the process too difficult."
+A project with a setup of its own holds rules a standard now also states. Two copies of
+a rule drift apart, and each costs tokens in every session. But only the project's
+people know why a rule is the way it is. So the tidy removes only a rule a standard
+states word for word, keeps every quirk, and files a rule that would serve other
+projects as an issue, without removing it. When in doubt, a rule differs.
 
-A project's work runs as a trio, with a stop between Plan and Do. The steward's own work
-doesn't: it would add a stop to every setup. Without a trio there are no lanes to keep,
-so the steward is simply the one writer. It ships two helpers, and
-both have no edit tools, by their frontmatter:
+## The curator, apart
 
-- **The cartographer** surveys a codebase for set-up, so the steward reads a summary
-  instead of every file.
-- **The checker** reviews each change before its pull request: the house standard, how
-  it fits the whole set, and the leak check, which looks for anything from your project
-  in what would reach the public repo. A writer judging its own work is when review
-  finds least, so the one who wrote the change isn't the one who checks it.
+> "Separated curator."
 
-## Its own clone
+Deciding what a standard says is a different group's work from docking a project, and
+its knowledge, how a lesson is placed and how a skill is written, would cost a
+description in every session of every docked project. So it lives in
+`marketplace-curator`, enabled only in the marketplace's own repository. A curator works
+an issue there, on a branch of their own checkout, and a separate agent checks each
+change before its pull request, the leak check first. A routine that goes over the
+issues by itself may come later.
 
-A contribution never touches a checkout of yours. The steward keeps its own clone of the
-marketplace in `~/.local/share/marketplace-steward/`, and gives each contribution its
-own worktree on its own branch. Not under `~/.claude`: Claude Code asks before every
-write there, whatever a skill allows, which would turn one contribution into dozens of
-prompts. [Permissions](../reference/permissions.md) lists what it is allowed to run.
+## Reference files, read by path
 
-## The record
-
-The steward keeps `.claude/steward.json` in each project it sets up: what it created,
-with a hash of each file and of the template it came from. A later run uses it to tell
-apart a file it wrote and nobody touched, a file you changed, and a file you removed. So
-it never rebuilds a file you edited, and never brings back what you took out.
-[`record.md`](../../plugins/marketplace-steward/references/record.md) holds its rules.
-
-## Two skills, and the rest read by path
-
-The steward is installed in every project, so each of its visible skills costs a
-description in every session. It shows two: the front door, which routes a request to a
-job, and `evaluate-skills`, which its checker preloads. Everything else, the four
-procedures and the knowledge they need, sits in reference files that the front door
-reads by path when a job starts. [Cost](cost.md) explains the trade.
+Every visible skill costs a description in every session it is enabled in. So the
+steward shows one skill, and its procedures sit in reference files that the skill reads
+by path when a job starts. [Cost](cost.md) explains the trade.
 
 The front door is
 [`skills/steward/SKILL.md`](../../plugins/marketplace-steward/skills/steward/SKILL.md);

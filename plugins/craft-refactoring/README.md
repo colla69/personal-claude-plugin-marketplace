@@ -32,7 +32,7 @@ tests that assert what it does now. Without one, it says so and asks.
 
 ## Install
 
-Set-up installs it at project scope in any project with code. By hand:
+Docking installs it at project scope in any project with code. By hand:
 
 ```bash
 claude plugin install craft-refactoring@personal-claude-plugin-marketplace --scope project

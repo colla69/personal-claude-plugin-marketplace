@@ -1,9 +1,8 @@
 # Permissions
 
-Look up what the steward may do without asking, what it asks for, and the one guard you
-set up yourself. Every rule here is in the front door's frontmatter,
-[`skills/steward/SKILL.md`](../../plugins/marketplace-steward/skills/steward/SKILL.md),
-and holds only while the steward is running a job.
+Look up what the steward and the curator may do without asking, what they ask for, and
+the one guard you set up yourself. Every rule here is in a skill's frontmatter, and
+holds only while that skill is running.
 
 ## The one approval
 
@@ -12,60 +11,58 @@ Claude Code asks whether it may, and can remember your answer. After that, every
 below runs without a prompt.
 
 **Not yet tried in full.** Probes showed each kind of rule working, and an agent started
-from inside the skill reading under its rules. Whether every rule reaches such an
-agent, such as the checker running its commands in a worktree, the trials will show.
+from inside a skill reading under its rules. The trials will show whether every rule
+reaches such an agent.
 
-`evaluate-skills` carries one rule of its own, `Read(/${CLAUDE_PLUGIN_ROOT}/**)`, so a
-review started directly can read the standard it quotes.
+## The steward
 
-## What it may do without asking
+The rules are in
+[`skills/steward/SKILL.md`](../../plugins/marketplace-steward/skills/steward/SKILL.md).
 
 | Rule | Lets it |
 |---|---|
 | `Read(/${CLAUDE_PLUGIN_ROOT}/**)` | Read its own reference files from the installed plugin. The leading `/` makes the path absolute, as a permission rule needs |
-| `Read`, `Write`, `Edit` on `~/.local/share/marketplace-steward/**` | Work in its own folder: the clone, the worktrees, the drafts and the backups |
-| `claude plugin list --json`, `claude plugin marketplace list --json` | Find which marketplace is the house one, and where it lives |
+| `Write(~/.local/share/marketplace-steward/backups/**)` | Back up a file before the tidy removes a rule from it |
+| `claude plugin list --json`, `claude plugin list --available --json`, `claude plugin marketplace list --json`, `claude plugin marketplace update` | Read the live inventory and the configured marketplaces |
+| `claude plugin install * --scope project` | Install a plugin, at project scope only |
+| `claude plugin details *` | Check that each plugin loads, and what it costs |
 | `node ${CLAUDE_PLUGIN_ROOT}/scripts/measure-setup.mjs` | Measure what the project's setup costs. It reads the project's context files and `.claude/`, and the project's transcripts under `~/.claude/projects/`, prints names, numbers and the headings of the root context files, and writes nothing |
-| `git -C …/clone worktree list`, `fetch origin`, `worktree add -b contrib/* …/worktrees/* origin/main`, `worktree remove …/worktrees/*`, `branch -D contrib/*` | Manage one worktree per contribution, on a `contrib/` branch off `main` |
-| `git -C …/worktrees/* add -A`, `commit -F …/drafts/*`, `diff origin/main*`, `log --format=%B origin/main..HEAD`, `push -u origin contrib/*` | Commit a contribution from its drafted message, show it to the checker, and push its branch |
-| `claude plugin validate …/worktrees/*`, `node …/worktrees/*/scripts/check-catalog.mjs`, `node …/worktrees/*/scripts/check-docs.mjs`, `claude --plugin-dir …/worktrees/* plugin details *` | Run the marketplace's checks on the worktree |
-| `gh pr create *` | Open the pull request |
+| `gh issue create *` | File the rules a tidy found that would serve other projects |
 
-`…` stands for `~/.local/share/marketplace-steward`. Each git rule names one command in
-the exact form the procedure runs it; a wildcard covers only the parts that vary, and
-any command the rules don't name is asked for. A rule matches text, not intent, so the
-push rule is no guard against a push to `main` on its own.
-
-## What it asks for
-
-Everything the rules don't name. The ones you will meet:
-
-| Command | When |
-|---|---|
-| `git clone` into `~/.local/share/marketplace-steward/clone` | The first contribution on a machine |
-| `claude plugin marketplace update`, `claude plugin list --available --json`, `claude plugin marketplace list` | Every set-up and keep-current, to read the live inventory and the configured marketplaces |
-| `claude plugin install <name>@<marketplace> --scope project` | Each plugin set-up or keep-current installs |
-| `claude plugin details <plugin>` | Set-up's check that every skill a trio names loads, keep-current's check of the trios' skills, and adoption's test for a live home |
-| `claude plugin update marketplace-steward@<marketplace>` | Keep-current, at the start of every run, to update the steward itself. Reads from the newer copy's folder prompt too, because the allow rule for reading covers the copy that was loaded |
-| `claude plugin update <name>@<marketplace> --scope project` | Keep-current, after a contribution is merged, to update the plugin it went to |
-| `sha256sum <path>` | Writing or reading the record |
-| A command to check that a JSON file parses | Set-up's verify phase |
-| `git status` or `git diff` in your project | Adoption's test for a file whose working copy differs from `HEAD`. Reading only |
-| Edits to your project's files | Whenever your session's permission mode asks for them |
+Everything else is asked for: edits to your project's files, whenever your session's
+permission mode asks for them; a command to check that a JSON file parses; `git status`
+or `git diff`, which the tidy reads to decide what needs a backup; and the check
+command, which docking runs once.
 
 To stop being asked for one, allow it in your own `~/.claude/settings.json`. The steward
 never changes that file; it only merges its entries into the project's
 `.claude/settings.json`.
 
-## Why the clone isn't under `~/.claude`
+## The base plugin
 
-Every write under `~/.claude` is asked for, whatever a skill allows, so the clone lives
-in `~/.local/share/` instead. [The steward](../explanation/the-steward.md#its-own-clone)
-explains the choice.
+Its hooks are not tools a session calls, so no permission rule applies to them: Claude
+Code runs them because the plugin is enabled. [The base](the-base.md) lists what each
+runs, and how to turn it off.
+
+## The curator
+
+The rules are in
+[`skills/curate/SKILL.md`](../../plugins/marketplace-curator/skills/curate/SKILL.md),
+and `evaluate-skills` carries `Read(/${CLAUDE_PLUGIN_ROOT}/**)` of its own.
+
+| Rule | Lets it |
+|---|---|
+| `Read(/${CLAUDE_PLUGIN_ROOT}/**)` | Read its references |
+| `gh issue list *`, `gh issue view *` | Read the queue and one issue |
+| `git status --porcelain`, `git fetch origin`, `git switch -c contrib/*` | Start a contribution on a fresh branch |
+| `claude plugin validate .`, `node scripts/check-catalog.mjs`, `node scripts/check-docs.mjs` | Run the marketplace's checks |
+
+It asks for the commit, the push, `gh pr create`, and every comment on or closing of an
+issue.
 
 ## The guard you set up: protect `main`
 
 Turn on branch protection for `main` in the marketplace's GitHub repository, requiring
-a pull request. The steward pushes only `contrib/…` branches, but a push written as
-`contrib/x:main` would still match its rule. Branch protection is the guard that holds
-whatever a command looks like, and it makes your merge the only way into `main`.
+a pull request. The curator pushes only `contrib/…` branches, but a push written as
+`contrib/x:main` is still a push. Branch protection is the guard that holds whatever a
+command looks like, and it makes a curator's merge the only way into `main`.

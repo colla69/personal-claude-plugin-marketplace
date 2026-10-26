@@ -37,10 +37,9 @@ projects take from the Angular convention.
 
 ## Install
 
-Set-up asks once, in every repo with code, whether the project writes Conventional
+Docking asks once, in every repo with code, whether the project writes Conventional
 Commits, and installs it at project scope on a yes. It does not ask when the project
-already shows the format, such as a commitlint configuration. In every trio, it goes
-to Do, the role whose work becomes a commit. By hand:
+already shows the format, such as a commitlint configuration. By hand:
 
 ```bash
 claude plugin install language-conventional-commits@personal-claude-plugin-marketplace --scope project

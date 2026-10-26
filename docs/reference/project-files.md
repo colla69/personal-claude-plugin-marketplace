@@ -1,8 +1,8 @@
 # Project files
 
-Look up every file the steward writes, in a project and on your machine: what it is
-for, what it holds, and which file in the steward holds its rules. The project's files
-are meant to be committed, so the setup travels with the project.
+Look up every file docking writes, in a project and on your machine: what it is for,
+what it holds, and which file in the steward holds its rules. The project's files are
+meant to be committed, so the setup travels with the project.
 
 **Not yet tried on real projects.** The shapes here are the ones the steward's files
 set out; the first trials will show where what it writes differs.
@@ -11,19 +11,20 @@ set out; the first trials will show where what it writes differs.
 
 | File | What it is for | Rules |
 |---|---|---|
-| `CLAUDE.md`, at the root and in each component that earns one | What reading the project cannot tell: non-obvious commands, conventions that differ from the defaults, boundaries, and the reasons behind them. The root lists the trios. Where the project has `AGENTS.md` files and you chose to keep them, they hold this content instead, each behind a `CLAUDE.md` that imports it | [`context-files.md`](../../plugins/marketplace-steward/references/set-up/context-files.md) |
+| `CLAUDE.md`, at the root and in each component that earns one | What reading the project cannot tell: non-obvious commands, conventions that differ from the defaults, boundaries, and the reasons behind them. Where the project has `AGENTS.md` files and you chose to keep them, they hold this content instead, each behind a `CLAUDE.md` that imports it | [`context-files.md`](../../plugins/marketplace-steward/references/context-files.md) |
 | `.claude/rules/*.md` | A convention that follows a file type, loaded only when a matching file is read | `context-files.md` |
-| `.claude/settings.json` | Declares the marketplace, and enables the plugins set-up installed. Merged into, never replaced | [`plugin-catalog.md`](../../plugins/marketplace-steward/references/set-up/plugin-catalog.md) |
-| `.claude/plugin-sources.json` | Which marketplaces this project may draw plugins from | [`plugin-sources.md`](../../plugins/marketplace-steward/references/set-up/plugin-sources.md) |
-| `.claude/steward.json` | The record of what the steward created and installed | [`record.md`](../../plugins/marketplace-steward/references/record.md) |
-| `.claude/agents/<task>-plan.md`, `-do.md`, `-check.md` | One trio's three agents | [`trios.md`](../../plugins/marketplace-steward/references/set-up/trios.md), [`roles/`](../../plugins/marketplace-steward/references/set-up/roles/) |
-| `.claude/skills/<task>/SKILL.md` | The run pattern that runs that trio as `/<task>` | [`roles/run.md`](../../plugins/marketplace-steward/references/set-up/roles/run.md) |
+| `.claude/settings.json` | Declares the marketplace, sets the model and the check command, and enables the plugins docking installed. Merged into, never replaced | [`dock.md`](../../plugins/marketplace-steward/references/dock.md), [`catalog.md`](../../plugins/marketplace-steward/references/catalog.md) |
+| `.claude/plugin-sources.json` | Which marketplaces this project may draw plugins from | [`plugin-sources.md`](../../plugins/marketplace-steward/references/plugin-sources.md) |
 | `.claude/skills/<name>/SKILL.md` | A project skill, for a multi-step procedure only this project runs | `context-files.md` |
+
+Docking writes no agents, no run skills and no record. A project an earlier steward set
+up loses its generated agents, its run skills and its `.claude/steward.json` in the
+tidy.
 
 ### `.claude/settings.json`
 
-The part set-up writes. It merges the marketplace entry into what is there, and
-`claude plugin install … --scope project` adds each plugin under `enabledPlugins`:
+The part docking writes. It merges the template into what is there, and `claude plugin
+install … --scope project` adds each plugin under `enabledPlugins`:
 
 ```json
 {
@@ -32,18 +33,27 @@ The part set-up writes. It merges the marketplace entry into what is there, and
       "source": { "source": "github", "repo": "colla69/personal-claude-plugin-marketplace" }
     }
   },
+  "model": "opusplan",
+  "env": { "STEWARD_CHECK": "npm run build && npm test" },
   "enabledPlugins": {
+    "marketplace-base@personal-claude-plugin-marketplace": true,
     "universal-clean-code@personal-claude-plugin-marketplace": true
   }
 }
 ```
 
+| Key | Effect |
+|---|---|
+| `extraKnownMarketplaces` | Declares the marketplace, so the project's plugins resolve on any machine. Claude Code updates it by itself, so each merged change reaches the project; only your user settings or managed settings can turn that off, never the project's |
+| `model` | `opusplan` plans on Opus in plan mode and works on Sonnet. A `model` the project already had is kept. `/model` changes it for a session |
+| `env.STEWARD_CHECK` | The command the base plugin's guard runs. Left out when docking couldn't verify one |
+
 The steward itself is never in this file: it is installed once, for your user.
 
 ### `.claude/plugin-sources.json`
 
-Written in set-up's first phase, from the checklist you ticked, and read by every later
-phase. The starting shape:
+Written in the first step of docking, from the checklist you ticked. The starting
+shape:
 
 ```json
 {
@@ -62,43 +72,14 @@ phase. The starting shape:
 | `marketplaces.<name>.recommend` | `false` takes that marketplace out of consideration |
 | `marketplaces.<name>.external` | `false` allows only plugins whose code lives in that marketplace's own repository |
 
-A `~/.claude/plugin-sources.json` is your standing preference; set-up copies it into a
+A `~/.claude/plugin-sources.json` is your standing preference; docking copies it into a
 project that has none.
-
-### `.claude/steward.json`
-
-```json
-{
-  "steward": "<the steward's version, for the report>",
-  "files": {
-    ".claude/agents/change-plan.md": {
-      "from": "roles/plan.md",
-      "template": "<hash of the template when the file was built>",
-      "fill": { "TASK": "change", "skills": ["…"], "model": "opus", "effort": "high" },
-      "sha256": "<hash of the file as written>"
-    },
-    "CLAUDE.md": { "sha256": "<hash of the file as written>" }
-  },
-  "plugins": ["<every plugin the steward installed>"],
-  "context": "<AGENTS.md if you kept your AGENTS.md files, CLAUDE.md if you swapped them; absent if there were none>",
-  "declined": ["<every new skill you said no to, and every plugin you said no to when asked>"],
-  "pending": [
-    { "path": "<file>", "rule": "<the rule>", "home": "<plugin:skill>", "pr": "<link>" }
-  ]
-}
-```
-
-Only files the steward created are listed; a file that existed before it came is never
-claimed. A file whose hash no longer matches is yours: it is never rebuilt, though a
-check may still fix one line in it, such as a skill name that no longer resolves.
 
 ## On your machine
 
 | Path | What it holds |
 |---|---|
-| `~/.local/share/marketplace-steward/clone/` | The steward's own clone of the marketplace |
-| `~/.local/share/marketplace-steward/worktrees/<topic>/` | One working copy per contribution, removed after the push, and kept when a job stops or a command fails |
-| `~/.local/share/marketplace-steward/drafts/<topic>/` | A contribution's commit message, title and description, written before the check |
-| `~/.local/share/marketplace-steward/backups/<project>/<date>/` | Copies of your files, taken before the first rule is taken out of a file whose working copy differs from git's `HEAD`: in an adoption, or when keep-current clears a pending rule |
+| `~/.local/share/marketplace-steward/backups/<project>/<date>/` | Copies of your files, taken by the tidy before the first rule is taken out of a file whose working copy differs from git's `HEAD` |
+| The base plugin's data folder, `~/.claude/plugins/data/marketplace-base…/` | The guard's state, and the collector's: what it collected, its locks, and issues waiting for `gh` |
 
-None of these are under `~/.claude`, where Claude Code asks before every write.
+The backups are not under `~/.claude`, where Claude Code asks before every write.

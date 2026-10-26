@@ -35,7 +35,7 @@ This skill says what they mean for code.
 
 ## Install
 
-Set-up installs it at project scope in any project with code, together with
+Docking installs it at project scope in any project with code, together with
 `craft-code-review` and `craft-refactoring`. By hand:
 
 ```bash

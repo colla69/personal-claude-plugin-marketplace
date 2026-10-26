@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "personal-claude-plugin-marketplace",
-  "description": "Personal, reusable Claude Code plugins: project bootstrapping, review, testing, and framework work.",
+  "description": "Shared standards for Claude Code, one plugin each, with a steward that docks projects onto them and a base that keeps them working.",
   "owner": {
     "name": "Andrea Colarieti Tosti",
     "url": "https://github.com/colla69"
@@ -143,9 +143,23 @@
     {
       "name": "marketplace-steward",
       "source": "./plugins/marketplace-steward",
-      "description": "Sets a project up for agentic work and keeps the setup current: writes its CLAUDE.md, installs the skills it needs, and generates a Plan/Do/Check trio per recurring task. Adopts a setup a project already has, giving every rule one home, and turns a lesson into a skill change by pull request.",
+      "description": "The company's standards, one question away. Docks a project when asked: writes its CLAUDE.md, installs the standards it needs with the base plugin, and tidies rules a standard already holds. Answers which standard covers a task, what one says, and what the setup costs.",
       "category": "marketplace",
-      "tags": ["bootstrap", "onboarding", "context", "contribution", "knowledge"]
+      "tags": ["onboarding", "docking", "standards", "context", "knowledge"]
+    },
+    {
+      "name": "marketplace-base",
+      "source": "./plugins/marketplace-base",
+      "description": "What every docked project runs on: an index of every standard at session start, a guard that keeps the build and the tests green, a collector that files the corrections people make as issues for the curators, and a test-runner and a reviewer agent.",
+      "category": "marketplace",
+      "tags": ["hooks", "standards", "build", "tests", "corrections"]
+    },
+    {
+      "name": "marketplace-curator",
+      "source": "./plugins/marketplace-curator",
+      "description": "The curators' workbench in the marketplace's own repository: turns a lesson, a collected correction or an issue into a checked change to a standard on a pull request, and judges a skill, a plugin or the whole set.",
+      "category": "marketplace",
+      "tags": ["curation", "contribution", "review", "standards"]
     }
   ]
 }

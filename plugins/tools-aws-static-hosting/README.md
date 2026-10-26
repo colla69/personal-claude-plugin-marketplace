@@ -20,14 +20,14 @@ mistakes that cost the most, and what to check once the deploy is out.
 
 - **How a resource is declared.** The skill for the infrastructure tool, such as the CDK
   or Terraform. This skill says what the hosting must do.
-- **Asking before a change goes live.** That is a worker's lane, set by the project's
-  Plan and Do roles, not knowledge.
+- **Asking before a change goes live.** That is how a project works, set in its
+  `CLAUDE.md` or by the person, not knowledge.
 - The project's existing infrastructure code and its choices, which win where they are
   settled.
 
 ## Install
 
-Set-up installs it at project scope when the project's infrastructure code or deploy
+Docking installs it at project scope when the project's infrastructure code or deploy
 scripts put a CloudFront distribution in front of an S3 bucket. By hand:
 
 ```bash

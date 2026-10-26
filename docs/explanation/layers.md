@@ -1,9 +1,10 @@
 # Layers
 
-Why every skill sits in one of four layers, how to tell them apart, and why a skill may
-build only on its own layer or the ones above it. Read this before you add a skill, or
-when you can't decide where a piece of knowledge belongs. The rules themselves are in
-[`place-knowledge.md`](../../plugins/marketplace-steward/references/place-knowledge.md).
+Why every skill sits in one of four layers, with a fifth for one team's quirks, how to
+tell them apart, and why a skill may build only on its own layer or the ones above it.
+Read this before you add a skill, or when you can't decide where a piece of knowledge
+belongs. The rules themselves are in
+[`place-knowledge.md`](../../plugins/marketplace-curator/references/place-knowledge.md).
 
 ## Four layers, from general to specific
 
@@ -13,10 +14,17 @@ when you can't decide where a piece of knowledge belongs. The rules themselves a
 | **Craft** | `craft-` | How is this kind of work done? | Reviewing, refactoring, integration tests, formatting the monthly report |
 | **Language** | `language-` | What is the work written in? | Java, TypeScript, German, an enterprise template |
 | **Framework & Tools** | `tools-` | Which concrete product is it done with? | Vue, Spring Boot, JUnit, Excel, PDF |
+| **Team** | `team-` | Is this one team's way, true for its projects and nobody else's? | A team's ticket format, its release checklist |
 
 The layer is part of each plugin's name and its `category`, so you can read a plugin's
 place from its name alone. A plugin that works on the marketplace itself, such as the
 steward, is named `marketplace-<name>` and sits in no layer.
+
+**Team is the last resort.** "A team may have many projects and want to propagate their
+quirk; that would be a plugin with their team name. But it should be in the marketplace
+only as a last resort." A quirk lives in the project's `CLAUDE.md` first. Only when a
+team's projects keep copies of it that drift apart does it become a `team-<name>`
+plugin, which costs a description in every session of every project that enables it.
 
 ## Telling them apart
 
@@ -72,7 +80,7 @@ a skill named in prose and never declared is caught only by a reader, as
 ## One skill, one thing
 
 If saying what a skill covers needs an "and", it is probably two skills. And a skill
-holds knowledge only: what a worker does and must not do belongs to its role, and a
+holds knowledge only: what a worker does and must not do belongs to an agent, and a
 fact about one project belongs in that project's `CLAUDE.md`.
-[Skills and roles](skills-and-roles.md) explains that split, and
+[Skills and agents](skills-and-agents.md) explains that split, and
 [placing knowledge](placing-knowledge.md) how a lesson from a project is cut.

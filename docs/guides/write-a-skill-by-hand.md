@@ -1,13 +1,13 @@
 # Write a skill by hand
 
-Add a skill to the marketplace, or change one, without the steward: in your own
-checkout, on your own branch. The steward's contribute job does the same steps for you,
-from a lesson; this is the path when you'd rather write it yourself.
+Add a skill to the marketplace, or change one, by hand: in your own checkout, on your
+own branch. The curator's contribute job does the same steps for you, from a lesson or
+an issue; this is the path when you'd rather write it yourself.
 
 ## 1. Decide where it goes
 
 Run
-[`place-knowledge.md`](../../plugins/marketplace-steward/references/place-knowledge.md)
+[`place-knowledge.md`](../../plugins/marketplace-curator/references/place-knowledge.md)
 on what you want to write: its layer, whether an existing skill should grow a section
 instead, and whether it clears the bar for a new skill at all. A standard you would
 apply again on a different project, months from now, clears it; a single task doesn't.
@@ -27,9 +27,9 @@ plugins/<layer>-<topic>/
 ```
 
 The templates are in
-[`author-skills/assets/`](../../plugins/marketplace-steward/references/author-skills/assets/),
+[`author-skills/assets/`](../../plugins/marketplace-curator/references/author-skills/assets/),
 and
-[`plugin-shape.md`](../../plugins/marketplace-steward/references/author-skills/plugin-shape.md)
+[`plugin-shape.md`](../../plugins/marketplace-curator/references/author-skills/plugin-shape.md)
 says what goes in each file. In `dependencies`, declare the plugin of every skill
 yours names that it needs in every project, in its own layer or a more general one. A
 pairing that holds only for some projects goes in the catalog row's signal instead,
@@ -37,7 +37,7 @@ because a declared dependency is installed everywhere.
 
 ## 3. Write the skill
 
-Read [`style.md`](../../plugins/marketplace-steward/references/author-skills/style.md)
+Read [`style.md`](../../plugins/marketplace-curator/references/author-skills/style.md)
 first. The parts that decide whether the skill works at all:
 
 - **The description is a trigger list**, in the words people type, not a summary.
@@ -48,7 +48,7 @@ first. The parts that decide whether the skill works at all:
 
 About 50 lines, headed exactly `# <plugin-name>`, in the template's order. The section
 that earns it its place is what it leaves to other skills; "The README" in
-[`plugin-shape.md`](../../plugins/marketplace-steward/references/author-skills/plugin-shape.md)
+[`plugin-shape.md`](../../plugins/marketplace-curator/references/author-skills/plugin-shape.md)
 has the rest.
 
 ## 5. Register it in three places
@@ -57,12 +57,12 @@ has the rest.
 |---|---|
 | `.claude-plugin/marketplace.json` | An entry with `name`, `source`, `description`, `category` and `tags` |
 | [`docs/reference/plugins.md`](../reference/plugins.md) | A row in the plugin table, and its name in the By layer table |
-| [`plugin-catalog.md`](../../plugins/marketplace-steward/references/set-up/plugin-catalog.md) | A row with the signal set-up must find in a project before installing it |
+| [`catalog.md`](../../plugins/marketplace-steward/references/catalog.md) | A row with the signal docking must find in a project before installing it |
 
 The catalog row is the one people forget, and the one that matters most: without it the
 plugin installs fine and is never chosen for any project. A rename also needs a row in
-the catalog's Renamed table; without it, keep-current removes the old key and installs
-no successor.
+the catalog's Renamed table; without it, docking removes the old key and installs no
+successor.
 
 ## 6. Check it
 

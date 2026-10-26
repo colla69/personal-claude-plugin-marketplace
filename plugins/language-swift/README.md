@@ -31,7 +31,7 @@ Swift 5 mode the same code compiles.
 
 ## Install
 
-Set-up installs it at project scope when the project has a `Package.swift`, an
+Docking installs it at project scope when the project has a `Package.swift`, an
 `.xcodeproj` or `.swift` sources. By hand:
 
 ```bash

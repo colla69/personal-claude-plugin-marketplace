@@ -31,7 +31,7 @@ The module system comes from `package.json`, read first: `"type": "module"` or t
 
 ## Install
 
-Set-up installs it at project scope when the project's own code is in `.js` or `.mjs`
+Docking installs it at project scope when the project's own code is in `.js` or `.mjs`
 files. By hand:
 
 ```bash

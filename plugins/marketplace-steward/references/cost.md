@@ -3,9 +3,8 @@
 A setup is paid for before any work starts. Every session loads the root `CLAUDE.md`,
 every rule without `paths:`, and the description of every skill and agent, and every
 request reads all of it again. So a cut there repays in every request of every session.
-Measure first, then cut only what you may cut, and report the rest with its price.
-
-The record's rules hold throughout: read `record.md`, beside this file, first.
+Measure first, then propose each cut with its price. Nothing here changes a file: the
+user says which cuts to make, and the front door makes them.
 
 ## Measure
 
@@ -51,23 +50,18 @@ agent of the setup counts as used.
 
 ## Act on it
 
-| The script shows | Do |
+| The script shows | Propose |
 |---|---|
-| A part that did not load, marked **no** | Check it as step 3 of `keep-current.md` does. It costs nothing, and it does nothing |
-| A project skill marked **user only**, such as a trio's run skill | Nothing: only the user starts it, so it is never in the session's listing, and it costs nothing always on |
-| A root file over the budget in `set-up/context-files.md`, or a section about one component or one file type | Move the section to that component's `CLAUDE.md`, or to a rule with `paths:`. Do it only when the file it leaves is one the record lists with a matching hash, and the file it goes to is new or listed with a matching hash too. Otherwise, report the section, its tokens and the home it would move to |
-| A rule without `paths:` that is about one file type | Give it `paths:` under the same condition. Otherwise report it |
-| A plugin with no calls, preloaded by no agent, after enough sessions | Report it as possibly unneeded, with its tokens. It stays: removing it costs a standard the user may still want. A plugin that keep-current already names as possibly unneeded, because its signal is gone, gets its tokens there, not a second row |
-| A trio whose skill has no calls and whose agents have no runs, after enough sessions | Report it as possibly unneeded, with the tokens of its agents' descriptions. It stays |
-| An MCP server in `.mcp.json` with no calls, after enough sessions | Report it as possibly unneeded. Never edit `.mcp.json`: the project's mechanics are its own |
-| Agent runs | Report the roles, the costliest first, with their models. Change no model on the numbers alone: they show what a role costs, not what its work is worth |
+| A part that did not load, marked **no** | Find out why: a plugin key that names nothing is a dead key, as "Renamed and removed" in `catalog.md` says, and a skill name that moved is in the same table. It costs nothing, and it does nothing |
+| A project skill marked **user only** | Nothing: only the user starts it, so it is never in the session's listing, and it costs nothing always on |
+| A root file over the budget in `context-files.md`, or a section about one component or one file type | Moving the section to that component's `CLAUDE.md`, or to a rule with `paths:`, with its tokens |
+| A rule without `paths:` that is about one file type | Giving it `paths:`, with its tokens |
+| A plugin with no calls, preloaded by no agent, after enough sessions | Nothing to remove: name it as possibly unneeded, with its tokens. Removing it costs a standard the user may still want |
+| An MCP server in `.mcp.json` with no calls, after enough sessions | Nothing to remove: name it as possibly unneeded. The project's mechanics are its own |
+| Agent runs | The agents, the costliest first, with their models. Propose no model change on the numbers alone: they show what a role costs, not what its work is worth |
 
-When the user then names a role and a cheaper model, change that agent's `model:` line,
-and the `model` in its record entry's `fill`, if its hash matches the record. If it
-doesn't, tell the user which line to change.
-
-Never report as unneeded a plugin whose signal in `set-up/plugin-catalog.md` is every
-project.
+Never name as unneeded a plugin whose signal in `catalog.md` is every project, or
+`marketplace-base`.
 
 ## Report
 
@@ -86,9 +80,9 @@ down. Then don't offer the setup as the place to save.
 request and <share> of an average request, read again with each of about <requests>
 requests. **Sessions read:** <n>
 
-| Part | Always-on tokens | Finding | Done |
+| Part | Always-on tokens | Finding | Proposed |
 |---|---|---|---|
-| <part> | <tokens> | <what the script showed> | <moved to <path>; or reported, and why it stays> |
+| <part> | <tokens> | <what the script showed> | <the cut, or why it stays> |
 ```
 
 Leave out a part with no finding. With no finding at all, give the first two lines and

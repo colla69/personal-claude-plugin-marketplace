@@ -30,7 +30,7 @@ Language plugins judge against it, so one edit here moves every judgement downst
 
 ## Install
 
-Set-up installs it at project scope in any project with code, and the code Craft and
+Docking installs it at project scope in any project with code, and the code Craft and
 Language plugins pull it in. By hand:
 
 ```bash

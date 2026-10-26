@@ -7,38 +7,43 @@ Fix what goes wrong without saying so. Find the symptom, check the cause, apply 
 | Symptom | Cause | Fix |
 |---|---|---|
 | An agent works without a skill its `skills:` names | The name is bare, such as `review-work`, not `plugin:skill` | Write it as `craft-review:review-work`. A bare name can fail without any message |
-| The same, with the name written correctly | The plugin isn't enabled in this project | Say "update the setup", or install it with `--scope project` |
-| A skill never fires on your request | Its description doesn't match the words you use | Tell the steward the lesson: a description that doesn't win is a change to that skill |
-| `claude plugin list` shows a plugin as failed to load: not found in the marketplace | A dead key: the plugin was renamed or removed | Say "update the setup"; see [migrate from old names](migrate-from-old-names.md) |
-| A plugin enabled in the project's settings isn't there on another machine | It was never installed on that machine | Run the install block from the set-up report |
-| Changes to a skill don't show up | The session loaded the skill before the change, or the installed copy is old | Run `claude plugin marketplace update` and `claude plugin update <name>@<marketplace>`, then `/reload-plugins`. For a `--plugin-dir` copy, start a new session |
+| A standard isn't applied in a project | Its plugin isn't enabled there | Say "add the standard for X", or install it with `--scope project` |
+| A skill never fires on your request | Its description doesn't match the words you use | Correct Claude in the session; the collector files the correction, and a description that doesn't win is a change to that skill |
+| `claude plugin list` shows a plugin as failed to load: not found in the marketplace | A dead key: the plugin was renamed or removed | Say "dock this project"; see [migrate from old names](migrate-from-old-names.md) |
+| A plugin enabled in the project's settings isn't there on another machine | It was never installed on that machine | Run the install block from the docking report |
+| Changes to a skill don't show up | The session loaded the skill before the change, or the update hasn't arrived | Claude Code updates the marketplace by itself, and the change loads at a session after that; check that your user settings don't set `autoUpdate` to `false` for it. To have it now, run `claude plugin marketplace update` and `/reload-plugins`. For a `--plugin-dir` copy, start a new session |
+
+## The base plugin
+
+| Symptom | Cause | Fix |
+|---|---|---|
+| Claude keeps working after you thought it was done, on a failing build or test | The guard: the check command fails after its changes | Intended. If the failure isn't Claude's, fix it or change `STEWARD_CHECK`; after three failures in a row the guard lets go and says so |
+| Every turn waits for a slow check | The check command runs the whole suite | Set `STEWARD_CHECK` to a faster command, such as the unit tests alone |
+| The guard does nothing | The project has no `STEWARD_CHECK`, or nothing changed in the session | Add the command under `env` in `.claude/settings.json` |
+| No corrections issue after a session with corrections | `gh` isn't signed in, the marketplace wasn't added from GitHub, or the session had fewer than two messages from you | Sign `gh` in; waiting issues are retried at the next session start. A marketplace added from a folder has nowhere to file |
+| No index at session start | `marketplace-base` isn't enabled, or Node isn't on the `PATH` | Enable it, or install Node 18 or later |
 
 ## The steward
 
-Its rows come from the steward's procedures and from probes; the first trials on real
+Its rows come from the steward's procedure and from probes; the first trials on real
 projects will add to them.
 
 | Symptom | Cause | Fix |
 |---|---|---|
-| None of the steward's skills appear under `--plugin-dir` | A dependency, `craft-review` or `language-simple-english`, isn't installed or loaded | Add `--plugin-dir ./plugins/craft-review --plugin-dir ./plugins/language-simple-english` |
-| Claude Code asks before every write of a contribution | Something writes under `~/.claude`, which is always asked for | The steward works in `~/.local/share/marketplace-steward/`; a change that moved it back is the cause |
-| Claude Code asks for each plugin install, refresh or hash | Those commands aren't pre-allowed | Allow them, as [permissions](../reference/permissions.md) describes, or answer once per run |
-| A set-up request ran keep-current instead | The project has `.claude/steward.json` | That is intended: the steward set it up before, so setting it up again means bringing it up to date |
-| A set-up request adopted the project | It has a setup of its own, in `CLAUDE.md`, `AGENTS.md` or `.claude/`, and no record | That is intended; see [adopt an existing setup](adopt-an-existing-setup.md) |
-| A trio came out under another name, or not at all | One of its four paths was taken by a file of yours | Keep it under the other name; or delete that trio's four files, rename or remove yours, and ask for the trio again |
-| A rule you expected to go is still in your files | Its home isn't live yet: pending a merge, or no trio role preloads the skill | Merge its pull request and say "update the setup"; or leave it, which is safe |
-| `Skill … cannot be used with Skill tool due to disable-model-invocation` | That skill is hidden from the model | Hidden skills can only be run by you, as `/plugin:skill`; the steward keeps its jobs in references for this reason |
+| The steward's skill doesn't appear under `--plugin-dir` | Its dependency, `language-simple-english`, isn't installed or loaded | Add `--plugin-dir ./plugins/language-simple-english` |
+| Claude Code asks for each plugin install or refresh | Those commands aren't pre-allowed for you outside the steward | Answer once per run, or allow them, as [permissions](../reference/permissions.md) describes |
+| A rule you expected the tidy to remove is still in your files | It adds something to what the standard says, or the standard is from another marketplace | Intended: when in doubt, a rule stays. Remove it yourself if it is a copy |
+| Docking removed agents you wanted | They had the shape of agents an earlier steward generated | They are in `~/.local/share/marketplace-steward/backups/` if you had edited them, and in git otherwise |
+| `Skill … cannot be used with Skill tool due to disable-model-invocation` | That skill is hidden from the model | Hidden skills can only be run by you, as `/plugin:skill` |
 
-## Contributions
+## The curator
 
 | Symptom | Cause | Fix |
 |---|---|---|
-| After an adoption, rules the Adopted table sends to a contribution have no pull request | The contribution was skipped. The report's Contributions table gives every contribution a row, so a missing row shows it | Ask the steward to run the contribute job for those rules; their placement is in the Adopted table |
 | No pull request, only a link | `gh` isn't installed or signed in | Open the link, or install `gh` and run `gh auth login` |
-| The job stopped before the push, with a leak | Something from your project is in the change | Read the finding, and say how to strip it; the worktree is still there |
-| The job stopped, the leak check not run | The checker didn't get the source project's identifiers | Run the contribution from inside the project the lesson came from |
-| The job stopped: nowhere to open a pull request | The house marketplace was added from a local folder, not GitHub | Add it from GitHub: `claude plugin marketplace add colla69/personal-claude-plugin-marketplace`. The two share a name, so the local one likely has to be removed first, with `claude plugin marketplace remove personal-claude-plugin-marketplace` |
-| A worktree is left over | An earlier job stopped | The next job reports it; remove it with `git -C ~/.local/share/marketplace-steward/clone worktree remove <path>` |
+| The job stopped before the push, with a leak | Something from the source is in the change | Read the finding, and say how to strip it; the branch is still there |
+| The job stopped, the leak check not run | The checker didn't get the names to look for | Run it again from the issue, so the issue's names are the input |
+| The job stopped before it began | The checkout had changes of its own | Commit or stash them, and ask again |
 
 ## Estimates and checks
 

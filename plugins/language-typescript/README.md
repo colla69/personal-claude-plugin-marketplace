@@ -29,7 +29,7 @@ Strictness comes from `tsconfig`, read first: `strict`, `noUncheckedIndexedAcces
 
 ## Install
 
-Set-up installs it at project scope when the project has a `tsconfig.json` or `.ts`
+Docking installs it at project scope when the project has a `tsconfig.json` or `.ts`
 sources. By hand:
 
 ```bash

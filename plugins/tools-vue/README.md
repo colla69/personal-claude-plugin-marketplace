@@ -29,7 +29,7 @@ project uses TypeScript before assuming either.
 
 ## Install
 
-Set-up installs it at project scope when `vue` is in the project's dependencies, and
+Docking installs it at project scope when `vue` is in the project's dependencies, and
 `tools-pinia` and `tools-vue-typescript` pull it in. By hand:
 
 ```bash

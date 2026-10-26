@@ -1,19 +1,20 @@
 # Review a skill
 
-Get a skill, a role template, a plugin, a change, or the whole set of skills reviewed
-against the house standard, and read the result. The review is `evaluate-skills`, the
-same one the steward's checker runs before every pull request.
+Get a skill, an agent, a plugin, a change, or the whole set of skills reviewed against
+the house standard, and read the result. The review is `evaluate-skills`, in the
+curator plugin, the same one the curator's checker runs before every pull request.
 
 ## Steps
 
-1. **Open a session in a checkout of the marketplace**, with the steward installed or
-   loaded:
+1. **Open a session in a checkout of the marketplace.** Its `.claude/settings.json`
+   enables the curator, from `main`. To review with your working copy of the curator
+   instead:
 
    ```bash
-   claude --plugin-dir ./plugins/marketplace-steward --plugin-dir ./plugins/craft-review --plugin-dir ./plugins/language-simple-english
+   claude --plugin-dir ./plugins/marketplace-curator --plugin-dir ./plugins/craft-review --plugin-dir ./plugins/language-simple-english
    ```
 
-   `craft-review` and `language-simple-english` come along because the steward
+   `craft-review` and `language-simple-english` come along because the curator
    depends on them, and a plugin whose dependency is missing doesn't load at all.
 2. **Ask:** "is this skill well written?", "why isn't `vue-conventions` triggering?",
    "is `craft-refactoring` ready to merge?", "review my change to `clean-code`", or
@@ -28,7 +29,8 @@ same one the steward's checker runs before every pull request.
 | You ask about | It checks |
 |---|---|
 | A skill | Whether its description wins the prompts it is for and stays quiet on others; the cut; one home per rule; that every skill it names is declared; its opening, the cost of each rule, its yield, its size |
-| A role template | That it restates no skill, names a specific failure mode, enforces its lane in frontmatter, and keeps the stop |
+| An agent | That it restates no skill, names a specific failure mode, enforces its lane in frontmatter, and names its model by the kind of work |
+| A hook | That it returns fast, does nothing where it isn't wanted, can't trap a session, and says what it sends off the machine |
 | A plugin | That it loads in the right shape, fires, what it costs, and whether it changes anything |
 | A change | All of the above for what it touches, plus the leak check, which needs the source project's names from you: without them, it hasn't run |
 | The whole set | A map: every skill's layer, every reference and its dependency, every rule stated twice, every pair of descriptions that compete |
@@ -50,12 +52,12 @@ It uses `review-work`'s shape, sorted by what a finding does at runtime:
 Only the first two justify editing prose that works. When a skill is sound, the report
 says so and what was checked, and stops.
 
-## Without the steward
+## By hand
 
 Anyone can review by hand against the same three files the review quotes:
-[`style.md`](../../plugins/marketplace-steward/references/author-skills/style.md) for
+[`style.md`](../../plugins/marketplace-curator/references/author-skills/style.md) for
 the writing,
-[`place-knowledge.md`](../../plugins/marketplace-steward/references/place-knowledge.md)
+[`place-knowledge.md`](../../plugins/marketplace-curator/references/place-knowledge.md)
 for the cut, and
-[`plugin-shape.md`](../../plugins/marketplace-steward/references/author-skills/plugin-shape.md)
+[`plugin-shape.md`](../../plugins/marketplace-curator/references/author-skills/plugin-shape.md)
 for a plugin's files, dependencies and registrations.

@@ -33,7 +33,7 @@ decides whether a change is correct.
 
 ## Install
 
-Set-up installs it at project scope in any project with code, whether or not anyone
+Docking installs it at project scope in any project with code, whether or not anyone
 opens pull requests. By hand:
 
 ```bash

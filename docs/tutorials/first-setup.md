@@ -1,12 +1,12 @@
-# Your first setup
+# Your first docking
 
-Set up a small sample project with the steward, read what it wrote, and run one task
-through a trio from plan to checked result. It takes about half an hour, and you need
-nothing but Claude Code, git and Node.
+Dock a small sample project with the steward, read what it wrote, and do one change in
+it: watch the standards come up, the tests guard the change, and a review run when you
+ask. It takes about half an hour, and you need nothing but Claude Code, git and Node.
 
-**Not yet tried.** This tutorial is written from the steward's procedures; the first
-trials will run it end to end. What the steward writes can differ in its details from
-what is shown here, because it reads the project each time.
+**Not yet tried.** This tutorial is written from the plugins' files; the first trials
+will run it end to end. What the steward writes can differ in its details from what is
+shown here, because it reads the project each time.
 
 ## 1. Install the steward
 
@@ -17,9 +17,9 @@ claude plugin marketplace add colla69/personal-claude-plugin-marketplace
 claude plugin install marketplace-steward@personal-claude-plugin-marketplace --scope user
 ```
 
-It goes in at user scope, so it works in every project you open. `craft-review` and
-`language-simple-english` come with it, because the steward builds on them. Everything
-else the steward installs per project, in that project.
+It goes in at user scope, so it works in every project you open.
+`language-simple-english` comes with it, because the steward builds on it. Everything
+else is installed per project, in that project.
 
 ## 2. Make a sample project
 
@@ -65,35 +65,33 @@ Then make a branch, because the steward never touches git in your project and yo
 decide afterwards what to keep:
 
 ```bash
-git switch -c setup
+git switch -c dock
 ```
 
-## 3. Ask for the setup
+## 3. Dock it
 
 Start Claude Code in `tally` and say:
 
 ```
-set this project up
+dock this project
 ```
 
-Five things happen before any file is written:
+Four things happen before any file is written:
 
 1. **Claude Code asks whether the steward may run.** Allow it. The steward pre-allows
-   reading its own files and the commands of its own folder, and a skill that does that
-   needs your permission to run. Claude Code can remember the answer.
-2. **It refreshes the marketplaces** and reads what they offer. Claude Code asks before
-   those commands; allow them.
-3. **The steward asks one question:** which marketplaces this project may draw plugins
-   from, as a checklist with the toolkit and the plugins in Anthropic's own repository
+   reading its own files and a few commands, and a skill that does that needs your
+   permission to run. Claude Code can remember the answer.
+2. **The steward asks which marketplaces this project may draw plugins from**, as a
+   checklist with the house marketplace and the plugins in Anthropic's own repository
    ticked. Keep the defaults.
-4. **It reads the project.** For a codebase it sends its cartographer, which reports the
-   stack, the commands and the components.
-5. **The steward asks whether the project writes Conventional Commits**, because
-   `tally` has code. Answer yes or no. A yes gives every trio's Do the
-   `conventional-commits` skill.
+3. **It reads the project**, with the built-in Explore agent: the stack, the commands
+   and the components.
+4. **It asks whether the project writes Conventional Commits**, because `tally` has
+   code. Answer yes or no.
 
-Then it writes. Claude Code may ask before some commands, such as each plugin install;
-allow them. [Permissions](../reference/permissions.md) lists them all.
+Then it writes, installs and checks. Claude Code may ask before some commands, such as
+`npm test`, which it runs once to see that the check passes; allow them.
+[Permissions](../reference/permissions.md) lists them all.
 
 ## 4. Read the report
 
@@ -102,14 +100,14 @@ what happened. Expect something like this:
 
 | Section | For `tally` |
 |---|---|
-| **Written** | `CLAUDE.md`, `.claude/settings.json`, `.claude/plugin-sources.json`, the trios, `.claude/steward.json` |
-| **From your toolkit** | `universal-clean-code`, `craft-development`, `craft-code-review`, `craft-refactoring`, `craft-unit-testing` for the test runner, `language-typescript` for `tsconfig.json`, `language-simple-english` because every project has text to read, `language-conventional-commits` if you said yes, and what they pull in |
-| **Gap-fills** | Probably `typescript-lsp` from Anthropic's marketplace, for go-to-definition and real diagnostics, which no toolkit skill gives. With no gap to fill, the report says so in one line |
-| **Trios** | `change` and `refactor`, and `test`, because a test runner is configured |
-| **Installed** | The same installs as a block to paste on another machine |
-| **Unverified** | Anything it couldn't check, such as a command it didn't run |
+| **Check command** | `npm run typecheck && npm test`, or `npm test`, from the scripts |
+| **Written** | `CLAUDE.md`, `.claude/plugin-sources.json` |
+| **Changed** | Nothing, or `.claude/settings.json` if Claude Code had made one |
+| **Standards** | `marketplace-base`, `universal-clean-code`, `craft-development`, `craft-code-review`, `craft-refactoring`, `craft-unit-testing` for the test runner, `language-typescript` for `tsconfig.json`, `language-simple-english` because every project has text to read, `language-conventional-commits` if you said yes, and what they pull in |
+| **On another machine** | The same installs as a block to paste |
+| **Unverified** | Anything it couldn't check |
 
-Each plugin row says what in the project called for it. None of the Vue or Java plugins
+Each standard says what in the project called for it. None of the Vue or Java plugins
 are there: `tally` shows no sign of them.
 
 ## 5. Look at what it wrote
@@ -117,58 +115,55 @@ are there: `tally` shows no sign of them.
 ```bash
 git status
 cat CLAUDE.md
-head -12 .claude/agents/change-plan.md
+cat .claude/settings.json
 ```
 
-- **`CLAUDE.md`** holds what reading the code wouldn't tell you: the test command, the
-  map of the project, and the trios. In a project this small it is short, and should be.
-- **`change-plan.md`** starts with its frontmatter: `effort: high`, `model: opus`,
-  `disallowedTools: Write, Edit, NotebookEdit`, which takes away its edit tools, and a
-  `skills:` list where every name is written as `plugin:skill`.
+- **`CLAUDE.md`** holds what reading the code wouldn't tell you: the test command and
+  the map of the project. In a project this small it is short, and should be.
+- **`.claude/settings.json`** declares the marketplace, which Claude Code keeps up to
+  date by itself, sets the model to `opusplan`, holds `STEWARD_CHECK`, and enables each
+  plugin.
 
-Delete anything you don't want. The record still lists what the steward wrote, so it
-reads a missing file as your removal and doesn't bring it back.
+Delete anything you don't want.
 
-## 6. Run a trio
+## 6. Work in it
 
-Run `/reload-plugins`, so the installed skills and the new agents load, and ask for a
-change:
+Run `/reload-plugins`, or start a new session, so the standards and the base plugin
+load. Then ask for a change:
 
 ```
-/change make tally ignore negative amounts, and say so in a test
+make tally ignore negative amounts, and say so in a test
 ```
 
-1. **Plan answers first, and changes nothing.** It returns items, each with what
-   changes, in which files, and how you can tell it is done, plus its questions and
-   assumptions. It ends by waiting for your OK.
-2. **Correct it once.** Say "also reject non-numbers with a clear error". The plan goes
-   back to Plan, and a new version comes back. Your answer wasn't an OK, so nothing has
-   happened yet.
-3. **Accept it.** Say "OK".
-4. **Do works.** It changes `src/tally.ts` and the test, as the plan says, runs the
-   tests, and reports each item as done or not.
-5. **Check compares.** It reads the result against the plan you accepted, item by item.
-   A gap goes back to Do; something the plan never covered comes to you.
-
-The run ends with its report: the plan as accepted, what was done, and Check's verdict.
+1. **The standards are already there.** The session started with the index of every
+   standard, and the ones for TypeScript and tests are enabled, so it writes the test
+   first, the way `craft-unit-testing` asks.
+2. **The guard checks before it stops.** Claude changed files, so the base plugin runs
+   the check command. If a test or the typecheck fails, Claude keeps working until it
+   passes.
+3. **Ask for a review.** Say "review my changes". The `reviewer` agent reads the change
+   on Opus and reports only what is worth fixing.
+4. **Correct it once.** If Claude did something the way you don't want, say so, and
+   how it is done here. When you end the session, the base plugin files that
+   correction for the curators, if `gh` is signed in and it looks like a standard.
 
 ## 7. Keep it
 
 ```bash
 npm test
 git add -A
-git commit -qm "Set tally up with the steward"
+git commit -qm "Dock tally"
 ```
 
 Commit `.claude/` with the rest, so the setup travels with the project.
 
 ## Where to go next
 
-- [Run a trio](../guides/run-a-trio.md), for the run in detail: the report, and what
-  happens when Check sends the work back.
-- [Set up a project](../guides/set-up-a-project.md), for your own projects.
-- [Adopt an existing setup](../guides/adopt-an-existing-setup.md), for one that already
-  has its own `CLAUDE.md` or agents.
-- [Your first contribution](first-contribution.md), to give something `tally` taught
-  you back to the marketplace.
-- [Trios](../explanation/trios.md), for why the run stopped where it did.
+- [Dock a project](../guides/dock-a-project.md), for your own projects, including one
+  that already has its own `CLAUDE.md` or agents.
+- [Work in a docked project](../guides/work-in-a-docked-project.md), for the day to
+  day.
+- [Your first contribution](first-contribution.md), to see how a lesson becomes a
+  standard.
+- [The base](../explanation/the-base.md), for why the guard checks only the build and
+  the tests.

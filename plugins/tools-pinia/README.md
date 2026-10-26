@@ -24,7 +24,7 @@ belongs in a query layer, however convenient a store makes it look.
 
 ## Install
 
-Set-up installs it at project scope when `pinia` is in the project's dependencies. By
+Docking installs it at project scope when `pinia` is in the project's dependencies. By
 hand:
 
 ```bash

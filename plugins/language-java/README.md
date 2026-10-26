@@ -31,7 +31,7 @@ The language level comes from the build file of the module being edited, since a
 
 ## Install
 
-Set-up installs it at project scope when the project has a `pom.xml`, a `build.gradle`
+Docking installs it at project scope when the project has a `pom.xml`, a `build.gradle`
 or `.java` sources. By hand:
 
 ```bash
