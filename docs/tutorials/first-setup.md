@@ -121,8 +121,8 @@ cat .claude/settings.json
 - **`CLAUDE.md`** holds what reading the code wouldn't tell you: the test command and
   the map of the project. In a project this small it is short, and should be.
 - **`.claude/settings.json`** declares the marketplace, which Claude Code keeps up to
-  date by itself, sets the model to `opusplan`, holds `STEWARD_CHECK`, and enables each
-  plugin.
+  date by itself, sets the model to `opusplan` and the compaction window to 180k tokens,
+  holds `STEWARD_CHECK`, and enables each plugin.
 
 Delete anything you don't want.
 
