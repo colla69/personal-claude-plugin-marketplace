@@ -38,6 +38,7 @@ that holds its rules.
 | **Leak check** | The check that nothing identifying the project a lesson came from reaches the public marketplace | [`SKILL.md`](../../plugins/marketplace-curator/skills/evaluate-skills/SKILL.md) |
 | **Marketplace** | A catalog of plugins that Claude Code installs from. This repo is one | [`plugin-shape.md`](../../plugins/marketplace-curator/references/author-skills/plugin-shape.md) |
 | **Marketplace plugin** | A plugin that works on the marketplace itself, named `marketplace-<name>`: the steward, the base and the curator. Only they ship agents, and only the base ships hooks | [`plugin-shape.md`](../../plugins/marketplace-curator/references/author-skills/plugin-shape.md) |
+| `autoCompactWindow` | The setting docking writes so a session compacts at 180k tokens of context. Claude Code reads it from any settings file | [`settings-template.json`](../../plugins/marketplace-steward/references/assets/settings-template.json) |
 | `opusplan` | The model setting docking writes: Opus in plan mode, Sonnet otherwise | [`settings-template.json`](../../plugins/marketplace-steward/references/assets/settings-template.json) |
 | **Plugin** | The installable unit of a marketplace. A skill plugin holds exactly one skill | [`plugin-shape.md`](../../plugins/marketplace-curator/references/author-skills/plugin-shape.md) |
 | **Project skill** | A skill in a project's own `.claude/skills/`, for a procedure only that project runs | [`context-files.md`](../../plugins/marketplace-steward/references/context-files.md) |

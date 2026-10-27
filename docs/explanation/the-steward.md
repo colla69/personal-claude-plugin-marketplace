@@ -55,6 +55,13 @@ person's own settings turn it off, so a change a curator merges reaches every do
 project at a session after it. The merge is
 the gate: nothing reaches a project that a curator hasn't read.
 
+The settings are the one thing that doesn't arrive this way. A plugin can't ship a
+`model` or a compaction window, so docking copies them from a template into the
+project's `.claude/settings.json`, and a copy goes stale. The steward does not refresh
+it in the background: nothing records whether a differing value is old or the project's
+own choice. When asked, it lists each key that differs and changes the ones you tick
+(D80).
+
 ## A light tidy
 
 A project with a setup of its own holds rules a standard now also states. Two copies of

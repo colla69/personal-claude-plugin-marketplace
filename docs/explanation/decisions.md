@@ -282,6 +282,14 @@ Decided on 2026-10-26, after the first trial of the guard on a real project.
 |---|---|---|---|
 | D79 | The guard finds a change by comparing the files git lists with how they stood at the session's start, and also by the tools' own marks. A project may limit it to paths with `STEWARD_CHECK_PATHS`, and docking writes them when the command covers only part of the project | In the trial, every edit went through the shell, and the guard, which saw only the edit tools, ran nothing. On the same project, a docking run chose no check command, because a full build after every edit would also run for edits to documents and data | Holds, in `guard.mjs`, `dock.md` and the base plugin's README; refines D67 |
 
+## Settings that stay current: D80
+
+Decided on 2026-10-27.
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D80 | Docking sets `autoCompactWindow` to 180000 in the project's `.claude/settings.json`, from the settings template. The steward brings the project's copy up to date when asked: it compares each key of the template with the project's value and changes the ones the user ticks | A long session that runs to the model's limit sends its largest requests last, and what it compacts from is far from the start. A plugin can't ship this key, so it has to live in the project's file, and a copy goes stale. The steward keeps no record of what it wrote (D62), so it can't tell an old value from the project's own choice, and asks | Holds, in `settings-template.json` and `dock.md` |
+
 ## Still open
 
 | # | Question | Working answer |

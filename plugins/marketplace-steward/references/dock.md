@@ -95,8 +95,9 @@ reports only what failed, so the output stays out of the session.
    replace the file; it often holds permissions and hooks already. The template declares
    the marketplace, which Claude Code then updates by itself, so a merged change reaches
    the project, and sets the session's model to `opusplan`: Opus in plan mode, Sonnet
-   otherwise. When the file already names a `model`, keep the project's, and say so in
-   the report.
+   otherwise, and sets `autoCompactWindow` to 180000: a session compacts when its
+   context reaches 180k tokens, not at the model's limit. When the file already names a
+   `model` or an `autoCompactWindow`, keep the project's, and say so in the report.
 2. **Write the check command**, when step 3 chose one, as `"STEWARD_CHECK"` under `env`
    in the same file. The base plugin's guard reads it. When part of the project is not
    covered by the command, such as `jobs/` or `CV/` beside a built `frontend/`, also
@@ -150,7 +151,11 @@ Do not declare success without checking:
    before you installed anything, so it shows the new parts as "not yet". Take their
    always-on tokens from `claude plugin details`, and put the total in the report.
 
-8. **The report is complete.** Count the rows. Every file step 2 noted has a row of its
+8. **Nothing overrides the window.** `CLAUDE_CODE_AUTO_COMPACT_WINDOW` in the shell
+   or in an `env` block, and a window saved for a model under `modelSettings` in
+   `.claude/settings.local.json` or in `~/.claude/settings.json`, win over the project's
+   `autoCompactWindow`. Report each you find, and change nothing there.
+9. **The report is complete.** Count the rows. Every file step 2 noted has a row of its
    own in the Tidied table, never one row for a group, and the count in "Read <n> files"
    equals the rows. Every row of the catalog has a verdict in the Standards table or is
    counted in its closing line. A gap here is a step you skipped: go back and do it.
@@ -207,3 +212,22 @@ active until then. Once you commit `.claude/`, the setup travels with the projec
 
 Leave out a section that would be empty. The block under "On another machine" is never
 left out: it is what turns the next machine's clone into a working setup.
+
+## Refresh the settings
+
+A project's `.claude/settings.json` holds a copy of the template as it stood on the day
+of docking. Claude Code updates the marketplace by itself, but never that copy. To bring
+it up to date, run this on a docked project, when the user asks if the setup is
+current:
+
+1. Read `assets/settings-template.json` and the project's `.claude/settings.json`, and
+   `.claude/settings.local.json` over it.
+2. For each key the template sets, compare the project's value. Make a table with one
+   row for each key: the template's value, the project's value, and one of "same",
+   "missing" or "differs".
+3. Ask one question for all the rows that are "missing" or "differs", one option for
+   each: "`<key>` to `<value>`". The user ticks the ones to change. A value that
+   differs may be the project's own choice, and nothing records which it is, so change
+   none without a tick.
+4. Write the ticked values into `.claude/settings.json`, and keep every other key.
+5. Report the table, and what was written. Then run step 7, item 8.

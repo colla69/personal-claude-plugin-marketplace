@@ -54,7 +54,7 @@ first trials will show where it behaves otherwise.
 | `CLAUDE.md` | The commands, the map of components, and the conventions and boundaries that reading the code won't tell |
 | The same file in each component that earns one | What is local to that component |
 | `.claude/rules/<topic>.md`, where one is needed | A convention that follows a file type rather than a folder, scoped by its `paths:` |
-| `.claude/settings.json` | The marketplace, the model, the check command, and the plugins enabled for this project |
+| `.claude/settings.json` | The marketplace, the model, the compaction window, the check command, and the plugins enabled for this project |
 | `.claude/plugin-sources.json` | The sources you ticked |
 
 [Project files](../reference/project-files.md) describes each one, and [the
@@ -95,10 +95,18 @@ work, such as plain English. There is no check command, so the guard does nothin
 
 ## Staying current
 
-Nothing to do. Claude Code updates the marketplace by itself, so each merged change
-reaches the project at a session after it. If your own settings turn that off for the
-marketplace, the report says so. To add one more standard, say "add the
-standard for X". To see what the setup costs, ask "what does this setup cost?".
+Standards need nothing. Claude Code updates the marketplace by itself, so each merged
+change reaches the project at a session after it. If your own settings turn that off
+for the marketplace, the report says so.
+
+The settings are a copy. Docking writes the template's keys, such as the model and the
+compaction window, into `.claude/settings.json`, and a later change to the template
+doesn't reach that copy. To bring it up to date, ask "is my setup current?". The steward
+lists each key whose value differs from the template, and changes only the ones you
+tick, because a value that differs may be your own choice.
+
+To add one more standard, say "add the standard for X". To see what the setup costs,
+ask "what does this setup cost?".
 
 ## Next
 

@@ -25,7 +25,8 @@ tidy.
 ### `.claude/settings.json`
 
 The part docking writes. It merges the template into what is there, and `claude plugin
-install … --scope project` adds each plugin under `enabledPlugins`:
+install … --scope project` adds each plugin under `enabledPlugins`. The steward
+compares the file with the template again when you ask if your setup is current:
 
 ```json
 {
@@ -35,6 +36,7 @@ install … --scope project` adds each plugin under `enabledPlugins`:
     }
   },
   "model": "opusplan",
+  "autoCompactWindow": 180000,
   "env": { "STEWARD_CHECK": "npm run build && npm test" },
   "enabledPlugins": {
     "marketplace-base@personal-claude-plugin-marketplace": true,
@@ -47,6 +49,7 @@ install … --scope project` adds each plugin under `enabledPlugins`:
 |---|---|
 | `extraKnownMarketplaces` | Declares the marketplace, so the project's plugins resolve on any machine. Claude Code updates it by itself, so each merged change reaches the project; only your user settings or managed settings can turn that off, never the project's |
 | `model` | `opusplan` plans on Opus in plan mode and works on Sonnet. A `model` the project already had is kept. `/model` changes it for a session |
+| `autoCompactWindow` | The context size, in tokens, at which a session compacts: 180000, not the model's limit. A value the project already had is kept. `CLAUDE_CODE_AUTO_COMPACT_WINDOW`, and a window you saved for a model with `/autocompact`, win over it |
 | `env.STEWARD_CHECK` | The command the base plugin's guard runs. Left out when docking couldn't verify one |
 | `env.STEWARD_CHECK_PATHS` | The globs, relative to the root and separated by commas, that the command covers. Written only when it covers part of the project |
 
