@@ -39,6 +39,9 @@ const pattern = (text) => {
   const m = /^pattern: '(.*)'\s*$/m.exec(text)
   return m ? m[1].replace(/''/g, "'") : null
 }
+// A lone quote ends a single-quoted scalar early: the engine rejects the file and drops
+// the case without a word.
+const loneQuote = (text) => /^pattern: '(.*)'\s*$/m.test(text) && /(^|[^'])'([^']|$)/.test(/^pattern: '(.*)'\s*$/m.exec(text)[1])
 
 let wrong = 0
 let untested = 0
@@ -54,6 +57,11 @@ for (const c of cases) {
     if (!/^type:\s*regex\s*$/m.test(text) || !/source:\s*file/.test(text)) {
       console.log(`? ${c.name}/${name}: not a regex grader on a file, so it is not tested`)
       untested++
+      continue
+    }
+    if (loneQuote(text)) {
+      console.log(`✗ ${c.name}/${name}: a lone ' inside the pattern ends the YAML string; double it or use \\x27`)
+      wrong++
       continue
     }
     const source = pattern(text)

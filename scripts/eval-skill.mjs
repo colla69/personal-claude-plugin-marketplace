@@ -56,7 +56,7 @@ for (let i = 0; i < argv.length; i++) {
   else if (a === '--max-cost') args.maxCost = Number(argv[++i])
   else if (a === '--allow-tools') args.allowTools = argv[++i]
   else if (a === '--against') args.against = argv[++i]
-  else if (a === '--ref') args.ref = argv[++i]
+  else if (a === '--ref') { args.ref = argv[++i]; args.refGiven = true }
   else if (a === '--save') args.save = resolve(argv[++i])
   else if (a.startsWith('--')) usage(`unknown flag ${a}`)
   else if (!args.plugin) args.plugin = a
@@ -79,7 +79,7 @@ if (!existsSync(cases)) usage(`${args.plugin} has no cases in evals/${args.plugi
 
 const git = (...a) => execFileSync('git', a, { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] })
 if (args.probe && args.decide) usage('--probe measures the baseline only; --decide stores a lift')
-if (args.probe && (args.against || args.ref)) usage('--probe has no baseline version to compare with; drop --against and --ref')
+if (args.probe && (args.against || args.refGiven)) usage('--probe has no baseline version to compare with; drop --against and --ref')
 if (args.decide) {
   if (args.case || args.runs < 5) usage('--decide runs the whole suite, at 5 runs or more')
   if (git('status', '--porcelain', '--', `plugins/${args.plugin}`, `evals/${args.plugin}`).trim()) {
