@@ -15,6 +15,7 @@
 //   --against <spec>   compare with this result instead of the stored one; see
 //                      eval-compare.mjs for the forms
 //   --ref <ref>        the baseline version (default: main)
+//   --save <dir>       keep the engine's raw output (result.json, report.html) in <dir>
 //
 // The baseline while working is the last line of measurements/results.jsonl with the
 // same suite and models. With none, or with --decide, the cases run against <ref> in
@@ -31,8 +32,8 @@
 // The collector of marketplace-base would file issues on the public repo from inside a
 // run, so a suite for that plugin is refused here.
 
-import { readFileSync, existsSync, mkdtempSync, cpSync, rmSync } from 'node:fs'
-import { join, dirname, resolve } from 'node:path'
+import { readFileSync, existsSync, mkdtempSync, cpSync, rmSync, readdirSync } from 'node:fs'
+import { join, dirname, resolve, basename } from 'node:path'
 import { tmpdir } from 'node:os'
 import { fileURLToPath } from 'node:url'
 import { spawnSync, execFileSync } from 'node:child_process'
@@ -53,6 +54,7 @@ for (let i = 0; i < argv.length; i++) {
   else if (a === '--allow-tools') args.allowTools = argv[++i]
   else if (a === '--against') args.against = argv[++i]
   else if (a === '--ref') args.ref = argv[++i]
+  else if (a === '--save') args.save = resolve(argv[++i])
   else if (a.startsWith('--')) usage(`unknown flag ${a}`)
   else if (!args.plugin) args.plugin = a
   else usage('one plugin at a time')
@@ -63,7 +65,7 @@ args.maxCost ??= args.decide ? 10 : 3
 
 function usage(why) {
   if (why) console.error(why)
-  console.error('usage: eval-skill.mjs <plugin> [--decide] [--case glob] [--runs n] [--max-cost usd] [--against spec] [--ref ref]')
+  console.error('usage: eval-skill.mjs <plugin> [--decide] [--case glob] [--runs n] [--max-cost usd] [--against spec] [--ref ref] [--save dir]')
   process.exit(2)
 }
 
@@ -117,7 +119,14 @@ function engine(plugin, outDir) {
   if (args.case) cmd.push('--case', args.case)
   const run = spawnSync('claude', cmd, { stdio: ['ignore', 'ignore', 'inherit'], cwd: root })
   if (!existsSync(out)) throw new Error(`The engine wrote no result (exit ${run.status}).`)
-  return summarize(JSON.parse(readFileSync(out, 'utf8')), { suite: args.plugin, model: MODEL, judgeModel: JUDGE })
+  if (args.save) cpSync(outDir, join(args.save, basename(outDir)), { recursive: true })
+  const line = summarize(JSON.parse(readFileSync(out, 'utf8')), { suite: args.plugin, model: MODEL, judgeModel: JUDGE })
+  // A case that fails to load is dropped without a word, and the table looks whole.
+  const wanted = readdirSync(cases, { withFileTypes: true }).filter((d) => d.isDirectory()).length
+  if (!args.case && !line.partial && line.cases.length !== wanted) {
+    throw new Error(`${wanted} cases in evals/${args.plugin}/, but the engine ran ${line.cases.length}. A case file is invalid; see the lines above.`)
+  }
+  return line
 }
 
 // The cases of this checkout against the skill of <ref>, read from a temporary worktree.

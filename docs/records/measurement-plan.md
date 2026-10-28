@@ -269,6 +269,30 @@ Each phase is one pull request or a few. Phases 0 to 3 are the core, in order.
 - Done when each skill has a Δ with its interval, next to its floor, in `results.jsonl`,
   and a one-page note says keep, rework or retire for each.
 
+First readings, from `evals/language-java/`, none stored. One run of the whole suite
+at 5 runs per case, after the graders were corrected so that none passes the bug the
+skill names (`Files.lines`, `orElse(null)`, a view for a copy, a post-8 API):
+
+| Case | With | Without | Δ | Skill fired, with arm |
+|---|---|---|---|---|
+| `java8-data-class` | 1.00 | 1.00 | 0.00 | 0 of 5 |
+| `defensive-copy` | 0.87 | 0.87 | 0.00 (interval -0.27 to 0.27) | 0 of 5 |
+| `optional-nickname` | 1.00 | 1.00 | 0.00 | 0 of 5 |
+| `read-first-line` | 1.00 | 1.00 | 0.00 | 0 of 5 |
+| `wrap-with-context` | 1.00 | 1.00 | 0.00 | 0 of 5 |
+| `java8-data-class-forced`, kept out of the gate | 1.00 | 1.00 | 0.00 | 2 of 5 |
+
+Two things follow, and only these. The description did not make the skill load on any
+plain prompt, 25 runs in all. And on these five tasks the model passes the checks
+without the skill, so the cases show no lift to find. They do not show that the skill's
+rules are useless: they show that these tasks do not need them. A rule worth keeping
+must be one the model gets wrong without help, so the next cases are for the rules not
+yet tried (the language level read from `pom.xml` before writing, `Process` handling,
+field injection), each with a baseline that is below the ceiling. A skill that still
+shows no Δ on such cases is a candidate to retire. The indicator is also not exact: the
+forced case fired in 2 of 5 runs here and in 3 of 3 before, so read `skill-fired` as a
+rough signal.
+
 **Phase 3: triggering for every skill.**
 - About 6 should-fire and 4 near-miss prompts per skill, run with the plugins a typical
   project loads, at `--ablation none`.

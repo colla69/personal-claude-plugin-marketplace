@@ -46,8 +46,9 @@ those and stays quiet on ordinary requests that only sound alike. Then ask for a
 which is the only measurement of whether it changes the outcome, and compares with
 `main`. It prints a table and keeps nothing, so run it as often as you like. Cases go in
 `evals/<name>/`, outside the plugin so that no install carries them, and
-`language-conventional-commits` has the first. The raw output stays out of git, and
-`--decide` stores one summary line in `measurements/results.jsonl`.
+`language-conventional-commits` and `language-java` have cases so far. The raw output
+stays out of git (`--save <dir>` keeps a copy), and `--decide` stores one summary line
+in `measurements/results.jsonl`.
 [Commands](../reference/commands.md) lists the scripts.
 
 ## Check it before you push
