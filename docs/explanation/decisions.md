@@ -290,13 +290,14 @@ Decided on 2026-10-27.
 |---|---|---|---|
 | D80 | Docking sets `autoCompactWindow` to 180000 in the project's `.claude/settings.json`, from the settings template. The steward brings the project's copy up to date when asked: it compares each key of the template with the project's value and changes the ones the user ticks | A long session that runs to the model's limit sends its largest requests last, and what it compacts from is far from the start. A plugin can't ship this key, so it has to live in the project's file, and a copy goes stale. The steward keeps no record of what it wrote (D62), so it can't tell an old value from the project's own choice, and asks | Holds, in `settings-template.json` and `dock.md` |
 
-## Measuring a skill: D81
+## Measuring a skill: D81 and D82
 
 Decided on 2026-10-28, in the first phase of the measurement plan.
 
 | # | Decision | Why | Now |
 |---|---|---|---|
 | D81 | A skill's test cases live in `evals/<plugin>/` at the repo root, never in the plugin. `node scripts/eval-skill.mjs <plugin>` stages them beside a copy of the plugin, runs them with and without the skill on pinned model IDs, and compares with `main`. Only `--decide` stores a line, in `measurements/results.jsonl`. The script refuses `marketplace-base` and any plugin that builds on it | A skill's value was a belief. A first case for `language-conventional-commits` scored 1.00 with the skill and 0.33 without it, in three runs of each. `claude plugin eval` reads cases only from inside the plugin, and an install copies that folder to every machine, so the script stages the cases at run time and the plugin stays clean. The same cases then measure any version of the skill. The engine loads only the plugin under test, with a temporary home, so the collector can't run in another plugin's eval; a suite for the base would let it file issues on the public repo | Holds, in `plugin-shape.md` and `eval-skill.mjs` |
+| D82 | A case enters a suite only after two free checks. `node scripts/grader-probe.mjs <plugin>` tries every regex grader against code known to be good and code known to be bad, and `node scripts/eval-skill.mjs <plugin> --probe` runs the case without the skill and flags a baseline of 0.8 or more. A case that fails either is rewritten or dropped | The first Java suite passed both ways. Its seven cases scored 0.00 lift. In five the model passed unaided (0.87 to 1.00 in both arms), and in the build-file case it read `pom.xml` in one run of five in each arm, so neither arm showed anything of the skill. Four graders accepted the bug the skill names (`Files.lines`, `orElse(null)`, a view for a copy, an API newer than Java 8) until a reviewer read them. Both mistakes cost money to find by running. The grader check is free, and the probe costs about a dollar for seven cases at three runs | Holds, in `grader-probe.mjs` and `eval-skill.mjs` |
 
 ## Still open
 

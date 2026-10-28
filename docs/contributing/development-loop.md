@@ -48,7 +48,10 @@ which is the only measurement of whether it changes the outcome, and compares wi
 `evals/<name>/`, outside the plugin so that no install carries them, and
 `language-conventional-commits` and `language-java` have cases so far. The raw output
 stays out of git (`--save <dir>` keeps a copy), and `--decide` stores one summary line
-in `measurements/results.jsonl`.
+in `measurements/results.jsonl`. Before a case is worth running, `node
+scripts/grader-probe.mjs <plugin>` checks its graders against good and bad code, and
+`eval-skill.mjs <plugin> --probe` runs it without the skill to see whether the model
+already passes.
 [Commands](../reference/commands.md) lists the scripts.
 
 ## Check it before you push

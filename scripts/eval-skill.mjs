@@ -16,6 +16,8 @@
 //                      eval-compare.mjs for the forms
 //   --ref <ref>        the baseline version (default: main)
 //   --save <dir>       keep the engine's raw output (result.json, report.html) in <dir>
+//   --probe            run the cases WITHOUT the skill only, at 3 runs: a case whose
+//                      baseline is already high cannot show a lift. Stores nothing.
 //
 // The baseline while working is the last line of measurements/results.jsonl with the
 // same suite and models. With none, or with --decide, the cases run against <ref> in
@@ -43,11 +45,12 @@ import { compare, table, load, interval } from './eval-compare.mjs'
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const BASE = 'marketplace-base'
 
-const args = { plugin: null, decide: false, ref: 'main', allowTools: 'Write,Edit' }
+const args = { plugin: null, decide: false, probe: false, ref: 'main', allowTools: 'Write,Edit' }
 const argv = process.argv.slice(2)
 for (let i = 0; i < argv.length; i++) {
   const a = argv[i]
   if (a === '--decide') args.decide = true
+  else if (a === '--probe') args.probe = true
   else if (a === '--case') args.case = argv[++i]
   else if (a === '--runs') args.runs = Number(argv[++i])
   else if (a === '--max-cost') args.maxCost = Number(argv[++i])
@@ -65,7 +68,7 @@ args.maxCost ??= args.decide ? 10 : 3
 
 function usage(why) {
   if (why) console.error(why)
-  console.error('usage: eval-skill.mjs <plugin> [--decide] [--case glob] [--runs n] [--max-cost usd] [--against spec] [--ref ref] [--save dir]')
+  console.error('usage: eval-skill.mjs <plugin> [--decide|--probe] [--case glob] [--runs n] [--max-cost usd] [--against spec] [--ref ref] [--save dir]')
   process.exit(2)
 }
 
@@ -75,6 +78,8 @@ const cases = join(root, 'evals', args.plugin)
 if (!existsSync(cases)) usage(`${args.plugin} has no cases in evals/${args.plugin}/`)
 
 const git = (...a) => execFileSync('git', a, { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] })
+if (args.probe && args.decide) usage('--probe measures the baseline only; --decide stores a lift')
+if (args.probe && (args.against || args.ref)) usage('--probe has no baseline version to compare with; drop --against and --ref')
 if (args.decide) {
   if (args.case || args.runs < 5) usage('--decide runs the whole suite, at 5 runs or more')
   if (git('status', '--porcelain', '--', `plugins/${args.plugin}`, `evals/${args.plugin}`).trim()) {
@@ -102,10 +107,25 @@ function runEngine(plugin, outDir) {
     cpSync(plugin, copy, { recursive: true })
     rmSync(join(copy, 'evals'), { recursive: true, force: true })
     cpSync(cases, join(copy, 'evals'), { recursive: true })
+    if (args.probe) stripSkill(copy)
     return engine(copy, outDir)
   } finally {
     rmSync(stage, { recursive: true, force: true })
   }
+}
+
+// The baseline arm: the same plugin with no skill in it, run as one arm. A grader that
+// asks whether the skill fired would fail by design, so those go too.
+function stripSkill(copy) {
+  rmSync(join(copy, 'skills'), { recursive: true, force: true })
+  const walk = (d) => {
+    for (const e of readdirSync(d, { withFileTypes: true })) {
+      const p = join(d, e.name)
+      if (e.isDirectory()) walk(p)
+      else if (d.endsWith('graders') && /^tool:\s*['"]?Skill['"]?\s*$/m.test(readFileSync(p, 'utf8'))) rmSync(p)
+    }
+  }
+  walk(join(copy, 'evals'))
 }
 
 function engine(plugin, outDir) {
@@ -116,6 +136,7 @@ function engine(plugin, outDir) {
     '--model', MODEL, '--judge-model', JUDGE, '--allow-tools', ...args.allowTools.split(','),
     '--json', out, '--output-dir', outDir, '--report', join(outDir, 'report.html'),
   ]
+  if (args.probe) cmd.push('--ablation', 'none')
   if (args.case) cmd.push('--case', args.case)
   const run = spawnSync('claude', cmd, { stdio: ['ignore', 'ignore', 'inherit'], cwd: root })
   if (!existsSync(out)) throw new Error(`The engine wrote no result (exit ${run.status}).`)
@@ -168,10 +189,24 @@ function lift(line) {
   return out.join('\n')
 }
 
+const CEILING = 0.8
+
+function probe(line) {
+  const out = ['| Case | Baseline | Runs | Reading |', '|---|---|---|---|']
+  let high = 0
+  for (const c of line.cases) {
+    const m = mean(c.with)
+    const hard = m < CEILING
+    if (!hard) high++
+    out.push(`| ${c.name} | ${f2(m)} | ${c.with.map(f2).join(' ')} | ${hard ? 'room for a lift' : 'model passes without the skill: rewrite or drop'} |`)
+  }
+  return out.join('\n') + `\n\n${high} of ${line.cases.length} cases are at or above ${CEILING} without the skill.`
+}
+
 const work = mkdtempSync(join(tmpdir(), 'eval-skill-'))
 // A signal skips `finally`, so turn it into an exit that runs it.
 for (const sig of ['SIGINT', 'SIGTERM']) process.on(sig, () => process.exit(130))
-try {
+function liftCheck() {
   const now = runEngine(dir, join(work, 'now'))
   console.log(`## ${args.plugin}: lift of the skill (${now.runs} runs, ${now.claudeVersion}, $${f2(now.costUsd)})\n`)
   console.log(lift(now))
@@ -199,6 +234,18 @@ try {
   } else if (!args.decide) {
     console.log('\nNothing stored. This tells you where to look; a decision needs --decide.')
   }
+}
+
+function probeCheck() {
+  const base = runEngine(dir, join(work, 'now'))
+  console.log(`## ${args.plugin}: baseline without the skill (${base.runs} runs, ${base.claudeVersion}, $${f2(base.costUsd)})\n`)
+  console.log(probe(base))
+  console.log('\nNothing stored.')
+}
+
+try {
+  if (args.probe) probeCheck()
+  else liftCheck()
 } finally {
   rmSync(work, { recursive: true, force: true })
 }
