@@ -47,14 +47,24 @@ the checklist, and the rules for the file.
 
 Decide, from what step 2 found:
 
-- **The standards to install.** `catalog.md` says when each applies, and
-  `plugin-sources.md` how to fill a gap. Every docked project gets `marketplace-base`.
+- **The standards to install.** Walk every row of the table in `catalog.md`, top to
+  bottom, and settle each one: install it on the signal you found, or leave it out on
+  the signal you looked for and didn't find, or on a mismatch the row names. A row you
+  pass without a verdict is how two runs on one project install different sets.
+  `plugin-sources.md` says how to fill a gap. Every docked project gets
+  `marketplace-base`.
 - **The commit question.** In a project with code, ask the one question in "Commit
   messages" in `catalog.md` now, and wait for the answer.
+- **The agents' models.** When the project has agents in `.claude/agents/` that name no
+  model or say `inherit`, read `agent-models.md` and ask its one question now, together
+  with the commit question.
 - **The check command.** In a project with code, the one command that proves the build
-  and the tests pass, such as `npm run build && npm test`. Take it from CI. Choose none
-  when you couldn't verify one, and say so in the report: a wrong command blocks every
-  turn that edits a file.
+  and the tests pass, such as `npm run build && npm test`. Take it from CI; with no CI,
+  from the command the project's own documents name for checking its work. Step 7 runs
+  it once. Choose none when it can't run here, and say so in the report: a wrong command
+  blocks every turn that edits a file. Decide too which paths it covers, as step 5 says.
+  A project where the command covers only part of the work, such as a built site beside
+  data and documents, gets the paths, so edits outside them cost no check.
 - **The files to write**, and roughly what goes in each.
 
 Nothing else is shown before the work. The decisions go into the report.
@@ -75,16 +85,26 @@ goes in a path-scoped rule in `.claude/rules/`.
 A file the project already has is edited, not replaced: add what is missing, and leave
 every line the project wrote. Step 6 decides what of it goes.
 
+When step 3 chose a check command, add one line under the Commands table: a long check
+runs through the `marketplace-base:test-runner` agent, which runs it on Haiku and
+reports only what failed, so the output stays out of the session.
+
 ## 5. Install
 
 1. **Merge `assets/settings-template.json` into `.claude/settings.json`.** Never
    replace the file; it often holds permissions and hooks already. The template declares
    the marketplace, which Claude Code then updates by itself, so a merged change reaches
    the project, and sets the session's model to `opusplan`: Opus in plan mode, Sonnet
-   otherwise. When the file already names a `model`, keep the project's, and say so in
-   the report.
+   otherwise, and sets `autoCompactWindow` to 180000: a session compacts when its
+   context reaches 180k tokens, not at the model's limit. When the file already names a
+   `model` or an `autoCompactWindow`, keep the project's, and say so in the report.
 2. **Write the check command**, when step 3 chose one, as `"STEWARD_CHECK"` under `env`
-   in the same file. The base plugin's guard reads it.
+   in the same file. The base plugin's guard reads it. When part of the project is not
+   covered by the command, such as `jobs/` or `CV/` beside a built `frontend/`, also
+   write `"STEWARD_CHECK_PATHS"`: the globs of what the command covers, relative to the
+   project's root and separated by commas, such as `frontend/**,infra/**`. The guard
+   then runs only when a file in those paths changed. Leave it out when the command
+   covers the whole project.
 3. **Remove the dead keys**, by the rule in "Renamed and removed" in `catalog.md`, and
    report every plugin at user scope that "Scope" there doesn't allow.
 4. **Check every plugin you decided on against `.claude/plugin-sources.json`.** If you
@@ -102,7 +122,11 @@ every line the project wrote. Step 6 decides what of it goes.
 When step 2 found a setup of the project's own, or files an earlier steward generated,
 read `tidy.md` and run it. It removes only what an installed standard says word for
 word, keeps every other rule as the project's own, and files the rules that would serve
-other projects as issues for the curators.
+other projects as issues for the curators. Run it on every file step 2 noted, not only
+the ones you expect to change: its table has one row for each file read, and a file
+without a row was not read.
+
+Then write the models the user accepted in step 3, as `agent-models.md` says.
 
 ## 7. Verify
 
@@ -127,6 +151,15 @@ Do not declare success without checking:
    before you installed anything, so it shows the new parts as "not yet". Take their
    always-on tokens from `claude plugin details`, and put the total in the report.
 
+8. **Nothing overrides the window.** `CLAUDE_CODE_AUTO_COMPACT_WINDOW` in the shell
+   or in an `env` block, and a window saved for a model under `modelSettings` in
+   `.claude/settings.local.json` or in `~/.claude/settings.json`, win over the project's
+   `autoCompactWindow`. Report each you find, and change nothing there.
+9. **The report is complete.** Count the rows. Every file step 2 noted has a row of its
+   own in the Tidied table, never one row for a group, and the count in "Read <n> files"
+   equals the rows. Every row of the catalog has a verdict in the Standards table or is
+   counted in its closing line. A gap here is a step you skipped: go back and do it.
+
 Do **not** run `claude plugin validate` on the project's `.claude/` directory. It
 expects a plugin or marketplace manifest, and fails with "No manifest found".
 
@@ -146,12 +179,15 @@ expects a plugin or marketplace manifest, and fails with "No manifest found".
 - <path that already existed> — <what changed>
 
 ### Standards
-| Plugin | Why: the evidence in this project |
-|---|---|
-| <name> | <what you found that calls for it> |
+| Plugin | Verdict | Evidence in this project |
+|---|---|---|
+| <name> | <install, kept, or left out> | <the signal you found, or the one you looked for and didn't find> |
+
+<A closing line counts the rows whose signal is plainly absent, such as a language the
+project doesn't use, instead of listing each.>
 
 ### Tidied
-<Only when step 6 ran: its table, from `tidy.md`.>
+<Only when step 6 ran: its tables, from `tidy.md`.>
 
 ### For the curators
 <Each issue filed, with its link, or the rules waiting on disk and why. Left out when
@@ -176,3 +212,22 @@ active until then. Once you commit `.claude/`, the setup travels with the projec
 
 Leave out a section that would be empty. The block under "On another machine" is never
 left out: it is what turns the next machine's clone into a working setup.
+
+## Refresh the settings
+
+A project's `.claude/settings.json` holds a copy of the template as it stood on the day
+of docking. Claude Code updates the marketplace by itself, but never that copy. To bring
+it up to date, run this on a docked project, when the user asks if the setup is
+current:
+
+1. Read `assets/settings-template.json` and the project's `.claude/settings.json`, and
+   `.claude/settings.local.json` over it.
+2. For each key the template sets, compare the project's value. Make a table with one
+   row for each key: the template's value, the project's value, and one of "same",
+   "missing" or "differs".
+3. Ask one question for all the rows that are "missing" or "differs", one option for
+   each: "`<key>` to `<value>`". The user ticks the ones to change. A value that
+   differs may be the project's own choice, and nothing records which it is, so change
+   none without a tick.
+4. Write the ticked values into `.claude/settings.json`, and keep every other key.
+5. Report the table, and what was written. Then run step 7, item 8.

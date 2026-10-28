@@ -35,9 +35,12 @@ first trials will show where it behaves otherwise.
    repository are ticked already. It is asked once.
 3. **Answer what only you can.** In a codebase, it asks once whether the project writes
    its commit messages in Conventional Commits, unless the project already shows the
-   format. When the project has `AGENTS.md` files, it asks whether to keep them or swap
-   them for `CLAUDE.md`. Claude Code may ask for some commands as it goes, such as each
-   plugin install; [permissions](../reference/permissions.md) lists them.
+   format. When the project has agents in `.claude/agents/` that name no model, it asks
+   once which of them to move to a model that fits their work, such as Haiku for an
+   agent that only searches and runs commands. When the project has `AGENTS.md` files,
+   it asks whether to keep them or swap them for `CLAUDE.md`. Claude Code may ask for
+   some commands as it goes, such as each plugin install;
+   [permissions](../reference/permissions.md) lists them.
 4. **Read the report.** It lists every file written and changed, each standard and the
    evidence for it, the check command the guard will run, what the tidy removed and
    filed, the tokens the setup adds to every session, and what it couldn't verify.
@@ -51,7 +54,7 @@ first trials will show where it behaves otherwise.
 | `CLAUDE.md` | The commands, the map of components, and the conventions and boundaries that reading the code won't tell |
 | The same file in each component that earns one | What is local to that component |
 | `.claude/rules/<topic>.md`, where one is needed | A convention that follows a file type rather than a folder, scoped by its `paths:` |
-| `.claude/settings.json` | The marketplace, the model, the check command, and the plugins enabled for this project |
+| `.claude/settings.json` | The marketplace, the model, the compaction window, the check command, and the plugins enabled for this project |
 | `.claude/plugin-sources.json` | The sources you ticked |
 
 [Project files](../reference/project-files.md) describes each one, and [the
@@ -70,7 +73,9 @@ base](../reference/the-base.md) what the base plugin does in every session.
 
 ## A project with a setup of its own
 
-The steward edits an existing `CLAUDE.md`; it never replaces one. Then it tidies:
+The steward edits an existing `CLAUDE.md`; it never replaces one. Then it tidies, file
+by file. The report lists every file it read, with how many rules each holds and what
+happened to them, so a file that was not read shows as a missing row.
 
 - A rule an installed standard states word for word is removed.
 - Every other rule stays: it is the project's own.
@@ -90,10 +95,18 @@ work, such as plain English. There is no check command, so the guard does nothin
 
 ## Staying current
 
-Nothing to do. Claude Code updates the marketplace by itself, so each merged change
-reaches the project at a session after it. If your own settings turn that off for the
-marketplace, the report says so. To add one more standard, say "add the
-standard for X". To see what the setup costs, ask "what does this setup cost?".
+Standards need nothing. Claude Code updates the marketplace by itself, so each merged
+change reaches the project at a session after it. If your own settings turn that off
+for the marketplace, the report says so.
+
+The settings are a copy. Docking writes the template's keys, such as the model and the
+compaction window, into `.claude/settings.json`, and a later change to the template
+doesn't reach that copy. To bring it up to date, ask "is my setup current?". The steward
+lists each key whose value differs from the template, and changes only the ones you
+tick, because a value that differs may be your own choice.
+
+To add one more standard, say "add the standard for X". To see what the setup costs,
+ask "what does this setup cost?".
 
 ## Next
 

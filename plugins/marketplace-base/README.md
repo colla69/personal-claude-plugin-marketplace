@@ -20,14 +20,19 @@ make back to the curators. The steward installs it first, in every project it do
   the ones enabled in this project marked, about 800 tokens. A session can then say
   "there is a standard for that" when someone asks for work it covers, and offer to
   add it.
-- **When Claude is about to stop, the guard.** If Claude changed a file in this session,
-  it runs the project's check command from the project's root, and a failure keeps
-  Claude working, with the last lines of the output. After three failures in a row it
-  lets Claude stop and says so. A project without a check command is never checked.
-- **At session end, the collector.** A background run on Haiku reads the conversation,
-  what the person wrote and what Claude answered and never a tool's output, finds the
-  corrections that look like a standard, and files them as one issue on the marketplace.
-  The next session start catches up on sessions that ended without it.
+- **When Claude is about to stop, the guard.** If a file changed in this session, by a
+  tool or through the shell, it runs the project's check command from the project's
+  root, and a failure keeps Claude working, with the last lines of the output. After
+  three failures in a row it lets Claude stop and says so. A project without a check
+  command is never checked. Work that was uncommitted before the session started is
+  not blamed on it.
+- **While you work, the collector.** After an answer, a background run on Haiku reads
+  what the session added since its last look, at most once in ten minutes. It reads
+  what the person wrote and what Claude answered, never a tool's output. It adds the
+  possible corrections to a list on disk. Nothing waits for the session to end.
+- **At session start, the filing.** The lists of earlier sessions in this project become
+  one issue on the marketplace. A session that was killed or never closed is read to
+  its end first.
 
 ## The check command
 
@@ -41,13 +46,23 @@ from the command the project's CI runs:
 
 Remove it, and the guard does nothing in that project.
 
+A project where the command covers only part of the work, such as a built site beside
+documents and data, says which part in `STEWARD_CHECK_PATHS`, globs relative to the
+project's root and separated by commas. The guard then runs only when a file in those
+paths changed:
+
+```json
+{ "env": { "STEWARD_CHECK": "npm run build", "STEWARD_CHECK_PATHS": "web/**,infra/**" } }
+```
+
 ## The collector
 
-- It files with `gh`, signed in on the machine. When `gh` can't file, the issue waits in
-  the plugin's data folder and is retried at the next session start.
-- It starts from the day it is installed: earlier sessions are never collected.
+- It files with `gh`, signed in on the machine. When `gh` can't file, the lists stay in
+  the plugin's data folder and are tried again at the next session start.
+- It starts from the day it is installed: only sessions that run with the plugin are
+  noted, so it never files a backlog.
 - A session with fewer than two messages from the person is skipped without a model
-  call.
+  call, and so is a pass with nothing new in it.
 - It writes placeholders for names and secrets it notices, but it is a model, not a
   filter, and the issues are as public as the marketplace's repository.
 - `"STEWARD_COLLECT": "off"` under `env`, in a project's settings or your own, turns

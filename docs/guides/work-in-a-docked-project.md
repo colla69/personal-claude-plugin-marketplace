@@ -19,6 +19,10 @@ The project's model is `opusplan`: Opus while you are in plan mode, Sonnet other
 For hard, open-ended work, switch to plan mode with Shift+Tab, agree a plan, and leave
 plan mode to carry it out. `/model` changes the model for a session.
 
+A session compacts when its context reaches 180k tokens (`autoCompactWindow` in
+`.claude/settings.json`), so a long session stays well inside the model's limit.
+`/autocompact` changes the window for a model on your machine.
+
 ## When the check fails
 
 If Claude changed a file, it runs the project's check command before it stops. When the

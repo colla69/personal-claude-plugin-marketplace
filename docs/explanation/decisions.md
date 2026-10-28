@@ -25,6 +25,9 @@ the reason it was made is often the reason its replacement has the shape it has.
 - [Short reports: D60](#short-reports-d60)
 - [Project scope only: D61](#project-scope-only-d61)
 - [The rebuild: D62 to D76](#the-rebuild-d62-to-d76)
+- [Collecting as the session goes: D77](#collecting-as-the-session-goes-d77)
+- [Docking that shows its work: D78](#docking-that-shows-its-work-d78)
+- [A guard that sees every change: D79](#a-guard-that-sees-every-change-d79)
 - [Still open](#still-open)
 
 ## The author's statements
@@ -245,7 +248,7 @@ centralize ways of working between teams." The rebuild shipped as one pull reque
 | D65 | Settings and hooks are allowed where they fit | "We want to always work smart, not necessarily cheap. We still want high quality while keeping the waste to a minimum." A hook does what a skill can only ask for | Holds, in `marketplace-base`; supersedes D35 |
 | D66 | The model follows the kind of work, and ships centrally: Opus plans, Sonnet does, Haiku fetches and runs. Docking sets `"model": "opusplan"`, which plans on Opus in plan mode and works on Sonnet. A person can override it | "Complex work is not the standard, so I would like to find balance between models. Some things may even be made using Haiku" | Holds, in `settings-template.json` and each agent's frontmatter; supersedes D46 |
 | D67 | In development, the one imperative is that the build and the tests stay green, kept by a hook. A review runs only when someone asks, on Opus. Other kinds of work get no automatic review | "For some different kind of work automatic review is not really necessary, as a human will do that anyway, so those would be wasted tokens" | Holds, in the base plugin's guard and `reviewer` |
-| D68 | The corrections a person makes are collected in the background, at the end of every session, and filed as one issue on the marketplace. The collector reads only the conversation, never a tool's output, and runs on Haiku. A session that ended without its hook is caught up at the next session start. What the curators do with them comes later | "Every session writes back a list of them as a GitHub issue in the background." Only the conversation, because a tool's output can hold secrets nobody typed. A session-end hook gets about a second and a half, so it only starts the work | Holds, in the base plugin's `collect.mjs` |
+| D68 | The corrections a person makes are collected in the background, at the end of every session, and filed as one issue on the marketplace. The collector reads only the conversation, never a tool's output, and runs on Haiku. A session that ended without its hook is caught up at the next session start. What the curators do with them comes later | "Every session writes back a list of them as a GitHub issue in the background." Only the conversation, because a tool's output can hold secrets nobody typed. A session-end hook gets about a second and a half, so it only starts the work | Holds, in the base plugin's `collect.mjs`, except that the trigger is **superseded** by D77 |
 | D69 | One base plugin, `marketplace-base`, installed in every docked project, carries the hooks and two read-only helpers: a `test-runner` on Haiku and a `reviewer` on Opus | "Ok, we use plugins." A plugin's hooks run only where it is enabled, and update with it | Holds |
 | D70 | The steward is a companion for beginners and advanced users alike: one small skill that docks, and a `guide` agent on Sonnet that answers. A compact index of every standard reaches every session at its start, so the right standard comes up when someone just types. Docking reads a project with the built-in Explore agent | "People are lazy. They just blurt into the editor." The index costs about 800 tokens a session; the guide runs in its own context | Holds, in the steward and the base plugin's `index.mjs` |
 | D71 | A project is docked only when someone asks | The person chooses which projects to dock | Holds, in the steward's description |
@@ -254,6 +257,38 @@ centralize ways of working between teams." The rebuild shipped as one pull reque
 | D74 | The curator is a plugin of its own, `marketplace-curator`, enabled only in the marketplace's repository. It works issues and lessons into pull requests in that checkout. A nightly routine over the issues may come later; it is not part of the rebuild | "Separated curator." Curating is a different group's work from docking, and its knowledge costs nothing in a docked project | Holds; supersedes D27, D36 and D37 |
 | D75 | The rebuild ships as one pull request | `main`, and every project that follows it, sees one change | Done |
 | D76 | Only the steward and `language-simple-english` sit at user scope. The base plugin and every standard go in at project scope | The steward no longer depends on `craft-review`; the base plugin and the curator do, at their own scope | Holds, in "Scope" in `catalog.md`; refines D61 |
+
+## Collecting as the session goes: D77
+
+Decided on 2026-10-26, after the first trial of the base plugin on a real project.
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D77 | The collector keeps a list of possible corrections while a session runs, and the next session start in the project files the lists as one issue. No hook waits for a session to end. After an answer, a background run on Haiku reads what is new, at most once in ten minutes; at session start, the unread end of earlier sessions is read first, and the lists are filed with no model call | "People are lazy and never end session correctly, if at all." A killed terminal skips the session-end hook, and a catch-up that waited for a quiet session filed late, in bursts, and no more than five at a time. A list on disk survives any way a session can end, and a pass reads only what is new, so a long session costs little | Holds, in `collect.mjs` and `hooks.json`; supersedes the trigger in D68 |
+
+## Docking that shows its work: D78
+
+Decided on 2026-10-26, after two docking runs on one project gave different results.
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D78 | The report proves the steps were done. The Standards table gives a verdict for every row of the catalog, and the Tidied table has a row for every file read, with the rules it holds. The project's own agents get a model by the kind of work (D66): docking proposes one for each agent that names none, asks once, and writes only what is ticked | Two runs on one project differed: one installed `language-typescript` for the infrastructure code and one didn't. Both runs left the project's agents and rules unread and said so in one line of the report, where nothing forced the step. A nightly search agent ran at `inherit` and high effort, because D66 set the model only for the agents the marketplace ships. A report that must show a row for each file and each catalog row can't skip the step without the gap showing | Holds, in `dock.md`, `tidy.md` and `agent-models.md` |
+
+## A guard that sees every change: D79
+
+Decided on 2026-10-26, after the first trial of the guard on a real project.
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D79 | The guard finds a change by comparing the files git lists with how they stood at the session's start, and also by the tools' own marks. A project may limit it to paths with `STEWARD_CHECK_PATHS`, and docking writes them when the command covers only part of the project | In the trial, every edit went through the shell, and the guard, which saw only the edit tools, ran nothing. On the same project, a docking run chose no check command, because a full build after every edit would also run for edits to documents and data | Holds, in `guard.mjs`, `dock.md` and the base plugin's README; refines D67 |
+
+## Settings that stay current: D80
+
+Decided on 2026-10-27.
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D80 | Docking sets `autoCompactWindow` to 180000 in the project's `.claude/settings.json`, from the settings template. The steward brings the project's copy up to date when asked: it compares each key of the template with the project's value and changes the ones the user ticks | A long session that runs to the model's limit sends its largest requests last, and what it compacts from is far from the start. A plugin can't ship this key, so it has to live in the project's file, and a copy goes stale. The steward keeps no record of what it wrote (D62), so it can't tell an old value from the project's own choice, and asks | Holds, in `settings-template.json` and `dock.md` |
 
 ## Still open
 

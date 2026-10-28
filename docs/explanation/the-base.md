@@ -26,6 +26,13 @@ after changing a file, and a failure sends Claude back to fix it. It runs only a
 change, only where docking found a command it could verify, and gives up after three
 failures in a row, so a check that cannot pass never traps a session.
 
+It finds a change by comparing the files git lists with how they stood at the session's
+start, not only by the tools that wrote them. Claude edits through the shell as often as
+through its edit tools, and a guard that saw only the tools would pass over half the
+changes. The comparison also leaves out work that was uncommitted before the session,
+which isn't the session's to fix. And where a command covers only part of a project,
+the paths keep an edit to documents or data from costing a full build.
+
 Nothing else is checked automatically. A review runs when someone asks for one, on Opus,
 by the `reviewer` agent. For other kinds of work, "a human will do that anyway, so those
 would be wasted tokens."
@@ -56,17 +63,21 @@ standard for that" to someone who never heard of the steward, and offer to add i
 > "Every session writes back a list of them as a GitHub issue in the background."
 
 When a person corrects Claude, the correction is often a standard nobody wrote down.
-The collector reads a finished session and files the corrections as one issue on the
-marketplace, for the curators. It reads only what the person wrote and what Claude
-answered, never a tool's output: a file or a command's result can hold secrets nobody
-typed. Haiku reads it, in the background, and writes placeholders for names. The issue
-is as public as the marketplace's repository, so a project whose corrections must stay
-in it turns the collector off with one setting.
+The collector keeps a list of possible corrections while a session runs, and the next
+session start files the lists as one issue on the marketplace, for the curators. It
+reads only what the person wrote and what Claude answered, never a tool's output: a
+file or a command's result can hold secrets nobody typed. Haiku reads it, in the
+background, and writes placeholders for names. The issue is as public as the
+marketplace's repository, so a project whose corrections must stay in it turns the
+collector off with one setting.
 
-A session's end gives a hook about a second and a half, so the hook only starts the
-work, and the next session's start catches up on any session that ended without it.
-Collecting starts on the day the plugin is installed, so it never files a backlog. What
-the curators do with the issues is theirs to decide.
+It does not wait for a session to end, because people don't end sessions. They close the
+terminal, or leave the session open for days. A session-end hook would miss those, and
+a catch-up that waits for a quiet session files late and in bursts. So the work follows
+the conversation: a pass after an answer, at most once in ten minutes, reads only what
+is new. A session that ends in any way leaves its list on disk, and the next start in
+that project files it. Collecting starts on the day the plugin is installed, so it
+never files a backlog. What the curators do with the issues is theirs to decide.
 
 [The base's reference](../reference/the-base.md) lists every hook, what it reads and
 writes, and how to turn it off.

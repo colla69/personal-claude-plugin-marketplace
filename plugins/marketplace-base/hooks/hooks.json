@@ -5,7 +5,8 @@
       {
         "hooks": [
           { "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/index.mjs\"", "timeout": 10 },
-          { "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/collect.mjs\" catch-up", "async": true }
+          { "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/guard.mjs\" start", "timeout": 10 },
+          { "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/collect.mjs\" file", "async": true }
         ]
       }
     ],
@@ -20,14 +21,8 @@
     "Stop": [
       {
         "hooks": [
-          { "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/guard.mjs\" check", "timeout": 600 }
-        ]
-      }
-    ],
-    "SessionEnd": [
-      {
-        "hooks": [
-          { "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/collect.mjs\" end" }
+          { "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/guard.mjs\" check", "timeout": 600 },
+          { "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/collect.mjs\" note", "async": true }
         ]
       }
     ]

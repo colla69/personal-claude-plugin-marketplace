@@ -12,10 +12,11 @@ out; the first trials will show where it behaves otherwise.
 | Hook | When | What it does | Script |
 |---|---|---|---|
 | The index | Session start | Prints one line for each standard in the marketplace, with the ones enabled here marked, and asks the session to offer a standard that fits and isn't enabled. About 800 tokens | [`index.mjs`](../../plugins/marketplace-base/scripts/index.mjs) |
-| The guard, marking | After `Write`, `Edit`, `MultiEdit` or `NotebookEdit` | Notes that this session changed a file. A change made through the shell, such as `sed -i`, isn't noted | [`guard.mjs`](../../plugins/marketplace-base/scripts/guard.mjs) |
-| The guard, checking | When Claude is about to stop | If this session changed a file, runs the check command. A failure keeps Claude working, with the output's last 60 lines. After three failures in a row, it lets Claude stop and says so | `guard.mjs` |
-| The collector | Session end | Starts a background run that files the session's corrections, and returns at once | [`collect.mjs`](../../plugins/marketplace-base/scripts/collect.mjs) |
-| The catch-up | Session start, without waiting | Collects up to five earlier sessions of this project that ended without their hook, and retries issues that couldn't be filed | `collect.mjs` |
+| The guard, starting | Session start | In a git repository, notes which files are already changed, with a hash of each, so uncommitted work from before the session isn't blamed on it | [`guard.mjs`](../../plugins/marketplace-base/scripts/guard.mjs) |
+| The guard, marking | After `Write`, `Edit`, `MultiEdit` or `NotebookEdit` | Notes the file the tool changed. This is the only way a change is seen in a folder that isn't a git repository | `guard.mjs` |
+| The guard, checking | When Claude is about to stop | Finds the files that differ from the start, or were marked, including changes made through the shell. If any matches `STEWARD_CHECK_PATHS`, or the project sets none, it runs the check command. A failure keeps Claude working, with the output's last 60 lines. After three failures in a row, it lets Claude stop and says so. What is changed then counts as the new start | `guard.mjs` |
+| The note | When Claude is about to stop, without waiting | At most once in ten minutes, starts a background run that adds the session's new possible corrections to its list, and returns at once | [`collect.mjs`](../../plugins/marketplace-base/scripts/collect.mjs) |
+| The filing | Session start, without waiting | Reads the unread end of this project's earlier sessions, then files their lists as one issue | `collect.mjs` |
 
 The hooks are in [`hooks/hooks.json`](../../plugins/marketplace-base/hooks/hooks.json),
 and every script is plain Node with no dependencies.
@@ -29,15 +30,24 @@ does nothing. It runs in the project's root, whatever folder the session's shell
 through the shell, for up to nine minutes. Each session is checked for its own changes
 only.
 
+`STEWARD_CHECK_PATHS` narrows when it runs: globs relative to the project's root,
+separated by commas, such as `frontend/**,infra/**`. `**` matches any depth, `*` stays
+inside one folder. Docking writes it when the command covers only part of the project,
+so an edit to the rest costs no check. Past 2,000 changed files the comparison is
+skipped, and only the files the tools changed count.
+
 ## The collector
 
 | | |
 |---|---|
 | Reads | The session's transcript: only what the person wrote and Claude's replies. Tool calls and their output, `!` shell commands and their output, background tasks' results, compact summaries, and the text Claude Code adds to a turn are dropped before anything else sees it |
-| Sends | The conversation, at most the last 80,000 characters, to Haiku, through `claude -p` in safe mode, with no tools and no MCP servers |
-| Files | One issue per session with corrections, titled "Corrections: …", on the GitHub repository the marketplace came from, with `gh issue create`. A session the model couldn't answer for is tried at the next three session starts, then given up |
-| Skips | A session with fewer than two messages from the person, without a model call; sessions from before the plugin was installed; a session resumed after it was collected; its own `claude -p` run |
-| Keeps | Its state in the plugin's data folder, `${CLAUDE_PLUGIN_DATA}`: what it collected, the locks, and issues waiting for `gh` |
+| Sends | What the session added since the last pass, at most 80,000 characters, and the four turns before it as context, to Haiku, through `claude -p` in safe mode, with no tools and no MCP servers |
+| Files | One issue for the lists of all earlier sessions in the project, titled "Corrections: …", on the GitHub repository the marketplace came from, with `gh issue create`. A list is emptied only once its issue is filed |
+| Skips | A session with fewer than two messages from the person at its first look, and a pass with nothing new, both without a model call; sessions from before the plugin was installed; a session whose transcript changed in the last two minutes, which is still running; its own `claude -p` run |
+| Keeps | Its state in the plugin's data folder, `${CLAUDE_PLUGIN_DATA}`: for each session, how far it has read, when it last looked and its list, and the locks. A session that is resumed goes on from its place. A session's state is removed 30 days after its last pass, once its list is empty |
+
+Nothing waits for a session to end. A session that is killed, or never closed, loses
+at most what it said after the last pass, and the next session start reads that too.
 
 The issues go wherever the marketplace lives, and anyone who can read that repository
 can read them. A correction is written with placeholders for names and secrets the

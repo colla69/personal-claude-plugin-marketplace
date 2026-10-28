@@ -19,7 +19,7 @@ Fix what goes wrong without saying so. Find the symptom, check the cause, apply 
 |---|---|---|
 | Claude keeps working after you thought it was done, on a failing build or test | The guard: the check command fails after its changes | Intended. If the failure isn't Claude's, fix it or change `STEWARD_CHECK`; after three failures in a row the guard lets go and says so |
 | Every turn waits for a slow check | The check command runs the whole suite | Set `STEWARD_CHECK` to a faster command, such as the unit tests alone |
-| The guard does nothing | The project has no `STEWARD_CHECK`, or nothing changed in the session | Add the command under `env` in `.claude/settings.json` |
+| The guard does nothing | The project has no `STEWARD_CHECK`, nothing changed in the session, or the changed files are outside `STEWARD_CHECK_PATHS` | Add the command under `env` in `.claude/settings.json`, or widen the paths |
 | No corrections issue after a session with corrections | `gh` isn't signed in, the marketplace wasn't added from GitHub, or the session had fewer than two messages from you | Sign `gh` in; waiting issues are retried at the next session start. A marketplace added from a folder has nowhere to file |
 | No index at session start | `marketplace-base` isn't enabled, or Node isn't on the `PATH` | Enable it, or install Node 18 or later |
 

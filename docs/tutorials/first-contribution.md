@@ -41,12 +41,14 @@ floats, correct it:
 no: amounts of money are never added as floats here. Keep them in whole cents.
 ```
 
-End the session. The base plugin's collector starts in the background: Haiku reads only
-what you wrote and what Claude answered, finds the correction, and files it as an issue
-titled "Corrections: …" on the marketplace, with placeholders for names. Within a minute
-or two, it is in the repository's issues.
+Close the session, or leave it. The base plugin's collector has already started in the
+background: after Claude's answer, Haiku read only what you wrote and what Claude
+answered, found the correction, and put it on a list with placeholders for names. Wait
+two minutes, then start a new session in `tally`. At its start, the base plugin files
+the list as an issue titled "Corrections: …" on the marketplace. Within a minute, it is
+in the repository's issues.
 
-If `gh` couldn't file it, it waits on your machine, and the next session start in
+If `gh` couldn't file it, the list stays on your machine, and the next session start in
 `tally` tries again.
 
 ## 4. Work it as a curator
