@@ -14,7 +14,6 @@ plugins/<layer>-<topic>/
   skills/<skill>/SKILL.md         # the standard
   skills/<skill>/references/*.md  # optional: detail loaded on demand
   skills/<skill>/assets/*         # optional: templates the skill writes out
-  evals/<case>/*                  # optional: cases for `claude plugin eval`
 ```
 
 There is no `agents/`. Skill plugins ship knowledge; the few agents the marketplace has
@@ -29,10 +28,11 @@ A skill plugin ships no hooks and no MCP servers: it is knowledge, and the mecha
 every docked project shares live in `marketplace-base`. `check-catalog.mjs` fails on an
 `agents/` or a `hooks/` folder in a skill plugin.
 
-`evals/` ships with the plugin, because an install copies the whole folder. Nothing
-loads it, so it costs no tokens, but every machine that installs the plugin gets the files. Keep a case small:
-a prompt, its graders and a script that builds the fixture, not a checked-in tree. Raw
-results go in `evals/results/`, which `.gitignore` leaves out.
+A skill's test cases are not in its plugin. An install copies the whole plugin folder, so
+a case there would ship to every machine. They live in `evals/<plugin>/` at the root of
+this repo, and `scripts/eval-skill.mjs` stages them beside a copy of the plugin for each
+run. Keep a case small: a prompt, its graders and a script that builds the fixture, not
+a checked-in tree.
 
 Leave the component keys out of `plugin.json`. A `skills` key adds to the default
 `skills/` folder, but an `agents` or a `commands` key replaces its folder, so an

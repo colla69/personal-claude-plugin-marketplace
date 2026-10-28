@@ -23,7 +23,7 @@ The checks in this repo say a thing is well formed. None says it helps.
 | `claude plugin details` | Always-on and on-invoke tokens | Run by hand, never compared between commits |
 | `measure-setup.mjs` | The cost of one project's setup | No real project measured |
 | `evaluate-skills` | A model's opinion of a skill | An opinion, not a measurement |
-| `claude plugin eval` | Output with the plugin against output without it | No plugin has an `evals/` folder |
+| `claude plugin eval` | Output with the plugin against output without it | One case, for one plugin |
 
 So a change merges on feel. This plan replaces the feel with a number.
 
@@ -45,7 +45,7 @@ So a change merges on feel. This plan replaces the feel with a number.
 
 `claude plugin eval` exists in the installed CLI. What it gives, and what it does not:
 
-- A case is a folder `plugins/<name>/evals/<case>/` with `prompt.md`, `graders/*.md` and an
+- The engine reads a case from a folder `<plugin>/evals/<case>/` with `prompt.md`, `graders/*.md` and an
   optional `case.yaml`. `context.scaffold_script` builds a fixture, and needs `--scaffold`.
 - Free graders: `regex`, `tool_used`, `tool_order`, `file_exists`. Paid graders: `llm` and
   `baseline`. There is no custom code grader. To check that tests pass, the case asks
@@ -223,7 +223,7 @@ Raw output stays out of git. One summary line per suite run goes in.
 
 | File | What it holds | Written by |
 |---|---|---|
-| `plugins/*/evals/results/` | Raw eval output. In `.gitignore`. CI keeps `aggregate-result.json` and `report.html` as artifacts | `claude plugin eval` |
+| Raw eval output | Kept in a temporary folder and deleted. CI keeps `aggregate-result.json` and `report.html` as artifacts | `claude plugin eval` |
 | `measurements/results.jsonl` | One line per suite run: date, commit, suite, both model IDs, `claudeVersion`, runs, ablation, `overallScore`, `meanDelta`, cases with per-run scores, `costUsd`, `durationSeconds`, `partial` | `scripts/eval-summary.mjs` |
 | `measurements/noise.json` | The noise floor per suite, model and CLI version | By hand, from two runs |
 | `measurements/cost.json` | Always-on and on-invoke tokens per plugin, on `main` | `scripts/cost-report.mjs` |
@@ -236,7 +236,7 @@ side, the difference and whether it is beyond the floor. CI posts it as a PR com
 Each phase is one pull request or a few. Phases 0 to 3 are the core, in order.
 
 **Phase 0: harness and hygiene.**
-- Add `plugins/*/evals/results/` to `.gitignore`. Create `measurements/` with an empty
+- Create `measurements/` with an empty
   `results.jsonl` and a short README.
 - Make sure no eval run can reach the collector. The engine loads only the plugin under
   test, with a temporary home and config, so no hook of `marketplace-base` runs in an eval
@@ -334,14 +334,13 @@ rewrite, and new skills until the pilot shows the measurement works.
 
 Checked on 2026-10-28 against this checkout.
 
-- **`evals/` sits inside the plugin, so it ships.** `claude plugin eval` takes the folder
-  name below the plugin, and an installed plugin is a copy of that directory. Probed in
-  phase 0: the install copies `evals/` into the plugin cache of each machine. Fixtures
-  and cases reach every install. They cost no tokens, because nothing loads them, but
-  they add files. `plugin-shape.md` now says what an `evals/` folder may hold.
-- **`plugin-shape.md` and `check-catalog.mjs` did not mention `evals/`.** Resolved in
-  phase 0: `plugin-shape.md` has the line, and `check-catalog.mjs` needs none, because it
-  fails only on `agents/`, `hooks/` and `.mcp.json`.
+- **The engine reads cases from inside the plugin, and an install ships that folder.**
+  Probed in phase 0: the install copies a plugin's `evals/` into the cache of each
+  machine. The owner wants the tests outside the skills, so they live in
+  `evals/<plugin>/` at the repo root, and `eval-skill.mjs` stages them beside a copy of
+  the plugin for each run. The same cases then measure any version of the skill, which
+  is what a before-and-after needs. `plugin-shape.md` says so, and `check-catalog.mjs`
+  needs no change.
 - **The collector has two switches today.** `STEWARD_COLLECT: off` in settings, and
   `STEWARD_COLLECTOR=1` inside the collector's own child process. Neither is an eval
   signal, and a fixture cannot set the first: the engine ignores a project-level
@@ -378,7 +377,7 @@ Checked on 2026-10-28 against this checkout.
 | M1 | Does a skill with dependencies, such as `review-changes` on `review-work` and `clean-code`, run with them in both arms or only in the with arm? | In both, so Δ is the skill's own part. **Agreed, but not yet possible:** `claude plugin eval` takes one target and loads only that plugin, so `eval-skill.mjs` runs without the dependencies and says so. Probe in phase 2 whether the engine can load more than one, or whether a case must carry the rule it needs |
 | M2 | Who reviews a judge's rubric before it counts? | The curator who owns the skill |
 | M3 | Where do `measurements/` and the scripts sit, given the product never depends on `docs/` and the scripts are not product? | `measurements/` and `scripts/` at the root, as proposed. They are CI tools, not plugin files |
-| M4 | Does the `evals/` folder ship with the plugin? | Answered in phase 0: yes, the install copies it. Keep fixtures small and built by script, not checked in as trees |
+| M4 | Does the `evals/` folder ship with the plugin? | Answered in phase 0: yes, the install copies it. So the cases live in `evals/<plugin>/` at the repo root and are staged at run time. Keep fixtures small and built by script |
 | M5 | Which model IDs does the pilot pin, and who pays? | Pin today's `claude-sonnet-5-5` for the agent and `claude-haiku-5-5` for the judge. Set the cap after phase 2 |
 | M6 | What does "before a release" mean? | **Settled.** It means contribution work: the skill check with `--decide` before a skill PR. The benchmark is the check for the whole marketplace and the steward |
 | M7 | The repo banned real project names. The benchmark needs public projects by URL and commit. | **Settled 2026-10-28.** A public open-source project may be named, with its license checked. No client, person or private project. `CLAUDE.md` and `writing-docs.md` are changed |

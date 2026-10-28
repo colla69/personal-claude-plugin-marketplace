@@ -1,6 +1,8 @@
 #!/usr/bin/env node
-// The skill check: runs one plugin's evals with and without the plugin, then
-// compares with `main`, not with nothing.
+// The skill check: runs one plugin's cases with and without the plugin, then
+// compares with `main`, not with nothing. The cases are in evals/<plugin>/, outside
+// the plugin, so an install carries none; each run stages them next to a copy of the
+// plugin, because the engine reads cases from inside it.
 //
 //   node scripts/eval-skill.mjs <plugin>            while working: 3 runs, prints only
 //   node scripts/eval-skill.mjs <plugin> --decide   when contributing: 5 runs, fresh
@@ -18,7 +20,7 @@
 // same suite and models. With none, or with --decide, the cases run against <ref> in
 // a temporary worktree: the cases of this checkout, the skill of <ref>.
 //
-// --decide measures this checkout, so it refuses a dirty plugin folder, --case, and
+// --decide measures this checkout, so it refuses a dirty plugin or cases folder, --case, and
 // fewer than 5 runs: a stored line must be a whole, committed suite. The line it stores
 // is the branch's. Once the branch merges, it is `main`'s, and the working mode
 // compares with the stored lines whose commit is already on <ref>. Raising the runs
@@ -66,13 +68,15 @@ function usage(why) {
 }
 
 const dir = join(root, 'plugins', args.plugin)
-if (!existsSync(join(dir, 'evals'))) usage(`${args.plugin} has no evals/ directory`)
+// The cases live beside the plugins, never in them, so an install carries none.
+const cases = join(root, 'evals', args.plugin)
+if (!existsSync(cases)) usage(`${args.plugin} has no cases in evals/${args.plugin}/`)
 
 const git = (...a) => execFileSync('git', a, { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] })
 if (args.decide) {
   if (args.case || args.runs < 5) usage('--decide runs the whole suite, at 5 runs or more')
-  if (git('status', '--porcelain', '--', `plugins/${args.plugin}`).trim()) {
-    usage(`--decide measures what is committed: commit the changes to plugins/${args.plugin} first`)
+  if (git('status', '--porcelain', '--', `plugins/${args.plugin}`, `evals/${args.plugin}`).trim()) {
+    usage(`--decide measures what is committed: commit the changes to plugins/${args.plugin} and evals/${args.plugin} first`)
   }
 }
 
@@ -86,8 +90,23 @@ if (dependencies.length) {
   console.error(`Note: ${args.plugin} builds on ${dependencies.join(', ')}. The engine loads only the plugin under test, so a rule from those plugins is missing in both arms.`)
 }
 
-// One engine call. `plugin` is the plugin directory to evaluate.
+// One engine call. The engine reads its cases from inside the plugin, so each call runs
+// on a copy of `plugin` with this checkout's cases put in. The same cases then measure
+// any version of the skill, and the skill's own folder holds no test.
 function runEngine(plugin, outDir) {
+  const stage = mkdtempSync(join(tmpdir(), 'eval-stage-'))
+  try {
+    const copy = join(stage, args.plugin)
+    cpSync(plugin, copy, { recursive: true })
+    rmSync(join(copy, 'evals'), { recursive: true, force: true })
+    cpSync(cases, join(copy, 'evals'), { recursive: true })
+    return engine(copy, outDir)
+  } finally {
+    rmSync(stage, { recursive: true, force: true })
+  }
+}
+
+function engine(plugin, outDir) {
   const out = join(outDir, 'result.json')
   const cmd = [
     'plugin', 'eval', plugin, '--scaffold', '--trust-plugin', '--no-publish',
@@ -101,7 +120,7 @@ function runEngine(plugin, outDir) {
   return summarize(JSON.parse(readFileSync(out, 'utf8')), { suite: args.plugin, model: MODEL, judgeModel: JUDGE })
 }
 
-// The cases of this checkout against the skill of <ref>.
+// The cases of this checkout against the skill of <ref>, read from a temporary worktree.
 function runBaseline(outDir) {
   try {
     git('cat-file', '-e', `${args.ref}:plugins/${args.plugin}/.claude-plugin/plugin.json`)
@@ -111,9 +130,6 @@ function runBaseline(outDir) {
   const tree = mkdtempSync(join(tmpdir(), 'eval-base-'))
   try {
     git('worktree', 'add', '--detach', tree, args.ref)
-    const evals = join(tree, 'plugins', args.plugin, 'evals')
-    rmSync(evals, { recursive: true, force: true })
-    cpSync(join(dir, 'evals'), evals, { recursive: true, filter: (p) => !p.includes(`${join('evals', 'results')}`) })
     return runEngine(join(tree, 'plugins', args.plugin), outDir)
   } finally {
     try { git('worktree', 'remove', '--force', tree) } catch { /* never added */ }
