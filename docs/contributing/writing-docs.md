@@ -62,8 +62,9 @@ reason, prefer a named example to a described one, and don't hedge. On top of th
   backticks, not linked. Any other file a page mentions is linked where the reader would
   open it, and otherwise named in backticks.
 - Backtick every file, command, setting and identifier.
-- **Examples are synthetic.** No real project, client or person, in any example or
-  screenshot. The repo is public.
+- **Examples are synthetic.** No client, person or private project, in any example or
+  screenshot. The repo is public. A page may name a public open-source project when the
+  page is about it.
 
 ## The map
 

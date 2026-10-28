@@ -66,9 +66,10 @@ The gist of each; the files above hold the rules.
   page in `docs/`, because the installed plugin doesn't include it.
 - **A product change can make a page wrong, and no check sees it.** The map's Sources
   column names the pages each product file feeds; reread them in the same change.
-- **No real project name, client or person** in any file or commit message. The repo is
-  public; examples are synthetic. The one exception is a credit and license notice that
-  a borrowed file's license requires, such as the header of `measure-setup.mjs`.
+- **No client, person or private project** in any file or commit message. The repo is
+  public. A public open-source project may be named, with its license checked. The one
+  exception for a person is a credit and license notice that a borrowed file's license
+  requires, such as the header of `measure-setup.mjs`.
 
 ## Working on this repo
 
