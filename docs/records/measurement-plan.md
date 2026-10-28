@@ -261,7 +261,7 @@ Each phase is one pull request or a few. Phases 0 to 3 are the core, in order.
 | Skill | Example case | Deterministic grader |
 |---|---|---|
 | `conventional-commits` | Commit a staged change in a scaffolded repo | `regex` on the last commit message |
-| `java-conventions` | Add a data class to a project whose `pom.xml` targets Java 8 | No `record ` in the new file; `pom.xml` read before the file is written |
+| `java-conventions` | Add a data class to a project whose `pom.xml` targets Java 8 | No `record ` in the new file; `pom.xml` read (`tool_used` with `input_match`; see below for the order) |
 | `review-changes` | Review a branch with one seeded null dereference | `regex` on the final message for the seeded file and line |
 
 - 3 to 5 cases per skill. Measure the floor. Run each suite with `with-without` at
@@ -281,6 +281,7 @@ skill names (`Files.lines`, `orElse(null)`, a view for a copy, a post-8 API):
 | `read-first-line` | 1.00 | 1.00 | 0.00 | 0 of 5 |
 | `wrap-with-context` | 1.00 | 1.00 | 0.00 | 0 of 5 |
 | `java8-data-class-forced`, kept out of the gate | 1.00 | 1.00 | 0.00 | 2 of 5 |
+| `reads-build-first` (run apart, 5 runs, grader `read-pom`) | 1 of 5 read it | 1 of 5 read it | 0.00 | 0 of 5 |
 
 Two things follow, and only these. The description did not make the skill load on any
 plain prompt, 25 runs in all. And on these five tasks the model passes the checks
@@ -289,7 +290,11 @@ rules are useless: they show that these tasks do not need them. A rule worth kee
 must be one the model gets wrong without help, so the next cases are for the rules not
 yet tried (the language level read from `pom.xml` before writing, `Process` handling,
 field injection), each with a baseline that is below the ceiling. A skill that still
-shows no Δ on such cases is a candidate to retire. The indicator is also not exact: the
+shows no Δ on such cases is a candidate to retire. The `tool_order` grader takes only `before` and `after`, both tool names, so it cannot
+say that `pom.xml` came first: with `Read` before `Write` it passed on any earlier read,
+and the case grades the read of `pom.xml` alone. In `reads-build-first` the model read it
+in 1 of 5 runs in both arms and still wrote code that compiles on Java 8, so that rule
+adds nothing the model lacks here either. The indicator is also not exact: the
 forced case fired in 2 of 5 runs here and in 3 of 3 before, so read `skill-fired` as a
 rough signal.
 
