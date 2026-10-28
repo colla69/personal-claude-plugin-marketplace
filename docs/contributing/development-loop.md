@@ -42,9 +42,13 @@ plugin loaded, type three prompts a person would really use, and check that it l
 those and stays quiet on ordinary requests that only sound alike. Then ask for a review:
 [review a skill](../guides/review-a-skill.md).
 
-`claude plugin eval ./plugins/<name> --ablation with-without` runs a plugin's eval cases
-with and without it, which is the only measurement of whether it changes the outcome.
-No plugin has eval cases yet; they go in `plugins/<name>/evals/`.
+`node scripts/eval-skill.mjs <plugin>` runs the plugin's eval cases with and without it,
+which is the only measurement of whether it changes the outcome, and compares with
+`main`. It prints a table and keeps nothing, so run it as often as you like. Cases go in
+`plugins/<name>/evals/`, and `language-conventional-commits` has the first. The cases
+don't ship a result: the raw output stays out of git, and `--decide` stores one summary
+line in `measurements/results.jsonl`. [Commands](../reference/commands.md) lists the
+scripts.
 
 ## Check it before you push
 

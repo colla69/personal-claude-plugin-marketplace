@@ -89,7 +89,7 @@ number in a PR comment mean the same thing.
 ### The skill check: one skill, while working and when contributing
 
 `node scripts/eval-skill.mjs <plugin>` runs layers 2 and 3 of one plugin, with its
-dependencies loaded. It compares with `main`, not with nothing.
+dependencies, once the engine can load them (M1). It compares with `main`, not with nothing.
 
 | | While working | When contributing |
 |---|---|---|
@@ -238,9 +238,11 @@ Each phase is one pull request or a few. Phases 0 to 3 are the core, in order.
 **Phase 0: harness and hygiene.**
 - Add `plugins/*/evals/results/` to `.gitignore`. Create `measurements/` with an empty
   `results.jsonl` and a short README.
-- Make sure no eval run can reach the collector. Each fixture writes
-  `.claude/settings.json` with `"STEWARD_COLLECT": "off"`, and `collect.mjs` exits when it
-  detects an eval run. A leak here files issues on the public repo.
+- Make sure no eval run can reach the collector. The engine loads only the plugin under
+  test, with a temporary home and config, so no hook of `marketplace-base` runs in an eval
+  of another plugin. `eval-skill.mjs` refuses a suite for `marketplace-base` or a plugin
+  that builds on it. Phases 5 and 6 test that plugin, and `collect.mjs` must honor an
+  `EVAL_*` switch before they run. A leak here files issues on the public repo.
 - Write `eval-summary.mjs` and `eval-compare.mjs`: plain Node, no dependency.
 - Write `eval-skill.mjs`, the skill check of section 4a, on top of them.
 - Write one trivial case for `language-conventional-commits`.
@@ -333,20 +335,28 @@ rewrite, and new skills until the pilot shows the measurement works.
 Checked on 2026-10-28 against this checkout.
 
 - **`evals/` sits inside the plugin, so it ships.** `claude plugin eval` takes the folder
-  name below the plugin, and an installed plugin is a copy of that directory. Fixtures and
-  cases would reach every project. They cost no tokens, but they add files. Phase 0 must
-  check whether the install excludes the folder, and `plugin-shape.md` must say what an
-  `evals/` folder may hold.
-- **`plugin-shape.md` and `check-catalog.mjs` do not mention `evals/`.** Neither rule is
-  broken today, but both need a line before phase 0 merges. Skill plugins may then hold
-  `evals/`, and still no `agents/`, hooks or MCP servers.
+  name below the plugin, and an installed plugin is a copy of that directory. Probed in
+  phase 0: the install copies `evals/` into the plugin cache of each machine. Fixtures
+  and cases reach every install. They cost no tokens, because nothing loads them, but
+  they add files. `plugin-shape.md` now says what an `evals/` folder may hold.
+- **`plugin-shape.md` and `check-catalog.mjs` did not mention `evals/`.** Resolved in
+  phase 0: `plugin-shape.md` has the line, and `check-catalog.mjs` needs none, because it
+  fails only on `agents/`, `hooks/` and `.mcp.json`.
 - **The collector has two switches today.** `STEWARD_COLLECT: off` in settings, and
-  `STEWARD_COLLECTOR=1` inside the collector's own child process. The second is not an
-  eval signal. Phase 0 must find what an eval run sets, or rely on the first switch alone.
+  `STEWARD_COLLECTOR=1` inside the collector's own child process. Neither is an eval
+  signal, and a fixture cannot set the first: the engine ignores a project-level
+  `.claude/` and accepts only `EVAL_*` keys in `env`. The isolation of the engine is the
+  guard until a suite tests `marketplace-base`. Probed in phase 0: a `SessionStart` hook
+  in a scratch `CLAUDE_CONFIG_DIR` fired in a plain `claude -p` session and did not fire
+  in an eval run, which then stopped at login. That is one probe, and a weak one; the
+  engine's documentation says the same.
+- **The sandbox denies `git`.** A fixture cannot stage a change. It writes the diff as a
+  file, and the task reads that.
 - **Docs pages go stale.** New scripts and a new folder change `checks.md`, `commands.md`,
   `development-loop.md`, the map in `docs/README.md` and `decisions.md`. The plan says the
   documentation rewrite is out of scope. These edits are not a rewrite, and the map's
-  Sources rule asks for them in the same change.
+  Sources rule asks for them in the same change. Done in phase 0 for `commands.md`,
+  `development-loop.md` and `decisions.md`; `checks.md` and the map name no changed file.
 - **A dry-run mode is a change to the steward.** Docking runs `claude plugin install`
   (`dock.md`), which the benchmark must not do. It follows `work-on-the-steward.md` and
   needs a decision entry.
@@ -365,10 +375,10 @@ Checked on 2026-10-28 against this checkout.
 
 | # | Question | Recommendation |
 |---|---|---|
-| M1 | Does a skill with dependencies, such as `review-changes` on `review-work` and `clean-code`, run with them in both arms or only in the with arm? | In both, so Δ is the skill's own part. **Agreed.** |
+| M1 | Does a skill with dependencies, such as `review-changes` on `review-work` and `clean-code`, run with them in both arms or only in the with arm? | In both, so Δ is the skill's own part. **Agreed, but not yet possible:** `claude plugin eval` takes one target and loads only that plugin, so `eval-skill.mjs` runs without the dependencies and says so. Probe in phase 2 whether the engine can load more than one, or whether a case must carry the rule it needs |
 | M2 | Who reviews a judge's rubric before it counts? | The curator who owns the skill |
 | M3 | Where do `measurements/` and the scripts sit, given the product never depends on `docs/` and the scripts are not product? | `measurements/` and `scripts/` at the root, as proposed. They are CI tools, not plugin files |
-| M4 | Does the `evals/` folder ship with the plugin? | Probe in phase 0. If it ships and the install cannot exclude it, keep fixtures small and built by script, not checked in as trees |
+| M4 | Does the `evals/` folder ship with the plugin? | Answered in phase 0: yes, the install copies it. Keep fixtures small and built by script, not checked in as trees |
 | M5 | Which model IDs does the pilot pin, and who pays? | Pin today's `claude-sonnet-5-5` for the agent and `claude-haiku-5-5` for the judge. Set the cap after phase 2 |
 | M6 | What does "before a release" mean? | **Settled.** It means contribution work: the skill check with `--decide` before a skill PR. The benchmark is the check for the whole marketplace and the steward |
 | M7 | The repo banned real project names. The benchmark needs public projects by URL and commit. | **Settled 2026-10-28.** A public open-source project may be named, with its license checked. No client, person or private project. `CLAUDE.md` and `writing-docs.md` are changed |

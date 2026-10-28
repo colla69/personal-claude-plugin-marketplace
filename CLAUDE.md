@@ -36,6 +36,7 @@ Read the file before you change what it governs. None of its rules are repeated 
 | Load the working copy of the curator | `claude --plugin-dir ./plugins/marketplace-curator --plugin-dir ./plugins/craft-review --plugin-dir ./plugins/language-simple-english` |
 | See a plugin's inventory and cost | `claude --plugin-dir ./plugins/<name> plugin details <name>` |
 | Measure what a project's setup costs | `node plugins/marketplace-steward/scripts/measure-setup.mjs <project>` |
+| Check one skill's lift against `main` | `node scripts/eval-skill.mjs <plugin>` (`--decide` stores the result) |
 | Run a plugin's evals with a baseline | `claude plugin eval ./plugins/<name> --ablation with-without` |
 
 `claude plugin validate` warns "no version specified" and "no description provided" for

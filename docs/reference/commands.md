@@ -35,7 +35,10 @@ until it has run.
 | `node plugins/marketplace-steward/scripts/measure-setup.mjs <project>` | Prints what a project's setup costs per session, and how its sessions used it, from the transcripts Claude Code keeps under `~/.claude/projects/`. It prints names, numbers and the headings of the root context files, and writes nothing. Docking and the guide run it in the project |
 | `claude --plugin-dir ./plugins/<name> plugin details <name>` | The same for the files in your checkout, installed or not |
 | `claude --plugin-dir ./plugins/marketplace-steward --plugin-dir ./plugins/marketplace-base --plugin-dir ./plugins/craft-review --plugin-dir ./plugins/language-simple-english` | Starts a session with your working copy of the steward and the base plugin. Every plugin they depend on needs its own `--plugin-dir`, or it doesn't load |
-| `claude plugin eval ./plugins/<name> --ablation with-without` | Runs a plugin's eval cases with and without it, to show whether it changes the outcome. No plugin here has eval cases yet |
+| `claude plugin eval ./plugins/<name> --ablation with-without` | Runs a plugin's eval cases with and without it, to show whether it changes the outcome. Only `language-conventional-commits` has a case so far |
+| `node scripts/eval-skill.mjs <plugin>` | The skill check: runs the plugin's cases with and without it on the pinned models, three runs, and compares with the last stored result or with `main`. It prints a table and keeps nothing. `--decide` runs five times against a fresh `main` and stores one line in `measurements/results.jsonl`. It refuses `marketplace-base` and any plugin that builds on it |
+| `node scripts/eval-compare.mjs <before> <after>` | Compares two eval results case by case, with a 90% bootstrap interval, and says whether the difference is beyond the noise floor. A result is a file from `claude plugin eval --json` or a line of `results.jsonl` |
+| `node scripts/eval-summary.mjs <result.json> --append` | Turns one result file into its summary line, and adds it to `measurements/results.jsonl` |
 | `claude plugin marketplace add .` | Adds your checkout as a local marketplace, for trying an install. It has the same name as the marketplace from GitHub, which the base plugin reads to find where to file issues, so on a machine that has that one, use `--plugin-dir` instead |
 
 ## What the plugins run

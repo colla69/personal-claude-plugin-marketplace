@@ -14,6 +14,7 @@ plugins/<layer>-<topic>/
   skills/<skill>/SKILL.md         # the standard
   skills/<skill>/references/*.md  # optional: detail loaded on demand
   skills/<skill>/assets/*         # optional: templates the skill writes out
+  evals/<case>/*                  # optional: cases for `claude plugin eval`
 ```
 
 There is no `agents/`. Skill plugins ship knowledge; the few agents the marketplace has
@@ -27,6 +28,11 @@ Start from the templates in `assets/`, beside this file. `SKILL.md.template` and
 A skill plugin ships no hooks and no MCP servers: it is knowledge, and the mechanics
 every docked project shares live in `marketplace-base`. `check-catalog.mjs` fails on an
 `agents/` or a `hooks/` folder in a skill plugin.
+
+`evals/` ships with the plugin, because an install copies the whole folder. Nothing
+loads it, so it costs no tokens, but every machine that installs the plugin gets the files. Keep a case small:
+a prompt, its graders and a script that builds the fixture, not a checked-in tree. Raw
+results go in `evals/results/`, which `.gitignore` leaves out.
 
 Leave the component keys out of `plugin.json`. A `skills` key adds to the default
 `skills/` folder, but an `agents` or a `commands` key replaces its folder, so an
