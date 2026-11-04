@@ -34,8 +34,10 @@ for beginners and experts alike. It is the one plugin each person installs by ha
   build-and-test command for the base plugin's guard
 - The standards and `marketplace-base`, installed at project scope
 - `~/.claude/CLAUDE.md`, the person's own file: a `## Working with me` block that tells
-  Claude to ask what they want before it acts. Docking and "is my setup current?" both
-  add it, once, after a backup, and neither replaces a block the person wrote
+  Claude to ask what they want before it acts, and a `## Working style: keep it simple`
+  block that tells it to try the simplest approach first and keep answers short.
+  Docking and "is my setup current?" both add each block, once, after a backup, and
+  neither replaces a block the person wrote
 - For a project with a setup of its own: rules that a standard states word for word
   removed, files an earlier steward generated removed, and rules that would serve other
   projects filed as issues for the curators. A file with uncommitted edits is first
