@@ -120,3 +120,7 @@ Decided after the runs, by what survives:
 **Phase 1, 2026-11-04, $1.47.** Only R2, the milestone question, showed lift: 4 of 5
 with, 0 of 5 without. R1 4 vs 3, R3 2 vs 3, R4 4 vs 4, R5 2 vs 3, R6 5 vs 5: cut. The
 skill loaded in every run with it. `craft-shipping` ships with R2 alone (D89).
+
+**Phase 2, 2026-11-04, $0.81.** H1, sources marked: 3 of 5 with, 0 of 5 without. H4,
+no secret value: 5 of 5 with, 3 of 5 without. Both kept. H2 5 vs 5 and H3 5 vs 4: cut.
+The skill loaded in every run with it (D90).

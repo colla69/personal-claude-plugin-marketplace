@@ -38,7 +38,7 @@
     {
       "name": "craft-shipping",
       "source": "./plugins/craft-shipping",
-      "description": "Before judging whether an app is ready to ship, ask which milestone it is for and what a failure would cost.",
+      "description": "Shipping an app built with AI: ask the milestone before a launch verdict, and in a handoff mark where each statement comes from and never copy a secret value.",
       "category": "craft",
       "tags": ["launch", "readiness", "production"]
     },

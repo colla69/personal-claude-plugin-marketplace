@@ -21,7 +21,7 @@ pure cost. When in doubt, leave it out and mention it as optional.
 | Universal | `universal-work-discipline` | `work-discipline` skill | Any repo, with or without code. `craft-development` pulls it in; recommend it on its own where the work isn't code. |
 | Craft | `craft-development` | `development-standards` skill | Any repo with code in it, together with `craft-code-review` (see Code, below). |
 | Craft | `craft-code-review` | `review-changes` skill | Any repo with code in it, with `craft-development`. Do **not** gate this on PR-workflow signals: checking catches logical errors and inconsistencies before a commit, whether or not anyone opens pull requests. |
-| Craft | `craft-shipping` | `readiness-review` skill | A repo with an app that people will use: a web app, an API, a mobile or desktop app. Not a library or a folder of documents. |
+| Craft | `craft-shipping` | `readiness-review`, `developer-handoff` skills | A repo with an app that people will use: a web app, an API, a mobile or desktop app. Not a library or a folder of documents. |
 | Language | `language-simple-english` | `simple-english` skill | Every project, with or without code: every project has text a person reads. |
 | Language | `language-conventional-commits` | `conventional-commits` skill | Any repo with code in it, after the one question in "Commit messages", below. |
 | Framework & Tools | `tools-vue` | `vue-conventions` skill | `vue` in dependencies. Check the major version and note it: the plugin targets Vue 3 Composition API, so flag a mismatch if the project is on Options API or Vue 2. |
