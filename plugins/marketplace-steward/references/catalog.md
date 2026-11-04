@@ -173,10 +173,10 @@ and the next machine may not have the steward.
 installed plugin a `scope`. For each one at `user` beyond those two, the report names
 it under "On another machine", with the line that removes it:
 `claude plugin uninstall <name>@<marketplace> --scope user`. The steward doesn't run
-that line, because it never changes `~/.claude`, and the report says that every other
-project that relied on the user-scope copy loses it. Where this project needs the
-plugin, it is installed at project scope like any other. Docking applies this in step
-5.
+that line, because it never changes the user's plugins or settings, and the report
+says that every other project that relied on the user-scope copy loses it. Where this
+project needs the plugin, it is installed at project scope like any other. Docking
+applies this in step 5.
 
 ## Wiring format
 

@@ -4,6 +4,9 @@ description: Dock a project onto the company's standards and help people use the
 allowed-tools:
   - Read(/${CLAUDE_PLUGIN_ROOT}/**)
   - Write(~/.local/share/marketplace-steward/backups/**)
+  - Read(~/.claude/CLAUDE.md)
+  - Write(~/.claude/CLAUDE.md)
+  - Edit(~/.claude/CLAUDE.md)
   - Bash(claude plugin list --json)
   - Bash(claude plugin list --available --json)
   - Bash(claude plugin marketplace list --json)
