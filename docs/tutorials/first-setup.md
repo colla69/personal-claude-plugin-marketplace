@@ -103,7 +103,7 @@ what happened. Expect something like this:
 | **Check command** | `npm run typecheck && npm test`, or `npm test`, from the scripts |
 | **Written** | `CLAUDE.md`, `.claude/plugin-sources.json` |
 | **Changed** | Nothing, or `.claude/settings.json` if Claude Code had made one |
-| **Standards** | `marketplace-base`, `universal-clean-code`, `craft-development`, `craft-code-review`, `craft-refactoring`, `craft-unit-testing` for the test runner, `language-simple-english` because every project has text to read, `language-conventional-commits` if you said yes, and what they pull in |
+| **Standards** | `marketplace-base`, `universal-clean-code`, `craft-development`, `craft-code-review`, `craft-refactoring`, `language-simple-english` because every project has text to read, `language-conventional-commits` if you said yes, and what they pull in |
 | **On another machine** | The same installs as a block to paste |
 | **Unverified** | Anything it couldn't check |
 
@@ -137,7 +137,7 @@ make tally ignore negative amounts, and say so in a test
 
 1. **The standards are already there.** The session started with the index of every
    standard, and the ones for TypeScript and tests are enabled, so it writes the test
-   first, the way `craft-unit-testing` asks.
+   first, the way `craft-development` asks.
 2. **The guard checks before it stops.** Claude changed files, so the base plugin runs
    the check command. If a test or the typecheck fails, Claude keeps working until it
    passes.

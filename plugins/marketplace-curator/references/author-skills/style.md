@@ -75,11 +75,11 @@ out and say so, rather than filling it because the template has one.
 ## Naming
 
 - **Plugin:** `<layer>-<topic>`, for example `universal-clean-code`,
-  `craft-unit-testing`, `language-simple-english` or `tools-vue`. The prefix is the same
+  `craft-refactoring`, `language-simple-english` or `tools-vue`. The prefix is the same
   word as the plugin's `category`: `universal`, `craft`, `language` or `tools`. A plugin
   that works on the marketplace itself is `marketplace-<name>`, with category
   `marketplace`.
-- **Skill:** named for the activity, for example `write-unit-tests` or
+- **Skill:** named for the activity, for example `refactor-safely` or
   `vue-conventions`. It is invoked as `/<plugin>:<skill>`.
 - **Wording that outlives code.** Every skill here is about code today, and the
   structure must not assume it stays that way. Language is "what the work is written
@@ -111,8 +111,8 @@ The last sentence is the valuable one. Anyone can catch "refactor this". Catchin
 code is hard to work with, I need to add a feature" is what makes the skill fire when it
 should.
 
-Write the triggers in the user's words, not yours. `write-unit-tests` lists "mentions
-coverage, says code is untested, wants TDD", which are things people say. "Testing
+Write the triggers in the user's words, not yours. A testing skill that lists "mentions
+coverage, says code is untested, wants TDD" lists things people say. "Testing
 scenarios" is not.
 
 Two skills whose descriptions win the same prompt split the traffic between them by
@@ -167,8 +167,8 @@ a person's merge.
 
 ## Structure
 
-Sections follow the order someone works in. `write-unit-tests` goes: before writing
-anything → test first → what to test → test shape → mocking → verify. That is the
+Sections follow the order someone works in. A skill for writing tests goes: before
+writing anything → test first → what to test → test shape → mocking → verify. That is the
 sequence of the task, not a taxonomy of testing.
 
 Target 60–160 lines for a skill. Past that, move detail into `references/`. A reference

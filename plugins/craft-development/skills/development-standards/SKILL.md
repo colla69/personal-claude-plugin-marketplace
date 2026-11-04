@@ -22,7 +22,7 @@ behavioural difference is not.
 ## Test first
 
 Where the project has a test runner, a change to behavior starts with a failing test,
-in the red, green, refactor cycle that `write-unit-tests` describes. Code written test
+and the code follows it in a red, green, refactor cycle. Code written test
 first is designed from its caller's side, because the test is its first caller. Where
 there is no runner, say so in the report, so the missing check is visible.
 

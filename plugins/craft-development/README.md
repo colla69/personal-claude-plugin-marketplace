@@ -8,7 +8,7 @@ tests and lint ran in that order.
 |---|---|
 | Skill | `development-standards` |
 | Layer | Craft |
-| Builds on | `universal-clean-code`, `universal-work-discipline`, `craft-unit-testing` |
+| Builds on | `universal-clean-code`, `universal-work-discipline` |
 
 The general rules, read first, match, hold scope and verify, live in `work-discipline`.
 This skill says what they mean for code.
@@ -24,8 +24,6 @@ This skill says what they mean for code.
 
 - **What good code looks like.** Naming, function shape and structure are `clean-code`,
   in `universal-clean-code`.
-- The red, green, refactor cycle that a change follows, to `write-unit-tests`, in
-  `craft-unit-testing`.
 - The rules for any work in someone else's space, to `work-discipline`, in
   `universal-work-discipline`.
 - Where a language declares its version and what each version allows, to the Language

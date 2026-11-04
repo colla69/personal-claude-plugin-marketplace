@@ -37,9 +37,8 @@ ships unless the reviewer goes to look for it.
 checks that happen after the expensive operation rather than before. Secrets in code or
 logs. Anything that widens what an unauthenticated caller can reach.
 
-**Test adequacy.** Judge the tests by the `write-unit-tests` standard: would they fail
-if the change were wrong? New branches with no corresponding test are the gap worth
-naming.
+**Test adequacy.** Would the tests fail if the change were wrong? New branches with no
+corresponding test are the gap worth naming.
 
 **API and contract impact.** Signature changes, response shape changes, migration
 compatibility, anything a caller outside this diff depends on. This is where the expensive

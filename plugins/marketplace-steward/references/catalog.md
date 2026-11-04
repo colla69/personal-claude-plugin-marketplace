@@ -18,11 +18,10 @@ pure cost. When in doubt, leave it out and mention it as optional.
 | Layer | Plugin | Provides | Recommend when the repo shows |
 |---|---|---|---|
 | Universal | `universal-clean-code` | `clean-code` skill | Any repo with code in it. Strongest signal: functions with long argument lists. |
-| Universal | `universal-work-discipline` | `work-discipline` skill | Any repo, with or without code. `craft-development`, `craft-refactoring` and `craft-unit-testing` pull it in; recommend it on its own where the work isn't code. |
+| Universal | `universal-work-discipline` | `work-discipline` skill | Any repo, with or without code. `craft-development` and `craft-refactoring` pull it in; recommend it on its own where the work isn't code. |
 | Craft | `craft-development` | `development-standards` skill | Any repo with code in it, together with `craft-code-review` and `craft-refactoring` (see Code, below). |
 | Craft | `craft-review` | `review-work` skill | `craft-code-review` pulls it in. Recommend it on its own where work other than code gets reviewed: documents, reports, plans. |
 | Craft | `craft-code-review` | `review-changes` skill | Any repo with code in it, with the other two. Do **not** gate this on PR-workflow signals: checking catches logical errors and inconsistencies before a commit, whether or not anyone opens pull requests. |
-| Craft | `craft-unit-testing` | `write-unit-tests` skill | A test runner is configured (`vitest`, `jest`, `pytest`, `go test`, …). Recommend *more strongly* when a runner exists but coverage is thin — that's the gap the plugin closes. `craft-development` and `craft-code-review` pull it in, so a repo with code has it either way. |
 | Craft | `craft-refactoring` | `refactor-safely` skill | Any repo with code in it, with the other two. It needs no test suite to be useful, but say so when there isn't one, because its plans will start with characterization tests. |
 | Craft | `craft-cv-writing` | `write-cv` skill | A CV or résumé kept as a document in the repo, such as `CV.md`, `resume.md`, a `cv/` folder or a `resume.*` file, and written or tailored there. Not a repo that only links to one. Pulls in `universal-work-discipline`. |
 | Language | `language-simple-english` | `simple-english` skill | Every project, with or without code: every project has text a person reads. |
@@ -49,7 +48,6 @@ claude plugin marketplace add colla69/personal-claude-plugin-marketplace
 claude plugin install craft-development@personal-claude-plugin-marketplace --scope project
 claude plugin install craft-code-review@personal-claude-plugin-marketplace --scope project
 claude plugin install craft-refactoring@personal-claude-plugin-marketplace --scope project
-claude plugin install craft-unit-testing@personal-claude-plugin-marketplace --scope project
 ```
 
 - **One line per recommended plugin**, matching the `enabledPlugins` keys exactly. If
@@ -119,9 +117,6 @@ part of the work without its standard.
 
 All three depend on `universal-clean-code`, whose `clean-code` skill is the standard
 their judgements are measured against. Installing any of them pulls it in.
-
-Development is test first, so `craft-development` also pulls in `craft-unit-testing`,
-whose skill holds the red, green, refactor cycle.
 
 ## Commit messages
 
@@ -211,7 +206,7 @@ old name.
 | `clean-code` | `universal-clean-code` | |
 | `developer` | `craft-development` | Part of it became `universal-work-discipline` |
 | `code-review` | `craft-code-review` | Builds on `craft-review` |
-| `unit-testing` | `craft-unit-testing` | |
+| `unit-testing` | — | Its successor `craft-unit-testing` was removed; test first stays in `craft-development` |
 | `refactoring` | `craft-refactoring` | |
 | `java-dev` | — | Its successor `language-java` was removed |
 | `typescript-dev` | — | Its successor `language-typescript` was removed |
@@ -219,3 +214,4 @@ old name.
 | `project-init`, `marketplace-init` | `marketplace-steward` | User scope only; never a project key |
 | `marketplace-steward:evaluate-skills` | `marketplace-curator:evaluate-skills` | Moved with the curator's work |
 | `language-java`, `language-typescript`, `language-javascript`, `language-swift` | — | Removed: measured, the model followed their rules without them |
+| `craft-unit-testing` | — | Removed: measured, the model followed its rules without it. Test first stays in `craft-development` |

@@ -14,10 +14,9 @@ Each plugin's own README, under `plugins/<name>/`, says where it stops.
 |---|---|---|---|---|---|
 | [`universal-clean-code`](../../plugins/universal-clean-code/) | Universal | `clean-code` | Only the clean-code rules measured to change what the model writes: today, three parameters at most | Any code | — |
 | [`universal-work-discipline`](../../plugins/universal-work-discipline/) | Universal | `work-discipline` | Working where someone else maintains: read first, match what is there, hold scope, verify before "done" | Any work, with or without code; most Craft plugins pull it in | — |
-| [`craft-development`](../../plugins/craft-development/) | Craft | `development-standards` | What careful work means for code: test first, the neighbours to read, a diff kept to the change, verification | Any code, with `craft-code-review` and `craft-refactoring` | `universal-clean-code`, `universal-work-discipline`, `craft-unit-testing` |
+| [`craft-development`](../../plugins/craft-development/) | Craft | `development-standards` | What careful work means for code: test first, the neighbours to read, a diff kept to the change, verification | Any code, with `craft-code-review` and `craft-refactoring` | `universal-clean-code`, `universal-work-discipline` |
 | [`craft-review`](../../plugins/craft-review/) | Craft | `review-work` | Reviewing any work: what it is meant to do, reading it as written, findings with a cost | Work other than code that gets reviewed; `craft-code-review` pulls it in | — |
-| [`craft-code-review`](../../plugins/craft-code-review/) | Craft | `review-changes` | Reviewing a diff or branch: correctness, security, tests, API surface | Any code, with the other two code Craft plugins | `universal-clean-code`, `craft-review`, `craft-unit-testing` |
-| [`craft-unit-testing`](../../plugins/craft-unit-testing/) | Craft | `write-unit-tests` | Unit tests that fail when the code is wrong: test first, behaviour first, edges, no padding | A configured test runner; `craft-development` and `craft-code-review` pull it in | `universal-work-discipline` |
+| [`craft-code-review`](../../plugins/craft-code-review/) | Craft | `review-changes` | Reviewing a diff or branch: correctness, security, tests, API surface | Any code, with the other two code Craft plugins | `universal-clean-code`, `craft-review` |
 | [`craft-refactoring`](../../plugins/craft-refactoring/) | Craft | `refactor-safely` | Behaviour-preserving change in small, verified steps | Any code, with the other two code Craft plugins | `universal-clean-code`, `universal-work-discipline`, `craft-development` |
 | [`craft-cv-writing`](../../plugins/craft-cv-writing/) | Craft | `write-cv` | Writing and tailoring a CV: terms in context, exact verbs, defensible figures, no invented facts | A CV or résumé kept as a document in the repo | `universal-work-discipline` |
 | [`language-simple-english`](../../plugins/language-simple-english/) | Language | `simple-english` | English nobody can read two ways: short sentences, one instruction each, one word per meaning, simple tenses | Every project, with or without code | — |
@@ -36,7 +35,7 @@ Each plugin's own README, under `plugins/<name>/`, says where it stops.
 | Layer | Plugins |
 |---|---|
 | Universal | `universal-clean-code`, `universal-work-discipline` |
-| Craft | `craft-development`, `craft-review`, `craft-code-review`, `craft-unit-testing`, `craft-refactoring`, `craft-cv-writing` |
+| Craft | `craft-development`, `craft-review`, `craft-code-review`, `craft-refactoring`, `craft-cv-writing` |
 | Language | `language-simple-english`, `language-conventional-commits` |
 | Framework & Tools | `tools-vue`, `tools-vue-typescript`, `tools-pinia`, `tools-aws-static-hosting`, `tools-appkit` |
 | Team | None yet |
