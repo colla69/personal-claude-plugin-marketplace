@@ -154,6 +154,13 @@ Where the toolkit already covers a need, do not list an alternative.
 subject is two standards competing for the same prompts, and which one fires becomes
 luck.
 
+**A need the toolkit dropped on purpose is not a gap.** A row in the catalog's "Renamed
+and removed" table that says "measured, the model followed their rules without them"
+means the toolkit tested that subject and found the model needs no prose for it. A
+TypeScript or Java repo with no language plugin is that case: list no outside plugin
+of rules or conventions for it. A tool that does what prose can't, such as a language
+server, is still a candidate, by the next paragraph.
+
 List an outside plugin only when it does something no toolkit plugin does at all. The
 language servers are the clean example: `typescript-lsp` gives go-to-definition and
 real diagnostics, which no amount of prose provides.
