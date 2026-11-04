@@ -1,7 +1,7 @@
 # language-simple-english
 
 Text is good when nobody can read it two ways. Short sentences, one instruction each,
-one word per meaning, and no filler, after the rules of Simplified Technical English,
+one word per meaning, and simple tenses, after the rules of Simplified Technical English,
 ASD-STE100.
 
 | | |
