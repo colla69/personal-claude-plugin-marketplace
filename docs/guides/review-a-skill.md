@@ -37,6 +37,8 @@ curator plugin, the same one the curator's checker runs before every pull reques
 
 It runs the instruments first: `claude plugin validate`, the token estimate,
 `check-catalog.mjs`, and the plugin's evals with and without it, where there are any.
+It reads the evals rule by rule: a rule that passes as often without the skill is a
+finding.
 
 ## The report
 

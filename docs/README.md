@@ -44,8 +44,8 @@ One task each.
 |---|---|---|---|
 | [`guides/dock-a-project.md`](guides/dock-a-project.md) | Dock a codebase or a folder with no code, including one with a setup of its own | `dock.md`, `tidy.md`, `agent-models.md`, `context-files.md` | Written, not yet tried |
 | [`guides/work-in-a-docked-project.md`](guides/work-in-a-docked-project.md) | Work day to day: the index, the guard, a review, a correction | The base plugin, the steward's front door | Written, not yet tried |
-| [`guides/contribute-a-lesson.md`](guides/contribute-a-lesson.md) | Work a lesson or a correction into the marketplace, as a curator | `contribute.md`, the curator's front door | Written, not yet tried |
-| [`guides/review-a-skill.md`](guides/review-a-skill.md) | Review a skill, a plugin, a change or the whole set | `evaluate-skills`, `change-reviewer` | Written |
+| [`guides/contribute-a-lesson.md`](guides/contribute-a-lesson.md) | Work a lesson or a correction into the marketplace, as a curator | `contribute.md`, `measure.md`, the curator's front door | Written, not yet tried |
+| [`guides/review-a-skill.md`](guides/review-a-skill.md) | Review a skill, a plugin, a change or the whole set | `evaluate-skills`, `measure.md`, `change-reviewer` | Written |
 | [`guides/write-a-skill-by-hand.md`](guides/write-a-skill-by-hand.md) | Add or change a skill without the curator | `style.md`, `plugin-shape.md`, `place-knowledge.md` | Written |
 | [`guides/migrate-from-old-names.md`](guides/migrate-from-old-names.md) | Move a project and a machine off the old plugin names and the trios | The Renamed table, `dock.md`, `tidy.md` | Written; its steward part not yet tried |
 | [`guides/work-on-the-steward.md`](guides/work-on-the-steward.md) | Load the working copies, try a hook, probe a mechanic | `plugin-shape.md`, the three `marketplace-` plugins | Written |

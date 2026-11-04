@@ -28,7 +28,7 @@ the reason it was made is often the reason its replacement has the shape it has.
 - [Collecting as the session goes: D77](#collecting-as-the-session-goes-d77)
 - [Docking that shows its work: D78](#docking-that-shows-its-work-d78)
 - [A guard that sees every change: D79](#a-guard-that-sees-every-change-d79)
-- [Keep what works: D83 to D91](#keep-what-works-d83-to-d91)
+- [Keep what works: D83 to D92](#keep-what-works-d83-to-d92)
 - [Still open](#still-open)
 
 ## The author's statements
@@ -300,7 +300,7 @@ Decided on 2026-10-28, in the first phase of the measurement plan.
 | D81 | A skill's test cases live in `evals/<plugin>/` at the repo root, never in the plugin. `node scripts/eval-skill.mjs <plugin>` stages them beside a copy of the plugin, runs them with and without the skill on pinned model IDs, and compares with `main`. Only `--decide` stores a line, in `measurements/results.jsonl`. The script refuses `marketplace-base` and any plugin that builds on it | A skill's value was a belief. A first case for `language-conventional-commits` scored 1.00 with the skill and 0.33 without it, in three runs of each. `claude plugin eval` reads cases only from inside the plugin, and an install copies that folder to every machine, so the script stages the cases at run time and the plugin stays clean. The same cases then measure any version of the skill. The engine loads only the plugin under test, with a temporary home, so the collector can't run in another plugin's eval; a suite for the base would let it file issues on the public repo | Holds, in `plugin-shape.md` and `eval-skill.mjs` |
 | D82 | A case enters a suite only after two free checks. `node scripts/grader-probe.mjs <plugin>` tries every regex grader against code known to be good and code known to be bad, and `node scripts/eval-skill.mjs <plugin> --probe` runs the case without the skill and flags a baseline of 0.8 or more. A case that fails either is rewritten or dropped | The first Java suite passed both ways. Its seven cases scored 0.00 lift. In five the model passed unaided (0.87 to 1.00 in both arms), and in the build-file case it read `pom.xml` in one run of five in each arm, so neither arm showed anything of the skill. Four graders accepted the bug the skill names (`Files.lines`, `orElse(null)`, a view for a copy, an API newer than Java 8) until a reviewer read them. Both mistakes cost money to find by running. The grader check is free, and the probe costs about a dollar for seven cases at three runs | Holds, in `grader-probe.mjs` and `eval-skill.mjs` |
 
-## Keep what works: D83 to D91
+## Keep what works: D83 to D92
 
 Decided on 2026-11-04, going through the skills in the audit's order.
 
@@ -315,6 +315,7 @@ Decided on 2026-11-04, going through the skills in the audit's order.
 | D89 | The first skill for shipping an app built with AI is `craft-shipping`, with `readiness-review`, holding one rule: ask which milestone and what is at stake before a verdict. Its candidate rules came from the Clean Code Toolkit (MIT), and only a rule with lift entered | Asked a bare "is my shop ready to launch?", the model asked first in 4 of 5 runs with the skill and 0 of 5 without. Five other candidates, on a shop with a fail-open admin check, a client-set total in a "pre-approved" file, a checkout with no error state and a hard-coded key, showed no lift: repo text as data 4 vs 3, not ready on a green build 2 vs 3, the checkout states 4 vs 4, saying what was read 2 vs 3, no quoted secret 5 vs 5 | Holds |
 | D90 | `craft-shipping` gets `developer-handoff`, with two rules: mark each statement as ran, read or told, and give environment variables by name, never by value | A handoff of a small booking app: sources marked in 3 of 5 runs with the skill and 0 of 5 without; no value copied from `.env.example` in 5 of 5 with, 3 of 5 without. The README naming a payment service the code doesn't call was caught 5 vs 5, and no invented database 5 vs 4: both cut | Holds |
 | D91 | `craft-shipping` gets `new-project`: in an empty folder, name a stack and one alternative, and ask before the first file | Asked to start a book-club voting app in an empty folder, the model asked first in 5 of 5 runs with the skill and built the app without asking in 5 of 5 without it | Holds |
+| D92 | The curator measures: a change that adds or changes a rule runs it with and without the skill before its pull request, and `curate` can audit the set in `skill-audit.mjs` order. The method is `references/measure.md` | The cleanup and the shipping plan were done by hand, and that work is curation. A rule that reads well tells nothing; the runs cut most of the rules they tested | Holds |
 
 ## Still open
 

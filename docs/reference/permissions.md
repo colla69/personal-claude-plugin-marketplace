@@ -56,6 +56,7 @@ and `evaluate-skills` carries `Read(/${CLAUDE_PLUGIN_ROOT}/**)` of its own.
 | `gh issue list *`, `gh issue view *` | Read the queue and one issue |
 | `git status --porcelain`, `git fetch origin`, `git switch -c contrib/*` | Start a contribution on a fresh branch |
 | `claude plugin validate .`, `node scripts/check-catalog.mjs`, `node scripts/check-docs.mjs` | Run the marketplace's checks |
+| `node scripts/grader-probe.mjs *`, `node scripts/eval-skill.mjs *`, `node scripts/skill-audit.mjs` | Measure a rule, and list the skills in the order to measure them. A run costs money, so it says the cost first |
 
 It asks for the commit, the push, `gh pr create`, and every comment on or closing of an
 issue.
