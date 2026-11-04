@@ -86,8 +86,7 @@ Stop when the code is good enough for the change you're about to make. Refactori
 service of a goal, and refactoring past that goal is unpaid risk.
 
 The general limits hold here too: `clean-code` on waiting for the third occurrence and
-leaving stable code alone, and `development-standards` on reformatting and public
-interfaces.
+leaving stable code alone, and `development-standards` on public interfaces.
 
 ## Report
 

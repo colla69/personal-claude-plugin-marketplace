@@ -1,8 +1,7 @@
 # craft-development
 
-A change to code is careful when it starts from a failing test, follows the neighbours
-that already do the same thing, its diff holds only the lines it needs, and typecheck,
-tests and lint ran in that order.
+A change to code is careful when it starts from a failing test, names any change to a
+public interface, and typecheck, tests and lint ran in that order.
 
 | | |
 |---|---|
@@ -26,8 +25,6 @@ This skill says what they mean for code.
   in `universal-clean-code`.
 - The rules for any work in someone else's space, to `work-discipline`, in
   `universal-work-discipline`.
-- Where a language declares its version and what each version allows, to the Language
-  layer.
 - A framework's conventions, to its Framework & Tools skill, which wins where enabled.
 - Anything the project has already settled, which beats all of it.
 

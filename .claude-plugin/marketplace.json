@@ -24,7 +24,7 @@
     {
       "name": "craft-development",
       "source": "./plugins/craft-development",
-      "description": "What careful work means for code: test first, the neighbours to read, a diff kept to the change, and verification with typecheck, tests and lint.",
+      "description": "What careful work means for code: test first, named interface changes, and verification with typecheck, tests and lint.",
       "category": "craft",
       "tags": ["development", "implementation", "verification"]
     },
