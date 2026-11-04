@@ -18,18 +18,13 @@ pure cost. When in doubt, leave it out and mention it as optional.
 | Layer | Plugin | Provides | Recommend when the repo shows |
 |---|---|---|---|
 | Universal | `universal-clean-code` | `clean-code` skill | Any repo with code in it. Strongest signal: functions with long argument lists. |
-| Universal | `universal-work-discipline` | `work-discipline` skill | Any repo, with or without code. `craft-development` and `craft-refactoring` pull it in; recommend it on its own where the work isn't code. |
-| Craft | `craft-development` | `development-standards` skill | Any repo with code in it, together with `craft-code-review` and `craft-refactoring` (see Code, below). |
+| Universal | `universal-work-discipline` | `work-discipline` skill | Any repo, with or without code. `craft-development` pulls it in; recommend it on its own where the work isn't code. |
+| Craft | `craft-development` | `development-standards` skill | Any repo with code in it, together with `craft-code-review` (see Code, below). |
 | Craft | `craft-review` | `review-work` skill | `craft-code-review` pulls it in. Recommend it on its own where work other than code gets reviewed: documents, reports, plans. |
-| Craft | `craft-code-review` | `review-changes` skill | Any repo with code in it, with the other two. Do **not** gate this on PR-workflow signals: checking catches logical errors and inconsistencies before a commit, whether or not anyone opens pull requests. |
-| Craft | `craft-refactoring` | `refactor-safely` skill | Any repo with code in it, with the other two. It needs no test suite to be useful, but say so when there isn't one, because its plans will start with characterization tests. |
-| Craft | `craft-cv-writing` | `write-cv` skill | A CV or résumé kept as a document in the repo, such as `CV.md`, `resume.md`, a `cv/` folder or a `resume.*` file, and written or tailored there. Not a repo that only links to one. Pulls in `universal-work-discipline`. |
+| Craft | `craft-code-review` | `review-changes` skill | Any repo with code in it, with `craft-development`. Do **not** gate this on PR-workflow signals: checking catches logical errors and inconsistencies before a commit, whether or not anyone opens pull requests. |
 | Language | `language-simple-english` | `simple-english` skill | Every project, with or without code: every project has text a person reads. |
 | Language | `language-conventional-commits` | `conventional-commits` skill | Any repo with code in it, after the one question in "Commit messages", below. |
 | Framework & Tools | `tools-vue` | `vue-conventions` skill | `vue` in dependencies. Check the major version and note it: the plugin targets Vue 3 Composition API, so flag a mismatch if the project is on Options API or Vue 2. |
-| Framework & Tools | `tools-vue-typescript` | `vue-typescript-conventions` skill | `vue` and `typescript` both in dependencies, or `lang="ts"` in `.vue` files. Pulls in `tools-vue`. |
-| Framework & Tools | `tools-pinia` | `pinia-conventions` skill | `pinia` in dependencies. Pulls in `tools-vue`. |
-| Framework & Tools | `tools-aws-static-hosting` | `aws-static-hosting` skill | A CloudFront distribution in front of an S3 bucket in the infrastructure code or deploy scripts: `cloudfront.Distribution`, `aws_cloudfront_distribution` or `AWS::CloudFront::Distribution`, or `aws s3 sync` followed by a CloudFront invalidation. |
 | Framework & Tools | `tools-appkit` | `appkit-conventions` skill | `import AppKit` or `import Cocoa` in the project's `.swift` sources. Note whether the app ships as a bundle or runs as a bare executable: the plugin's starting rules are for the bare one. |
 | — | `marketplace-base` | The always-on index of standards, the build-and-test guard, the correction collector, and the `test-runner` and `reviewer` agents | Every docked project. Install it first. |
 | — | `marketplace-steward` | `steward` skill and `guide` agent | Already installed at user scope if you're reading this. Never write it into a project's settings: it belongs to the machine, not the project. |
@@ -47,7 +42,6 @@ announces the gap. The settings file looks right and the plugins simply never lo
 claude plugin marketplace add colla69/personal-claude-plugin-marketplace
 claude plugin install craft-development@personal-claude-plugin-marketplace --scope project
 claude plugin install craft-code-review@personal-claude-plugin-marketplace --scope project
-claude plugin install craft-refactoring@personal-claude-plugin-marketplace --scope project
 ```
 
 - **One line per recommended plugin**, matching the `enabledPlugins` keys exactly. If
@@ -110,12 +104,11 @@ the design.
 
 ## Code
 
-In any repo with code, `craft-development`, `craft-code-review`, and
-`craft-refactoring` go together. They are the craft of changing, checking and
-restructuring code, and most work on code does all three. Leaving one out leaves that
-part of the work without its standard.
+In any repo with code, `craft-development` and `craft-code-review` go together. They
+are the craft of changing and checking code, and most work on code does both. Leaving
+one out leaves that part of the work without its standard.
 
-All three depend on `universal-clean-code`, whose `clean-code` skill is the standard
+Both depend on `universal-clean-code`, whose `clean-code` skill is the standard
 their judgements are measured against. Installing any of them pulls it in.
 
 ## Commit messages
@@ -207,11 +200,12 @@ old name.
 | `developer` | `craft-development` | Part of it became `universal-work-discipline` |
 | `code-review` | `craft-code-review` | Builds on `craft-review` |
 | `unit-testing` | — | Its successor `craft-unit-testing` was removed; test first stays in `craft-development` |
-| `refactoring` | `craft-refactoring` | |
+| `refactoring` | — | Its successor `craft-refactoring` was removed |
 | `java-dev` | — | Its successor `language-java` was removed |
 | `typescript-dev` | — | Its successor `language-typescript` was removed |
-| `vue-dev` | `tools-vue` | Its Pinia and TypeScript parts are `tools-pinia` and `tools-vue-typescript`, each chosen by its own signal |
+| `vue-dev` | `tools-vue` | Its Pinia and TypeScript parts, `tools-pinia` and `tools-vue-typescript`, were removed |
 | `project-init`, `marketplace-init` | `marketplace-steward` | User scope only; never a project key |
 | `marketplace-steward:evaluate-skills` | `marketplace-curator:evaluate-skills` | Moved with the curator's work |
 | `language-java`, `language-typescript`, `language-javascript`, `language-swift` | — | Removed: measured, the model followed their rules without them |
 | `craft-unit-testing` | — | Removed: measured, the model followed its rules without it. Test first stays in `craft-development` |
+| `craft-refactoring`, `craft-cv-writing`, `tools-vue-typescript`, `tools-pinia`, `tools-aws-static-hosting` | — | Removed: measured, the model followed their rules without them |

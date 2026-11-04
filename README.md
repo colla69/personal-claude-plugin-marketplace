@@ -56,9 +56,9 @@ name starts with its layer. A fifth, Team, holds one team's quirks, as a last re
 | Layer | Holds | Today |
 |---|---|---|
 | **Universal** | What holds for everything | Clean code, and the discipline of working where someone else maintains |
-| **Craft** | How a kind of work is done | Developing, reviewing, unit testing, refactoring |
-| **Language** | What the work is written in | Java, TypeScript, simple English |
-| **Framework & Tools** | One concrete product | Vue, Pinia |
+| **Craft** | How a kind of work is done | Developing and reviewing |
+| **Language** | What the work is written in | Simple English, Conventional Commits |
+| **Framework & Tools** | One concrete product | Vue, AppKit |
 | **The marketplace's own** | Docks projects, runs in them, and grows the marketplace | `marketplace-steward`, `marketplace-base`, `marketplace-curator` |
 
 [Plugins](docs/reference/plugins.md) lists each one with its skill, what it is for, when

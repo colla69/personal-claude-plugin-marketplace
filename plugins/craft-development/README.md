@@ -31,7 +31,7 @@ This skill says what they mean for code.
 ## Install
 
 Docking installs it at project scope in any project with code, together with
-`craft-code-review` and `craft-refactoring`. By hand:
+`craft-code-review`. By hand:
 
 ```bash
 claude plugin install craft-development@personal-claude-plugin-marketplace --scope project

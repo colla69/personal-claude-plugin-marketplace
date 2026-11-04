@@ -27,8 +27,8 @@ against it, so one edit here moves every judgement downstream.
   standard. The mismatch is raised once, separately.
 - A language's idioms and a framework's conventions, to the Language and Framework &
   Tools layers, such as `vue-conventions`.
-- How code gets changed, reviewed and restructured: `development-standards`,
-  `review-changes` and `refactor-safely`, which measure their results against this.
+- How code gets changed and reviewed: `development-standards` and `review-changes`,
+  which measure their results against this.
 
 ## Install
 

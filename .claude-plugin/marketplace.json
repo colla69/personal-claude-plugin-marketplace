@@ -43,20 +43,6 @@
       "tags": ["review", "diff", "pr"]
     },
     {
-      "name": "craft-refactoring",
-      "source": "./plugins/craft-refactoring",
-      "description": "Behavior-preserving refactors executed in small, verifiable steps with a green test suite as the gate.",
-      "category": "craft",
-      "tags": ["refactoring", "cleanup", "tech-debt"]
-    },
-    {
-      "name": "craft-cv-writing",
-      "source": "./plugins/craft-cv-writing",
-      "description": "Writing and tailoring a CV: terms in context, both forms of an alias, exact verbs, one defensible figure per project, and no invented facts.",
-      "category": "craft",
-      "tags": ["cv", "resume", "ats"]
-    },
-    {
       "name": "language-simple-english",
       "source": "./plugins/language-simple-english",
       "description": "English nobody can read two ways, after Simplified Technical English: short sentences, one instruction each, one word per meaning, active voice, simple tenses.",
@@ -76,27 +62,6 @@
       "description": "Vue 3 Composition API conventions for components, reactivity, composables, and templates.",
       "category": "tools",
       "tags": ["vue", "frontend", "typescript"]
-    },
-    {
-      "name": "tools-vue-typescript",
-      "source": "./plugins/tools-vue-typescript",
-      "description": "TypeScript in Vue 3: props and emits typed through the generic form, and typed reactive inputs for composables.",
-      "category": "tools",
-      "tags": ["vue", "typescript"]
-    },
-    {
-      "name": "tools-pinia",
-      "source": "./plugins/tools-pinia",
-      "description": "Pinia store conventions: setup-syntax stores, and server data in a query layer rather than a store.",
-      "category": "tools",
-      "tags": ["pinia", "vue", "state"]
-    },
-    {
-      "name": "tools-aws-static-hosting",
-      "source": "./plugins/tools-aws-static-hosting",
-      "description": "Static hosting on AWS: S3 behind CloudFront, certificate region, deep links, cache tiers, private buckets, safe syncs, and checks after a deploy.",
-      "category": "tools",
-      "tags": ["aws", "cloudfront", "s3", "static-site"]
     },
     {
       "name": "tools-appkit",

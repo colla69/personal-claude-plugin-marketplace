@@ -103,7 +103,7 @@ what happened. Expect something like this:
 | **Check command** | `npm run typecheck && npm test`, or `npm test`, from the scripts |
 | **Written** | `CLAUDE.md`, `.claude/plugin-sources.json` |
 | **Changed** | Nothing, or `.claude/settings.json` if Claude Code had made one |
-| **Standards** | `marketplace-base`, `universal-clean-code`, `craft-development`, `craft-code-review`, `craft-refactoring`, `language-simple-english` because every project has text to read, `language-conventional-commits` if you said yes, and what they pull in |
+| **Standards** | `marketplace-base`, `universal-clean-code`, `craft-development`, `craft-code-review`, `language-simple-english` because every project has text to read, `language-conventional-commits` if you said yes, and what they pull in |
 | **On another machine** | The same installs as a block to paste |
 | **Unverified** | Anything it couldn't check |
 

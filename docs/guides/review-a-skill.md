@@ -17,7 +17,7 @@ curator plugin, the same one the curator's checker runs before every pull reques
    `craft-review` and `language-simple-english` come along because the curator
    depends on them, and a plugin whose dependency is missing doesn't load at all.
 2. **Ask:** "is this skill well written?", "why isn't `vue-conventions` triggering?",
-   "is `craft-refactoring` ready to merge?", "review my change to `clean-code`", or
+   "is `craft-code-review` ready to merge?", "review my change to `clean-code`", or
    "how do the skills fit together?". The first time, Claude Code asks whether the skill
    may read its own files. For a change you wrote yourself, ask for the
    `change-reviewer` agent instead: it runs the same review without the evals, in a
