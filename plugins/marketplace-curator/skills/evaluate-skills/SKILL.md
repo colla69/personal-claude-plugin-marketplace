@@ -74,7 +74,7 @@ with both locations and the file that keeps it. Three checks only an evaluation 
 - **Does the frontmatter carry the lane?** A read-only agent carries `disallowedTools:
   Write, Edit, NotebookEdit`, which removes the edit tools and leaves the shell to its
   failure mode. Every `skills:` name is `plugin:skill`. `model` is an alias, never a
-  full model ID, and fits the kind of work as `style.md` says.
+  full model ID, and `effort` fits the kind of work as `style.md` says.
 
 ## A hook
 

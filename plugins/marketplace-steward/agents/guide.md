@@ -1,8 +1,8 @@
 ---
 name: guide
 description: Answers questions about the company's standards and this project's setup — which standard covers a task, what a standard says, which standards exist but aren't installed here, why a skill isn't loading, and what the setup costs and how to make it cheaper. Started by the steward skill; read-only.
-effort: medium
-model: sonnet
+effort: low
+model: opus
 disallowedTools: Write, Edit, NotebookEdit
 ---
 

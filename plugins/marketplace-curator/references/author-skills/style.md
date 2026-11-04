@@ -228,9 +228,11 @@ worker either does out-of-scope work or drops what it noticed.
   that reads its plugin's references by path, as `plugin-shape.md` describes.
 - **Agent frontmatter** takes `name` and `description`, plus:
   - `model`, as an alias, never a full model ID, so that it follows new versions. It
-    goes by the kind of work: `opus` for judgement, such as a review; `sonnet` for doing
-    and answering; `haiku` for fetching and running, such as a test run.
-  - `effort`, by the same measure: `medium` by default, `low` for running a command.
+    is `opus`, whatever the work. `haiku` only for a task that is mechanical and needs
+    no thought, such as running a command and reporting what failed.
+  - `effort`, which is the dial for cost: `low` for answering and for routine work,
+    `medium` for work from a brief and for a review, `high` for planning and hard
+    judgement.
   - `disallowedTools`, for every read-only lane.
   - `skills:`, the skills it preloads, each as `plugin:skill`. A bare name resolves to
     nothing, and the agent runs without it.

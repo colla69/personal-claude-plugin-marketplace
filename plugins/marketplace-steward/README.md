@@ -9,7 +9,7 @@ for beginners and experts alike. It is the one plugin each person installs by ha
 | | |
 |---|---|
 | Skill | `steward`, the front door |
-| Agent | `guide`, on Sonnet, which answers questions about the standards and the setup. Read-only |
+| Agent | `guide`, on Opus at low effort, which answers questions about the standards and the setup. Read-only |
 | References | `dock.md`, `tidy.md`, `catalog.md`, `context-files.md`, `plugin-sources.md` and `cost.md`, read by path |
 | Script | `scripts/measure-setup.mjs`, which measures what a project's setup costs per session. Plain Node; it writes nothing |
 | Layer | None: it is part of the marketplace itself |

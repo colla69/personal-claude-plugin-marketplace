@@ -56,8 +56,8 @@ Decide, from what step 2 found:
 - **The commit question.** In a project with code, ask the one question in "Commit
   messages" in `catalog.md` now, and wait for the answer.
 - **The agents' models.** When the project has agents in `.claude/agents/` that name no
-  model or say `inherit`, read `agent-models.md` and ask its one question now, together
-  with the commit question.
+  model, say `inherit` or name `sonnet`, read `agent-models.md` and ask its one question
+  now, together with the commit question.
 - **The check command.** In a project with code, the one command that proves the build
   and the tests pass, such as `npm run build && npm test`. Take it from CI; with no CI,
   from the command the project's own documents name for checking its work. Step 7 runs
@@ -94,10 +94,11 @@ reports only what failed, so the output stays out of the session.
 1. **Merge `assets/settings-template.json` into `.claude/settings.json`.** Never
    replace the file; it often holds permissions and hooks already. The template declares
    the marketplace, which Claude Code then updates by itself, so a merged change reaches
-   the project, and sets the session's model to `opusplan`: Opus in plan mode, Sonnet
-   otherwise, and sets `autoCompactWindow` to 180000: a session compacts when its
-   context reaches 180k tokens, not at the model's limit. When the file already names a
-   `model` or an `autoCompactWindow`, keep the project's, and say so in the report.
+   the project, and sets the session's model to `opus` at `effortLevel` `medium`: one
+   model everywhere, with effort as the dial for cost. It sets `autoCompactWindow` to
+   180000: a session compacts when its context reaches 180k tokens, not at the model's
+   limit. When the file already names a `model`, an `effortLevel` or an
+   `autoCompactWindow`, keep the project's, and say so in the report.
 2. **Write the check command**, when step 3 chose one, as `"STEWARD_CHECK"` under `env`
    in the same file. The base plugin's guard reads it. When part of the project is not
    covered by the command, such as `jobs/` or `CV/` beside a built `frontend/`, also
@@ -126,7 +127,8 @@ other projects as issues for the curators. Run it on every file step 2 noted, no
 the ones you expect to change: its table has one row for each file read, and a file
 without a row was not read.
 
-Then write the models the user accepted in step 3, as `agent-models.md` says.
+Then write the models and efforts the user accepted in step 3, as `agent-models.md`
+says.
 
 ## 7. Verify
 
