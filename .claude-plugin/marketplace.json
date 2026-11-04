@@ -17,14 +17,14 @@
     {
       "name": "universal-work-discipline",
       "source": "./plugins/universal-work-discipline",
-      "description": "How to work in a place someone else maintains: read first, match what is there, hold scope, and never call unverified work done.",
+      "description": "How to report work done in a place someone else maintains: run the checks the place uses, and never call unverified work done.",
       "category": "universal",
       "tags": ["discipline", "scope", "verification"]
     },
     {
       "name": "craft-development",
       "source": "./plugins/craft-development",
-      "description": "What careful work means for code: test first, named interface changes, and verification with typecheck, tests and lint.",
+      "description": "What careful work means for code: test first, and verification with typecheck, tests and lint.",
       "category": "craft",
       "tags": ["development", "implementation", "verification"]
     },
@@ -38,7 +38,7 @@
     {
       "name": "craft-code-review",
       "source": "./plugins/craft-code-review",
-      "description": "Structured review of a diff or branch: correctness, security, tests, and API surface.",
+      "description": "Structured review of a diff or branch: correctness, tests, and API surface, each finding located by file and line.",
       "category": "craft",
       "tags": ["review", "diff", "pr"]
     },

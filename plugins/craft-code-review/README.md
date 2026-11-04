@@ -1,7 +1,7 @@
 # craft-code-review
 
-A code change is reviewed in a fixed order: correctness, security, test adequacy, API
-and contract impact, then everything else. Style comes last because it is the easiest
+A code change is reviewed in a fixed order: correctness, test adequacy, API and
+contract impact, then everything else. Every finding is located by file and line. Style comes last because it is the easiest
 thing to spot.
 
 | | |

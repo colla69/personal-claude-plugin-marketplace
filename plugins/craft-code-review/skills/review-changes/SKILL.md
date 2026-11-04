@@ -1,6 +1,6 @@
 ---
 name: review-changes
-description: Review a code change — a diff, a branch, or a pull request — for correctness, security, test adequacy, and API impact. Use whenever the user says "look at my changes", "review this PR", "check this branch before I push", or wants feedback on code in progress. Also use before committing when the change is substantial.
+description: Review a code change — a diff, a branch, or a pull request — for correctness, test adequacy, and API impact, with every finding located by file and line. Use whenever the user says "look at my changes", "review this PR", "check this branch before I push", or wants feedback on code in progress. Also use before committing when the change is substantial.
 ---
 
 # Review changes
@@ -27,15 +27,7 @@ whether a change is correct.
 **Correctness.** Does it do what the commit message claims? For the case you trace,
 take one realistic input through the changed path. Then check the edges the author
 probably didn't: empty collections, null, concurrent access, the second call, the
-failure of the thing being called. Then look for what a diff cannot show: when the
-change adds or alters a rule or a format on one of two paths that must agree — client
-and server validation, or the code that writes a record and the code that reads it —
-check the same rule on the other path. A missing rule has no line to comment on, so it
-ships unless the reviewer goes to look for it.
-
-**Security.** Untrusted input reaching a query, a shell, a path, or a template. Authz
-checks that happen after the expensive operation rather than before. Secrets in code or
-logs. Anything that widens what an unauthenticated caller can reach.
+failure of the thing being called.
 
 **Test adequacy.** Would the tests fail if the change were wrong? New branches with no
 corresponding test are the gap worth naming.
@@ -51,7 +43,7 @@ Real, but last, and easy to over-index on because it's the easiest to spot.
 
 Use the report shape in `review-work`. For a code change:
 
-- **Blocking** holds bugs, security issues and breaking changes, each located by
+- **Blocking** holds bugs and breaking changes, each located by
   `file:line`, with the input or sequence that triggers it. "Potential null
   dereference" sends the author hunting; "`parseUser` at line 42 dereferences
   `profile.name`, and `profile` is null for accounts created before the migration" is

@@ -28,7 +28,6 @@ count.
   always a `computed` written the hard way.
 - `watch` is for side effects — fetching, logging, syncing to storage. If your watcher
   assigns to a `ref`, look for the computed you're missing.
-- Never mutate props. Emit, or use `defineModel` for two-way binding.
 
 ## Composables
 
@@ -51,8 +50,6 @@ store, and the store library brings its own conventions.
 
 ## Templates
 
-- `v-for` always with a stable `:key`, never the index when the list reorders
-- Never `v-if` and `v-for` on the same element; filter in a computed instead
 - Extract template expressions longer than a comparison into a computed
 - Prefer named slots over prop-driven conditional rendering when the parent should control
   the content

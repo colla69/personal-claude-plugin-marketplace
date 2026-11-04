@@ -1,7 +1,7 @@
 # craft-development
 
-A change to code is careful when it starts from a failing test, names any change to a
-public interface, and typecheck, tests and lint ran in that order.
+A change to code is careful when it starts from a failing test, and typecheck, tests
+and lint ran in that order.
 
 | | |
 |---|---|
@@ -9,15 +9,13 @@ public interface, and typecheck, tests and lint ran in that order.
 | Layer | Craft |
 | Builds on | `universal-clean-code`, `universal-work-discipline` |
 
-The general rules, read first, match, hold scope and verify, live in `work-discipline`.
-This skill says what they mean for code.
+The general rule, unverified is not done, lives in `work-discipline`. This skill says
+what it means for code.
 
 ## Fires when
 
 - Writing or modifying application code, in any language
 - Implementing a feature or a fix
-- Before changing a function signature, an exported type or an API response, since
-  those changes break callers outside the diff
 
 ## Leaves to others
 

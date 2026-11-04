@@ -9,21 +9,19 @@ tell what changed and why, and whether anything they relied on moved without war
 | Layer | Universal |
 | Builds on | nothing |
 
-Four rules, for any kind of work: read before writing, match what is there, hold scope,
-and unverified is not done.
+One rule, for any kind of work: unverified is not done.
 
 ## Fires when
 
 - Changing, extending or fixing existing work: code, a document, a template, a
   configuration
-- "just add", "quick fix", "small change", "while you're in there"
-- The task looks simple, which is when scope quietly expands and the check gets skipped
+- "just add", "quick fix", "small change"
+- The task looks simple, which is when the check gets skipped
 
 ## Leaves to others
 
-- **What the rules mean for one kind of work.** Which neighbours to read, which checks
-  run and in what order: the Craft skill for that work, such as `development-standards`
-  for code.
+- **What the rule means for one kind of work.** Which checks run and in what order:
+  the Craft skill for that work, such as `development-standards` for code.
 - What good work looks like — to `clean-code` for code, and to the more specific
   layers.
 - The project's own conventions and definition of done, which win over all of it.

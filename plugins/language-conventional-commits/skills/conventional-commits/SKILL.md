@@ -23,17 +23,14 @@ that most projects take from the Angular convention.
 [<footer>: <value>]
 ```
 
-- The header is one line. A blank line separates it from the body, and another blank
-  line separates the body from the footers. A tool that parses the history reads the
-  first line as the header and splits the rest at the blank lines. A missing blank line
-  makes the body part of the header.
+- The header is one line.
 - Write the type and the scope in lowercase. The specification accepts any case, but
   the common linter rejects anything else.
 
 ## Choose the type
 
 Choose the type by what the change does for a user of the software, not by which files
-it touches. A fix to a broken test is `test`, not `fix`: no user sees a difference.
+it touches.
 
 | Type | Use it for | Release, with the common presets |
 |---|---|---|
@@ -54,22 +51,6 @@ If no single type fits, the commit holds two changes. Split it into two commits.
 
 Do not use `chore` for a change that has a better type. It is the type that says
 nothing, so a history full of it is a history nobody can filter.
-
-## Mark a breaking change
-
-A change is breaking when something that worked before stops working without a change
-on the other side: a caller, a configuration file, a stored value, a command line.
-
-- Put `!` after the type or the scope: `feat(api)!: remove the v1 endpoints`.
-- Add a `BREAKING CHANGE:` footer that says what breaks and what the user must do. The
-  `!` tells the tool to release a major version. The footer tells the person how to
-  upgrade, and the changelog prints it.
-- Write `BREAKING CHANGE` in uppercase. It is the one token the specification makes
-  case-sensitive, and a tool that does not find it releases a minor version.
-
-A breaking change that is not marked is the most expensive mistake in this format. It
-releases a minor or a patch version, and every user who trusts the version number
-upgrades into the break.
 
 ## Write the scope
 

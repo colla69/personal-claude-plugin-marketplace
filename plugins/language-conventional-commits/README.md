@@ -2,16 +2,13 @@
 
 A commit message has two readers: a person who searches the history, and a tool that
 turns it into a version and a changelog. The tool forgives nothing, so the type says
-what the change does for a user, and a breaking change is always marked.
+what the change does for a user.
 
 | | |
 |---|---|
 | Skill | `conventional-commits` |
 | Layer | Language |
 | Builds on | nothing |
-
-> A breaking change that is not marked releases a minor or a patch version, and every
-> user who trusts the version number upgrades into the break.
 
 It follows the Conventional Commits 1.0.0 specification, with the type list most
 projects take from the Angular convention.
