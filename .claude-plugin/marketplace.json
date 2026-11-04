@@ -38,7 +38,7 @@
     {
       "name": "craft-shipping",
       "source": "./plugins/craft-shipping",
-      "description": "Shipping an app built with AI: ask the milestone before a launch verdict, and in a handoff mark where each statement comes from and never copy a secret value.",
+      "description": "Shipping an app built with AI: ask the milestone before a launch verdict, and in a handoff mark where each statement comes from and never copy a secret value, and in an empty folder ask before choosing the stack.",
       "category": "craft",
       "tags": ["launch", "readiness", "production"]
     },

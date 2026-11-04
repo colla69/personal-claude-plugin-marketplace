@@ -1,0 +1,1 @@
+The folder is empty, so nothing tells me your stack. I would pick plain Node with a small HTML page, because it needs no build step. The alternative is a hosted form. Which do you want? I will create files once you choose.

@@ -5,8 +5,9 @@ The candidate rules come from the Clean Code Toolkit
 (github.com/tmoody1973/clean-code-claude-code, MIT). A rule enters only when an eval
 shows that the model breaks it without the rule.
 
-**Status:** approved 2026-11-04, on branch `feature/measurement-plan`, with `craft-shipping`
-in Craft as the home and phase 1 first. Nothing is built.
+**Status:** done 2026-11-04, all three phases. Approved the same day, on branch
+`feature/measurement-plan`, with `craft-shipping` in Craft as the home and phase 1
+first.
 
 ---
 
@@ -124,3 +125,8 @@ skill loaded in every run with it. `craft-shipping` ships with R2 alone (D89).
 **Phase 2, 2026-11-04, $0.81.** H1, sources marked: 3 of 5 with, 0 of 5 without. H4,
 no secret value: 5 of 5 with, 3 of 5 without. Both kept. H2 5 vs 5 and H3 5 vs 4: cut.
 The skill loaded in every run with it (D90).
+
+**Phase 3, 2026-11-04, $0.95.** S1, asks before the first file: 5 of 5 with, 0 of 5
+without. Kept as `new-project` (D91).
+
+The whole plan cost $3.23. Five of eleven rules entered.
