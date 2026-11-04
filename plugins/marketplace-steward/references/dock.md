@@ -31,7 +31,8 @@ the checklist, and the rules for the file.
    step 6 tidies the project's own, and other tools' files are read for content worth
    carrying into `CLAUDE.md` and left as they are. `CLAUDE.local.md`,
    `.claude/settings.local.json` and everything under `~/.claude` are the user's own:
-   read them, and change nothing in them.
+   read them, and change nothing in them. The one exception is the working agreement
+   in `~/.claude/CLAUDE.md`, which item 6 of step 5 adds.
 2. **What the project is.** For a codebase, start the built-in `Explore` agent for the
    survey, and ask for these fields: the stack and where each version is pinned; the
    commands, taken from CI first, each marked verified or inferred; the components, each
@@ -56,8 +57,8 @@ Decide, from what step 2 found:
 - **The commit question.** In a project with code, ask the one question in "Commit
   messages" in `catalog.md` now, and wait for the answer.
 - **The agents' models.** When the project has agents in `.claude/agents/` that name no
-  model or say `inherit`, read `agent-models.md` and ask its one question now, together
-  with the commit question.
+  model, say `inherit` or name `sonnet`, read `agent-models.md` and ask its one question
+  now, together with the commit question.
 - **The check command.** In a project with code, the one command that proves the build
   and the tests pass, such as `npm run build && npm test`. Take it from CI; with no CI,
   from the command the project's own documents name for checking its work. Step 7 runs
@@ -94,10 +95,11 @@ reports only what failed, so the output stays out of the session.
 1. **Merge `assets/settings-template.json` into `.claude/settings.json`.** Never
    replace the file; it often holds permissions and hooks already. The template declares
    the marketplace, which Claude Code then updates by itself, so a merged change reaches
-   the project, and sets the session's model to `opusplan`: Opus in plan mode, Sonnet
-   otherwise, and sets `autoCompactWindow` to 180000: a session compacts when its
-   context reaches 180k tokens, not at the model's limit. When the file already names a
-   `model` or an `autoCompactWindow`, keep the project's, and say so in the report.
+   the project, and sets the session's model to `opus` at `effortLevel` `medium`: one
+   model everywhere, with effort as the dial for cost. It sets `autoCompactWindow` to
+   180000: a session compacts when its context reaches 180k tokens, not at the model's
+   limit. When the file already names a `model`, an `effortLevel` or an
+   `autoCompactWindow`, keep the project's, and say so in the report.
 2. **Write the check command**, when step 3 chose one, as `"STEWARD_CHECK"` under `env`
    in the same file. The base plugin's guard reads it. When part of the project is not
    covered by the command, such as `jobs/` or `CV/` beside a built `frontend/`, also
@@ -116,6 +118,21 @@ reports only what failed, so the output stays out of the session.
    ```bash
    claude plugin install <name>@<marketplace> --scope project
    ```
+6. **Write the working agreement into the person's own `~/.claude/CLAUDE.md`**, from
+   `assets/working-with-me.md`, unless the user said to leave it out. It is how the
+   person wants Claude to work with them in every project, so it lives in their file
+   and not in the project's. Read the file first, and look for a heading that reads
+   "working with me", at any level and in any case, in the file and in every file it
+   imports with `@`:
+   - **No file:** create it with the text of the asset.
+   - **The heading is there:** change nothing. The person already wrote their own.
+   - **No such heading:** copy the file to
+     `~/.local/share/marketplace-steward/backups/home-claude/<date>/CLAUDE.md`, and add
+     a number to the name instead of writing over an earlier backup. Then add the
+     asset's text at the end with Edit, after a blank line. Leave every other line as
+     it is.
+
+   A project that is docked a second time finds the heading and writes nothing.
 
 ## 6. Tidy
 
@@ -126,7 +143,8 @@ other projects as issues for the curators. Run it on every file step 2 noted, no
 the ones you expect to change: its table has one row for each file read, and a file
 without a row was not read.
 
-Then write the models the user accepted in step 3, as `agent-models.md` says.
+Then write the models and efforts the user accepted in step 3, as `agent-models.md`
+says.
 
 ## 7. Verify
 
@@ -155,7 +173,10 @@ Do not declare success without checking:
    or in an `env` block, and a window saved for a model under `modelSettings` in
    `.claude/settings.local.json` or in `~/.claude/settings.json`, win over the project's
    `autoCompactWindow`. Report each you find, and change nothing there.
-9. **The report is complete.** Count the rows. Every file step 2 noted has a row of its
+9. **The working agreement is in place**, unless the user left it out, and then the
+   report says so. `~/.claude/CLAUDE.md` has a "working with me" heading, and every
+   other line in it is as it was.
+10. **The report is complete.** Count the rows. Every file step 2 noted has a row of its
    own in the Tidied table, never one row for a group, and the count in "Read <n> files"
    equals the rows. Every row of the catalog has a verdict in the Standards table or is
    counted in its closing line. A gap here is a step you skipped: go back and do it.
@@ -173,10 +194,12 @@ expects a plugin or marketplace manifest, and fails with "No manifest found".
 **Check command:** <the command, or "none", and why>
 
 ### Written
-- <path> — <one line>
+- <path> — <one line>. This includes `~/.claude/CLAUDE.md` when step 5 created it.
 
 ### Changed
-- <path that already existed> — <what changed>
+- <path that already existed> — <what changed>. This includes `~/.claude/CLAUDE.md`
+  when step 5 added the working agreement to it, with the backup's path, and when it
+  found the agreement there and left the file as it was.
 
 ### Standards
 | Plugin | Verdict | Evidence in this project |
@@ -230,4 +253,6 @@ current:
    differs may be the project's own choice, and nothing records which it is, so change
    none without a tick.
 4. Write the ticked values into `.claude/settings.json`, and keep every other key.
-5. Report the table, and what was written. Then run step 7, item 8.
+5. Run item 6 of step 5, the working agreement. It is not a key in the settings, so
+   the table doesn't hold it, and it follows the same rule as in a dock: no question.
+6. Report the table, and what was written. Then run step 7, items 8 and 9.

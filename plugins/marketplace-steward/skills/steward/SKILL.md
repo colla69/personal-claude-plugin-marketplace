@@ -4,6 +4,9 @@ description: Dock a project onto the company's standards and help people use the
 allowed-tools:
   - Read(/${CLAUDE_PLUGIN_ROOT}/**)
   - Write(~/.local/share/marketplace-steward/backups/**)
+  - Read(~/.claude/CLAUDE.md)
+  - Write(~/.claude/CLAUDE.md)
+  - Edit(~/.claude/CLAUDE.md)
   - Bash(claude plugin list --json)
   - Bash(claude plugin list --available --json)
   - Bash(claude plugin marketplace list --json)
@@ -43,7 +46,7 @@ step 5, and a change to the project's files goes in as `dock.md` writes them.
 
 - **Ask only what a person must decide.** The sources the project may draw from, once,
   when no policy file exists; whether the project writes Conventional Commits, once, in
-  a project with code; which model each of the project's own agents runs on, once; which
+  a project with code; which model and effort each of the project's own agents runs on, once; which
   settings that differ from the template to update; and what `dock.md` names. Everything else goes ahead and is
   reported.
 - **Say exactly what you created and what you changed.** The report is what the user

@@ -121,8 +121,9 @@ named `marketplace-<name>` with category `marketplace`. There are three:
 Five things differ from a skill plugin.
 
 **It may ship agents.** Each one is a worker every project shares, so it ships once,
-here. Its model goes by the kind of work, as "Mechanics" in `style.md` says, and a
-read-only one carries `disallowedTools: Write, Edit, NotebookEdit`.
+here. Its model is `opus`, or `haiku` for mechanical work, and its effort goes by the
+kind of work, as "Mechanics" in `style.md` says. A read-only one carries
+`disallowedTools: Write, Edit, NotebookEdit`.
 
 **`marketplace-base` ships hooks.** A hook runs in every session of every project that
 enables the plugin, so it does one cheap thing, returns fast, and does nothing in a

@@ -9,7 +9,7 @@ for beginners and experts alike. It is the one plugin each person installs by ha
 | | |
 |---|---|
 | Skill | `steward`, the front door |
-| Agent | `guide`, on Sonnet, which answers questions about the standards and the setup. Read-only |
+| Agent | `guide`, on Opus at low effort, which answers questions about the standards and the setup. Read-only |
 | References | `dock.md`, `tidy.md`, `catalog.md`, `context-files.md`, `plugin-sources.md` and `cost.md`, read by path |
 | Script | `scripts/measure-setup.mjs`, which measures what a project's setup costs per session. Plain Node; it writes nothing |
 | Layer | None: it is part of the marketplace itself |
@@ -33,6 +33,9 @@ for beginners and experts alike. It is the one plugin each person installs by ha
 - `.claude/settings.json`, merged: the marketplace, the session's model, and the
   build-and-test command for the base plugin's guard
 - The standards and `marketplace-base`, installed at project scope
+- `~/.claude/CLAUDE.md`, the person's own file: a `## Working with me` block that tells
+  Claude to ask what they want before it acts. Docking and "is my setup current?" both
+  add it, once, after a backup, and neither replaces a block the person wrote
 - For a project with a setup of its own: rules that a standard states word for word
   removed, files an earlier steward generated removed, and rules that would serve other
   projects filed as issues for the curators. A file with uncommitted edits is first
