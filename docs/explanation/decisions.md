@@ -28,6 +28,7 @@ the reason it was made is often the reason its replacement has the shape it has.
 - [Collecting as the session goes: D77](#collecting-as-the-session-goes-d77)
 - [Docking that shows its work: D78](#docking-that-shows-its-work-d78)
 - [A guard that sees every change: D79](#a-guard-that-sees-every-change-d79)
+- [Keep what works: D83](#keep-what-works-d83)
 - [Still open](#still-open)
 
 ## The author's statements
@@ -142,7 +143,7 @@ in every one. Plain English is the exception, because every project has text to 
 |---|---|---|---|
 | D49 | A Language skill for English, `language-simple-english`, after Simplified Technical English, installed in every project and given to every role | Every project has text a person reads, and every role writes for one. "I want it everywhere" | Holds, in the catalog. The steward depends on it, so it also reaches every machine, the base plugin's `reviewer` writes by it, and `style.md` applies it to this repo, text moving to it as it is edited |
 | D50 | Plan looks facts up itself, and asks only what the user alone can answer, each decision with the answer it recommends | A question about a fact Plan could look up costs the user a round trip | **Superseded** by D63; the steward and the curator ask the same way |
-| D51 | `clean-code` asks for names a search can find, and error messages that name the remedy | Whoever changes the code next, often an agent, finds callers by searching and acts on what an error says | Holds |
+| D51 | `clean-code` asks for names a search can find, and error messages that name the remedy | Whoever changes the code next, often an agent, finds callers by searching and acts on what an error says | **Superseded** by D83 |
 | D52 | Development is test first: `write-unit-tests` holds the red, green, refactor cycle, and `development-standards` makes it the way code changes where a test runner exists | A test written after the code has never been seen to fail. "That is actually a very good way to do things" | Holds; `craft-development` depends on `craft-unit-testing`, unconditionally, because the skill carries the rule and reports a missing runner |
 
 ## Claude only: D53
@@ -298,6 +299,14 @@ Decided on 2026-10-28, in the first phase of the measurement plan.
 |---|---|---|---|
 | D81 | A skill's test cases live in `evals/<plugin>/` at the repo root, never in the plugin. `node scripts/eval-skill.mjs <plugin>` stages them beside a copy of the plugin, runs them with and without the skill on pinned model IDs, and compares with `main`. Only `--decide` stores a line, in `measurements/results.jsonl`. The script refuses `marketplace-base` and any plugin that builds on it | A skill's value was a belief. A first case for `language-conventional-commits` scored 1.00 with the skill and 0.33 without it, in three runs of each. `claude plugin eval` reads cases only from inside the plugin, and an install copies that folder to every machine, so the script stages the cases at run time and the plugin stays clean. The same cases then measure any version of the skill. The engine loads only the plugin under test, with a temporary home, so the collector can't run in another plugin's eval; a suite for the base would let it file issues on the public repo | Holds, in `plugin-shape.md` and `eval-skill.mjs` |
 | D82 | A case enters a suite only after two free checks. `node scripts/grader-probe.mjs <plugin>` tries every regex grader against code known to be good and code known to be bad, and `node scripts/eval-skill.mjs <plugin> --probe` runs the case without the skill and flags a baseline of 0.8 or more. A case that fails either is rewritten or dropped | The first Java suite passed both ways. Its seven cases scored 0.00 lift. In five the model passed unaided (0.87 to 1.00 in both arms), and in the build-file case it read `pom.xml` in one run of five in each arm, so neither arm showed anything of the skill. Four graders accepted the bug the skill names (`Files.lines`, `orElse(null)`, a view for a copy, an API newer than Java 8) until a reviewer read them. Both mistakes cost money to find by running. The grader check is free, and the probe costs about a dollar for seven cases at three runs | Holds, in `grader-probe.mjs` and `eval-skill.mjs` |
+
+## Keep what works: D83
+
+Decided on 2026-11-04, going through the skills in the audit's order.
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D83 | A skill keeps only the rules a measurement shows the model breaks without it. A skill with none left is deleted. `clean-code` is cut to one rule: more than three parameters means a missing type | Every rule costs tokens in every session that loads it, and a rule the model already follows buys nothing. In the first `clean-code` suite the skill loaded in 3 of 20 runs, all in the parameters case, where it lifted the score from 0.50 to 0.90. The other rules showed nothing | Holds, in `clean-code` and `verdicts.md` |
 
 ## Still open
 

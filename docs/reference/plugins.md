@@ -12,7 +12,7 @@ Each plugin's own README, under `plugins/<name>/`, says where it stops.
 
 | Plugin | Layer | Skill | What it's for | Installed when the project shows | Builds on |
 |---|---|---|---|---|---|
-| [`universal-clean-code`](../../plugins/universal-clean-code/) | Universal | `clean-code` | Readable, maintainable code: naming, function shape, error handling, comments, dependency direction | Any code | — |
+| [`universal-clean-code`](../../plugins/universal-clean-code/) | Universal | `clean-code` | Only the clean-code rules measured to change what the model writes: today, three parameters at most | Any code | — |
 | [`universal-work-discipline`](../../plugins/universal-work-discipline/) | Universal | `work-discipline` | Working where someone else maintains: read first, match what is there, hold scope, verify before "done" | Any work, with or without code; most Craft plugins pull it in | — |
 | [`craft-development`](../../plugins/craft-development/) | Craft | `development-standards` | What careful work means for code: test first, the neighbours to read, a diff kept to the change, verification | Any code, with `craft-code-review` and `craft-refactoring` | `universal-clean-code`, `universal-work-discipline`, `craft-unit-testing` |
 | [`craft-review`](../../plugins/craft-review/) | Craft | `review-work` | Reviewing any work: what it is meant to do, reading it as written, findings with a cost | Work other than code that gets reviewed; `craft-code-review` pulls it in | — |

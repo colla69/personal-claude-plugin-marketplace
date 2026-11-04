@@ -10,7 +10,7 @@
     {
       "name": "universal-clean-code",
       "source": "./plugins/universal-clean-code",
-      "description": "The house standard for readable, maintainable code: naming, function shape, error handling, comments, and dependency direction.",
+      "description": "The clean-code rules measured to change what the model writes: today, three parameters at most.",
       "category": "universal",
       "tags": ["clean-code", "standards", "readability"]
     },

@@ -3,6 +3,9 @@
 Cleanliness is not an end in itself. Every rule answers to one test: does this make the
 code cheaper to change next month? When a rule and that test disagree, the test wins.
 
+It holds only the rules a measurement showed the model breaks without them. Today that
+is one: more than three parameters means a missing type.
+
 | | |
 |---|---|
 | Skill | `clean-code` |
@@ -14,10 +17,9 @@ Language plugins judge against it, so one edit here moves every judgement downst
 
 ## Fires when
 
-- Writing new code, or asking whether existing code is well written
-- "is this clean enough", readability, maintainability, naming
-- Before extracting an abstraction or adding a layer, since duplication is cheaper than
-  the wrong abstraction
+- Writing new code, or a function, method or constructor that takes several inputs
+- Readability, maintainability, "too many parameters", a long argument list
+- Adding a parameter to a function that already takes three
 
 ## Leaves to others
 

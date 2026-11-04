@@ -17,7 +17,7 @@ pure cost. When in doubt, leave it out and mention it as optional.
 
 | Layer | Plugin | Provides | Recommend when the repo shows |
 |---|---|---|---|
-| Universal | `universal-clean-code` | `clean-code` skill | Any repo with code in it. Strongest signal: inconsistent style across modules, long functions, or an existing style guide the skill should be aligned to. |
+| Universal | `universal-clean-code` | `clean-code` skill | Any repo with code in it. Strongest signal: functions with long argument lists. |
 | Universal | `universal-work-discipline` | `work-discipline` skill | Any repo, with or without code. `craft-development`, `craft-refactoring` and `craft-unit-testing` pull it in; recommend it on its own where the work isn't code. |
 | Craft | `craft-development` | `development-standards` skill | Any repo with code in it, together with `craft-code-review` and `craft-refactoring` (see Code, below). |
 | Craft | `craft-review` | `review-work` skill | `craft-code-review` pulls it in. Recommend it on its own where work other than code gets reviewed: documents, reports, plans. |
