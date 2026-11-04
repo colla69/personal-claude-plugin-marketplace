@@ -28,7 +28,7 @@ claude plugin validate ./plugins/<name>                       # does it parse
 claude --plugin-dir ./plugins/<name> plugin details <name>    # inventory, token cost
 node scripts/check-catalog.mjs                                # lists, layers, deps
 node scripts/check-docs.mjs                                   # links, map, wrapping
-claude plugin eval ./plugins/<name> --ablation with-without   # does it change anything
+node scripts/eval-skill.mjs <name> --runs 5 --fails           # does it change anything
 ```
 
 - `validate` warns "no version specified" and "no description provided" on every
@@ -37,8 +37,10 @@ claude plugin eval ./plugins/<name> --ablation with-without   # does it change a
   fails on a plugin that isn't installed, and reports the installed copy of one that
   is. It also counts a skill hidden with `disable-model-invocation`, whose description
   never loads, so its estimate runs high for such a plugin.
-- The ablation is the only measurement of whether a plugin changes the outcome. With no
-  eval cases, report that, and name the first three cases they should assert.
+- The ablation is the only measurement of whether a plugin changes the outcome, and
+  `${CLAUDE_PLUGIN_ROOT}/references/measure.md` is how to run and read it: per rule,
+  with the failing runs read. With no eval cases, report that, and name the first
+  three cases they should assert, one grader per rule.
 
 ## Read across the boundary
 
@@ -92,7 +94,8 @@ with both locations and the file that keeps it. Three checks only an evaluation 
 3. **What does it cost?** The always-on tokens, paid in every session that enables it,
    weighed against how often it fires.
 4. **Is the prose sound?** The checks above.
-5. **Does it change anything?** The ablation, or an honest "no evals".
+5. **Does it change anything?** The ablation, read per rule as `measure.md` says, or
+   an honest "no evals". A rule with no lift is a finding: cut it.
 
 ## The whole set
 

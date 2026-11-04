@@ -82,7 +82,21 @@ source project in it.
 - Commit: `git add -A`, then `git commit -F
   ~/.local/share/marketplace-curator/drafts/<topic>/commit.txt`.
 
-## 6. Check
+## 6. Measure
+
+A change that adds a rule or changes what a rule asks is measured before anyone checks
+it. A change to wording, a description or a registration is not. Read `measure.md` and
+run it on the rules this change touches: say the cost first, run once, read the
+failing runs, and decide each rule.
+
+- **A rule with no lift is cut** from the change, and the commit message says so with
+  the numbers. A new skill with no rule left is not contributed: stop, and report the
+  numbers.
+- **The verdict and the decision** go in, as section 6 of `measure.md` lists, and the
+  three checks run again.
+- Commit the cut and the records with a second commit, and add the numbers to `pr.md`.
+
+## 7. Check
 
 Start the checker: the Agent tool with `marketplace-curator:contribution-checker`, and
 a prompt that holds the branch name, what the change is meant to do, the placement and
@@ -93,7 +107,7 @@ Should fix, commit, and check again, two rounds at most.
 Nothing is public yet: leave the branch, and report the finding. Any other finding still
 open after two rounds goes into `pr.md`, under the checker's verdict.
 
-## 7. Open the pull request
+## 8. Open the pull request
 
 1. `git push -u origin contrib/<topic>`. Push only the branch; a push to `main` skips
    the review the merge is.
@@ -106,12 +120,13 @@ open after two rounds goes into `pr.md`, under the checker's verdict.
 
 When a push or a command fails, stay on the branch, and report it and the error.
 
-## 8. Report
+## 9. Report
 
 ```
 ## Contributed — <the lesson, stripped, in one line>
 
 **Placed in:** <plugin:skill, new or extended> — <its layer, and why>
+**Measured:** <each rule: passes with and without, kept or cut; the cost — or "not measured: no rule changed">
 **Pull request:** <the link, or the compare link to open>
 **Checker:** <its verdict, and what is still open>
 **Answers:** <the issues it closes, or "no issue">

@@ -1,7 +1,7 @@
 ---
 name: curate
 description: The curators' front door in the marketplace's own repository. Use when someone wants to turn a lesson, a correction or an issue into a change to a standard, to add or change a skill, a plugin or a team plugin, or to look through the issues the marketplace has collected. Not for changing a project's setup, which is the steward's.
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**), Bash(gh issue list *), Bash(gh issue view *), Bash(git status --porcelain), Bash(git fetch origin), Bash(git switch -c contrib/*), Bash(claude plugin validate .), Bash(node scripts/check-catalog.mjs), Bash(node scripts/check-docs.mjs)
+allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**), Bash(gh issue list *), Bash(gh issue view *), Bash(git status --porcelain), Bash(git fetch origin), Bash(git switch -c contrib/*), Bash(claude plugin validate .), Bash(node scripts/check-catalog.mjs), Bash(node scripts/check-docs.mjs), Bash(node scripts/grader-probe.mjs *), Bash(node scripts/eval-skill.mjs *), Bash(node scripts/skill-audit.mjs)
 ---
 
 # Curate
@@ -17,6 +17,7 @@ through a pull request a person merges.
 | A lesson, a correction or an issue turned into a change | Read `${CLAUDE_PLUGIN_ROOT}/references/contribute.md` and run it |
 | To see what is waiting | `gh issue list --state open`, grouped by topic: what several issues share first, then what one issue asks alone. Propose which to work, and stop |
 | A skill, a plugin or the whole set judged | Run `evaluate-skills` |
+| The skills that exist measured, to cut what doesn't work | Read `${CLAUDE_PLUGIN_ROOT}/references/measure.md` and run its section 7, one skill at a time, and report after each |
 | A rule about where something goes, or how a skill is written | Answer from `${CLAUDE_PLUGIN_ROOT}/references/place-knowledge.md` and the files in `${CLAUDE_PLUGIN_ROOT}/references/author-skills/` |
 
 ## Rules
@@ -28,5 +29,7 @@ through a pull request a person merges.
   a commit, a branch or a pull request. The strip test in `place-knowledge.md` comes
   before the first word.
 - **Nothing goes to `main` but a merge.** Work on a branch; leave the merge to a person.
+- **No rule enters or stays without a measurement.** A rule that the model follows
+  without it is cut, as `measure.md` says. Every run costs money: say the cost first.
 - **Whoever writes a change never checks it.** The `contribution-checker` checks every
   contribution before its push.
