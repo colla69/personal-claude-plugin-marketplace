@@ -28,7 +28,7 @@ claude plugin validate ./plugins/<name>                       # does it parse
 claude --plugin-dir ./plugins/<name> plugin details <name>    # inventory, token cost
 node scripts/check-catalog.mjs                                # lists, layers, deps
 node scripts/check-docs.mjs                                   # links, map, wrapping
-node scripts/eval-skill.mjs <name> --runs 5 --fails           # does it change anything
+node scripts/eval-skill.mjs <name> --runs 5 --fails           # does it change anything; costs money, see measure.md §4
 ```
 
 - `validate` warns "no version specified" and "no description provided" on every

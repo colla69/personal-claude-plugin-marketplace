@@ -79,10 +79,10 @@ money". Before it writes anything, it places the lesson:
 
 1. **A branch.** It fetches `origin` and makes `contrib/<topic>` off `main`, in your
    checkout, and writes the change there, in the house style.
-2. **The measurement.** If the change adds a rule, it writes a case for it, says what
+2. **The checks.** `claude plugin validate .` and the two repo checks must pass.
+3. **The measurement.** If the change adds a rule, it writes a case for it, says what
    a run costs, and runs it with and without the skill. A rule the model follows
-   anyway is cut. A change to wording only is not measured.
-3. **The checks.** `claude plugin validate .` and the two repo checks must pass.
+   anyway is cut, and the checks run again. A change to wording only is not measured.
 4. **The drafts.** It writes the commit message, the pull request's title and its
    description into `~/.local/share/marketplace-curator/drafts/<topic>/`, before the
    checker reads anything. The description closes the issue.

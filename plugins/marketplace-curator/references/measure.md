@@ -24,8 +24,8 @@ skills that exist. Commands run from the root of this checkout.
 Test each rule on its own, not the skill as a whole. A skill with one rule that works
 and five that don't shows a lift, and the five ride along for free.
 
-Put every rule in the description too, not only in the body. In a run, the skill
-often never loads, and the description is all the model sees.
+In a run, the skill often never loads, and the description is all the model sees.
+Before you cut a rule for no lift, check in the kept output whether the skill loaded.
 
 ## 2. Write the case
 
@@ -46,7 +46,8 @@ can't tell you which one carries the lift.
 ## 3. Check before you pay
 
 - `node scripts/grader-probe.mjs <plugin>` tries every regex grader against its
-  probes. It costs nothing. A grader that passes the bad probe measures nothing.
+  probes. It costs nothing. A grader that passes the bad probe measures nothing. It
+  doesn't run LLM graders: check those by reading their failing runs in section 5.
 - `node scripts/eval-skill.mjs <plugin> --probe` runs the cases without the skill, at
   three runs. A case the model already passes can't show a lift: rewrite it or drop it.
 
@@ -59,8 +60,10 @@ node scripts/eval-skill.mjs <plugin> --runs 5 --fails --allow-tools <tools>
 It runs every case with and without the skill, five runs each, and prints the passes
 per grader. Give the tools the case needs; the default is only `Write,Edit`.
 
-- **Say the cost before the run.** About $1 for one case at five runs per arm. A plan
-  of several runs goes in phases, and each phase waits for the curator's go.
+- **Say the cost before the run.** About $1 for one case at five runs per arm. When
+  the plugin is on `main` and no stored result matches, the script also runs `main`'s
+  version of it, so double the estimate. A plan of several runs goes in phases, and
+  each phase waits for the curator's go.
 - **Every run's output is kept**, in a new folder the script names. A number you
   can't explain later is a number you pay for twice.
 - **Never run it again after a cut.** A second run that hopes for a different number
