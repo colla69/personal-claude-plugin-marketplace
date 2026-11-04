@@ -153,8 +153,8 @@ rather than introduce a second style. A standard with no stated boundary gets ap
 mechanically, which is worse than not being applied.
 
 **Rank by cost, not by category.** When a skill produces findings, tell the reader how
-to sort them. `clean-code` sorts by correctness risk, then change cost, then reading
-cost, and says only the first two justify touching working code unprompted.
+to sort them. `review-changes` sorts its findings by what they cost if left, so the
+reader knows which to fix first.
 
 **Do not hedge.** No "you might want to consider", no "it's generally recommended". Say
 the thing. If it is conditional, say the condition.
@@ -185,8 +185,8 @@ A report has two halves, and each has its own home:
 - **The skeleton** belongs to the agent, because it is the same for every kind of work
   the agent sees. It covers what the reviewer found, or what the check failed on.
 - **The report for one kind of work** belongs to that kind's Craft skill, because it
-  is knowledge about the work. Examples are a refactoring plan, a test report, and
-  clean-code findings grouped by cost.
+  is knowledge about the work. An example is a code review's findings, located by file
+  and line and sorted by cost.
 
 Writing either half in both places gives it two homes.
 

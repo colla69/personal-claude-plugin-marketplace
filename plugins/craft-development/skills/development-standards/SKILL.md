@@ -25,8 +25,7 @@ there is no runner, say so in the report, so the missing check is visible.
 
 - **To the project.** Local convention beats this document for anything already settled
   here.
-- **To the `clean-code` standard** for questions of naming, function shape, and
-  structure. This skill covers how to change a codebase; that one covers what good code
-  looks like.
+- **To the `clean-code` standard** for function shape. This skill covers how to change
+  a codebase; that one covers what good code looks like.
 - **To the Framework & Tools layer.** Where a framework's skill is enabled, its
   conventions are more specific than these and win.

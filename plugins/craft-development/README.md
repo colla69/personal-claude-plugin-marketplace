@@ -19,8 +19,8 @@ what it means for code.
 
 ## Leaves to others
 
-- **What good code looks like.** Naming, function shape and structure are `clean-code`,
-  in `universal-clean-code`.
+- **What good code looks like.** Function shape is `clean-code`, in
+  `universal-clean-code`.
 - The rules for any work in someone else's space, to `work-discipline`, in
   `universal-work-discipline`.
 - A framework's conventions, to its Framework & Tools skill, which wins where enabled.

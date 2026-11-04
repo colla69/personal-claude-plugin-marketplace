@@ -21,7 +21,7 @@ decides whether a change is correct.
 
 ## Leaves to others
 
-- Naming, structure and style, judged by `clean-code`.
+- The house rule on function shape, to `clean-code`.
 - What is idiomatic in the code under review, to the Language and Framework & Tools
   layers.
 - The project's own review checklist and definition of a breaking change, which win.

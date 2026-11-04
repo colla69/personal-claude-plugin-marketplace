@@ -88,8 +88,8 @@ overlapping copies of the same advice:
 2. **Skill plugins ship skills, not agents or hooks.** The few agents and hooks a
    docked project needs ship once, in `marketplace-base`. One shipped in a skill plugin
    would compete with them for the same prompts, and which one fires becomes luck.
-3. **Hard `dependencies` only for unconditional needs.** Every quality judgement needs
-   the `clean-code` standard, so the code Craft plugins declare
+3. **Hard `dependencies` only for unconditional needs.** Every code Craft plugin writes or
+   reviews code, which the `clean-code` standard governs, so each declares
    `universal-clean-code`. A framework does *not* unconditionally need a language
    plugin — Express runs on plain JavaScript too — so that pairing is not a dependency.
 4. **Conditional pairings are catalog logic, not manifest logic.** "Express *and*
@@ -107,8 +107,8 @@ In any repo with code, `craft-development` and `craft-code-review` go together. 
 are the craft of changing and checking code, and most work on code does both. Leaving
 one out leaves that part of the work without its standard.
 
-Both depend on `universal-clean-code`, whose `clean-code` skill is the standard
-their judgements are measured against. Installing any of them pulls it in.
+Both depend on `universal-clean-code`, whose `clean-code` skill holds the house
+rule on function shape. Installing any of them pulls it in.
 
 ## Commit messages
 

@@ -33,7 +33,8 @@ corresponding test are the gap worth naming.
 compatibility, anything a caller outside this diff depends on. This is where the expensive
 mistakes live, because they surface in someone else's code.
 
-**Everything else.** Naming, structure and style, judged by the `clean-code` standard.
+**Everything else.** Naming, structure and style, judged against the code around the
+change, and function shape by the `clean-code` standard.
 Real, but last, and easy to over-index on because it's the easiest to spot.
 
 ## Report
