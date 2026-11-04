@@ -168,6 +168,10 @@ function engine(plugin, outDir) {
   return line
 }
 
+function existsAt(ref) {
+  try { git('cat-file', '-e', `${ref}:plugins/${args.plugin}/.claude-plugin/plugin.json`); return true } catch { return false }
+}
+
 // The cases of this checkout against the skill of <ref>, read from a temporary worktree.
 function runBaseline(outDir) {
   try {
@@ -269,12 +273,16 @@ function liftCheck() {
     before = stored(args.plugin, now.claudeVersion)
     label = `the last stored result on ${args.ref}`
   }
-  if (!before) {
-    before = runBaseline(join(work, 'base'))
-    label = `${args.ref} (run now, $${f2(before.costUsd)})`
+  if (!before && !existsAt(args.ref)) {
+    console.log(`\n${args.plugin} does not exist at ${args.ref}, so there is nothing to compare with. The tables above are the measurement.`)
+  } else {
+    if (!before) {
+      before = runBaseline(join(work, 'base'))
+      label = `${args.ref} (run now, $${f2(before.costUsd)})`
+    }
+    console.log(`\n## Compared with ${label}\n`)
+    console.log(table(compare(before, now)))
   }
-  console.log(`\n## Compared with ${label}\n`)
-  console.log(table(compare(before, now)))
 
   if (args.decide && !now.partial) {
     append(now)
