@@ -10,9 +10,8 @@ A skill is judged by what it makes Claude do, not by how it reads. A wordy skill
 behaves the same at runtime; a skill whose description is a summary never loads at
 all. So every finding answers one question first: does it change behaviour?
 
-Load `craft-review:review-work` first. It holds how any work is read, what makes a
-finding, and the report shape; this skill adds what to look for in skills. Then read
-the standard, and quote it, so a finding is the house's taste and not the reviewer's:
+Read the work as written, not as described, and give every finding its location and
+its cost. Then read the standard, and quote it, so a finding is the house's taste and not the reviewer's:
 
 - `${CLAUDE_PLUGIN_ROOT}/references/author-skills/style.md`, for the writing;
 - `${CLAUDE_PLUGIN_ROOT}/references/place-knowledge.md`, for the cut;
@@ -136,7 +135,8 @@ it as clean, because a clean leak check is what lets a change through.
 
 ## Rank by runtime impact
 
-Use `review-work`'s report, and sort into it by what a finding does at runtime:
+Report in these sections, sorted by what a finding does at runtime, and leave out a
+section that would be empty:
 
 - **Blocking: changes behaviour.** It won't fire, it fires where it shouldn't, a rule
   has two homes, a lane isn't in the frontmatter, a named skill isn't declared,
@@ -158,6 +158,6 @@ leak check first, under its own heading.
 
 ## Where this yields
 
-To the user's merge: the review informs it and never replaces it. To
-`craft-review:review-work` for what makes a finding at all. To the house style where it
+To the user's merge: the review informs it and never replaces it. To the house style
+where it
 consistently departs from `style.md`.

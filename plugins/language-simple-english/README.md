@@ -26,8 +26,7 @@ leaves out the standard's controlled dictionary.
 ## Leaves to others
 
 - **What the text says.** It governs how a fact is written, not which facts belong in
-  it: what an error message must contain is `clean-code`'s, and what a review reports
-  is `review-work`'s.
+  it: what a review reports belongs to the review's own skill or agent.
 - Code, identifiers, commands and quoted output, which stay exactly as they are.
 - A project's own style guide and terms, and formats with their own rules, such as a
   commit convention, which win.

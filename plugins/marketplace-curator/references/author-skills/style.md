@@ -199,9 +199,8 @@ section rather than example content:
 goes wrong, and the input or sequence that triggers it.>
 ```
 
-Include a section for what was checked and found sound. `review-work` has
-**Verified**, and says why: it tells the author what the review covered, so they know
-what it didn't.
+Include a section for what was checked and found sound, such as a review's
+**Verified**: it tells the author what the review covered, so they know what it didn't.
 
 **Keep a report as short as what its reader acts on.** An agent's report stays in the
 session that asked for it, so every later turn reads it again: a 10k-token report in a

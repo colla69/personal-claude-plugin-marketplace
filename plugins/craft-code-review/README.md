@@ -8,7 +8,7 @@ thing to spot.
 |---|---|
 | Skill | `review-changes` |
 | Layer | Craft |
-| Builds on | `universal-clean-code`, `craft-review` |
+| Builds on | `universal-clean-code` |
 
 It reads the changed files, not just the hunks, because a diff hides the context that
 decides whether a change is correct.
@@ -21,9 +21,6 @@ decides whether a change is correct.
 
 ## Leaves to others
 
-- **How any review is done, and its report.** Tracing one case, a cost per finding, and
-  the Blocking, Should fix, Consider and Verified shape are `review-work`, in
-  `craft-review`.
 - Naming, structure and style, judged by `clean-code`.
 - What is idiomatic in the code under review, to the Language and Framework & Tools
   layers.

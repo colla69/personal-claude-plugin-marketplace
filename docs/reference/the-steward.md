@@ -86,4 +86,4 @@ The curator works in the marketplace's own repository, where it is enabled in
 | [`author-skills/`](../../plugins/marketplace-curator/references/author-skills/) | Reference | The house style, the shape of a plugin, the templates |
 
 It asks before a new skill, a new team plugin, or closing an issue, and writes only on a
-`contrib/` branch. It builds on `craft-review` and `language-simple-english`.
+`contrib/` branch. It builds on `language-simple-english`.

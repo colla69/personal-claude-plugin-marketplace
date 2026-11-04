@@ -29,13 +29,6 @@
       "tags": ["development", "implementation", "verification"]
     },
     {
-      "name": "craft-review",
-      "source": "./plugins/craft-review",
-      "description": "How to review any piece of work: know what it is meant to do, read it as written, trace one case, and report only findings with a cost.",
-      "category": "craft",
-      "tags": ["review", "feedback", "findings"]
-    },
-    {
       "name": "craft-code-review",
       "source": "./plugins/craft-code-review",
       "description": "Structured review of a diff or branch: correctness, tests, and API surface, each finding located by file and line.",

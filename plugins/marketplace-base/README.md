@@ -12,7 +12,7 @@ make back to the curators. The steward installs it first, in every project it do
 | Agents | `test-runner`, on Haiku, which runs a check and reports only what failed; `reviewer`, on Opus, which reviews work when the person asks. Both read-only |
 | Scripts | `scripts/`, plain Node with no dependencies. It needs Node 18 or later on the machine |
 | Layer | None: it is part of the marketplace itself |
-| Builds on | `craft-review`, `language-simple-english` |
+| Builds on | `language-simple-english` |
 
 ## What it does
 

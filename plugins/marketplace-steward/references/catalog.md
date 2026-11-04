@@ -20,7 +20,6 @@ pure cost. When in doubt, leave it out and mention it as optional.
 | Universal | `universal-clean-code` | `clean-code` skill | Any repo with code in it. Strongest signal: functions with long argument lists. |
 | Universal | `universal-work-discipline` | `work-discipline` skill | Any repo, with or without code. `craft-development` pulls it in; recommend it on its own where the work isn't code. |
 | Craft | `craft-development` | `development-standards` skill | Any repo with code in it, together with `craft-code-review` (see Code, below). |
-| Craft | `craft-review` | `review-work` skill | `craft-code-review` pulls it in. Recommend it on its own where work other than code gets reviewed: documents, reports, plans. |
 | Craft | `craft-code-review` | `review-changes` skill | Any repo with code in it, with `craft-development`. Do **not** gate this on PR-workflow signals: checking catches logical errors and inconsistencies before a commit, whether or not anyone opens pull requests. |
 | Language | `language-simple-english` | `simple-english` skill | Every project, with or without code: every project has text a person reads. |
 | Language | `language-conventional-commits` | `conventional-commits` skill | Any repo with code in it, after the one question in "Commit messages", below. |
@@ -55,7 +54,7 @@ claude plugin install craft-code-review@personal-claude-plugin-marketplace --sco
 - Don't omit a plugin because it's already installed. The block describes what this repo
   needs, completely; re-running an install is harmless.
 - **`marketplace-base` comes first**, then every standard, including dependencies such
-  as `universal-work-discipline` and `craft-review` that another plugin pulls in.
+  as `universal-work-discipline` and `universal-clean-code` that another plugin pulls in.
   Installing a dependency on its own line is harmless, and it guarantees its
   `enabledPlugins` entry.
 
@@ -198,7 +197,7 @@ old name.
 |---|---|---|
 | `clean-code` | `universal-clean-code` | |
 | `developer` | `craft-development` | Part of it became `universal-work-discipline` |
-| `code-review` | `craft-code-review` | Builds on `craft-review` |
+| `code-review` | `craft-code-review` | |
 | `unit-testing` | — | Its successor `craft-unit-testing` was removed; test first stays in `craft-development` |
 | `refactoring` | — | Its successor `craft-refactoring` was removed |
 | `java-dev` | — | Its successor `language-java` was removed |
@@ -208,4 +207,4 @@ old name.
 | `marketplace-steward:evaluate-skills` | `marketplace-curator:evaluate-skills` | Moved with the curator's work |
 | `language-java`, `language-typescript`, `language-javascript`, `language-swift` | — | Removed: measured, the model followed their rules without them |
 | `craft-unit-testing` | — | Removed: measured, the model followed its rules without it. Test first stays in `craft-development` |
-| `craft-refactoring`, `craft-cv-writing`, `tools-vue-typescript`, `tools-pinia`, `tools-aws-static-hosting` | — | Removed: measured, the model followed their rules without them |
+| `craft-refactoring`, `craft-cv-writing`, `tools-vue-typescript`, `tools-pinia`, `tools-aws-static-hosting`, `craft-review` | — | Removed: measured, the model followed their rules without them |

@@ -28,7 +28,7 @@ the reason it was made is often the reason its replacement has the shape it has.
 - [Collecting as the session goes: D77](#collecting-as-the-session-goes-d77)
 - [Docking that shows its work: D78](#docking-that-shows-its-work-d78)
 - [A guard that sees every change: D79](#a-guard-that-sees-every-change-d79)
-- [Keep what works: D83 to D87](#keep-what-works-d83-to-d87)
+- [Keep what works: D83 to D88](#keep-what-works-d83-to-d88)
 - [Still open](#still-open)
 
 ## The author's statements
@@ -77,7 +77,7 @@ answer the author's open questions; question 4 stayed open, so there is no D4 (s
 | D20 | The TypeScript parts leave `vue-conventions` for `tools-vue-typescript` | A project can use Vue without TypeScript | `tools-vue-typescript` was removed (D86) |
 | D21 | `description` lives only in the marketplace entry | Set in both places, the manifest silently wins | Holds; `check-catalog.mjs` enforces it |
 | D22 | `craft-code-review` and `craft-refactoring` name `clean-code` explicitly | Their dependency stays true without the old agents | Holds for `craft-code-review`. `craft-refactoring` was removed (D86) |
-| D23 | The generic review skill is `craft-review`, with `review-work` | Reviewing is a kind of work, and not only code gets reviewed | Holds |
+| D23 | The generic review skill is `craft-review`, with `review-work` | Reviewing is a kind of work, and not only code gets reviewed | `craft-review` was removed (D88) |
 | D24 | The Universal skill from D17 is `universal-work-discipline` | — | Holds |
 | D25 | `tools-vue-typescript` also depends on `tools-vue` | It names `vue-conventions`; a dependency within one layer is allowed when unconditional | `tools-vue-typescript` was removed (D86) |
 | D26 | The restructure merges as one squash commit from a fresh branch | The old branch's history held a project name that must not become public | Done |
@@ -130,7 +130,7 @@ Decided on 2026-10-20, when the token cost of the setup came under review.
 | # | Decision | Why | Now |
 |---|---|---|---|
 | D47 | The repo has no path-scoped rules; `CLAUDE.md` alone points to the files that hold the rules | Both rules repeated the table `CLAUDE.md` already loads in every session, so they cost tokens and a second place to keep in sync | Holds |
-| D48 | The repo keeps one agent of its own, `change-reviewer`, read-only, preloading `evaluate-skills` and `review-work` | A change made by hand is reviewed by a separate agent, which otherwise had to be briefed from scratch each time. It costs a description only in sessions in this repo | Holds; it preloads `marketplace-curator:evaluate-skills` since D74 |
+| D48 | The repo keeps one agent of its own, `change-reviewer`, read-only, preloading `evaluate-skills` and `review-work` | A change made by hand is reviewed by a separate agent, which otherwise had to be briefed from scratch each time. It costs a description only in sessions in this repo | Holds; it preloads `marketplace-curator:evaluate-skills` since D74, and no longer `review-work` (D88) |
 
 ## Borrowed ideas: D49 to D52
 
@@ -170,7 +170,7 @@ plugins in the desktop app and to have simple English here.
 
 | # | Decision | Why | Now |
 |---|---|---|---|
-| D55 | The repo enables `universal-work-discipline`, `craft-review` and `language-simple-english` at project scope, and leaves out the steward, the code Craft plugins and `language-javascript`. Its `CLAUDE.md` says that nothing under `plugins/` is a project rule or evidence of the stack, and that no rule in it travels | The steward reads its own source here, and without those lines a later run could take the product for the project's rules, remove the gist of "What breaks silently", or install the code plugins on the signal of two scripts. The steward belongs to the machine, as everywhere | Holds, in the section "This repo's own setup" of `CLAUDE.md`, with `marketplace-curator` enabled here too (D74) |
+| D55 | The repo enables `universal-work-discipline`, `craft-review` and `language-simple-english` at project scope, and leaves out the steward, the code Craft plugins and `language-javascript`. Its `CLAUDE.md` says that nothing under `plugins/` is a project rule or evidence of the stack, and that no rule in it travels | The steward reads its own source here, and without those lines a later run could take the product for the project's rules, remove the gist of "What breaks silently", or install the code plugins on the signal of two scripts. The steward belongs to the machine, as everywhere | Holds, in the section "This repo's own setup" of `CLAUDE.md`, with `marketplace-curator` enabled here too (D74) and `craft-review` gone (D88) |
 
 ## Measured cost: D56
 
@@ -223,7 +223,7 @@ be as concise as possible. I meant all agents."
 
 | # | Decision | Why | Now |
 |---|---|---|---|
-| D60 | Every report an agent returns is as short as what its reader acts on: one line per item, items numbered rather than repeated, what needs action rather than everything that passed, and an empty section left out. Check lists only the gaps. The reports stay in full sentences; no clipped style | A report stays in the session that asked for it and is read again on every later turn, so a 10k-token report in a 50-turn session is read as 500k. A clipped style shortens only what an agent writes, which is a small share of what it costs, and it breaks `simple-english`: a line read two ways costs a rework, which is far more than the words it saved | Holds, in "Report formats" in `style.md`, the report of each agent the marketplace ships, `review-work` and `evaluate-skills`. Not yet measured |
+| D60 | Every report an agent returns is as short as what its reader acts on: one line per item, items numbered rather than repeated, what needs action rather than everything that passed, and an empty section left out. Check lists only the gaps. The reports stay in full sentences; no clipped style | A report stays in the session that asked for it and is read again on every later turn, so a 10k-token report in a 50-turn session is read as 500k. A clipped style shortens only what an agent writes, which is a small share of what it costs, and it breaks `simple-english`: a line read two ways costs a rework, which is far more than the words it saved | Holds, in "Report formats" in `style.md`, the report of each agent the marketplace ships and `evaluate-skills`. `review-work` was removed (D88). Not yet measured |
 
 ## Project scope only: D61
 
@@ -300,7 +300,7 @@ Decided on 2026-10-28, in the first phase of the measurement plan.
 | D81 | A skill's test cases live in `evals/<plugin>/` at the repo root, never in the plugin. `node scripts/eval-skill.mjs <plugin>` stages them beside a copy of the plugin, runs them with and without the skill on pinned model IDs, and compares with `main`. Only `--decide` stores a line, in `measurements/results.jsonl`. The script refuses `marketplace-base` and any plugin that builds on it | A skill's value was a belief. A first case for `language-conventional-commits` scored 1.00 with the skill and 0.33 without it, in three runs of each. `claude plugin eval` reads cases only from inside the plugin, and an install copies that folder to every machine, so the script stages the cases at run time and the plugin stays clean. The same cases then measure any version of the skill. The engine loads only the plugin under test, with a temporary home, so the collector can't run in another plugin's eval; a suite for the base would let it file issues on the public repo | Holds, in `plugin-shape.md` and `eval-skill.mjs` |
 | D82 | A case enters a suite only after two free checks. `node scripts/grader-probe.mjs <plugin>` tries every regex grader against code known to be good and code known to be bad, and `node scripts/eval-skill.mjs <plugin> --probe` runs the case without the skill and flags a baseline of 0.8 or more. A case that fails either is rewritten or dropped | The first Java suite passed both ways. Its seven cases scored 0.00 lift. In five the model passed unaided (0.87 to 1.00 in both arms), and in the build-file case it read `pom.xml` in one run of five in each arm, so neither arm showed anything of the skill. Four graders accepted the bug the skill names (`Files.lines`, `orElse(null)`, a view for a copy, an API newer than Java 8) until a reviewer read them. Both mistakes cost money to find by running. The grader check is free, and the probe costs about a dollar for seven cases at three runs | Holds, in `grader-probe.mjs` and `eval-skill.mjs` |
 
-## Keep what works: D83 to D87
+## Keep what works: D83 to D88
 
 Decided on 2026-11-04, going through the skills in the audit's order.
 
@@ -311,6 +311,7 @@ Decided on 2026-11-04, going through the skills in the audit's order.
 | D85 | `craft-unit-testing` is removed. `craft-development` and `craft-code-review` no longer build on it, and test first stays in `development-standards` | Three cases tested the rules particular to `write-unit-tests`: which source wins when two records disagree, a value just under a limit, bad input, a fixed clock, no mock of an internal helper, and running the tests. Without the skill the model passed all of them in all 3 runs. Whether the model writes the test first is measured in `craft-development` | Holds, in the catalog's Renamed and removed table |
 | D86 | `craft-refactoring`, `craft-cv-writing`, `tools-vue-typescript`, `tools-pinia` and `tools-aws-static-hosting` are removed. Docking installs `craft-development` and `craft-code-review` together in a project with code | Each suite ran 5 times with the skill and 5 times without. A refactoring plan and a refactor: seven checks, among them characterization tests, a kept bug that is reported, and code left alone; at most one run apart. Typed props in Vue, a setup-syntax store, a tailored CV and a hosting plan for a single-page app on S3 and CloudFront: every check equal, or one run better without the skill | Holds, in the catalog's Renamed and removed table |
 | D87 | Five skills that stay lose the rules their suites showed the model follows without them. `work-discipline` keeps only "unverified is not done". `review-changes` loses the second path and security. `vue-conventions` loses stable keys, `v-if` with `v-for`, and props not mutated. `conventional-commits` loses the breaking marker, the blank line before the body, and `test` for a fix to a test. `development-standards` loses naming an interface change. Rules no case covered stay | Each suite ran 5 times with the skill and 5 without, and the breaking-change case 8 times. Lift held for saying a change is unverified (5 vs 3), naming an untested branch (5 vs 3), a finding by file and line (5 vs 4), fetching outside the component (2 vs 0) and using the format at all (5 vs 0). The cut rules passed as often without the skill, or, for naming an interface change, 4 of 8 with against 2 of 8 without, inside the noise | Holds, in each skill and `verdicts.md` |
+| D88 | `craft-review` is removed. `marketplace-base`, `marketplace-curator` and `craft-code-review` no longer build on it. The `reviewer`, `contribution-checker` and `change-reviewer` agents no longer preload `review-work`, and `evaluate-skills` and `review-changes` name their own report sections | A rollout plan reviewed 5 times with the skill and 5 without: every check equal, and the Verified section was missing in all 10 runs, though the skill loaded in all 5 runs with it. The model reviews as well without it. Its use inside the agents was not measured | Holds, in the catalog's Renamed and removed table |
 
 ## Still open
 

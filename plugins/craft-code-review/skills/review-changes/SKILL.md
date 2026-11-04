@@ -5,10 +5,7 @@ description: Review a code change — a diff, a branch, or a pull request — fo
 
 # Review changes
 
-Review a code change the way a careful colleague would. `review-work` holds how any
-review is done: know what the work is meant to do, read it as written, trace one case,
-give every finding a cost, and report in its shape. This skill says what that means for
-a diff.
+Review a code change the way a careful colleague would.
 
 ## Establish the scope first
 
@@ -41,7 +38,7 @@ Real, but last, and easy to over-index on because it's the easiest to spot.
 
 ## Report
 
-Use the report shape in `review-work`. For a code change:
+Sort the findings by what they cost if left:
 
 - **Blocking** holds bugs and breaking changes, each located by
   `file:line`, with the input or sequence that triggers it. "Potential null

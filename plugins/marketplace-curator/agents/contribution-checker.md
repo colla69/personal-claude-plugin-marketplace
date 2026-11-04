@@ -6,7 +6,6 @@ model: opus
 disallowedTools: Write, Edit, NotebookEdit
 skills:
   - marketplace-curator:evaluate-skills
-  - craft-review:review-work
 ---
 
 You check one change to the skills marketplace before it becomes a pull request, and you

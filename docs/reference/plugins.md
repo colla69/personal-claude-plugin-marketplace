@@ -15,22 +15,21 @@ Each plugin's own README, under `plugins/<name>/`, says where it stops.
 | [`universal-clean-code`](../../plugins/universal-clean-code/) | Universal | `clean-code` | Only the clean-code rules measured to change what the model writes: today, three parameters at most | Any code | — |
 | [`universal-work-discipline`](../../plugins/universal-work-discipline/) | Universal | `work-discipline` | Working where someone else maintains: run its checks, and never call unverified work done | Any work, with or without code; most Craft plugins pull it in | — |
 | [`craft-development`](../../plugins/craft-development/) | Craft | `development-standards` | What careful work means for code: test first, then verification | Any code, with `craft-code-review` | `universal-clean-code`, `universal-work-discipline` |
-| [`craft-review`](../../plugins/craft-review/) | Craft | `review-work` | Reviewing any work: what it is meant to do, reading it as written, findings with a cost | Work other than code that gets reviewed; `craft-code-review` pulls it in | — |
-| [`craft-code-review`](../../plugins/craft-code-review/) | Craft | `review-changes` | Reviewing a diff or branch: correctness, tests, API surface, findings by file and line | Any code, with `craft-development` | `universal-clean-code`, `craft-review` |
+| [`craft-code-review`](../../plugins/craft-code-review/) | Craft | `review-changes` | Reviewing a diff or branch: correctness, tests, API surface, findings by file and line | Any code, with `craft-development` | `universal-clean-code` |
 | [`language-simple-english`](../../plugins/language-simple-english/) | Language | `simple-english` | English nobody can read two ways: short sentences, one instruction each, one word per meaning, simple tenses | Every project, with or without code | — |
 | [`language-conventional-commits`](../../plugins/language-conventional-commits/) | Language | `conventional-commits` | Commit messages a release tool can read: the type by what a user sees, a marked breaking change, a body that says why | Any code, after the steward asks once whether the project writes Conventional Commits, unless its files already show the format | — |
 | [`tools-vue`](../../plugins/tools-vue/) | Framework & Tools | `vue-conventions` | Vue 3 Composition API: components, reactivity, composables, templates | `vue` in the dependencies | — |
 | [`tools-appkit`](../../plugins/tools-appkit/) | Framework & Tools | `appkit-conventions` | AppKit apps in code: a bare executable, the main thread, key events, borderless windows, kiosk options | `import AppKit` or `import Cocoa` in `.swift` sources | — |
 | [`marketplace-steward`](../../plugins/marketplace-steward/) | — | `steward` | Docks a project when asked, and answers questions about the standards through its `guide` agent | Never in a project: you install it once, for your user | `language-simple-english` |
-| [`marketplace-base`](../../plugins/marketplace-base/) | — | — | The standards index, the build-and-test guard and the corrections collector, as hooks, and the `test-runner` and `reviewer` agents | Every docked project, installed first | `craft-review`, `language-simple-english` |
-| [`marketplace-curator`](../../plugins/marketplace-curator/) | — | `curate`, `evaluate-skills` | Turns lessons and collected corrections into changes to the standards, by pull request | Never in a docked project: only in the marketplace's own repository | `craft-review`, `language-simple-english` |
+| [`marketplace-base`](../../plugins/marketplace-base/) | — | — | The standards index, the build-and-test guard and the corrections collector, as hooks, and the `test-runner` and `reviewer` agents | Every docked project, installed first | `language-simple-english` |
+| [`marketplace-curator`](../../plugins/marketplace-curator/) | — | `curate`, `evaluate-skills` | Turns lessons and collected corrections into changes to the standards, by pull request | Never in a docked project: only in the marketplace's own repository | `language-simple-english` |
 
 ## By layer
 
 | Layer | Plugins |
 |---|---|
 | Universal | `universal-clean-code`, `universal-work-discipline` |
-| Craft | `craft-development`, `craft-review`, `craft-code-review` |
+| Craft | `craft-development`, `craft-code-review` |
 | Language | `language-simple-english`, `language-conventional-commits` |
 | Framework & Tools | `tools-vue`, `tools-appkit` |
 | Team | None yet |
