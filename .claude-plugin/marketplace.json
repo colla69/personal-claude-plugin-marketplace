@@ -36,6 +36,13 @@
       "tags": ["review", "diff", "pr"]
     },
     {
+      "name": "craft-shipping",
+      "source": "./plugins/craft-shipping",
+      "description": "Before judging whether an app is ready to ship, ask which milestone it is for and what a failure would cost.",
+      "category": "craft",
+      "tags": ["launch", "readiness", "production"]
+    },
+    {
       "name": "language-simple-english",
       "source": "./plugins/language-simple-english",
       "description": "English nobody can read two ways, after Simplified Technical English: short sentences, one instruction each, one word per meaning, active voice, simple tenses.",

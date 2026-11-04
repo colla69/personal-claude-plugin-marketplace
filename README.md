@@ -56,7 +56,7 @@ name starts with its layer. A fifth, Team, holds one team's quirks, as a last re
 | Layer | Holds | Today |
 |---|---|---|
 | **Universal** | What holds for everything | Clean code, and the discipline of working where someone else maintains |
-| **Craft** | How a kind of work is done | Developing and reviewing |
+| **Craft** | How a kind of work is done | Developing, reviewing and shipping |
 | **Language** | What the work is written in | Simple English, Conventional Commits |
 | **Framework & Tools** | One concrete product | Vue, AppKit |
 | **The marketplace's own** | Docks projects, runs in them, and grows the marketplace | `marketplace-steward`, `marketplace-base`, `marketplace-curator` |

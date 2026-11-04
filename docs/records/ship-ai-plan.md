@@ -114,3 +114,9 @@ Decided after the runs, by what survives:
 
 1. The plugin is `craft-shipping`, in the Craft layer.
 2. Phase 1 runs first.
+
+## 8. Results
+
+**Phase 1, 2026-11-04, $1.47.** Only R2, the milestone question, showed lift: 4 of 5
+with, 0 of 5 without. R1 4 vs 3, R3 2 vs 3, R4 4 vs 4, R5 2 vs 3, R6 5 vs 5: cut. The
+skill loaded in every run with it. `craft-shipping` ships with R2 alone (D89).

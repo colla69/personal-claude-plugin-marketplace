@@ -16,6 +16,7 @@ Each plugin's own README, under `plugins/<name>/`, says where it stops.
 | [`universal-work-discipline`](../../plugins/universal-work-discipline/) | Universal | `work-discipline` | Working where someone else maintains: run its checks, and never call unverified work done | Any work, with or without code; most Craft plugins pull it in | — |
 | [`craft-development`](../../plugins/craft-development/) | Craft | `development-standards` | What careful work means for code: test first, then verification | Any code, with `craft-code-review` | `universal-clean-code`, `universal-work-discipline` |
 | [`craft-code-review`](../../plugins/craft-code-review/) | Craft | `review-changes` | Reviewing a diff or branch: correctness, tests, API surface, findings by file and line | Any code, with `craft-development` | `universal-clean-code` |
+| [`craft-shipping`](../../plugins/craft-shipping/) | Craft | `readiness-review` | Asking which milestone and what is at stake before a launch verdict | An app people will use | — |
 | [`language-simple-english`](../../plugins/language-simple-english/) | Language | `simple-english` | English nobody can read two ways: short sentences, one instruction each, one word per meaning, simple tenses | Every project, with or without code | — |
 | [`language-conventional-commits`](../../plugins/language-conventional-commits/) | Language | `conventional-commits` | Commit messages a release tool can read: the type by what a user sees, a marked breaking change, a body that says why | Any code, after the steward asks once whether the project writes Conventional Commits, unless its files already show the format | — |
 | [`tools-vue`](../../plugins/tools-vue/) | Framework & Tools | `vue-conventions` | Vue 3 Composition API: components, reactivity, composables, templates | `vue` in the dependencies | — |
@@ -29,7 +30,7 @@ Each plugin's own README, under `plugins/<name>/`, says where it stops.
 | Layer | Plugins |
 |---|---|
 | Universal | `universal-clean-code`, `universal-work-discipline` |
-| Craft | `craft-development`, `craft-code-review` |
+| Craft | `craft-development`, `craft-code-review`, `craft-shipping` |
 | Language | `language-simple-english`, `language-conventional-commits` |
 | Framework & Tools | `tools-vue`, `tools-appkit` |
 | Team | None yet |
