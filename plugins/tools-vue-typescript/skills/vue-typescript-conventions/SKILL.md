@@ -32,7 +32,6 @@ how a composable reads it.
 ## Where this yields
 
 - **To the project.** Existing patterns win for anything already settled here.
-- **To `typescript-conventions`** for everything that is TypeScript rather than Vue:
-  strictness, narrowing, unions, `type` over `interface`. This skill covers only where
-  the two meet.
+- **To the project's TypeScript settings** for everything that is TypeScript rather
+  than Vue. This skill covers only where the two meet.
 - **To `vue-conventions`** for everything that is Vue rather than TypeScript.

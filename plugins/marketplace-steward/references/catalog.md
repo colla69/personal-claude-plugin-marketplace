@@ -25,14 +25,10 @@ pure cost. When in doubt, leave it out and mention it as optional.
 | Craft | `craft-unit-testing` | `write-unit-tests` skill | A test runner is configured (`vitest`, `jest`, `pytest`, `go test`, …). Recommend *more strongly* when a runner exists but coverage is thin — that's the gap the plugin closes. `craft-development` and `craft-code-review` pull it in, so a repo with code has it either way. |
 | Craft | `craft-refactoring` | `refactor-safely` skill | Any repo with code in it, with the other two. It needs no test suite to be useful, but say so when there isn't one, because its plans will start with characterization tests. |
 | Craft | `craft-cv-writing` | `write-cv` skill | A CV or résumé kept as a document in the repo, such as `CV.md`, `resume.md`, a `cv/` folder or a `resume.*` file, and written or tailored there. Not a repo that only links to one. Pulls in `universal-work-discipline`. |
-| Language | `language-java` | `java-conventions` skill | A `pom.xml`, `build.gradle`, or `.java` sources. Read the *module's* language level, not the root's — they often differ. |
-| Language | `language-typescript` | `typescript-conventions` skill | A `tsconfig.json` or `.ts`/`.tsx` sources. Note whether `strict` is on, since it changes what correct code looks like. |
-| Language | `language-javascript` | `javascript-conventions` skill | The project's own code in `.js` or `.mjs` files, not only tool configs such as `vite.config.js` beside TypeScript sources. Read `"type"` in `package.json`, since it decides whether `.js` is an ES module. |
-| Language | `language-swift` | `swift-conventions` skill | A `Package.swift`, an `.xcodeproj`, or `.swift` sources. Read the language mode: `swift-tools-version` and any per-target override in `Package.swift`, or the Swift Language Version build setting in an Xcode project. In Swift 6 mode a data race is a compile error and in Swift 5 mode it is not, so the mode changes what correct code looks like. |
 | Language | `language-simple-english` | `simple-english` skill | Every project, with or without code: every project has text a person reads. |
 | Language | `language-conventional-commits` | `conventional-commits` skill | Any repo with code in it, after the one question in "Commit messages", below. |
 | Framework & Tools | `tools-vue` | `vue-conventions` skill | `vue` in dependencies. Check the major version and note it: the plugin targets Vue 3 Composition API, so flag a mismatch if the project is on Options API or Vue 2. |
-| Framework & Tools | `tools-vue-typescript` | `vue-typescript-conventions` skill | `vue` and `typescript` both in dependencies, or `lang="ts"` in `.vue` files. Pulls in `tools-vue` and `language-typescript`. |
+| Framework & Tools | `tools-vue-typescript` | `vue-typescript-conventions` skill | `vue` and `typescript` both in dependencies, or `lang="ts"` in `.vue` files. Pulls in `tools-vue`. |
 | Framework & Tools | `tools-pinia` | `pinia-conventions` skill | `pinia` in dependencies. Pulls in `tools-vue`. |
 | Framework & Tools | `tools-aws-static-hosting` | `aws-static-hosting` skill | A CloudFront distribution in front of an S3 bucket in the infrastructure code or deploy scripts: `cloudfront.Distribution`, `aws_cloudfront_distribution` or `AWS::CloudFront::Distribution`, or `aws s3 sync` followed by a CloudFront invalidation. |
 | Framework & Tools | `tools-appkit` | `appkit-conventions` skill | `import AppKit` or `import Cocoa` in the project's `.swift` sources. Note whether the app ships as a bundle or runs as a bare executable: the plugin's starting rules are for the bare one. |
@@ -95,14 +91,14 @@ no layer.
 Four rules follow from this, and they are what keep the marketplace from turning into
 overlapping copies of the same advice:
 
-1. **One standard, one home.** TypeScript idioms live in `typescript-conventions` and
+1. **One standard, one home.** Vue idioms live in `vue-conventions` and
    nowhere else. A framework skill that needs them points at that skill; it never
    restates them. Two copies get edited separately and then disagree.
 2. **Skill plugins ship skills, not agents or hooks.** The few agents and hooks a
    docked project needs ship once, in `marketplace-base`. One shipped in a skill plugin
    would compete with them for the same prompts, and which one fires becomes luck.
 3. **Hard `dependencies` only for unconditional needs.** Every quality judgement needs
-   the `clean-code` standard, so the code Craft plugins and the language plugins declare
+   the `clean-code` standard, so the code Craft plugins declare
    `universal-clean-code`. A framework does *not* unconditionally need a language
    plugin — Express runs on plain JavaScript too — so that pairing is not a dependency.
 4. **Conditional pairings are catalog logic, not manifest logic.** "Express *and*
@@ -217,8 +213,9 @@ old name.
 | `code-review` | `craft-code-review` | Builds on `craft-review` |
 | `unit-testing` | `craft-unit-testing` | |
 | `refactoring` | `craft-refactoring` | |
-| `java-dev` | `language-java` | |
-| `typescript-dev` | `language-typescript` | |
+| `java-dev` | — | Its successor `language-java` was removed |
+| `typescript-dev` | — | Its successor `language-typescript` was removed |
 | `vue-dev` | `tools-vue` | Its Pinia and TypeScript parts are `tools-pinia` and `tools-vue-typescript`, each chosen by its own signal |
 | `project-init`, `marketplace-init` | `marketplace-steward` | User scope only; never a project key |
 | `marketplace-steward:evaluate-skills` | `marketplace-curator:evaluate-skills` | Moved with the curator's work |
+| `language-java`, `language-typescript`, `language-javascript`, `language-swift` | — | Removed: measured, the model followed their rules without them |

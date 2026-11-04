@@ -64,34 +64,6 @@
       "tags": ["cv", "resume", "ats"]
     },
     {
-      "name": "language-java",
-      "source": "./plugins/language-java",
-      "description": "Java language conventions: version-aware idioms, nullability, immutability, exceptions, and resource handling.",
-      "category": "language",
-      "tags": ["java", "jvm", "language"]
-    },
-    {
-      "name": "language-typescript",
-      "source": "./plugins/language-typescript",
-      "description": "TypeScript language conventions: strictness, narrowing over assertions, discriminated unions, and async discipline.",
-      "category": "language",
-      "tags": ["typescript", "language"]
-    },
-    {
-      "name": "language-javascript",
-      "source": "./plugins/language-javascript",
-      "description": "JavaScript language conventions: ES modules with explicit extensions, named exports, async/await at every layer, and a logger in library code.",
-      "category": "language",
-      "tags": ["javascript", "language"]
-    },
-    {
-      "name": "language-swift",
-      "source": "./plugins/language-swift",
-      "description": "Swift language conventions: the language mode, optionals handled not forced, value types, thrown errors, narrow access control, and concurrency stated in types.",
-      "category": "language",
-      "tags": ["swift", "language"]
-    },
-    {
       "name": "language-simple-english",
       "source": "./plugins/language-simple-english",
       "description": "English nobody can read two ways, after Simplified Technical English: short sentences, one instruction each, one word per meaning, active voice, no filler.",

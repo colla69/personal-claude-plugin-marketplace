@@ -7,7 +7,7 @@ as types, with no runtime copy beside them to drift.
 |---|---|
 | Skill | `vue-typescript-conventions` |
 | Layer | Framework & Tools |
-| Builds on | `tools-vue`, `language-typescript` |
+| Builds on | `tools-vue` |
 
 ## Fires when
 
@@ -17,8 +17,8 @@ as types, with no runtime copy beside them to drift.
 
 ## Leaves to others
 
-- **TypeScript itself.** Strictness, narrowing, unions and `type` over `interface` are
-  `typescript-conventions`, in `language-typescript`.
+- **TypeScript itself**, to the project's settings. A measurement found the model
+  follows TypeScript's conventions without a skill.
 - Everything about Vue that isn't typing: `vue-conventions`, in `tools-vue`.
 - The project's existing patterns, which win where they are settled.
 

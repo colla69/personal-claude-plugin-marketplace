@@ -75,9 +75,10 @@ out and say so, rather than filling it because the template has one.
 ## Naming
 
 - **Plugin:** `<layer>-<topic>`, for example `universal-clean-code`,
-  `craft-unit-testing`, `language-java` or `tools-vue`. The prefix is the same word as
-  the plugin's `category`: `universal`, `craft`, `language` or `tools`. A plugin that
-  works on the marketplace itself is `marketplace-<name>`, with category `marketplace`.
+  `craft-unit-testing`, `language-simple-english` or `tools-vue`. The prefix is the same
+  word as the plugin's `category`: `universal`, `craft`, `language` or `tools`. A plugin
+  that works on the marketplace itself is `marketplace-<name>`, with category
+  `marketplace`.
 - **Skill:** named for the activity, for example `write-unit-tests` or
   `vue-conventions`. It is invoked as `/<plugin>:<skill>`.
 - **Wording that outlives code.** Every skill here is about code today, and the

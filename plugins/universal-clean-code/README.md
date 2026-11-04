@@ -12,8 +12,8 @@ is one: more than three parameters means a missing type.
 | Layer | Universal |
 | Builds on | nothing |
 
-**This is the file to edit when your taste changes.** The code Craft plugins and the
-Language plugins judge against it, so one edit here moves every judgement downstream.
+**This is the file to edit when your taste changes.** The code Craft plugins judge
+against it, so one edit here moves every judgement downstream.
 
 ## Fires when
 
@@ -26,14 +26,14 @@ Language plugins judge against it, so one edit here moves every judgement downst
 - **The code around it, for a small change.** Consistency within a file beats this
   standard. The mismatch is raised once, separately.
 - A language's idioms and a framework's conventions, to the Language and Framework &
-  Tools layers, such as `java-conventions` or `vue-conventions`.
+  Tools layers, such as `vue-conventions`.
 - How code gets changed, reviewed and restructured: `development-standards`,
   `review-changes` and `refactor-safely`, which measure their results against this.
 
 ## Install
 
-Docking installs it at project scope in any project with code, and the code Craft and
-Language plugins pull it in. By hand:
+Docking installs it at project scope in any project with code, and the code Craft
+plugins pull it in. By hand:
 
 ```bash
 claude plugin install universal-clean-code@personal-claude-plugin-marketplace --scope project

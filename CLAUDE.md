@@ -100,8 +100,8 @@ made of. These lines keep the two apart; the reasons are D55 in `decisions.md`.
   contributes nothing from it. "What breaks silently" repeats the gist of rules in the
   steward's references on purpose: keep it.
 - **Enabled here: `universal-work-discipline`, `craft-review`,
-  `language-simple-english` and `marketplace-curator`.** The code Craft plugins and
-  `language-javascript` are left out on purpose: the only code is a few small scripts,
+  `language-simple-english` and `marketplace-curator`.** The code Craft plugins are
+  left out on purpose: the only code is a few small scripts,
   they change rarely, and each description would cost every session here. The steward
   and the base are never enabled here: this repo is the marketplace, not a docked
   project.

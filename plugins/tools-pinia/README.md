@@ -19,7 +19,7 @@ belongs in a query layer, however convenient a store makes it look.
 
 - **Components, composables and reactivity.** `vue-conventions` in `tools-vue`; a setup
   store follows the same reactivity rules.
-- Typing a store, which is TypeScript's business, in `language-typescript`.
+- Typing a store, which is TypeScript's business, to the project's settings.
 - The project's existing stores and query layer, which win where they are settled.
 
 ## Install
