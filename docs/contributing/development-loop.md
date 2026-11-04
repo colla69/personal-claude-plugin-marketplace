@@ -51,7 +51,10 @@ stays out of git (`--save <dir>` keeps a copy), and `--decide` stores one summar
 in `measurements/results.jsonl`. Before a case is worth running, `node
 scripts/grader-probe.mjs <plugin>` checks its graders against good and bad code, and
 `eval-skill.mjs <plugin> --probe` runs it without the skill to see whether the model
-already passes.
+already passes. To go through the whole set, `node scripts/skill-audit.mjs` lists every
+skill by cost and by what is known about it. To find which part of a skill carries its
+lift, `node scripts/skill-slices.mjs <plugin>` numbers its blocks and
+`eval-skill.mjs <plugin> --ablate <selector>` compares the whole skill with the cut one.
 [Commands](../reference/commands.md) lists the scripts.
 
 ## Check it before you push

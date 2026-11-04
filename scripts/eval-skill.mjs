@@ -18,6 +18,11 @@
 //   --save <dir>       keep the engine's raw output (result.json, report.html) in <dir>
 //   --probe            run the cases WITHOUT the skill only, at 3 runs: a case whose
 //                      baseline is already high cannot show a lift. Stores nothing.
+//   --ablate <sel>     run the skill whole, then with the slices <sel> cut (selectors in
+//                      skill-slices.mjs), both with the skill only, and compare. A case
+//                      that gets worse beyond noise is a case the slice carries. Only a
+//                      case where the whole skill beats the baseline can show this, so
+//                      read it beside the lift table. Stores nothing.
 //
 // The baseline while working is the last line of measurements/results.jsonl with the
 // same suite and models. With none, or with --decide, the cases run against <ref> in
@@ -41,16 +46,18 @@ import { fileURLToPath } from 'node:url'
 import { spawnSync, execFileSync } from 'node:child_process'
 import { summarize, append, RESULTS, MODEL, JUDGE } from './eval-summary.mjs'
 import { compare, table, load, interval } from './eval-compare.mjs'
+import { cutCopy } from './skill-slices.mjs'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const BASE = 'marketplace-base'
 
-const args = { plugin: null, decide: false, probe: false, ref: 'main', allowTools: 'Write,Edit' }
+const args = { plugin: null, decide: false, probe: false, ablate: null, ref: 'main', allowTools: 'Write,Edit' }
 const argv = process.argv.slice(2)
 for (let i = 0; i < argv.length; i++) {
   const a = argv[i]
   if (a === '--decide') args.decide = true
   else if (a === '--probe') args.probe = true
+  else if (a === '--ablate') args.ablate = argv[++i]
   else if (a === '--case') args.case = argv[++i]
   else if (a === '--runs') args.runs = Number(argv[++i])
   else if (a === '--max-cost') args.maxCost = Number(argv[++i])
@@ -68,7 +75,7 @@ args.maxCost ??= args.decide ? 10 : 3
 
 function usage(why) {
   if (why) console.error(why)
-  console.error('usage: eval-skill.mjs <plugin> [--decide|--probe] [--case glob] [--runs n] [--max-cost usd] [--against spec] [--ref ref] [--save dir]')
+  console.error('usage: eval-skill.mjs <plugin> [--decide|--probe|--ablate sel] [--case glob] [--runs n] [--max-cost usd] [--against spec] [--ref ref] [--save dir]')
   process.exit(2)
 }
 
@@ -79,6 +86,7 @@ if (!existsSync(cases)) usage(`${args.plugin} has no cases in evals/${args.plugi
 
 const git = (...a) => execFileSync('git', a, { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] })
 if (args.probe && args.decide) usage('--probe measures the baseline only; --decide stores a lift')
+if (args.ablate && (args.decide || args.probe || args.against || args.refGiven)) usage('--ablate compares two cuts of this checkout; drop --decide, --probe, --against and --ref')
 if (args.probe && (args.against || args.refGiven)) usage('--probe has no baseline version to compare with; drop --against and --ref')
 if (args.decide) {
   if (args.case || args.runs < 5) usage('--decide runs the whole suite, at 5 runs or more')
@@ -136,7 +144,7 @@ function engine(plugin, outDir) {
     '--model', MODEL, '--judge-model', JUDGE, '--allow-tools', ...args.allowTools.split(','),
     '--json', out, '--output-dir', outDir, '--report', join(outDir, 'report.html'),
   ]
-  if (args.probe) cmd.push('--ablation', 'none')
+  if (args.probe || args.ablate) cmd.push('--ablation', 'none')
   if (args.case) cmd.push('--case', args.case)
   const run = spawnSync('claude', cmd, { stdio: ['ignore', 'ignore', 'inherit'], cwd: root })
   if (!existsSync(out)) throw new Error(`The engine wrote no result (exit ${run.status}).`)
@@ -243,8 +251,20 @@ function probeCheck() {
   console.log('\nNothing stored.')
 }
 
+function ablateCheck() {
+  // Cut first: a selector that matches nothing must fail before any run is paid for.
+  const cutDir = cutCopy(args.plugin, args.ablate, join(work, 'cut-src'))
+  const full = runEngine(dir, join(work, 'full'))
+  const cut = runEngine(cutDir, join(work, 'cut'))
+  console.log(`## ${args.plugin}: the skill with "${args.ablate}" cut (${full.runs} runs, ${full.claudeVersion}, $${f2(full.costUsd + cut.costUsd)})\n`)
+  console.log(table(compare(full, cut)))
+  console.log('\nBefore is the whole skill, After is the cut skill. "worse" means the slice carries that case; "within noise" means the cut cost nothing the cases can see.')
+  console.log('Nothing stored. Run it after the lift table: a case the whole skill does not lift cannot show what a slice adds.')
+}
+
 try {
-  if (args.probe) probeCheck()
+  if (args.ablate) ablateCheck()
+  else if (args.probe) probeCheck()
   else liftCheck()
 } finally {
   rmSync(work, { recursive: true, force: true })
