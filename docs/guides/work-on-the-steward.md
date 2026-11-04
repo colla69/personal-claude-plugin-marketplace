@@ -8,17 +8,17 @@ you build on it. The house style and the plugin shape they follow are in
 ## Load your working copy
 
 ```bash
-claude --plugin-dir ./plugins/marketplace-steward --plugin-dir ./plugins/marketplace-base --plugin-dir ./plugins/craft-review --plugin-dir ./plugins/language-simple-english
+claude --plugin-dir ./plugins/marketplace-steward --plugin-dir ./plugins/marketplace-base --plugin-dir ./plugins/language-simple-english
 ```
 
 Add `--plugin-dir ./plugins/marketplace-curator` to work on the curator.
 
 - **A `--plugin-dir` copy replaces the installed one** of the same name for that
   session, silently. `claude --debug` logs `overrides installed version`.
-- **Every dependency needs its own `--plugin-dir`.** The steward depends on
-  `language-simple-english`, and the base and the curator on `craft-review` too. A
-  plugin whose dependency isn't installed doesn't load at all: not one of its skills
-  appears, and none of its hooks runs.
+- **Every dependency needs its own `--plugin-dir`.** The steward, the base and the
+  curator depend on `language-simple-english`. A plugin whose dependency isn't
+  installed doesn't load at all: not one of its skills appears, and none of its hooks
+  runs.
 - **Changes need a new session.** A skill and a hook are read at the start of a session.
 
 To see what your copy costs: `claude --plugin-dir ./plugins/marketplace-steward

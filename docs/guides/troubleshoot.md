@@ -6,7 +6,7 @@ Fix what goes wrong without saying so. Find the symptom, check the cause, apply 
 
 | Symptom | Cause | Fix |
 |---|---|---|
-| An agent works without a skill its `skills:` names | The name is bare, such as `review-work`, not `plugin:skill` | Write it as `craft-review:review-work`. A bare name can fail without any message |
+| An agent works without a skill its `skills:` names | The name is bare, such as `simple-english`, not `plugin:skill` | Write it as `language-simple-english:simple-english`. A bare name can fail without any message |
 | A standard isn't applied in a project | Its plugin isn't enabled there | Say "add the standard for X", or install it with `--scope project` |
 | A skill never fires on your request | Its description doesn't match the words you use | Correct Claude in the session; the collector files the correction, and a description that doesn't win is a change to that skill |
 | `claude plugin list` shows a plugin as failed to load: not found in the marketplace | A dead key: the plugin was renamed or removed | Say "dock this project"; see [migrate from old names](migrate-from-old-names.md) |

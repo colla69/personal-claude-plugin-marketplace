@@ -75,10 +75,11 @@ out and say so, rather than filling it because the template has one.
 ## Naming
 
 - **Plugin:** `<layer>-<topic>`, for example `universal-clean-code`,
-  `craft-unit-testing`, `language-java` or `tools-vue`. The prefix is the same word as
-  the plugin's `category`: `universal`, `craft`, `language` or `tools`. A plugin that
-  works on the marketplace itself is `marketplace-<name>`, with category `marketplace`.
-- **Skill:** named for the activity, for example `write-unit-tests` or
+  `craft-code-review`, `language-simple-english` or `tools-vue`. The prefix is the same
+  word as the plugin's `category`: `universal`, `craft`, `language` or `tools`. A plugin
+  that works on the marketplace itself is `marketplace-<name>`, with category
+  `marketplace`.
+- **Skill:** named for the activity, for example `review-changes` or
   `vue-conventions`. It is invoked as `/<plugin>:<skill>`.
 - **Wording that outlives code.** Every skill here is about code today, and the
   structure must not assume it stays that way. Language is "what the work is written
@@ -110,8 +111,8 @@ The last sentence is the valuable one. Anyone can catch "refactor this". Catchin
 code is hard to work with, I need to add a feature" is what makes the skill fire when it
 should.
 
-Write the triggers in the user's words, not yours. `write-unit-tests` lists "mentions
-coverage, says code is untested, wants TDD", which are things people say. "Testing
+Write the triggers in the user's words, not yours. A testing skill that lists "mentions
+coverage, says code is untested, wants TDD" lists things people say. "Testing
 scenarios" is not.
 
 Two skills whose descriptions win the same prompt split the traffic between them by
@@ -152,8 +153,8 @@ rather than introduce a second style. A standard with no stated boundary gets ap
 mechanically, which is worse than not being applied.
 
 **Rank by cost, not by category.** When a skill produces findings, tell the reader how
-to sort them. `clean-code` sorts by correctness risk, then change cost, then reading
-cost, and says only the first two justify touching working code unprompted.
+to sort them. `review-changes` sorts its findings by what they cost if left, so the
+reader knows which to fix first.
 
 **Do not hedge.** No "you might want to consider", no "it's generally recommended". Say
 the thing. If it is conditional, say the condition.
@@ -166,8 +167,8 @@ a person's merge.
 
 ## Structure
 
-Sections follow the order someone works in. `write-unit-tests` goes: before writing
-anything → test first → what to test → test shape → mocking → verify. That is the
+Sections follow the order someone works in. A skill for writing tests goes: before
+writing anything → test first → what to test → test shape → mocking → verify. That is the
 sequence of the task, not a taxonomy of testing.
 
 Target 60–160 lines for a skill. Past that, move detail into `references/`. A reference
@@ -184,8 +185,8 @@ A report has two halves, and each has its own home:
 - **The skeleton** belongs to the agent, because it is the same for every kind of work
   the agent sees. It covers what the reviewer found, or what the check failed on.
 - **The report for one kind of work** belongs to that kind's Craft skill, because it
-  is knowledge about the work. Examples are a refactoring plan, a test report, and
-  clean-code findings grouped by cost.
+  is knowledge about the work. An example is a code review's findings, located by file
+  and line and sorted by cost.
 
 Writing either half in both places gives it two homes.
 
@@ -198,9 +199,8 @@ section rather than example content:
 goes wrong, and the input or sequence that triggers it.>
 ```
 
-Include a section for what was checked and found sound. `review-work` has
-**Verified**, and says why: it tells the author what the review covered, so they know
-what it didn't.
+Include a section for what was checked and found sound, such as a review's
+**Verified**: it tells the author what the review covered, so they know what it didn't.
 
 **Keep a report as short as what its reader acts on.** An agent's report stays in the
 session that asked for it, so every later turn reads it again: a 10k-token report in a

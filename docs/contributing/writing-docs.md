@@ -62,8 +62,9 @@ reason, prefer a named example to a described one, and don't hedge. On top of th
   backticks, not linked. Any other file a page mentions is linked where the reader would
   open it, and otherwise named in backticks.
 - Backtick every file, command, setting and identifier.
-- **Examples are synthetic.** No real project, client or person, in any example or
-  screenshot. The repo is public.
+- **Examples are synthetic.** No client, person or private project, in any example or
+  screenshot. The repo is public. A page may name a public open-source project when the
+  page is about it.
 
 ## The map
 
@@ -100,8 +101,7 @@ A reviewer reads a page against its sources, which the map names, and checks:
 skill, reference or agent links into `docs/` and no page into the working records, part
 of item 4; that every link and heading anchor resolves, part of item 7; the 88 columns
 of item 8; and that every page is on the map, part of item 9. The rest is for the
-reviewer. Report findings in the shape of
-[`review-work`](../../plugins/craft-review/skills/review-work/SKILL.md). A page that is
+reviewer. Report findings as Blocking, Should fix, Consider and Verified. A page that is
 wrong about the product, restates a rule, or breaks a link is Blocking; a page that
 does two jobs or misses its reader should be fixed; wording is to consider. Say what
 you verified.

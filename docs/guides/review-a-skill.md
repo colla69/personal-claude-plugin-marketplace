@@ -11,13 +11,13 @@ curator plugin, the same one the curator's checker runs before every pull reques
    instead:
 
    ```bash
-   claude --plugin-dir ./plugins/marketplace-curator --plugin-dir ./plugins/craft-review --plugin-dir ./plugins/language-simple-english
+   claude --plugin-dir ./plugins/marketplace-curator --plugin-dir ./plugins/language-simple-english
    ```
 
-   `craft-review` and `language-simple-english` come along because the curator
-   depends on them, and a plugin whose dependency is missing doesn't load at all.
+   `language-simple-english` comes along because the curator depends on it, and a
+   plugin whose dependency is missing doesn't load at all.
 2. **Ask:** "is this skill well written?", "why isn't `vue-conventions` triggering?",
-   "is `craft-refactoring` ready to merge?", "review my change to `clean-code`", or
+   "is `craft-code-review` ready to merge?", "review my change to `clean-code`", or
    "how do the skills fit together?". The first time, Claude Code asks whether the skill
    may read its own files. For a change you wrote yourself, ask for the
    `change-reviewer` agent instead: it runs the same review without the evals, in a
@@ -37,10 +37,12 @@ curator plugin, the same one the curator's checker runs before every pull reques
 
 It runs the instruments first: `claude plugin validate`, the token estimate,
 `check-catalog.mjs`, and the plugin's evals with and without it, where there are any.
+It reads the evals rule by rule: a rule that passes as often without the skill is a
+finding.
 
 ## The report
 
-It uses `review-work`'s shape, sorted by what a finding does at runtime:
+It sorts findings by what they do at runtime:
 
 | Section | Holds |
 |---|---|

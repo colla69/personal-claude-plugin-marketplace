@@ -6,7 +6,6 @@ model: opus
 disallowedTools: Write, Edit, NotebookEdit
 skills:
   - marketplace-curator:evaluate-skills
-  - craft-review:review-work
 ---
 
 You review one change to this marketplace, made in this checkout, and you change

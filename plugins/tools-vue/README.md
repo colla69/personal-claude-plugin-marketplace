@@ -21,16 +21,14 @@ project uses TypeScript before assuming either.
 
 ## Leaves to others
 
-- **Stores.** Pinia has its own conventions, in `pinia-conventions`, in `tools-pinia`.
-- Typing props and emits, to `vue-typescript-conventions`, in `tools-vue-typescript`.
 - A Vue 2 or Options API project, whose style it follows, naming the mismatch out loud.
 - The project's patterns, such as naming, folder layout, forms and UI library, which
   beat the generic conventions here.
 
 ## Install
 
-Docking installs it at project scope when `vue` is in the project's dependencies, and
-`tools-pinia` and `tools-vue-typescript` pull it in. By hand:
+Docking installs it at project scope when `vue` is in the project's dependencies. By
+hand:
 
 ```bash
 claude plugin install tools-vue@personal-claude-plugin-marketplace --scope project

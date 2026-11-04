@@ -12,37 +12,27 @@ Each plugin's own README, under `plugins/<name>/`, says where it stops.
 
 | Plugin | Layer | Skill | What it's for | Installed when the project shows | Builds on |
 |---|---|---|---|---|---|
-| [`universal-clean-code`](../../plugins/universal-clean-code/) | Universal | `clean-code` | Readable, maintainable code: naming, function shape, error handling, comments, dependency direction | Any code | — |
-| [`universal-work-discipline`](../../plugins/universal-work-discipline/) | Universal | `work-discipline` | Working where someone else maintains: read first, match what is there, hold scope, verify before "done" | Any work, with or without code; most Craft plugins pull it in | — |
-| [`craft-development`](../../plugins/craft-development/) | Craft | `development-standards` | What careful work means for code: test first, the neighbours to read, a diff kept to the change, verification | Any code, with `craft-code-review` and `craft-refactoring` | `universal-clean-code`, `universal-work-discipline`, `craft-unit-testing` |
-| [`craft-review`](../../plugins/craft-review/) | Craft | `review-work` | Reviewing any work: what it is meant to do, reading it as written, findings with a cost | Work other than code that gets reviewed; `craft-code-review` pulls it in | — |
-| [`craft-code-review`](../../plugins/craft-code-review/) | Craft | `review-changes` | Reviewing a diff or branch: correctness, security, tests, API surface | Any code, with the other two code Craft plugins | `universal-clean-code`, `craft-review`, `craft-unit-testing` |
-| [`craft-unit-testing`](../../plugins/craft-unit-testing/) | Craft | `write-unit-tests` | Unit tests that fail when the code is wrong: test first, behaviour first, edges, no padding | A configured test runner; `craft-development` and `craft-code-review` pull it in | `universal-work-discipline` |
-| [`craft-refactoring`](../../plugins/craft-refactoring/) | Craft | `refactor-safely` | Behaviour-preserving change in small, verified steps | Any code, with the other two code Craft plugins | `universal-clean-code`, `universal-work-discipline`, `craft-development` |
-| [`craft-cv-writing`](../../plugins/craft-cv-writing/) | Craft | `write-cv` | Writing and tailoring a CV: terms in context, exact verbs, defensible figures, no invented facts | A CV or résumé kept as a document in the repo | `universal-work-discipline` |
-| [`language-java`](../../plugins/language-java/) | Language | `java-conventions` | Java idioms by version: nullability, immutability, exceptions, resources | `pom.xml`, `build.gradle` or `.java` sources | `universal-clean-code` |
-| [`language-typescript`](../../plugins/language-typescript/) | Language | `typescript-conventions` | TypeScript: strictness, narrowing over assertions, discriminated unions, async | `tsconfig.json`, or `.ts` and `.tsx` sources | `universal-clean-code` |
-| [`language-javascript`](../../plugins/language-javascript/) | Language | `javascript-conventions` | JavaScript: ES modules with explicit extensions, named exports, async/await, a logger in library code | The project's own code in `.js` or `.mjs` files | `universal-clean-code` |
-| [`language-swift`](../../plugins/language-swift/) | Language | `swift-conventions` | Swift: the language mode, optionals handled not forced, value types, thrown errors, concurrency stated in types | A `Package.swift`, an `.xcodeproj` or `.swift` sources | `universal-clean-code` |
-| [`language-simple-english`](../../plugins/language-simple-english/) | Language | `simple-english` | English nobody can read two ways: short sentences, one instruction each, one word per meaning, no filler | Every project, with or without code | — |
+| [`universal-clean-code`](../../plugins/universal-clean-code/) | Universal | `clean-code` | Only the clean-code rules measured to change what the model writes: today, three parameters at most | Any code | — |
+| [`universal-work-discipline`](../../plugins/universal-work-discipline/) | Universal | `work-discipline` | Working where someone else maintains: run its checks, and never call unverified work done | Any work, with or without code; most Craft plugins pull it in | — |
+| [`craft-development`](../../plugins/craft-development/) | Craft | `development-standards` | What careful work means for code: test first, then verification | Any code, with `craft-code-review` | `universal-clean-code`, `universal-work-discipline` |
+| [`craft-code-review`](../../plugins/craft-code-review/) | Craft | `review-changes` | Reviewing a diff or branch: correctness, tests, API surface, findings by file and line | Any code, with `craft-development` | `universal-clean-code` |
+| [`craft-shipping`](../../plugins/craft-shipping/) | Craft | `readiness-review`, `developer-handoff`, `new-project` | Asking the milestone before a launch verdict; a handoff that marks its sources and names no secret value; asking the stack before a new app's first file | An app people will use, or an empty folder | — |
+| [`language-simple-english`](../../plugins/language-simple-english/) | Language | `simple-english` | English nobody can read two ways: short sentences, one instruction each, one word per meaning, simple tenses | Every project, with or without code | — |
 | [`language-conventional-commits`](../../plugins/language-conventional-commits/) | Language | `conventional-commits` | Commit messages a release tool can read: the type by what a user sees, a marked breaking change, a body that says why | Any code, after the steward asks once whether the project writes Conventional Commits, unless its files already show the format | — |
 | [`tools-vue`](../../plugins/tools-vue/) | Framework & Tools | `vue-conventions` | Vue 3 Composition API: components, reactivity, composables, templates | `vue` in the dependencies | — |
-| [`tools-vue-typescript`](../../plugins/tools-vue-typescript/) | Framework & Tools | `vue-typescript-conventions` | TypeScript in Vue 3: typed props, emits and reactive inputs | Both `vue` and `typescript`, or `lang="ts"` in `.vue` files | `tools-vue`, `language-typescript` |
-| [`tools-pinia`](../../plugins/tools-pinia/) | Framework & Tools | `pinia-conventions` | Pinia stores, and server data in a query layer instead of a store | `pinia` in the dependencies | `tools-vue` |
-| [`tools-aws-static-hosting`](../../plugins/tools-aws-static-hosting/) | Framework & Tools | `aws-static-hosting` | Static sites on AWS: certificate region, deep links, cache tiers, private buckets, safe syncs, deploy checks | A CloudFront distribution in front of an S3 bucket in the infrastructure code or deploy scripts | — |
 | [`tools-appkit`](../../plugins/tools-appkit/) | Framework & Tools | `appkit-conventions` | AppKit apps in code: a bare executable, the main thread, key events, borderless windows, kiosk options | `import AppKit` or `import Cocoa` in `.swift` sources | — |
 | [`marketplace-steward`](../../plugins/marketplace-steward/) | — | `steward` | Docks a project when asked, and answers questions about the standards through its `guide` agent | Never in a project: you install it once, for your user | `language-simple-english` |
-| [`marketplace-base`](../../plugins/marketplace-base/) | — | — | The standards index, the build-and-test guard and the corrections collector, as hooks, and the `test-runner` and `reviewer` agents | Every docked project, installed first | `craft-review`, `language-simple-english` |
-| [`marketplace-curator`](../../plugins/marketplace-curator/) | — | `curate`, `evaluate-skills` | Turns lessons and collected corrections into changes to the standards, by pull request | Never in a docked project: only in the marketplace's own repository | `craft-review`, `language-simple-english` |
+| [`marketplace-base`](../../plugins/marketplace-base/) | — | — | The standards index, the build-and-test guard and the corrections collector, as hooks, and the `test-runner` and `reviewer` agents | Every docked project, installed first | `language-simple-english` |
+| [`marketplace-curator`](../../plugins/marketplace-curator/) | — | `curate`, `evaluate-skills` | Turns lessons and collected corrections into changes to the standards, by pull request | Never in a docked project: only in the marketplace's own repository | `language-simple-english` |
 
 ## By layer
 
 | Layer | Plugins |
 |---|---|
 | Universal | `universal-clean-code`, `universal-work-discipline` |
-| Craft | `craft-development`, `craft-review`, `craft-code-review`, `craft-unit-testing`, `craft-refactoring`, `craft-cv-writing` |
-| Language | `language-java`, `language-typescript`, `language-javascript`, `language-swift`, `language-simple-english`, `language-conventional-commits` |
-| Framework & Tools | `tools-vue`, `tools-vue-typescript`, `tools-pinia`, `tools-aws-static-hosting`, `tools-appkit` |
+| Craft | `craft-development`, `craft-code-review`, `craft-shipping` |
+| Language | `language-simple-english`, `language-conventional-commits` |
+| Framework & Tools | `tools-vue`, `tools-appkit` |
 | Team | None yet |
 | None: works on the marketplace itself | `marketplace-steward`, `marketplace-base`, `marketplace-curator` |
 
@@ -52,10 +42,9 @@ way they do.
 ## Old names
 
 The plugins were renamed when the marketplace was cut into layers: `clean-code` is now
-`universal-clean-code`, and `vue-dev` split into `tools-vue`, `tools-pinia` and
-`tools-vue-typescript`. Every old name, and every later rename, has its row in the
-Renamed table of
+`universal-clean-code`, and `vue-dev` is now `tools-vue`. Every old name, and every
+later rename, has its row in the Renamed table of
 [`catalog.md`](../../plugins/marketplace-steward/references/catalog.md). Docking reads
-it. It removes the old key, and weighs each successor by its own signal, so a part that
-split off is installed only where the project shows a need for it. [Migrate from old
+it. It removes the old key, weighs each successor by its own signal, and installs
+nothing for a plugin that was removed. [Migrate from old
 names](../guides/migrate-from-old-names.md) walks through it.

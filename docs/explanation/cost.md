@@ -107,4 +107,5 @@ An agent also reads its task's files again from an empty context, which was most
 what the earlier steward's trios cost. So the marketplace ships few agents, each for a
 job whose input is short or whose output would flood the session. And the checker
 leaves out the ablation, which runs a plugin's evals with and without it, because
-nobody asked it to spend those credits on every change.
+nobody asked it to spend those credits on every change. The curator runs it once, for
+a change that adds or changes a rule, and says the cost before it starts.

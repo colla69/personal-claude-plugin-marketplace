@@ -1,14 +1,14 @@
 # craft-code-review
 
-A code change is reviewed in a fixed order: correctness, security, test adequacy, API
-and contract impact, then everything else. Style comes last because it is the easiest
+A code change is reviewed in a fixed order: correctness, test adequacy, API and
+contract impact, then everything else. Every finding is located by file and line. Style comes last because it is the easiest
 thing to spot.
 
 | | |
 |---|---|
 | Skill | `review-changes` |
 | Layer | Craft |
-| Builds on | `universal-clean-code`, `craft-review`, `craft-unit-testing` |
+| Builds on | `universal-clean-code` |
 
 It reads the changed files, not just the hunks, because a diff hides the context that
 decides whether a change is correct.
@@ -21,12 +21,7 @@ decides whether a change is correct.
 
 ## Leaves to others
 
-- **How any review is done, and its report.** Tracing one case, a cost per finding, and
-  the Blocking, Should fix, Consider and Verified shape are `review-work`, in
-  `craft-review`.
-- Whether the tests would fail if the change were wrong, judged by `write-unit-tests`,
-  in `craft-unit-testing`.
-- Naming, structure and style, judged by `clean-code`.
+- The house rule on function shape, to `clean-code`.
 - What is idiomatic in the code under review, to the Language and Framework & Tools
   layers.
 - The project's own review checklist and definition of a breaking change, which win.

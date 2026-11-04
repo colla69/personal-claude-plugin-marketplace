@@ -60,7 +60,7 @@ must never leave it turns the collector off, below.
 | Agent | Model | What it does |
 |---|---|---|
 | [`test-runner`](../../plugins/marketplace-base/agents/test-runner.md) | Haiku, low effort | Runs one check and reports only what failed, so a long output stays out of the session |
-| [`reviewer`](../../plugins/marketplace-base/agents/reviewer.md) | Opus | Reviews a piece of work when you ask, by `review-work` and the project's standards |
+| [`reviewer`](../../plugins/marketplace-base/agents/reviewer.md) | Opus | Reviews a piece of work when you ask, by the project's standards |
 
 Both are read-only. Neither starts on its own: the session starts the test runner when
 it has a check to run, and the reviewer when you ask for a review.

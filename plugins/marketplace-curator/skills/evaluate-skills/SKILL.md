@@ -10,9 +10,8 @@ A skill is judged by what it makes Claude do, not by how it reads. A wordy skill
 behaves the same at runtime; a skill whose description is a summary never loads at
 all. So every finding answers one question first: does it change behaviour?
 
-Load `craft-review:review-work` first. It holds how any work is read, what makes a
-finding, and the report shape; this skill adds what to look for in skills. Then read
-the standard, and quote it, so a finding is the house's taste and not the reviewer's:
+Read the work as written, not as described, and give every finding its location and
+its cost. Then read the standard, and quote it, so a finding is the house's taste and not the reviewer's:
 
 - `${CLAUDE_PLUGIN_ROOT}/references/author-skills/style.md`, for the writing;
 - `${CLAUDE_PLUGIN_ROOT}/references/place-knowledge.md`, for the cut;
@@ -29,7 +28,7 @@ claude plugin validate ./plugins/<name>                       # does it parse
 claude --plugin-dir ./plugins/<name> plugin details <name>    # inventory, token cost
 node scripts/check-catalog.mjs                                # lists, layers, deps
 node scripts/check-docs.mjs                                   # links, map, wrapping
-claude plugin eval ./plugins/<name> --ablation with-without   # does it change anything
+node scripts/eval-skill.mjs <name> --runs 5 --fails           # does it change anything; costs money, see measure.md §4
 ```
 
 - `validate` warns "no version specified" and "no description provided" on every
@@ -38,8 +37,10 @@ claude plugin eval ./plugins/<name> --ablation with-without   # does it change a
   fails on a plugin that isn't installed, and reports the installed copy of one that
   is. It also counts a skill hidden with `disable-model-invocation`, whose description
   never loads, so its estimate runs high for such a plugin.
-- The ablation is the only measurement of whether a plugin changes the outcome. With no
-  eval cases, report that, and name the first three cases they should assert.
+- The ablation is the only measurement of whether a plugin changes the outcome, and
+  `${CLAUDE_PLUGIN_ROOT}/references/measure.md` is how to run and read it: per rule,
+  with the failing runs read. With no eval cases, report that, and name the first
+  three cases they should assert, one grader per rule.
 
 ## Read across the boundary
 
@@ -93,7 +94,8 @@ with both locations and the file that keeps it. Three checks only an evaluation 
 3. **What does it cost?** The always-on tokens, paid in every session that enables it,
    weighed against how often it fires.
 4. **Is the prose sound?** The checks above.
-5. **Does it change anything?** The ablation, or an honest "no evals".
+5. **Does it change anything?** The ablation, read per rule as `measure.md` says, or
+   an honest "no evals". A rule with no lift is a finding: cut it.
 
 ## The whole set
 
@@ -136,7 +138,8 @@ it as clean, because a clean leak check is what lets a change through.
 
 ## Rank by runtime impact
 
-Use `review-work`'s report, and sort into it by what a finding does at runtime:
+Report in these sections, sorted by what a finding does at runtime, and leave out a
+section that would be empty:
 
 - **Blocking: changes behaviour.** It won't fire, it fires where it shouldn't, a rule
   has two homes, a lane isn't in the frontmatter, a named skill isn't declared,
@@ -158,6 +161,6 @@ leak check first, under its own heading.
 
 ## Where this yields
 
-To the user's merge: the review informs it and never replaces it. To
-`craft-review:review-work` for what makes a finding at all. To the house style where it
+To the user's merge: the review informs it and never replaces it. To the house style
+where it
 consistently departs from `style.md`.

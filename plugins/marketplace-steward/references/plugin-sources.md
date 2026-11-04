@@ -150,14 +150,20 @@ A gap is a need the repo shows evidence for that **no permitted toolkit plugin c
 Work in that order — toolkit first, gaps second — and the priority rule resolves itself.
 
 Where the toolkit already covers a need, do not list an alternative.
-`language-typescript` covers TypeScript conventions; a second opinion on the same
+`tools-vue` covers Vue conventions; a second opinion on the same
 subject is two standards competing for the same prompts, and which one fires becomes
 luck.
 
+**A need the toolkit dropped on purpose is not a gap.** A row in the catalog's "Renamed
+and removed" table that says "measured, the model followed their rules without them"
+means the toolkit tested that subject and found the model needs no prose for it. A
+TypeScript or Java repo with no language plugin is that case: list no outside plugin
+of rules or conventions for it. A tool that does what prose can't, such as a language
+server, is still a candidate, by the next paragraph.
+
 List an outside plugin only when it does something no toolkit plugin does at all. The
 language servers are the clean example: `typescript-lsp` gives go-to-definition and
-real diagnostics, which no amount of prose provides, so it complements
-`typescript-conventions` instead of arguing with it.
+real diagnostics, which no amount of prose provides.
 
 Never recommend on popularity. `installCount` corroborates a plugin you already had
 repo evidence for; it is not itself evidence. A million installs of a frontend plugin

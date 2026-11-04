@@ -28,7 +28,7 @@ that holds its rules.
 | **Failure mode** | The thing a kind of worker typically gets wrong, such as an agreeable review. Part of an agent, never of a skill | [`style.md`](../../plugins/marketplace-curator/references/author-skills/style.md) |
 | **Framework & Tools** | The layer of one concrete product or tool, such as Vue, JUnit or Excel | [`place-knowledge.md`](../../plugins/marketplace-curator/references/place-knowledge.md) |
 | **Front door** | The skill that routes a request to a job: `steward` for docking and answers, `curate` in the marketplace's repository | [`SKILL.md`](../../plugins/marketplace-steward/skills/steward/SKILL.md) |
-| **Gap-fill** | A plugin from another permitted marketplace, chosen where the house marketplace has nothing for a need | [`plugin-sources.md`](../../plugins/marketplace-steward/references/plugin-sources.md) |
+| **Gap-fill** | A plugin from another permitted marketplace, chosen where the house marketplace has nothing for a need and did not drop it on purpose | [`plugin-sources.md`](../../plugins/marketplace-steward/references/plugin-sources.md) |
 | **Guard** | The base plugin's hook that runs the check command when Claude is about to stop after changing a file, and keeps it working while the check fails | [`the base`](the-base.md) |
 | **Guide** | The steward's read-only agent, on Sonnet, that answers questions about the standards and the setup | [`guide.md`](../../plugins/marketplace-steward/agents/guide.md) |
 | **Index** | The list of every standard in the marketplace that the base plugin gives each session at its start, with the ones enabled in the project marked | [`the base`](the-base.md) |

@@ -1,13 +1,13 @@
 ---
 name: simple-english
-description: Write English that a tired reader or a non-native reader cannot misread, following the rules of Simplified Technical English (ASD-STE100) — short sentences, one instruction each, one word per meaning, active voice, and no filler. Use whenever writing or editing text a person will read in English — documentation, a README, a guide, a runbook, a plan, a report, release notes, a commit or PR description, a code comment — or when the user says "make this text readable", "simplify the wording", "plain English", "de-slop", "STE" or "for non-native readers". Also use when writing instructions for an agent or a prompt, since a model that cannot ask back is the reader this standard was made for.
+description: Write English that a tired reader or a non-native reader cannot misread, following the rules of Simplified Technical English (ASD-STE100) — short sentences, one instruction each, one word per meaning, active voice, and simple tenses. Use whenever writing or editing text a person will read in English — documentation, a README, a guide, a runbook, a plan, a report, release notes, a commit or PR description, a code comment — or when the user says "make this text readable", "simplify the wording", "plain English", "de-slop", "STE" or "for non-native readers". Also use when writing instructions for an agent or a prompt, since a model that cannot ask back is the reader this standard was made for.
 ---
 
 # Simple English
 
 Text is good when nobody can read it two ways. Every rule below removes one way to
 misread. A long sentence hides which clause a condition belongs to. A synonym makes the
-reader ask whether two things differ. Filler takes attention that the facts needed.
+reader ask whether two things differ.
 
 These rules adapt Simplified Technical English, ASD-STE100, for everyday technical
 writing. They leave out the standard's controlled dictionary: the words of your field
@@ -42,16 +42,11 @@ unless the two happen at the same time.
   becomes "settings" two paragraphs later, the reader looks for a second thing.
 - **Say the action with a verb.** "Compress the file", not "perform compression of the
   file". A noun in the verb's place hides who does what.
-- **Write the full form.** No contractions, and no Latin abbreviations: "for example"
-  and "that is", and name the items instead of "etc.". A non-native reader and a
-  translation tool both stumble on the short forms, and "etc." hides the items the
-  reader needed.
+- **Write the full form.** No contractions: "do not", "it is". A non-native reader and
+  a translation tool both stumble on the short forms.
 - **Use `must`, `can` and `will`.** "Should" leaves the reader to decide whether it is
   a rule. Write `must` for a requirement. Mark a recommendation as one, and give its
   reason.
-- **Cut the words that carry no fact.** "Simply", "easily", "seamlessly", "robust",
-  "leverage", "utilize", "in order to", "it is important to note that". Write "use" and
-  "to", and keep the fact if there was one.
 - **Keep noun chains to three words.** "The connection pool timeout configuration value"
   becomes "the timeout value for the connection pool". In a long chain the reader must
   guess which noun each word describes.
@@ -67,8 +62,6 @@ unless the two happen at the same time.
   tense hides when something happened, and a reader often needs to know.
 - **Complete grammar.** Keep the articles and the "that". Short sentences are the goal,
   telegraph style is not: "Make sure that the file exists", not "Ensure file exists".
-- **No semicolons.** Write two sentences. A semicolon joins two facts into one long
-  sentence, and the reader must find where the second one starts.
 - **A pronoun needs a clear noun.** Write "this setting", not a bare "this", whenever
   two things could be meant.
 - **One new fact per sentence**, and a vertical list when a sentence would hold three.
@@ -95,10 +88,9 @@ failed" does.
 
 Search the draft, outside code and quotes, for each of these:
 
-- a contraction, a semicolon, "e.g.", "i.e." or "etc."
+- a contraction
 - "has been", "have been", "is being", or another perfect or progressive tense
 - "should", "may", "might" or "could" where a rule or a fact is meant
-- a word from the filler list above
 - a condition after its command, such as "Restart the service if the port is busy"
 - a sentence over the limit for its kind: count the three longest
 

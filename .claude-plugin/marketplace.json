@@ -10,91 +10,42 @@
     {
       "name": "universal-clean-code",
       "source": "./plugins/universal-clean-code",
-      "description": "The house standard for readable, maintainable code: naming, function shape, error handling, comments, and dependency direction.",
+      "description": "The clean-code rules measured to change what the model writes: today, three parameters at most.",
       "category": "universal",
       "tags": ["clean-code", "standards", "readability"]
     },
     {
       "name": "universal-work-discipline",
       "source": "./plugins/universal-work-discipline",
-      "description": "How to work in a place someone else maintains: read first, match what is there, hold scope, and never call unverified work done.",
+      "description": "How to report work done in a place someone else maintains: run the checks the place uses, and never call unverified work done.",
       "category": "universal",
       "tags": ["discipline", "scope", "verification"]
     },
     {
       "name": "craft-development",
       "source": "./plugins/craft-development",
-      "description": "What careful work means for code: test first, the neighbours to read, a diff kept to the change, and verification with typecheck, tests and lint.",
+      "description": "What careful work means for code: test first, and verification with typecheck, tests and lint.",
       "category": "craft",
       "tags": ["development", "implementation", "verification"]
     },
     {
-      "name": "craft-review",
-      "source": "./plugins/craft-review",
-      "description": "How to review any piece of work: know what it is meant to do, read it as written, trace one case, and report only findings with a cost.",
-      "category": "craft",
-      "tags": ["review", "feedback", "findings"]
-    },
-    {
       "name": "craft-code-review",
       "source": "./plugins/craft-code-review",
-      "description": "Structured review of a diff or branch: correctness, security, tests, and API surface.",
+      "description": "Structured review of a diff or branch: correctness, tests, and API surface, each finding located by file and line.",
       "category": "craft",
       "tags": ["review", "diff", "pr"]
     },
     {
-      "name": "craft-unit-testing",
-      "source": "./plugins/craft-unit-testing",
-      "description": "Writes and strengthens unit tests: test first in a red, green, refactor cycle, behavior-first cases, edge coverage, no assertion padding.",
+      "name": "craft-shipping",
+      "source": "./plugins/craft-shipping",
+      "description": "Shipping an app built with AI: ask the milestone before a launch verdict, and in a handoff mark where each statement comes from and never copy a secret value, and in an empty folder ask before choosing the stack.",
       "category": "craft",
-      "tags": ["testing", "unit-tests", "tdd"]
-    },
-    {
-      "name": "craft-refactoring",
-      "source": "./plugins/craft-refactoring",
-      "description": "Behavior-preserving refactors executed in small, verifiable steps with a green test suite as the gate.",
-      "category": "craft",
-      "tags": ["refactoring", "cleanup", "tech-debt"]
-    },
-    {
-      "name": "craft-cv-writing",
-      "source": "./plugins/craft-cv-writing",
-      "description": "Writing and tailoring a CV: terms in context, both forms of an alias, exact verbs, one defensible figure per project, and no invented facts.",
-      "category": "craft",
-      "tags": ["cv", "resume", "ats"]
-    },
-    {
-      "name": "language-java",
-      "source": "./plugins/language-java",
-      "description": "Java language conventions: version-aware idioms, nullability, immutability, exceptions, and resource handling.",
-      "category": "language",
-      "tags": ["java", "jvm", "language"]
-    },
-    {
-      "name": "language-typescript",
-      "source": "./plugins/language-typescript",
-      "description": "TypeScript language conventions: strictness, narrowing over assertions, discriminated unions, and async discipline.",
-      "category": "language",
-      "tags": ["typescript", "language"]
-    },
-    {
-      "name": "language-javascript",
-      "source": "./plugins/language-javascript",
-      "description": "JavaScript language conventions: ES modules with explicit extensions, named exports, async/await at every layer, and a logger in library code.",
-      "category": "language",
-      "tags": ["javascript", "language"]
-    },
-    {
-      "name": "language-swift",
-      "source": "./plugins/language-swift",
-      "description": "Swift language conventions: the language mode, optionals handled not forced, value types, thrown errors, narrow access control, and concurrency stated in types.",
-      "category": "language",
-      "tags": ["swift", "language"]
+      "tags": ["launch", "readiness", "production"]
     },
     {
       "name": "language-simple-english",
       "source": "./plugins/language-simple-english",
-      "description": "English nobody can read two ways, after Simplified Technical English: short sentences, one instruction each, one word per meaning, active voice, no filler.",
+      "description": "English nobody can read two ways, after Simplified Technical English: short sentences, one instruction each, one word per meaning, active voice, simple tenses.",
       "category": "language",
       "tags": ["english", "writing", "documentation"]
     },
@@ -111,27 +62,6 @@
       "description": "Vue 3 Composition API conventions for components, reactivity, composables, and templates.",
       "category": "tools",
       "tags": ["vue", "frontend", "typescript"]
-    },
-    {
-      "name": "tools-vue-typescript",
-      "source": "./plugins/tools-vue-typescript",
-      "description": "TypeScript in Vue 3: props and emits typed through the generic form, and typed reactive inputs for composables.",
-      "category": "tools",
-      "tags": ["vue", "typescript"]
-    },
-    {
-      "name": "tools-pinia",
-      "source": "./plugins/tools-pinia",
-      "description": "Pinia store conventions: setup-syntax stores, and server data in a query layer rather than a store.",
-      "category": "tools",
-      "tags": ["pinia", "vue", "state"]
-    },
-    {
-      "name": "tools-aws-static-hosting",
-      "source": "./plugins/tools-aws-static-hosting",
-      "description": "Static hosting on AWS: S3 behind CloudFront, certificate region, deep links, cache tiers, private buckets, safe syncs, and checks after a deploy.",
-      "category": "tools",
-      "tags": ["aws", "cloudfront", "s3", "static-site"]
     },
     {
       "name": "tools-appkit",

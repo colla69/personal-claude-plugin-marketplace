@@ -1,6 +1,6 @@
 ---
 name: clean-code
-description: The house standard for readable, maintainable code — naming, function shape, error handling, comments, and dependency direction. Use whenever writing new code, judging whether something is "clean enough", asking whether existing code is well written, or when the user mentions readability, maintainability, or naming. Also use before extracting an abstraction or adding a layer, since duplication is cheaper than the wrong abstraction.
+description: The house standard for clean code, holding only the rules measured to change what the model writes — today, that more than three parameters means a missing type. Use whenever writing new code, writing or changing a function, method or constructor that takes several inputs, or when the user mentions readability, maintainability, "too many parameters" or a long argument list. Also use when adding a parameter to a function that already takes three.
 ---
 
 # Clean code standard
@@ -8,113 +8,15 @@ description: The house standard for readable, maintainable code — naming, func
 Cleanliness is not an end in itself. The test for every rule below is: *does this make the
 code cheaper to change next month?* When a rule and that test disagree, the test wins.
 
-## Naming
-
-Names carry most of the readability load, and they're the cheapest thing to get right.
-
-- Name by intent, not implementation. `retryableRequests` over `filteredList`.
-- Length should scale with scope. `i` inside a three-line loop is fine; `i` as a module-level
-  variable is not.
-- Booleans read as predicates: `isExpired`, `hasAccess`, `shouldRetry`.
-- Avoid the vocabulary that means nothing: `data`, `info`, `manager`, `helper`, `util`,
-  `process`, `handle`. If a name needs one of these, the thing usually needs splitting.
-- Keep one word per concept across the codebase. `fetch`, `get`, `retrieve`, and `load`
-  should not all mean the same operation.
-- Prefer a name you can search for. A distinctive name finds every use in one search; a
-  generic one finds hundreds, and whoever changes it next, a person or an agent, misses
-  a caller.
+This standard holds only the rules a measurement showed the model breaks without them.
+A rule the model already follows costs every session and changes nothing.
 
 ## Function shape
 
-- One level of abstraction per function. Mixing "charge the card" with "concatenate the
-  URL string" in one body is what makes functions hard to skim.
-- Extract when a comment is needed to explain the *next block* — the comment is telling you
-  where the seam is. Do not extract just to hit a line count.
-- Prefer returning values to mutating arguments. Prefer pure functions where the domain
-  allows it, but don't contort I/O-bound code to fake purity.
-- Guard clauses over nested conditionals. Handle the exceptional cases first and return
-  early; the happy path should be the least-indented code in the function.
-- More than about three parameters usually means a missing type. Bundle them.
-
-## Error handling
-
-- Fail loudly at the boundary, degrade gracefully in the interior — not the other way
-  round.
-- Never swallow an error to make a signature simpler. An empty `catch` is a bug with a
-  delay fuse.
-- Error messages are for whoever is on call at 3am. Include what was attempted, what was
-  received, and the identifier needed to find the record. When the remedy is known, say
-  it: "No config at `<path>`. Run `init` to create one." ends the search that "config
-  not found" starts.
-- Be consistent about the mechanism. Exceptions or result types, one per layer, not both
-  interleaved.
-
-## Comments
-
-Write comments that explain **why**, never **what**.
-
-```
-// BAD: increment the retry counter
-retries += 1
-
-// GOOD: the upstream rate-limiter resets on a 60s window, so backing off
-// faster than this just burns quota without ever succeeding
-sleep(BACKOFF_SECONDS)
-```
-
-Delete commented-out code. Version control already remembers it. A `TODO` without a name
-and a reason is a wish, not a task.
-
-## Structure and dependencies
-
-- Dependencies point inward: infrastructure depends on domain, never the reverse. If the
-  domain layer imports the database client, the layering is decorative.
-- Duplication is cheaper than the wrong abstraction. Wait for the third occurrence, and
-  make sure the three cases are the *same* thing, not three things that currently look
-  alike.
-- The exception is two code paths that must give the same answer, such as a writer and
-  its reader, or client and server validation. Give the rule one source at the second
-  caller, not the third: one module both import, or, where the paths are in different
-  languages, one definition both are generated from. Two copies of a rule that must
-  match drift apart without an error, and the cost arrives later as a disagreement
-  nobody can trace.
-- Keep files cohesive rather than short. A 400-line file where everything belongs together
-  beats four 100-line files with circular imports.
-
-## Applying the standard
-
-When judging existing code, sort findings by cost of leaving them:
-
-1. **Correctness risk** — the unclear thing is also probably wrong
-2. **Change cost** — this will make the next feature harder
-3. **Reading cost** — it works and it's stable, it's just unpleasant
-
-Only the first two justify changing working code unprompted. The third is worth mentioning
-and worth fixing while you're already in the file, but rewriting stable code purely for
-tidiness trades real risk for aesthetic gain.
-
-Report the findings in that order:
-
-```
-## Clean-code review — <file or scope>
-
-### Worth fixing now
-<Correctness risk and change cost. For each: location, what's wrong,
-the cost, and a concrete suggested shape.>
-
-### Worth fixing while you're here
-<Reading cost: real improvements that don't justify a dedicated change,
-but should be made if the file is already open.>
-
-### Noted, not recommended
-<Divergences that are consistent within this codebase, and stable code
-where a change would cost more than it returns. Each divergence once,
-not at every instance.>
-
-### Verified
-<What you read and found sound, so the reader knows what the review
-covered.>
-```
+- More than three parameters means a missing type. Bundle them into one object or a
+  named type, such as `createInvoice({ customerId, items, currency, taxRate, dueDate })`.
+  Five positional arguments are five chances to swap two of the same type, and every
+  new input changes every caller.
 
 ## Where this yields
 

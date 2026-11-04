@@ -4,5 +4,5 @@
   "author": { "name": "Andrea Colarieti Tosti" },
   "license": "Apache-2.0",
   "keywords": ["curation", "contribution", "review", "standards"],
-  "dependencies": ["craft-review", "language-simple-english"]
+  "dependencies": ["language-simple-english"]
 }

@@ -2,7 +2,9 @@
 
 The marketplace is what the company knows, written down once, and curators decide what
 it says. This plugin is their workbench: it turns a lesson, or a correction a session
-collected, into a change to a standard, checked, on a pull request a curator merges.
+collected, into a change to a standard, measured and checked, on a pull request a
+curator merges. A rule enters, and stays, only when a run shows the model breaks it
+without the rule.
 
 **Not tried for real yet.** It is written; trying it on real issues comes next.
 
@@ -10,15 +12,16 @@ collected, into a change to a standard, checked, on a pull request a curator mer
 |---|---|
 | Skills | `curate`, the front door; `evaluate-skills`, which judges a skill, an agent, a plugin or the whole set |
 | Agent | `contribution-checker`, on Opus, which checks a contribution before its pull request, the leak check first. Read-only |
-| References | `contribute.md`, `place-knowledge.md`, and `author-skills/` with `style.md`, `plugin-shape.md` and the templates, read by path |
+| References | `contribute.md`, `measure.md`, `place-knowledge.md`, and `author-skills/` with `style.md`, `plugin-shape.md` and the templates, read by path |
 | Layer | None: it is part of the marketplace itself |
-| Builds on | `craft-review`, `language-simple-english` |
+| Builds on | `language-simple-english` |
 
 ## Fires when
 
 - "work issue 12", "turn this correction into a rule", "add a standard for X"
 - "what's in the queue?", "which corrections came in?"
 - "is this skill any good?", "review the whole set"
+- "does this rule do anything?", "measure the skills and cut what doesn't work"
 - "where does this rule go?"
 
 ## Writes
@@ -31,6 +34,8 @@ collected, into a change to a standard, checked, on a pull request a curator mer
 
 - **What a standard says.** A new skill, a new team plugin and a decline wait for your
   yes.
+- **The spending.** Each run is priced before it starts, and a plan of several runs
+  waits for your go at every phase.
 - **The merge.** Nothing reaches `main` but your merge.
 - **The projects.** A lesson that is only true in one project is that project's to keep.
 

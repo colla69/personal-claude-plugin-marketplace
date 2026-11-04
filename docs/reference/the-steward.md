@@ -78,12 +78,13 @@ The curator works in the marketplace's own repository, where it is enabled in
 
 | Part | Kind | What it does |
 |---|---|---|
-| [`curate`](../../plugins/marketplace-curator/skills/curate/SKILL.md) | Skill, visible | The front door: works a lesson or an issue, lists what is waiting, answers where a rule goes |
+| [`curate`](../../plugins/marketplace-curator/skills/curate/SKILL.md) | Skill, visible | The front door: works a lesson or an issue, lists what is waiting, answers where a rule goes, measures the skills that exist |
 | [`evaluate-skills`](../../plugins/marketplace-curator/skills/evaluate-skills/SKILL.md) | Skill, visible | Reviews a skill, an agent, a plugin, a change or the whole set |
 | [`contribution-checker`](../../plugins/marketplace-curator/agents/contribution-checker.md) | Agent, read-only, Opus | Checks a change before its pull request, the leak check first |
 | [`contribute.md`](../../plugins/marketplace-curator/references/contribute.md) | Reference | From a lesson or an issue to a pull request |
+| [`measure.md`](../../plugins/marketplace-curator/references/measure.md) | Reference | Whether a rule goes in: a case per rule, a run with and without, keep at two runs of five |
 | [`place-knowledge.md`](../../plugins/marketplace-curator/references/place-knowledge.md) | Reference | Where a lesson belongs: the diagnosis, the strip test, the layers, the cut |
 | [`author-skills/`](../../plugins/marketplace-curator/references/author-skills/) | Reference | The house style, the shape of a plugin, the templates |
 
 It asks before a new skill, a new team plugin, or closing an issue, and writes only on a
-`contrib/` branch. It builds on `craft-review` and `language-simple-english`.
+`contrib/` branch. It builds on `language-simple-english`.

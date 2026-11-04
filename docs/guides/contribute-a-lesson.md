@@ -41,9 +41,12 @@ be one person's taste, and the curators decide.
    what it leaves to others and the exact public text. A change to an existing skill
    goes ahead without asking.
 3. **Let it work.** It writes the change on a `contrib/` branch, with every name from
-   the source replaced by its role, and runs the three checks. The checker reviews it,
-   and its leak check looks for anything from the source in what would go public. On a
-   leak, or a leak check that couldn't run, it stops before anything is pushed.
+   the source replaced by its role, and runs the three checks. A change that adds a
+   rule or changes what one asks is then measured: it says the cost first, runs the
+   rule with and without the skill, and cuts it if the model follows it anyway. The
+   checker reviews it, and its leak check looks for anything from the source in what
+   would go public. On a leak, or a leak check that couldn't run, it stops before
+   anything is pushed.
 4. **Review the pull request.** Read it as you would anyone's: the change, the
    placement, the judgements it had to assume, and the checker's verdict. A rename or a
    removal carries its migration. The pull request closes the issues it answers.

@@ -8,8 +8,8 @@ costs, check it the way CI will, and know what each check does and doesn't catch
 | You are changing | Load it with |
 |---|---|
 | A skill plugin | `claude --plugin-dir ./plugins/<name>`, plus one `--plugin-dir` for each plugin it depends on |
-| The steward and the base | `claude --plugin-dir ./plugins/marketplace-steward --plugin-dir ./plugins/marketplace-base --plugin-dir ./plugins/craft-review --plugin-dir ./plugins/language-simple-english` |
-| The curator | `claude --plugin-dir ./plugins/marketplace-curator --plugin-dir ./plugins/craft-review --plugin-dir ./plugins/language-simple-english` |
+| The steward and the base | `claude --plugin-dir ./plugins/marketplace-steward --plugin-dir ./plugins/marketplace-base --plugin-dir ./plugins/language-simple-english` |
+| The curator | `claude --plugin-dir ./plugins/marketplace-curator --plugin-dir ./plugins/language-simple-english` |
 | The whole marketplace, as a user would get it | `claude plugin marketplace add .`, then `claude plugin install <name>@personal-claude-plugin-marketplace`, on a machine without the marketplace from GitHub |
 
 A `--plugin-dir` copy replaces the installed plugin of the same name for that session. A
@@ -42,9 +42,21 @@ plugin loaded, type three prompts a person would really use, and check that it l
 those and stays quiet on ordinary requests that only sound alike. Then ask for a review:
 [review a skill](../guides/review-a-skill.md).
 
-`claude plugin eval ./plugins/<name> --ablation with-without` runs a plugin's eval cases
-with and without it, which is the only measurement of whether it changes the outcome.
-No plugin has eval cases yet; they go in `plugins/<name>/evals/`.
+`node scripts/eval-skill.mjs <plugin>` runs the plugin's eval cases with and without it,
+which is the only measurement of whether it changes the outcome, and compares with
+`main`. It prints a table per case and one per grader, since each grader checks one
+rule. Cases go in `evals/<name>/`, outside the plugin so that no install carries them.
+The raw output stays out of git, in a new temporary folder per run (`--save <dir>`
+picks another), and `--fails` prints every failing run, so you can tell a model that
+broke a rule from a judge that misread a right answer. `--decide` stores one summary
+line in `measurements/results.jsonl`. Before a case is worth running, `node
+scripts/grader-probe.mjs <plugin>` checks its graders against good and bad code, and
+`eval-skill.mjs <plugin> --probe` runs it without the skill to see whether the model
+already passes. To go through the whole set, `node scripts/skill-audit.mjs` lists every
+skill by cost and by what is known about it. To find which part of a skill carries its
+lift, `node scripts/skill-slices.mjs <plugin>` numbers its blocks and
+`eval-skill.mjs <plugin> --ablate <selector>` compares the whole skill with the cut one.
+[Commands](../reference/commands.md) lists the scripts.
 
 ## Check it before you push
 

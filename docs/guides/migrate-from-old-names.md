@@ -42,9 +42,8 @@ The report lists every key it removed and every plugin it installed in its place
 Each old name has one row in the Renamed table of
 [`catalog.md`](../../plugins/marketplace-steward/references/catalog.md), which the
 steward reads. Most are a prefix away, such as `clean-code`, now
-`universal-clean-code`. A plugin that split, such as `vue-dev`, isn't replaced by all
-its parts: each part is installed only where the project shows its own signal, so a Vue
-project without Pinia doesn't get `tools-pinia`.
+`universal-clean-code`. An old name whose successor was removed, such as
+`refactoring`, is removed and replaced by nothing.
 
 ## By hand
 
