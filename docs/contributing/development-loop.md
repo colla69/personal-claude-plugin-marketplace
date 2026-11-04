@@ -44,10 +44,11 @@ those and stays quiet on ordinary requests that only sound alike. Then ask for a
 
 `node scripts/eval-skill.mjs <plugin>` runs the plugin's eval cases with and without it,
 which is the only measurement of whether it changes the outcome, and compares with
-`main`. It prints a table and keeps nothing, so run it as often as you like. Cases go in
-`evals/<name>/`, outside the plugin so that no install carries them, and
-`language-conventional-commits` and `universal-clean-code` have cases so far. The raw
-output stays out of git (`--save <dir>` keeps a copy), and `--decide` stores one summary
+`main`. It prints a table per case and one per grader, since each grader checks one
+rule. Cases go in `evals/<name>/`, outside the plugin so that no install carries them.
+The raw output stays out of git, in a new temporary folder per run (`--save <dir>`
+picks another), and `--fails` prints every failing run, so you can tell a model that
+broke a rule from a judge that misread a right answer. `--decide` stores one summary
 line in `measurements/results.jsonl`. Before a case is worth running, `node
 scripts/grader-probe.mjs <plugin>` checks its graders against good and bad code, and
 `eval-skill.mjs <plugin> --probe` runs it without the skill to see whether the model

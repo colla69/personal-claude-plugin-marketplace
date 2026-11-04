@@ -16,6 +16,11 @@
 //                      eval-compare.mjs for the forms
 //   --ref <ref>        the baseline version (default: main)
 //   --save <dir>       keep the engine's raw output (result.json, report.html) in <dir>
+//                      (default: a new folder per run under <tmp>/eval-skill-runs/,
+//                      so a later run never overwrites one you still have to read)
+//   --fails            under the lift, print every failing run of every grader: its
+//                      judge votes and the start of the reply. Read them before a
+//                      verdict, because a judge can fail a plain right answer
 //   --probe            run the cases WITHOUT the skill only, at 3 runs: a case whose
 //                      baseline is already high cannot show a lift. Stores nothing.
 //   --ablate <sel>     run the skill whole, then with the slices <sel> cut (selectors in
@@ -34,6 +39,9 @@
 // compares with the stored lines whose commit is already on <ref>. Raising the runs
 // to 10 when the interval straddles zero, and measuring the floor again, wait for
 // phase 2.
+//
+// The lift prints a second table, passes per grader and arm, since a grader is one rule
+// and a rule is kept or cut on its own.
 //
 // A result with `partial: true` is printed but marked, and --decide does not store it.
 // The collector of marketplace-base would file issues on the public repo from inside a
@@ -65,6 +73,7 @@ for (let i = 0; i < argv.length; i++) {
   else if (a === '--against') args.against = argv[++i]
   else if (a === '--ref') { args.ref = argv[++i]; args.refGiven = true }
   else if (a === '--save') args.save = resolve(argv[++i])
+  else if (a === '--fails') args.fails = true
   else if (a.startsWith('--')) usage(`unknown flag ${a}`)
   else if (!args.plugin) args.plugin = a
   else usage('one plugin at a time')
@@ -72,10 +81,11 @@ for (let i = 0; i < argv.length; i++) {
 if (!args.plugin) usage()
 args.runs ??= args.decide ? 5 : 3
 args.maxCost ??= args.decide ? 10 : 3
+args.save ??= join(tmpdir(), 'eval-skill-runs', `${args.plugin}-${new Date().toISOString().replace(/[:.]/g, '-')}`)
 
 function usage(why) {
   if (why) console.error(why)
-  console.error('usage: eval-skill.mjs <plugin> [--decide|--probe|--ablate sel] [--case glob] [--runs n] [--max-cost usd] [--against spec] [--ref ref] [--save dir]')
+  console.error('usage: eval-skill.mjs <plugin> [--decide|--probe|--ablate sel] [--case glob] [--runs n] [--max-cost usd] [--against spec] [--ref ref] [--save dir] [--fails]')
   process.exit(2)
 }
 
@@ -197,6 +207,32 @@ function lift(line) {
   return out.join('\n')
 }
 
+// Passes per grader and arm, from the engine's raw result. A grader that only the arm
+// with the skill has, such as "the skill fired", shows "-" without.
+function byGrader(result) {
+  const out = ['| Case | Grader | With | Without |', '|---|---|---|---|']
+  const fails = []
+  for (const c of result.cases) {
+    const t = new Map()
+    for (const [arm, runs] of Object.entries(c.arms)) {
+      runs.forEach((run, i) => {
+        for (const g of run.graders ?? []) {
+          if (!t.has(g.name)) t.set(g.name, {})
+          const cell = (t.get(g.name)[arm] ??= [0, 0])
+          cell[1]++
+          if (g.passed) cell[0]++
+          else fails.push(`- ${c.name} / ${g.name} / ${arm} run ${i + 1}: ${g.explanation ?? ''}\n  ${String(g.evidence ?? '').replace(/\s+/g, ' ').slice(0, 300)}`)
+        }
+      })
+    }
+    for (const [name, a] of t) {
+      const cell = (x) => (x ? `${x[0]}/${x[1]}` : '-')
+      out.push(`| ${c.name} | ${name} | ${cell(a.with)} | ${cell(a.without)} |`)
+    }
+  }
+  return { table: out.join('\n'), fails }
+}
+
 const CEILING = 0.8
 
 function probe(line) {
@@ -219,6 +255,10 @@ function liftCheck() {
   console.log(`## ${args.plugin}: lift of the skill (${now.runs} runs, ${now.claudeVersion}, $${f2(now.costUsd)})\n`)
   console.log(lift(now))
   if (now.partial) console.log('\nPartial result: the cost cap or a time-out cut the run. Not used for any decision.')
+  const graders = byGrader(JSON.parse(readFileSync(join(work, 'now', 'result.json'), 'utf8')))
+  console.log(`\n## Passes per grader\n\n${graders.table}\n\nKeep a rule whose grader passes 2 or more runs more with the skill than without; one is noise.`)
+  if (args.fails) console.log(`\n## Failing runs\n\n${graders.fails.join('\n') || 'None.'}`)
+  console.log(`\nEvery run's output is in ${join(args.save, 'now')}.`)
 
   let before = null
   let label = ''
