@@ -121,18 +121,21 @@ reports only what failed, so the output stays out of the session.
 6. **Write the working agreement into the person's own `~/.claude/CLAUDE.md`**, from
    `assets/working-with-me.md`, unless the user said to leave it out. It is how the
    person wants Claude to work with them in every project, so it lives in their file
-   and not in the project's. Read the file first, and look for a heading that reads
-   "working with me", at any level and in any case, in the file and in every file it
-   imports with `@`:
+   and not in the project's. The asset has two sections, each under its own heading:
+   "Working with me" and "Working style: keep it simple". Read the file first, and for
+   each section look for a heading that reads "working with me" or "working style", at
+   any level and in any case, in the file and in every file it imports with `@`:
    - **No file:** create it with the text of the asset.
-   - **The heading is there:** change nothing. The person already wrote their own.
-   - **No such heading:** copy the file to
+   - **Both headings are there:** change nothing. The person already wrote their own.
+   - **A heading is missing:** copy the file to
      `~/.local/share/marketplace-steward/backups/home-claude/<date>/CLAUDE.md`, and add
-     a number to the name instead of writing over an earlier backup. Then add the
-     asset's text at the end with Edit, after a blank line. Leave every other line as
-     it is.
+     a number to the name instead of writing over an earlier backup. Then add each
+     missing section at the end with Edit, after a blank line, in the asset's order.
+     Leave every other line as it is, and a section the person already has as they
+     wrote it.
 
-   A project that is docked a second time finds the heading and writes nothing.
+   A project that is docked a second time finds both headings and writes nothing. A
+   person whose file has only "Working with me" gets the second section alone.
 
 ## 6. Tidy
 
@@ -174,8 +177,8 @@ Do not declare success without checking:
    `.claude/settings.local.json` or in `~/.claude/settings.json`, win over the project's
    `autoCompactWindow`. Report each you find, and change nothing there.
 9. **The working agreement is in place**, unless the user left it out, and then the
-   report says so. `~/.claude/CLAUDE.md` has a "working with me" heading, and every
-   other line in it is as it was.
+   report says so. `~/.claude/CLAUDE.md` has a "working with me" heading and a
+   "working style" heading, and every other line in it is as it was.
 10. **The report is complete.** Count the rows. Every file step 2 noted has a row of its
    own in the Tidied table, never one row for a group, and the count in "Read <n> files"
    equals the rows. Every row of the catalog has a verdict in the Standards table or is
@@ -198,8 +201,8 @@ expects a plugin or marketplace manifest, and fails with "No manifest found".
 
 ### Changed
 - <path that already existed> — <what changed>. This includes `~/.claude/CLAUDE.md`
-  when step 5 added the working agreement to it, with the backup's path, and when it
-  found the agreement there and left the file as it was.
+  when step 5 added the working agreement to it, naming the sections it added, with the
+  backup's path, and when it found the agreement there and left the file as it was.
 
 ### Standards
 | Plugin | Verdict | Evidence in this project |
