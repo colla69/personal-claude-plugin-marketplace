@@ -69,7 +69,7 @@ Everything else goes ahead and is reported.
 | [`cost.md`](../../plugins/marketplace-steward/references/cost.md) | Reference | Measuring what a setup costs, and what to propose |
 | [`measure-setup.mjs`](../../plugins/marketplace-steward/scripts/measure-setup.mjs) | Script | Prints what a setup costs per session and how its sessions used it |
 
-The steward builds on `language-simple-english`.
+The steward builds on `language-simple-natural-language`.
 
 ## The curator
 
@@ -87,4 +87,4 @@ The curator works in the marketplace's own repository, where it is enabled in
 | [`author-skills/`](../../plugins/marketplace-curator/references/author-skills/) | Reference | The house style, the shape of a plugin, the templates |
 
 It asks before a new skill, a new team plugin, or closing an issue, and writes only on a
-`contrib/` branch. It builds on `language-simple-english`.
+`contrib/` branch. It builds on `language-simple-natural-language`.

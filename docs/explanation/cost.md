@@ -21,7 +21,7 @@ The always-on part is the one to watch, and the one
 weighs against how often a plugin fires. It is small per plugin and paid everywhere, for
 as long as the plugin is enabled. That is why docking installs only what a project shows
 a need for: a Vue skill in a Go service is pure cost. The few it installs everywhere,
-such as `simple-english`, are there because every project shows that need.
+such as `simple-natural-language`, are there because every project shows that need.
 
 ## Why descriptions are trigger lists
 

@@ -22,7 +22,7 @@ pure cost. When in doubt, leave it out and mention it as optional.
 | Craft | `craft-development` | `development-standards` skill | Any repo with code in it, together with `craft-code-review` (see Code, below). |
 | Craft | `craft-code-review` | `review-changes` skill | Any repo with code in it, with `craft-development`. Do **not** gate this on PR-workflow signals: checking catches logical errors and inconsistencies before a commit, whether or not anyone opens pull requests. |
 | Craft | `craft-shipping` | `readiness-review`, `developer-handoff`, `new-project` skills | A repo with an app that people will use: a web app, an API, a mobile or desktop app. Also a folder with no code yet, where the user plans an app. Not a library or a folder of documents. |
-| Language | `language-simple-english` | `simple-english` skill | Every project, with or without code: every project has text a person reads. |
+| Language | `language-simple-natural-language` | `simple-natural-language` skill | Every project, with or without code: every project has text a person reads. |
 | Language | `language-conventional-commits` | `conventional-commits` skill | Any repo with code in it, after the one question in "Commit messages", below. |
 | Framework & Tools | `tools-vue` | `vue-conventions` skill | `vue` in dependencies. Check the major version and note it: the plugin targets Vue 3 Composition API, so flag a mismatch if the project is on Options API or Vue 2. |
 | Framework & Tools | `tools-appkit` | `appkit-conventions` skill | `import AppKit` or `import Cocoa` in the project's `.swift` sources. Note whether the app ships as a bundle or runs as a bare executable: the plugin's starting rules are for the bare one. |
@@ -146,8 +146,9 @@ each `claude plugin update` of a project's plugin that someone asks for, carries
 - **Local scope** writes `.claude/settings.local.json`, which nobody commits, so it has
   the same gap as user scope.
 
-Only two plugins sit at user scope: the steward, and `language-simple-english`, which
-comes with it because the steward depends on it. The user installs the steward by hand,
+Only two plugins sit at user scope: the steward, and
+`language-simple-natural-language`, which comes with it because
+the steward depends on it. The user installs the steward by hand,
 and it never goes into a project's settings, as its row in the table above says. Its
 dependency still gets a project-scope line wherever the project needs it: that install
 writes the project's `enabledPlugins` entry even when the plugin is at user scope too,
@@ -198,6 +199,8 @@ old name.
 |---|---|---|
 | `clean-code` | `universal-clean-code` | |
 | `developer` | `craft-development` | Part of it became `universal-work-discipline` |
+| `language-simple-english` | `language-simple-natural-language` | Now English, German and Italian |
+| `language-simple-english:simple-english` | `language-simple-natural-language:simple-natural-language` | Now English, German and Italian |
 | `code-review` | `craft-code-review` | |
 | `unit-testing` | — | Its successor `craft-unit-testing` was removed; test first stays in `craft-development` |
 | `refactoring` | — | Its successor `craft-refactoring` was removed |

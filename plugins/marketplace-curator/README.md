@@ -14,7 +14,7 @@ without the rule.
 | Agent | `contribution-checker`, on Opus, which checks a contribution before its pull request, the leak check first. Read-only |
 | References | `contribute.md`, `measure.md`, `place-knowledge.md`, and `author-skills/` with `style.md`, `plugin-shape.md` and the templates, read by path |
 | Layer | None: it is part of the marketplace itself |
-| Builds on | `language-simple-english` |
+| Builds on | `language-simple-natural-language` |
 
 ## Fires when
 

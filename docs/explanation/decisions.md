@@ -142,7 +142,7 @@ in every one. Plain English is the exception, because every project has text to 
 
 | # | Decision | Why | Now |
 |---|---|---|---|
-| D49 | A Language skill for English, `language-simple-english`, after Simplified Technical English, installed in every project and given to every role | Every project has text a person reads, and every role writes for one. "I want it everywhere" | Holds, in the catalog. The steward depends on it, so it also reaches every machine, the base plugin's `reviewer` writes by it, and `style.md` applies it to this repo, text moving to it as it is edited |
+| D49 | A Language skill for English, `language-simple-english`, after Simplified Technical English, installed in every project and given to every role | Every project has text a person reads, and every role writes for one. "I want it everywhere" | Holds, in the catalog. The steward depends on it, so it also reaches every machine, the base plugin's `reviewer` writes by it, and `style.md` applies it to this repo, text moving to it as it is edited. **Superseded** by D95 |
 | D50 | Plan looks facts up itself, and asks only what the user alone can answer, each decision with the answer it recommends | A question about a fact Plan could look up costs the user a round trip | **Superseded** by D63; the steward and the curator ask the same way |
 | D51 | `clean-code` asks for names a search can find, and error messages that name the remedy | Whoever changes the code next, often an agent, finds callers by searching and acts on what an error says | **Superseded** by D83 |
 | D52 | Development is test first: `write-unit-tests` holds the red, green, refactor cycle, and `development-standards` makes it the way code changes where a test runner exists | A test written after the code has never been seen to fail. "That is actually a very good way to do things" | Holds in `development-standards`. `write-unit-tests` and its plugin were removed (D85) |
@@ -326,6 +326,14 @@ Decided on 2026-11-09, once three projects were docked.
 | # | Decision | Why | Now |
 |---|---|---|---|
 | D94 | The maintainer's own public projects docked onto the marketplace may be named, though they carry no license, in one place: the README's "Where it runs". Every other page says "the docked projects" and links there. Pages about docking, the base plugin and the steward say "in use" instead of "not yet tried"; the tutorials, the curator's guide and the permissions page keep it until someone runs them | A reader weighing the marketplace should see where it runs. The rule against naming a project guards clients and private work, and these projects are public and the maintainer's own. One list keeps a rename or a new project to a one-line change | Holds, in `README.md`, `CLAUDE.md` and `writing-docs.md` |
+
+## Natural language in three languages: D95
+
+Decided on 2026-11-09, from issue 46.
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D95 | `language-simple-english` becomes `language-simple-natural-language`, with the skill `simple-natural-language`: shared rules in `SKILL.md` and one file each for English, German and Italian. Clarity wins in procedures and instructions to an agent, natural style in reports and descriptions. A rule that showed lift in at least one language stays, in that language only | Passes with the skill against without, 5 runs each: condition before action 4 v 0 in German and in Italian, `darf nicht` 5 v 0, "must" 4 v 0 in English, active voice 5 v 1 in English, German plain verb 5 v 2, Italian everyday words 3 v 0, Italian impersonal forms 5 v 3. The Simplified Technical English rules with no lift are gone, among them simple tenses (0 v 0) and "unknown" (0 v 0), and so are the planned German and Italian rules the model followed without the skill. Published AI detectors are unreliable, so an LLM judge stands in for "reads like a bot": German 4 v 1, Italian 2 v 1 | `measurements/verdicts.md` has the full numbers. The Renamed table migrates docked projects |
 
 ## Still open
 

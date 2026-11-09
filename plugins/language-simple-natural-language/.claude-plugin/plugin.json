@@ -1,0 +1,7 @@
+{
+  "name": "language-simple-natural-language",
+  "displayName": "Simple Natural Language",
+  "author": { "name": "Andrea Colarieti Tosti" },
+  "license": "Apache-2.0",
+  "keywords": ["english", "german", "italian", "writing", "documentation"]
+}

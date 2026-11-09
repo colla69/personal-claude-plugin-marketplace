@@ -1,0 +1,1 @@
+Search moved to the new cluster on Thursday night, and it's a lot quicker: p95 went from 840 ms to 310 ms. Friday wasn't perfect. Filter counts for discontinued products were wrong for about three hours until a reindex fixed them.
