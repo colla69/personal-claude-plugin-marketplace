@@ -147,7 +147,8 @@ each `claude plugin update` of a project's plugin that someone asks for, carries
   the same gap as user scope.
 
 Only two plugins sit at user scope: the steward, and
-`language-simple-natural-language`, which comes with it because the steward depends on it. The user installs the steward by hand,
+`language-simple-natural-language`, which comes with it because
+the steward depends on it. The user installs the steward by hand,
 and it never goes into a project's settings, as its row in the table above says. Its
 dependency still gets a project-scope line wherever the project needs it: that install
 writes the project's `enabledPlugins` entry even when the plugin is at user scope too,

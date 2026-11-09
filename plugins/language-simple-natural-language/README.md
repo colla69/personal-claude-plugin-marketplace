@@ -13,7 +13,7 @@ explanations put natural style first.
 > A runbook that reads like a friendly note gets a step skipped, and a report that reads
 > like a runbook gets skimmed.
 
-Every rule here passed a run with and without the skill, in the language it is listed
+Every rule here was measured with and without the skill, in the language it is listed
 for. A rule that showed lift in one language stays in that language only.
 
 ## Fires when

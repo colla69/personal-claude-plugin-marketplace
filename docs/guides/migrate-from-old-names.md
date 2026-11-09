@@ -21,8 +21,8 @@ claude plugin install marketplace-steward@personal-claude-plugin-marketplace --s
 Then run `/reload-plugins` in a session that is already open, or start a new one.
 
 `language-simple-english` is now `language-simple-natural-language`, and `claude plugin
-update` does not install a renamed dependency. The steward and the base depend on it, so
-install it before you update them:
+update` does not install a renamed dependency. The steward, the base and the curator
+depend on it, so install it before you update them:
 
 ```bash
 claude plugin marketplace update personal-claude-plugin-marketplace
