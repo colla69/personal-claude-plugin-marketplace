@@ -75,8 +75,8 @@ out and say so, rather than filling it because the template has one.
 ## Naming
 
 - **Plugin:** `<layer>-<topic>`, for example `universal-clean-code`,
-  `craft-code-review`, `language-simple-natural-language` or `tools-vue`. The prefix is the same
-  word as the plugin's `category`: `universal`, `craft`, `language` or `tools`. A plugin
+  `craft-code-review`, `language-simple-natural-language` or `tools-vue`. The prefix is
+  the same word as the plugin's `category`: `universal`, `craft`, `language` or `tools`. A plugin
   that works on the marketplace itself is `marketplace-<name>`, with category
   `marketplace`.
 - **Skill:** named for the activity, for example `review-changes` or
@@ -217,8 +217,8 @@ worker either does out-of-scope work or drops what it noticed.
 
 - Write in English, so triggers fire on the phrases people type. A natural-language
   skill, such as German, is content: it is about the language, not written in it.
-- Write that English the way `simple-natural-language`, in `language-simple-natural-language`, says, here
-  as in every project. Text already here moves to it when it is next edited, not in a
+- Write that English the way `simple-natural-language`, in
+  `language-simple-natural-language`, says, here as in every project. Text already here moves to it when it is next edited, not in a
   sweep, so each diff holds only the change it is for.
 - Hard-wrap prose at **88 characters**. Frontmatter descriptions and table rows are
   exempt, since they cannot wrap.

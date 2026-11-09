@@ -20,6 +20,16 @@ claude plugin install marketplace-steward@personal-claude-plugin-marketplace --s
 
 Then run `/reload-plugins` in a session that is already open, or start a new one.
 
+`language-simple-english` is now `language-simple-natural-language`, and `claude plugin
+update` does not install a renamed dependency. The steward and the base depend on it, so
+install it before you update them:
+
+```bash
+claude plugin marketplace update personal-claude-plugin-marketplace
+claude plugin install language-simple-natural-language@personal-claude-plugin-marketplace --scope user
+claude plugin uninstall language-simple-english@personal-claude-plugin-marketplace
+```
+
 ## In each project
 
 Open a session in the project and say "dock this project". Docking reads what the

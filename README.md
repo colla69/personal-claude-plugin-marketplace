@@ -70,7 +70,7 @@ name starts with its layer. A fifth, Team, holds one team's quirks, as a last re
 |---|---|---|
 | **Universal** | What holds for everything | Clean code, and the discipline of working where someone else maintains |
 | **Craft** | How a kind of work is done | Developing, reviewing and shipping |
-| **Language** | What the work is written in | Simple English, Conventional Commits |
+| **Language** | What the work is written in | Simple Natural Language, Conventional Commits |
 | **Framework & Tools** | One concrete product | Vue, AppKit |
 | **The marketplace's own** | Docks projects, runs in them, and grows the marketplace | `marketplace-steward`, `marketplace-base`, `marketplace-curator` |
 
