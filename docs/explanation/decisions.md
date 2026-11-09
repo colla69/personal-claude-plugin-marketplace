@@ -327,6 +327,14 @@ Decided on 2026-11-09, once three projects were docked.
 |---|---|---|---|
 | D94 | The maintainer's own public projects docked onto the marketplace may be named, though they carry no license, in one place: the README's "Where it runs". Every other page says "the docked projects" and links there. Pages about docking, the base plugin and the steward say "in use" instead of "not yet tried"; the tutorials, the curator's guide and the permissions page keep it until someone runs them | A reader weighing the marketplace should see where it runs. The rule against naming a project guards clients and private work, and these projects are public and the maintainer's own. One list keeps a rename or a new project to a one-line change | Holds, in `README.md`, `CLAUDE.md` and `writing-docs.md` |
 
+## Natural language in three languages: D95
+
+Decided on 2026-11-09, from issue 46.
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D95 | `language-simple-english` becomes `language-simple-natural-language`, with the skill `simple-natural-language`: shared rules in `SKILL.md` and one file each for English, German and Italian. Clarity wins in procedures and instructions to an agent, natural style in reports and descriptions. A rule that showed lift in at least one language stays, in that language only | Passes with the skill against without, 5 runs each: condition before action 4 v 0 in German and in Italian, `darf nicht` 5 v 0, "must" 5 v 1 and 5 v 0 in English, German plain verb 5 v 2, Italian everyday words 3 v 0, Italian impersonal forms 5 v 3. The Simplified Technical English rules with no lift are gone, and so are the planned German and Italian rules the model followed without the skill. Published AI detectors are unreliable, so an LLM judge stands in for "reads like a bot": German 4 v 1, Italian 2 v 1 | `measurements/verdicts.md` has the full numbers. The Renamed table migrates docked projects |
+
 ## Still open
 
 | # | Question | Working answer |
