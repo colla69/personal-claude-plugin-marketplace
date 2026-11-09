@@ -33,8 +33,8 @@ Read the file before you change what it governs. None of its rules are repeated 
 | Validate the marketplace and every plugin | `claude plugin validate .` |
 | Check the plugin lists, layers and dependencies | `node scripts/check-catalog.mjs` |
 | Check the docs' links, map and wrapping | `node scripts/check-docs.mjs` |
-| Load the working copy of the steward and the base | `claude --plugin-dir ./plugins/marketplace-steward --plugin-dir ./plugins/marketplace-base --plugin-dir ./plugins/language-simple-english` |
-| Load the working copy of the curator | `claude --plugin-dir ./plugins/marketplace-curator --plugin-dir ./plugins/language-simple-english` |
+| Load the working copy of the steward and the base | `claude --plugin-dir ./plugins/marketplace-steward --plugin-dir ./plugins/marketplace-base --plugin-dir ./plugins/language-simple-natural-language` |
+| Load the working copy of the curator | `claude --plugin-dir ./plugins/marketplace-curator --plugin-dir ./plugins/language-simple-natural-language` |
 | See a plugin's inventory and cost | `claude --plugin-dir ./plugins/<name> plugin details <name>` |
 | Measure what a project's setup costs | `node plugins/marketplace-steward/scripts/measure-setup.mjs <project>` |
 | Check one skill's lift against `main` | `node scripts/eval-skill.mjs <plugin>` (`--decide` stores the result) |
@@ -101,7 +101,7 @@ made of. These lines keep the two apart; the reasons are D55 in `decisions.md`.
 - **No rule in this file travels.** Each one is about this marketplace, so an adoption
   contributes nothing from it. "What breaks silently" repeats the gist of rules in the
   steward's references on purpose: keep it.
-- **Enabled here: `universal-work-discipline`, `language-simple-english` and
+- **Enabled here: `universal-work-discipline`, `language-simple-natural-language` and
   `marketplace-curator`.** The code Craft plugins are
   left out on purpose: the only code is a few small scripts,
   they change rarely, and each description would cost every session here. The steward

@@ -11,11 +11,11 @@ curator plugin, the same one the curator's checker runs before every pull reques
    instead:
 
    ```bash
-   claude --plugin-dir ./plugins/marketplace-curator --plugin-dir ./plugins/language-simple-english
+   claude --plugin-dir ./plugins/marketplace-curator --plugin-dir ./plugins/language-simple-natural-language
    ```
 
-   `language-simple-english` comes along because the curator depends on it, and a
-   plugin whose dependency is missing doesn't load at all.
+   `language-simple-natural-language` comes along because the curator depends on it,
+   and a plugin whose dependency is missing doesn't load at all.
 2. **Ask:** "is this skill well written?", "why isn't `vue-conventions` triggering?",
    "is `craft-code-review` ready to merge?", "review my change to `clean-code`", or
    "how do the skills fit together?". The first time, Claude Code asks whether the skill

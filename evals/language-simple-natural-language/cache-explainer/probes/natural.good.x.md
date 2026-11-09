@@ -1,0 +1,1 @@
+The cache reads its settings when the service starts, so you'll need a restart after any change. Most of it you can leave alone, but watch the retry limit: raising it helps a flaky worker and also puts more load on the API.

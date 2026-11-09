@@ -43,11 +43,11 @@
       "tags": ["launch", "readiness", "production"]
     },
     {
-      "name": "language-simple-english",
-      "source": "./plugins/language-simple-english",
-      "description": "English nobody can read two ways, after Simplified Technical English: short sentences, one instruction each, one word per meaning, active voice, simple tenses.",
+      "name": "language-simple-natural-language",
+      "source": "./plugins/language-simple-natural-language",
+      "description": "English, German and Italian that read as if a person wrote them and that nobody can misread: who acts, the condition before the action, and the few rules only one language needs.",
       "category": "language",
-      "tags": ["english", "writing", "documentation"]
+      "tags": ["english", "german", "italian", "writing", "documentation"]
     },
     {
       "name": "language-conventional-commits",

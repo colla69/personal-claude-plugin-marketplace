@@ -6,7 +6,7 @@ Fix what goes wrong without saying so. Find the symptom, check the cause, apply 
 
 | Symptom | Cause | Fix |
 |---|---|---|
-| An agent works without a skill its `skills:` names | The name is bare, such as `simple-english`, not `plugin:skill` | Write it as `language-simple-english:simple-english`. A bare name can fail without any message |
+| An agent works without a skill its `skills:` names | The name is bare, such as `simple-natural-language`, not `plugin:skill` | Write it as `language-simple-natural-language:simple-natural-language`. A bare name can fail without any message |
 | A standard isn't applied in a project | Its plugin isn't enabled there | Say "add the standard for X", or install it with `--scope project` |
 | A skill never fires on your request | Its description doesn't match the words you use | Correct Claude in the session; the collector files the correction, and a description that doesn't win is a change to that skill |
 | `claude plugin list` shows a plugin as failed to load: not found in the marketplace | A dead key: the plugin was renamed or removed | Say "dock this project"; see [migrate from old names](migrate-from-old-names.md) |
@@ -30,7 +30,7 @@ projects will add to them.
 
 | Symptom | Cause | Fix |
 |---|---|---|
-| The steward's skill doesn't appear under `--plugin-dir` | Its dependency, `language-simple-english`, isn't installed or loaded | Add `--plugin-dir ./plugins/language-simple-english` |
+| The steward's skill doesn't appear under `--plugin-dir` | Its dependency, `language-simple-natural-language`, isn't installed or loaded | Add `--plugin-dir ./plugins/language-simple-natural-language` |
 | Claude Code asks for each plugin install or refresh | Those commands aren't pre-allowed for you outside the steward | Answer once per run, or allow them, as [permissions](../reference/permissions.md) describes |
 | A rule you expected the tidy to remove is still in your files | It adds something to what the standard says, or the standard is from another marketplace | Intended: when in doubt, a rule stays. Remove it yourself if it is a copy |
 | Docking removed agents you wanted | They had the shape of agents an earlier steward generated | They are in `~/.local/share/marketplace-steward/backups/` if you had edited them, and in git otherwise |

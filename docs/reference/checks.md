@@ -77,7 +77,7 @@ Look for these yourself, or ask `evaluate-skills`:
 | A description that wins prompts it isn't for | The skill loads where it doesn't belong |
 | A rule stated in two skills | The two drift apart, and the agents that read them disagree |
 | A project's name in an example, outside a contribution | It reads like any example. Search for your projects' names before you commit |
-| An agent's `skills:` name without its plugin, such as `simple-english` | The agent works without that standard |
+| An agent's `skills:` name without its plugin, such as `simple-natural-language` | The agent works without that standard |
 | A wrong Skill, Builds on or signal cell in a plugin table | The check compares names only; the other columns are read by people |
 | A page made wrong by a product change | It reads as true. The map's Sources column names the pages each product file feeds; reread them in the same change |
 | A page that names a working record, without linking it | The check sees only links |

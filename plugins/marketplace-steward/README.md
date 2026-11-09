@@ -14,7 +14,7 @@ marketplace's [README](../../README.md#where-it-runs).
 | References | `dock.md`, `tidy.md`, `catalog.md`, `context-files.md`, `plugin-sources.md` and `cost.md`, read by path |
 | Script | `scripts/measure-setup.mjs`, which measures what a project's setup costs per session. Plain Node; it writes nothing |
 | Layer | None: it is part of the marketplace itself |
-| Builds on | `language-simple-english` |
+| Builds on | `language-simple-natural-language` |
 
 ## Fires when
 
