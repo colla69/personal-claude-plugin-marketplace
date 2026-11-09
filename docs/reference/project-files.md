@@ -4,8 +4,9 @@ Look up every file docking writes, in a project and on your machine: what it is 
 what it holds, and which file in the steward holds its rules. The project's files are
 meant to be committed, so the setup travels with the project.
 
-**Not yet tried on real projects.** The shapes here are the ones the steward's files
-set out; the first trials will show where what it writes differs.
+**In use on the [docked projects](../../README.md#where-it-runs).** The shapes here are
+the ones the steward's files set out; what it writes in a project can differ in its
+details, because it reads the project each time.
 
 ## In the project
 

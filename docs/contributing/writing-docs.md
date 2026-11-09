@@ -64,7 +64,8 @@ reason, prefer a named example to a described one, and don't hedge. On top of th
 - Backtick every file, command, setting and identifier.
 - **Examples are synthetic.** No client, person or private project, in any example or
   screenshot. The repo is public. A page may name a public open-source project when the
-  page is about it.
+  page is about it. The docked projects are named only in the README's "Where it runs"
+  list; a page says "the docked projects" and links there.
 
 ## The map
 

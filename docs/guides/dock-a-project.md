@@ -4,8 +4,8 @@ Bring a codebase, or a folder with no code, onto the marketplace's standards: th
 standards it needs, the base plugin, and a short `CLAUDE.md`. A project that has a setup
 of its own is docked the same way; the steward tidies it as part of the job.
 
-**Not yet tried on real projects.** This guide follows the steward's procedure; the
-first trials will show where it behaves otherwise.
+**In use on the [docked projects](../../README.md#where-it-runs).** This guide follows
+the steward's procedure.
 
 ## Before you start
 

@@ -4,7 +4,8 @@ What every docked project runs on, besides its standards. It tells each session 
 standards exist, keeps the build and the tests green, and sends the corrections people
 make back to the curators. The steward installs it first, in every project it docks.
 
-**Not tried for real yet.** It is written; trying it on real projects comes next.
+**In use.** It runs in three docked projects so far, listed in the
+marketplace's [README](../../README.md#where-it-runs).
 
 | | |
 |---|---|

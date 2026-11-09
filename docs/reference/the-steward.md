@@ -5,8 +5,8 @@ curator does in the marketplace's own repository. Why they work this way is in [
 steward](../explanation/the-steward.md). The base plugin, which runs in every docked
 project, has [its own page](the-base.md).
 
-**Not yet tried on real projects.** This page describes the jobs as their files set
-them out; the first trials will show where the steward behaves otherwise.
+**In use on the [docked projects](../../README.md#where-it-runs).** This page describes
+the jobs as their files set them out.
 
 ## How a job starts
 

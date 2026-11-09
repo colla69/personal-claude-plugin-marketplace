@@ -4,8 +4,8 @@ Look up what `marketplace-base` does in a docked project: its hooks, its agents,
 each reads and writes, and how to turn each off. Docking installs it first, in every
 project. Why it works this way is in [the base](../explanation/the-base.md).
 
-**Not yet tried on real projects.** This page describes the plugin as its files set it
-out; the first trials will show where it behaves otherwise.
+**In use on the [docked projects](../../README.md#where-it-runs).** This page describes
+the plugin as its files set it out.
 
 ## The hooks
 

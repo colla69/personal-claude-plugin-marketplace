@@ -4,8 +4,8 @@ Why every docked project gets one plugin of mechanics beside its standards, why 
 checks only the build and the tests, why a review runs only when asked, how models are
 chosen, and why corrections are collected from the conversation only.
 
-**Not yet tried on real projects.** This page describes the base plugin as its files set
-it out; the first trials will show where it behaves otherwise.
+**In use on the [docked projects](../../README.md#where-it-runs).** This page describes
+the base plugin as its files set it out.
 
 ## Smart, not cheap
 

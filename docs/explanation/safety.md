@@ -4,8 +4,8 @@ What keeps you in control while the steward docks a project, while the base plug
 in your sessions, and while the curators change the marketplace, and why each guard is
 there. Read this before you dock a project you care about.
 
-**Not yet tried on real projects.** The guards are described as the plugins' files set
-them out; the first trials will show where they behave otherwise.
+**In use on the [docked projects](../../README.md#where-it-runs).** The guards are
+described as the plugins' files set them out.
 
 > "The developer makes a branch and gives you the possibility to run free without
 > breaking shit, then looks at what you produced and decides how to handle it. You are

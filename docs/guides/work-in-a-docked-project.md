@@ -4,8 +4,8 @@ What changes day to day once a project is docked: the standards come up by thems
 the build stays green, a review is there when you ask, and your corrections reach the
 curators. You don't have to learn anything new to use it.
 
-**Not yet tried on real projects.** This guide follows the base plugin's files; the
-first trials will show where it behaves otherwise.
+**In use on the [docked projects](../../README.md#where-it-runs).** This guide follows
+the base plugin's files.
 
 ## Just work
 
