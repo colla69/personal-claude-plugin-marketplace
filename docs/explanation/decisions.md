@@ -335,6 +335,14 @@ Decided on 2026-11-09, from issue 46.
 |---|---|---|---|
 | D95 | `language-simple-english` becomes `language-simple-natural-language`, with the skill `simple-natural-language`: shared rules in `SKILL.md` and one file each for English, German and Italian. Clarity wins in procedures and instructions to an agent, natural style in reports and descriptions. A rule that showed lift in at least one language stays, in that language only | Passes with the skill against without, 5 runs each: condition before action 4 v 0 in German and in Italian, `darf nicht` 5 v 0, "must" 4 v 0 in English, active voice 5 v 1 in English, German plain verb 5 v 2, Italian everyday words 3 v 0, Italian impersonal forms 5 v 3. The Simplified Technical English rules with no lift are gone, among them simple tenses (0 v 0) and "unknown" (0 v 0), and so are the planned German and Italian rules the model followed without the skill. Published AI detectors are unreliable, so an LLM judge stands in for "reads like a bot": German 4 v 1, Italian 2 v 1 | `measurements/verdicts.md` has the full numbers. The Renamed table migrates docked projects |
 
+## Replacing live files: D96
+
+Decided on 2026-11-09, from rules a docked project filed in an issue.
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D96 | `craft-shipping` gets `replace-live-files`, for a live server with no deploy tool: read the listing, take a checked backup, write a rollback, upload beside the live files, check every size, swap by rename. Two other rules from the same issue stay out: change a generated file at its source, and keep credentials in a gitignored file with a template | Five runs per arm. With the skill against without: listing 5 vs 1, checked backup 5 vs 0, rollback 5 vs 0, sizes 5 vs 0, upload then rename 5 vs 3, after two runs the judges failed were read and counted as passed, one of them from the prose of its reply. A rule to stop when the server refuses the rename had no grader, so it stayed out. The two rules that stayed out showed no lift when written into `development-standards`: source 0 vs 0, gitignored 0 vs 0, template 0 vs 0, value left out 1 vs 1. That skill loaded in no run | Holds, in `plugins/craft-shipping/skills/replace-live-files/SKILL.md` |
+
 ## Still open
 
 | # | Question | Working answer |
