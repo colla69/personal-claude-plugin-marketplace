@@ -9,8 +9,9 @@ scripts in `scripts/`, the one the steward measures a setup with, and the base p
 hooks. So a change is judged by how it is written and cut, and the checks exist only
 for the mistakes that fail silently.
 
-The three plugins are written and not yet tried on real projects. The documentation is
-mapped in [`docs/README.md`](docs/README.md), and the reason behind every decision is in
+The steward and the base are in use on three projects, listed under "Where it runs" in
+[`README.md`](README.md), and the curator in this repo. The documentation is mapped in
+[`docs/README.md`](docs/README.md), and the reason behind every decision is in
 [`docs/explanation/decisions.md`](docs/explanation/decisions.md).
 
 ## Where the rules live
@@ -69,9 +70,10 @@ The gist of each; the files above hold the rules.
 - **A product change can make a page wrong, and no check sees it.** The map's Sources
   column names the pages each product file feeds; reread them in the same change.
 - **No client, person or private project** in any file or commit message. The repo is
-  public. A public open-source project may be named, with its license checked. The one
-  exception for a person is a credit and license notice that a borrowed file's license
-  requires, such as the header of `measure-setup.mjs`.
+  public. A public open-source project may be named, with its license checked, and so
+  may the maintainer's own public projects docked onto the marketplace, in the README's
+  list only (D94). The one exception for a person is a credit and license notice that a
+  borrowed file's license requires, such as the header of `measure-setup.mjs`.
 
 ## Working on this repo
 

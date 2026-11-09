@@ -4,8 +4,8 @@ Why the steward is small, why it docks only when asked, why it tidies lightly, a
 the curator is a plugin of its own. Read this to understand what you are handing to the
 steward when you install it.
 
-**Not yet tried on real projects.** This page describes the steward as its files set it
-out; the first trials will show where it behaves otherwise.
+**In use on the [docked projects](../../README.md#where-it-runs).** This page describes
+the steward as its files set it out.
 
 ## Three plugins, three groups
 

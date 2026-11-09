@@ -4,7 +4,8 @@ A project should start from what the company already knows. The steward docks a 
 onto the marketplace's standards when someone asks, and answers questions about them,
 for beginners and experts alike. It is the one plugin each person installs by hand.
 
-**Not tried for real yet.** It is written; trying it on real projects comes next.
+**In use.** It has docked three projects so far, listed in the
+marketplace's [README](../../README.md#where-it-runs).
 
 | | |
 |---|---|

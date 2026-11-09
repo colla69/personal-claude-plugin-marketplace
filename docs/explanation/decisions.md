@@ -29,6 +29,7 @@ the reason it was made is often the reason its replacement has the shape it has.
 - [Docking that shows its work: D78](#docking-that-shows-its-work-d78)
 - [A guard that sees every change: D79](#a-guard-that-sees-every-change-d79)
 - [Keep what works: D83 to D93](#keep-what-works-d83-to-d93)
+- [Docked projects named: D94](#docked-projects-named-d94)
 - [Still open](#still-open)
 
 ## The author's statements
@@ -317,6 +318,14 @@ Decided on 2026-11-04, going through the skills in the audit's order.
 | D91 | `craft-shipping` gets `new-project`: in an empty folder, name a stack and one alternative, and ask before the first file | Asked to start a book-club voting app in an empty folder, the model asked first in 5 of 5 runs with the skill and built the app without asking in 5 of 5 without it | Holds |
 | D92 | The curator measures: a change that adds or changes a rule runs it with and without the skill before its pull request, and `curate` can audit the set in `skill-audit.mjs` order. The method is `references/measure.md` | The cleanup and the shipping plan were done by hand, and that work is curation. A rule that reads well tells nothing; the runs cut most of the rules they tested | Holds |
 | D93 | `craft-development` gets one rule from the bigpowers project (MIT): after a bug fix, search the code for the same defect, and fix or name each copy | A paging bug copied into three lists: the copies were found in 3 of 5 runs with the plugin and 0 of 5 without, once the description led with the rule. A first description that only listed it: 0 of 5 against 2 of 5. Reproducing the bug before the fix: 1 of 5 in both arms, cut. Eight more rules from the same source passed 2 or 3 of 3 runs without a skill and were not written: a safe query not flagged as injection, asking before a reviewer's large refactor, no abstraction for one provider, setup scripts safe to run twice, structured logs, a deploy checked against the live content, no deploy from a feature branch, and a value found in the code rather than asked for. The skill loaded in no run | Holds |
+
+## Docked projects named: D94
+
+Decided on 2026-11-09, once three projects were docked.
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D94 | The maintainer's own public projects docked onto the marketplace may be named, though they carry no license, in one place: the README's "Where it runs". Every other page says "the docked projects" and links there. Pages about docking, the base plugin and the steward say "in use" instead of "not yet tried"; the tutorials, the curator's guide and the permissions page keep it until someone runs them | A reader weighing the marketplace should see where it runs. The rule against naming a project guards clients and private work, and these projects are public and the maintainer's own. One list keeps a rename or a new project to a one-line change | Holds, in `README.md`, `CLAUDE.md` and `writing-docs.md` |
 
 ## Still open
 

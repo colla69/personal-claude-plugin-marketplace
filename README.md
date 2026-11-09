@@ -45,8 +45,21 @@ project". The steward asks once which marketplaces the project may draw from, an
 project with code whether it writes Conventional Commits. It does the rest, and reports
 every file it wrote. It never touches git in your project, so branch first.
 
-The plugins are written and not yet tried on real projects. For a guided first run on a
-small sample project, follow [your first docking](docs/tutorials/first-setup.md).
+For a guided first run on a small sample project, follow
+[your first docking](docs/tutorials/first-setup.md).
+
+## Where it runs
+
+Three projects are docked onto the marketplace today, all public, and all the
+maintainer's own:
+
+| Project | Written in |
+|---|---|
+| [CVHost](https://github.com/colla69/CVHost) | Vue |
+| [makeMyTaxes](https://github.com/colla69/makeMyTaxes) | Java |
+| [PlayCryptoWithAI](https://github.com/colla69/PlayCryptoWithAI) | JavaScript |
+
+The steward docked each of them, and the base plugin runs in their sessions.
 
 ## What's inside
 
