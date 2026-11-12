@@ -1,1 +1,0 @@
-NSApplication.shared.setActivationPolicy(.regular)

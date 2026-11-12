@@ -1,1 +1,0 @@
-event.modifierFlags.contains(.shift)

@@ -1,1 +1,0 @@
-NSApp.presentationOptions = [.disableProcessSwitching, .hideMenuBar]

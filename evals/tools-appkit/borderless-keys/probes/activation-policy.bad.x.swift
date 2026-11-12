@@ -1,1 +1,0 @@
-NSApp.activate(ignoringOtherApps: true)

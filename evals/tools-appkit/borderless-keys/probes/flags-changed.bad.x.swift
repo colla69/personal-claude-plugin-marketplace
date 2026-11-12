@@ -1,1 +1,0 @@
-if event.characters == "S" {

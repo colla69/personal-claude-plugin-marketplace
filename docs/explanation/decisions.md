@@ -343,6 +343,14 @@ Decided on 2026-11-09, from rules a docked project filed in an issue.
 |---|---|---|---|
 | D96 | `craft-shipping` gets `replace-live-files`, for a live server with no deploy tool: read the listing, take a checked backup, write a rollback, upload beside the live files, check every size, swap by rename. Two other rules from the same issue stay out: change a generated file at its source, and keep credentials in a gitignored file with a template | Five runs per arm. With the skill against without: listing 5 vs 1, checked backup 5 vs 0, rollback 5 vs 0, sizes 5 vs 0, upload then rename 5 vs 3, after two runs the judges failed were read and counted as passed, one of them from the prose of its reply. A rule to stop when the server refuses the rename had no grader, so it stayed out. The two rules that stayed out showed no lift when written into `development-standards`: source 0 vs 0, gitignored 0 vs 0, template 0 vs 0, value left out 1 vs 1. That skill loaded in no run | Holds, in `plugins/craft-shipping/skills/replace-live-files/SKILL.md` |
 
+## The marketplace's own plugins and AppKit measured: D97
+
+Decided on 2026-11-12, the last skills of the cleanup.
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D97 | `appkit-conventions` loses every rule a case graded: starting a bare executable, the activation policy, a strong delegate, `canBecomeKey`, `keyCode`, `flagsChanged` and the modifier mask, the presentation options and the kiosk limits. The rules no case covered stay. The steward stays as it is. The curator is not judged yet | AppKit: the borderless checks passed all 3 baseline runs without the skill, so they got no full run. In the kiosk case, 5 runs per arm, every check passed 5 vs 5 but the mask, 5 vs 4: one run better is noise, as `measure.md` says. Five runs per arm for the rest. The steward carried a rule from Cursor into `CLAUDE.md` 5 vs 1 and named the files it wrote 5 vs 0. The curator's plugin failed to load in most runs, so its numbers measure nothing | Holds, in `appkit-conventions` and `verdicts.md` |
+
 ## Still open
 
 | # | Question | Working answer |
