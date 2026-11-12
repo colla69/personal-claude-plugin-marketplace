@@ -12,10 +12,12 @@
 //   2 measure   no cases yet: the cost is paid and the value is not known
 //   3 ablate    measured, with a lift: find which part carries it (skill-slices.mjs)
 //   4 cheap     no cases, and small: low stakes, measure last
-//   5 own       the marketplace's own plugins: judged by the work-on-the-steward route
+//   5 rules     measured rule by rule, with no single number: verdicts.md has the reading
+//   6 own       the marketplace's own plugins: judged by the work-on-the-steward route
 // A skill with no cases is "measure" when its body and references pass SMALL tokens.
 // The mean Δ is the last stored line of results.jsonl, else the number that starts the
-// plugin's row in verdicts.md, for a suite that was run and not stored.
+// plugin's row in verdicts.md, for a suite that was run and not stored. When that row
+// reads no stored line, the stored line is older than the verdict and is ignored.
 
 import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs'
 import { join, dirname, resolve } from 'node:path'
@@ -77,14 +79,20 @@ function latestResults() {
   return out
 }
 
-// The first number of a verdict row, for a suite that has no stored line.
+// The first verdict row of each plugin: whether it reads a stored line, and the number
+// that starts its reading, if any. A row read rule by rule has no number.
 function verdicts() {
   const file = join(root, 'measurements', 'verdicts.md')
   const out = new Map()
   if (!existsSync(file)) return out
   for (const l of read(file).split('\n')) {
-    const m = /^\|\s*`([^`]+)`\s*\|[^|]*\|\s*([+\u2212-]?\d+(?:\.\d+)?)/.exec(l)
-    if (m) out.set(m[1], Number(m[2].replace('\u2212', '-')))
+    const m = /^\|\s*`([^`]+)`\s*\|([^|]*)\|\s*([^|]*)\|/.exec(l)
+    if (!m || out.has(m[1])) continue
+    const n = /^([+\u2212-]?\d+(?:\.\d+)?)/.exec(m[3].trim())
+    out.set(m[1], {
+      stored: /line \d/.test(m[2]),
+      delta: n ? Number(n[1].replace('\u2212', '-')) : null,
+    })
   }
   return out
 }
@@ -105,7 +113,9 @@ export function audit() {
       const refTokens = refs.reduce((n, p) => n + tokens(read(p)), 0)
       const s = shape(body)
       const cases = dirs(join(root, 'evals', plugin)).length
-      const res = results.get(plugin)
+      // A verdict that reads no stored line supersedes the stored line, which is older.
+      const v = verdict.get(plugin)
+      const res = v && !v.stored ? null : results.get(plugin)
       const row = {
         plugin,
         skill,
@@ -116,30 +126,31 @@ export function audit() {
         rules: s.rules,
         codeShare: tokens(body) ? s.codeTokens / tokens(body) : 0,
         cases,
-        meanDelta: res ? res.meanDelta : (verdict.get(plugin) ?? null),
+        meanDelta: res ? res.meanDelta : (v?.delta ?? null),
+        measured: Boolean(res || v),
       }
       const total = row.body + row.refs
-      row.group = row.meanDelta !== null ? (row.meanDelta > LIFT ? 'ablate' : 'decide') : total > SMALL ? 'measure' : 'cheap'
+      row.group = row.meanDelta !== null ? (row.meanDelta > LIFT ? 'ablate' : 'decide') : v ? 'rules' : total > SMALL ? 'measure' : 'cheap'
       if (plugin.startsWith('marketplace-')) row.group = 'own'
       rows.push(row)
     }
   }
-  const order = { decide: 1, measure: 2, ablate: 3, cheap: 4, own: 5 }
+  const order = { decide: 1, measure: 2, ablate: 3, cheap: 4, rules: 5, own: 6 }
   rows.sort((a, b) => order[a.group] - order[b.group] || b.body + b.refs - (a.body + a.refs))
   return rows
 }
 
 function render(rows) {
-  const sign = (n) => (n === null ? '-' : (n > 0 ? '+' : '') + n.toFixed(2))
+  const sign = (r) => (r.meanDelta === null ? (r.measured ? 'rules' : '-') : (r.meanDelta > 0 ? '+' : '') + r.meanDelta.toFixed(2))
   const out = [
     '| # | Group | Skill | Layer | Always-on | Body | Refs | Rules | Code | Cases | Mean Δ |',
     '|---|---|---|---|---|---|---|---|---|---|---|',
   ]
   rows.forEach((r, i) => {
-    out.push(`| ${i + 1} | ${r.group} | ${r.plugin}/${r.skill} | ${r.layer} | ${r.alwaysOn} | ${r.body} | ${r.refs} | ${r.rules} | ${Math.round(r.codeShare * 100)}% | ${r.cases || '-'} | ${sign(r.meanDelta)} |`)
+    out.push(`| ${i + 1} | ${r.group} | ${r.plugin}/${r.skill} | ${r.layer} | ${r.alwaysOn} | ${r.body} | ${r.refs} | ${r.rules} | ${Math.round(r.codeShare * 100)}% | ${r.cases || '-'} | ${sign(r)} |`)
   })
   const sum = (k) => rows.reduce((n, r) => n + r[k], 0)
-  const measured = rows.filter((r) => r.meanDelta !== null).length
+  const measured = rows.filter((r) => r.measured).length
   out.push('', `${rows.length} skills, ${measured} measured. Always-on if all were enabled: ${sum('alwaysOn')} tokens. Body: ${sum('body')}. References: ${sum('refs')}.`)
   out.push('', 'Always-on is the name and description, loaded every session. Body and refs load when the skill fires. Code is the share of the body that is code examples.')
   return out.join('\n')
