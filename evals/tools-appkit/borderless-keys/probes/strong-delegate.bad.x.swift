@@ -1,0 +1,1 @@
+app.delegate = AppDelegate()
