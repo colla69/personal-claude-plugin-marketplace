@@ -345,11 +345,11 @@ Decided on 2026-11-09, from rules a docked project filed in an issue.
 
 ## The marketplace's own plugins and AppKit measured: D97
 
-Decided on 2026-11-12, the last skills of the cleanup.
+Decided on 2026-11-12 and 2026-11-14, the last skills of the cleanup.
 
 | # | Decision | Why | Now |
 |---|---|---|---|
-| D97 | `appkit-conventions` loses every rule a case graded: starting a bare executable, the activation policy, a strong delegate, `canBecomeKey`, `keyCode`, `flagsChanged` and the modifier mask, the presentation options and the kiosk limits. The rules no case covered stay. The steward stays as it is. The curator is not judged yet | AppKit: the borderless checks passed all 3 baseline runs without the skill, so they got no full run. In the kiosk case, 5 runs per arm, every check passed 5 vs 5 but the mask, 5 vs 4: one run better is noise, as `measure.md` says. Five runs per arm for the rest. The steward carried a rule from Cursor into `CLAUDE.md` 5 vs 1 and named the files it wrote 5 vs 0. The curator's plugin failed to load in most runs, so its numbers measure nothing | Holds, in `appkit-conventions` and `verdicts.md` |
+| D97 | `appkit-conventions` keeps two rules: swallow every key but Command ones in a local monitor to stop the beep, and say what refusing a quit does at log out, restart and shutdown. Every other rule is cut. `eval-skill.mjs` drops `dependencies` from the copy it stages. `development-standards` keeps the order of checks. The steward, `code-review`'s untested branch and the curator's leak, client and description rules show no lift and stay until the curators decide | Five runs per arm. AppKit: the kiosk and borderless checks passed without the skill, the mask 5 vs 4 being noise. New cases for the untested rules: the beep 5 vs 2, shutdown judged 3 vs 1, 5 vs 3 counted by hand; auto-repeat, the main thread, the event tap and Accessibility 5 vs 5 or 5 vs 4. The engine loads no dependency, so a plugin with one failed to load in most runs, and its skills loaded in no run. With the copy declaring none they loaded in 5 of 5, and the runs were repeated. The bug-fix search holds, 4 vs 1. The order of checks 5 vs 0. The curator: measure first 4 vs 0, a pull request 4 vs 0, no evals flagged 3 vs 0; leak, client and description 5 vs 5 or 4 vs 4. The steward fell from +0.36 to +0.04, and the untested branch from 5 vs 3 to 5 vs 5 | Holds, in `appkit-conventions`, `eval-skill.mjs` and `verdicts.md` |
 
 ## Still open
 

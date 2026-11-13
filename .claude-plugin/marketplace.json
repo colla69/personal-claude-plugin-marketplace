@@ -66,7 +66,7 @@
     {
       "name": "tools-appkit",
       "source": "./plugins/tools-appkit",
-      "description": "AppKit conventions for macOS apps in code: main-thread rules, auto-repeat, local and global key monitors, and refusing a quit.",
+      "description": "AppKit conventions for macOS apps in code: keys that beep, and what refusing a quit blocks.",
       "category": "tools",
       "tags": ["appkit", "macos", "swift"]
     },

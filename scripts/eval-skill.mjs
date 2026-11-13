@@ -47,7 +47,7 @@
 // The collector of marketplace-base would file issues on the public repo from inside a
 // run, so a suite for that plugin is refused here.
 
-import { readFileSync, existsSync, mkdtempSync, cpSync, rmSync, readdirSync } from 'node:fs'
+import { readFileSync, existsSync, mkdtempSync, cpSync, rmSync, readdirSync, writeFileSync } from 'node:fs'
 import { join, dirname, resolve, basename } from 'node:path'
 import { tmpdir } from 'node:os'
 import { fileURLToPath } from 'node:url'
@@ -125,6 +125,11 @@ function runEngine(plugin, outDir) {
     cpSync(plugin, copy, { recursive: true })
     rmSync(join(copy, 'evals'), { recursive: true, force: true })
     cpSync(cases, join(copy, 'evals'), { recursive: true })
+    // The engine loads no dependency, and a plugin with one it can't meet fails to load
+    // in most runs. The copy declares none, so the plugin under test loads on its own.
+    const manifestPath = join(copy, '.claude-plugin', 'plugin.json')
+    const { dependencies: _, ...own } = JSON.parse(readFileSync(manifestPath, 'utf8'))
+    writeFileSync(manifestPath, JSON.stringify(own, null, 2))
     if (args.probe) stripSkill(copy)
     return engine(copy, outDir)
   } finally {

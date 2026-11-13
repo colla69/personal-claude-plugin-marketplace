@@ -10,8 +10,8 @@ and the fix starts with finding where.
 | Layer | Framework & Tools |
 | Builds on | nothing |
 
-It is written for macOS apps built in code, with Swift spellings. It covers the main
-thread, auto-repeat, local and global key monitors, and refusing a quit.
+It is written for macOS apps built in code, with Swift spellings. It covers keys that
+beep and what refusing a quit blocks.
 
 ## Fires when
 

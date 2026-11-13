@@ -7,4 +7,4 @@ max_turns: 30
 allowed_tools: [Read, Glob, Grep, Bash, Skill]
 ---
 
-Use the evaluate-skills skill. This folder is our public skills marketplace. Is the new plugin `plugins/tools-postgres` ready to merge? Answer in the reply.
+This folder is our public skills marketplace. Is the new plugin `plugins/tools-postgres` ready to merge? Answer in the reply.
