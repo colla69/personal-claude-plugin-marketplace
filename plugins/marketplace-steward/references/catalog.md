@@ -25,7 +25,7 @@ pure cost. When in doubt, leave it out and mention it as optional.
 | Language | `language-simple-natural-language` | `simple-natural-language` skill | Every project, with or without code: every project has text a person reads. |
 | Language | `language-conventional-commits` | `conventional-commits` skill | Any repo with code in it, after the one question in "Commit messages", below. |
 | Framework & Tools | `tools-vue` | `vue-conventions` skill | `vue` in dependencies. Check the major version and note it: the plugin targets Vue 3 Composition API, so flag a mismatch if the project is on Options API or Vue 2. |
-| Framework & Tools | `tools-appkit` | `appkit-conventions` skill | `import AppKit` or `import Cocoa` in the project's `.swift` sources. Note whether the app ships as a bundle or runs as a bare executable: the plugin's starting rules are for the bare one. |
+| Framework & Tools | `tools-appkit` | `appkit-conventions` skill | `import AppKit` or `import Cocoa` in the project's `.swift` sources. |
 | — | `marketplace-base` | The always-on index of standards, the build-and-test guard, the correction collector, and the `test-runner` and `reviewer` agents | Every docked project. Install it first. |
 | — | `marketplace-steward` | `steward` skill and `guide` agent | Already installed at user scope if you're reading this. Never write it into a project's settings: it belongs to the machine, not the project. |
 | — | `marketplace-curator` | `curate` and `evaluate-skills` skills, `contribution-checker` agent | Never in a docked project. It is enabled only in the marketplace's own repository, where curators work. |

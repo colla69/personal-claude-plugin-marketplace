@@ -343,6 +343,14 @@ Decided on 2026-11-09, from rules a docked project filed in an issue.
 |---|---|---|---|
 | D96 | `craft-shipping` gets `replace-live-files`, for a live server with no deploy tool: read the listing, take a checked backup, write a rollback, upload beside the live files, check every size, swap by rename. Two other rules from the same issue stay out: change a generated file at its source, and keep credentials in a gitignored file with a template | Five runs per arm. With the skill against without: listing 5 vs 1, checked backup 5 vs 0, rollback 5 vs 0, sizes 5 vs 0, upload then rename 5 vs 3, after two runs the judges failed were read and counted as passed, one of them from the prose of its reply. A rule to stop when the server refuses the rename had no grader, so it stayed out. The two rules that stayed out showed no lift when written into `development-standards`: source 0 vs 0, gitignored 0 vs 0, template 0 vs 0, value left out 1 vs 1. That skill loaded in no run | Holds, in `plugins/craft-shipping/skills/replace-live-files/SKILL.md` |
 
+## The marketplace's own plugins and AppKit measured: D97
+
+Decided on 2026-11-12 and 2026-11-14, the last skills of the cleanup.
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D97 | `appkit-conventions` keeps two rules: swallow every key but Command ones in a local monitor to stop the beep, and say what refusing a quit does at log out, restart and shutdown. Every other rule is cut. `eval-skill.mjs` drops `dependencies` from the copy it stages. `development-standards` keeps the order of checks. The steward, `code-review`'s untested branch and the curator's leak, client and description rules show no lift and stay until the curators decide | Five runs per arm. AppKit: the kiosk and borderless checks passed without the skill, the mask 5 vs 4 being noise. New cases for the untested rules: the beep 5 vs 2, shutdown judged 3 vs 1, 5 vs 3 counted by hand; auto-repeat, the main thread, the event tap and Accessibility 5 vs 5 or 5 vs 4. The engine loads no dependency, so a plugin with one failed to load in most runs, and its skills loaded in no run. With the copy declaring none they loaded in 5 of 5, and the runs were repeated. The bug-fix search holds, 4 vs 1. The order of checks 5 vs 0. The curator: measure first 4 vs 0, a pull request 4 vs 0, no evals flagged 3 vs 0; leak, client and description 5 vs 5 or 4 vs 4. The steward fell from +0.36 to +0.04, and the untested branch from 5 vs 3 to 5 vs 5 | Holds, in `appkit-conventions`, `eval-skill.mjs` and `verdicts.md` |
+
 ## Still open
 
 | # | Question | Working answer |

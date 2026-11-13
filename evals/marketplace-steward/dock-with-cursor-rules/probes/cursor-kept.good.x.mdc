@@ -1,0 +1,5 @@
+---
+description: Money handling
+globs: src/**
+---
+Store every amount as integer cents. Never use floats for money.
