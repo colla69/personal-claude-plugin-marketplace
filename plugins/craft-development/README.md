@@ -28,8 +28,7 @@ what it means for code.
 
 ## Install
 
-Docking installs it at project scope in any project with code, together with
-`craft-code-review`. By hand:
+Docking installs it at project scope in any project with code. By hand:
 
 ```bash
 claude plugin install craft-development@personal-claude-plugin-marketplace --scope project

@@ -14,8 +14,7 @@ Each plugin's own README, under `plugins/<name>/`, says where it stops.
 |---|---|---|---|---|---|
 | [`universal-clean-code`](../../plugins/universal-clean-code/) | Universal | `clean-code` | Only the clean-code rules measured to change what the model writes: today, three parameters at most | Any code | — |
 | [`universal-work-discipline`](../../plugins/universal-work-discipline/) | Universal | `work-discipline` | Working where someone else maintains: run its checks, and never call unverified work done | Any work, with or without code; most Craft plugins pull it in | — |
-| [`craft-development`](../../plugins/craft-development/) | Craft | `development-standards` | What careful work means for code: test first, the same defect searched for after a fix, then verification | Any code, with `craft-code-review` | `universal-clean-code`, `universal-work-discipline` |
-| [`craft-code-review`](../../plugins/craft-code-review/) | Craft | `review-changes` | Reviewing a diff or branch: correctness, tests, API surface, findings by file and line | Any code, with `craft-development` | `universal-clean-code` |
+| [`craft-development`](../../plugins/craft-development/) | Craft | `development-standards` | What careful work means for code: test first, the same defect searched for after a fix, a generated file changed at its source, a names-only template beside credentials, then verification | Any code | `universal-clean-code`, `universal-work-discipline` |
 | [`craft-shipping`](../../plugins/craft-shipping/) | Craft | `readiness-review`, `developer-handoff`, `new-project`, `replace-live-files` | Asking the milestone before a launch verdict; a handoff that marks its sources and names no secret value; asking the stack before a new app's first file; replacing live files with a checked backup, a rollback and a swap by rename | An app people will use, an empty folder, or an SFTP or FTP upload script or login in the repo | — |
 | [`language-simple-natural-language`](../../plugins/language-simple-natural-language/) | Language | `simple-natural-language` | English, German and Italian that read as if a person wrote them and that nobody can misread: who acts, the condition before the action, and the few rules only one language needs | Every project, with or without code | — |
 | [`language-conventional-commits`](../../plugins/language-conventional-commits/) | Language | `conventional-commits` | Commit messages a release tool can read: the type by what a user sees, a marked breaking change, a body that says why | Any code, after the steward asks once whether the project writes Conventional Commits, unless its files already show the format | — |
@@ -30,7 +29,7 @@ Each plugin's own README, under `plugins/<name>/`, says where it stops.
 | Layer | Plugins |
 |---|---|
 | Universal | `universal-clean-code`, `universal-work-discipline` |
-| Craft | `craft-development`, `craft-code-review`, `craft-shipping` |
+| Craft | `craft-development`, `craft-shipping` |
 | Language | `language-simple-natural-language`, `language-conventional-commits` |
 | Framework & Tools | `tools-vue`, `tools-appkit` |
 | Team | None yet |

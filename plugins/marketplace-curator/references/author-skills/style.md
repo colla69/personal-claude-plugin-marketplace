@@ -75,12 +75,12 @@ out and say so, rather than filling it because the template has one.
 ## Naming
 
 - **Plugin:** `<layer>-<topic>`, for example `universal-clean-code`,
-  `craft-code-review`, `language-simple-natural-language` or `tools-vue`. The prefix is
+  `craft-shipping`, `language-simple-natural-language` or `tools-vue`. The prefix is
   the same
   word as the plugin's `category`: `universal`, `craft`, `language` or `tools`. A plugin
   that works on the marketplace itself is `marketplace-<name>`, with category
   `marketplace`.
-- **Skill:** named for the activity, for example `review-changes` or
+- **Skill:** named for the activity, for example `replace-live-files` or
   `vue-conventions`. It is invoked as `/<plugin>:<skill>`.
 - **Wording that outlives code.** Every skill here is about code today, and the
   structure must not assume it stays that way. Language is "what the work is written
@@ -154,8 +154,7 @@ rather than introduce a second style. A standard with no stated boundary gets ap
 mechanically, which is worse than not being applied.
 
 **Rank by cost, not by category.** When a skill produces findings, tell the reader how
-to sort them. `review-changes` sorts its findings by what they cost if left, so the
-reader knows which to fix first.
+to sort them by what they cost if left, so the reader knows which to fix first.
 
 **Do not hedge.** No "you might want to consider", no "it's generally recommended". Say
 the thing. If it is conditional, say the condition.

@@ -34,7 +34,6 @@ of 5 with it.
 
 ## Leaves to others
 
-- How to review the code itself, to `craft-code-review`.
 - The project's own launch checklist, which wins.
 - Replacing the site in one step, to a deploy tool where the project has one.
 

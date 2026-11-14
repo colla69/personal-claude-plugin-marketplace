@@ -1,8 +1,0 @@
-{
-  "name": "craft-code-review",
-  "displayName": "Code Review",
-  "author": { "name": "Andrea Colarieti Tosti" },
-  "license": "Apache-2.0",
-  "keywords": ["review", "diff", "pr"],
-  "dependencies": ["universal-clean-code"]
-}

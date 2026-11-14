@@ -19,8 +19,7 @@ pure cost. When in doubt, leave it out and mention it as optional.
 |---|---|---|---|
 | Universal | `universal-clean-code` | `clean-code` skill | Any repo with code in it. Strongest signal: functions with long argument lists. |
 | Universal | `universal-work-discipline` | `work-discipline` skill | Any repo, with or without code. `craft-development` pulls it in; recommend it on its own where the work isn't code. |
-| Craft | `craft-development` | `development-standards` skill | Any repo with code in it, together with `craft-code-review` (see Code, below). |
-| Craft | `craft-code-review` | `review-changes` skill | Any repo with code in it, with `craft-development`. Do **not** gate this on PR-workflow signals: checking catches logical errors and inconsistencies before a commit, whether or not anyone opens pull requests. |
+| Craft | `craft-development` | `development-standards` skill | Any repo with code in it (see Code, below). |
 | Craft | `craft-shipping` | `readiness-review`, `developer-handoff`, `new-project`, `replace-live-files` skills | A repo with an app that people will use: a web app, an API, a mobile or desktop app. Also a folder with no code yet, where the user plans an app. Also a repo with an SFTP or FTP upload script, or SFTP or FTP login names in its env template. Not a library or a folder of documents. |
 | Language | `language-simple-natural-language` | `simple-natural-language` skill | Every project, with or without code: every project has text a person reads. |
 | Language | `language-conventional-commits` | `conventional-commits` skill | Any repo with code in it, after the one question in "Commit messages", below. |
@@ -41,7 +40,6 @@ announces the gap. The settings file looks right and the plugins simply never lo
 ```bash
 claude plugin marketplace add colla69/personal-claude-plugin-marketplace
 claude plugin install craft-development@personal-claude-plugin-marketplace --scope project
-claude plugin install craft-code-review@personal-claude-plugin-marketplace --scope project
 ```
 
 - **One line per recommended plugin**, matching the `enabledPlugins` keys exactly. If
@@ -104,12 +102,9 @@ the design.
 
 ## Code
 
-In any repo with code, `craft-development` and `craft-code-review` go together. They
-are the craft of changing and checking code, and most work on code does both. Leaving
-one out leaves that part of the work without its standard.
-
-Both depend on `universal-clean-code`, whose `clean-code` skill holds the house
-rule on function shape. Installing any of them pulls it in.
+In any repo with code, install `craft-development`. It depends on
+`universal-clean-code`, whose `clean-code` skill holds the house rule on function
+shape, and installing it pulls that in.
 
 ## Commit messages
 
@@ -201,7 +196,7 @@ old name.
 | `developer` | `craft-development` | Part of it became `universal-work-discipline` |
 | `language-simple-english` | `language-simple-natural-language` | Now English, German and Italian |
 | `language-simple-english:simple-english` | `language-simple-natural-language:simple-natural-language` | Now English, German and Italian |
-| `code-review` | `craft-code-review` | |
+| `code-review` | — | Its successor `craft-code-review` was removed |
 | `unit-testing` | — | Its successor `craft-unit-testing` was removed; test first stays in `craft-development` |
 | `refactoring` | — | Its successor `craft-refactoring` was removed |
 | `java-dev` | — | Its successor `language-java` was removed |
@@ -211,4 +206,4 @@ old name.
 | `marketplace-steward:evaluate-skills` | `marketplace-curator:evaluate-skills` | Moved with the curator's work |
 | `language-java`, `language-typescript`, `language-javascript`, `language-swift` | — | Removed: measured, the model followed their rules without them |
 | `craft-unit-testing` | — | Removed: measured, the model followed its rules without it. Test first stays in `craft-development` |
-| `craft-refactoring`, `craft-cv-writing`, `tools-vue-typescript`, `tools-pinia`, `tools-aws-static-hosting`, `craft-review` | — | Removed: measured, the model followed their rules without them |
+| `craft-refactoring`, `craft-cv-writing`, `tools-vue-typescript`, `tools-pinia`, `tools-aws-static-hosting`, `craft-review`, `craft-code-review` | — | Removed: measured, the model followed their rules without them |
