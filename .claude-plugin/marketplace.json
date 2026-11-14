@@ -24,16 +24,9 @@
     {
       "name": "craft-development",
       "source": "./plugins/craft-development",
-      "description": "What careful work means for code: test first, a search for the same defect after a bug fix, and verification with typecheck, tests and lint.",
+      "description": "What careful work means for code: test first, a search for the same defect after a bug fix, a generated file changed at its source, a names-only template beside credentials, and verification with typecheck, tests and lint.",
       "category": "craft",
       "tags": ["development", "implementation", "verification"]
-    },
-    {
-      "name": "craft-code-review",
-      "source": "./plugins/craft-code-review",
-      "description": "Structured review of a diff or branch: correctness, tests, and API surface, each finding located by file and line.",
-      "category": "craft",
-      "tags": ["review", "diff", "pr"]
     },
     {
       "name": "craft-shipping",
@@ -66,7 +59,7 @@
     {
       "name": "tools-appkit",
       "source": "./plugins/tools-appkit",
-      "description": "AppKit conventions for macOS apps in code: starting a bare executable, main-thread rules, key events, borderless windows, and kiosk and fullscreen options.",
+      "description": "AppKit conventions for macOS apps in code: keys that beep, and what refusing a quit blocks.",
       "category": "tools",
       "tags": ["appkit", "macos", "swift"]
     },

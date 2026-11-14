@@ -10,17 +10,15 @@ and the fix starts with finding where.
 | Layer | Framework & Tools |
 | Builds on | nothing |
 
-It is written for macOS apps built in code, with Swift spellings. A project that
-keeps nibs or storyboards gets the event routing and the kiosk rules, and skips the
-start-up section.
+It is written for macOS apps built in code, with Swift spellings. It covers keys that
+beep and what refusing a quit blocks.
 
 ## Fires when
 
 - Writing or reviewing AppKit code, or working with `NSApplication`, `NSWindow`,
-  `NSView`, `NSEvent` or `presentationOptions`
-- An AppKit window, keyboard handling, a fullscreen or kiosk mode, or an app that must
-  not quit is wanted
-- A window shows but gets no key events, or a key press beeps
+  `NSView` or `NSEvent`
+- Keyboard handling, or an app that must not quit, is wanted
+- A window gets no key events, or a key press beeps
 
 ## Leaves to others
 

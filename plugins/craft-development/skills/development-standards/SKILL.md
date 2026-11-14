@@ -1,6 +1,6 @@
 ---
 name: development-standards
-description: After any bug fix, grep the codebase for the same pattern and fix or name every copy. For all code, drive each change with a failing test and verify with typecheck, tests and lint in that order. Use whenever fixing a bug — the user says something "is wrong", "is off", "is broken", "drops", "crashes" or "fix it" — and whenever writing or modifying application code or implementing a feature.
+description: After any bug fix, grep the codebase for the same pattern and fix or name every copy. For all code, drive each change with a failing test, change a generated file at its source, commit a template that holds only the names beside a gitignored credentials file, and verify with typecheck, tests and lint in that order. Use whenever fixing a bug — the user says something "is wrong", "is off", "is broken", "drops", "crashes" or "fix it" — and whenever writing or modifying application code or implementing a feature.
 ---
 
 # Development standards
@@ -19,6 +19,17 @@ there is no runner, say so in the report, so the missing check is visible.
 
 Search the code for the same defect. A bug written once was often copied. Fix or name
 each place you find.
+
+## Change a generated file at its source
+
+A file a build writes is overwritten by the next build. Change the source it is built
+from and run the build. Do not edit the output.
+
+## A template beside the credentials
+
+Where a login or a key goes into a gitignored file, such as `.env`, commit a template
+beside it, such as `.env.example`, that holds only the names. The next person or machine
+then learns which values to set without seeing them.
 
 ## Verify in this order
 

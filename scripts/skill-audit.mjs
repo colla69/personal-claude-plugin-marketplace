@@ -80,7 +80,9 @@ function latestResults() {
 }
 
 // The first verdict row of each plugin: whether it reads a stored line, and the number
-// that starts its reading, if any. A row read rule by rule has no number.
+// that starts its reading, if any. A row read rule by rule has no number. A row whose
+// reading starts "Not measured" records runs that measured nothing, such as a plugin
+// that failed to load, and counts as no verdict.
 function verdicts() {
   const file = join(root, 'measurements', 'verdicts.md')
   const out = new Map()
@@ -88,6 +90,7 @@ function verdicts() {
   for (const l of read(file).split('\n')) {
     const m = /^\|\s*`([^`]+)`\s*\|([^|]*)\|\s*([^|]*)\|/.exec(l)
     if (!m || out.has(m[1])) continue
+    if (/^not measured/i.test(m[3].trim())) continue
     const n = /^([+\u2212-]?\d+(?:\.\d+)?)/.exec(m[3].trim())
     out.set(m[1], {
       stored: /line \d/.test(m[2]),
