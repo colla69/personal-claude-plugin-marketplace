@@ -19,7 +19,7 @@ what it means for code.
 
 ## Leaves to others
 
-- **What good code looks like.** Function shape is `clean-code`, in
+- **What good code looks like.** That is `clean-code`, in
   `universal-clean-code`.
 - The rules for any work in someone else's space, to `work-discipline`, in
   `universal-work-discipline`.

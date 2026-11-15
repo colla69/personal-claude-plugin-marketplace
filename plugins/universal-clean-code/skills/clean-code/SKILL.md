@@ -1,6 +1,6 @@
 ---
 name: clean-code
-description: The house standard for clean code, holding only the rules measured to change what the model writes — functions at one level, callers above helpers, no flag arguments, commands apart from queries, named conditions, no comment noise, no reaching through chains, one reason to change per unit, wrapped third-party libraries, tests without the real clock, and at most three parameters. Use whenever writing new code, writing or changing a function, writing tests, fixing a bug in a file, or calling a third-party library, or when the user mentions readability, maintainability, "clean code", "too many parameters" or a long argument list.
+description: The house standard for clean code, holding only the rules measured to change what the model writes — callers above helpers, no flag arguments, commands apart from queries, no comment noise, no reaching through chains, one reason to change per unit, side tasks kept out of business rules, wrapped third-party libraries, and tests without the real clock. Use whenever writing new code, writing or changing a function, writing tests, fixing a bug in a file, or calling a third-party library, or when the user mentions readability, maintainability or "clean code".
 ---
 
 # Clean code standard
@@ -13,9 +13,6 @@ A rule the model already follows costs every session and changes nothing.
 
 ## Functions
 
-- Keep a function at one level of abstraction: a function that reads as named steps
-  does not also hold the loops and arithmetic of those steps. Pull the details into
-  helpers.
 - Put a function above the helpers it calls, so the file reads top down, from the
   exported functions to the details.
 - No boolean parameter that switches what a function does. Write two functions that
@@ -23,12 +20,6 @@ A rule the model already follows costs every session and changes nothing.
 - A function either changes something or answers a question, never both. An `apply`
   that returns `{ ok }` is two functions: one that checks and one that applies, or an
   apply that throws when it can't.
-- More than three parameters means a missing type. Bundle them into one object or a
-  named type, such as `createInvoice({ customerId, items, currency, taxRate, dueDate })`.
-  Five positional arguments are five chances to swap two of the same type, and every
-  new input changes every caller.
-- A condition that combines two checks gets a name, as a function or a const, such as
-  `isWeekend(date)` or `const waivesExpress = isMember && subtotal >= FREE_EXPRESS_FROM`.
 
 ## Comments
 

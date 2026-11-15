@@ -17,7 +17,7 @@ pure cost. When in doubt, leave it out and mention it as optional.
 
 | Layer | Plugin | Provides | Recommend when the repo shows |
 |---|---|---|---|
-| Universal | `universal-clean-code` | `clean-code` skill | Any repo with code in it. Strongest signal: functions with long argument lists. |
+| Universal | `universal-clean-code` | `clean-code` skill | Any repo with code in it. Strongest signal: comment noise, deep property chains or a library called from many places. |
 | Universal | `universal-work-discipline` | `work-discipline` skill | Any repo, with or without code. `craft-development` pulls it in; recommend it on its own where the work isn't code. |
 | Craft | `craft-development` | `development-standards` skill | Any repo with code in it (see Code, below). |
 | Craft | `craft-shipping` | `readiness-review`, `developer-handoff`, `new-project`, `replace-live-files` skills | A repo with an app that people will use: a web app, an API, a mobile or desktop app. Also a folder with no code yet, where the user plans an app. Also a repo with an SFTP or FTP upload script, or SFTP or FTP login names in its env template. Not a library or a folder of documents. |
@@ -103,8 +103,8 @@ the design.
 ## Code
 
 In any repo with code, install `craft-development`. It depends on
-`universal-clean-code`, whose `clean-code` skill holds the house rule on function
-shape, and installing it pulls that in.
+`universal-clean-code`, whose `clean-code` skill holds the house rules on what good
+code looks like, and installing it pulls that in.
 
 ## Commit messages
 

@@ -10,7 +10,7 @@
     {
       "name": "universal-clean-code",
       "source": "./plugins/universal-clean-code",
-      "description": "The clean-code rules measured to change what the model writes: today, three parameters at most.",
+      "description": "The clean-code rules measured to change what the model writes: callers above helpers, no flag arguments, commands apart from queries, no comment noise, no reaching through chains, one reason to change, wrapped libraries, tests without the real clock.",
       "category": "universal",
       "tags": ["clean-code", "standards", "readability"]
     },
