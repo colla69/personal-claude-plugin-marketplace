@@ -175,6 +175,11 @@ Use the list below. If the user edits it, use the edited list.
 35. For a design task, sketch two or more different designs before choosing one, and
     say why.
 
+**M. Tests (ch. 19)**
+36. Before fixing a bug, write a test that fails because of it. Chapter 19's main
+    point, that test-first development designs one test at a time instead of the
+    module as a whole, leaves nothing in a reply to grade, so it is not tested.
+
 Left out: performance (ch. 20), and the definitions of complexity (ch. 2).
 
 ## Open decisions for the user
@@ -183,6 +188,7 @@ Left out: performance (ch. 20), and the definitions of complexity (ch. 2).
    next line does".** An interface comment describes the abstraction, not the next
    line, so the two need not clash. Test both, and let the user decide if they do.
 2. **Chapter 19 criticises test-driven development**, against the test-first rule in
-   `development-standards`. It is left out of the list unless the user adds it.
+   `development-standards`. Decided 2026-11-15: only its bug-fix rule is tested, as
+   rule 36.
 3. **Where the kept rules go.** The recommendation is the `clean-code` skill, not a new
    plugin, since a second description costs every session.
