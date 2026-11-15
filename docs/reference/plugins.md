@@ -12,7 +12,7 @@ Each plugin's own README, under `plugins/<name>/`, says where it stops.
 
 | Plugin | Layer | Skill | What it's for | Installed when the project shows | Builds on |
 |---|---|---|---|---|---|
-| [`universal-clean-code`](../../plugins/universal-clean-code/) | Universal | `clean-code` | Only the clean-code rules measured to change what the model writes: today, three parameters at most | Any code | — |
+| [`universal-clean-code`](../../plugins/universal-clean-code/) | Universal | `clean-code` | Only the clean-code rules measured to change what the model writes: function order and shape, no comment noise, objects and library boundaries, tests without the real clock | Any code | — |
 | [`universal-work-discipline`](../../plugins/universal-work-discipline/) | Universal | `work-discipline` | Working where someone else maintains: run its checks, and never call unverified work done | Any work, with or without code; most Craft plugins pull it in | — |
 | [`craft-development`](../../plugins/craft-development/) | Craft | `development-standards` | What careful work means for code: test first, the same defect searched for after a fix, a generated file changed at its source, a names-only template beside credentials, then verification | Any code | `universal-clean-code`, `universal-work-discipline` |
 | [`craft-shipping`](../../plugins/craft-shipping/) | Craft | `readiness-review`, `developer-handoff`, `new-project`, `replace-live-files` | Asking the milestone before a launch verdict; a handoff that marks its sources and names no secret value; asking the stack before a new app's first file; replacing live files with a checked backup, a rollback and a swap by rename | An app people will use, an empty folder, or an SFTP or FTP upload script or login in the repo | — |

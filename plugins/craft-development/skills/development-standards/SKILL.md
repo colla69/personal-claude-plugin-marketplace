@@ -41,7 +41,7 @@ then learns which values to set without seeing them.
 
 - **To the project.** Local convention beats this document for anything already settled
   here.
-- **To the `clean-code` standard** for function shape. This skill covers how to change
+- **To the `clean-code` standard** for what good code looks like. This skill covers how to change
   a codebase; that one covers what good code looks like.
 - **To the Framework & Tools layer.** Where a framework's skill is enabled, its
   conventions are more specific than these and win.

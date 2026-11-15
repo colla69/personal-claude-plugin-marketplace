@@ -3,8 +3,10 @@
 Cleanliness is not an end in itself. Every rule answers to one test: does this make the
 code cheaper to change next month? When a rule and that test disagree, the test wins.
 
-It holds only the rules a measurement showed the model breaks without them. Today that
-is one: more than three parameters means a missing type.
+It holds only the rules a measurement showed the model breaks without them: callers
+above helpers, no flag arguments, commands apart from queries, no comment noise, no
+reaching through chains, one reason to change per unit, side tasks kept out of business
+rules, wrapped third-party libraries, and tests without the real clock.
 
 | | |
 |---|---|
@@ -17,14 +19,15 @@ against it, so one edit here moves every judgement downstream.
 
 ## Fires when
 
-- Writing new code, or a function, method or constructor that takes several inputs
-- Readability, maintainability, "too many parameters", a long argument list
-- Adding a parameter to a function that already takes three
+- Writing new code or tests, or changing a function
+- Fixing a bug in a file, or calling a third-party library
+- Readability, maintainability, "clean code"
 
 ## Leaves to others
 
-- **The code around it, for a small change.** Consistency within a file beats this
-  standard. The mismatch is raised once, separately.
+- **The code around it, for a small change, in style.** Consistency within a file beats
+  this standard. The comment rules are the exception: a file it changes loses its
+  comment noise.
 - A language's idioms and a framework's conventions, to the Language and Framework &
   Tools layers, such as `vue-conventions`.
 - How code gets changed: `development-standards`, which measures its results against
