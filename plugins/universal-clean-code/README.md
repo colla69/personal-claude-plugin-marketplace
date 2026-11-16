@@ -4,9 +4,11 @@ Cleanliness is not an end in itself. Every rule answers to one test: does this m
 code cheaper to change next month? When a rule and that test disagree, the test wins.
 
 It holds only the rules a measurement showed the model breaks without them: callers
-above helpers, no flag arguments, commands apart from queries, no comment noise, no
-reaching through chains, one reason to change per unit, side tasks kept out of business
-rules, wrapped third-party libraries, and tests without the real clock.
+above helpers, no flag arguments, commands apart from queries, no comment noise, the
+reason for a choice in a comment, no reaching through chains, side tasks kept out of
+business rules, wrapped third-party libraries, two designs sketched before a new module,
+composition over inheritance, no shallow wrappers, no pass-through variables, a clear
+stop on a corrupt input, and precise names.
 
 | | |
 |---|---|
@@ -19,7 +21,7 @@ against it, so one edit here moves every judgement downstream.
 
 ## Fires when
 
-- Writing new code or tests, or changing a function
+- Writing new code, designing a module, or changing a function
 - Fixing a bug in a file, or calling a third-party library
 - Readability, maintainability, "clean code"
 

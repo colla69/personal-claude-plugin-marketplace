@@ -16,6 +16,12 @@ without the rule.
 | Layer | None: it is part of the marketplace itself |
 | Builds on | `language-simple-natural-language` |
 
+## Install
+
+```
+/plugin install marketplace-curator --marketplace colla69/personal-claude-plugin-marketplace
+```
+
 ## Fires when
 
 - "work issue 12", "turn this correction into a rule", "add a standard for X"
