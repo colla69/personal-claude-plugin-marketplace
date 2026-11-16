@@ -8,8 +8,7 @@ on *Clean Code* in PR #55 and decision D99. Read both before you start.
 Read this repository's `CLAUDE.md` and
 `plugins/marketplace-curator/references/measure.md` first.
 
-**Status:** proposed 2026-11-15. The rule list waits for approval, and the work starts
-after PR #55 is merged.
+**Status:** done 2026-11-16. The result is D100 in `decisions.md`.
 
 ## Before you start
 
