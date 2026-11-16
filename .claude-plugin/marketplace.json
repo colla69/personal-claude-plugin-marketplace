@@ -17,14 +17,14 @@
     {
       "name": "universal-work-discipline",
       "source": "./plugins/universal-work-discipline",
-      "description": "How to do and report work in a place someone else maintains: say when a simpler way exists, run the checks the place uses, and never call unverified work done.",
+      "description": "How to do and report work in a place someone else maintains: say when a simpler way exists, ask one question at a time, check what calls the code before building what a review asks for, run the checks the place uses, and never call unverified work done, going through listed requirements one by one.",
       "category": "universal",
       "tags": ["discipline", "scope", "verification"]
     },
     {
       "name": "craft-development",
       "source": "./plugins/craft-development",
-      "description": "What careful work means for code: test first, a search for the same defect after a bug fix, a generated file changed at its source, a names-only template beside credentials, and verification with typecheck, tests and lint.",
+      "description": "What careful work means for code: test first, a bug reproduced by a test seen failing, one change at a time while hunting a bug, a search for the same defect after a bug fix, a generated file changed at its source, a names-only template beside credentials, and verification with typecheck, tests and lint.",
       "category": "craft",
       "tags": ["development", "implementation", "verification"]
     },
