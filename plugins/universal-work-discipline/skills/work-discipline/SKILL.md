@@ -1,6 +1,6 @@
 ---
 name: work-discipline
-description: How to report a piece of work done in a place someone else maintains — run the checks the place itself uses, and never report unverified work as done. Use whenever changing, extending or fixing existing work of any kind — code, a document, a template, a configuration — or when the user says "just add", "quick fix" or "small change". Also use when the task looks simple, since that is when the check gets skipped.
+description: How to do and report a piece of work in a place someone else maintains — say when a simpler way than the one asked for exists, run the checks the place itself uses, and never report unverified work as done. Use whenever writing something new or changing, extending or fixing existing work of any kind — code, a document, a template, a configuration — or when the user says "just add", "quick fix" or "small change". Also use when the task looks simple, since that is when the check gets skipped.
 ---
 
 # Work discipline
@@ -10,6 +10,13 @@ know whether the change was checked, not only that it is finished.
 
 These rules hold for any kind of work. The Craft skill for a kind of work says what a
 check is there.
+
+## Before you start
+
+When a simpler way than the one asked for exists, such as a built-in that does the
+job, say so in your reply, even if you still do it the way asked. Code written by hand
+is code someone has to test and maintain, and only the person asking can decide it is
+worth that.
 
 ## Unverified is not done
 

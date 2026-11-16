@@ -17,7 +17,7 @@
     {
       "name": "universal-work-discipline",
       "source": "./plugins/universal-work-discipline",
-      "description": "How to report work done in a place someone else maintains: run the checks the place uses, and never call unverified work done.",
+      "description": "How to do and report work in a place someone else maintains: say when a simpler way exists, run the checks the place uses, and never call unverified work done.",
       "category": "universal",
       "tags": ["discipline", "scope", "verification"]
     },
