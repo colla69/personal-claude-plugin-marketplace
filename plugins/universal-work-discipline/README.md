@@ -9,18 +9,19 @@ tell what changed and why, and whether anything they relied on moved without war
 | Layer | Universal |
 | Builds on | nothing |
 
-One rule, for any kind of work: unverified is not done.
+Two rules, for any kind of work: say when a simpler way than the one asked for exists,
+and unverified is not done.
 
 ## Fires when
 
-- Changing, extending or fixing existing work: code, a document, a template, a
-  configuration
+- Writing something new, or changing, extending or fixing existing work: code, a
+  document, a template, a configuration
 - "just add", "quick fix", "small change"
 - The task looks simple, which is when the check gets skipped
 
 ## Leaves to others
 
-- **What the rule means for one kind of work.** Which checks run and in what order:
+- **What "unverified is not done" means for one kind of work.** Which checks run and in what order:
   the Craft skill for that work, such as `development-standards` for code.
 - What good work looks like — to `clean-code` for code, and to the more specific
   layers.

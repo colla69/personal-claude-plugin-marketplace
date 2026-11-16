@@ -1,6 +1,6 @@
 ---
 name: work-discipline
-description: How to do and report a piece of work in a place someone else maintains — say when a simpler way than the one asked for exists, lay out a task of several steps with a check for each, run the checks the place itself uses, and never report unverified work as done. Use whenever writing something new or changing, extending or fixing existing work of any kind — code, a document, a template, a configuration — or when the user says "just add", "quick fix" or "small change". Also use when the task looks simple, since that is when the check gets skipped.
+description: How to do and report a piece of work in a place someone else maintains — say when a simpler way than the one asked for exists, run the checks the place itself uses, and never report unverified work as done. Use whenever writing something new or changing, extending or fixing existing work of any kind — code, a document, a template, a configuration — or when the user says "just add", "quick fix" or "small change". Also use when the task looks simple, since that is when the check gets skipped.
 ---
 
 # Work discipline
@@ -13,10 +13,10 @@ check is there.
 
 ## Before you start
 
-- **When a simpler way than the one asked for exists**, such as a built-in that does
-  the job, say so in your reply, even if you still do it the way asked.
-- **For a task of several steps**, list the steps in your reply and name how each one
-  is checked, such as a test or a command.
+When a simpler way than the one asked for exists, such as a built-in that does the
+job, say so in your reply, even if you still do it the way asked. Code written by hand
+is code someone has to test and maintain, and only the person asking can decide it is
+worth that.
 
 ## Unverified is not done
 
