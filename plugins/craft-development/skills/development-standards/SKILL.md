@@ -1,6 +1,6 @@
 ---
 name: development-standards
-description: After any bug fix, grep the codebase for the same pattern and fix or name every copy. For all code, drive each change with a failing test, change a generated file at its source, commit a template that holds only the names beside a gitignored credentials file, and verify with typecheck, tests and lint in that order. Use whenever fixing a bug — the user says something "is wrong", "is off", "is broken", "drops", "crashes" or "fix it" — and whenever writing or modifying application code or implementing a feature.
+description: Reproduce a bug with a failing test before fixing it, and undo a change that didn't fix it before trying the next. After any bug fix, grep the codebase for the same pattern and fix or name every copy. For all code, drive each change with a failing test, change a generated file at its source, commit a template that holds only the names beside a gitignored credentials file, and verify with typecheck, tests and lint in that order. Use whenever fixing a bug — the user says something "is wrong", "is off", "is broken", "drops", "crashes" or "fix it" — and whenever writing or modifying application code or implementing a feature.
 ---
 
 # Development standards
@@ -15,10 +15,20 @@ and the code follows it in a red, green, refactor cycle. Code written test
 first is designed from its caller's side, because the test is its first caller. Where
 there is no runner, say so in the report, so the missing check is visible.
 
+For a bug, write the test that reproduces it first, run it and see it fail, then fix.
+A test you never saw fail may test nothing.
+
 ## After a bug fix
 
 Search the code for the same defect. A bug written once was often copied. Fix or name
 each place you find.
+
+## While you hunt a bug
+
+Make one change at a time. When a change did not fix the bug, undo it before you try the
+next idea, including a change someone else tried before you. A failed change left in
+place hides which change fixed the bug. Tidying, such as the comment rules of
+`clean-code`, waits until the bug is fixed.
 
 ## Change a generated file at its source
 
