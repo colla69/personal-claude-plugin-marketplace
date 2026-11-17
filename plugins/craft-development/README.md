@@ -1,8 +1,10 @@
 # craft-development
 
-A change to code is careful when it starts from a failing test, and typecheck, tests
-and lint ran in that order. A bug fix starts from a test that reproduces the bug, and
-the hunt for it changes one thing at a time.
+A change to code is careful when it starts from a failing test, and typecheck, tests and
+lint ran in that order. A bug fix starts from a test that reproduces the bug, and the
+hunt for it changes one thing at a time. When the bug can't be reproduced here, the
+model says so and asks for what would reproduce it. Before making code faster, it times
+the slow path.
 
 | | |
 |---|---|

@@ -1,6 +1,6 @@
 ---
 name: development-standards
-description: Reproduce a bug with a failing test before fixing it, and undo a change that didn't fix it before trying the next. After any bug fix, grep the codebase for the same pattern and fix or name every copy. For all code, drive each change with a failing test, change a generated file at its source, commit a template that holds only the names beside a gitignored credentials file, and verify with typecheck, tests and lint in that order. Use whenever fixing a bug — the user says something "is wrong", "is off", "is broken", "drops", "crashes" or "fix it" — and whenever writing or modifying application code or implementing a feature.
+description: Reproduce a bug with a failing test before fixing it, say so and ask when you can't reproduce it, and undo a change that didn't fix it before trying the next. Measure before making code faster. After any bug fix, grep the codebase for the same pattern and fix or name every copy. For all code, drive each change with a failing test, change a generated file at its source, commit a template that holds only the names beside a gitignored credentials file, and verify with typecheck, tests and lint in that order. Use whenever fixing a bug — the user says something "is wrong", "is off", "is broken", "drops", "crashes" or "fix it" — and whenever writing or modifying application code or implementing a feature.
 ---
 
 # Development standards
@@ -25,10 +25,20 @@ each place you find.
 
 ## While you hunt a bug
 
+When you cannot reproduce the bug here, such as a failure only in production, say so,
+say what you checked, and ask for what would reproduce it, such as the failing request
+with its secrets redacted. A change made without a reproduction is a guess, and a guess
+reported as a fix hides the real cause.
+
 Make one change at a time. When a change did not fix the bug, undo it before you try the
 next idea, including a change someone else tried before you. A failed change left in
 place hides which change fixed the bug. Tidying, such as the comment rules of
 `clean-code`, waits until the bug is fixed.
+
+## Before you make code faster
+
+Time the slow path on a big input before you change it, and again after. Report both
+times. Without the first, nobody can tell whether the change helped.
 
 ## Change a generated file at its source
 
