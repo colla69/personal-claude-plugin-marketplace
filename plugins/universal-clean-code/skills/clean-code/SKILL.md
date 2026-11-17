@@ -39,7 +39,7 @@ A rule the model already follows costs every session and changes nothing.
   across currencies.
 - Where a choice over the same values is made in two places, such as a status's label
   and its color, keep one table both read. Don't add a second `switch`, even when the
-  file already has one.
+  file already has one: a new status added to one `switch` is missed in the other.
 
 ## Errors
 
@@ -67,7 +67,8 @@ When you change a file, leave its comments cleaner than you found them:
 
 - Put logic on the object whose data it uses. A cost that reads only an order's
   weight and country is a method on `Order`, such as `order.shippingCost()`, not a
-  function elsewhere that reads its fields.
+  function elsewhere that reads its fields. Otherwise a change to `Order`'s fields
+  breaks code far from `Order`.
 - Don't reach through a chain, such as `order.customer.address.country`. Ask the
   nearest object, through a method such as `order.country()`, or take the value as a
   parameter.
@@ -80,6 +81,7 @@ When you change a file, leave its comments cleaner than you found them:
 ## Where this yields
 
 - **To the code around it**, for a small change, in style. Consistency within a file
-  beats correctness against this standard. The comment rules above are the exception.
+  beats correctness against this standard. The comment rules and the one-table rule
+  above are the exceptions.
 - **To the more specific layers** for what is specific to them: a language's idioms and
   a framework's conventions.

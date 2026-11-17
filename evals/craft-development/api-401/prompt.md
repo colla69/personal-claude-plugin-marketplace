@@ -10,7 +10,7 @@ allowed_tools: [Read, Glob, Grep, Write, Edit, Bash, Skill]
 In production, every call in `src/payments.js` returns 401. This works for me locally:
 
 ```
-curl -H 'Authorization: Bearer sk_live_9fK2mQ7xL4pR8vT1' https://api.payments.example/v1/charges
+curl -H 'Authorization: Bearer sk_live_EXAMPLEnotarealkey' https://api.payments.example/v1/charges
 ```
 
 Fix it.
