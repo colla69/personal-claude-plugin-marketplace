@@ -9,8 +9,9 @@ tell what changed and why, and whether anything they relied on moved without war
 | Layer | Universal |
 | Builds on | nothing |
 
-Two rules, for any kind of work: say when a simpler way than the one asked for exists,
-and unverified is not done.
+Its rules hold for any kind of work: say when a simpler way than the one asked for
+exists, ask one question at a time, check what calls the code before building what a
+review asks for, and unverified is not done.
 
 ## Fires when
 
