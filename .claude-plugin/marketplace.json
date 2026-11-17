@@ -10,7 +10,7 @@
     {
       "name": "universal-clean-code",
       "source": "./plugins/universal-clean-code",
-      "description": "The clean-code rules measured to change what the model writes: callers above helpers, no flag arguments, commands apart from queries, no comment noise, no reaching through chains, wrapped libraries, two designs before a new module, composition over inheritance, no pass-through variables, precise names.",
+      "description": "The clean-code rules measured to change what the model writes: callers above helpers, no flag arguments, commands apart from queries, no comment noise, no reaching through chains, wrapped libraries, logic on the object whose data it uses, a type for money, one table for one choice, dependencies passed in, two designs before a new module, composition over inheritance, no pass-through variables, precise names.",
       "category": "universal",
       "tags": ["clean-code", "standards", "readability"]
     },
@@ -24,7 +24,7 @@
     {
       "name": "craft-development",
       "source": "./plugins/craft-development",
-      "description": "What careful work means for code: test first, a bug reproduced by a test seen failing, one change at a time while hunting a bug, a search for the same defect after a bug fix, a generated file changed at its source, a names-only template beside credentials, and verification with typecheck, tests and lint.",
+      "description": "What careful work means for code: test first, a bug reproduced by a test seen failing, one change at a time while hunting a bug, saying so when a bug can't be reproduced here, timing before making code faster, a search for the same defect after a bug fix, a generated file changed at its source, a names-only template beside credentials, and verification with typecheck, tests and lint.",
       "category": "craft",
       "tags": ["development", "implementation", "verification"]
     },
