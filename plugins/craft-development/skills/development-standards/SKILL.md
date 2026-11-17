@@ -1,6 +1,6 @@
 ---
 name: development-standards
-description: Reproduce a bug with a failing test before fixing it, rank two or more causes before testing one, say so and ask when you can't reproduce it, and undo a change that didn't fix it before trying the next. Measure before making code faster. After any bug fix, grep the codebase for the same pattern and fix or name every copy. For all code, drive each change with a failing test, change a generated file at its source, commit a template that holds only the names beside a gitignored credentials file, and verify with typecheck, tests and lint in that order. Use whenever fixing a bug — the user says something "is wrong", "is off", "is broken", "drops", "crashes" or "fix it" — and whenever writing or modifying application code or implementing a feature.
+description: Reproduce a bug with a failing test before fixing it, say so and ask when you can't reproduce it, and undo a change that didn't fix it before trying the next. Measure before making code faster. After any bug fix, grep the codebase for the same pattern and fix or name every copy. For all code, drive each change with a failing test, change a generated file at its source, commit a template that holds only the names beside a gitignored credentials file, and verify with typecheck, tests and lint in that order. Use whenever fixing a bug — the user says something "is wrong", "is off", "is broken", "drops", "crashes" or "fix it" — and whenever writing or modifying application code or implementing a feature.
 ---
 
 # Development standards
@@ -24,9 +24,6 @@ Search the code for the same defect. A bug written once was often copied. Fix or
 each place you find.
 
 ## While you hunt a bug
-
-Before you test a cause, list two or more that could explain the symptom, most likely
-first, and say what each predicts. The first idea that fits is often not the cause.
 
 When you cannot reproduce the bug here, such as a failure only in production, say so,
 say what you checked, and ask for what would reproduce it, such as the failing request
