@@ -1,6 +1,6 @@
 ---
 name: clean-code
-description: The house standard for clean code, holding only the rules measured to change what the model writes — callers above helpers, no flag arguments, commands apart from queries, no comment noise, no reaching through chains, side tasks kept out of business rules, wrapped third-party libraries, two designs sketched before a new module, composition over inheritance, no shallow wrappers, no pass-through variables, a clear stop on a corrupt input, precise names, and the reason for a choice in a comment. Use whenever writing new code, designing a module, writing or changing a function, fixing a bug in a file, or calling a third-party library, or when the user mentions readability, maintainability or "clean code".
+description: The house standard for clean code, holding only the rules measured to change what the model writes — callers above helpers, no flag arguments, commands apart from queries, no comment noise, no reaching through chains, side tasks kept out of business rules, wrapped third-party libraries, logic on the object whose data it uses, a type for a domain value such as money, one table for one choice, dependencies passed in, two designs sketched before a new module, composition over inheritance, no shallow wrappers, no pass-through variables, a clear stop on a corrupt input, precise names, and the reason for a choice in a comment. Use whenever writing new code, designing a module, writing or changing a function, fixing a bug in a file, or calling a third-party library, or when the user mentions readability, maintainability or "clean code".
 ---
 
 # Clean code standard
@@ -31,6 +31,15 @@ A rule the model already follows costs every session and changes nothing.
 - Don't thread a value through a layer that only passes it on, such as a trace id
   through a service on its way to the repository. Reach it through a context, such as
   `AsyncLocalStorage`.
+- Pass a function the services it calls, such as a mailer or a client, as parameters
+  or through a factory. Don't import them inside it: a caller or a test can then hand
+  it another.
+- Give a domain value that carries a unit its own type, such as money as
+  `{ amount, currency }`. A bare number beside a separate currency field gets added
+  across currencies.
+- Where a choice over the same values is made in two places, such as a status's label
+  and its color, keep one table both read. Don't add a second `switch`, even when the
+  file already has one.
 
 ## Errors
 
@@ -56,6 +65,9 @@ When you change a file, leave its comments cleaner than you found them:
 
 ## Objects and boundaries
 
+- Put logic on the object whose data it uses. A cost that reads only an order's
+  weight and country is a method on `Order`, such as `order.shippingCost()`, not a
+  function elsewhere that reads its fields.
 - Don't reach through a chain, such as `order.customer.address.country`. Ask the
   nearest object, through a method such as `order.country()`, or take the value as a
   parameter.
