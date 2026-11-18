@@ -1,6 +1,6 @@
 ---
 name: clean-code
-description: The house standard for clean code, holding only the rules measured to change what the model writes — callers above helpers, no flag arguments, commands apart from queries, no comment noise, no reaching through chains, side tasks kept out of business rules, wrapped third-party libraries, logic on the object whose data it uses, a type for a domain value such as money, one table for one choice, dependencies passed in, one constant for a value used in many files, structured logs, two designs sketched before a new module, composition over inheritance, no shallow wrappers, no pass-through variables, a clear stop on a corrupt input, precise names, the reason for a choice and the issue number in a comment, and a usage example on a public function. Use whenever writing new code, designing a module, writing or changing a function, fixing a bug in a file, or calling a third-party library, or when the user mentions readability, maintainability or "clean code".
+description: The house standard for clean code, holding only the rules measured to change what the model writes — callers above helpers, no flag arguments, commands apart from queries, no comment noise, no reaching through chains, side tasks kept out of business rules, wrapped third-party libraries, logic on the object whose data it uses, a type for a domain value such as money, one table for one choice, dependencies passed in, one constant for a value used in many files, structured logs, two designs sketched before a new module, composition over inheritance, no shallow wrappers, no pass-through variables, a clear stop on a corrupt input, precise names, the reason for a choice and the issue number in a comment, and a usage example on a function a package exports. Use whenever writing new code, designing a module, writing or changing a function, fixing a bug in a file, or calling a third-party library, or when the user mentions readability, maintainability or "clean code".
 ---
 
 # Clean code standard
@@ -67,8 +67,9 @@ When you change a file, leave its comments cleaner than you found them:
 - When the task gives a reason for a choice, such as a bug a change fixes, put it in a
   comment next to the code, not only in your reply. When the task names an issue, such
   as `#482`, name it in that comment.
-- Give a public function of a library a doc comment that says what it is for and shows
-  one call with its result.
+- Give a function that a package exports for other projects, such as one reached from
+  `main` in `package.json`, a doc comment that says what it is for and shows one call
+  with its result. This is the one comment that may say what.
 - Remove a function nothing calls or exports.
 
 ## Objects and boundaries
