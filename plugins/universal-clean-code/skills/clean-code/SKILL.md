@@ -41,7 +41,8 @@ A rule the model already follows costs every session and changes nothing.
   and its color, keep one table both read. Don't add a second `switch`, even when the
   file already has one: a new status added to one `switch` is missed in the other.
 - Where a value such as a model name or a URL is used in more than one file, define it
-  once as a constant that every file imports. Don't copy the string into a new file.
+  once as a constant that every file imports. Don't copy the string into a new file,
+  even when the files beside it do: a change made in one copy is missed in the others.
 
 ## Errors
 
@@ -66,10 +67,11 @@ When you change a file, leave its comments cleaner than you found them:
   says why: a reason, a constraint, a warning.
 - When the task gives a reason for a choice, such as a bug a change fixes, put it in a
   comment next to the code, not only in your reply. When the task names an issue, such
-  as `#482`, name it in that comment.
+  as `#482`, name it in that comment, so a reader can find the discussion behind it.
 - Give a function that a package exports for other projects, such as one reached from
   `main` in `package.json`, a doc comment that says what it is for and shows one call
-  with its result. This is the one comment that may say what.
+  with its result, since a caller in another project reads it instead of the code.
+  This is the one comment that may say what.
 - Remove a function nothing calls or exports.
 
 ## Objects and boundaries
@@ -90,7 +92,7 @@ When you change a file, leave its comments cleaner than you found them:
 ## Where this yields
 
 - **To the code around it**, for a small change, in style. Consistency within a file
-  beats correctness against this standard. The comment rules and the one-table rule
-  above are the exceptions.
+  beats correctness against this standard. The comment rules, the one-table rule and
+  the one-constant rule above are the exceptions.
 - **To the more specific layers** for what is specific to them: a language's idioms and
   a framework's conventions.
