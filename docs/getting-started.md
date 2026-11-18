@@ -1,0 +1,54 @@
+# Getting started
+
+## Install the steward
+
+Each person installs the steward once, on their machine:
+
+```bash
+claude plugin marketplace add colla69/personal-claude-plugin-marketplace
+claude plugin install marketplace-steward@personal-claude-plugin-marketplace --scope user
+```
+
+## Dock a project
+
+Create a branch, open a session in the project and say "dock this project". The steward
+asks at most three things:
+
+- which marketplaces the project may draw standards from;
+- whether to keep or replace the project's `AGENTS.md` files, if it has any;
+- whether the project writes Conventional Commits, if it has code.
+
+It then does the rest:
+
+- writes a short `CLAUDE.md`;
+- merges `.claude/settings.json`;
+- installs `marketplace-base` and the standards the project shows a need for, at project
+  scope;
+- removes rules from an existing setup that a standard already states.
+
+It reports every file it wrote. Read the diff and commit it.
+
+## Work in it
+
+You work as before. In every session of a docked project:
+
+- **The index** lists every standard, so Claude can say when one exists for the task in
+  front of it, even if the project doesn't have it yet.
+- **The guard** runs the project's check command before Claude stops, if a file
+  changed. A failure keeps Claude working.
+- **The collector** notes when you correct Claude, and files the corrections as an
+  issue on this repo at the next session start. `"STEWARD_COLLECT": "off"` under `env`
+  in the settings turns it off.
+- **The reviewer** reviews the work when you ask for a review.
+
+## Keep it current
+
+Claude Code updates the marketplace by itself. To check a project, say "is my setup
+current?". To see what the setup costs per session, say "why is my setup slow?".
+
+## When something doesn't load
+
+- **On another machine:** each machine needs the plugins installed. The steward's report
+  ends with the install lines to run there.
+- **After a plugin is renamed:** say "dock this project" again. The steward removes the
+  old name and installs the new one.

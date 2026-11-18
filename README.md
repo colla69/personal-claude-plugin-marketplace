@@ -1,57 +1,50 @@
 # personal-claude-plugin-marketplace
 
-A company's standards for working with Claude Code, kept in one place and reused in
-every project: how code is written and reviewed, which templates to use, what good
-prose looks like. Each standard is a skill. The steward docks a project onto them when
-someone asks, and the corrections people make flow back to the curators by themselves.
+Standards for working with Claude Code, written once and reused in every project. Each
+standard is a skill, and a skill stays only while a measurement shows that it changes
+what the model does.
 
-Everything here is prose: standards written once, in plain language an LLM can follow.
-There is nothing to build. And nothing in it assumes the work is code: a skill can be
-about a report or a template as much as about a codebase, even though every skill here
-is about code today.
-
-## How it fits together
-
-```mermaid
-flowchart LR
-    M[("Marketplace<br/>standards, central")]
-    S["Steward<br/>docks on request"]
-    P["Your project<br/>CLAUDE.md, standards, base"]
-    W["Sessions<br/>the work"]
-    C["Curators<br/>issues, pull requests"]
-    M -->|installs standards| S --> P --> W
-    W -->|corrections, by themselves| C -->|merge| M
-```
-
-- **Dock.** When you ask, the steward reads your project, writes a short `CLAUDE.md`,
-  and installs the standards it shows a need for, with the base plugin.
-- **Work.** You work as before. Each session knows every standard and offers the one
-  that fits, the build and the tests stay green, and a review runs when you ask. Plan
-  mode plans on Opus; the rest runs on Sonnet.
-- **Grow.** When you correct Claude, the correction goes to the curators as an issue.
-  A change they merge reaches every docked project by itself.
-
-[The idea](docs/explanation/the-idea.md) explains why it is built this way.
-
-## Five minutes
+## Try it
 
 ```bash
 claude plugin marketplace add colla69/personal-claude-plugin-marketplace
 claude plugin install marketplace-steward@personal-claude-plugin-marketplace --scope user
 ```
 
-That is all a machine needs. Start a new session in a project and say "dock this
-project". The steward asks once which marketplaces the project may draw from, and in a
-project with code whether it writes Conventional Commits. It does the rest, and reports
-every file it wrote. It never touches git in your project, so branch first.
+Then open a session in a project and say "dock this project". The steward reads the
+project, writes a short `CLAUDE.md` and installs the standards the project needs. It
+never touches git, so branch first.
 
-For a guided first run on a small sample project, follow
-[your first docking](docs/tutorials/first-setup.md).
+## What's inside
+
+| Plugin | What it does |
+|---|---|
+| `universal-clean-code` | How good code is written: names, functions, comments, boundaries |
+| `universal-work-discipline` | How work is done and reported where someone else maintains it |
+| `craft-development` | Test first, bugs reproduced before they are fixed, checks before "done" |
+| `craft-shipping` | Starting, judging and handing over an app, and replacing files on a live server |
+| `language-simple-natural-language` | Plain English, German and Italian that nobody can misread |
+| `language-conventional-commits` | Commit messages in the Conventional Commits format |
+| `tools-vue` | Vue 3 Composition API conventions |
+| `tools-appkit` | AppKit conventions for macOS apps |
+| `marketplace-steward` | Docks a project and answers questions about the standards |
+| `marketplace-base` | Runs in every docked project: an index of the standards, a build-and-test guard, and a collector for corrections |
+| `marketplace-curator` | Turns a lesson into a measured change, for the people who maintain this repo |
+
+## Every rule is measured
+
+Each skill comes with test tasks. They run with the skill and without it, and a rule
+stays only when it changes the result. A rule the model already follows costs tokens in
+every session and changes nothing, so it goes. The numbers are in
+[`measurements/`](measurements/).
+
+## It learns from use
+
+When you correct Claude in a docked project, the base plugin files the correction as an
+issue here. A curator turns it into a measured change, and the merge reaches every
+docked project.
 
 ## Where it runs
-
-Three projects are docked onto the marketplace today, all public, and all the
-maintainer's own:
 
 | Project | Written in |
 |---|---|
@@ -59,37 +52,11 @@ maintainer's own:
 | [makeMyTaxes](https://github.com/colla69/makeMyTaxes) | Java |
 | [PlayCryptoWithAI](https://github.com/colla69/PlayCryptoWithAI) | JavaScript |
 
-The steward docked each of them, and the base plugin runs in their sessions.
+## More
 
-## What's inside
-
-Every standard sits in one of four layers, from general to specific, and each plugin's
-name starts with its layer. A fifth, Team, holds one team's quirks, as a last resort:
-
-| Layer | Holds | Today |
-|---|---|---|
-| **Universal** | What holds for everything | Clean code, and the discipline of working where someone else maintains |
-| **Craft** | How a kind of work is done | Developing, reviewing and shipping |
-| **Language** | What the work is written in | Simple Natural Language, Conventional Commits |
-| **Framework & Tools** | One concrete product | Vue, AppKit |
-| **The marketplace's own** | Docks projects, runs in them, and grows the marketplace | `marketplace-steward`, `marketplace-base`, `marketplace-curator` |
-
-[Plugins](docs/reference/plugins.md) lists each one with its skill, what it is for, when
-it is installed and what it builds on.
-
-## Documentation
-
-| You want to | Read |
-|---|---|
-| Try it on a sample project | [Your first docking](docs/tutorials/first-setup.md) |
-| Dock one of your projects, and work in it | [The guides](docs/README.md#guides) |
-| Work lessons into the marketplace, as a curator | [Contribute a lesson](docs/guides/contribute-a-lesson.md) |
-| Look something up | [The reference](docs/README.md#reference) |
-| Fix something that went wrong without saying so | [Troubleshoot](docs/guides/troubleshoot.md) |
-| Understand why it works this way | [The explanation pages](docs/README.md#explanation) |
-| Work on the marketplace itself | [Contributing](CONTRIBUTING.md) |
-
-Every page is on the map, [`docs/README.md`](docs/README.md).
+- [Getting started](docs/getting-started.md): dock a project and work in it
+- [How it works](docs/how-it-works.md): the three plugins, and how a rule is measured
+- [Contributing](CONTRIBUTING.md): change a standard or add one
 
 ## License
 
