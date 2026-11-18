@@ -165,4 +165,4 @@ if (problems.length > 0) {
   process.exit(1)
 }
 
-console.log(`✓ catalog in sync — ${declared.size} plugins listed in marketplace.json, plugins.md, and catalog.md`)
+console.log(`✓ catalog in sync — ${declared.size} plugins listed in marketplace.json, the README table, and catalog.md`)

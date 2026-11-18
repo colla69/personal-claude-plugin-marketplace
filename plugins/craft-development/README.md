@@ -1,19 +1,13 @@
 # craft-development
 
-A change to code is careful when it starts from a failing test, and typecheck, tests and
-lint ran in that order. A bug fix starts from a test that reproduces the bug, and the
-hunt for it changes one thing at a time. When the bug can't be reproduced here, the
-model says so and asks for what would reproduce it. Before making code faster, it times
-the slow path.
+A change to code starts from a failing test, and typecheck, tests and lint run in that
+order. A bug fix starts from a test that reproduces the bug.
 
 | | |
 |---|---|
 | Skill | `development-standards` |
 | Layer | Craft |
 | Builds on | `universal-clean-code`, `universal-work-discipline` |
-
-The general rule, unverified is not done, lives in `work-discipline`. This skill says
-what it means for code.
 
 ## Fires when
 
@@ -22,12 +16,8 @@ what it means for code.
 
 ## Leaves to others
 
-- **What good code looks like.** That is `clean-code`, in
-  `universal-clean-code`.
-- The rules for any work in someone else's space, to `work-discipline`, in
-  `universal-work-discipline`.
-- A framework's conventions, to its Framework & Tools skill, which wins where enabled.
-- Anything the project has already settled, which beats all of it.
+- **What good code looks like**, to `clean-code` in `universal-clean-code`.
+- A framework's conventions and the project's own settled choices, which win.
 
 ## Install
 
@@ -39,9 +29,4 @@ claude plugin install craft-development@personal-claude-plugin-marketplace --sco
 
 ## More
 
-- The standard itself:
-  [`skills/development-standards/SKILL.md`](skills/development-standards/SKILL.md)
-- Every plugin, with its layer and what it builds on:
-  [`docs/reference/plugins.md`](../../docs/reference/plugins.md)
-- Why the layers, and why dependencies point the way they do:
-  [`docs/explanation/layers.md`](../../docs/explanation/layers.md)
+- [`skills/development-standards/SKILL.md`](skills/development-standards/SKILL.md)
