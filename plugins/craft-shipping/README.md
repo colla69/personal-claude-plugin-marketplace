@@ -1,10 +1,8 @@
 # craft-shipping
 
-Before it judges whether an app is ready to ship, Claude asks what it is ready for and
-what a failure would cost. When it hands an app to a developer, it marks where each
-statement comes from, and gives environment variables by name, never by value. In an
-empty folder, it proposes a stack and asks before it creates a file. On a live
-server with no deploy tool, it takes a checked backup and swaps files by rename.
+Before Claude judges whether an app is ready to ship, it asks what the app is ready for
+and what a failure would cost. It also covers handoffs to a developer, new projects in
+an empty folder, and replacing files on a live server with no deploy tool.
 
 | | |
 |---|---|
@@ -12,24 +10,10 @@ server with no deploy tool, it takes a checked backup and swaps files by rename.
 | Layer | Craft |
 | Builds on | nothing |
 
-It holds only what a measurement showed the model skips without it. Asked "is my shop
-ready to launch?", the model gave a verdict without asking in 5 of 5 runs, and asked
-first in 4 of 5 with the skill. In a handoff, it marked where its statements came from
-in 0 of 5 runs without the skill and 3 of 5 with it, and copied a password or key from
-`.env.example` in 2 of 5 runs without it and none with it. Asked to start an app in an
-empty folder, it built one without asking in 5 of 5 runs, and asked first in 5 of 5
-with the skill. Asked for a script that publishes a site over SFTP, it took a checked
-backup, wrote a rollback and compared the upload sizes in none of 5 runs without the
-skill and in 5 of 5 with it. It read the server's listing first in 1 of 5 without and
-5 of 5 with it, and swapped by rename after a separate upload in 3 of 5 without and 5
-of 5 with it.
-
 ## Fires when
 
-- "is my app ready to launch?", "is this production-ready?", "can I ship this?"
-- A launch or handoff audit
-- "write a handoff", "document this for the next developer"
-- "start me an app that…", "scaffold a new project", in a folder with no code
+- "is my app ready to launch?", "can I ship this?", "write a handoff"
+- "start me an app that…", in a folder with no code
 - "put this on the server", "publish over SFTP", on a server with no deploy tool
 
 ## Leaves to others
@@ -48,10 +32,7 @@ claude plugin install craft-shipping@personal-claude-plugin-marketplace --scope 
 
 ## More
 
-- The standards themselves:
-  [`skills/readiness-review/SKILL.md`](skills/readiness-review/SKILL.md),
+- [`skills/readiness-review/SKILL.md`](skills/readiness-review/SKILL.md),
   [`skills/developer-handoff/SKILL.md`](skills/developer-handoff/SKILL.md),
-  [`skills/new-project/SKILL.md`](skills/new-project/SKILL.md) and
+  [`skills/new-project/SKILL.md`](skills/new-project/SKILL.md),
   [`skills/replace-live-files/SKILL.md`](skills/replace-live-files/SKILL.md)
-- Every plugin, with its layer and what it builds on:
-  [`docs/reference/plugins.md`](../../docs/reference/plugins.md)

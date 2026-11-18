@@ -15,8 +15,8 @@ this skill. Cut it if there isn't one.}}
 
 ## Fires when
 
-{{The situations, in the user's words. Same triggers as the skill description, in list
-form — this is what a person scanning the directory needs.}}
+{{At most three situations, in the user's words, taken from the skill description.
+Keep the whole README short: about 100 to 150 words.}}
 
 - {{trigger}}
 - {{trigger}}
@@ -24,10 +24,9 @@ form — this is what a person scanning the directory needs.}}
 
 ## Leaves to others
 
-{{The most useful section, and the reason these READMEs aren't just the marketplace
-description again. Each line names something this skill deliberately does not cover,
-and which skill or layer does — or which local convention overrides it. Lead with the
-boundary people most often expect to be inside.}}
+{{At most two lines. Each names something this skill deliberately does not cover, and
+which skill, layer or local convention covers it instead. Lead with the boundary people
+most often expect to be inside.}}
 
 - **{{The boundary people expect to be inside.}}** {{Who covers it instead.}}
 - {{What it leaves}} — {{to whom}}
@@ -43,9 +42,4 @@ claude plugin install {{PLUGIN_NAME}}@personal-claude-plugin-marketplace --scope
 
 ## More
 
-- The standard itself:
-  [`skills/{{SKILL_NAME}}/SKILL.md`](skills/{{SKILL_NAME}}/SKILL.md)
-- Every plugin, with its layer and what it builds on:
-  [`docs/reference/plugins.md`](../../docs/reference/plugins.md)
-- Why the layers, and why dependencies point the way they do:
-  [`docs/explanation/layers.md`](../../docs/explanation/layers.md)
+- [`skills/{{SKILL_NAME}}/SKILL.md`](skills/{{SKILL_NAME}}/SKILL.md)

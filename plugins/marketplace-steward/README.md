@@ -1,69 +1,48 @@
 # marketplace-steward
 
-A project should start from what the company already knows. The steward docks a project
-onto the marketplace's standards when someone asks, and answers questions about them,
-for beginners and experts alike. It is the one plugin each person installs by hand.
-
-**In use.** It has docked three projects so far, listed in the
-marketplace's [README](../../README.md#where-it-runs).
+The steward docks a project onto the marketplace's standards when someone asks, and
+answers questions about them. It is the one plugin each person installs by hand. It is
+in use in the projects listed in the marketplace's
+[README](../../README.md#where-it-runs).
 
 | | |
 |---|---|
 | Skill | `steward`, the front door |
-| Agent | `guide`, on Opus at low effort, which answers questions about the standards and the setup. Read-only |
-| References | `dock.md`, `tidy.md`, `catalog.md`, `context-files.md`, `plugin-sources.md` and `cost.md`, read by path |
-| Script | `scripts/measure-setup.mjs`, which measures what a project's setup costs per session. Plain Node; it writes nothing |
+| Agent | `guide`, which answers questions about the standards and the setup. Read-only |
+| Script | `scripts/measure-setup.mjs`, which measures what a project's setup costs per session. It writes nothing |
 | Layer | None: it is part of the marketplace itself |
 | Builds on | `language-simple-natural-language` |
 
 ## Fires when
 
 - "dock this project", "set this project up", "onboard this repo"
-- "bring our setup onto the marketplace", in a project with its own `CLAUDE.md`,
-  rules, agents or hooks
-- "is there a standard for this?", "which standards do we have?", "add the standard for
-  X"
-- "why is my setup slow?", "this setup costs too many tokens", or a skill not loading
-- A folder with no code in it: documents, reports, templates
+- "is there a standard for this?", "add the standard for X"
+- "why is my setup slow?", or a skill not loading
 
 ## Writes
 
-- `.claude/plugin-sources.json`, the sources standards may come from, asked once as a
-  checklist
-- `CLAUDE.md`, at the root and in each component that earns one
-- `.claude/settings.json`, merged: the marketplace, the session's model, and the
-  build-and-test command for the base plugin's guard
+- `.claude/plugin-sources.json`, `CLAUDE.md` and `.claude/settings.json`
 - The standards and `marketplace-base`, installed at project scope
-- `~/.claude/CLAUDE.md`, the person's own file: a `## Working with me` block that tells
-  Claude to ask what they want before it acts, and a `## Working style: keep it simple`
-  block that tells it to try the simplest approach first and keep answers short.
-  Docking and "is my setup current?" both add each block, once, after a backup, and
-  neither replaces a block the person wrote
-- For a project with a setup of its own: rules that a standard states word for word
-  removed, files an earlier steward generated removed, and rules that would serve other
-  projects filed as issues for the curators. A file with uncommitted edits is first
-  copied to `~/.local/share/marketplace-steward/backups/`
+- Two short blocks in your `~/.claude/CLAUDE.md`, after a backup, never replacing a
+  block you wrote
+- For a project with its own setup: rules a standard already states removed, and rules
+  that would serve other projects filed as issues for the curators
 
-It asks only what a person must decide: the sources checklist, once; whether to keep or
-swap the project's `AGENTS.md` files, when it has any; and whether a project with code
-writes Conventional Commits. Everything else it does and reports.
+It asks only what you must decide: which sources standards may come from, whether to
+keep the project's `AGENTS.md` files, and whether the project writes Conventional
+Commits.
 
 ## Leaves to you
 
-- **Git.** No branch, commit, stage or stash. Branch before running it; the report
-  lists every path it created and changed, and `git diff` does the rest.
-- **The standards.** What they say is the curators' call, in `marketplace-curator`.
-- **The project's work**, its checks and its reviews: `marketplace-base` and the
-  standards do that.
+- **Git.** No branch, commit or stash. Branch before running it; the report lists every
+  path it changed.
+- **The standards.** What they say is the curators' call.
 
 ## Install
 
 ```bash
 claude plugin install marketplace-steward@personal-claude-plugin-marketplace --scope user
 ```
-
-User scope: it belongs to the machine, and in a project nobody docked it costs one
-skill and one agent description, and does nothing else.
 
 ## Credits
 
@@ -73,7 +52,5 @@ Egor Fedorov, under the MIT License, which the script's header carries.
 
 ## More
 
-- What it reads, writes and asks:
-  [`docs/reference/the-steward.md`](../../docs/reference/the-steward.md)
-- Why it works the way it does:
-  [`docs/explanation/the-steward.md`](../../docs/explanation/the-steward.md)
+- [Getting started](../../docs/getting-started.md)
+- [How it works](../../docs/how-it-works.md)

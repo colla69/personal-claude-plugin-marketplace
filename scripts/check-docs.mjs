@@ -1,18 +1,15 @@
 #!/usr/bin/env node
 // Fails on the documentation's silent mistakes: a relative link to a file or a heading
-// that doesn't exist, a page in docs/ that the map doesn't link, a prose line past 88
-// columns, a skill, reference or agent that links into docs/, which the installed
-// plugin doesn't contain, and a page that links into the working records.
-//
-// The working records in docs/records/ are left alone: they are history, not pages.
+// that doesn't exist, a page in docs/ that the README doesn't link, a prose line past 88
+// columns, and a skill, reference or agent that links into docs/, which the installed
+// plugin doesn't contain.
 
 import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs'
 import { join, dirname, resolve, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-const MAP = 'docs/README.md'
-const RECORDS = 'docs/records/'
+const MAP = 'README.md'
 const WIDTH = 88
 
 const problems = []
@@ -89,32 +86,28 @@ function anchorsOf(path) {
   return anchors
 }
 
-const pages = markdownUnder('docs').filter((p) => !p.startsWith(RECORDS))
+const pages = markdownUnder('docs')
 const entryPoints = ['README.md', 'CONTRIBUTING.md', 'CLAUDE.md']
 const local = markdownUnder('.claude')
 const pluginReadmes = readdirSync(join(root, 'plugins'))
   .map((name) => `plugins/${name}/README.md`)
   .filter((p) => existsSync(join(root, p)))
 
-// Links resolve, to the file and to the heading, in every page a reader opens. None
-// leads into the working records.
+// Links resolve, to the file and to the heading, in every page a reader opens.
 for (const file of [...pages, ...entryPoints, ...local, ...pluginReadmes]) {
   for (const [n, target, anchor] of links(read(file))) {
     if (target.startsWith('/')) { fail(`${file}:${n}: link to "${target}" is absolute; make it relative`); continue }
     const path = target === '' ? join(root, file) : resolve(join(root, dirname(file)), target)
     if (!existsSync(path)) { fail(`${file}:${n}: link to "${target}", which doesn't exist`); continue }
-    if (relative(root, path).startsWith(RECORDS) || relative(root, path) === RECORDS.slice(0, -1)) {
-      fail(`${file}:${n}: links into ${RECORDS}, the working records; the docs stand on their own`)
-    }
     if (anchor && path.endsWith('.md') && !anchorsOf(path).has(anchor)) {
       fail(`${file}:${n}: link to "#${anchor}" in ${target || file}, which has no such heading`)
     }
   }
 }
 
-// Every page is on the map, so it can be found.
+// Every page is linked from the README, so it can be found.
 const mapped = new Set(
-  links(read(MAP)).map(([, target]) => relative(root, resolve(join(root, 'docs'), target))),
+  links(read(MAP)).map(([, target]) => relative(root, resolve(root, target))),
 )
 for (const page of pages) {
   if (page !== MAP && !mapped.has(page)) fail(`${page}: not linked from ${MAP}`)
@@ -150,4 +143,4 @@ if (problems.length > 0) {
   process.exit(1)
 }
 
-console.log(`✓ docs in shape — ${pages.length} pages on the map, every link and anchor resolves, prose within ${WIDTH} columns, no product file links into docs/`)
+console.log(`✓ docs in shape — ${pages.length} pages linked from the README, every link and anchor resolves, prose within ${WIDTH} columns, no product file links into docs/`)

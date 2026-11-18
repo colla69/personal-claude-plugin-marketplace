@@ -29,7 +29,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      # No dependencies — plain Node: links resolve, every page is on the map, prose
+      # No dependencies — plain Node: links resolve, every page is linked from the README, prose
       # wraps at 88, and no skill links into docs/.
       - run: node scripts/check-docs.mjs
 
@@ -45,7 +45,7 @@ jobs:
 
       # Deliberately not --strict: strict promotes "no version specified" to an
       # error, and every plugin here omits version on purpose so that updates
-      # resolve by commit SHA. See docs/contributing/releases-and-migrations.md.
+      # resolve by commit SHA.
       - name: validate marketplace
         run: claude plugin validate .
 

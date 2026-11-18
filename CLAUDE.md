@@ -10,9 +10,9 @@ hooks. So a change is judged by how it is written and cut, and the checks exist 
 for the mistakes that fail silently.
 
 The steward and the base are in use on three projects, listed under "Where it runs" in
-[`README.md`](README.md), and the curator in this repo. The documentation is mapped in
-[`docs/README.md`](docs/README.md), and the reason behind every decision is in
-[`docs/explanation/decisions.md`](docs/explanation/decisions.md).
+[`README.md`](README.md), and the curator in this repo. The documentation is the
+README, two pages in `docs/` and each plugin's README. The reason behind every decision
+is in [`measurements/decisions.md`](measurements/decisions.md).
 
 ## Where the rules live
 
@@ -23,8 +23,8 @@ Read the file before you change what it governs. None of its rules are repeated 
 | Decide where a piece of knowledge goes, or cut a skill | [`place-knowledge.md`](plugins/marketplace-curator/references/place-knowledge.md) |
 | Write or edit a skill, an agent or a plugin README | [`style.md`](plugins/marketplace-curator/references/author-skills/style.md) |
 | Add, rename or register a plugin, or change a manifest | [`plugin-shape.md`](plugins/marketplace-curator/references/author-skills/plugin-shape.md) |
-| Change a `marketplace-` plugin's skills, references, agents or hooks | [`plugin-shape.md`](plugins/marketplace-curator/references/author-skills/plugin-shape.md), then [`work-on-the-steward.md`](docs/guides/work-on-the-steward.md) |
-| Write or edit a page in `docs/`, or an entry point | [`writing-docs.md`](docs/contributing/writing-docs.md) |
+| Change a `marketplace-` plugin's skills, references, agents or hooks | [`plugin-shape.md`](plugins/marketplace-curator/references/author-skills/plugin-shape.md) |
+| Write or edit a page in `docs/`, or an entry point | Keep it short, link to the rule instead of restating it, and run `node scripts/check-docs.mjs` |
 
 ## Commands
 
@@ -48,8 +48,8 @@ every plugin. Both are the policy, so CI never runs it with `--strict`.
 
 The gist of each; the files above hold the rules.
 
-- **A plugin needs three registrations**: `marketplace.json`, both tables in
-  `docs/reference/plugins.md`, and the steward's `references/catalog.md`.
+- **A plugin needs three registrations**: `marketplace.json`, the "What's inside"
+  table in `README.md`, and the steward's `references/catalog.md`.
   Missing the catalog row, it installs fine and is never chosen for any project.
 - **A rename or a removal needs a row in the catalog's Renamed table.** Without it,
   docking removes the old key but installs no successor, and the project runs without
@@ -67,8 +67,8 @@ The gist of each; the files above hold the rules.
   a sentence.
 - **The product never depends on the docs.** No skill, reference or agent may link to a
   page in `docs/`, because the installed plugin doesn't include it.
-- **A product change can make a page wrong, and no check sees it.** The map's Sources
-  column names the pages each product file feeds; reread them in the same change.
+- **A product change can make a page wrong, and no check sees it.** Reread the README,
+  the plugin's README and the two pages in `docs/` in the same change.
 - **No client, person or private project** in any file or commit message. The repo is
   public. A public open-source project may be named, with its license checked, and so
   may the maintainer's own public projects docked onto the marketplace, in the README's
@@ -80,7 +80,7 @@ The gist of each; the files above hold the rules.
 | To | Use |
 |---|---|
 | Add or change a skill from a lesson or an issue | The curator's `curate` skill, enabled here. It works on a `contrib/` branch of this checkout and opens a pull request |
-| Add or change a skill by hand | [`write-a-skill-by-hand.md`](docs/guides/write-a-skill-by-hand.md) |
+| Add or change a skill by hand | The files in "Where the rules live" above |
 | Review a change you wrote | The `change-reviewer` agent, so the reviewer isn't the writer |
 | Review a skill, a plugin or the whole set | `evaluate-skills`, from the curator enabled here |
 

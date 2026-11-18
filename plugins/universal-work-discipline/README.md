@@ -2,6 +2,7 @@
 
 Work done in a place someone else maintains is judged by whether the next person can
 tell what changed and why, and whether anything they relied on moved without warning.
+Unverified is not done.
 
 | | |
 |---|---|
@@ -9,29 +10,21 @@ tell what changed and why, and whether anything they relied on moved without war
 | Layer | Universal |
 | Builds on | nothing |
 
-Its rules hold for any kind of work: say when a simpler way than the one asked for
-exists, ask one question at a time, check what calls the code before building what a
-review asks for, and unverified is not done.
-
 ## Fires when
 
-- Writing something new, or changing, extending or fixing existing work: code, a
-  document, a template, a configuration
+- Changing, extending or fixing existing work: code, a document, a configuration
 - "just add", "quick fix", "small change"
 - The task looks simple, which is when the check gets skipped
 
 ## Leaves to others
 
-- **What "unverified is not done" means for one kind of work.** Which checks run and in what order:
-  the Craft skill for that work, such as `development-standards` for code.
-- What good work looks like — to `clean-code` for code, and to the more specific
-  layers.
-- The project's own conventions and definition of done, which win over all of it.
+- **Which checks run for one kind of work**, to its Craft skill, such as
+  `development-standards` for code.
+- The project's own conventions and definition of done, which win.
 
 ## Install
 
-Docking installs it at project scope in any project, with code or without, and most Craft
-plugins pull it in. By hand:
+Docking installs it at project scope in any project, with code or without. By hand:
 
 ```bash
 claude plugin install universal-work-discipline@personal-claude-plugin-marketplace --scope project
@@ -39,9 +32,4 @@ claude plugin install universal-work-discipline@personal-claude-plugin-marketpla
 
 ## More
 
-- The standard itself:
-  [`skills/work-discipline/SKILL.md`](skills/work-discipline/SKILL.md)
-- Every plugin, with its layer and what it builds on:
-  [`docs/reference/plugins.md`](../../docs/reference/plugins.md)
-- Why the layers, and why dependencies point the way they do:
-  [`docs/explanation/layers.md`](../../docs/explanation/layers.md)
+- [`skills/work-discipline/SKILL.md`](skills/work-discipline/SKILL.md)

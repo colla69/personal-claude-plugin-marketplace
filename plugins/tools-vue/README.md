@@ -1,17 +1,13 @@
 # tools-vue
 
 A Vue component stays presentational. Data fetching, business rules and persistence
-belong in composables or stores, and a component that does all three is the one that
-becomes untestable.
+belong in composables or stores. It targets Vue 3 with `<script setup>`.
 
 | | |
 |---|---|
 | Skill | `vue-conventions` |
 | Layer | Framework & Tools |
 | Builds on | nothing |
-
-Targets Vue 3 with `<script setup>`, and checks the Vue major version and whether the
-project uses TypeScript before assuming either.
 
 ## Fires when
 
@@ -21,9 +17,8 @@ project uses TypeScript before assuming either.
 
 ## Leaves to others
 
-- A Vue 2 or Options API project, whose style it follows, naming the mismatch out loud.
-- The project's patterns, such as naming, folder layout, forms and UI library, which
-  beat the generic conventions here.
+- A Vue 2 or Options API project, whose style it follows.
+- The project's own patterns, which win.
 
 ## Install
 
@@ -34,13 +29,6 @@ hand:
 claude plugin install tools-vue@personal-claude-plugin-marketplace --scope project
 ```
 
-Project scope only: it is noise in a Go service.
-
 ## More
 
-- The standard itself:
-  [`skills/vue-conventions/SKILL.md`](skills/vue-conventions/SKILL.md)
-- Every plugin, with its layer and what it builds on:
-  [`docs/reference/plugins.md`](../../docs/reference/plugins.md)
-- Why the layers, and why dependencies point the way they do:
-  [`docs/explanation/layers.md`](../../docs/explanation/layers.md)
+- [`skills/vue-conventions/SKILL.md`](skills/vue-conventions/SKILL.md)

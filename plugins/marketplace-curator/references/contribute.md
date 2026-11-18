@@ -68,9 +68,8 @@ source project in it.
   the migration docking applies in every project.
 - **An overruled placement** gets its case, stripped, in §6 of
   `plugins/marketplace-curator/references/place-knowledge.md`.
-- **A change to a product file** can make a page in `docs/` wrong. The Sources column
-  of `docs/README.md` names the pages each file feeds: reread them, and fix them in the
-  same change.
+- **A change to a product file** can make the README, the plugin's README or a page in
+  `docs/` wrong: reread them, and fix them in the same change.
 - Verify with `claude plugin validate .`, `node scripts/check-catalog.mjs` and
   `node scripts/check-docs.mjs`. All three must pass.
 - Draft every text that will become public, in the stripped wording: `commit.txt`,

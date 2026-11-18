@@ -91,7 +91,7 @@ In the same change:
 
 - **A row in `measurements/verdicts.md`**: the case, the passes in each arm, and what
   was kept or cut.
-- **A decision in `docs/explanation/decisions.md`**, with the numbers as its reason.
+- **A decision in `measurements/decisions.md`**, with the numbers as its reason.
 - **For a removal, a row in "Renamed and removed"** in
   `plugins/marketplace-steward/references/catalog.md`, saying it was measured. The
   steward then knows the subject is covered on purpose, and recommends no outside

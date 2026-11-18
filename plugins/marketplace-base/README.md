@@ -1,73 +1,45 @@
 # marketplace-base
 
-What every docked project runs on, besides its standards. It tells each session which
-standards exist, keeps the build and the tests green, and sends the corrections people
-make back to the curators. The steward installs it first, in every project it docks.
-
-**In use.** It runs in three docked projects so far, listed in the
-marketplace's [README](../../README.md#where-it-runs).
+What every docked project runs on, besides its standards. The steward installs it first
+in every project it docks. It is in use in the projects listed in the marketplace's
+[README](../../README.md#where-it-runs).
 
 | | |
 |---|---|
-| Hooks | The standards index, the build-and-test guard and the corrections collector, below |
-| Agents | `test-runner`, on Haiku, which runs a check and reports only what failed; `reviewer`, on Opus, which reviews work when the person asks. Both read-only |
-| Scripts | `scripts/`, plain Node with no dependencies. It needs Node 18 or later on the machine |
+| Hooks | The standards index, the build-and-test guard and the corrections collector |
+| Agents | `test-runner`, which runs a check and reports only what failed; `reviewer`, which reviews work when asked. Both read-only |
 | Layer | None: it is part of the marketplace itself |
 | Builds on | `language-simple-natural-language` |
 
+It needs Node 18 or later on the machine.
+
 ## What it does
 
-- **At session start, the index.** One line for each standard in the marketplace, with
-  the ones enabled in this project marked, about 800 tokens. A session can then say
-  "there is a standard for that" when someone asks for work it covers, and offer to
-  add it.
-- **When Claude is about to stop, the guard.** If a file changed in this session, by a
-  tool or through the shell, it runs the project's check command from the project's
-  root, and a failure keeps Claude working, with the last lines of the output. After
-  three failures in a row it lets Claude stop and says so. A project without a check
-  command is never checked. Work that was uncommitted before the session started is
-  not blamed on it.
-- **While you work, the collector.** After an answer, a background run on Haiku reads
-  what the session added since its last look, at most once in ten minutes. It reads
-  what the person wrote and what Claude answered, never a tool's output. It adds the
-  possible corrections to a list on disk. Nothing waits for the session to end.
-- **At session start, the filing.** The lists of earlier sessions in this project become
-  one issue on the marketplace. A session that was killed or never closed is read to
-  its end first.
+- **The index.** At session start, one line for each standard, with the ones enabled
+  here marked, so a session can offer a standard it doesn't have.
+- **The guard.** When Claude is about to stop and a file changed, it runs the project's
+  check command. A failure keeps Claude working; after three failures in a row it lets
+  Claude stop and says so.
+- **The collector.** In the background, it notes corrections people make and files
+  them, at a later session start, as one issue for the curators. It files with `gh`.
 
-## The check command
+## Settings
 
-The guard runs `STEWARD_CHECK` from `env` in the project's `.claude/settings.json`, or
-in `.claude/settings.local.json` over it. The steward writes it when it docks a project,
-from the command the project's CI runs:
+Under `env` in the project's `.claude/settings.json`:
 
-```json
-{ "env": { "STEWARD_CHECK": "npm run build && npm test" } }
-```
-
-Remove it, and the guard does nothing in that project.
-
-A project where the command covers only part of the work, such as a built site beside
-documents and data, says which part in `STEWARD_CHECK_PATHS`, globs relative to the
-project's root and separated by commas. The guard then runs only when a file in those
-paths changed:
+- `STEWARD_CHECK`: the command the guard runs. The steward writes it from the project's
+  CI. Without it, the guard does nothing.
+- `STEWARD_CHECK_PATHS`: comma-separated globs; the guard then runs only when a file in
+  them changed.
+- `STEWARD_COLLECT`: `"off"` turns the collector off. It also works in your own
+  settings.
 
 ```json
 { "env": { "STEWARD_CHECK": "npm run build", "STEWARD_CHECK_PATHS": "web/**,infra/**" } }
 ```
 
-## The collector
-
-- It files with `gh`, signed in on the machine. When `gh` can't file, the lists stay in
-  the plugin's data folder and are tried again at the next session start.
-- It starts from the day it is installed: only sessions that run with the plugin are
-  noted, so it never files a backlog.
-- A session with fewer than two messages from the person is skipped without a model
-  call, and so is a pass with nothing new in it.
-- It writes placeholders for names and secrets it notices, but it is a model, not a
-  filter, and the issues are as public as the marketplace's repository.
-- `"STEWARD_COLLECT": "off"` under `env`, in a project's settings or your own, turns
-  it off.
+The collector writes placeholders for names and secrets it notices, but it is a model,
+not a filter, and the issues are as public as the marketplace's repository.
 
 ## Install
 
@@ -79,6 +51,4 @@ claude plugin install marketplace-base@personal-claude-plugin-marketplace --scop
 
 ## More
 
-- What it reads, writes and runs: [`docs/reference/the-base.md`](../../docs/reference/the-base.md)
-- Why it works the way it does:
-  [`docs/explanation/the-base.md`](../../docs/explanation/the-base.md)
+- [How it works](../../docs/how-it-works.md)

@@ -109,7 +109,7 @@ All decided on 2026-10-19, while this documentation was planned.
 |---|---|---|---|
 | D38 | Plain Markdown on GitHub, with Mermaid, and no build | The repo has no build and no dependencies on purpose | Holds |
 | D39 | The concept page is dissolved: its explanations into the docs, its rules into the product and `CLAUDE.md` | "The concept can now live in the new documentation and agentic setup" | Done |
-| D40 | The full plugin table lives in `reference/plugins.md`, checked by `check-catalog.mjs` | The landing page names the layers; the list belongs in reference, where a check reads it | Done |
+| D40 | The full plugin table lives in `reference/plugins.md`, checked by `check-catalog.mjs` | The landing page names the layers; the list belongs in reference, where a check reads it | **Superseded** by D105 |
 | D41 | `.claude/rules/authoring.md` becomes a pointer | It loads whenever a skill file is touched, and should restate nothing | **Superseded** by D47 |
 | D42 | A docs check, `scripts/check-docs.mjs`, runs in CI | Broken links are the docs' silent failure | Done |
 | D43 | Writing the documentation stops for the maintainer twice: once the structure is laid, and once the whole set is done | The structure is what every later page sits in | Holds |
@@ -244,7 +244,7 @@ centralize ways of working between teams." The rebuild shipped as one pull reque
 
 | # | Decision | Why | Now |
 |---|---|---|---|
-| D62 | The marketplace keeps a company's knowledge and ways of working, and spreads them across its teams, for beginners and experts alike. Users, contributors and curators are different groups. Anyone can talk to the steward; nobody has to | "A tool that is able to keep knowledge and distribute it across an enterprise, for people with no knowledge and experts alike" | Holds, in `README.md` and [The idea](the-idea.md) |
+| D62 | The marketplace keeps a company's knowledge and ways of working, and spreads them across its teams, for beginners and experts alike. Users, contributors and curators are different groups. Anyone can talk to the steward; nobody has to | "A tool that is able to keep knowledge and distribute it across an enterprise, for people with no knowledge and experts alike" | Holds, in `README.md` and `docs/how-it-works.md` |
 | D63 | No trios and no generated agents. The steward writes no agent and no run skill into a project; it removes those an earlier steward wrote | The trios were what started the interview. They were expensive, and they fit focused feature work only | Holds, in `dock.md` and `tidy.md` |
 | D64 | A way of working is a standard, and a standard is a skill: a way to annotate code, a template, a quality standard for prose, emails or presentations. A quirk lives in the project's `CLAUDE.md`. A team whose projects share a quirk gets a `team-<name>` plugin, in the marketplace only as a last resort. One marketplace | "Every organization or team has its quirks, we want to account for that." A team plugin costs a description in every session of every project that enables it, so it has to earn it | Holds, in `place-knowledge.md`, the catalog's Layers and `check-catalog.mjs` |
 | D65 | Settings and hooks are allowed where they fit | "We want to always work smart, not necessarily cheap. We still want high quality while keeping the waste to a minimum." A hook does what a skill can only ask for | Holds, in `marketplace-base`; supersedes D35 |
@@ -417,6 +417,15 @@ was copied.
 | # | Decision | Why | Now |
 |---|---|---|---|
 | D104 | `clean-code` gains three rules: a value used in more than one file defined once as a constant; an event logged as data with named fields; and a doc comment with one call and its result on a function a package exports for other projects, the one comment that may say what | Seven cases covered rules from the article that no earlier measurement covered. The rest were dropped without a case: names, comments that say why, duplication, error messages, regression tests, dependencies passed in, wrapped libraries, one responsibility and short functions were measured before (D99 to D103); TDD and coverage targets belong to `development-standards`; the rules on agent files belong to the curator. A probe without the skill, 3 runs, dropped three that passed 3 of 3: a timeout on a network call, early returns, and no `any`. Structured logs passed 2 of 3 and went on to the lift, because its grader failed one run outright. A lift, 5 runs per arm, kept four: one constant (5 vs 0), structured logs (5 vs 0), the issue number (4 vs 0) and the doc example (4 vs 0). A first stored run hit the usage limit, and a second the cost cap of $10 per call; neither was stored. The third, line 16, with a cap of $25, held all four: 5 vs 0, 5 vs 2, 5 vs 0 and 5 vs 0. Against `main`, `model-name`, `payment-log` and `slugify-doc` are better, and `tax-comments` worse, 0.77 against 0.93: in 4 of 5 runs the doc-example rule, then written for any public function of a library, put a doc comment on an app's own exported function, and the comments-say-why grader failed it. The rule was narrowed to a function a package exports for other projects, and named as the exception to comments that say why. A lift of the two cases on the narrowed rule: `slugify-doc` 5 vs 0, `tax-comments` 0.97 against 0.00, and better than `main` in the same run, 0.97 against 0.77, so part of the drop in line 16 was the case's own noise. The issue number in the comment held 5 vs 0 but was cut by the maintainer's choice: against `main`, whose rule on a reason in a comment already wrote it in 4 of 5 runs, it was within noise, 0.80 against 1.00. Line 16 was measured before the narrowing and the cut. Mean Δ +0.58 | Holds, in `clean-code` and `verdicts.md` |
+
+## Short docs: D105
+
+Decided on 2026-11-18, when the maintainer said the docs were "way to complex now.. keep
+it simple and on point".
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D105 | The docs are the README, `docs/getting-started.md`, `docs/how-it-works.md`, `CONTRIBUTING.md` and a short README per plugin. The plugin table moves into the README, where `check-catalog.mjs` reads it. This file moves to `measurements/`. The working records, the reference pages, the guides and the glossary are deleted | Too much text, and the README is the first thing a visitor reads. The rules live in the product files; the docs link to them. Supersedes D40, and the documentation layout of D38 to D45 | Holds, in `README.md`, `check-docs.mjs` and `check-catalog.mjs` |
 
 ## Still open
 
