@@ -35,8 +35,10 @@ never touches git, so branch first.
 
 Each skill comes with test tasks. They run with the skill and without it, and a rule
 stays only when it changes the result. A rule the model already follows costs tokens in
-every session and changes nothing, so it goes. The numbers are in
-[`measurements/`](measurements/).
+every session and changes nothing, so it goes.
+
+**[How a skill is measured](docs/measuring.md)** explains the method, and
+[`measurements/`](measurements/) holds the numbers.
 
 ## It learns from use
 
@@ -55,7 +57,8 @@ docked project.
 ## More
 
 - [Getting started](docs/getting-started.md): dock a project and work in it
-- [How it works](docs/how-it-works.md): the three plugins, and how a rule is measured
+- [How it works](docs/how-it-works.md): the three plugins, and how the marketplace grows
+- [How a skill is measured](docs/measuring.md): cases, lift and the stored runs
 - [Contributing](CONTRIBUTING.md): change a standard or add one
 
 ## License

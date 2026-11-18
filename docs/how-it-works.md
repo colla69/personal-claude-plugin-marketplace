@@ -30,7 +30,8 @@ and without it, several times, and compares the results with `main`:
 - A rule the model already follows is cut, because it costs tokens and changes nothing.
 - A change to a skill must not lose what `main` already gets.
 
-The results are in [`measurements/`](../measurements/), and the reason for each decision
+[How a skill is measured](measuring.md) has the steps. The results are in
+[`measurements/`](../measurements/), and the reason for each decision
 is in [`measurements/decisions.md`](../measurements/decisions.md).
 
 ## How it grows
