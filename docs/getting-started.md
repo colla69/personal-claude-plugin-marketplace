@@ -9,14 +9,13 @@ claude plugin marketplace add colla69/personal-claude-plugin-marketplace
 claude plugin install marketplace-steward@personal-claude-plugin-marketplace --scope user
 ```
 
+Then run `/reload-plugins`, or start a new session.
+
 ## Dock a project
 
 Create a branch, open a session in the project and say "dock this project". The steward
-asks at most three things:
-
-- which marketplaces the project may draw standards from;
-- whether to keep or replace the project's `AGENTS.md` files, if it has any;
-- whether the project writes Conventional Commits, if it has code.
+asks a few questions, such as which marketplaces the project may draw standards from and
+whether the project writes Conventional Commits.
 
 It then does the rest:
 
@@ -26,7 +25,8 @@ It then does the rest:
   scope;
 - removes rules from an existing setup that a standard already states.
 
-It reports every file it wrote. Read the diff and commit it.
+It reports every file it wrote. Read the diff, commit it, and run `/reload-plugins` or
+start a new session.
 
 ## Work in it
 
@@ -37,8 +37,9 @@ You work as before. In every session of a docked project:
 - **The guard** runs the project's check command before Claude stops, if a file
   changed. A failure keeps Claude working.
 - **The collector** notes when you correct Claude, and files the corrections as an
-  issue on this repo at the next session start. `"STEWARD_COLLECT": "off"` under `env`
-  in the settings turns it off.
+  issue on this repo at the next session start. It needs `gh` signed in. It sends the
+  conversation text to Haiku, and the issues are public, like this repo.
+  `"STEWARD_COLLECT": "off"` under `env` in the settings turns it off.
 - **The reviewer** reviews the work when you ask for a review.
 
 ## Keep it current

@@ -13,7 +13,7 @@
 //   3 ablate    measured, with a lift: find which part carries it (skill-slices.mjs)
 //   4 cheap     no cases, and small: low stakes, measure last
 //   5 rules     measured rule by rule, with no single number: verdicts.md has the reading
-//   6 own       the marketplace's own plugins: judged by the work-on-the-steward route
+//   6 own       the marketplace's own plugins: judged by hand, not by this list
 // A skill with no cases is "measure" when its body and references pass SMALL tokens.
 // The mean Δ is the last stored line of results.jsonl, else the number that starts the
 // plugin's row in verdicts.md, for a suite that was run and not stored. When that row
