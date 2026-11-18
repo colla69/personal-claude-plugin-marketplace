@@ -1,7 +1,7 @@
 # Measurements
 
-What the marketplace's checks keep. Raw eval output stays out of git, in
-`plugins/*/evals/results/`; one summary line per suite run is kept here.
+What the marketplace's checks keep. Raw eval output stays out of git, in a
+temporary folder; one summary line per suite run is kept here.
 
 | File | Holds | Written by |
 |---|---|---|

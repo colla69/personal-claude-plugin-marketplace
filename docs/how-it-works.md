@@ -22,17 +22,10 @@ two standards apply, the more specific one wins.
 
 ## Every rule is measured
 
-A rule earns its place only when the model breaks it without the rule. Each skill has
-test tasks in [`evals/`](../evals/). `scripts/eval-skill.mjs` runs them with the skill
-and without it, several times, and compares the results with `main`:
-
-- A rule that changes the result stays.
-- A rule the model already follows is cut, because it costs tokens and changes nothing.
-- A change to a skill must not lose what `main` already gets.
-
-[How a skill is measured](measuring.md) has the steps. The results are in
-[`measurements/`](../measurements/), and the reason for each decision
-is in [`measurements/decisions.md`](../measurements/decisions.md).
+A rule earns its place only when the model breaks it without the rule. Each skill's
+test cases run with the skill and without it, and a rule that changes nothing is cut.
+[How a skill is measured](measuring.md) has the details, and
+[`measurements/`](../measurements/) the results and the reason for each decision.
 
 ## How it grows
 
