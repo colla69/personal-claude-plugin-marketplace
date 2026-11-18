@@ -10,7 +10,7 @@
     {
       "name": "universal-clean-code",
       "source": "./plugins/universal-clean-code",
-      "description": "The clean-code rules measured to change what the model writes: callers above helpers, no flag arguments, commands apart from queries, no comment noise, no reaching through chains, wrapped libraries, logic on the object whose data it uses, a type for money, one table for one choice, dependencies passed in, two designs before a new module, composition over inheritance, no pass-through variables, precise names.",
+      "description": "The clean-code rules measured to change what the model writes: callers above helpers, no flag arguments, commands apart from queries, no comment noise, no reaching through chains, wrapped libraries, logic on the object whose data it uses, a type for money, one table for one choice, dependencies passed in, one constant for a shared value, structured logs, a usage example on a function a package exports, two designs before a new module, composition over inheritance, no pass-through variables, precise names.",
       "category": "universal",
       "tags": ["clean-code", "standards", "readability"]
     },

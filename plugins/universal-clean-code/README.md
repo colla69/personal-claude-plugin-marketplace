@@ -5,11 +5,13 @@ code cheaper to change next month? When a rule and that test disagree, the test 
 
 It holds only the rules a measurement showed the model breaks without them: callers
 above helpers, no flag arguments, commands apart from queries, no comment noise, the
-reason for a choice in a comment, no reaching through chains, side tasks kept out of
-business rules, wrapped third-party libraries, logic on the object whose data it uses, a
-type for a domain value such as money, one table for one choice, dependencies passed in,
-two designs sketched before a new module, composition over inheritance, no shallow
-wrappers, no pass-through variables, a clear stop on a corrupt input, and precise names.
+reason for a choice in a comment, a usage example on a function a package exports,
+structured logs, one constant for a value used in many files, no reaching through
+chains, side tasks kept out of business rules, wrapped third-party libraries, logic on
+the object whose data it uses, a type for a domain value such as money, one table for
+one choice, dependencies passed in, two designs sketched before a new module,
+composition over inheritance, no shallow wrappers, no pass-through variables, a clear
+stop on a corrupt input, and precise names.
 
 | | |
 |---|---|

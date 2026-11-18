@@ -1,6 +1,6 @@
 ---
 name: clean-code
-description: The house standard for clean code, holding only the rules measured to change what the model writes — callers above helpers, no flag arguments, commands apart from queries, no comment noise, no reaching through chains, side tasks kept out of business rules, wrapped third-party libraries, logic on the object whose data it uses, a type for a domain value such as money, one table for one choice, dependencies passed in, two designs sketched before a new module, composition over inheritance, no shallow wrappers, no pass-through variables, a clear stop on a corrupt input, precise names, and the reason for a choice in a comment. Use whenever writing new code, designing a module, writing or changing a function, fixing a bug in a file, or calling a third-party library, or when the user mentions readability, maintainability or "clean code".
+description: The house standard for clean code, holding only the rules measured to change what the model writes — callers above helpers, no flag arguments, commands apart from queries, no comment noise, no reaching through chains, side tasks kept out of business rules, wrapped third-party libraries, logic on the object whose data it uses, a type for a domain value such as money, one table for one choice, dependencies passed in, one constant for a value used in many files, structured logs, two designs sketched before a new module, composition over inheritance, no shallow wrappers, no pass-through variables, a clear stop on a corrupt input, precise names, the reason for a choice in a comment, and a usage example on a function a package exports. Use whenever writing new code, designing a module, writing or changing a function, fixing a bug in a file, or calling a third-party library, or when the user mentions readability, maintainability or "clean code".
 ---
 
 # Clean code standard
@@ -40,11 +40,17 @@ A rule the model already follows costs every session and changes nothing.
 - Where a choice over the same values is made in two places, such as a status's label
   and its color, keep one table both read. Don't add a second `switch`, even when the
   file already has one: a new status added to one `switch` is missed in the other.
+- Where a value such as a model name or a URL is used in more than one file, define it
+  once as a constant that every file imports. Don't copy the string into a new file,
+  even when the files beside it do: a change made in one copy is missed in the others.
 
 ## Errors
 
 - If an input is broken past repair, such as a config file that isn't valid JSON, stop
   with an error that names the file and the problem.
+- Log an event as data with named fields, such as
+  `logger.error({ event: 'charge_failed', orderId, amount, reason })`, not as a
+  sentence with the values inside. A search can then find it by field.
 
 ## Names
 
@@ -61,6 +67,10 @@ When you change a file, leave its comments cleaner than you found them:
   says why: a reason, a constraint, a warning.
 - When the task gives a reason for a choice, such as a bug a change fixes, put it in a
   comment next to the code, not only in your reply.
+- Give a function that a package exports for other projects, such as one reached from
+  `main` in `package.json`, a doc comment that says what it is for and shows one call
+  with its result, since a caller in another project reads it instead of the code.
+  This is the one comment that may say what.
 - Remove a function nothing calls or exports.
 
 ## Objects and boundaries
@@ -81,7 +91,7 @@ When you change a file, leave its comments cleaner than you found them:
 ## Where this yields
 
 - **To the code around it**, for a small change, in style. Consistency within a file
-  beats correctness against this standard. The comment rules and the one-table rule
-  above are the exceptions.
+  beats correctness against this standard. The comment rules, the one-table rule and
+  the one-constant rule above are the exceptions.
 - **To the more specific layers** for what is specific to them: a language's idioms and
   a framework's conventions.
