@@ -7,6 +7,7 @@ What the marketplace's checks keep. Raw eval output stays out of git, in
 |---|---|---|
 | `results.jsonl` | One line per suite run: date, commit, suite, both model IDs, `claudeVersion`, runs, ablation, scores per run for every case, cost, duration, `partial` | `node scripts/eval-skill.mjs <plugin> --decide`, or `scripts/eval-summary.mjs --append` |
 | `verdicts.md` | One reading per skill: mean Δ, what it shows, what is open | By hand, after a `--decide` run |
+| `decisions.md` | Every decision about the marketplace, numbered, with its reason | By hand, when a decision is made |
 
 Compare two results with `node scripts/eval-compare.mjs <before> <after>`. A result is
 a file from `claude plugin eval --json` or a line of `results.jsonl`, named as

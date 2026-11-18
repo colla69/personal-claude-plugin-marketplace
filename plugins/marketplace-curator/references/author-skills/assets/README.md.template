@@ -45,7 +45,3 @@ claude plugin install {{PLUGIN_NAME}}@personal-claude-plugin-marketplace --scope
 
 - The standard itself:
   [`skills/{{SKILL_NAME}}/SKILL.md`](skills/{{SKILL_NAME}}/SKILL.md)
-- Every plugin, with its layer and what it builds on:
-  [`docs/reference/plugins.md`](../../docs/reference/plugins.md)
-- Why the layers, and why dependencies point the way they do:
-  [`docs/explanation/layers.md`](../../docs/explanation/layers.md)

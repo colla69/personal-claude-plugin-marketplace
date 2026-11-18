@@ -13,7 +13,7 @@ import { join, dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-const PLUGINS_PAGE = 'docs/reference/plugins.md'
+const PLUGINS_PAGE = 'README.md'
 const CATALOG = 'plugins/marketplace-steward/references/catalog.md'
 // The four layers, general to specific, then one team's own plugins, then the
 // plugins that work on the marketplace itself. Each is a category and the name prefix that goes with it.
@@ -141,11 +141,11 @@ for (const [name, deps] of dependencies) {
 }
 
 // The two mirrors, both ways: a stale name left in a table passes the presence check.
-// Every plugin table in the docs lists every plugin. The catalog splits them across
+// Every plugin table in the README lists every plugin. The catalog splits them across
 // one table per layer, so there the tables together list every plugin.
 const docsTables = namesInPluginColumns(read(PLUGINS_PAGE))
 const mirrors = [
-  ...docsTables.map((t, i) => [`plugins.md table ${i + 1}`, PLUGINS_PAGE, t]),
+  ...docsTables.map((t, i) => [`README table ${i + 1}`, PLUGINS_PAGE, t]),
   ['catalog.md tables', CATALOG, new Set(namesInPluginColumns(read(CATALOG)).flatMap((t) => [...t]))],
 ]
 if (docsTables.length === 0) fail(`${PLUGINS_PAGE} has no table with a Plugin column`)

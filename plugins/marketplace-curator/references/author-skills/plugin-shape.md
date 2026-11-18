@@ -77,7 +77,7 @@ The plugin list is mirrored in three files, and missing one is silent.
 | File | What goes in it | Missing it means |
 |---|---|---|
 | `.claude-plugin/marketplace.json` | An entry with `name`, `source` (`./plugins/<name>`), `description`, `category` and `tags`. The `description` lives here and nowhere else | The plugin doesn't exist |
-| `docs/reference/plugins.md` | A row in the plugin table, and its name in the By layer table | Nobody knows it's there |
+| `README.md` | A row in the "What's inside" table | Nobody knows it's there |
 | `plugins/marketplace-steward/references/catalog.md` | A row with the layer and the **signal that justifies choosing it**: what docking must find in a project before installing it | It installs fine and is never chosen for any project |
 
 The signal has to be checkable. Not "use this for Django work", but "`django` in

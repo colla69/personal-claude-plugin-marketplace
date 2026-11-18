@@ -20,11 +20,10 @@ HEAD`. Then review it:
 
 - **A skill, an agent, a hook, a plugin or a manifest:** run
   `evaluate-skills` on it.
-- **A page in `docs/` or an entry point:** apply the review checklist in
-  `docs/contributing/writing-docs.md`, against the sources the map in `docs/README.md`
-  names for that page.
-- **A product file that feeds a page:** check that the page still says what the file
-  does. The map's Sources column names which pages to reread.
+- **A page in `docs/` or an entry point:** check that it is short, that each claim
+  matches the file it describes, and that it links to a rule instead of restating it.
+- **A product file:** check that the README, the plugin's README and the pages in
+  `docs/` still say what the file does.
 
 Leave the ablation out and report it as not run: it spends credits nobody asked for.
 Without the source project's names, report the leak check as not run, never as clean.
