@@ -43,6 +43,11 @@ All three must pass. `claude plugin validate` warns "no version specified" and "
 description provided" for each plugin. Both are the policy. CI runs all three on every
 pull request.
 
+When you change a skill's description or its `evals/<plugin>/triggers.json`, also run
+`node scripts/check-triggers.mjs`. It checks that every skill loads on its prompts and
+stays quiet on the rest. It calls the model, about $49 for a full run, so CI doesn't
+run it.
+
 The repo is public. Search your change for the names of your clients, colleagues and
 private projects before you push.
 

@@ -427,6 +427,16 @@ it simple and on point".
 |---|---|---|---|
 | D105 | The docs are the README, `docs/getting-started.md`, `docs/how-it-works.md`, `CONTRIBUTING.md` and a short README per plugin. The plugin table moves into the README, where `check-catalog.mjs` reads it. This file moves to `measurements/`. The working records, the reference pages, the guides and the glossary are deleted | Too much text, and the README is the first thing a visitor reads. The rules live in the product files; the docs link to them. Supersedes D40, and the documentation layout of D38 to D45 | Holds, in `README.md`, `check-docs.mjs` and `check-catalog.mjs` |
 
+## Triggers and the cost of model calls: D106
+
+Decided on 2026-11-27, after the maintainer asked to measure whether descriptions fire,
+"Yes we need good Tests", and to probe skills for the security of AI-built apps,
+dependency hygiene, data safety and LLM cost.
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D106 | A trigger check, `scripts/check-triggers.mjs`, loads every skill plugin except the base at once and runs the prompts in `evals/<plugin>/triggers.json`, 5 runs each, a prompt passing at 4 of 5. It is run by hand after a description change, not in CI, since a full run costs about $49. `craft-shipping` gains `llm-cost`: the smallest model that does the task, a cap on the output and a limit on the input. No skill for keys in browser code, delete scripts, endpoint auth or dependencies | A lift run loads one plugin, so it never shows a description losing to another. The prompts are 6 per skill by the author, 168 by an agent that saw only the descriptions, and 8 from the maintainer's sessions with no project named; the quiet ones sit near the skill. The first run, 84 prompts at 3 runs, passed 79: `clean-code` on a new service, `work-discipline` on a config change, `evaluate-skills` on "why isn't it triggering", and two prompts with no text to work on, which were rewritten. The three descriptions were widened. The full set at 5 runs passed 254 of 260 ($43); four of the misses had code pasted in the message or were the maintainer's own prompts, and loaded nothing. Four descriptions were widened, and the final run passed 266 of 271 ($49). It still misses an Italian PDF request (0/5), a reminder service for `clean-code` (0/5), and three prompts at 2 or 3 of 5 that passed in earlier runs. A probe without any skill, 3 runs, dropped as rules those the model already follows: an auth check and owner-scoped queries, a field allowlist and validation, no new dependency where the standard library does it, a check that a package exists, a pinned version, a reversible migration, prompt caching and a stored summary. The lift, 5 runs per arm: the input limit 5 vs 1, the output cap 5 vs 0, the small model 5 vs 0, and against `main` 0.13 before and 1.00 after. The key kept out of the browser 5 vs 2, the delete previewed 5 vs 1 and the rows copied 5 vs 4; against `main`, whose `craft-shipping` had none of these rules, both cases scored 1.00, so the skill was not added. The maintainer chose `craft-shipping` over a new plugin, and the small model over a lower effort without a test | Holds, in `check-triggers.mjs`, `llm-cost` and `verdicts.md` |
+
 ## Still open
 
 | # | Question | Working answer |

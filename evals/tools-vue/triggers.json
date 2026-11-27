@@ -1,0 +1,26 @@
+{
+  "vue-conventions": {
+    "fire": [
+      "Write a Vue component that shows a paginated list of orders.",
+      "My ref doesn't update in the template of this .vue file. Why?",
+      "Extract the fetch logic from this Vue component into a composable.",
+      "write a vue component for a searchable dropdown",
+      "ref or reactive for a form object with 10 fields?",
+      "why isn't my computed updating?\n```js\nconst state = reactive({ items: [] })\nconst { items } = state\nconst count = computed(() => items.length)\n```",
+      "make a composable for fetching paginated data with loading and error state",
+      "I'm adding a checkout flow to our vue 3 app — cart, address, payment steps. how should I structure it?",
+      "convert this to script setup:\n```vue\n<script>\nexport default { data(){ return { n: 0 } }, methods: { inc(){ this.n++ } } }\n</script>\n<template><button @click=\"inc\">{{ n }}</button></template>\n```"
+    ],
+    "quiet": [
+      "Write a React component that shows a paginated list of orders.",
+      "Explain the difference between let and const in JavaScript.",
+      "My macOS app beeps when I press a key.",
+      "react: useState vs useReducer for a big form?",
+      "svelte: store or context for a global theme?",
+      "angular: how do i use signals in a component",
+      "alpine.js: toggle a dropdown with x-data",
+      "solid.js: write a modal component",
+      "set up vite with typescript and path aliases for a vanilla js library"
+    ]
+  }
+}

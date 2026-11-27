@@ -1,0 +1,26 @@
+{
+  "conventional-commits": {
+    "fire": [
+      "Write a commit message for my staged change: I fixed the login timeout.",
+      "Squash these three commits and give me one message for them.",
+      "Is \"feat(api): Removed the v1 endpoints\" a good commit message?",
+      "commit message for this diff:\n- const TIMEOUT = 5000\n+ const TIMEOUT = 10000",
+      "is this a good commit msg? 'fixed stuff and updated deps'",
+      "we squash-merge PRs. what should the PR title be for a change that adds csv export to reports?",
+      "since 1.4.2 these landed: feat(api): add pagination, fix: null user crash, feat!: drop node 16. what's the next version?",
+      "how do I set up commitlint so feat: and fix: prefixes are enforced",
+      "reword this commit: 'Removed the old /v1 endpoints, clients must use /v2 now'"
+    ],
+    "quiet": [
+      "Write release notes for our customers for version 2.3.",
+      "Explain what git rebase does.",
+      "Write a status update for the team about the migration.",
+      "how do i undo my last git commit but keep the changes",
+      "git rebase vs merge for a team of 5, which one?",
+      "my pre-commit hook in .git/hooks isn't running, it exists and has content",
+      "how do i write a version range in package.json that allows minor updates but not major",
+      "write user-facing release notes for the new csv export, for the blog",
+      "how do i resolve a merge conflict in package-lock.json"
+    ]
+  }
+}

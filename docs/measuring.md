@@ -42,6 +42,14 @@ in [`measurements/results.jsonl`](../measurements/results.jsonl). The maintainer
 writes the reading into [`verdicts.md`](../measurements/verdicts.md), and the decision
 and its reason into [`decisions.md`](../measurements/decisions.md).
 
+## Triggers
+
+A skill that never loads costs its description in every session and changes nothing.
+`evals/<plugin>/triggers.json` holds, per skill, prompts it must load on and nearby
+ones it must not. `node scripts/check-triggers.mjs` loads every skill at once, runs each
+prompt for one turn with only the Skill tool allowed, and fails on a miss or a wrong
+load. It costs about $49 a run, so you run it by hand, never in CI.
+
 ## Cost
 
 A large skill such as `universal-clean-code` costs about $9 for 3 runs, and about twice

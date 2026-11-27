@@ -1,0 +1,27 @@
+{
+  "development-standards": {
+    "fire": [
+      "The cart total is off by one cent when a coupon is applied. Fix it.",
+      "Add a function that returns the number of working days between two dates.",
+      "This report endpoint takes 4 seconds, make it faster.",
+      "the total on the invoice is off by a cent sometimes. here's the function:\n```js\nfunction total(items){ return items.reduce((s,i)=>s+i.price*i.qty,0).toFixed(2) }\n```\nfix it",
+      "my parser crashes on empty lines\n```python\ndef parse(lines):\n    return [l.split('=')[1] for l in lines]\n```",
+      "this endpoint is slow, make it faster pls\n```py\n@app.get('/users')\ndef users():\n    return [u.to_dict() for u in User.query.all() if u.active]\n```",
+      "the websocket client drops messages when it reconnects. what's wrong?\n```js\nws.onclose = () => { ws = new WebSocket(url) }\nws.onmessage = e => queue.push(e.data)\n```",
+      "someone hand-edited our generated api client (client.gen.ts, made by openapi-generator from openapi.yaml) to add a `nickname` field to User and it got wiped on the next regen. how do I add that field properly?",
+      "implement a debounce(fn, ms) helper in typescript for our app, it should cancel pending calls when called again",
+      "i am testing the expenses page and it simply feels broken.. the date is still not being read automatically.. the layout is all over the place"
+    ],
+    "quiet": [
+      "Write a commit message for the change I just staged.",
+      "Explain what a closure is in JavaScript.",
+      "Write release notes for version 2.3 from these bullet points: faster search, dark mode, fixed login bug.",
+      "explain what this regex does: ^(?=.*\\d)(?=.*[a-z]).{8,}$",
+      "conceptually, what's the difference between unit tests and integration tests?",
+      "my laptop wifi keeps dropping every few minutes on ubuntu 24.04, how do i fix it",
+      "write a commit message for: fixed null check in parseDate",
+      "is my app ready to launch? it's a small flask app for booking meeting rooms",
+      "what's the big-O of inserting into a python dict, average and worst case?"
+    ]
+  }
+}

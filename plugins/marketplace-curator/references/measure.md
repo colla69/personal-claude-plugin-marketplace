@@ -27,6 +27,11 @@ and five that don't shows a lift, and the five ride along for free.
 In a run, the skill often never loads, and the description is all the model sees.
 Before you cut a rule for no lift, check in the kept output whether the skill loaded.
 
+A lift run loads only the plugin under test, so it can't tell whether the description
+wins its prompts against the others. `node scripts/check-triggers.mjs` loads every
+skill plugin at once and runs the prompts in `evals/<plugin>/triggers.json`, five runs
+each; a prompt passes at 4 of 5. Run it after a change to any description.
+
 ## 2. Write the case
 
 One case is a fixture, a prompt and graders, in `evals/<plugin>/<case>/`. One fixture
