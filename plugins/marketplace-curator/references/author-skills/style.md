@@ -117,8 +117,10 @@ coverage, says code is untested, wants TDD" lists things people say. "Testing
 scenarios" is not.
 
 Two skills whose descriptions win the same prompt split the traffic between them by
-luck. Before finishing, write three prompts a person would really type, and check that
-this description wins them against every other skill in the marketplace.
+luck. Before finishing, write three prompts a person would really type that must load
+the skill, and three nearby ones that must not, in `evals/<plugin>/triggers.json`. Then
+run `node scripts/check-triggers.mjs`. It loads every skill at once, so a description
+that steals another skill's prompt fails there too.
 
 Descriptions are one long line in the YAML. Do not wrap them.
 

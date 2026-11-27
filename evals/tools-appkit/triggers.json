@@ -1,0 +1,26 @@
+{
+  "appkit-conventions": {
+    "fire": [
+      "My macOS app beeps every time I press Escape in the window. How do I stop that?",
+      "Write an NSWindow subclass that handles arrow keys.",
+      "My AppKit app must not quit when the user presses Cmd+Q. How do I do that?",
+      "my NSWindow subclass never gets keyDown events, why?",
+      "every time I press escape in my mac app it beeps. how do i stop that",
+      "write swift for a mac menu bar app that catches cmd+q and asks for confirmation before quitting",
+      "review this:\n```swift\nNSEvent.addLocalMonitorForEvents(matching: .keyDown) { e in\n  if e.keyCode == 53 { handleEsc() }\n  return e\n}\n```",
+      "my kiosk mac app must never quit. how do i do that with NSApplication?",
+      "custom NSView isn't getting key presses even after I click it"
+    ],
+    "quiet": [
+      "Write a SwiftUI view that shows a list of todos.",
+      "My Vue component doesn't update when the prop changes.",
+      "Write a bash script that lists every app in /Applications.",
+      "swiftui: how do i add swipe to delete on a List",
+      "ios uikit: dismiss the keyboard when tapping outside a text field",
+      "an app on my mac is frozen and force quit isn't working, what do i do",
+      "write an electron app with a global shortcut ctrl+shift+k",
+      "how do i notarize a macOS app for distribution outside the app store",
+      "my macbook beeps when i press keys in terminal, how do i turn off the alert sound in settings"
+    ]
+  }
+}

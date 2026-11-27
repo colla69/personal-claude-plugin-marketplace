@@ -37,6 +37,7 @@ Read the file before you change what it governs. None of its rules are repeated 
 | Load the working copy of the curator | `claude --plugin-dir ./plugins/marketplace-curator --plugin-dir ./plugins/language-simple-natural-language` |
 | See a plugin's inventory and cost | `claude --plugin-dir ./plugins/<name> plugin details <name>` |
 | Measure what a project's setup costs | `node plugins/marketplace-steward/scripts/measure-setup.mjs <project>` |
+| Check that every skill loads on its prompts and only on them | `node scripts/check-triggers.mjs` (`--list` shows the prompts for free) |
 | Check one skill's lift against `main` | `node scripts/eval-skill.mjs <plugin>` (`--decide` stores the result) |
 | List every skill by cost and what is known, in review order | `node scripts/skill-audit.mjs` |
 | Run a plugin's evals with a baseline | `claude plugin eval ./plugins/<name> --ablation with-without` |

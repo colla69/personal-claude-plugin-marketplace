@@ -1,0 +1,26 @@
+{
+  "clean-code": {
+    "fire": [
+      "Write a function that calculates the shipping cost from the weight and the destination.",
+      "Clean up this module, it has grown messy.",
+      "Add a service that sends a reminder email three days before a booking.",
+      "write a function that calculates shipping cost from weight and destination country",
+      "this takes a boolean isAdmin to decide what to render, is that ok?\n```js\nfunction renderPanel(user, isAdmin) { if (isAdmin) { /* ... */ } else { /* ... */ } }\n```",
+      "make this more readable:\n```py\ndef p(d):\n  r=[]\n  for x in d:\n    if x['s']==1 and x['t']>100: r.append(x['n'])\n  return r\n```",
+      "write a small python client around the requests library for calling a weather api",
+      "designing a new notifications module for our backend (email + push). how should I lay it out?",
+      "add a POST /orders endpoint in express that validates the body and saves to the db"
+    ],
+    "quiet": [
+      "Write a commit message for the change I just staged.",
+      "Explain what a hash map is.",
+      "Write a status update for the team about the release.",
+      "explain what this does: find . -name '*.log' -mtime +7 -delete",
+      "write a commit message for refactoring the shipping module",
+      "worst-case time complexity of quicksort?",
+      "make this paragraph more readable: 'The system, which was, as previously noted, deployed in a manner that was not entirely consistent with the plan, failed.'",
+      "pretty-print this json: {\"a\":1,\"b\":[1,2,{\"c\":3}]}",
+      "ruff or flake8 for a new python repo?"
+    ]
+  }
+}

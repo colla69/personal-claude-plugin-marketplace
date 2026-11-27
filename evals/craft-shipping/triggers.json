@@ -1,0 +1,117 @@
+{
+  "developer-handoff": {
+    "fire": [
+      "A freelance developer takes over my booking app next week. Write them a handoff.",
+      "Document this project for the next developer who works on it.",
+      "I built this with Cursor and now an engineer is joining. What should I give them so they can start?",
+      "I'm leaving next week and a new dev takes over the booking app. next.js + supabase, env vars SUPABASE_URL, SUPABASE_ANON_KEY, STRIPE_SECRET. write the handoff",
+      "write a handoff",
+      "a freelancer is taking over the app I built with cursor. what should I give them? notes: react frontend, express api on render, postgres on neon, nightly cron sends reminder emails",
+      "document this for the next developer:\n- django + celery + redis\n- deployed on a VPS with docker compose\n- `make deploy` from my laptop\n- SENTRY_DSN and DATABASE_URL in .env on the box\n- no tests for billing",
+      "we hired an engineer who starts monday and will own my side project from now on. help me onboard them, here's what I know: flutter app, firebase backend, I mostly built it with AI prompts",
+      "can u turn these notes into something a contractor can pick the project up with? built mostly with claude / deploy: git push heroku main / DATABASE_URL + SENDGRID_API_KEY in heroku config / known bug: reminder timezones"
+    ],
+    "quiet": [
+      "Write a README for this library so users know how to install it.",
+      "Is my app ready to launch?",
+      "Write a status update for my manager about this week's work.",
+      "onboard this repo onto our team's claude standards",
+      "write a README for my cli tool csv2json. usage: csv2json in.csv > out.json, flags: --pretty, --delimiter",
+      "is this production-ready? express app, sessions stored in memory, single instance",
+      "write release notes for v2.1: added dark mode, fixed login timeout, dropped IE11",
+      "how should my team share .env values securely? right now we paste them in chat",
+      "write a status update for my manager: db migration 70% done, blocked on prod access, eta friday"
+    ]
+  },
+  "new-project": {
+    "fire": [
+      "Build me an app that tracks my running times. This folder is empty.",
+      "Start a new project for a small recipe website.",
+      "Scaffold a new web app for booking tennis courts.",
+      "build me an app that tracks when I watered my plants",
+      "scaffold a new REST api project in go",
+      "i want to start a little web app for my book club where members vote on the next book. where do we start?",
+      "set up a new vite + react project here",
+      "new project: a discord bot that posts the weather every morning. go",
+      "create an app that renames my photos by their exif date, starting from scratch"
+    ],
+    "quiet": [
+      "Add a dark mode toggle to the settings page of my app.",
+      "Write a handoff for the developer taking over this app.",
+      "Fix the failing test in the checkout module.",
+      "add eslint and prettier to my existing typescript project",
+      "dock this project onto our standards",
+      "how do i set up github actions to run my tests on every push",
+      "add a dark mode toggle to this:\n```jsx\nfunction App(){ return <Main/> }\n```",
+      "postgres vs mongodb for a chat app — just curious in general, not building anything",
+      "set up a local redis with docker for development"
+    ]
+  },
+  "readiness-review": {
+    "fire": [
+      "Is my app ready to launch?",
+      "Can I ship this to production on Monday?",
+      "What must I fix before launch?",
+      "is my app ready to launch?",
+      "can I ship this? node/express shop with stripe checkout, built with an AI tool over a weekend",
+      "what must i fix before going live with my saas? auth is clerk, db is supabase, zero tests",
+      "do a launch audit of my app",
+      "a dev takes over my app next month. audit it first so i know what's broken before the handoff",
+      "is this production-ready?\n```js\napp.post('/login', async (req,res)=>{\n  const u = await db.query(`SELECT * FROM users WHERE name='${req.body.name}'`)\n  res.json(u)\n})\n```"
+    ],
+    "quiet": [
+      "Review this pull request for bugs.",
+      "Upload the new version of the site to the server over SFTP.",
+      "Start a new app for tracking expenses in this empty folder.",
+      "find bugs in this diff:\n- if (count > 0) {\n+ if (count >= 0) {",
+      "write a short friendly launch announcement for our new todo app",
+      "write a handoff for the developer taking over the app",
+      "upload the new version of the site to the server over sftp",
+      "how do i add a staging environment on render?",
+      "what's the difference between a canary release and a blue-green deploy?",
+      "youre on the live system, how is everything running? any problems, bugs?"
+    ]
+  },
+  "replace-live-files": {
+    "fire": [
+      "Put the new build on the server. I only have SFTP access.",
+      "Upload the new version of my website to the live host and replace the old files.",
+      "Write a script that publishes the dist folder over SFTP to the running server.",
+      "put the new build on the server, I only have sftp access to /var/www/html",
+      "upload the new version of my site. shared hosting, only sftp, no ssh shell",
+      "write a bash script that pushes ./dist to my web host over sftp and replaces the old files",
+      "publish over sftp: the static site lives at sftp://webhost/public_html",
+      "need to swap out the php files on our live wordpress server. no git, no pipeline, just filezilla. how do I do it without breaking the site?",
+      "replace index.html and app.js on the running server with my new ones, I have scp access"
+    ],
+    "quiet": [
+      "Set up a GitHub Actions workflow that runs the tests.",
+      "Is my app ready to launch?",
+      "Write a commit message for the deploy script change.",
+      "set up a github actions workflow that deploys to vercel on push to main",
+      "how do i upload a file to s3 with boto3?",
+      "my sftp connection keeps failing with 'Connection reset by peer', why?",
+      "write a python script that downloads everything from an sftp server into a local backup folder",
+      "write a dockerfile for my node app",
+      "explain what rsync --delete does",
+      "youre on the live system, how is everything running? any problems, bugs?"
+    ]
+  },
+  "llm-cost": {
+    "fire": [
+      "Add a feature that shows an AI summary at the top of each support ticket, using the Anthropic API.",
+      "the API bill is too high on our chatbot, here is the call: client.messages.create({model: \"claude-opus-5-5\", max_tokens: 4096, messages})",
+      "summarize with Claude every product review we store, in a nightly job",
+      "add AI to our CRM: classify each incoming email as sales, support or spam",
+      "write a python function that sends a document to gpt and extracts the invoice number and total"
+    ],
+    "quiet": [
+      "how much does the claude api cost per million tokens for opus?",
+      "Write a system prompt for an agent that sorts support emails.",
+      "explain what a token is in an LLM",
+      "Make this SQL query faster: SELECT * FROM tickets WHERE status = 1",
+      "Our AWS bill doubled last month, where do I look?",
+      "write a commit message for switching the summary model to haiku"
+    ]
+  }
+}

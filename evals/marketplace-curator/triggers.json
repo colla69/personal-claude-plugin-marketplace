@@ -1,0 +1,51 @@
+{
+  "curate": {
+    "fire": [
+      "Turn this lesson into a change to a standard: the model keeps forgetting to pin dependency versions.",
+      "Look through the issues the marketplace has collected.",
+      "Add a new skill to the marketplace for database migrations.",
+      "we learned the hard way that claude keeps hardcoding timeouts. turn that into a rule in our clean code standard",
+      "add a new skill to the marketplace for writing SQL migrations",
+      "go through the issues the marketplace has collected and tell me which are worth acting on",
+      "issue #12 says the vue standard gets ref vs reactive wrong. make it a change to the standard",
+      "I want a team plugin for the mobile team that bundles the swift and kotlin standards",
+      "correction from yesterday's session: the commit standard should allow 'chore' without a scope. fold that into the standard"
+    ],
+    "quiet": [
+      "Dock this project.",
+      "Is this skill well written?",
+      "Fix the typo in the README of this repo.",
+      "add the standard for vue to this project",
+      "is the clean-code skill in this marketplace well written?",
+      "why isn't the vue skill of this marketplace triggering?",
+      "create a personal skill for my own ~/.claude that formats my journal entries",
+      "dock this project",
+      "open a github issue describing the login bug: clicking save twice submits two orders",
+      "help me understand the problem with issue 68"
+    ]
+  },
+  "evaluate-skills": {
+    "fire": [
+      "Is the clean-code skill well written?",
+      "Why isn't the vue-conventions skill triggering?",
+      "Is the craft-shipping plugin ready to merge?",
+      "is the conventional-commits skill in this marketplace well written?",
+      "why isn't the vue-conventions skill triggering?",
+      "is the tools-appkit plugin ready to merge?",
+      "go over the whole set of skills in this marketplace and tell me which ones actually change what claude does",
+      "before I open the PR that changes the clean-code SKILL.md, check that nothing from the project I lifted it from leaks into it",
+      "i'm changing a plugin's description in marketplace.json to just 'Use for Vue.' — will claude still load the skill when it should?"
+    ],
+    "quiet": [
+      "Turn this lesson into a change to a standard.",
+      "Review this pull request for bugs in the checkout code.",
+      "Dock this project.",
+      "add a new skill to the marketplace for sql migrations",
+      "the vue skill isn't loading in my project, I installed it from the marketplace last week",
+      "review PR #31 for correctness bugs",
+      "help me write a brand new skill from scratch that formats changelogs",
+      "which standards do we have for testing?",
+      "evaluate the time complexity of this:\n```py\nfor i in range(n):\n    for j in range(i):\n        pass\n```"
+    ]
+  }
+}

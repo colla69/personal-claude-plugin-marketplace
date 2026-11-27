@@ -1,0 +1,28 @@
+{
+  "simple-natural-language": {
+    "fire": [
+      "Write a postmortem from these incident notes: db down 14:02, failover failed, restored 14:40.",
+      "This sounds like AI wrote it, make it more natural: \"In today's fast-paced landscape, our robust solution seamlessly empowers teams to unlock their full potential.\"",
+      "Schreib das einfacher: \"Die Inbetriebnahme des Geräts ist erst nach erfolgter Durchführung der Erstkonfiguration seitens des Nutzers zulässig.\"",
+      "make this readable: 'Utilization of the aforementioned module shall be effectuated subsequent to the completion of the onboarding procedure.'",
+      "this sounds like chatgpt wrote it, fix: 'In today's fast-paced world, leveraging synergies is crucial. Let's delve into the transformative journey of our Q3.'",
+      "turn these notes into a postmortem: 14:02 db cpu 100%, 14:10 rollback, 14:25 recovered, cause: missing index on orders.user_id",
+      "schreib das einfacher: 'Die Inanspruchnahme der Leistung ist nicht zu gewährleisten, sofern keine vorherige Antragstellung erfolgt ist.'",
+      "write a system prompt for an agent that sorts support emails into billing, bug or other",
+      "scrivilo in modo semplice: 'Si comunica che la procedura di aggiornamento verrà effettuata in data da definirsi.'",
+      "now that you have a new language skill would you retouch the texts in this website?",
+      "mi fai un pdf con la spiegazione della strategia in italiano"
+    ],
+    "quiet": [
+      "Rename the variable `tmp` to something better in this function.",
+      "Write a commit message for the change I just staged.",
+      "What does this regular expression match: ^\\d{3}-\\d{4}$ ?",
+      "translate 'the meeting moved to thursday' into french",
+      "extract all email addresses from this text: contact anna@example.com or ops@example.org, cc bob@example.net",
+      "count how many 500 errors are in this log:\n10:01 GET /a 200\n10:02 GET /b 500\n10:03 POST /c 500\n10:04 GET /d 404",
+      "write a regex that matches german postal codes",
+      "convert this markdown table to json:\n| name | age |\n|---|---|\n| ana | 31 |\n| li | 27 |",
+      "rename this function to something clearer: `function doStuff2(a, b) { return a.filter(x => b.includes(x.id)) }`"
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "work-discipline": {
+    "fire": [
+      "Just add a retry to the payment call, it's a quick fix.",
+      "The reviewer asked me to add caching to getUser. Do it.",
+      "Update the config so the timeout is 30 seconds instead of 10.",
+      "just add a --verbose flag to this:\n```bash\n#!/bin/bash\nrsync -a src/ dest/\n```",
+      "quick fix: change the port from 3000 to 8080\n```json\n{\"port\":3000,\"host\":\"0.0.0.0\"}\n```",
+      "update the config so logging is debug:\n```yaml\nlogging:\n  level: info\n```",
+      "small change: in this email template use the user's first name instead of 'Dear customer'\n```html\n<p>Dear customer,</p>\n```",
+      "requirements: 1) button is blue 2) shows a spinner while saving 3) disabled after click. update this:\n```jsx\n<button onClick={save}>Save</button>\n```",
+      "reviewer asked me to add caching to getUser(). can you do it?\n```ts\nexport async function getUser(id: string) { return db.users.find(id) }\n```",
+      "the [Edit profile](http://localhost:3000/profile) link should be on the same line as the name but on the right side of the page."
+    ],
+    "quiet": [
+      "Explain how TCP handshakes work.",
+      "what does \"strict\": true do in tsconfig?",
+      "yaml vs toml, what's the actual difference?",
+      "how do i set an env var permanently in fish shell",
+      "is my setup current?",
+      "just discussing for now, don't change anything: monorepo or polyrepo for 3 small services?",
+      "summarize this changelog in one line: v3.2 — faster startup, new export menu, removed legacy auth"
+    ]
+  }
+}

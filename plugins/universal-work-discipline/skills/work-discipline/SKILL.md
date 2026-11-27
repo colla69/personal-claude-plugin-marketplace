@@ -1,6 +1,6 @@
 ---
 name: work-discipline
-description: How to do and report a piece of work in a place someone else maintains — say when a simpler way than the one asked for exists, ask one question at a time, check what calls the code before building what a review asks for, run the checks the place itself uses, and never report unverified work as done, going through listed requirements one by one. Use whenever writing something new or changing, extending or fixing existing work of any kind — code, a document, a template, a configuration — or when the user says "just add", "quick fix" or "small change". Also use when the task looks simple, since that is when the check gets skipped.
+description: How to do and report a piece of work in a place someone else maintains — say when a simpler way than the one asked for exists, ask one question at a time, check what calls the code before building what a review asks for, run the checks the place itself uses, and never report unverified work as done, going through listed requirements one by one. Use whenever writing something new or changing, extending or fixing existing work of any kind — code, a page layout, a document, a template, a configuration or one setting in it, such as moving or aligning an element on a page or changing a port — or when the user says "just add", "just change", "update the config", "quick fix" or "small change". Also use when the task looks simple, since that is when the check gets skipped.
 ---
 
 # Work discipline

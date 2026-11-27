@@ -1,0 +1,29 @@
+{
+  "steward": {
+    "fire": [
+      "Dock this project.",
+      "Is there a standard for writing commit messages?",
+      "My setup costs too many tokens. Why is it slow?",
+      "dock this project",
+      "there's no CLAUDE.md here",
+      "is there a standard for writing commit messages?",
+      "why is my claude setup so slow? every session starts with a huge context",
+      "a skill in this project isn't loading, the vue one",
+      "is my setup current?",
+      "update marketplace",
+      "keep setup up to date",
+      "This folder has no code in it yet. Set it up for Claude."
+    ],
+    "quiet": [
+      "Set up the dev server for this project.",
+      "Add ESLint to this project.",
+      "Write a CLAUDE.md that explains the build commands.",
+      "set up a postgres dev database with docker compose",
+      "set up CI for this repo with github actions",
+      "add eslint to the project as a dev dependency",
+      "add a new skill to the marketplace for sql migrations",
+      "build me an app that tracks my expenses",
+      "how much does the claude api cost per million tokens for opus?"
+    ]
+  }
+}
