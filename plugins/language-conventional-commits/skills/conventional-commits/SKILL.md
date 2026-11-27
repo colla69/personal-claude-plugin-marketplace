@@ -1,6 +1,6 @@
 ---
 name: conventional-commits
-description: Write commit messages in the Conventional Commits format — a type, an optional scope, a `!` for a breaking change, a short imperative description, a body that says why, and footers such as `BREAKING CHANGE:`. Use whenever writing, amending, squashing or reviewing a commit message, committing a change, or when the user mentions conventional commits, commitlint, semantic-release, a changelog generated from commits, or a `feat:` or `fix:` prefix. Also use when writing a pull request title in a project that squash-merges, since the title becomes the commit message, and when deciding which version a set of commits releases.
+description: Write commit messages in the Conventional Commits format — a type, an optional scope, a `!` for a breaking change, a short imperative description, a body that says why, and footers such as `BREAKING CHANGE:`. Use whenever writing, amending, squashing or reviewing a commit message, or giving one message for several commits, committing a change, or when the user mentions conventional commits, commitlint, semantic-release, a changelog generated from commits, or a `feat:` or `fix:` prefix. Also use when writing a pull request title in a project that squash-merges, since the title becomes the commit message, and when deciding which version a set of commits releases.
 ---
 
 # Conventional Commits
