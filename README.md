@@ -21,8 +21,9 @@ never touches git, so branch first.
 |---|---|
 | `universal-clean-code` | How good code is written: names, functions, comments, boundaries |
 | `universal-work-discipline` | How work is done and reported where someone else maintains it |
+| `universal-llm-cost` | Every call to a language model bounded by model, output and input |
 | `craft-development` | Test first, bugs reproduced before they are fixed, checks before "done" |
-| `craft-shipping` | Starting, judging and handing over an app, replacing files on a live server, and the cost of model calls |
+| `craft-shipping` | Starting, judging and handing over an app, and replacing files on a live server |
 | `language-simple-natural-language` | Plain English, German and Italian that nobody can misread |
 | `language-conventional-commits` | Commit messages in the Conventional Commits format |
 | `tools-vue` | Vue 3 Composition API conventions |

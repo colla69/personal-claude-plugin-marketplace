@@ -96,22 +96,5 @@
       "explain what rsync --delete does",
       "youre on the live system, how is everything running? any problems, bugs?"
     ]
-  },
-  "llm-cost": {
-    "fire": [
-      "Add a feature that shows an AI summary at the top of each support ticket, using the Anthropic API.",
-      "the API bill is too high on our chatbot, here is the call: client.messages.create({model: \"claude-opus-5-5\", max_tokens: 4096, messages})",
-      "summarize with Claude every product review we store, in a nightly job",
-      "add AI to our CRM: classify each incoming email as sales, support or spam",
-      "write a python function that sends a document to gpt and extracts the invoice number and total"
-    ],
-    "quiet": [
-      "how much does the claude api cost per million tokens for opus?",
-      "Write a system prompt for an agent that sorts support emails.",
-      "explain what a token is in an LLM",
-      "Make this SQL query faster: SELECT * FROM tickets WHERE status = 1",
-      "Our AWS bill doubled last month, where do I look?",
-      "write a commit message for switching the summary model to haiku"
-    ]
   }
 }

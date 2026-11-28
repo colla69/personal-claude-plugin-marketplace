@@ -22,6 +22,13 @@
       "tags": ["discipline", "scope", "verification"]
     },
     {
+      "name": "universal-llm-cost",
+      "source": "./plugins/universal-llm-cost",
+      "description": "Bound every call to a language model: the smallest model that does the task, a cap on the output, and a limit on the input, in an app, a script or a tool alike.",
+      "category": "universal",
+      "tags": ["llm", "cost", "tokens"]
+    },
+    {
       "name": "craft-development",
       "source": "./plugins/craft-development",
       "description": "What careful work means for code: test first, a bug reproduced by a test seen failing, one change at a time while hunting a bug, saying so when a bug can't be reproduced here, timing before making code faster, a search for the same defect after a bug fix, a generated file changed at its source, a names-only template beside credentials, and verification with typecheck, tests and lint.",
@@ -31,7 +38,7 @@
     {
       "name": "craft-shipping",
       "source": "./plugins/craft-shipping",
-      "description": "Shipping an app built with AI: ask the milestone before a launch verdict, and in a handoff mark where each statement comes from and never copy a secret value, in an empty folder ask before choosing the stack, on a live server with no deploy tool back up first and swap by rename, and bound every model call by model, output and input.",
+      "description": "Shipping an app built with AI: ask the milestone before a launch verdict, and in a handoff mark where each statement comes from and never copy a secret value, in an empty folder ask before choosing the stack, and on a live server with no deploy tool back up first and swap by rename.",
       "category": "craft",
       "tags": ["launch", "readiness", "production"]
     },
