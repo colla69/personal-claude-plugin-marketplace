@@ -25,12 +25,12 @@ if (standards.length === 0) process.exit(0)
 const lines = standards.map((p) => `${isEnabled(p.name) ? '✓' : '-'} ${p.name}: ${p.description ?? ''}`)
 
 // The standards the steward weighed when it last docked or refreshed this project.
-const docked = project.env.STEWARD_DOCKED_WITH
+const docked = project.env.STEWARD_DOCKED_WITH === undefined ? undefined : String(project.env.STEWARD_DOCKED_WITH)
 const weighed = new Set((docked ?? '').split(',').map((s) => s.trim()).filter(Boolean))
 const added = docked === undefined ? [] : standards.map((p) => p.name).filter((n) => !weighed.has(n))
 const known = new Set((catalog.plugins ?? []).map((p) => p.name))
 const gone = Object.keys(project.enabledPlugins)
-  .filter((key) => key.endsWith(`@${market.name}`))
+  .filter((key) => project.enabledPlugins[key] === true && key.endsWith(`@${market.name}`))
   .map((key) => key.slice(0, -market.name.length - 1))
   .filter((n) => !known.has(n))
 

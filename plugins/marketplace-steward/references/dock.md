@@ -114,7 +114,9 @@ reports only what failed, so the output stays out of the session.
    ones, separated by commas, whether step 3 chose it or not. The base plugin's index
    compares it with the catalog at every session start and says when a standard was
    added since. A plugin the user turned down stays in the list, so it is not offered
-   again.
+   again. When only one standard is being added to a docked project, add just its name
+   to the list, and write no list when the project has none: the others were not
+   weighed.
 5. **Check every plugin you decided on against `.claude/plugin-sources.json`.** If you
    have talked yourself into a plugin from a source the user unticked, drop it; do not
    widen the file.
@@ -264,10 +266,10 @@ current, or when the base plugin's index says the setup needs an update:
 4. Write the ticked values into `.claude/settings.json`, and keep every other key.
 5. Compare the catalog with `STEWARD_DOCKED_WITH` in the project's settings. Weigh each
    plugin that is missing from it by its signal in `catalog.md`, as step 3 does, and
-   offer the ones that fit in one question. Install the ones the user ticks, as item 6
-   of step 5 says. Remove the dead keys, as item 3 says, and offer each one's
-   successor the same way. Without `STEWARD_DOCKED_WITH`, the project was docked before
-   it was recorded: weigh every plugin that isn't enabled.
+   offer the ones that fit in one question. Install the ones the user ticks, as items 5
+   and 6 of step 5 say. Remove the dead keys, as item 3 of step 5 says, and offer each
+   one's successor the same way. Without `STEWARD_DOCKED_WITH`, the project was docked
+   before it was recorded: weigh every plugin that isn't enabled.
 6. Write `STEWARD_DOCKED_WITH` again, as item 4 of step 5 says.
 7. Run item 7 of step 5, the working agreement. It is not a key in the settings, so
    the table doesn't hold it, and it follows the same rule as in a dock: no question.
