@@ -19,7 +19,8 @@ It needs Node 18 or later on the machine.
   here marked, so a session can offer a standard it doesn't have. It says the setup
   needs an update when a standard was added since the last docking, when a plugin
   enabled here no longer exists, or when the project was docked before this record
-  existed. The session then offers the steward's refresh, at every start until it runs.
+  existed. The session then offers the steward's refresh, at every start until it runs. Only a
+  project whose own settings enable the base gets the notice.
 - **The guard.** When Claude is about to stop and a file changed, it runs the project's
   check command. A failure keeps Claude working; after three failures in a row it lets
   Claude stop and says so.

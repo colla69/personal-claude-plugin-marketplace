@@ -34,11 +34,14 @@ const gone = Object.keys(project.enabledPlugins)
   .map((key) => key.slice(0, -market.name.length - 1))
   .filter((n) => !known.has(n))
 
+// Only a project that enabled the base itself was docked; one that runs it from the
+// person's own settings gets no notice.
+const dockedHere = project.enabledPlugins[`marketplace-base@${market.name}`] === true
 const behind = []
 if (docked === undefined) behind.push('this project was docked before the marketplace recorded which standards it weighed')
 if (added.length) behind.push(`new since the last docking: ${added.join(', ')}`)
 if (gone.length) behind.push(`enabled here but no longer in the marketplace: ${gone.join(', ')}`)
-const update = behind.length
+const update = dockedHere && behind.length
   ? [
       `The setup needs an update: ${behind.join('; ')}. Tell the user so in one line at the start of your first reply, and offer to have the steward refresh the setup.`,
     ]
