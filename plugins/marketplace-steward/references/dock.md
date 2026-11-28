@@ -82,8 +82,8 @@ size limits. Write the content in `CLAUDE.md`, at the root and in every componen
 earned one. Write no `AGENTS.md`, unless the user chose to keep theirs, as
 `context-files.md` says. A convention that follows a file type rather than a directory
 goes in a path-scoped rule in `.claude/rules/`. Everything else goes in `CLAUDE.md`:
-write no other rules file, hook or config file beyond the settings step 5 merges. A
-project with few rules of its own gets a short `CLAUDE.md` and nothing beside it.
+in this step, write no other rules file, hook or config file. A project with few rules
+of its own gets a short `CLAUDE.md` and nothing beside it.
 
 A file the project already has is edited, not replaced: add what is missing, and leave
 every line the project wrote. Step 6 decides what of it goes.
@@ -142,11 +142,11 @@ reports only what failed, so the output stays out of the session.
 ## 6. Tidy
 
 When step 2 found a setup of the project's own, or files an earlier steward generated,
-read `tidy.md` and run it. It removes only what an installed standard says word for
-word, keeps every other rule as the project's own, and files the rules that would serve
-other projects as issues for the curators. Run it on every file step 2 noted, not only
-the ones you expect to change: its table has one row for each file read, and a file
-without a row was not read.
+read `tidy.md` and run it. It removes what an installed standard says word for word,
+keeps one copy of a rule the project's own files repeat, keeps every other rule as the
+project's own, and files the rules that would serve other projects as issues for the
+curators. Run it on every file step 2 noted, not only the ones you expect to change: its
+table has one row for each file read, and a file without a row was not read.
 
 Then write the models and efforts the user accepted in step 3, as `agent-models.md`
 says.

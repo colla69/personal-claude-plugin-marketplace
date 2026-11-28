@@ -30,7 +30,7 @@ it.
 | What it is | What happens |
 |---|---|
 | A rule an installed standard states word for word, or says the same thing in other words with nothing added or changed | Removed. The report names the standard |
-| A rule that repeats another of the project's own files, such as its root `CLAUDE.md`, its README or a page of its docs | Kept once. The copy in `CLAUDE.md` stays; a copy in a rules file or another instruction file is removed |
+| A rule that repeats another of the project's instruction files, or its README or docs | Kept once, in a file that loads: the root `CLAUDE.md`, or the component's `CLAUDE.md` where the rule is about that component. The copy in a rules file or another instruction file is removed; a rule held only there moves into that `CLAUDE.md` first. The README and the docs are never edited |
 | A rule that is right in general and different here | Stays: it is the project's quirk |
 | A fact about the project, or a boundary only it has | Stays, in its `CLAUDE.md` |
 | A rule that would hold in other projects, and no standard has it | Stays, and is filed for the curators, below |
@@ -94,7 +94,7 @@ Read <n> files.
 
 | From | Rule | Outcome |
 |---|---|---|
-| <file> | <the rule, quoted short> | <removed: duplicate of plugin:skill / removed: generated / kept and filed: the issue> |
+| <file> | <the rule, quoted short> | <removed: duplicate of plugin:skill / removed: repeats <file> / moved to <file> / removed: generated / kept and filed: the issue> |
 
 Backups: <each backup path, or "none needed">
 ```
@@ -103,5 +103,5 @@ Backups: <each backup path, or "none needed">
 columns filled in, even a file with nothing to change. Never one row for a group, such
 as "the component files" or "the agents". `<n>` in "Read <n> files" is the number of
 rows. A file without a row was not read, and the report must not say that nothing was
-found in it. The second table has one row for each rule removed or filed. Rules kept without
+found in it. The second table has one row for each rule removed, moved or filed. Rules kept without
 filing are counted in the first table, not listed.
