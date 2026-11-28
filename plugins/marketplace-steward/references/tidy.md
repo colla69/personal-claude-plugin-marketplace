@@ -103,5 +103,5 @@ Backups: <each backup path, or "none needed">
 columns filled in, even a file with nothing to change. Never one row for a group, such
 as "the component files" or "the agents". `<n>` in "Read <n> files" is the number of
 rows. A file without a row was not read, and the report must not say that nothing was
-found in it. The second table has one row for each rule removed, moved or filed. Rules kept without
-filing are counted in the first table, not listed.
+found in it. The second table has one row for each rule removed, moved or filed. Rules
+kept without filing are counted in the first table, not listed.
