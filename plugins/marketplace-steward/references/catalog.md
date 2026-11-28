@@ -19,8 +19,9 @@ pure cost. When in doubt, leave it out and mention it as optional.
 |---|---|---|---|
 | Universal | `universal-clean-code` | `clean-code` skill | Any repo with code in it. Strongest signal: comment noise, deep property chains or a library called from many places. |
 | Universal | `universal-work-discipline` | `work-discipline` skill | Any repo, with or without code. `craft-development` pulls it in; recommend it on its own where the work isn't code. |
+| Universal | `universal-llm-cost` | `llm-cost` skill | A repo that calls a language model API, whatever it is: an app, a script, a CLI tool. Strongest signal: an `anthropic`, `openai`, `@anthropic-ai/sdk`, `google-genai` or similar SDK in the dependencies, or a request to a model API's URL in the code. |
 | Craft | `craft-development` | `development-standards` skill | Any repo with code in it (see Code, below). |
-| Craft | `craft-shipping` | `readiness-review`, `developer-handoff`, `new-project`, `replace-live-files`, `llm-cost` skills | A repo with an app that people will use: a web app, an API, a mobile or desktop app. Also a folder with no code yet, where the user plans an app. Also a repo with an SFTP or FTP upload script, or SFTP or FTP login names in its env template. Also a repo that calls a language model API. Not a library or a folder of documents. |
+| Craft | `craft-shipping` | `readiness-review`, `developer-handoff`, `new-project`, `replace-live-files` skills | A repo with an app that people will use: a web app, an API, a mobile or desktop app. Also a folder with no code yet, where the user plans an app. Also a repo with an SFTP or FTP upload script, or SFTP or FTP login names in its env template. Not a library or a folder of documents. |
 | Language | `language-simple-natural-language` | `simple-natural-language` skill | Every project, with or without code: every project has text a person reads. |
 | Language | `language-conventional-commits` | `conventional-commits` skill | Any repo with code in it, after the one question in "Commit messages", below. |
 | Framework & Tools | `tools-vue` | `vue-conventions` skill | `vue` in dependencies. Check the major version and note it: the plugin targets Vue 3 Composition API, so flag a mismatch if the project is on Options API or Vue 2. |
@@ -206,4 +207,5 @@ old name.
 | `marketplace-steward:evaluate-skills` | `marketplace-curator:evaluate-skills` | Moved with the curator's work |
 | `language-java`, `language-typescript`, `language-javascript`, `language-swift` | — | Removed: measured, the model followed their rules without them |
 | `craft-unit-testing` | — | Removed: measured, the model followed its rules without it. Test first stays in `craft-development` |
+| `craft-shipping:llm-cost` | `universal-llm-cost:llm-cost` | Moved out of `craft-shipping`, so a repo that calls a model API gets it without being an app. Weigh `universal-llm-cost` by its signal |
 | `craft-refactoring`, `craft-cv-writing`, `tools-vue-typescript`, `tools-pinia`, `tools-aws-static-hosting`, `craft-review`, `craft-code-review` | — | Removed: measured, the model followed their rules without them |
