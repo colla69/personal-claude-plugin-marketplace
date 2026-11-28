@@ -81,7 +81,9 @@ Read `context-files.md` first: the layout, the templates, what to leave out, and
 size limits. Write the content in `CLAUDE.md`, at the root and in every component that
 earned one. Write no `AGENTS.md`, unless the user chose to keep theirs, as
 `context-files.md` says. A convention that follows a file type rather than a directory
-goes in a path-scoped rule in `.claude/rules/`.
+goes in a path-scoped rule in `.claude/rules/`. Everything else goes in `CLAUDE.md`:
+write no other rules file, hook or config file beyond the settings step 5 merges. A
+project with few rules of its own gets a short `CLAUDE.md` and nothing beside it.
 
 A file the project already has is edited, not replaced: add what is missing, and leave
 every line the project wrote. Step 6 decides what of it goes.

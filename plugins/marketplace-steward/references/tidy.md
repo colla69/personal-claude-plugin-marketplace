@@ -30,6 +30,7 @@ it.
 | What it is | What happens |
 |---|---|
 | A rule an installed standard states word for word, or says the same thing in other words with nothing added or changed | Removed. The report names the standard |
+| A rule that repeats another of the project's own files, such as its root `CLAUDE.md`, its README or a page of its docs | Kept once. The copy in `CLAUDE.md` stays; a copy in a rules file or another instruction file is removed |
 | A rule that is right in general and different here | Stays: it is the project's quirk |
 | A fact about the project, or a boundary only it has | Stays, in its `CLAUDE.md` |
 | A rule that would hold in other projects, and no standard has it | Stays, and is filed for the curators, below |
