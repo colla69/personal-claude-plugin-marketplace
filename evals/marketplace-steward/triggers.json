@@ -12,6 +12,8 @@
       "is my setup current?",
       "update marketplace",
       "keep setup up to date",
+      "refresh the setup",
+      "the index says my setup needs an update, do it",
       "This folder has no code in it yet. Set it up for Claude."
     ],
     "quiet": [

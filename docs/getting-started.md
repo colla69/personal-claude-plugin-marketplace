@@ -44,7 +44,9 @@ You work as before. In every session of a docked project:
 
 ## Keep it current
 
-Claude Code updates the marketplace by itself. To check a project, say "is my setup
+Claude Code updates the marketplace by itself. When a standard is added that the
+project was never weighed for, Claude says the setup needs an update at the start of a
+session; say "refresh the setup". To check a project at any time, say "is my setup
 current?". To see what the setup costs per session, say "why is my setup slow?".
 
 ## When something doesn't load

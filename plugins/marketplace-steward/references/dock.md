@@ -32,7 +32,7 @@ the checklist, and the rules for the file.
    carrying into `CLAUDE.md` and left as they are. `CLAUDE.local.md`,
    `.claude/settings.local.json` and everything under `~/.claude` are the user's own:
    read them, and change nothing in them. The one exception is the working agreement
-   in `~/.claude/CLAUDE.md`, which item 6 of step 5 adds.
+   in `~/.claude/CLAUDE.md`, which item 7 of step 5 adds.
 2. **What the project is.** For a codebase, start the built-in `Explore` agent for the
    survey, and ask for these fields: the stack and where each version is pinned; the
    commands, taken from CI first, each marked verified or inferred; the components, each
@@ -109,16 +109,22 @@ reports only what failed, so the output stays out of the session.
    covers the whole project.
 3. **Remove the dead keys**, by the rule in "Renamed and removed" in `catalog.md`, and
    report every plugin at user scope that "Scope" there doesn't allow.
-4. **Check every plugin you decided on against `.claude/plugin-sources.json`.** If you
+4. **Record what was weighed**, as `"STEWARD_DOCKED_WITH"` under `env` in the same
+   file: the name of every plugin in the catalog's table outside the `marketplace-`
+   ones, separated by commas, whether step 3 chose it or not. The base plugin's index
+   compares it with the catalog at every session start and says when a standard was
+   added since. A plugin the user turned down stays in the list, so it is not offered
+   again.
+5. **Check every plugin you decided on against `.claude/plugin-sources.json`.** If you
    have talked yourself into a plugin from a source the user unticked, drop it; do not
    widen the file.
-5. **Install each one at project scope**, as "Scope" in `catalog.md` says,
+6. **Install each one at project scope**, as "Scope" in `catalog.md` says,
    `marketplace-base` first:
 
    ```bash
    claude plugin install <name>@<marketplace> --scope project
    ```
-6. **Write the working agreement into the person's own `~/.claude/CLAUDE.md`**, from
+7. **Write the working agreement into the person's own `~/.claude/CLAUDE.md`**, from
    `assets/working-with-me.md`, unless the user said to leave it out. It is how the
    person wants Claude to work with them in every project, so it lives in their file
    and not in the project's. The asset has two sections, each under its own heading:
@@ -244,7 +250,7 @@ left out: it is what turns the next machine's clone into a working setup.
 A project's `.claude/settings.json` holds a copy of the template as it stood on the day
 of docking. Claude Code updates the marketplace by itself, but never that copy. To bring
 it up to date, run this on a docked project, when the user asks if the setup is
-current:
+current, or when the base plugin's index says the setup needs an update:
 
 1. Read `assets/settings-template.json` and the project's `.claude/settings.json`, and
    `.claude/settings.local.json` over it.
@@ -256,6 +262,14 @@ current:
    differs may be the project's own choice, and nothing records which it is, so change
    none without a tick.
 4. Write the ticked values into `.claude/settings.json`, and keep every other key.
-5. Run item 6 of step 5, the working agreement. It is not a key in the settings, so
+5. Compare the catalog with `STEWARD_DOCKED_WITH` in the project's settings. Weigh each
+   plugin that is missing from it by its signal in `catalog.md`, as step 3 does, and
+   offer the ones that fit in one question. Install the ones the user ticks, as item 6
+   of step 5 says. Remove the dead keys, as item 3 says, and offer each one's
+   successor the same way. Without `STEWARD_DOCKED_WITH`, the project was docked before
+   it was recorded: weigh every plugin that isn't enabled.
+6. Write `STEWARD_DOCKED_WITH` again, as item 4 of step 5 says.
+7. Run item 7 of step 5, the working agreement. It is not a key in the settings, so
    the table doesn't hold it, and it follows the same rule as in a dock: no question.
-6. Report the table, and what was written. Then run step 7, items 8 and 9.
+8. Report the table, the plugins installed and removed, and what was written. Then run
+   step 7, items 8 and 9.
