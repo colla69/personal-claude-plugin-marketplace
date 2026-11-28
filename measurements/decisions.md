@@ -446,6 +446,15 @@ calls a model API but is no app, so `llm-cost` never loaded there.
 |---|---|---|---|
 | D107 | `llm-cost` moves out of `craft-shipping` into its own plugin, `universal-llm-cost`, chosen for any repo that calls a language model API. `craft-shipping` does not depend on it: not every app calls a model, and the catalog signal decides per project. The skill, its case and its trigger prompts move unchanged, so nothing is measured again | Docking weighs a plugin as a whole. A repo with a model call but no app, such as a script or a local tool, matched one line of the `craft-shipping` signal and none of the rest, and installing four app skills for one was the wrong trade. One skill per plugin is the house shape; D106 had chosen `craft-shipping` to save a plugin | Holds, in `universal-llm-cost` and the catalog |
 
+## The base says when the setup is behind: D108
+
+Decided on 2026-11-28, after the maintainer asked that the base also keep the setup up
+to date, "notify that an update is necessary".
+
+| # | Decision | Why | Now |
+|---|---|---|---|
+| D108 | Docking and the refresh write `STEWARD_DOCKED_WITH` under `env` in the project's settings: every standard in the catalog at that time, chosen or not. The base's index compares it with the catalog at session start and adds one line when a standard is new since, when a plugin enabled here no longer exists, or when the record is missing. The line asks the session to tell the user and offer the steward's refresh, which now weighs the new standards by their signals and offers the successors of dead keys. The base edits nothing | Claude Code updates each plugin's content by itself, but never the project's choice of plugins: when `llm-cost` moved out of `craft-shipping` (D107), nothing told a project that calls a model API. Choosing a plugin means reading the repo against its signal, which is too slow for a hook in every session and is a change the user should see first. A standard the user turned down stays in the record, so it is not offered again. Until a refresh runs, the line comes back at every session start, on purpose: every project docked before this has no record, and that is how it learns Tried on three made-up projects: no record, behind, current; the hook took 80 ms. The steward's description gained "refresh the setup"; its trigger prompts passed 23 of 23 | Holds, in `index.mjs`, `dock.md` and the steward |
+
 ## Still open
 
 | # | Question | Working answer |

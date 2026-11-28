@@ -1,6 +1,6 @@
 ---
 name: steward
-description: Dock a project onto the company's standards and help people use them — installs the standards the project needs and the base plugin, writes a short CLAUDE.md, and tidies a setup the project already has. Use whenever the user says "dock this project", "set this project up", "onboard this repo", "there's no CLAUDE.md here", "bring our setup onto the marketplace", "which standards do we have for this?", "is there a standard for X?", "add the standard for X", "is my setup current?", "update marketplace", "why is my setup slow?", "this setup costs too many tokens", or a skill in this project isn't loading. Not for setting up a tool, service, dependency, dev server or CI, and not for the project's own work. Also use when the project is a folder with no code in it.
+description: Dock a project onto the company's standards and help people use them — installs the standards the project needs and the base plugin, writes a short CLAUDE.md, and tidies a setup the project already has. Use whenever the user says "dock this project", "set this project up", "onboard this repo", "there's no CLAUDE.md here", "bring our setup onto the marketplace", "which standards do we have for this?", "is there a standard for X?", "add the standard for X", "is my setup current?", "refresh the setup", "update marketplace", "why is my setup slow?", "this setup costs too many tokens", or a skill in this project isn't loading. Not for setting up a tool, service, dependency, dev server or CI, and not for the project's own work. Also use when the project is a folder with no code in it.
 allowed-tools:
   - Read(/${CLAUDE_PLUGIN_ROOT}/**)
   - Write(~/.local/share/marketplace-steward/backups/**)
@@ -29,7 +29,7 @@ project only when someone asks, and it never does the project's own work.
 |---|---|---|
 | A project docked: set up for the first time, or brought onto the standards from a setup of its own | Dock | `${CLAUDE_PLUGIN_ROOT}/references/dock.md` |
 | One more standard in a docked project | Dock, steps 1 and 5, for that standard, then items 1 and 7 of step 7 | `${CLAUDE_PLUGIN_ROOT}/references/dock.md` |
-| The settings brought up to date with the template, such as "is my setup current?" | Refresh the settings | `${CLAUDE_PLUGIN_ROOT}/references/dock.md` |
+| The setup brought up to date: the settings with the template and the standards with the catalog, such as "is my setup current?" or the index saying the setup needs an update | Refresh the settings | `${CLAUDE_PLUGIN_ROOT}/references/dock.md` |
 | An answer: which standard covers something, what a standard says, what is not installed here, why a skill doesn't load | Ask the guide | — |
 | To know what the setup costs, or to make it cheaper | Ask the guide | — |
 

@@ -16,7 +16,11 @@ It needs Node 18 or later on the machine.
 ## What it does
 
 - **The index.** At session start, one line for each standard, with the ones enabled
-  here marked, so a session can offer a standard it doesn't have.
+  here marked, so a session can offer a standard it doesn't have. It says the setup
+  needs an update when a standard was added since the last docking, when a plugin
+  enabled here no longer exists, or when the project was docked before this record
+  existed. The session then offers the steward's refresh, at every start until it runs. Only a
+  project whose own settings enable the base gets the notice.
 - **The guard.** When Claude is about to stop and a file changed, it runs the project's
   check command. A failure keeps Claude working; after three failures in a row it lets
   Claude stop and says so.
@@ -31,6 +35,9 @@ Under `env` in the project's `.claude/settings.json`:
   CI. Without it, the guard does nothing.
 - `STEWARD_CHECK_PATHS`: comma-separated globs; the guard then runs only when a file in
   them changed.
+- `STEWARD_DOCKED_WITH`: the standards the steward weighed at the last docking or
+  refresh, separated by commas. The steward writes it; the index compares it with the
+  marketplace.
 - `STEWARD_COLLECT`: `"off"` turns the collector off. It also works in your own
   settings.
 
